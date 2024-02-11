@@ -44,14 +44,14 @@ export const HomePage = () => {
       flexDir={"column"}
       align={"center"}
       gap={12}
-      mb={20}
-      mt={"180px"}
+      my={4}
     >
       <Box
         bgGradient="linear(to-r, #37BEB0, #0c6170)"
         rounded={"2xl"}
         p={8}
         shadow={"lg"}
+        height={"100%"}
         color={"#fff"}
       >
         <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
@@ -63,9 +63,9 @@ export const HomePage = () => {
           templateColumns={[
             "repeat(1, 1fr)",
             "repeat(4, 1fr)",
-            "repeat(7, 1fr)",
+            "repeat(3, 1fr)",
           ]}
-          fontSize={"xs"}
+          fontSize={"lg"}
           gap={5}
         >
           {fixInfo.map((item, idx) => (
@@ -73,7 +73,7 @@ export const HomePage = () => {
               <CountUp
                 style={{ fontSize: "2.5rem", fontWeight: "700" }}
                 end={item.numberCnt}
-                duration={0.01}
+                duration={0.3}
               />
               {item.title}
             </GridItem>
