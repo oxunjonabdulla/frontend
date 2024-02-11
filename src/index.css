@@ -1,0 +1,98 @@
+/* eslint-disable-next */
+
+/* body {
+  background: url(./assets/images/6203.jpg);
+  background-position: center;
+  background-size: contain;
+} */
+
+body {
+  background-color: #f0f2f7 !important;
+}
+
+.react-datepicker__input-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 50px !important;
+}
+
+.shrift {
+  font-family: "Dosis", sans-serif !important;
+}
+
+td,
+th {
+  border: 1px solid #a8a8a86c !important;
+
+  padding: 8px !important;
+}
+
+th {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  color: white !important;
+}
+
+/* #
+#37BEB0
+#A4E5EO
+#DBF5F0 */
+.styles-module_wrapper__1I_qj {
+  z-index: 10 !important;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  margin-top: 50px;
+}
+.page-link {
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #a4e5e0;
+  background-color: #37beb0;
+  transition: 0.3s;
+}
+.page-link:hover {
+  background-color: #37beb067;
+  color: #00443e;
+}
+.active .page-link {
+  color: #004741;
+  background-color: #f0f2f7;
+}
+
+ul,
+li {
+  margin: 3px 0;
+  list-style: none;
+}
+
+.hover_carriage:hover {
+  border-bottom: 1px solid green !important;
+  color: green;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #12879c;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0c6170db;
+}

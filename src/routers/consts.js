@@ -1,0 +1,15 @@
+export const RouteNames = {
+  HOME: "/",
+  STATISTIKA: "/statistics",
+  STATISTIKAARCHIVE: "/statistics/archive",
+  ASSEMBLY: "/assembly-unit",
+  AUTO_BRAKES: "/auto-brakes",
+  AUTOMOBILE_UNIT: "/automobile-unit",
+  EQUIPMENT_UNIT: "/equipment-unit",
+  DEFECTOSCOPES: "/defectoscopes",
+  CARRIAGE_UNIT: "/carriage-unit",
+  PRO_UNIT: "/pto-unit",
+  LOGIN: "/login",
+  WHEEL_PAIRS: "/wheel-pairs",
+  NOT_FOUND: "*",
+};
