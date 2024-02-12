@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   Heading,
-  Image,
   Table,
   TableContainer,
   Tbody,
@@ -84,25 +83,26 @@ export const Fraza = () => {
     onOpen();
   };
 
-  const handleDowland = async (carriageID) => {
+  const handleDownload = async (carriageID) => {
     try {
       const { response } = await new UserApi().downloadPhrase(carriageID);
 
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const blob = new Blob([response.data], {
+        type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      });
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-
       link.setAttribute("download", `Фраза-${carriageID}.docx`);
-
       document.body.appendChild(link);
       link.click();
-
-      link.parentNode.removeChild(link);
+      document.body.removeChild(link); // Remove the link after download
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Ошибка при скачивании файла: ", error);
+      console.error("Error downloading file: ", error);
     }
   };
+
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
@@ -268,7 +268,7 @@ export const Fraza = () => {
                           minW={"30px"}
                           p={0}
                           _hover={{ bgColor: "blue.400", opacity: "0.7" }}
-                          onClick={() => handleDowland(item?.carriage)}
+                          onClick={() => handleDownload(item?.carriage)}
                         >
                           <FontAwesomeIcon icon={faDownload} />
                         </Button>

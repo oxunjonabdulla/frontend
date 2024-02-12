@@ -13,8 +13,8 @@ const authEndpoints = {
   // phrase
 
   phraseList: (page) => `/phrase/list/?page=${page + 1}`,
-  phraseUpdate: (carriageID) => `/phrase/${carriageID}/update/`,
-  phraseDelate: (carriageID) => `/phrase/${carriageID}/delete/`,
+  phraseUpdate: (carriageID) => `/phrase/${carriageID}/`,
+  phraseDelate: (carriageID) => `/phrase/${carriageID}/`,
   phraseDownload: (carriageID) => `/${carriageID}/phrase/download/`,
 
   // phrase wheel

@@ -518,7 +518,8 @@ class UserApi extends React.Component {
   async downloadPhrase(carriageId) {
     try {
       const response = await privateInstance.get(
-        authEndpoints.phraseDownload(carriageId)
+        authEndpoints.phraseDownload(carriageId),
+        { responseType: "blob" }
       );
 
       return { response };
