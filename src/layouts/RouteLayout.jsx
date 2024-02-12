@@ -21,7 +21,11 @@ export default function RouteLayout() {
     const fetchData = async () => {
       const { response, error } = await new UserApi().getMe();
       dispatch(setUser(response?.data));
-
+      if (error?.code === "user_inactive") {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        window.location.reload();
+      }
       if (error) {
         localStorage.removeItem("accessToken");
 
