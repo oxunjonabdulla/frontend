@@ -83,6 +83,26 @@ export const Fraza = () => {
 
     onOpen();
   };
+
+  const handleDowland = async (carriageID) => {
+    try {
+      const { response } = await new UserApi().downloadPhrase(carriageID);
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+
+      link.setAttribute("download", `Фраза-${carriageID}.docx`);
+
+      document.body.appendChild(link);
+      link.click();
+
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Ошибка при скачивании файла: ", error);
+    }
+  };
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
@@ -248,7 +268,7 @@ export const Fraza = () => {
                           minW={"30px"}
                           p={0}
                           _hover={{ bgColor: "blue.400", opacity: "0.7" }}
-                          // onClick={() => handleDowland(item?.carriage_number)}
+                          onClick={() => handleDowland(item?.carriage)}
                         >
                           <FontAwesomeIcon icon={faDownload} />
                         </Button>

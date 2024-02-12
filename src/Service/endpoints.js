@@ -15,6 +15,7 @@ const authEndpoints = {
   phraseList: (page) => `/phrase/list/?page=${page + 1}`,
   phraseUpdate: (carriageID) => `/phrase/${carriageID}/update/`,
   phraseDelate: (carriageID) => `/phrase/${carriageID}/delete/`,
+  phraseDownload: (carriageID) => `/${carriageID}/phrase/download/`,
 
   // phrase wheel
   phraseWheelList: (page) => `/phrase_wheel/list/?page=${page + 1}`,

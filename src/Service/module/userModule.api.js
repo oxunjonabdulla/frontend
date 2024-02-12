@@ -515,6 +515,17 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async downloadPhrase(carriageId) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.phraseDownload(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getPhraseCart(carriageID) {
     try {
       const response = await privateInstance.get(
