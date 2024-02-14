@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router";
+import { Navigate, Outlet, useLocation } from "react-router";
 import { Box, Flex, HStack } from "@chakra-ui/react";
 import { Sidebar } from "../components/SiderBar/Sidebar";
 import { AvatarBox } from "../components/SiderBar/AvatarBox";
@@ -42,6 +42,7 @@ export default function RouteLayout() {
               "accessToken",
               JSON.stringify(response.data.access)
             );
+            window.location.reload();
           }
           if (error) {
             localStorage.removeItem("accessToken");
@@ -64,7 +65,7 @@ export default function RouteLayout() {
     }
   }, [accessToken, dispatch, refreshToken]);
 
-  return (
+  return accessToken ? (
     <>
       {location.pathname === "/login" ? (
         <Outlet />
@@ -127,5 +128,7 @@ export default function RouteLayout() {
         </HStack>
       )}
     </>
+  ) : (
+    <Navigate to={"/login"} />
   );
 }

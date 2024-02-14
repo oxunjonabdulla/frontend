@@ -132,10 +132,7 @@ export const routes = [
         ),
         path: RouteNames.CARRIAGE_UNIT,
       },
-      {
-        element: <Login />,
-        path: RouteNames.LOGIN,
-      },
+
       {
         element: (
           <ProtectedRoute
@@ -205,6 +202,10 @@ export const routes = [
         path: RouteNames.NOT_FOUND,
       },
     ],
+  },
+  {
+    element: <Login />,
+    path: RouteNames.LOGIN,
   },
 ];
 
