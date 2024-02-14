@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { isAuth } from "../Service/authService";
 
 export const ProtectedRoute = ({ redirectPath = "/", element }) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const auth = isAuth();
   if (!auth) {
-    return <Navigate to={redirectPath} state={{ from: location }} replace />;
+    navigate(redirectPath, { state: { from: location }, replace: true });
   }
 
   return element;

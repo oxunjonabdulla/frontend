@@ -4,34 +4,41 @@ import { Box, Container, Grid, GridItem, Heading } from "@chakra-ui/react";
 const fixInfo = [
   {
     title: "Joriy yilda ta’mirlangan inventar vagonlar soni",
-    numberCnt: 75,
+    numberCnt: 1,
   },
   {
     title: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
-    numberCnt: 120,
+    numberCnt: 83,
   },
   {
     title: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
-    numberCnt: 120,
+    numberCnt: 135,
   },
   {
     title:
       "Qarshi vagon deposi balansiga qabul qilingan va chiqarilgan vagonlar soni",
-    numberCnt: 150,
+    numberCnt: 170,
   },
   {
     title: "Qarshi vagon deposi hududida turgan nosoz vagonlar soni",
-    numberCnt: 12,
+    numberCnt: 180,
   },
   {
     title:
       "Qarshi vagon deposida tegishli buyruq asosida ta’mirlangan vagonlar soni",
-    numberCnt: 50,
+    numberCnt: 47,
   },
   {
-    title:
-      "Boshqaruv apparati tomonidan chiqarilgan ta’mirga oid buyruqlar mazmuni",
-    numberCnt: 50,
+    title: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
+    numberCnt: 940,
+  },
+  {
+    title: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
+    numberCnt: 636,
+  },
+  {
+    title: "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
+    numberCnt: 918,
   },
 ];
 
@@ -44,14 +51,14 @@ export const HomePage = () => {
       flexDir={"column"}
       align={"center"}
       gap={12}
-      my={4}
+      height={"90vh"}
+      justifyContent={"center"}
     >
       <Box
         bgGradient="linear(to-r, #37BEB0, #0c6170)"
         rounded={"2xl"}
         p={8}
         shadow={"lg"}
-        height={"100%"}
         color={"#fff"}
       >
         <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
@@ -73,7 +80,7 @@ export const HomePage = () => {
               <CountUp
                 style={{ fontSize: "2.5rem", fontWeight: "700" }}
                 end={item.numberCnt}
-                duration={0.3}
+                duration={1}
               />
               {item.title}
             </GridItem>
