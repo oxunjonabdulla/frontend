@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { SliderMock } from "../../utils";
 import { carriage_dalolatnoma_head } from "../../utils/mock_heads";
-import { Carriage_dalolatnoma_model } from "./Modals/Carriage_dalolatnoma_model";
+import { Auto_dalolatnoma_model } from "./Modals/AutoDalolatnoma/Auto_dalolatnoma_model";
 const data = [0];
 
 export const CarriageDalolatnoma = () => {
@@ -35,7 +35,7 @@ export const CarriageDalolatnoma = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Кириш ва чиқиш назорати далолатномаси
+        Кириш ва чиқиш далолатномаси
       </Heading>
       <Button
         borderRadius={"50%"}
@@ -109,7 +109,7 @@ export const CarriageDalolatnoma = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-      <Carriage_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
+      <Auto_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

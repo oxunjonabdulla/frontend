@@ -36,7 +36,7 @@ export const Dalolatnoma = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Кириш ва чиқиш назорати далолатномаси
+        Кириш ва чиқиш далолатномаси
       </Heading>
       <Button
         borderRadius={"50%"}

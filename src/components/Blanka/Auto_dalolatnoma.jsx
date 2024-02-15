@@ -17,7 +17,7 @@ import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { SliderMock } from "../../utils";
-import { Auto_dalolatnoma_model } from "./Modals/Auto_dalolatnoma_model";
+import { AutoBreakes_dalolatnoma_model } from "./Modals/AutoBreakes/AutoBreakes_dalolatnoma_model";
 import { auto_dalolatnoma_head } from "../../utils/mock_heads";
 const data = [0];
 
@@ -35,7 +35,7 @@ export const AutoDalolatnoma = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Кириш ва чиқиш назорати далолатномаси
+        Кириш ва чиқиш далолатномаси
       </Heading>
       <Button
         borderRadius={"50%"}
@@ -109,7 +109,7 @@ export const AutoDalolatnoma = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-      <Auto_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
+      <AutoBreakes_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

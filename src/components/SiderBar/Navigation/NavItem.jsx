@@ -4,8 +4,8 @@ import {
   Box,
   Text,
   Tooltip,
+  Image,
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -28,34 +28,10 @@ export const NavItem = ({ item, collapse }) => {
             w="full"
             justifyContent={!collapse ? "center" : ""}
           >
-            <FontAwesomeIcon icon={icon} style={{ fontSize: "20px" }} />
+            <Image src={icon} width={"25px"} />
             {collapse && <Text>{label}</Text>}
           </LinkChakra>
         </Tooltip>
-        {/* {collapse && (
-          <React.Fragment>
-            {notifications && (
-              <Badge
-                borderRadius="full"
-                colorScheme="yellow"
-                w={6}
-                textAlign="center"
-              >
-                {notifications}
-              </Badge>
-            )}
-            {messages && (
-              <Badge
-                borderRadius="full"
-                colorScheme="green"
-                w={6}
-                textAlign="center"
-              >
-                {messages}
-              </Badge>
-            )}
-          </React.Fragment>
-        )} */}
       </Box>
     );
   }

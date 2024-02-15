@@ -149,7 +149,6 @@ export const WheelPairsPage = () => {
           p={8}
           mx="auto"
           rounded={"lg"}
-          shadow={"lg"}
           position={"relative"}
         >
           {renderComponent()}

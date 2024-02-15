@@ -1,27 +1,27 @@
 import { List, ListItem } from "@chakra-ui/react";
 
 import { NavItem } from "./NavItem";
-import {
-  faChartSimple,
-  faGauge,
-  faGears,
-  faHomeAlt,
-  faMicroscope,
-  faPeopleCarryBox,
-  faRing,
-  faTrailer,
-  faTrain,
-} from "@fortawesome/free-solid-svg-icons";
-import { faAutoprefixer } from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import {
+  Aravalar,
+  Avtobirikma,
+  Avtotormoz,
+  Defostoskop,
+  Gildirak,
+  Joxozlash,
+  PtoOperator,
+  Statistika,
+  Yiguv,
+  home,
+} from "../../../assets";
 const items = [
   {
     isWork: false,
     label: "Statistika va hisobga olish bo‘limi",
     path: "/statistics",
     type: "link",
-    icon: faChartSimple,
+    icon: Statistika,
     role: "statisticuser",
   },
   {
@@ -29,7 +29,7 @@ const items = [
     label: "PTO operator",
     path: "/pto-unit",
     type: "link",
-    icon: faTrain,
+    icon: PtoOperator,
     role: "ptouser",
   },
   {
@@ -37,7 +37,7 @@ const items = [
     label: "Yig‘uv bo‘linmasi",
     path: "/assembly-unit",
     type: "link",
-    icon: faGears,
+    icon: Yiguv,
     role: "collectoruser",
   },
   {
@@ -45,7 +45,7 @@ const items = [
     label: "G‘ildirak juftlikalar bo‘linmasi",
     path: "/wheel-pairs",
     type: "link",
-    icon: faRing,
+    icon: Gildirak,
     role: "wheeluser",
   },
 
@@ -54,7 +54,7 @@ const items = [
     label: "Avtobirikma bo‘linmasi",
     path: "/automobile-unit",
     type: "link",
-    icon: faAutoprefixer,
+    icon: Avtobirikma,
     role: "avtoconnectoruser",
   },
   {
@@ -62,7 +62,7 @@ const items = [
     label: "Aravalar bo‘linmasi",
     path: "/carriage-unit",
     type: "link",
-    icon: faTrailer,
+    icon: Aravalar,
     role: "cartuser",
   },
   {
@@ -70,7 +70,7 @@ const items = [
     label: "Avtotormozlar bo‘linmasi",
     path: "/auto-brakes",
     type: "link",
-    icon: faGauge,
+    icon: Avtotormoz,
 
     role: "avtotormozuser",
   },
@@ -79,7 +79,7 @@ const items = [
     label: "Defektoskoplar",
     path: "/defectoscopes",
     type: "link",
-    icon: faMicroscope,
+    icon: Defostoskop,
     role: "defestoskopuser",
   },
   {
@@ -89,7 +89,7 @@ const items = [
     type: "link",
 
     role: "equipmentuser",
-    icon: faPeopleCarryBox,
+    icon: Joxozlash,
   },
 ];
 const home_page = {
@@ -97,7 +97,7 @@ const home_page = {
   label: "Bosh Sahifa",
   path: "/",
   type: "link",
-  icon: faHomeAlt,
+  icon: home,
 };
 export const Navigation = ({ collapse, setMocileCollapse }) => {
   const { user } = useSelector(({ userMe }) => userMe);

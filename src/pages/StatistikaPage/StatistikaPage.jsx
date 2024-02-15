@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TableTrain, VU_36, VU_31, VU_10, Fraza } from "../../components";
+import { TableTrain, VU_36, VU_31, Fraza } from "../../components";
 import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
 import UserApi from "../../Service/module/userModule.api";
 import { Link } from "react-router-dom";
@@ -126,7 +126,6 @@ export const StatistikaPage = () => {
           p={8}
           mx="auto"
           rounded={"lg"}
-          shadow={"lg"}
           position={"relative"}
         >
           {renderComponent()}
