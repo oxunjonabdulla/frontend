@@ -20,10 +20,22 @@ export const PtoCompleks = ({ setActiveStep }) => {
   const toast = useToast();
   const onSubmit = async (data) => {
     setLoading(true);
-    const { response } = await new UserApi().postCarriageComplectation(
+    const { response, error } = await new UserApi().postCarriageComplectation(
       localStorage.getItem("carriage_number"),
       data
     );
+    if (error?.detail === "Страница не найдена.") {
+      localStorage.removeItem("carriage_number");
+
+      toast({
+        status: "error",
+        title: `Vagon raqami bo'yicha komplektatsiyasi xatolik keldi sahifani yangilang`,
+        duration: 6000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
     setLoading(false);
     if (response) {
       toast({
@@ -44,7 +56,6 @@ export const PtoCompleks = ({ setActiveStep }) => {
     }
     if (response) {
       localStorage.removeItem("carriage_number");
-      window.location.reload();
     }
   };
   return (

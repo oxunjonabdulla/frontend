@@ -97,6 +97,7 @@ export const HomePage = () => {
                 overflow="hidden"
                 variant="outline"
                 rounded={"xl"}
+                height={"130px"}
               >
                 <Image
                   rounded={"xl"}
@@ -109,10 +110,14 @@ export const HomePage = () => {
 
                 <Stack data-type="Stack">
                   <CardBody data-type="CardBody">
-                    <Heading data-type="Heading" textAlign={"start"} size="md">
+                    <Heading
+                      data-type="Heading"
+                      textAlign={"start"}
+                      fontSize={"10px"}
+                    >
                       <CountUp
                         style={{
-                          fontSize: "2.5rem",
+                          fontSize: "1.5rem",
                           fontWeight: "700",
                         }}
                         end={item.numberCnt}
@@ -125,6 +130,7 @@ export const HomePage = () => {
                       fontWeight={500}
                       textAlign={"start"}
                       py="2"
+                      fontSize={"15px"}
                     >
                       {item.title}
                     </Text>
