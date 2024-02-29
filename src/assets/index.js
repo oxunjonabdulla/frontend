@@ -8,6 +8,7 @@ import Avtotormoz from "./icon/7.jpg";
 import Joxozlash from "./icon/8.jpg";
 import Defostoskop from "./icon/9.jpg";
 import home from "./icon/home.png";
+import Illust from "./images/illust.jpg";
 
 export {
   PtoOperator,
@@ -20,4 +21,5 @@ export {
   Aravalar,
   Avtotormoz,
   home,
+  Illust,
 };

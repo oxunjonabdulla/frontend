@@ -28,4 +28,5 @@ export * from "./PtoServices/PtoArxiv";
 export * from "./Signature/Signatur";
 export * from "./TrainLoader/TrainLoader";
 export * from "./TrainLoader/SimpleLoader";
+export * from "./Login/LoginComponent";
 export * from "./TableContainer/TableContainer";

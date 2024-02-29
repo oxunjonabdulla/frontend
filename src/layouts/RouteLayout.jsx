@@ -8,10 +8,12 @@ import { setUser } from "../redux/Slices/setUserGet";
 import { useDispatch } from "react-redux";
 import { setDaily } from "../redux/Slices/dailySlice";
 import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export default function RouteLayout() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const { isAuth } = useAuth();
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
 
@@ -65,7 +67,7 @@ export default function RouteLayout() {
     }
   }, [accessToken, dispatch, refreshToken]);
 
-  return accessToken ? (
+  return isAuth() ? (
     <>
       {location.pathname === "/login" ? (
         <Outlet />

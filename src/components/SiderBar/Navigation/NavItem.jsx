@@ -22,7 +22,13 @@ export const NavItem = ({ item, collapse }) => {
             gap={3}
             display="flex"
             alignItems="center"
-            _hover={{ textDecoration: "none", color: "black" }}
+            transition={"0.2s"}
+            _hover={{
+              textDecoration: "none",
+              color: "black",
+              filter: "grayscale(0)",
+            }}
+            filter={"grayscale(100%)"}
             fontWeight="medium"
             color={path === pathname ? "black" : "gray.400"}
             w="full"

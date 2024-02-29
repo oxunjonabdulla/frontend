@@ -1,12 +1,7 @@
 import {
-  Avatar,
   Button,
   Flex,
   IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -19,15 +14,15 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdMenu } from "react-icons/md";
-import { isAuth, logout } from "../../Service/authService";
+import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { UserName } from "./UserName";
 
 export const AvatarBox = ({ setCollapse, setMocileCollapse }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isAuth, logout } = useAuth();
   const auth = isAuth();
-  const { user } = useSelector(({ userMe }) => userMe);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Flex
@@ -70,48 +65,7 @@ export const AvatarBox = ({ setCollapse, setMocileCollapse }) => {
           borderRadius="50%"
         />
         {auth ? (
-          <Menu colorScheme="red">
-            <MenuButton>
-              <Flex gap={2} cursor={"pointer"} alignItems={"center"}>
-                <Avatar
-                  name={user?.name ? user?.name : "Foydalanuvchi"}
-                  bg="teal.300"
-                />
-                <Flex
-                  w="full"
-                  flexDirection="column"
-                  gap={4}
-                  justifyContent="center"
-                  alignItems="flex-start"
-                >
-                  <Text fontSize="sm" fontWeight="bold" pb="0" lineHeight={0}>
-                    {user?.name ? user?.name : "Foydalanuvchi"}
-                  </Text>
-                  <Text
-                    as="small"
-                    color="gray.500"
-                    fontSize={12}
-                    lineHeight={0}
-                    textTransform={"capitalize"}
-                  >
-                    {user?.role}
-                  </Text>
-                </Flex>
-                <Text
-                  as={"span"}
-                  color={"gray.700"}
-                  fontSize={scrollY ? "sm" : "md"}
-                  fontWeight={700}
-                  transition={"font-size 0.3s"}
-                >
-                  {" "}
-                </Text>
-              </Flex>
-            </MenuButton>
-            <MenuList onClick={onOpen} p={"1px"}>
-              <MenuItem>Chiqish</MenuItem>
-            </MenuList>
-          </Menu>
+          <UserName onOpen={onOpen} />
         ) : (
           <Link to={"/login"}>
             <Button variant={"solid"}>Kirish</Button>

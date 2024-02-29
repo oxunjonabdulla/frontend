@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { getToken, isAuth, login, logout } from "../Service/authService";
 
-export const AuthContext = createContext(null);
+const AuthContext = createContext(null);
 
 const AuthProvider = ({ children, ...rest }) => {
   const authSettings = {
@@ -16,5 +16,7 @@ const AuthProvider = ({ children, ...rest }) => {
     </AuthContext.Provider>
   );
 };
+
+export { AuthContext };
 
 export default AuthProvider;

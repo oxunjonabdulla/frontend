@@ -37,7 +37,7 @@ export const PtoUnitId = () => {
     getCarriageComp();
   }, [id]);
   return (
-    <Container maxW="container.2xl" position={"relative"} mt={"180px"}>
+    <Container maxW="container.2xl" position={"relative"} mt={"100px"}>
       <BreadCumbs
         path={{ title: "PTO operator", link: "/pto-unit" }}
         current={{ title: "Vagon komplektatsiyasi", link: "/pto-unit" }}

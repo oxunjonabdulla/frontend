@@ -219,7 +219,6 @@ export const StatistikaArchive = () => {
           p={8}
           mx="auto"
           rounded={"lg"}
-          shadow={"md"}
           position={"relative"}
           w={"100%"}
         >

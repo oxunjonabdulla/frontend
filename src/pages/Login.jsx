@@ -1,7 +1,7 @@
 import {
   Box,
   Button,
-  Container,
+  Checkbox,
   Flex,
   FormControl,
   FormErrorIcon,
@@ -9,24 +9,35 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputRightElement,
+  Link,
   Stack,
   Text,
+  useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { login } from "../Service/authService";
+import { useAuth } from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
-import ParticlesBg from "particles-bg";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { LoginComponent } from "../components";
+import { Illust } from "../assets";
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
+  const { login, isAuth } = useAuth();
   const location = useLocation();
   const toast = useToast();
   const navigate = useNavigate();
-
+  const textColor = useColorModeValue("navy.700", "white");
+  const textColorSecondary = "gray.400";
+  const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
+  const textColorBrand = useColorModeValue("brand.500", "white");
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
   const {
     register,
     handleSubmit,
@@ -61,34 +72,56 @@ export const Login = () => {
           ? error?.detail
           : "Server bilan aloqa o'rnatishni iloji bo'lmadi.",
         duration: 6000,
+        position: "top-left",
         isClosable: true,
-        position: "top-right",
         fontSize: "7px",
       });
     }
   };
-
+  if (isAuth()) {
+    return <Navigate to="/" />;
+  }
   return (
-    <Container maxW="lg">
-      <ParticlesBg type="cobweb" bg={true} />
+    <LoginComponent illustrationBackground={Illust}>
       <Flex
-        justify={"center"}
-        align={"center"}
-        h="100vh"
-        flexDir={"column"}
-        gap={5}
+        maxW={{ base: "100%", md: "max-content" }}
+        w="100%"
+        mx={{ base: "auto", lg: "0px" }}
+        me="auto"
+        justifyContent="center"
+        alignItems="center"
+        mb={{ base: "30px", md: "60px" }}
+        mt={{ base: "40px", md: "14vh" }}
+        flexDirection="column"
+        bg={["inherit", "rgba(255,255,255,0.7)"]}
+        backdropFilter={"blur(10px)"}
+        p={10}
+        rounded={"lg"}
       >
-        <Stack spacing="6">
-          <Stack spacing={{ base: "2", md: "3" }} textAlign="center">
-            <Heading size={"xl"}>Profilga kirish</Heading>
-          </Stack>
-        </Stack>
-        <Box
-          py={10}
-          px={12}
-          bg="#fff"
-          boxShadow={{ base: "none", sm: "md" }}
-          borderRadius={{ base: "none", sm: "xl" }}
+        <Box me="auto">
+          <Heading color={textColor} fontSize="36px" mb="10px">
+            Tizimga kirish
+          </Heading>
+          <Text
+            mb="36px"
+            ms="4px"
+            color={textColorSecondary}
+            fontWeight="400"
+            fontSize="md"
+          >
+            Ismingiz va parolingizni kiriting
+          </Text>
+        </Box>
+        <Flex
+          zIndex="2"
+          direction="column"
+          w={{ base: "100%", md: "420px" }}
+          maxW="100%"
+          background="transparent"
+          borderRadius="15px"
+          mx={{ base: "auto", lg: "unset" }}
+          me="auto"
+          mb={{ base: "20px", md: "auto" }}
         >
           <form onSubmit={handleSubmit(onsubmit)}>
             <Stack spacing="6">
@@ -110,51 +143,89 @@ export const Login = () => {
                 </FormControl>
                 <FormControl isInvalid={errors?.password}>
                   <FormLabel htmlFor="passwordID">Parol:</FormLabel>
-                  <Input
-                    id="passwordID"
-                    type="password"
-                    borderColor={"gray.500"}
-                    placeholder="Parol"
-                    {...register("password", { required: "Parol kiritilmadi" })}
-                  />
+                  <InputGroup size="md">
+                    <Input
+                      id="passwordID"
+                      borderColor={"gray.500"}
+                      type={show ? "text" : "password"}
+                      placeholder="Parol"
+                      {...register("password", {
+                        required: "Parol kiritilmadi",
+                      })}
+                    />
+                    <InputRightElement
+                      display="flex"
+                      alignItems="center"
+                      mt="4px"
+                    >
+                      <FontAwesomeIcon
+                        icon={!show ? faEye : faEyeSlash}
+                        onClick={handleClick}
+                      />
+                    </InputRightElement>
+                  </InputGroup>
                   <FormErrorMessage>
                     <FormErrorIcon /> {errors?.password?.message}
                   </FormErrorMessage>
                 </FormControl>
-              </Stack>
-
-              <Stack spacing="6">
-                <Button
-                  type="submit"
-                  display={"flex"}
-                  alignItems="center"
-                  variant={"solid"}
-                  gap={2}
-                  isLoading={loading}
-                  loadingText="Kirish"
-                  spinnerPlacement="end"
-                >
-                  Kirish
-                </Button>
-
-                <Text w={"100%"} fontSize={"md"} color="fg.muted">
-                  Parol esingizdan chiqdimi, murojat uchun <br />
-                  <FontAwesomeIcon color="#2C5282" icon={faPhoneVolume} shake />
-                  <Text
-                    textDecoration={"underline"}
-                    ml={2}
-                    color={"blue.700"}
-                    as={"a"}
-                    href="tel:+998 90 517 3007"
-                  >
-                    +998 90 517 3007
-                  </Text>
-                </Text>
+                <Flex justifyContent="space-between" align="center" mb="24px">
+                  <FormControl display="flex" alignItems="center">
+                    <Checkbox
+                      id="remember-login"
+                      colorScheme="teal"
+                      me="10px"
+                    />
+                    <FormLabel
+                      htmlFor="remember-login"
+                      mb="0"
+                      fontWeight="normal"
+                      color={textColor}
+                      fontSize="sm"
+                    >
+                      Eslab qolish
+                    </FormLabel>
+                  </FormControl>
+                </Flex>
               </Stack>
             </Stack>
+            <Button
+              type="submit"
+              w={"100%"}
+              display={"flex"}
+              alignItems="center"
+              variant={"solid"}
+              gap={2}
+              isLoading={loading}
+              loadingText="Kirish"
+              spinnerPlacement="end"
+              mb={5}
+            >
+              Kirish
+            </Button>
           </form>
-        </Box>
+
+          <Flex
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="start"
+            maxW="100%"
+            mt="0px"
+          >
+            <Text color={textColorDetails} fontWeight="400" fontSize="14px">
+              Tezkor yordam ximati
+              <Link
+                color={textColorBrand}
+                as="a"
+                href="tel:+998 90 517 30 07"
+                ms="5px"
+                fontWeight="500"
+              >
+                +998 90 517 30 07
+              </Link>
+            </Text>
+          </Flex>
+        </Flex>
       </Flex>
-    </Container>
+    </LoginComponent>
   );
 };
