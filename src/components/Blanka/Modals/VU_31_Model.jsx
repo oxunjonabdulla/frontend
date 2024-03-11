@@ -222,7 +222,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>boshqa texnik nosozliklar bo&apos;yicha</FormLabel>
                 <Input
                   type="text"
-                  {...register("boshqa_tech_error", { required: true })}
+                  {...register("boshqa_tech_error")}
                   borderColor={"gray.600"}
                 />
               </FormControl>
@@ -255,7 +255,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>sana:</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("nosoz_kirish_date", { required: true })}
+                  {...register("nosoz_kirish_date")}
                   type="date"
                 />
               </FormControl>
@@ -320,7 +320,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>sana:</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("tamir_uzatish_date", { required: true })}
+                  {...register("tamir_uzatish_date")}
                   type="date"
                 />
               </FormControl>
@@ -385,7 +385,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>sana:</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("tamir_boshlanish_date", { required: true })}
+                  {...register("tamir_boshlanish_date")}
                   type="date"
                 />
               </FormControl>
@@ -450,7 +450,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>sana:</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("nosoz_chiqish_date", { required: true })}
+                  {...register("nosoz_chiqish_date")}
                   type="date"
                 />
               </FormControl>
@@ -527,7 +527,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>bekat yo&apos;llarida gr,11 - gr.10</FormLabel>
                 <Input
                   type="text"
-                  {...register("bekat_yulida_gr11", { required: true })}
+                  {...register("bekat_yulida_gr11")}
                   borderColor={"gray.600"}
                   value={get11To10}
                 />
@@ -536,7 +536,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>ta&apos;mir yo&apos;llarida gr.13 - gr11</FormLabel>
                 <Input
                   type="text"
-                  {...register("tamir_yulida_gr13", { required: true })}
+                  {...register("tamir_yulida_gr13")}
                   borderColor={"gray.600"}
                   value={get13To11}
                 />
@@ -545,7 +545,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <FormLabel>ta&apos;mir vaqtida gr.13 - gr12</FormLabel>
                 <Input
                   type="text"
-                  {...register("tamir_vaqtida_gr13", { required: true })}
+                  {...register("tamir_vaqtida_gr13")}
                   borderColor={"gray.600"}
                   value={get13To12}
                 />
@@ -571,7 +571,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   type="text"
-                  {...register("nosoz_hujjat_raqam", { required: true })}
+                  {...register("nosoz_hujjat_raqam")}
                   borderColor={"gray.600"}
                 />
               </FormControl>

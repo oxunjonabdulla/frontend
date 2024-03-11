@@ -28,7 +28,7 @@ export const NavItem = ({ item, collapse }) => {
               color: "black",
               filter: "grayscale(0)",
             }}
-            filter={"grayscale(100%)"}
+            filter={path === pathname ? "grayscale(0%)" : "grayscale(100%)"}
             fontWeight="medium"
             color={path === pathname ? "black" : "gray.400"}
             w="full"
