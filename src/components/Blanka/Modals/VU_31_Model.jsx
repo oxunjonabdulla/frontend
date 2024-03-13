@@ -42,7 +42,14 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      tamir_boshlanish_date: null,
+      nosoz_kirish_date: null,
+      nosoz_chiqish_date: null,
+      tamir_uzatish_date: null,
+    },
+  });
 
   useEffect(() => {
     const handleCarriageData = async () => {
