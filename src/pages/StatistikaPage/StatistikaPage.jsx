@@ -11,16 +11,9 @@ export const StatistikaPage = () => {
       : null
   );
 
-  const [dataListVu31, setDataListVu31] = useState([]);
   const [dataListVu36, setDataListVu36] = useState([]);
 
   useEffect(() => {
-    const getVu31Data = async () => {
-      const { response } = await new UserApi().getVu31();
-      if (response) {
-        setDataListVu31(response?.data);
-      }
-    };
     const getVu36Data = async () => {
       const { response } = await new UserApi().getVu36();
       if (response) {
@@ -28,7 +21,6 @@ export const StatistikaPage = () => {
       }
     };
 
-    getVu31Data();
     getVu36Data();
   }, []);
 
@@ -43,7 +35,7 @@ export const StatistikaPage = () => {
       case "Component0":
         return <TableTrain />;
       case "Component1":
-        return <VU_31 data={dataListVu31?.results} />;
+        return <VU_31 />;
 
       case "Component2":
         return <VU_36 data={dataListVu36?.results} />;

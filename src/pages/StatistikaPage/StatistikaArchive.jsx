@@ -18,77 +18,68 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  FindText,
-  VU_31,
-  VU_36,
-  VU_50,
-  VU_51,
-  VU_68,
-  VU_91,
-  VU_92,
-  VU_93,
-} from "../../components";
+import { FindText } from "../../components";
 import { BreadCumbs } from "../../utils";
 import { useState } from "react";
+import { VU_31_Archive } from "../../components/Archive";
 
 const allCategoryDoc = [
-  {
-    doc_name: "VU-22",
-    path: "",
-  },
-  {
-    doc_name: "VU-23",
-    path: "",
-  },
+  // {
+  //   doc_name: "VU-22",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-23",
+  //   path: "",
+  // },
   {
     doc_name: "VU-31",
     path: "",
   },
-  {
-    doc_name: "VU-32",
-    path: "",
-  },
-  {
-    doc_name: "VU-36",
-    path: "",
-  },
-  {
-    doc_name: "VU-68",
-    path: "",
-  },
-  {
-    doc_name: "VU-50",
-    path: "",
-  },
-  {
-    doc_name: "VU-51",
-    path: "",
-  },
-  {
-    doc_name: "VU-53",
-    path: "",
-  },
-  {
-    doc_name: "VU-54",
-    path: "",
-  },
-  {
-    doc_name: "VU-90",
-    path: "",
-  },
-  {
-    doc_name: "VU-91",
-    path: "",
-  },
-  {
-    doc_name: "VU-92",
-    path: "",
-  },
-  {
-    doc_name: "VU-93",
-    path: "",
-  },
+  // {
+  //   doc_name: "VU-32",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-36",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-68",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-50",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-51",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-53",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-54",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-90",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-91",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-92",
+  //   path: "",
+  // },
+  // {
+  //   doc_name: "VU-93",
+  //   path: "",
+  // },
 ];
 
 export const StatistikaArchive = () => {
@@ -115,21 +106,8 @@ export const StatistikaArchive = () => {
   const renderComponent = () => {
     switch (optionResult?.searchValue) {
       case "VU-31":
-        return <VU_31 />;
-      case "VU-36":
-        return <VU_36 />;
-      case "VU-50":
-        return <VU_50 />;
-      case "VU-51":
-        return <VU_51 />;
-      case "VU-68":
-        return <VU_68 />;
-      case "VU-91":
-        return <VU_91 />;
-      case "VU-92":
-        return <VU_92 />;
-      case "VU-93":
-        return <VU_93 />;
+        return <VU_31_Archive />;
+
       default:
         return <FindText />;
     }
