@@ -54,7 +54,6 @@ export const VU_31 = () => {
     fetchData(currentPage);
   }, [currentPage]);
 
-  console.log(gettingData);
   return (
     <Box
       as="div"

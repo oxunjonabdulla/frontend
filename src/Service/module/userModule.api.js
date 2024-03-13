@@ -222,9 +222,9 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async getVu36() {
+  async getVu36(page) {
     try {
-      const response = await privateInstance.get(authEndpoints.vu36All);
+      const response = await privateInstance.get(authEndpoints.vu36All(page));
 
       return { response };
     } catch (error) {

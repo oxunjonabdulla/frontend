@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TableTrain, VU_36, VU_31, Fraza } from "../../components";
 import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
-import UserApi from "../../Service/module/userModule.api";
 import { Link } from "react-router-dom";
 
 export const StatistikaPage = () => {
@@ -10,19 +9,6 @@ export const StatistikaPage = () => {
       ? localStorage.getItem("static_compnent")
       : null
   );
-
-  const [dataListVu36, setDataListVu36] = useState([]);
-
-  useEffect(() => {
-    const getVu36Data = async () => {
-      const { response } = await new UserApi().getVu36();
-      if (response) {
-        setDataListVu36(response?.data);
-      }
-    };
-
-    getVu36Data();
-  }, []);
 
   const getLocalActiveComp = (component) => {
     localStorage.setItem("static_compnent", component);
@@ -38,7 +24,7 @@ export const StatistikaPage = () => {
         return <VU_31 />;
 
       case "Component2":
-        return <VU_36 data={dataListVu36?.results} />;
+        return <VU_36 />;
       // case "Component3":
       //   return <VU_10 />;
       case "Component4":

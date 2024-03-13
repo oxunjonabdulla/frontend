@@ -44,7 +44,7 @@ const authEndpoints = {
   // vu31
   vu31: (carriageID) => `/vu31/${carriageID}/`,
   vu31All: (page) => `/vu31/list/?page=${page + 1}`,
-  vu36All: `/vu36/list/`,
+  vu36All: (page) => `/vu36/list/?page=${page + 1}`,
   vu36: (carriageID) => `/vu36/${carriageID}/`,
 
   // vu 50
