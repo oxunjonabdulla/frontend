@@ -272,7 +272,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   mr="1rem"
                   max={23}
-                  defaultValue={localDate.getHours()}
+                  defaultValue={0}
                   min={0}
                 >
                   <NumberInputField
@@ -291,7 +291,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <NumberInput
                   mr="1rem"
                   max={59}
-                  defaultValue={localDate.getMinutes()}
+                  defaultValue={0}
                   min={0}
                   borderColor={"gray.600"}
                 >
@@ -337,7 +337,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   mr="1rem"
                   max={23}
-                  defaultValue={localDate.getHours()}
+                  defaultValue={0}
                   min={0}
                 >
                   <NumberInputField
@@ -356,7 +356,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <NumberInput
                   mr="1rem"
                   max={59}
-                  defaultValue={localDate.getMinutes()}
+                  defaultValue={0}
                   min={0}
                   borderColor={"gray.600"}
                 >
@@ -402,7 +402,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   mr="1rem"
                   max={23}
-                  defaultValue={localDate.getHours()}
+                  defaultValue={0}
                   min={0}
                 >
                   <NumberInputField
@@ -421,7 +421,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <NumberInput
                   mr="1rem"
                   max={59}
-                  defaultValue={localDate.getMinutes()}
+                  defaultValue={0}
                   min={0}
                   borderColor={"gray.600"}
                 >
@@ -467,7 +467,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   mr="1rem"
                   max={23}
-                  defaultValue={localDate.getHours()}
+                  defaultValue={0}
                   min={0}
                 >
                   <NumberInputField
@@ -486,7 +486,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
                 <NumberInput
                   mr="1rem"
                   max={59}
-                  defaultValue={localDate.getMinutes()}
+                  defaultValue={0}
                   min={0}
                   borderColor={"gray.600"}
                 >
