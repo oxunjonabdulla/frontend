@@ -50,7 +50,6 @@ export const mockHeaderFraza = {
     { label: "Номер детали", colspan: 3 },
     { label: "Место, дата и вид работы по детали", colspan: 3 },
     { label: "Толщина обода колес", colspan: 2 },
-    { label: "Конец фразу или сообщения", rowspan: 2 },
   ],
   nestedHeaders: [
     { label: "Код предприятия изготовителя" },
@@ -70,8 +69,6 @@ export const mockHeaderFraza = {
     { label: "Дата передачи сообщения (ддммгггг)" },
     { label: "Место, для т вид операции с вагоном", colspan: 4 },
     { label: "Номер вагона" },
-    { label: "Автоответ отправителя" },
-    { label: "Конец служебной фразы" },
   ],
 };
 

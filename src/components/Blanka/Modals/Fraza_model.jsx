@@ -124,8 +124,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"}>7</Td>
                     <Td textAlign={"center"}>8</Td>
                     <Td textAlign={"center"}>9</Td>
-                    <Td textAlign={"center"}>10</Td>
-                    <Td textAlign={"center"}>:)</Td>
                   </Tr>
                   <Tr>
                     <Td>:4634</Td>
@@ -174,12 +172,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td fontWeight={700} color={"green.600"}>
                       {updatedData?.carriage}
                     </Td>
-                    <Td>
-                      <FormControl>
-                        <Input borderColor={"gray.600"} type="text" />
-                      </FormControl>
-                    </Td>
-                    <Td>0</Td>
                   </Tr>
 
                   <Tr>
@@ -224,7 +216,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"}>9</Td>
                     <Td textAlign={"center"}>10</Td>
                     <Td textAlign={"center"}>11</Td>
-                    <Td textAlign={"center"}>-</Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -259,10 +250,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_gildirak?.c51_right_wheel}
-                    </Td>
-
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -299,9 +286,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_gildirak?.c52_right_wheel}
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -336,9 +320,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_gildirak?.c53_right_wheel}
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -375,9 +356,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_gildirak?.c54_right_wheel}
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -412,9 +390,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c61_right_wheel}
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -451,9 +426,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c62_right_wheel}
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -488,9 +460,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c63_right_wheel}
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -527,9 +496,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c64_right_wheel}
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -564,9 +530,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c71_right_wheel}
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -603,9 +566,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c72_right_wheel}
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -641,9 +601,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c73_right_wheel}
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -678,9 +635,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
                       {updatedData?.phrase_arava?.c74_right_wheel}
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                 </Tbody>
