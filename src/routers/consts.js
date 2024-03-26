@@ -1,6 +1,9 @@
 export const RouteNames = {
   HOME: "/",
   STATISTIKA: "/statistics",
+  VU_31: "/statistics/vu-31",
+  VU_36: "/statistics/vu-36",
+  FRAZA: "/statistics/fraza",
   STATISTIKAARCHIVE: "/statistics/archive",
   ASSEMBLY: "/assembly-unit",
   AUTO_BRAKES: "/auto-brakes",

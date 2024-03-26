@@ -2,31 +2,23 @@ import {
   Button,
   Flex,
   Img,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Table,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 import PropTypes from "prop-types";
 import ImageViewer from "react-simple-image-viewer";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import UserApi from "../../Service/module/userModule.api";
+import UserApi from "@/Service/module/userModule.api";
+import { Deleteted } from "@/components";
 
 const columnsMock = [
   { header: "T/R", accessorKey: "t/r_id", rowSpan: 2 },
@@ -71,13 +63,12 @@ const columnMockShort = [
     colspan: 2,
   },
 ];
-export const TableData = ({ dataMock }) => {
+export const DailyRepairsTable = memo(function DailyRepairsTable({ dataMock }) {
   const [currentImage, setCurrentImage] = useState(0);
   const [currentImage2, setCurrentImage2] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isViewerOpen2, setIsViewerOpen2] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [valueInput, setValueInput] = useState(0);
   const [isTdOption, setTdOption] = useState(0);
   const [isTdOption2, setTdOption2] = useState(0);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -226,56 +217,12 @@ export const TableData = ({ dataMock }) => {
         </Tbody>
       </Table>
 
-      <Modal isOpen={isOpen} isCentered onClose={onClose}>
-        <ModalOverlay backdropFilter={"blur(10px)"} />
-        <ModalContent>
-          <ModalHeader fontSize={"3xl"}>
-            Tamirga qo&apos;yilgan vagonni o&apos;chirish
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text fontSize={"xl"} fontWeight={"400"} userSelect={"none"}>
-              Siz{" "}
-              <Text
-                as={"span"}
-                border={"1px solid rgba(0,0,0,0.6)"}
-                p={1}
-                rounded={6}
-                fontWeight={600}
-              >
-                {" "}
-                {getTableData?.carriage_number}
-              </Text>{" "}
-              raqamli vagon o&apos;chirmoqdasiz.
-            </Text>
-            <Input
-              placeholder="Vagon raqamini kirting"
-              borderColor={"gray.700"}
-              mt={4}
-              onChange={(e) => setValueInput(e.target.value)}
-            />
-          </ModalBody>
-          <ModalFooter gap={"10px"}>
-            <Button
-              bgColor={"red"}
-              color={"#fff"}
-              border={0}
-              _hover={{ bgColor: "red", opacity: 0.8 }}
-              size="md"
-              _disabled={{
-                opacity: "0.4",
-                _hover: { opacity: 0.4 },
-                cursor: "not-allowed",
-              }}
-              variant="solid"
-              onClick={() => deleteDaily(getTableData?.carriage_number)}
-              isDisabled={valueInput !== getTableData?.carriage_number}
-            >
-              O&apos;chirish
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <Deleteted
+        isOpen={isOpen}
+        onClose={onClose}
+        deletedFunction={deleteDaily}
+        carriageNumber={getTableData?.carriage_number}
+      />
 
       {isViewerOpen &&
         dataMock
@@ -319,8 +266,8 @@ export const TableData = ({ dataMock }) => {
           })}
     </>
   );
-};
+});
 
-TableData.propTypes = {
+DailyRepairsTable.propTypes = {
   dataMock: PropTypes.array,
 };

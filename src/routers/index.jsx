@@ -17,6 +17,10 @@ import {
   StatistikaArchive,
   StatistikaPage,
   WheelPairsPage,
+  DailyRepairs,
+  VU_31,
+  VU_36,
+  Fraza,
 } from "../pages";
 import {
   CollectUser,
@@ -61,6 +65,12 @@ export const routes = [
           />
         ),
         path: RouteNames.STATISTIKA,
+        children: [
+          { element: <DailyRepairs />, index: true },
+          { element: <VU_31 />, path: RouteNames.VU_31 },
+          { element: <VU_36 />, path: RouteNames.VU_36 },
+          { element: <Fraza />, path: RouteNames.FRAZA },
+        ],
       },
       {
         element: (

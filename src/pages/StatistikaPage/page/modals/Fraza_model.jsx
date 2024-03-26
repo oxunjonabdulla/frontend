@@ -27,9 +27,9 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Signatur } from "../../Signature/Signatur";
-import { mockHeaderFraza } from "../../../utils/mock_heads";
-import UserApi from "../../../Service/module/userModule.api";
+import { Signatur } from "../../../../components/Signature/Signatur";
+import { mockHeaderFraza } from "../../../../utils/mock_heads";
+import UserApi from "../../../../Service/module/userModule.api";
 
 export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
   const [isLoading, setLoading] = useState(false);

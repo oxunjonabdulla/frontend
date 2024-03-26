@@ -1,7 +1,4 @@
-export * from "./TableTrain/TableTrain";
-
-export * from "./Blanka/VU_31";
-export * from "./Blanka/VU_36";
+export * from "./BrendCrumbs/BrendCrumbs";
 export * from "./Blanka/VU_68";
 export * from "./Blanka/VU_22";
 export * from "./Blanka/VU_50";
@@ -13,7 +10,7 @@ export * from "./Blanka/VU_91";
 export * from "./Blanka/VU_92";
 export * from "./Blanka/VU_93";
 export * from "./Blanka/VU_10";
-export * from "./Blanka/Fraza";
+export * from "../pages/StatistikaPage/page/Fraza";
 export * from "./Blanka/Fraza_wheel";
 export * from "./Blanka/Fraza_carriunit";
 export * from "./Blanka/VU_47";

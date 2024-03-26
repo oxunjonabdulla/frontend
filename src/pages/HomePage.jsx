@@ -4,6 +4,7 @@ import {
   Card,
   CardBody,
   Container,
+  Flex,
   Grid,
   GridItem,
   Heading,
@@ -13,54 +14,53 @@ import {
 } from "@chakra-ui/react";
 import { nt1, nt3, nt4, nt5, nt6 } from "../assets/images";
 
-const fixInfo = [
+const topInfoData = [
   {
-    title: "Joriy yilda ta’mirlangan inventar vagonlar soni",
     numberCnt: 1,
-    image: nt1,
-  },
-  {
-    title: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
-    numberCnt: 83,
-    image: nt3,
-  },
-  {
-    title: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
-    numberCnt: 135,
-    image: nt5,
+    title: "Joriy yilda ta’mirlangan inventar vagonlar soni",
   },
   {
     title:
       "Qarshi vagon deposi balansiga qabul qilingan va chiqarilgan vagonlar soni",
     numberCnt: 170,
-    image: nt6,
   },
   {
     title: "Qarshi vagon deposi hududida turgan nosoz vagonlar soni",
     numberCnt: 180,
-    image: nt4,
   },
   {
     title:
       "Qarshi vagon deposida tegishli buyruq asosida ta’mirlangan vagonlar soni",
     numberCnt: 47,
-    image: nt1,
   },
-  {
-    title: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
-    numberCnt: 940,
-    image: nt3,
-  },
-  {
-    title: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
-    numberCnt: 636,
-    image: nt5,
-  },
-  {
-    title: "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
-    numberCnt: 918,
-    image: nt4,
-  },
+];
+
+const fixInfo = [
+  // {
+  //   title: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
+  //   numberCnt: 83,
+  //   image: nt3,
+  // },
+  // {
+  //   title: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
+  //   numberCnt: 135,
+  //   image: nt5,
+  // },
+  // {
+  //   title: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
+  //   numberCnt: 940,
+  //   image: nt3,
+  // },
+  // {
+  //   title: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
+  //   numberCnt: 636,
+  //   image: nt5,
+  // },
+  // {
+  //   title: "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
+  //   numberCnt: 918,
+  //   image: nt4,
+  // },
 ];
 
 export const HomePage = () => {
@@ -78,6 +78,48 @@ export const HomePage = () => {
         <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
           Таmirlashga oid ma’lumotlar
         </Heading>
+
+        <Grid
+          listStyleType={"none"}
+          display={"grid"}
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+            "repeat(4, 1fr)",
+          ]}
+          gap={3}
+          mt={10}
+        >
+          {topInfoData?.map((item, idx) => (
+            <GridItem
+              key={idx}
+              height={"200px"}
+              bgColor={"#fff"}
+              shadow={" 0 0 15px rgba(0,0,0,0.1)"}
+              flexDir={"column"}
+              justify={"center"}
+              p={5}
+              rounded={"lg"}
+              cursor={"pointer"}
+              _hover={{
+                shadow: " 0 0 15px rgba(0,0,0,0.0)",
+              }}
+            >
+              <Text fontSize={"5xl"} mb={5}>
+                <CountUp
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "700",
+                  }}
+                  end={item?.numberCnt}
+                  duration={1}
+                />
+              </Text>
+              <Text> {item?.title}</Text>
+            </GridItem>
+          ))}
+        </Grid>
+
         <Grid
           listStyleType={"none"}
           display={"grid"}

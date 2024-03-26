@@ -1,4 +1,111 @@
+import {
+  Aravalar,
+  Avtobirikma,
+  Avtotormoz,
+  Defostoskop,
+  Gildirak,
+  Joxozlash,
+  Statistika,
+  Yiguv,
+  PtoOperator,
+} from "../assets";
 import { TableImg } from "../assets/images";
+
+export const routersSidebar = [
+  {
+    isWork: false,
+    label: "Statistika va hisobga olish bo‘limi",
+    path: "/statistics",
+    type: "drop",
+    accordItems: [
+      {
+        label: "Bugungi ta'mir",
+        path: "",
+      },
+      {
+        label: "VU-31 Jurnali",
+        path: "/vu-31",
+      },
+      {
+        label: "VU-36 Jurnali",
+        path: "/vu-36",
+      },
+      {
+        label: "ФРАЗА",
+        path: "/fraza",
+      },
+    ],
+    icon: Statistika,
+    role: "statisticuser",
+  },
+  {
+    isWork: false,
+    label: "PTO operator",
+    path: "/pto-unit",
+    type: "link",
+    icon: PtoOperator,
+    role: "ptouser",
+  },
+  {
+    isWork: false,
+    label: "Yig‘uv bo‘linmasi",
+    path: "/assembly-unit",
+    type: "link",
+    icon: Yiguv,
+    role: "collectoruser",
+  },
+  {
+    isWork: false,
+    label: "G‘ildirak juftlikalar bo‘linmasi",
+    path: "/wheel-pairs",
+    type: "link",
+    icon: Gildirak,
+    role: "wheeluser",
+  },
+
+  {
+    isWork: false,
+    label: "Avtobirikma bo‘linmasi",
+    path: "/automobile-unit",
+    type: "link",
+    icon: Avtobirikma,
+    role: "avtoconnectoruser",
+  },
+  {
+    isWork: false,
+    label: "Aravalar bo‘linmasi",
+    path: "/carriage-unit",
+    type: "link",
+    icon: Aravalar,
+    role: "cartuser",
+  },
+  {
+    isWork: false,
+    label: "Avtotormozlar bo‘linmasi",
+    path: "/auto-brakes",
+    type: "link",
+    icon: Avtotormoz,
+
+    role: "avtotormozuser",
+  },
+  {
+    isWork: false,
+    label: "Defektoskoplar",
+    path: "/defectoscopes",
+    type: "link",
+    icon: Defostoskop,
+    role: "defestoskopuser",
+  },
+  {
+    isWork: true,
+    label: "Jixozlash bo‘linmasi",
+    path: "/equipment-unit",
+    type: "link",
+
+    role: "equipmentuser",
+    icon: Joxozlash,
+  },
+];
 
 export const dalolatnoma_head = [
   { label: "Tartib raqami" },

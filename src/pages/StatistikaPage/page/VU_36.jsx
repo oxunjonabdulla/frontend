@@ -1,19 +1,12 @@
 import {
   Box,
   Button,
-  Divider,
   Flex,
   Heading,
   Spinner,
-  Table,
   TableContainer,
-  Tbody,
-  Td,
   Text,
-  Th,
-  Thead,
   Tooltip,
-  Tr,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -22,15 +15,15 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import { VU_36_Model } from "./Modals/VU_36_Model";
-import { timeClear } from "../../utils/timeClear";
-import { vu_36 } from "../../utils/mock_heads";
-import UserApi from "../../Service/module/userModule.api";
+import { VU_36_Model } from "./modals/VU_36_Model";
+import UserApi from "@/Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
+import { BrendCrumbs } from "@/components";
+import VU_36_Table from "./components/VU_36_Table";
 
-export const VU_36 = ({ data }) => {
+export const VU_36 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,6 +47,8 @@ export const VU_36 = ({ data }) => {
     fetchData(currentPage);
   }, [currentPage]);
 
+  const memoData = useMemo(() => gettingData, [gettingData]);
+
   return (
     <Box
       as="div"
@@ -66,6 +61,8 @@ export const VU_36 = ({ data }) => {
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
         VU-36 Jurnali
       </Heading>
+      <BrendCrumbs />
+
       <Tooltip
         label="VU-36 Jurnalini qo'shish"
         placement="top"
@@ -103,70 +100,7 @@ export const VU_36 = ({ data }) => {
               <Spinner color="green" size={"xl"} />
             </Box>
           )}
-          <Table
-            borderRadius={10}
-            size={"sm"}
-            whiteSpace={"pre-wrap"}
-            variant={"striped"}
-            overflow={"hidden"}
-            colorScheme="blackAlpha"
-          >
-            <Thead bg={"#0c6170"} rounded={10}>
-              <Tr>
-                {vu_36?.nestedHeaders?.map((item, idx) => (
-                  <Th fontSize={"10px"} textAlign={"center"} key={idx}>
-                    {item.label}
-                  </Th>
-                ))}
-              </Tr>
-            </Thead>
-
-            <Tbody>
-              {gettingData?.results?.map((item, idx) => (
-                <Tr key={idx}>
-                  <Td>{idx + 1}</Td>
-                  <Td fontWeight={700} color={"green.900"}>
-                    {item.carriage}
-                  </Td>
-                  <Td>{item.yuk_vagon_tamir_turi}</Td>
-                  <Td>{item.bildirish_number}</Td>
-                  <Td>
-                    {item.yuk_vagon_tamir_turi}
-                    <Divider bgColor={"gray.400"} my={2} />
-                    {item.tamir_turi_kodi}
-                  </Td>
-
-                  <Td whiteSpace={"nowrap"}>
-                    {item.tamir_turi_date}
-                    <Divider bgColor={"gray.400"} my={2} />
-                    {timeClear(item.tamir_turi_hour) +
-                      ":" +
-                      timeClear(item.tamir_turi_minute)}
-                  </Td>
-                  <Td>
-                    {item.korxona_tamir_yuli}
-                    <Divider bgColor={"gray.400"} my={2} />
-                    {item.korxona_kodi}
-                  </Td>
-
-                  <Td whiteSpace={"nowrap"}>{item.ega_kodi}</Td>
-
-                  <Td whiteSpace={"nowrap"}>
-                    {item.tamir_date}
-                    <Divider bgColor={"gray.400"} my={2} />
-                    {timeClear(item.tamir_hour) +
-                      ":" +
-                      timeClear(item.tamir_minute)}
-                  </Td>
-
-                  <Td>{item.kod_moder_1}</Td>
-                  <Td>{item.kod_moder_2}</Td>
-                  <Td>{item.kod_moder_3}</Td>
-                  <Td>{item.kod_moder_4}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
+          <VU_36_Table gettingData={memoData} />
           <ReactPaginate
             pageCount={Math.ceil(
               (gettingData?.count ? gettingData?.count : 0) / 10
@@ -203,7 +137,7 @@ export const VU_36 = ({ data }) => {
         </Flex>
       )}
 
-      <VU_36_Model onClose={onClose} isOpen={isOpen} />
+      {isOpen && <VU_36_Model onClose={onClose} isOpen={isOpen} />}
     </Box>
   );
 };

@@ -23,10 +23,10 @@ import {
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import UserApi from "../../../Service/module/userModule.api";
-import { SearchTrain } from "../../../utils";
-import { calculateHour } from "../../../utils/dateToHourConverter";
-export const VU_31_Model = ({ onClose, isOpen }) => {
+import UserApi from "@/Service/module/userModule.api";
+import { SearchTrain } from "@/utils";
+import { calculateHour } from "@/utils/dateToHourConverter";
+export const VU_31_Modal = ({ onClose, isOpen }) => {
   const [trainFixType, setTrainFixType] = useState(null);
   const [serarchingResult, setSerachingResult] = useState(null);
   const [getTestResult, setTestResult] = useState([]);
@@ -104,7 +104,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
     }
   };
 
-  const localDate = new Date();
+  //   const localDate = new Date();
 
   const type10Date = watch("nosoz_kirish_date"),
     type10Time =
@@ -605,7 +605,7 @@ export const VU_31_Model = ({ onClose, isOpen }) => {
   );
 };
 
-VU_31_Model.propTypes = {
+VU_31_Modal.propTypes = {
   onClose: PropTypes.func,
   isOpen: PropTypes.bool,
 };

@@ -22,8 +22,8 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import UserApi from "../../../Service/module/userModule.api";
-import { SearchTrain } from "../../../utils";
+import UserApi from "@/Service/module/userModule.api";
+import { SearchTrain } from "@/utils";
 
 export const VU_36_Model = ({ onClose, isOpen }) => {
   const [serarchingResult, setSerachingResult] = useState(null);
@@ -342,35 +342,6 @@ export const VU_36_Model = ({ onClose, isOpen }) => {
                 />
               </FormControl>
             </Flex>
-            <Text>
-              Boshliq imzosi :
-              _____________________________________________________________________________
-              VTD. LTD. VTXSH
-            </Text>
-            <Text>
-              Vagon qabul
-              qiluvchi______________________________________________________________________
-            </Text>
-            <Text>
-              Vagon yig‘uv tsexi
-              boshlig‘i_____________________________________________________________
-            </Text>
-            <Text>
-              TNB boshlig‘i
-              _________________________________________________________________
-            </Text>
-            <Text>
-              Zavod qabul qiluvchi
-              noziri________________________________________________________________________
-            </Text>
-            <Text>
-              Bildirishnoma bekat navbatchisiga topshirildi
-              Vaqt:____________sana____________oy____________yil_________soat_______daq.
-              Bekat
-              navbatchisi:__________________________________________________________
-              Kiritilgan vaqt
-              Vaqt:__________sana__________oy__________yil__________soat__________daq.{" "}
-            </Text>
           </ModalBody>
 
           <ModalFooter>

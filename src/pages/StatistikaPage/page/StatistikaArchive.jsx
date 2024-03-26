@@ -18,10 +18,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
 
-import { FindText } from "../../components";
-import { BreadCumbs } from "../../utils";
+import { FindText } from "@/components";
+import { BreadCumbs } from "@/utils";
 import { useState } from "react";
-import { VU_31_Archive } from "../../components/Archive";
+// import { VU_31_Archive } from "../../components/Archive";
 
 const allCategoryDoc = [
   // {
@@ -105,9 +105,6 @@ export const StatistikaArchive = () => {
 
   const renderComponent = () => {
     switch (optionResult?.searchValue) {
-      case "VU-31":
-        return <VU_31_Archive />;
-
       default:
         return <FindText />;
     }

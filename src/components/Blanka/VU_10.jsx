@@ -19,7 +19,7 @@ import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { SliderMock } from "../../utils";
-import { Fraza_model } from "./Modals/Fraza_model";
+import { Fraza_model } from "../../pages/StatistikaPage/page/modals/Fraza_model";
 const data = [];
 export const VU_10 = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
