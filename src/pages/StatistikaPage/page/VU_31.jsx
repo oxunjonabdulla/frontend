@@ -22,7 +22,7 @@ import {
 import UserApi from "@/Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import VU_31_Table from "./components/VU_31_Table";
-import { BrendCrumbs } from "../../../components";
+import { BrendCrumbs, SimpleLoader } from "@/components";
 
 export const VU_31 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -119,7 +119,7 @@ export const VU_31 = () => {
             nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
           />
         </TableContainer>
-      ) : (
+      ) : !isLoadingData ? (
         <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
           <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />
           <Text
@@ -134,6 +134,8 @@ export const VU_31 = () => {
             VU-31 qo&apos;shish
           </Button>
         </Flex>
+      ) : (
+        <SimpleLoader />
       )}
 
       <VU_31_Modal onClose={onClose} isOpen={isOpen} />

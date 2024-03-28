@@ -4,7 +4,6 @@ import {
   Card,
   CardBody,
   Container,
-  Flex,
   Grid,
   GridItem,
   Heading,
@@ -12,7 +11,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { nt1, nt3, nt4, nt5, nt6 } from "../assets/images";
 
 const topInfoData = [
   {

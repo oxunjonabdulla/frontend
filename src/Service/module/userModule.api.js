@@ -202,6 +202,15 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async updateVu31(id, obj) {
+    try {
+      const response = await privateInstance.patch(authEndpoints.vu31(id), obj);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getVu31(page) {
     try {
       const response = await privateInstance.get(authEndpoints.vu31All(page));

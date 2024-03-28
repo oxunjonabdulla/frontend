@@ -278,6 +278,7 @@ export const vu_31 = {
     {
       label: "vagonni nosoz holdan chiqaruvchi hujjat raqami va sanasi",
       rowspan: 2,
+      colspan: 2,
     },
   ],
   nestedTwo: [
