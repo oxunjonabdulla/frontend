@@ -35,7 +35,6 @@ export const BrendCrumbs = memo(function ContentHead() {
             <BreadcrumbLink
               as={isLast ? "span" : Link}
               to={isLast ? null : routeTo}
-              textTransform={"capitalize"}
             >
               {testRoute
                 ? routersSidebar.find((item) => item.path.includes(name)).label

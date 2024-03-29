@@ -7,10 +7,8 @@ import {
   TableContainer,
   Text,
   Tooltip,
-  useDisclosure,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { VU_31_Modal } from "./modals/VU_31_Modal";
 import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,11 +21,11 @@ import UserApi from "@/Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import VU_31_Table from "./components/VU_31_Table";
 import { BrendCrumbs, SimpleLoader } from "@/components";
+import { Link } from "react-router-dom";
 
 export const VU_31 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
 
@@ -69,6 +67,8 @@ export const VU_31 = () => {
         bg={"white"}
       >
         <Button
+          as={Link}
+          to={"/statistics/vu-31/create"}
           borderRadius={"50%"}
           variant={"solid"}
           width={"50px"}
@@ -76,7 +76,6 @@ export const VU_31 = () => {
           position={"absolute"}
           right={3}
           top={-12}
-          onClick={onOpen}
         >
           +
         </Button>
@@ -130,15 +129,13 @@ export const VU_31 = () => {
           >
             VU-31 jurnali topilmadi
           </Text>
-          <Button variant={"solid"} onClick={onOpen}>
+          <Button variant={"solid"} as={Link} to={"/statistics/vu-31/create"}>
             VU-31 qo&apos;shish
           </Button>
         </Flex>
       ) : (
         <SimpleLoader />
       )}
-
-      <VU_31_Modal onClose={onClose} isOpen={isOpen} />
     </Box>
   );
 };

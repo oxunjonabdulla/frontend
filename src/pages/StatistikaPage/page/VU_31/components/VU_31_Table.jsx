@@ -18,7 +18,8 @@ import {
   faPenToSquare,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { VU_31_Update } from "../modals/VU_31_Update";
+import { VU_31_Update } from "./VU_31_Update";
+import PropTypes from "prop-types";
 const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
   const [updateData, setUpdateData] = useState(null);
 
@@ -164,5 +165,9 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
     </>
   );
 });
+
+VU_31_Table.propTypes = {
+  gettingData: PropTypes.object,
+};
 
 export default VU_31_Table;

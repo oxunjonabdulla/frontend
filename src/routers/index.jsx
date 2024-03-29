@@ -21,6 +21,7 @@ import {
   VU_31,
   VU_36,
   Fraza,
+  VU_31_Create,
 } from "../pages";
 import {
   CollectUser,
@@ -35,6 +36,7 @@ import {
 } from "../layouts/PrivateUsers";
 import { ProtectedRoute } from "../utils/PrivateComponent";
 import { RouteNames } from "./consts";
+import { Outlet } from "react-router";
 export const routes = [
   {
     element: <RouteLayout />,
@@ -67,7 +69,17 @@ export const routes = [
         path: RouteNames.STATISTIKA,
         children: [
           { element: <DailyRepairs />, index: true },
-          { element: <VU_31 />, path: RouteNames.VU_31 },
+          {
+            element: <Outlet />,
+            path: RouteNames.VU_31,
+            children: [
+              { element: <VU_31 />, index: true },
+              {
+                element: <VU_31_Create />,
+                path: RouteNames.CREATE(RouteNames.VU_31),
+              },
+            ],
+          },
           { element: <VU_36 />, path: RouteNames.VU_36 },
           { element: <Fraza />, path: RouteNames.FRAZA },
         ],
