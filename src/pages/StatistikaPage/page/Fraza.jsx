@@ -11,6 +11,7 @@ import UserApi from "@/Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import FrazaTable from "./components/FrazaTable";
 
+import { BrendCrumbs } from "@/components";
 export const Fraza = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
@@ -45,6 +46,8 @@ export const Fraza = () => {
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
         ФРАЗА
       </Heading>
+
+      <BrendCrumbs />
 
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (

@@ -16,12 +16,11 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  Spinner,
   Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "@/Service/module/userModule.api";
 import { calculateHour } from "@/utils/dateToHourConverter";
@@ -60,7 +59,7 @@ export const VU_31_Update = memo(function VU_31_Update({
     };
     setLoading(true);
     const { response, error } = await new UserApi().updateVu31(
-      updatedData?.carriage,
+      updatedData?.carriage_number,
       obj
     );
     setLoading(false);
@@ -135,7 +134,7 @@ export const VU_31_Update = memo(function VU_31_Update({
                   type="text"
                   borderColor={"gray.600"}
                   disabled
-                  defaultValue={updatedData?.carriage}
+                  defaultValue={updatedData?.carriage_number}
                   isReadOnly
                 />
               </FormControl>

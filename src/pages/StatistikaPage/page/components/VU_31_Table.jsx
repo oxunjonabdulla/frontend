@@ -73,7 +73,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
             <Tr key={item.carriage}>
               <Td>{idx + 1}</Td>
               <Td fontWeight={700} color={"green.900"}>
-                {item.carriage}
+                {item.carriage_number}
               </Td>
               <Td>{item.is_freight ? "Yukli" : "Yuksiz"}</Td>
               <Td>{item.train_number}</Td>
