@@ -1,4 +1,5 @@
 import CountUp from "react-countup";
+import { Chart as ChartJs } from "chart.js/auto";
 import {
   Box,
   Card,
@@ -11,6 +12,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { Bar, Doughnut, Line } from "react-chartjs-2";
 
 const topInfoData = [
   {
@@ -33,35 +35,83 @@ const topInfoData = [
   },
 ];
 
-const fixInfo = [
-  // {
-  //   title: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
-  //   numberCnt: 83,
-  //   image: nt3,
-  // },
-  // {
-  //   title: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
-  //   numberCnt: 135,
-  //   image: nt5,
-  // },
-  // {
-  //   title: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
-  //   numberCnt: 940,
-  //   image: nt3,
-  // },
-  // {
-  //   title: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
-  //   numberCnt: 636,
-  //   image: nt5,
-  // },
-  // {
-  //   title: "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
-  //   numberCnt: 918,
-  //   image: nt4,
-  // },
-];
-
 export const HomePage = () => {
+  const data = {
+    labels: [2020, 2021, 2023],
+    datasets: [
+      {
+        label: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
+        data: [50, 100, 83],
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+      {
+        label: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
+        data: [65, 59, 135],
+        fill: false,
+        borderColor: "#90CDF4",
+        tension: 0.1,
+      },
+      {
+        label: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
+        data: [100, 400, 940],
+        fill: false,
+        borderColor: "#FBD38D",
+        tension: 0.1,
+      },
+      {
+        label: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
+        data: [217, 350, 940],
+        fill: false,
+        borderColor: "#FEB2B2",
+        tension: 0.1,
+      },
+      {
+        label:
+          "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
+        data: [350, 460, 613],
+        fill: false,
+        borderColor: "green",
+        tension: 0.1,
+      },
+    ],
+  };
+  const config = {
+    type: "line",
+    data: data,
+    options: {
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            displayFormats: {
+              quarter: "MMM YYYY",
+            },
+          },
+        },
+      },
+    },
+  };
+  const dughnut = {
+    labels: [
+      "Qarshi vagon deposi balansiga qabul qilingan va chiqarilgan vagonlar soni",
+      "Qarshi vagon deposi hududida turgan nosoz vagonlar soni",
+      "Qarshi vagon deposida tegishli buyruq asosida ta’mirlangan vagonlar soni",
+    ],
+    datasets: [
+      {
+        label: "2023 yildagi soni",
+        data: [170, 180, 47],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
   return (
     <Container
       as="div"
@@ -118,7 +168,7 @@ export const HomePage = () => {
           ))}
         </Grid>
 
-        <Grid
+        {/* <Grid
           listStyleType={"none"}
           display={"grid"}
           templateColumns={[
@@ -179,7 +229,22 @@ export const HomePage = () => {
               </Card>
             </GridItem>
           ))}
-        </Grid>
+        </Grid> */}
+      </Box>
+      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
+        Таmirlashga oid ma’lumotlar statistikasi(yillar kesmida).
+      </Heading>
+      <Box
+        my={10}
+        display={"flex"}
+        w={["auto", "60%"]}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        height={"500px"}
+        flexWrap={["wrap", "nowrap"]}
+      >
+        <Line data={data} height={"100px"} options={config} />
+        <Doughnut data={dughnut} height={"80px"} options={config} />
       </Box>
     </Container>
   );

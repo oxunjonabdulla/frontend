@@ -89,7 +89,7 @@ export const routersSidebar = [
     role: "avtotormozuser",
   },
   {
-    isWork: false,
+    isWork: true,
     label: "Defektoskoplar",
     path: "/defectoscopes",
     type: "link",
