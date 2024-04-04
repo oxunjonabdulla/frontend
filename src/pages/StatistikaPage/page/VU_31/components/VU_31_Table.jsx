@@ -118,7 +118,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
                   <Button
                     float={"right"}
                     borderColor={"blue.400"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     bgColor={"blue.400"}
                     minW={"30px"}
                     p={0}
@@ -129,7 +129,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
                   <Button
                     float={"right"}
                     borderColor={"green.400"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     bgColor={"green.400"}
                     p={0}
                     minW={"30px"}
@@ -142,7 +142,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
                     float={"right"}
                     borderColor={"red"}
                     minW={"30px"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     bgColor={"red"}
                     p={0}
                     _hover={{ bgColor: "red", opacity: "0.7" }}

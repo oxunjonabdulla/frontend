@@ -19,7 +19,7 @@ const NotFoundPage = () => {
         Ooops Sahifa topilmadi.
       </Heading>
       <Link to={"/"}>
-        <Button variant={"solid"}>Ortga Qaytish</Button>
+        <Button colorScheme="teal">Ortga Qaytish</Button>
       </Link>
     </Flex>
   );

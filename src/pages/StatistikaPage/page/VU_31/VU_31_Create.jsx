@@ -496,7 +496,7 @@ export const VU_31_Create = () => {
           </Flex>
           <Flex justify={"center"} my={4}>
             <Button
-              variant={"solid"}
+              colorScheme="teal"
               opacity={
                 !type10Date || !type11Date || !type12Date || !type13Date
                   ? "0.5"
@@ -578,7 +578,7 @@ export const VU_31_Create = () => {
 
           <Flex my={4} justify={"end"}>
             <Button
-              variant={"solid"}
+              colorScheme="teal"
               isLoading={isLoading}
               loadingText="Saqlash"
               spinnerPlacement="end"

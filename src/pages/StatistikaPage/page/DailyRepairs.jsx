@@ -50,7 +50,7 @@ export const DailyRepairs = memo(function DailyRepairs() {
       <BrendCrumbs />
       <Button
         borderRadius={"50%"}
-        variant={"solid"}
+        colorScheme="teal"
         width={"50px"}
         height={"50px"}
         position={"absolute"}
@@ -85,7 +85,7 @@ export const DailyRepairs = memo(function DailyRepairs() {
             >
               Tamirlash uchun vagon topilmadi
             </Text>
-            <Button variant={"solid"} onClick={onOpen}>
+            <Button colorScheme="teal" onClick={onOpen}>
               Vagon qo&apos;shish
             </Button>
           </Flex>

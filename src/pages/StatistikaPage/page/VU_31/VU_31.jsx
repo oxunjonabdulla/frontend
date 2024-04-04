@@ -70,7 +70,7 @@ export const VU_31 = () => {
           as={Link}
           to={"/statistics/vu-31/create"}
           borderRadius={"50%"}
-          variant={"solid"}
+          colorScheme="teal"
           width={"50px"}
           height={"50px"}
           position={"absolute"}
@@ -129,7 +129,7 @@ export const VU_31 = () => {
           >
             VU-31 jurnali topilmadi
           </Text>
-          <Button variant={"solid"} as={Link} to={"/statistics/vu-31/create"}>
+          <Button colorScheme="teal" as={Link} to={"/statistics/vu-31/create"}>
             VU-31 qo&apos;shish
           </Button>
         </Flex>

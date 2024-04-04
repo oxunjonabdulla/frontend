@@ -701,12 +701,12 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button variant={"outline_red"} mr={3} onClick={onClose}>
+            <Button colorScheme="red" mr={3} onClick={onClose}>
               Yopish
             </Button>
             {updatedData?.phrase_gildirak && updatedData?.phrase_arava && (
               <Button
-                variant={"outline"}
+                colorScheme="teal"
                 isLoading={isLoading}
                 loadingText="Saqlash"
                 spinnerPlacement="end"

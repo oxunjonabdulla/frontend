@@ -68,7 +68,7 @@ export const AvatarBox = ({ setCollapse, setMocileCollapse }) => {
           <UserName onOpen={onOpen} />
         ) : (
           <Link to={"/login"}>
-            <Button variant={"solid"}>Kirish</Button>
+            <Button colorScheme="teal">Kirish</Button>
           </Link>
         )}
       </Flex>

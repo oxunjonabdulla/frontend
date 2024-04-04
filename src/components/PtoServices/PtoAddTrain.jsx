@@ -407,7 +407,7 @@ export const PtoAddTrain = ({
             loadingText="Keyingisi"
             spinnerPlacement="end"
             mx={"auto"}
-            variant={"solid"}
+            colorScheme="teal"
             type="submit"
           >
             Keyingisi

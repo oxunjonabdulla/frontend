@@ -50,7 +50,7 @@ export const VU_53 = () => {
       >
         <Button
           borderRadius={"50%"}
-          variant={"solid"}
+          colorScheme="teal"
           width={"50px"}
           height={"50px"}
           position={"absolute"}
@@ -98,7 +98,7 @@ export const VU_53 = () => {
             >
               VU-53 Shakl topilmadi
             </Text>
-            <Button onClick={onOpen} variant={"solid"}>
+            <Button onClick={onOpen} colorScheme="teal">
               VU-53 Shakl qo&apos;shish
             </Button>
           </Flex>

@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   Heading,
+  IconButton,
   Image,
   Table,
   TableContainer,
@@ -87,7 +88,7 @@ export const VU_92 = () => {
       >
         <Button
           borderRadius={"50%"}
-          variant={"solid"}
+          colorScheme="teal"
           width={"50px"}
           height={"50px"}
           position={"absolute"}
@@ -160,27 +161,15 @@ export const VU_92 = () => {
                     <Td>
                       {" "}
                       <Flex gap={2} justifyContent={"center"}>
-                        <Button
-                          float={"right"}
-                          borderColor={"blue.400"}
-                          variant={"solid"}
-                          bgColor={"blue.400"}
-                          p={0}
-                          _hover={{ bgColor: "blue.400", opacity: "0.7" }}
-                        >
-                          <FontAwesomeIcon icon={faDownload} />
-                        </Button>
-                        <Button
-                          float={"right"}
-                          borderColor={"red"}
-                          variant={"solid"}
-                          bgColor={"red"}
-                          onClick={() => handleCheckAndDelete(item)}
-                          p={0}
-                          _hover={{ bgColor: "red", opacity: "0.7" }}
-                        >
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </Button>
+                        <IconButton
+                          colorScheme="linkedin"
+                          icon={<FontAwesomeIcon icon={faDownload} />}
+                        />
+                        <IconButton
+                          colorScheme="red"
+                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                        />
                       </Flex>
                     </Td>
                   </Tr>
@@ -217,7 +206,7 @@ export const VU_92 = () => {
             >
               VU-92 Shakl topilmadi
             </Text>
-            <Button variant={"solid"} onClick={onOpen}>
+            <Button colorScheme="teal" onClick={onOpen}>
               VU-92 Shakl qo&apos;shish
             </Button>
           </Flex>

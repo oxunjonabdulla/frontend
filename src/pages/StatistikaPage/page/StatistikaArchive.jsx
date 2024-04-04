@@ -151,7 +151,7 @@ export const StatistikaArchive = () => {
               onClick={handleSearachTables}
               mt={3}
               w={"100%"}
-              variant={"solid"}
+              colorScheme="teal"
               type="submit"
             >
               Qidirish

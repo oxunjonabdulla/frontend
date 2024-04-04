@@ -31,7 +31,7 @@ export const ComplatedPto = () => {
       <Button
         mt={"10"}
         onClick={() => window.location.reload()}
-        variant={"solid"}
+        colorScheme="teal"
       >
         {" "}
         Ortga qaytish

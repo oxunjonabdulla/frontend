@@ -257,7 +257,7 @@ export const DailyRepair_Modal = ({ isOpen, onClose }) => {
                         <Button
                           p={"10px 12px"}
                           fontSize={"sm"}
-                          variant={"outline_red"}
+                          colorScheme="red"
                           onClick={onImageRemoveAll}
                         >
                           Barchasini o&apos;chirish
@@ -283,7 +283,7 @@ export const DailyRepair_Modal = ({ isOpen, onClose }) => {
                             <Button
                               p={"10px 12px"}
                               fontSize={"sm"}
-                              variant={"solid"}
+                              colorScheme="teal"
                               onClick={() => onImageUpdate(index)}
                             >
                               Yangilash
@@ -291,7 +291,7 @@ export const DailyRepair_Modal = ({ isOpen, onClose }) => {
                             <Button
                               p={"10px 12px"}
                               fontSize={"sm"}
-                              variant={"outline_red"}
+                              colorScheme="red"
                               onClick={() => onImageRemove(index)}
                             >
                               O&apos;chirish
@@ -367,7 +367,7 @@ export const DailyRepair_Modal = ({ isOpen, onClose }) => {
                         <Button
                           p={"10px 12px"}
                           fontSize={"sm"}
-                          variant={"outline_red"}
+                          colorScheme="red"
                           onClick={onImageRemoveAll}
                         >
                           Barchasini o&apos;chirish
@@ -393,7 +393,7 @@ export const DailyRepair_Modal = ({ isOpen, onClose }) => {
                             <Button
                               p={"10px 12px"}
                               fontSize={"sm"}
-                              variant={"solid"}
+                              colorScheme="teal"
                               onClick={() => onImageUpdate(index)}
                             >
                               Yangilash
@@ -401,7 +401,7 @@ export const DailyRepair_Modal = ({ isOpen, onClose }) => {
                             <Button
                               p={"10px 12px"}
                               fontSize={"sm"}
-                              variant={"outline_red"}
+                              colorScheme="red"
                               onClick={() => onImageRemove(index)}
                             >
                               O&apos;chirish
@@ -420,11 +420,11 @@ export const DailyRepair_Modal = ({ isOpen, onClose }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button variant={"outline_red"} mr={3} onClick={onClose}>
+            <Button colorScheme="red" mr={3} onClick={onClose}>
               Yopish
             </Button>
             <Button
-              variant={"outline"}
+              colorScheme="teal"
               isLoading={isLoading}
               loadingText="Saqlash"
               spinnerPlacement="end"

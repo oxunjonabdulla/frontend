@@ -467,15 +467,11 @@ export const PtopUpdate = ({ onClose, isOpen, updateData }) => {
             </Flex>
 
             <ModalFooter>
-              <Button
-                variant={"outline_red"}
-                mr={3}
-                onClick={() => onClose(false)}
-              >
+              <Button colorScheme="red" mr={3} onClick={() => onClose(false)}>
                 Yopish
               </Button>
               <Button
-                variant={"outline"}
+                colorScheme="teal"
                 isLoading={isLoading}
                 loadingText="Saqlash"
                 spinnerPlacement="end"

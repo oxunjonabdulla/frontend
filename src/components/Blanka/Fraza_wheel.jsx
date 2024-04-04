@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   Heading,
+  IconButton,
   Image,
   Table,
   TableContainer,
@@ -103,7 +104,7 @@ export const Fraza_wheel = () => {
       <Tooltip label="ФРАЗА" placement="top" color={"teal.700"} bg={"white"}>
         <Button
           borderRadius={"50%"}
-          variant={"solid"}
+          colorScheme="teal"
           width={"50px"}
           height={"50px"}
           position={"absolute"}
@@ -233,42 +234,16 @@ export const Fraza_wheel = () => {
                       </Td>
                       <Td rowSpan={4}>
                         <Flex gap={2} m={0} flexDir={"column"}>
-                          <Button
-                            float={"right"}
-                            borderColor={"blue.400"}
-                            variant={"solid"}
-                            bgColor={"blue.400"}
-                            minW={"30px"}
-                            p={0}
-                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
-                            // onClick={() => handleDowland(item?.carriage_number)}
-                          >
-                            <FontAwesomeIcon icon={faDownload} />
-                          </Button>
-                          {/* <Button
-                              float={"right"}
-                              borderColor={"green.400"}
-                              variant={"solid"}
-                              bgColor={"green.400"}
-                              p={0}
-                              minW={"30px"}
-                              _hover={{ bgColor: "green.500", opacity: "0.7" }}
-                              onClick={() => handleUpdate(item)}
-                            >
-                              <FontAwesomeIcon icon={faPenToSquare} />
-                            </Button> */}
-                          <Button
-                            float={"right"}
-                            borderColor={"red"}
-                            minW={"30px"}
-                            variant={"solid"}
-                            bgColor={"red"}
+                          <IconButton
+                            colorScheme="linkedin"
+                            icon={<FontAwesomeIcon icon={faDownload} />}
+                          />
+
+                          <IconButton
+                            colorScheme="red"
                             onClick={() => handleCheckAndDelete(item?.carriage)}
-                            p={0}
-                            _hover={{ bgColor: "red", opacity: "0.7" }}
-                          >
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                          </Button>
+                            icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                          />
                         </Flex>
                       </Td>
                     </Tr>
@@ -345,7 +320,7 @@ export const Fraza_wheel = () => {
             >
               ФРАЗА мфлумотларини юкланг
             </Text>
-            <Button variant={"solid"} onClick={onOpen}>
+            <Button colorScheme="teal" colorScheme="teal" onClick={onOpen}>
               ФРАЗА мфлумотларини қушиш
             </Button>
           </Flex>

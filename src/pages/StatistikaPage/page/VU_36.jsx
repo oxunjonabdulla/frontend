@@ -72,7 +72,7 @@ export const VU_36 = () => {
       >
         <Button
           borderRadius={"50%"}
-          variant={"solid"}
+          colorScheme="teal"
           width={"50px"}
           height={"50px"}
           position={"absolute"}
@@ -132,7 +132,7 @@ export const VU_36 = () => {
           >
             VU-36 jurnali topilmadi
           </Text>
-          <Button variant={"solid"} onClick={onOpen}>
+          <Button colorScheme="teal" onClick={onOpen}>
             VU-36 qo&apos;shish
           </Button>
         </Flex>

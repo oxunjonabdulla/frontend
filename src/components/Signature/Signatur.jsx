@@ -24,7 +24,7 @@ export const Signatur = ({ title, setSiganturtoData }) => {
         {title}
       </Text>
       {!signature?.user_signature && (
-        <Button variant={"solid"} onClick={handleGetSignature}>
+        <Button colorScheme="teal" onClick={handleGetSignature}>
           Shaxsiy Imzosini Joylash
         </Button>
       )}

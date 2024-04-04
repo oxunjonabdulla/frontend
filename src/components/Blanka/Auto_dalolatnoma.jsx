@@ -39,7 +39,7 @@ export const AutoDalolatnoma = () => {
       </Heading>
       <Button
         borderRadius={"50%"}
-        variant={"solid"}
+        colorScheme="teal"
         width={"50px"}
         height={"50px"}
         position={"absolute"}
@@ -77,7 +77,7 @@ export const AutoDalolatnoma = () => {
 
               <Tbody>
                 <Tr fontWeight={500}>
-                  <Td outline={"1px solid gray"}>1</Td>
+                  <Td outline={"1px solid gray"}>1s</Td>
                   <Td outline={"1px solid gray"}>asdasfaf</Td>
                   <Td outline={"1px solid gray"}>asfa</Td>
                   <Td outline={"1px solid gray"}>asfasf</Td>
@@ -101,7 +101,7 @@ export const AutoDalolatnoma = () => {
             >
               Кириш ва чиқиш назорати далолатномаси топилмади
             </Text>
-            <Button variant={"solid"} onClick={onOpen}>
+            <Button colorScheme="teal" onClick={onOpen}>
               Қўшиш
             </Button>
           </Flex>

@@ -170,7 +170,7 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
                       <Box
                         colorscheme="yellow"
                         borderColor={"orange.400"}
-                        variant={"solid"}
+                        colorScheme="teal"
                         fontSize={"13px"}
                         bgColor={"orange.400"}
                         p={"10px"}
@@ -186,7 +186,7 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
                 {(!item?.phrase_gildirak || !item?.phrase_arava) && (
                   <Box
                     borderColor={"red.500"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     fontSize={"13px"}
                     bgColor={"red.500"}
                     p={"10px"}
@@ -202,7 +202,7 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
                 {item?.date_operation_carriage && (
                   <Box
                     borderColor={"green.500"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     fontSize={"13px"}
                     bgColor={"green.500"}
                     p={"10px"}
@@ -221,7 +221,7 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
                   <Button
                     float={"right"}
                     borderColor={"blue.400"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     bgColor={"blue.400"}
                     minW={"30px"}
                     p={0}
@@ -233,7 +233,7 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
                   <Button
                     float={"right"}
                     borderColor={"blue.400"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     bgColor={"blue.600"}
                     p={0}
                     minW={"30px"}
@@ -246,7 +246,7 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
                     float={"right"}
                     borderColor={"red"}
                     minW={"30px"}
-                    variant={"solid"}
+                    colorScheme="teal"
                     bgColor={"red"}
                     onClick={() => handleCheckAndDelete(item?.carriage)}
                     p={0}

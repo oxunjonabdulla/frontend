@@ -262,7 +262,7 @@ export const PtoArxiv = ({ deleateCarriage }) => {
                       <Button
                         float={"right"}
                         borderColor={"blue.400"}
-                        variant={"solid"}
+                        colorScheme="teal"
                         bgColor={"blue.400"}
                         minW={"30px"}
                         p={0}
@@ -274,7 +274,7 @@ export const PtoArxiv = ({ deleateCarriage }) => {
                       <Button
                         float={"right"}
                         borderColor={"green.400"}
-                        variant={"solid"}
+                        colorScheme="teal"
                         bgColor={"green.400"}
                         p={0}
                         minW={"30px"}
@@ -287,7 +287,7 @@ export const PtoArxiv = ({ deleateCarriage }) => {
                         float={"right"}
                         borderColor={"red"}
                         minW={"30px"}
-                        variant={"solid"}
+                        colorScheme="teal"
                         bgColor={"red"}
                         onClick={() => handleCheckAndDelete(item)}
                         p={0}

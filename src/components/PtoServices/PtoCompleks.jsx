@@ -303,7 +303,7 @@ export const PtoCompleks = ({ setActiveStep }) => {
             isLoading={loading}
             loadingText="Saqlash"
             mx={"auto"}
-            variant={"solid"}
+            colorScheme="teal"
             type="submit"
             spinnerPlacement="end"
           >

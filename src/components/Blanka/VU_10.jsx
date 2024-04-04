@@ -40,7 +40,7 @@ export const VU_10 = () => {
       <Tooltip label="VU-10" placement="top" color={"teal.700"} bg={"white"}>
         <Button
           borderRadius={"50%"}
-          variant={"solid"}
+          colorScheme="teal"
           width={"50px"}
           height={"50px"}
           position={"absolute"}
@@ -79,7 +79,7 @@ export const VU_10 = () => {
             >
               VU-10 jurnali hali shakllanmagan
             </Text>
-            {/* <Button variant={"solid"} onClick={onOpen}>
+            {/* <Button colorScheme="teal" onClick={onOpen}>
               VU-90 Shakl qo&apos;shish
             </Button> */}
           </Flex>

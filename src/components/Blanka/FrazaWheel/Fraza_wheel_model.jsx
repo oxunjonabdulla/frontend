@@ -571,11 +571,11 @@ export const Fraza_wheel_model = ({ onClose, isOpen }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button variant={"outline_red"} mr={3} onClick={onClose}>
+            <Button colorScheme="red" mr={3} onClick={onClose}>
               Yopish
             </Button>
             <Button
-              variant={"outline"}
+              colorScheme="teal"
               isLoading={isLoading}
               loadingText="Saqlash"
               spinnerPlacement="end"

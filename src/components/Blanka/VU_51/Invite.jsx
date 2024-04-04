@@ -123,7 +123,7 @@ export const InviteTable = ({ data }) => {
                     <Button
                       float={"right"}
                       borderColor={"blue.400"}
-                      variant={"solid"}
+                      colorScheme="teal"
                       bgColor={"blue.400"}
                       p={0}
                       _hover={{ bgColor: "blue.400", opacity: "0.7" }}
@@ -133,7 +133,7 @@ export const InviteTable = ({ data }) => {
                     <Button
                       float={"right"}
                       borderColor={"red"}
-                      variant={"solid"}
+                      colorScheme="teal"
                       bgColor={"red"}
                       onClick={() => handleCheckAndDelete(item?.carriage)}
                       p={0}

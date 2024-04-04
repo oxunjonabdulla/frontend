@@ -193,7 +193,7 @@ export const Login = () => {
               w={"100%"}
               display={"flex"}
               alignItems="center"
-              variant={"solid"}
+              colorScheme="teal"
               gap={2}
               isLoading={loading}
               loadingText="Kirish"

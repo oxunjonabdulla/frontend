@@ -192,7 +192,7 @@ export const DailyRepairsTable = memo(function DailyRepairsTable({ dataMock }) {
                     <Button
                       float={"right"}
                       borderColor={"blue.400"}
-                      variant={"solid"}
+                      colorScheme="teal"
                       bgColor={"blue.400"}
                       p={0}
                       _hover={{ bgColor: "blue.400", opacity: "0.7" }}
@@ -201,7 +201,7 @@ export const DailyRepairsTable = memo(function DailyRepairsTable({ dataMock }) {
                     </Button>
                     <Button
                       borderColor={"red"}
-                      variant={"solid"}
+                      colorScheme="teal"
                       bgColor={"red"}
                       float={"right"}
                       p={0}
