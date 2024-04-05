@@ -320,7 +320,7 @@ export const Fraza_wheel = () => {
             >
               ФРАЗА мфлумотларини юкланг
             </Text>
-            <Button colorScheme="teal" colorScheme="teal" onClick={onOpen}>
+            <Button colorScheme="teal" onClick={onOpen}>
               ФРАЗА мфлумотларини қушиш
             </Button>
           </Flex>

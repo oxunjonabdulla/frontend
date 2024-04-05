@@ -83,7 +83,46 @@ export const routersSidebar = [
     isWork: false,
     label: "Avtotormozlar bo‘linmasi",
     path: "/auto-brakes",
-    type: "link",
+    type: "drop",
+    accordItems: [
+      {
+        label: "Bugungi ta'mir",
+        path: "",
+      },
+      {
+        label: "VU-22",
+        path: "/vu-22",
+      },
+      {
+        label: "VU-47 Jurnali",
+        path: "/vu-47",
+      },
+      {
+        label: "Avtorejimlarni ro‘yxatga olish",
+        path: "/register-auto",
+      },
+      {
+        label: "Avtoregulyatorlarni ro‘yxatga olish",
+        path: "/register-regular",
+      },
+      {
+        label: "Razobshitelniy kranlarni ro‘yxatga olish jurnali",
+        path: "/register-rozobshitel",
+      },
+      {
+        label: "Rukavalarni ro‘yxatga olish jurnali",
+        path: "/register-rukvas",
+      },
+      {
+        label:
+          "Rezervuar, tormoz silindr va ishchi kameralarni ro‘yxatga olish kitobi",
+        path: "/register-brake-silindir",
+      },
+      {
+        label: "Кириш ва чиқиш назорати",
+        path: "/entry-exit-control",
+      },
+    ],
     icon: Avtotormoz,
 
     role: "avtotormozuser",

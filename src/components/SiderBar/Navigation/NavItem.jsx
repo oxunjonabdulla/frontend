@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+import { shortenString } from "@/utils/shortenString";
 // import { useTranslation } from "react-i18next";
 
 export const NavItem = ({ item, collapse }) => {
@@ -120,24 +121,26 @@ export const NavItem = ({ item, collapse }) => {
 
           {item?.accordItems?.map((item, idx) => (
             <Link key={idx} to={path + item.path}>
-              <AccordionPanel
-                pl={5}
-                py={2}
-                cursor={"pointer"}
-                fontSize={"15px"}
-                borderRadius={5}
-                transition={"0.2s"}
-                color={path + item.path === pathname ? "black" : "gray.400"}
-                bgColor={path + item.path === pathname ? "#F5F5F5" : ""}
-                fontWeight={500}
-                my={"3px"}
-                _hover={{
-                  color: "#000",
-                  bgColor: "#F5F5F5",
-                }}
-              >
-                {item?.label}
-              </AccordionPanel>
+              <Tooltip placement="right" label={item?.label}>
+                <AccordionPanel
+                  pl={5}
+                  py={2}
+                  cursor={"pointer"}
+                  fontSize={"15px"}
+                  borderRadius={5}
+                  transition={"0.2s"}
+                  color={path + item.path === pathname ? "black" : "gray.400"}
+                  bgColor={path + item.path === pathname ? "#F5F5F5" : ""}
+                  fontWeight={500}
+                  my={"3px"}
+                  _hover={{
+                    color: "#000",
+                    bgColor: "#F5F5F5",
+                  }}
+                >
+                  {shortenString(item?.label, 40)}
+                </AccordionPanel>
+              </Tooltip>
             </Link>
           ))}
         </AccordionItem>

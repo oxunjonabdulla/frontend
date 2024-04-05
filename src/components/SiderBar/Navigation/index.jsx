@@ -16,7 +16,7 @@ const home_page = {
 export const Navigation = ({ collapse, setMocileCollapse }) => {
   const { user } = useSelector(({ userMe }) => userMe);
   return (
-    <List w="full" my={8}>
+    <List w="full" my={8} overflow={"hidden"}>
       <ListItem onClick={() => setMocileCollapse(false)}>
         <NavItem item={home_page} collapse={collapse} />
       </ListItem>

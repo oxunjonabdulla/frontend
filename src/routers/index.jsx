@@ -22,6 +22,14 @@ import {
   VU_36,
   Fraza,
   VU_31_Create,
+  RegisterAuto,
+  RegisterRegular,
+  VU_22,
+  VU_47,
+  RegisterRukvas,
+  RegisterRazobshitel,
+  RegisterBrakes,
+  EntrExit,
 } from "../pages";
 import {
   CollectUser,
@@ -37,6 +45,7 @@ import {
 import { ProtectedRoute } from "../utils/PrivateComponent";
 import { RouteNames } from "./consts";
 import { Outlet } from "react-router";
+import { DailyTable } from "../components";
 export const routes = [
   {
     element: <RouteLayout />,
@@ -127,6 +136,21 @@ export const routes = [
           />
         ),
         path: RouteNames.AUTO_BRAKES,
+        children: [
+          { element: <DailyTable />, index: true },
+
+          { element: <VU_22 />, path: RouteNames.VU_22 },
+          { element: <VU_47 />, path: RouteNames.VU_47 },
+          { element: <RegisterAuto />, path: RouteNames.REGISTER_AUTO },
+          { element: <RegisterRegular />, path: RouteNames.REGISTER_REGULAR },
+          { element: <RegisterRukvas />, path: RouteNames.REGISTER_RUKVAS },
+          {
+            element: <RegisterRazobshitel />,
+            path: RouteNames.REGISTER_RAZOBSHITEL,
+          },
+          { element: <RegisterBrakes />, path: RouteNames.REGISTER_BRAKES },
+          { element: <EntrExit />, path: RouteNames.REGISTER_EXITENTRY },
+        ],
       },
       {
         element: (

@@ -38,7 +38,8 @@
     "react-router": "^6.17.0",
     "react-router-dom": "^6.17.0",
     "react-signature-canvas": "^1.0.6",
-    "react-simple-image-viewer": "^1.2.2"
+    "react-simple-image-viewer": "^1.2.2",
+    "simplebar-react": "^3.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

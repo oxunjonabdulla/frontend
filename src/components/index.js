@@ -27,3 +27,5 @@ export * from "./TrainLoader/TrainLoader";
 export * from "./TrainLoader/SimpleLoader";
 export * from "./Login/LoginComponent";
 export * from "./TableContainer/TableContainer";
+export * from "./TableTrain/DailyTable";
+export * from "./MainHeads/MainHeads";
