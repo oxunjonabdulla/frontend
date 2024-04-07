@@ -1,0 +1,172 @@
+import {
+  Button,
+  Container,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { MainHeads } from "@/components";
+import { SearchTrain } from "../../../../utils";
+export const RegisterAutoCreate = () => {
+  const [isLoading, setLoading] = useState(false);
+  const [serachingResult, setSerachingResult] = useState(null);
+  const toast = useToast();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = async (data) => {
+    setLoading(true);
+  };
+
+  return (
+    <MainHeads title="Avtorejimlarni ro‘yxatga olish">
+      <Container maxW={"container.xl"} my={8}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+            <SearchTrain
+              setSerachingResult={setSerachingResult}
+              //   setTestResult={setTestResult}
+            />
+            <FormControl isInvalid={errors?.automode_type}>
+              <FormLabel>Avtorejim turi </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("automode_type", { required: true })}
+                type="text"
+                placeholder="Avtorejim turi "
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.repair_date}>
+              <FormLabel>Ta’mir sana</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("repair_date", { required: true })}
+                type="date"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.repair_type}>
+              <FormLabel>Ta’mir turi</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("repair_type", { required: true })}
+                type="text"
+                placeholder="Ta’mir turi "
+              />
+            </FormControl>
+          </Flex>
+
+          <Flex
+            gap={3}
+            flexWrap={["wrap", "nowrap"]}
+            alignItems={"center"}
+            mb={4}
+          >
+            <FormControl isInvalid={errors?.automode_factory_number}>
+              <FormLabel>Avtorejim zavod raqami </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("automode_factory_number", { required: true })}
+                type="text"
+                placeholder="Ta’mir turi "
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.automode_roll_size}>
+              <FormLabel whiteSpace={"nowrap"}>
+                Avtorejim velka razmeri (265 A -1 =70 mm 265 A -4 =120 mm ){" "}
+              </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("automode_roll_size", { required: true })}
+                type="text"
+                placeholder="Avtorejim velka razmeri "
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.last_type_jamrak}>
+              <FormLabel>So’ngi jumrak turi (4304, 4314, 271)</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("last_type_jamrak", { required: true })}
+                type="text"
+                placeholder="So’ngi jumrak turi "
+              />
+            </FormControl>
+          </Flex>
+
+          <Text
+            as={"h1"}
+            textAlign={"center"}
+            m={0}
+            fontSize={"xl"}
+            fontWeight={700}
+          >
+            TC Rejimdagi siqilgan havo bosimi
+          </Text>
+
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"}>
+            <FormControl isInvalid={errors?.tc_type_without_freight}>
+              <FormLabel>
+                Yuksiz <br /> 265 A-1 265 A-4 TC-1=1,3+0,1 Kgs/sm2
+                {"                                                        "}
+                <br /> 265 A-1 265 A-4 TC-1=1,3+0,1 Kgs/sm2
+              </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("tc_type_without_freight", { required: true })}
+                type="text"
+                placeholder="Yuksiz"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.tc_type_middle}>
+              <FormLabel>
+                O`rta <br /> 265 A-1 TC=2,1+0,2 Kgs/sm2 265 A-4 TC=1,95+0,2
+                Kgs/sm2
+              </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("tc_type_middle", {
+                  required: true,
+                })}
+                type="text"
+                placeholder="O'rta"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.tc_type_with_freight}>
+              <FormLabel>
+                Yukli <br /> 2265 A-1 TC=4,2+0,1 Kgs/sm2 265 A-4 TC-1=1,3+0,1
+                Kgs/sm2
+              </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("tc_type_with_freight", {
+                  required: true,
+                })}
+                type="text"
+                placeholder="Yukli"
+              />
+            </FormControl>
+          </Flex>
+
+          <Flex my={4} justify={"end"}>
+            <Button
+              colorScheme="teal"
+              isLoading={isLoading}
+              loadingText="Saqlash"
+              spinnerPlacement="end"
+              type="submit"
+            >
+              Saqlash
+            </Button>
+          </Flex>
+        </form>
+      </Container>
+    </MainHeads>
+  );
+};

@@ -30,6 +30,9 @@ import {
   RegisterRazobshitel,
   RegisterBrakes,
   EntrExit,
+  RegisterAutoCreate,
+  RegisterRazobshitelCreate,
+  RegisterBrakesCreate,
 } from "../pages";
 import {
   CollectUser,
@@ -141,14 +144,47 @@ export const routes = [
 
           { element: <VU_22 />, path: RouteNames.VU_22 },
           { element: <VU_47 />, path: RouteNames.VU_47 },
-          { element: <RegisterAuto />, path: RouteNames.REGISTER_AUTO },
+          {
+            element: <Outlet />,
+            path: RouteNames.REGISTER_AUTO,
+            children: [
+              { element: <RegisterAuto />, index: true },
+              {
+                element: <RegisterAutoCreate />,
+                path: RouteNames.CREATE(RouteNames.REGISTER_AUTO),
+              },
+            ],
+          },
           { element: <RegisterRegular />, path: RouteNames.REGISTER_REGULAR },
           { element: <RegisterRukvas />, path: RouteNames.REGISTER_RUKVAS },
           {
-            element: <RegisterRazobshitel />,
+            element: <Outlet />,
             path: RouteNames.REGISTER_RAZOBSHITEL,
+            children: [
+              {
+                element: <RegisterRazobshitel />,
+                index: true,
+              },
+              {
+                element: <RegisterRazobshitelCreate />,
+                path: RouteNames.CREATE(RouteNames.REGISTER_RAZOBSHITEL),
+              },
+            ],
           },
-          { element: <RegisterBrakes />, path: RouteNames.REGISTER_BRAKES },
+          {
+            element: <Outlet />,
+            path: RouteNames.REGISTER_BRAKES,
+            children: [
+              {
+                element: <RegisterBrakes />,
+                index: true,
+              },
+              {
+                element: <RegisterBrakesCreate />,
+                path: RouteNames.CREATE(RouteNames.REGISTER_BRAKES),
+              },
+            ],
+          },
           { element: <EntrExit />, path: RouteNames.REGISTER_EXITENTRY },
         ],
       },

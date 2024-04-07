@@ -1,8 +1,14 @@
 import { Box, Button, Heading, Tooltip } from "@chakra-ui/react";
 import { memo } from "react";
 import { BrendCrumbs } from "../BrendCrumbs/BrendCrumbs";
+import { Link } from "react-router-dom";
 
-export const MainHeads = memo(function MainHeads({ title, children, onOpen }) {
+export const MainHeads = memo(function MainHeads({
+  title,
+  children,
+  onOpen,
+  path,
+}) {
   return (
     <Box
       as="div"
@@ -16,26 +22,29 @@ export const MainHeads = memo(function MainHeads({ title, children, onOpen }) {
         {title}
       </Heading>
       <BrendCrumbs />
-
-      <Tooltip
-        label={title + " qo'shish"}
-        placement="top"
-        color={"teal.700"}
-        bg={"white"}
-      >
-        <Button
-          borderRadius={"50%"}
-          colorScheme="teal"
-          width={"50px"}
-          height={"50px"}
-          position={"absolute"}
-          right={3}
-          top={-12}
-          onClick={onOpen}
+      {path ? (
+        <Tooltip
+          label={title + " qo'shish"}
+          placement="top"
+          color={"teal.700"}
+          bg={"white"}
         >
-          +
-        </Button>
-      </Tooltip>
+          <Button
+            as={Link}
+            to={path}
+            borderRadius={"50%"}
+            colorScheme="teal"
+            width={"50px"}
+            height={"50px"}
+            position={"absolute"}
+            right={3}
+            top={-12}
+            onClick={onOpen}
+          >
+            +
+          </Button>
+        </Tooltip>
+      ) : null}
 
       {children}
     </Box>

@@ -146,6 +146,82 @@ export const routersSidebar = [
   },
 ];
 
+export const register_razobshitel = [
+  { label: "T/R" },
+  { label: "Sana" },
+  { label: "Vagon nomeri" },
+  { label: "Ta’mir turi" },
+  { label: "Razabshitlni kran turi 4300" },
+  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2" },
+  { label: "So’ngi jumrfk turi 4304, 4314, 271" },
+  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 " },
+  { label: "So’ngi jumrfk turi 4304, 4314, 271" },
+  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 " },
+  { label: "Tekshiruv  xulosasi " },
+  { label: "Ta'mirlovchini imzosi" },
+  { label: "Qabulqiluvchi imzosi" },
+];
+export const register_breakes_silindir = [
+  { label: "T/R" },
+  { label: "Sana" },
+  { label: "Vagon nomeri" },
+  { label: "Ta’mir turi" },
+  { label: "Zaxirasig‘imi P7-78" },
+  { label: " Suv bosimi (10,05+0,5) kg/sm2" },
+  { label: "Tormozsilindiri TS002,TS188" },
+  { label: "Havobosimi (4,0+0,1) kg/sm2" },
+  { label: "2X kamerali  havotaq simlagich 295.001, 295M.001" },
+  { label: "Havobosimi (6,0+0,1) kg/sm2" },
+  { label: "Texnikxolati" },
+  { label: "Ta'mirlovchini imzosi" },
+  { label: "Qabulqiluvchi imzosi" },
+];
+
+export const register_auto = {
+  top_head: [
+    { label: "T/R", rowspan: 3 },
+    { label: "Ta’mir sana", rowspan: 3 },
+    { label: "Avtorejim turi ", rowspan: 3 },
+    { label: "Ta’mir turi", rowspan: 3 },
+    { label: "Avtorejim zavod raqami ", rowspan: 3 },
+    {
+      label: "Avtorejim velka razmeri \n 265 A -1 =70 mm \n 265 A -4 =120 mm  ",
+      rowspan: 3,
+    },
+    {
+      label: "So’ngi jumrfk turi 4304, 4314, 271 ",
+      rowspan: 3,
+    },
+    {
+      label: "TC Rejimdagi siqilgan havo bosimi",
+      colspan: 3,
+    },
+    {
+      label: "Imzo",
+      colspan: 2,
+    },
+  ],
+
+  middle_head: [
+    { label: "Yuksiz " },
+    { label: "O'rta" },
+    { label: "Yukli" },
+    { label: "Ta’mirlovchi  ", rowspan: 3 },
+    { label: "Qabulqiluvchi  ", rowspan: 3 },
+  ],
+  bottom_head: [
+    { label: "265 A-1 \n 265 A-4 \n TC-1=1,3+0,1 \n Kgs/sm2 " },
+    {
+      label:
+        "265 A-1 \n TC=2,1+0,2 \n Kgs/sm2 \n 265 A-4 \n TC=1,95+0,2 \n Kgs/sm2",
+    },
+    {
+      label:
+        "265 A-1 \n TC=4,2+0,1 \n Kgs/sm2 \n 265 A-4 \n TC-1=1,3+0,1 \n Kgs/sm2",
+    },
+  ],
+};
+
 export const dalolatnoma_head = [
   { label: "Tartib raqami" },
   { label: "Vagon raqami" },

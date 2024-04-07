@@ -1,7 +1,16 @@
 import { MainHeads } from "@/components";
+import { TableContainer } from "@chakra-ui/react";
+import RegisterRazobshitelTable from "./components/RegisterRazobshitelTable";
 
 export const RegisterRazobshitel = () => {
   return (
-    <MainHeads title="Razobshitelniy kranlarni ro‘yxatga olish jurnali"></MainHeads>
+    <MainHeads
+      title="Razobshitelniy kranlarni ro‘yxatga olish jurnali"
+      path="/auto-brakes/register-rozobshitel/create"
+    >
+      <TableContainer p={4} border={"1px solid #eeeee"} shadow={"lg"}>
+        <RegisterRazobshitelTable />
+      </TableContainer>
+    </MainHeads>
   );
 };
