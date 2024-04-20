@@ -111,8 +111,8 @@ export const InviteTable = ({ data }) => {
                       src={imageGet(invite_detail?.user_signature_url)}
                     />
                   ) : (
-                    <Text as={"p"} color={"red"}>
-                      Imzo qo`yilmagan
+                    <Text as={"p"} color={"teal"}>
+                      Imzo tasdiqlangan
                     </Text>
                   )}
                 </Td>

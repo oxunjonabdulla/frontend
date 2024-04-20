@@ -39,14 +39,14 @@ export const PtoUnit = () => {
         >
           <Button
             onClick={() => setActiveComponent(null)}
-            variant={activeComponent === null ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === null ? "solid" : "outline"}
           >
             VU-23 Arxiv
           </Button>
           <Button
-            variant={
-              activeComponent === "Component1" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component1" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component1")}
           >
             VU-23 qo&apos;shish

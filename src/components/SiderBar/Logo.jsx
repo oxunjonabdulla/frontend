@@ -47,8 +47,8 @@ export const Logo = ({ collapse, setMocileCollapse }) => (
             color={"gray.700"}
             userSelect={"none"}
           >
-            O‘zbekiston temir yo‘llari AJ Qarshi mintaqaviy temir yo‘l uzeli
-            Qarshi vagon deposi
+            O'zbekiston temir yo'llari AJ Vagon xo'jaligi boshqarmasi Qarshi
+            vagon deposi
           </Text>
         </Flex>
       )}

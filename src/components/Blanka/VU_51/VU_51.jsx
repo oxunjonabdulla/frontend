@@ -92,38 +92,22 @@ export const VU_51 = () => {
           <>
             <Flex gap={4} justify={"center"}>
               <Button
+                colorScheme="teal"
                 onClick={() => setActiveType(2)}
-                variant={activeType === 2 ? "outline_active" : "outline"}
+                variant={activeType === 2 ? "solid" : "outline"}
               >
                 Келди
               </Button>
               <Button
+                colorScheme="teal"
                 onClick={() => setActiveType(1)}
-                variant={activeType === 1 ? "outline_active" : "outline"}
+                variant={activeType === 1 ? "solid" : "outline"}
               >
                 Қўйилди
               </Button>
             </Flex>
             <TableContainer p={4} border={"1px solid #eeeee"}>
               {renderComponent(gettingData?.results)}
-              <ReactPaginate
-                pageCount={Math.ceil(
-                  (gettingData?.count ? gettingData?.count : 0) / 10
-                )}
-                pageRangeDisplayed={5}
-                marginPagesDisplayed={2}
-                onPageChange={handlePageClick}
-                containerClassName="pagination"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                activeClassName="active"
-                previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-                nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-              />
             </TableContainer>
           </>
         ) : (
@@ -146,6 +130,24 @@ export const VU_51 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+      <ReactPaginate
+        pageCount={Math.ceil(
+          (gettingData?.count ? gettingData?.count : 0) / 10
+        )}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
 
       <VU_51_Model onClose={onClose} isOpen={isOpen} />
     </Box>

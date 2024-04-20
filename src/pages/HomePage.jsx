@@ -1,18 +1,24 @@
 import CountUp from "react-countup";
-import { Chart as ChartJs } from "chart.js/auto";
 import {
   Box,
   Card,
-  CardBody,
   Container,
+  Flex,
   Grid,
   GridItem,
   Heading,
-  Image,
-  Stack,
   Text,
 } from "@chakra-ui/react";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
+
+import Chart from "react-apexcharts";
+import {
+  chartFirst,
+  chartFive,
+  chartFour,
+  chartSecond,
+  chartThree,
+  demoFirst,
+} from "../utils/chartData";
 
 const topInfoData = [
   {
@@ -36,82 +42,83 @@ const topInfoData = [
 ];
 
 export const HomePage = () => {
-  const data = {
-    labels: [2020, 2021, 2023],
-    datasets: [
-      {
-        label: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
-        data: [50, 100, 83],
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-      {
-        label: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
-        data: [65, 59, 135],
-        fill: false,
-        borderColor: "#90CDF4",
-        tension: 0.1,
-      },
-      {
-        label: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
-        data: [100, 400, 940],
-        fill: false,
-        borderColor: "#FBD38D",
-        tension: 0.1,
-      },
-      {
-        label: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
-        data: [217, 350, 940],
-        fill: false,
-        borderColor: "#FEB2B2",
-        tension: 0.1,
-      },
-      {
-        label:
-          "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
-        data: [350, 460, 613],
-        fill: false,
-        borderColor: "green",
-        tension: 0.1,
-      },
-    ],
-  };
-  const config = {
-    type: "line",
-    data: data,
-    options: {
-      scales: {
-        x: {
-          type: "time",
-          time: {
-            displayFormats: {
-              quarter: "MMM YYYY",
-            },
-          },
-        },
-      },
-    },
-  };
-  const dughnut = {
-    labels: [
-      "Qarshi vagon deposi balansiga qabul qilingan va chiqarilgan vagonlar soni",
-      "Qarshi vagon deposi hududida turgan nosoz vagonlar soni",
-      "Qarshi vagon deposida tegishli buyruq asosida ta’mirlangan vagonlar soni",
-    ],
-    datasets: [
-      {
-        label: "2023 yildagi soni",
-        data: [170, 180, 47],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-        hoverOffset: 4,
-      },
-    ],
-  };
+  // const data = {
+  //   labels: [2020, 2021, 2023],
+  //   datasets: [
+  //     {
+  //       label: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
+  //       data: [50, 100, 83],
+  //       fill: false,
+  //       borderColor: "rgb(75, 192, 192)",
+  //       tension: 0.1,
+  //     },
+  //     {
+  //       label: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
+  //       data: [65, 59, 135],
+  //       fill: false,
+  //       borderColor: "#90CDF4",
+  //       tension: 0.1,
+  //     },
+  //     {
+  //       label: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
+  //       data: [100, 400, 940],
+  //       fill: false,
+  //       borderColor: "#FBD38D",
+  //       tension: 0.1,
+  //     },
+  //     {
+  //       label: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
+  //       data: [217, 350, 940],
+  //       fill: false,
+  //       borderColor: "#FEB2B2",
+  //       tension: 0.1,
+  //     },
+  //     {
+  //       label:
+  //         "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
+  //       data: [350, 460, 613],
+  //       fill: false,
+  //       borderColor: "green",
+  //       tension: 0.1,
+  //     },
+  //   ],
+  // };
+  // const config = {
+  //   type: "line",
+  //   data: data,
+  //   options: {
+  //     scales: {
+  //       x: {
+  //         type: "time",
+  //         time: {
+  //           displayFormats: {
+  //             quarter: "MMM YYYY",
+  //           },
+  //         },
+  //       },
+  //     },
+  //   },
+  // };
+  // const dughnut = {
+  //   labels: [
+  //     "Qarshi vagon deposi balansiga qabul qilingan va chiqarilgan vagonlar soni",
+  //     "Qarshi vagon deposi hududida turgan nosoz vagonlar soni",
+  //     "Qarshi vagon deposida tegishli buyruq asosida ta’mirlangan vagonlar soni",
+  //   ],
+  //   datasets: [
+  //     {
+  //       label: "2023 yildagi soni",
+  //       data: [170, 180, 47],
+  //       backgroundColor: [
+  //         "rgb(255, 99, 132)",
+  //         "rgb(54, 162, 235)",
+  //         "rgb(255, 205, 86)",
+  //       ],
+  //       hoverOffset: 4,
+  //     },
+  //   ],
+  // };
+
   return (
     <Container
       as="div"
@@ -232,20 +239,118 @@ export const HomePage = () => {
         </Grid> */}
       </Box>
       <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
-        Таmirlashga oid ma’lumotlar statistikasi(yillar kesmida).
+        Қаршидаги нуксонли вагонлар
       </Heading>
-      <Box
-        my={10}
-        display={"flex"}
-        w={["auto", "60%"]}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-        height={"500px"}
-        flexWrap={["wrap", "nowrap"]}
-      >
-        <Line data={data} height={"100px"} options={config} />
-        <Doughnut data={dughnut} height={"80px"} options={config} />
-      </Box>
+
+      <Flex gap={6}>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="area"
+            options={demoFirst.options}
+            series={demoFirst.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+      </Flex>
+      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
+        2024 йил хозирги кунгача Қарши вагон депосида таъмирланган вагонлар
+        <br />
+        Жами: 119
+      </Heading>
+
+      <Flex gap={6}>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="bar"
+            options={chartFirst.options}
+            series={chartFirst.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="bar"
+            options={chartSecond.options}
+            series={chartSecond.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+      </Flex>
+      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
+        2024 йил хозирги кунгача Қарши вагон депосида таъмирланган бошқа
+        ташкилот вагонлар
+        <br />
+        Жами: 181
+      </Heading>
+
+      <Flex gap={6}>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="bar"
+            options={chartThree.options}
+            series={chartThree.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="bar"
+            options={chartFour.options}
+            series={chartFour.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="bar"
+            options={chartFive.options}
+            series={chartFive.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+      </Flex>
     </Container>
   );
 };

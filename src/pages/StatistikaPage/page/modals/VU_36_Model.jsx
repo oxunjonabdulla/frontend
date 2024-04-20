@@ -59,8 +59,8 @@ export const VU_36_Model = ({ onClose, isOpen }) => {
     if (error) {
       toast({
         status: "error",
-        title: error?.detail
-          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
+        title: error?.error
+          ? error?.error
           : "Bu vagon raqami uchun VU-36 jurnali mavjud.",
         duration: 4000,
         isClosable: true,

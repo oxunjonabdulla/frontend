@@ -1,15 +1,17 @@
 import {
   Box,
   Button,
+  ButtonGroup,
   Flex,
   Heading,
+  IconButton,
   TableContainer,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { memo, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrainSubway } from "@fortawesome/free-solid-svg-icons";
 
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -19,18 +21,9 @@ import { DailyRepair_Modal } from "./modals/DailyRepair/DailyRepair_Modal";
 import { BrendCrumbs } from "@/components";
 
 export const DailyRepairs = memo(function DailyRepairs() {
-  const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { data } = useSelector(({ dailyToday }) => dailyToday);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const memoData = useMemo(() => data, [data]);
 
@@ -47,21 +40,24 @@ export const DailyRepairs = memo(function DailyRepairs() {
         Bugungi ta&apos;mirga qo&apos;yilgan vagonlar
       </Heading>
 
+      <ButtonGroup float={"right"} size="md" isAttached>
+        <Button variant={"outline"} colorScheme="teal">
+          Bugun
+        </Button>
+        <Button variant={"outline"} colorScheme="teal">
+          Arxiv
+        </Button>
+        <IconButton
+          onClick={onOpen}
+          variant={"outline"}
+          colorScheme="teal"
+          aria-label="Add to friends"
+          icon={<FontAwesomeIcon icon={faPlus} />}
+        />
+      </ButtonGroup>
       <BrendCrumbs />
-      <Button
-        borderRadius={"50%"}
-        colorScheme="teal"
-        width={"50px"}
-        height={"50px"}
-        position={"absolute"}
-        right={3}
-        top={-12}
-        onClick={onOpen}
-      >
-        +
-      </Button>
 
-      {!isLoadingFulStatistik ? (
+      {data ? (
         data?.length ? (
           <TableContainer
             borderRadius={10}

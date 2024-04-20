@@ -127,8 +127,8 @@ export const AccaptedTable = ({ data }) => {
                         src={imageGet(accepted_detail?.user_signature_url)}
                       />
                     ) : (
-                      <Text as={"p"} color={"red"}>
-                        Imzo qo`yilmagan
+                      <Text as={"p"} color={"teal"}>
+                        Imzo Tadiqlangan
                       </Text>
                     )}
                   </Td>
@@ -142,8 +142,8 @@ export const AccaptedTable = ({ data }) => {
                         src={imageGet(accepted_detail?.user_signature_url)}
                       />
                     ) : (
-                      <Text as={"p"} color={"red"}>
-                        Imzo qo`yilmagan
+                      <Text as={"p"} color={"teal"}>
+                        Imzo Tadiqlangan
                       </Text>
                     )}
                   </Td>
@@ -190,13 +190,11 @@ export const AccaptedTable = ({ data }) => {
               </Fragment>
             ) : (
               <Tr key={Math.random() * 100 + 152}>
-                <Td rowSpan={2} textAlign={"center"} fontSize={"lg"}>
+                <Td textAlign={"center"} fontSize={"lg"}>
                   {idx + 1}
                 </Td>
-                <Td rowSpan={2} fontWeight={700}>
+                <Td textAlign={"center"} colSpan={19} fontWeight={700}>
                   {item?.carriage}
-                </Td>
-                <Td textAlign={"center"} colSpan={19}>
                   {item?.carriage} raqami uchun vagon ishi tugallanmagan
                   ma`lumot joylash uchun vagon raqami orqali quyish bolimini
                   to`ldiring.

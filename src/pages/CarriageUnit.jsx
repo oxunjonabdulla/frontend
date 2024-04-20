@@ -36,40 +36,37 @@ export const CarriageUnit = () => {
           p={4}
         >
           <Button
-            variant={
-              activeComponent === "Component1" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component1" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component1")}
           >
             ВУ-22
           </Button>
           <Button
-            variant={
-              activeComponent === "Component2" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component2" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component2")}
           >
             ФРАЗА
           </Button>
           <Button
-            variant={
-              activeComponent === "Component4" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component4" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component4")}
           >
             ВУ-32
           </Button>
           <Button
-            variant={
-              activeComponent === "Component3" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component3" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component3")}
           >
             Кириш ва чиқиш назорати
           </Button>
           {/* <Button
+          colorScheme="teal"
             variant={
-              activeComponent === "Component2" ? "outline_active" : "outline"
+              activeComponent === "Component2" ? "solid" : "outline"
             }
             onClick={() => setActiveComponent("Component2")}
           >

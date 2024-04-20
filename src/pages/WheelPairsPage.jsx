@@ -69,73 +69,78 @@ export const WheelPairsPage = () => {
           p={4}
         >
           <Button
-            variant={activeComponent === "vu22" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu22" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu22")}
           >
             ВУ-22
           </Button>
           <Button
-            variant={
-              activeComponent === "fraza_wheel" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "fraza_wheel" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("fraza_wheel")}
           >
             ФРАЗА
           </Button>
           <Button
-            variant={activeComponent === "vu50" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu50" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu50")}
           >
             ВУ-50
           </Button>
           <Button
-            variant={activeComponent === "vu51" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu51" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu51")}
           >
             ВУ-51
           </Button>
           <Button
-            variant={activeComponent === "vu53" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu53" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu53")}
           >
             ВУ-53
           </Button>
           <Button
-            variant={activeComponent === "vu54" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu54" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu54")}
           >
             ВУ-54
           </Button>
           <Button
-            variant={activeComponent === "vu90" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu90" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu90")}
           >
             ВУ-90
           </Button>
           <Button
-            variant={activeComponent === "vu91" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu91" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu91")}
           >
             ВУ-91
           </Button>
           <Button
-            variant={activeComponent === "vu92" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu92" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu92")}
           >
             ВУ-92
           </Button>
           <Button
-            variant={activeComponent === "vu93" ? "outline_active" : "outline"}
+            colorScheme="teal"
+            variant={activeComponent === "vu93" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu93")}
           >
             ВУ-93
           </Button>
           <Button
-            variant={
-              activeComponent === "chech_passport"
-                ? "outline_active"
-                : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "chech_passport" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("chech_passport")}
           >
             Ғилдирак жуфтлигининг техник паспорти

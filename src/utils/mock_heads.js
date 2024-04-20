@@ -102,21 +102,21 @@ export const routersSidebar = [
         path: "/register-auto",
       },
       {
-        label: "Avtoregulyatorlarni ro‘yxatga olish",
-        path: "/register-regular",
-      },
-      {
         label: "Razobshitelniy kranlarni ro‘yxatga olish jurnali",
         path: "/register-rozobshitel",
-      },
-      {
-        label: "Rukavalarni ro‘yxatga olish jurnali",
-        path: "/register-rukvas",
       },
       {
         label:
           "Rezervuar, tormoz silindr va ishchi kameralarni ro‘yxatga olish kitobi",
         path: "/register-brake-silindir",
+      },
+      {
+        label: "Avtoregulyatorlarni ro‘yxatga olish",
+        path: "/register-regular",
+      },
+      {
+        label: "Rukavalarni ro‘yxatga olish jurnali",
+        path: "/register-rukvas",
       },
       {
         label: "Кириш ва чиқиш назорати",

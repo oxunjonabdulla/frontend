@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   FormControl,
   Input,
   ModalBody,
@@ -23,7 +24,12 @@ export const Oldi = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <ModalBody>
-        <SearchTrain />
+        <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+          <SearchTrain />
+        </Flex>
+
+        <br />
+        <br />
         <br />
         <TableContainer>
           <Table variant="striped" colorScheme="gray">

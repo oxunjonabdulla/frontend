@@ -34,26 +34,23 @@ export const AssemblyPage = () => {
           p={4}
         >
           <Button
+            colorScheme="teal"
             onClick={() => setActiveComponent("Component1")}
-            variant={
-              activeComponent === "Component1" ? "outline_active" : "outline"
-            }
+            variant={activeComponent === "Component1" ? "solid" : "outline"}
           >
             ВУ-22
           </Button>
           <Button
-            variant={
-              activeComponent === "Component2" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component2" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component2")}
             whiteSpace={"pre-wrap"}
           >
             ВУ-68
           </Button>
           <Button
-            variant={
-              activeComponent === "Component3" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component3" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component3")}
           >
             Кириш ва чиқиш назорати далолатномаси

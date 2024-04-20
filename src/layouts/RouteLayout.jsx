@@ -5,10 +5,11 @@ import { AvatarBox } from "../components/SiderBar/AvatarBox";
 
 import UserApi from "../Service/module/userModule.api";
 import { setUser } from "../redux/Slices/setUserGet";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDaily } from "../redux/Slices/dailySlice";
 import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { TrainLoader } from "../components";
 
 export default function RouteLayout() {
   const location = useLocation();
@@ -17,6 +18,7 @@ export default function RouteLayout() {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
 
+  const { user } = useSelector(({ userMe }) => userMe);
   const [collapse, setCollapse] = useState(true);
   const [mobileCollapse, setMocileCollapse] = useState(false);
   useEffect(() => {
@@ -71,7 +73,7 @@ export default function RouteLayout() {
     <>
       {location.pathname === "/login" ? (
         <Outlet />
-      ) : (
+      ) : user ? (
         <HStack w="full" h="100vh" bg="gray.100">
           <Box
             onClick={() => setMocileCollapse(false)}
@@ -119,6 +121,7 @@ export default function RouteLayout() {
             h="100%"
             overflow={"auto"}
             bg="white"
+            rounded={"2xl"}
           >
             <AvatarBox
               setMocileCollapse={setMocileCollapse}
@@ -128,6 +131,8 @@ export default function RouteLayout() {
             <Outlet />
           </Box>
         </HStack>
+      ) : (
+        <TrainLoader />
       )}
     </>
   ) : (

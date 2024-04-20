@@ -31,17 +31,15 @@ export const AutomobileUnit = () => {
           p={4}
         >
           <Button
-            variant={
-              activeComponent === "Component1" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component1" ? "solid" : "outline"}
             // onClick={() => setActiveComponent("Component2")}
           >
             ВУ-22
           </Button>
           <Button
-            variant={
-              activeComponent === "Component2" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component2" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component2")}
           >
             Кириш ва чиқиш назорати
