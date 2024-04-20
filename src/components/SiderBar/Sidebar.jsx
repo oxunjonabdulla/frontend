@@ -13,7 +13,7 @@ export const Sidebar = ({ collapse, setCollapse, setMocileCollapse }) => (
       setCollapse={setCollapse}
     />
     <Box w="full" overflow={"hidden"}>
-      <SimpleBar style={{ maxHeight: 600 }} forceVisible="y">
+      <SimpleBar style={{ maxHeight: 800 }} forceVisible="y">
         <Navigation collapse={collapse} setMocileCollapse={setMocileCollapse} />
       </SimpleBar>
     </Box>

@@ -8,7 +8,13 @@ const authEndpoints = {
 
   getCarriageNumber: "/carriage_numbers/",
   dailyGetAll: "/daily/today/",
+  dailyAll: "/daily/",
   dailyCreate: "/daily/create/",
+
+  //AVTOREJIM
+
+  avtoRejim: `/autorejim/list/`,
+  avtoRejimPost: (carriageID) => `/autorejim/${carriageID}/`,
 
   // phrase
 

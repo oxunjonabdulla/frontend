@@ -156,6 +156,15 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async getDailyAll() {
+    try {
+      const response = await privateInstance.get(authEndpoints.dailyAll);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getCarriageNumber() {
     try {
       const response = await privateInstance.get(
@@ -563,6 +572,29 @@ class UserApi extends React.Component {
     try {
       const response = await privateInstance.delete(
         authEndpoints.phraseCartDelete(carriageID)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getAvtoRejimList(paramObj) {
+    try {
+      const response = await privateInstance.get(authEndpoints.avtoRejim, {
+        params: paramObj,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postAvtoRejim(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.avtoRejimPost(carriageId),
+        obj
       );
 
       return { response };

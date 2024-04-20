@@ -2,30 +2,36 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Flex,
   Heading,
   IconButton,
-  TableContainer,
-  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { memo, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrainSubway } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { SimpleLoader } from "@/components/TrainLoader/SimpleLoader";
 import { DailyRepairsTable } from "./components/DailyRepairsTable";
 import { DailyRepair_Modal } from "./modals/DailyRepair/DailyRepair_Modal";
 import { BrendCrumbs } from "@/components";
+import { DailyRapirsArchiveTable } from "./components/DailyRapirsArchiveTable";
 
 export const DailyRepairs = memo(function DailyRepairs() {
+  const [activeComponent, setActiveComponent] = useState("1");
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const { data } = useSelector(({ dailyToday }) => dailyToday);
 
   const memoData = useMemo(() => data, [data]);
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case "1":
+        return <DailyRepairsTable dataMock={memoData} />;
+      case "2":
+        return <DailyRapirsArchiveTable />;
+      default:
+        return <DailyRepairsTable dataMock={memoData} />;
+    }
+  };
 
   return (
     <Box
@@ -41,10 +47,18 @@ export const DailyRepairs = memo(function DailyRepairs() {
       </Heading>
 
       <ButtonGroup float={"right"} size="md" isAttached>
-        <Button variant={"outline"} colorScheme="teal">
+        <Button
+          variant={activeComponent === "1" ? "solid" : "outline"}
+          onClick={() => setActiveComponent("1")}
+          colorScheme="teal"
+        >
           Bugun
         </Button>
-        <Button variant={"outline"} colorScheme="teal">
+        <Button
+          variant={activeComponent === "2" ? "solid" : "outline"}
+          onClick={() => setActiveComponent("2")}
+          colorScheme="teal"
+        >
           Arxiv
         </Button>
         <IconButton
@@ -57,38 +71,7 @@ export const DailyRepairs = memo(function DailyRepairs() {
       </ButtonGroup>
       <BrendCrumbs />
 
-      {data ? (
-        data?.length ? (
-          <TableContainer
-            borderRadius={10}
-            border={"1px solid #eeeee"}
-            shadow={data?.length && "xl"}
-          >
-            <DailyRepairsTable dataMock={memoData} />
-          </TableContainer>
-        ) : (
-          <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
-            <FontAwesomeIcon
-              icon={faTrainSubway}
-              fontSize={"70px"}
-              opacity={"0.4"}
-            />
-            <Text
-              as={"h1"}
-              fontWeight={600}
-              textAlign={"center"}
-              fontSize={"2xl"}
-            >
-              Tamirlash uchun vagon topilmadi
-            </Text>
-            <Button colorScheme="teal" onClick={onOpen}>
-              Vagon qo&apos;shish
-            </Button>
-          </Flex>
-        )
-      ) : (
-        <SimpleLoader />
-      )}
+      {renderComponent()}
       {isOpen && <DailyRepair_Modal isOpen={isOpen} onClose={onClose} />}
     </Box>
   );

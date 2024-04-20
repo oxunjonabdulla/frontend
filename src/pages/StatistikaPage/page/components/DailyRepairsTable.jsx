@@ -3,8 +3,10 @@ import {
   Flex,
   Img,
   Table,
+  TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -12,11 +14,16 @@ import {
 } from "@chakra-ui/react";
 import { memo, useCallback, useState } from "react";
 
+import { SimpleLoader } from "@/components/TrainLoader/SimpleLoader";
 import PropTypes from "prop-types";
 import ImageViewer from "react-simple-image-viewer";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faDownload,
+  faTrainSubway,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import UserApi from "@/Service/module/userModule.api";
 import { Deleteted } from "@/components";
 
@@ -106,116 +113,151 @@ export const DailyRepairsTable = memo(function DailyRepairsTable({ dataMock }) {
 
   return (
     <>
-      <Table
-        size={"sm"}
-        whiteSpace={"wrap"}
-        variant={"striped"}
-        overflow={"hidden"}
-        colorScheme="gray"
-      >
-        <Thead bg={"#0c6170"} rounded={10} shadow={"2xl"}>
-          <Tr>
-            {columnsMock?.map((item) => (
-              <Th
-                textAlign={"center"}
-                color={"#ffff"}
-                border={"gray"}
-                key={item.accessorKey}
-                colSpan={item.colSpan}
-                rowSpan={item.rowSpan}
-              >
-                {item.header}
-              </Th>
-            ))}
-          </Tr>
-          <Tr>
-            {columnMockShort?.map((item) => (
-              <Th
-                textAlign={"center"}
-                color={"#ffff"}
-                border={"gray"}
-                key={item.accessorKey}
-                colSpan={item.colspan}
-              >
-                {item.header}
-              </Th>
-            ))}
-          </Tr>
-        </Thead>
-
-        <Tbody>
-          {dataMock &&
-            dataMock.map((item, idx) => (
-              <Tr key={item.id} fontWeight={500}>
-                <Td>{idx + 1}</Td>
-                <Td color={"green.800"} fontWeight={"800"}>
-                  {item.carriage_number}
-                </Td>
-                <Td>{item.year_of_manufacture}</Td>
-                <Td>{item.repair_date}</Td>
-                <Td>{item?.repair_type?.toUpperCase()}</Td>
-                <Td>{item.approximate_completion}</Td>
-                <Td>{item.date_of_registration}</Td>
-                <Td cursor={"pointer"} colSpan="2">
-                  <Flex w="100%" gap={"1"} flexWrap={"wrap"} align={"center"}>
-                    {item.enter_images?.map((elem, idxImage) => (
-                      <Img
-                        key={idxImage}
-                        objectFit={"cover"}
-                        onClick={() => openImageViewer2(idxImage, item.id)}
-                        cursor={"pointer"}
-                        w="50px"
-                        src={`https://api.evagon.uz/${elem.image_url}`}
-                      />
-                    ))}
-                  </Flex>
-                </Td>
-
-                <Td> {item.carriage_type}</Td>
-                <Td>{item.company_name}</Td>
-                <Td pl={2}>
-                  <Flex w="100%" gap={"1"} align={"center"}>
-                    {item.ivtsa?.map((elem, idxImage) => (
-                      <Img
-                        key={idxImage}
-                        objectFit={"cover"}
-                        onClick={() => openImageViewer(idxImage, item.id)}
-                        cursor={"pointer"}
-                        w="50px"
-                        src={`https://api.evagon.uz/${elem.image_url}`}
-                      />
-                    ))}
-                  </Flex>
-                </Td>
-                <Td>
-                  <Flex gap={2}>
-                    <Button
-                      float={"right"}
-                      borderColor={"blue.400"}
-                      colorScheme="teal"
-                      bgColor={"blue.400"}
-                      p={0}
-                      _hover={{ bgColor: "blue.400", opacity: "0.7" }}
+      {dataMock ? (
+        dataMock?.length ? (
+          <TableContainer
+            borderRadius={10}
+            border={"1px solid #eeeee"}
+            shadow={dataMock?.length && "xl"}
+          >
+            <Table
+              size={"sm"}
+              whiteSpace={"wrap"}
+              variant={"striped"}
+              overflow={"hidden"}
+              colorScheme="gray"
+            >
+              <Thead bg={"#0c6170"} rounded={10} shadow={"2xl"}>
+                <Tr>
+                  {columnsMock?.map((item) => (
+                    <Th
+                      textAlign={"center"}
+                      color={"#ffff"}
+                      border={"gray"}
+                      key={item.accessorKey}
+                      colSpan={item.colSpan}
+                      rowSpan={item.rowSpan}
                     >
-                      <FontAwesomeIcon icon={faDownload} />
-                    </Button>
-                    <Button
-                      borderColor={"red"}
-                      colorScheme="teal"
-                      bgColor={"red"}
-                      float={"right"}
-                      p={0}
-                      _hover={{ bgColor: "red", opacity: "0.7" }}
-                      onClick={() => handleCheckAndDelete(item)}
+                      {item.header}
+                    </Th>
+                  ))}
+                </Tr>
+                <Tr>
+                  {columnMockShort?.map((item) => (
+                    <Th
+                      textAlign={"center"}
+                      color={"#ffff"}
+                      border={"gray"}
+                      key={item.accessorKey}
+                      colSpan={item.colspan}
                     >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </Button>
-                  </Flex>
-                </Td>
-              </Tr>
-            ))}
-        </Tbody>
-      </Table>
+                      {item.header}
+                    </Th>
+                  ))}
+                </Tr>
+              </Thead>
+
+              <Tbody>
+                {dataMock &&
+                  dataMock.map((item, idx) => (
+                    <Tr key={item.id} fontWeight={500}>
+                      <Td>{idx + 1}</Td>
+                      <Td color={"green.800"} fontWeight={"800"}>
+                        {item.carriage_number}
+                      </Td>
+                      <Td>{item.year_of_manufacture}</Td>
+                      <Td>{item.repair_date}</Td>
+                      <Td>{item?.repair_type?.toUpperCase()}</Td>
+                      <Td>{item.approximate_completion}</Td>
+                      <Td>{item.date_of_registration}</Td>
+                      <Td cursor={"pointer"} colSpan="2">
+                        <Flex
+                          w="100%"
+                          gap={"1"}
+                          flexWrap={"wrap"}
+                          align={"center"}
+                        >
+                          {item.enter_images?.map((elem, idxImage) => (
+                            <Img
+                              key={idxImage}
+                              objectFit={"cover"}
+                              onClick={() =>
+                                openImageViewer2(idxImage, item.id)
+                              }
+                              cursor={"pointer"}
+                              w="50px"
+                              src={`https://api.evagon.uz/${elem.image_url}`}
+                            />
+                          ))}
+                        </Flex>
+                      </Td>
+
+                      <Td> {item.carriage_type}</Td>
+                      <Td>{item.company_name}</Td>
+                      <Td pl={2}>
+                        <Flex w="100%" gap={"1"} align={"center"}>
+                          {item.ivtsa?.map((elem, idxImage) => (
+                            <Img
+                              key={idxImage}
+                              objectFit={"cover"}
+                              onClick={() => openImageViewer(idxImage, item.id)}
+                              cursor={"pointer"}
+                              w="50px"
+                              src={`https://api.evagon.uz/${elem.image_url}`}
+                            />
+                          ))}
+                        </Flex>
+                      </Td>
+                      <Td>
+                        <Flex gap={2}>
+                          <Button
+                            float={"right"}
+                            borderColor={"blue.400"}
+                            colorScheme="teal"
+                            bgColor={"blue.400"}
+                            p={0}
+                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
+                          >
+                            <FontAwesomeIcon icon={faDownload} />
+                          </Button>
+                          <Button
+                            borderColor={"red"}
+                            colorScheme="teal"
+                            bgColor={"red"}
+                            float={"right"}
+                            p={0}
+                            _hover={{ bgColor: "red", opacity: "0.7" }}
+                            onClick={() => handleCheckAndDelete(item)}
+                          >
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </Button>
+                        </Flex>
+                      </Td>
+                    </Tr>
+                  ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
+            <FontAwesomeIcon
+              icon={faTrainSubway}
+              fontSize={"70px"}
+              opacity={"0.4"}
+            />
+            <Text
+              as={"h1"}
+              fontWeight={600}
+              textAlign={"center"}
+              fontSize={"2xl"}
+            >
+              Tamirlash uchun vagon topilmadi
+            </Text>
+          </Flex>
+        )
+      ) : (
+        <SimpleLoader />
+      )}
 
       <Deleteted
         isOpen={isOpen}

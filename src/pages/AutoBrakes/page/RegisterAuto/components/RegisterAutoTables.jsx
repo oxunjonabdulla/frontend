@@ -1,8 +1,9 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { vu_31 } from "@/utils/mock_heads";
 import {
   Button,
   Flex,
+  Image,
   Table,
   Tbody,
   Td,
@@ -11,17 +12,44 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
+import UserApi from "@/Service/module/userModule.api";
 
 import PropTypes from "prop-types";
 import { register_auto } from "@/utils/mock_heads";
-const RegisterAutoTables = memo(function RegisterAutoTables({ gettingData }) {
-  const [updateData, setUpdateData] = useState(null);
+import { timeClear } from "../../../../../utils/timeClear";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDownload,
+  faPenToSquare,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { imageGet } from "../../../../../utils/imageGet";
+const RegisterAutoTables = memo(function RegisterAutoTables() {
+  const [isLoadingData, setIsLoading] = useState(true);
 
-  const {
-    isOpen: onUpdateIsOpen,
-    onOpen: onUpdateOpen,
-    onClose: onUpdateClose,
-  } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [gettingData, setGettingData] = useState([]);
+
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
+  const fetchData = async () => {
+    const paramsPage = {
+      page: 1,
+    };
+    setIsLoading(true);
+    const { response } = await new UserApi().getAvtoRejimList(paramsPage);
+    if (response) {
+      setIsLoading(false);
+      setGettingData(response?.data);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
 
   return (
     <>
@@ -76,48 +104,26 @@ const RegisterAutoTables = memo(function RegisterAutoTables({ gettingData }) {
         </Thead>
 
         <Tbody>
-          {/* {gettingData?.results?.map((item, idx) => (
+          {gettingData?.results?.map((item, idx) => (
             <Tr key={item.carriage}>
               <Td>{idx + 1}</Td>
-              <Td fontWeight={700} color={"green.900"}>
-                {item.carriage_number}
-              </Td>
-              <Td>{item.is_freight ? "Yukli" : "Yuksiz"}</Td>
-              <Td>{item.train_number}</Td>
-              <Td>{item.last_repair}</Td>
-              <Td>{item.buksa}</Td>
-              <Td>{item.rolik_podshipnik}</Td>
-              <Td>{item.boshqa_tech_error}</Td>
-              <Td>{item.junatish_park}</Td>
-              <Td whiteSpace={"nowrap"}>{item.nosoz_kirish_date}</Td>
+              <Td>{item.repair_date}</Td>
+              <Td>{item.automode_type}</Td>
+              <Td>{item.repair_type}</Td>
+              <Td>{item.automode_factory_number}</Td>
+              <Td>{item.automode_roll_size}</Td>
+              <Td>{item.last_type_jamrak}</Td>
+              <Td>{item.tc_type_without_freight}</Td>
+              <Td whiteSpace={"nowrap"}>{item.tc_type_middle}</Td>
+
+              <Td whiteSpace={"nowrap"}>{item.tc_type_with_freight}</Td>
+
               <Td>
-                {timeClear(item.nosoz_kirish_hour) +
-                  ":" +
-                  timeClear(item.nosoz_kirish_minute)}
+                <Image
+                  width={"100px"}
+                  src={item?.author_info?.user_signature_url}
+                />
               </Td>
-              <Td whiteSpace={"nowrap"}>{item.tamir_uzatish_date}</Td>
-              <Td>
-                {timeClear(item.tamir_uzatish_hour) +
-                  ":" +
-                  timeClear(item.tamir_uzatish_minute)}
-              </Td>
-              <Td whiteSpace={"nowrap"}>{item.tamir_boshlanish_date}</Td>
-              <Td>
-                {timeClear(item.tamir_boshlanish_hour) +
-                  ":" +
-                  timeClear(item.tamir_boshlanish_minute)}
-              </Td>
-              <Td whiteSpace={"nowrap"}>{item.nosoz_chiqish_date}</Td>
-              <Td>
-                {timeClear(item.nosoz_chiqish_hour) +
-                  ":" +
-                  timeClear(item.nosoz_chiqish_minute)}
-              </Td>
-              <Td whiteSpace={"nowrap"}>{item.bekat_yulida_gr11} soat</Td>
-              <Td whiteSpace={"nowrap"}>{item.tamir_yulida_gr13} soat</Td>
-              <Td whiteSpace={"nowrap"}>{item.tamir_vaqtida_gr13} soat</Td>
-              <Td whiteSpace={"nowrap"}>{item.umumiy_turish_gr11} soat</Td>
-              <Td>{item.nosoz_hujjat_raqam}</Td>
               <Td>
                 {" "}
                 <Flex gap={2} m={0}>
@@ -140,7 +146,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables({ gettingData }) {
                     p={0}
                     minW={"30px"}
                     _hover={{ bgColor: "green.500", opacity: "0.7" }}
-                    onClick={() => handleUpdate(item)}
+                    // onClick={() => handleUpdate(item)}
                   >
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </Button>
@@ -158,7 +164,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables({ gettingData }) {
                 </Flex>
               </Td>
             </Tr>
-          ))} */}
+          ))}
         </Tbody>
       </Table>
     </>
