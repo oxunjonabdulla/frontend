@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { vu_31 } from "@/utils/mock_heads";
 import {
   Button,
@@ -15,15 +15,33 @@ import {
 import PropTypes from "prop-types";
 import { register_razobshitel } from "@/utils/mock_heads";
 import { register_breakes_silindir } from "@/utils/mock_heads";
-const RegisterBrakesTable = memo(function RegisterBrakesTable({ gettingData }) {
-  const [updateData, setUpdateData] = useState(null);
+import UserApi from "../../../../../Service/module/userModule.api";
+const RegisterBrakesTable = memo(function RegisterBrakesTable() {
+  const [isLoadingData, setIsLoading] = useState(true);
 
-  const {
-    isOpen: onUpdateIsOpen,
-    onOpen: onUpdateOpen,
-    onClose: onUpdateClose,
-  } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [gettingData, setGettingData] = useState([]);
 
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
+  const fetchData = async () => {
+    const paramsPage = {
+      page: 1,
+    };
+    setIsLoading(true);
+    const { response } = await new UserApi().getRezervuar(paramsPage);
+    if (response) {
+      setIsLoading(false);
+      setGettingData(response?.data);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
   return (
     <>
       <Table

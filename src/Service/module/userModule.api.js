@@ -602,6 +602,52 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async getRazobkran(paramObj) {
+    try {
+      const response = await privateInstance.get(authEndpoints.razobKranGet, {
+        params: paramObj,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postRazobKran(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.razobKranPost(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getRezervuar(paramObj) {
+    try {
+      const response = await privateInstance.get(authEndpoints.rezervuarGet, {
+        params: paramObj,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postRezervuar(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.rezervuarPost(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 }
 
 export default UserApi;

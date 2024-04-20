@@ -16,6 +16,14 @@ const authEndpoints = {
   avtoRejim: `/autorejim/list/`,
   avtoRejimPost: (carriageID) => `/autorejim/${carriageID}/`,
 
+  //razobkran
+
+  razobKranGet: `/razobkran/list/`,
+  razobKranPost: (carriageID) => `/razobkran/${carriageID}/`,
+
+  rezervuarGet: `/rezervuar/list/`,
+  rezervuarPost: (carriageID) => `/rezervuar/${carriageID}/`,
+
   // phrase
 
   phraseList: (page) => `/phrase/list/?page=${page + 1}`,

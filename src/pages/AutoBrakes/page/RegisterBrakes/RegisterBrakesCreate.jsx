@@ -13,10 +13,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MainHeads } from "@/components";
 import { SearchTrain } from "@/utils";
+import UserApi from "../../../../Service/module/userModule.api";
+import { useNavigate } from "react-router";
 export const RegisterBrakesCreate = () => {
   const [isLoading, setLoading] = useState(false);
   const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,8 +27,34 @@ export const RegisterBrakesCreate = () => {
   } = useForm();
   const onSubmit = async (data) => {
     setLoading(true);
-  };
+    const { response, error } = await new UserApi().postRezervuar(
+      serachingResult,
+      data
+    );
 
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "Rezurvar kranlarni ro'yxatga olindi!",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+      navigate("/auto-brakes/register-rozobshitel/");
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.error,
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
   return (
     <MainHeads title="Rezervuar, tormoz silindr va ishchi kameralarni ro‘yxatga olish">
       <Container maxW={"container.xl"} my={8}>
