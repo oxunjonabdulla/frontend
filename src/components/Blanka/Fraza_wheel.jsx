@@ -117,6 +117,21 @@ export const Fraza_wheel = () => {
       </Tooltip>
       {!isLoadingFulStatistik ? (
         !gettingData?.results?.length ? (
+          <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
+            <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />
+            <Text
+              as={"h1"}
+              fontWeight={600}
+              textAlign={"center"}
+              fontSize={"2xl"}
+            >
+              ФРАЗА мфлумотларини юкланг
+            </Text>
+            <Button colorScheme="teal" onClick={onOpen}>
+              ФРАЗА мфлумотларини қушиш
+            </Button>
+          </Flex>
+        ) : (
           <TableContainer p={4} border={"1px solid #eeeee"}>
             <Table
               borderRadius={10}
@@ -200,7 +215,7 @@ export const Fraza_wheel = () => {
               </Thead>
 
               <Tbody>
-                {gettingData?.results.map((item, idx) => (
+                {gettingData?.results?.map((item, idx) => (
                   <Fragment key={item?.id}>
                     <Tr>
                       <Td rowSpan={4}>{idx + 1}</Td>
@@ -235,11 +250,6 @@ export const Fraza_wheel = () => {
                       </Td>
                       <Td rowSpan={4}>
                         <Flex gap={2} m={0} flexDir={"column"}>
-                          <IconButton
-                            colorScheme="linkedin"
-                            icon={<FontAwesomeIcon icon={faDownload} />}
-                          />
-
                           <IconButton
                             colorScheme="red"
                             onClick={() => handleCheckAndDelete(item?.carriage)}
@@ -310,21 +320,6 @@ export const Fraza_wheel = () => {
               nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
             />
           </TableContainer>
-        ) : (
-          <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
-            <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />
-            <Text
-              as={"h1"}
-              fontWeight={600}
-              textAlign={"center"}
-              fontSize={"2xl"}
-            >
-              ФРАЗА мфлумотларини юкланг
-            </Text>
-            <Button colorScheme="teal" onClick={onOpen}>
-              ФРАЗА мфлумотларини қушиш
-            </Button>
-          </Flex>
         )
       ) : (
         <SliderMock setIsLoading={setIsLoading} />

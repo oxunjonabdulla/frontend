@@ -190,7 +190,6 @@ export const Fraza_carriunit = () => {
                   <Th textAlign={"center"}>9</Th>
                   <Th textAlign={"center"}>10</Th>
                   <Th textAlign={"center"}>11</Th>
-                  <Th textAlign={"center"}>-</Th>
                 </Tr>
               </Thead>
 
@@ -218,7 +217,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c61_work_num}</Td>
                       <Td>{item?.c61_left_wheel}</Td>
                       <Td>{item?.c61_right_wheel}</Td>
-                      <Td rowSpan={8}>-</Td>
                       <Td rowSpan={8}>
                         {item?.user_signature_url ? (
                           <Image src={imageGet(item?.user_signature_url)} />
@@ -228,10 +226,6 @@ export const Fraza_carriunit = () => {
                       </Td>
                       <Td rowSpan={8}>
                         <Flex gap={2} m={0} flexDir={"column"}>
-                          <IconButton
-                            colorScheme="linkedin"
-                            icon={<FontAwesomeIcon icon={faDownload} />}
-                          />
                           <IconButton
                             colorScheme="red"
                             onClick={() => handleCheckAndDelete(item?.carriage)}
