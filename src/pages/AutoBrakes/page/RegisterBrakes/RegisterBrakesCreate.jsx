@@ -5,10 +5,8 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Text,
   useToast,
 } from "@chakra-ui/react";
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MainHeads } from "@/components";
@@ -42,7 +40,7 @@ export const RegisterBrakesCreate = () => {
         position: "top-right",
         fontSize: "3xl",
       });
-      navigate("/auto-brakes/register-rozobshitel/");
+      navigate("/auto-brakes/register-brake-silindir/");
     }
     if (error) {
       toast({

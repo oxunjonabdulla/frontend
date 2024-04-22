@@ -10,6 +10,7 @@ const authEndpoints = {
   dailyGetAll: "/daily/today/",
   dailyAll: "/daily/",
   dailyCreate: "/daily/create/",
+  dailyExitImage: (carriageID) => `/daily/${carriageID}/update_exit_images/`,
 
   //AVTOREJIM
 
@@ -22,9 +23,14 @@ const authEndpoints = {
   razobKranPost: (carriageID) => `/razobkran/${carriageID}/`,
 
   rezervuarGet: `/rezervuar/list/`,
-  rezervuarPost: (carriageID) => `/rezervuar/${carriageID}/`,
 
+  rezervuarPost: (carriageID) => `/rezervuar/${carriageID}/`,
   // phrase
+
+  // dalolatnoma
+  aravaActGetAll: `/aravaact/list/`,
+  aravaActPostFront: (carriageID) => `/${carriageID}/arava/act/front/`,
+  aravaActPostBack: (carriageID) => `/${carriageID}/arava/act/back/`,
 
   phraseList: (page) => `/phrase/list/?page=${page + 1}`,
   phraseUpdate: (carriageID) => `/phrase/${carriageID}/`,

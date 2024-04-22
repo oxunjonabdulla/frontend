@@ -160,6 +160,7 @@ export const register_razobshitel = [
   { label: "Tekshiruv  xulosasi " },
   { label: "Ta'mirlovchini imzosi" },
   { label: "Qabulqiluvchi imzosi" },
+  { label: "" },
 ];
 export const register_breakes_silindir = [
   { label: "T/R" },
@@ -175,6 +176,7 @@ export const register_breakes_silindir = [
   { label: "Texnikxolati" },
   { label: "Ta'mirlovchini imzosi" },
   { label: "Qabulqiluvchi imzosi" },
+  { label: "" },
 ];
 
 export const register_auto = {

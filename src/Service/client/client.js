@@ -38,8 +38,9 @@ publickInstance.interceptors.response.use(
 
 const privateInstance = axios.create({
   baseURL,
-  paramsSerializer: {
-    encode: (params) => Qs.stringify(params, { arrayFormat: "brackets" }),
+  paramsSerializer: (params) => {
+    const serializedParams = Qs.stringify(params, { arrayFormat: "brackets" });
+    return serializedParams;
   },
 });
 

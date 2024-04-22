@@ -17,10 +17,17 @@ import PropTypes from "prop-types";
 import ImageViewer from "react-simple-image-viewer";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+  faFileCirclePlus,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import UserApi from "@/Service/module/userModule.api";
 import { Deleteted } from "@/components";
 import { SimpleLoader } from "@/components/TrainLoader/SimpleLoader";
+import ReactPaginate from "react-paginate";
+import ExitImage from "../modals/DailyRepair/ExitImage";
 
 const columnsMock = [
   { header: "T/R", accessorKey: "t/r_id", rowSpan: 2 },
@@ -52,7 +59,7 @@ const columnsMock = [
     accessorKey: "ivtsa_id",
   },
   {
-    header: "O'chirish",
+    header: "",
     accessorKey: "delete",
     rowSpan: 2,
   },
@@ -70,7 +77,6 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
   const [currentImage2, setCurrentImage2] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isViewerOpen2, setIsViewerOpen2] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [isTdOption, setTdOption] = useState(0);
   const [isTdOption2, setTdOption2] = useState(0);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -78,8 +84,19 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenExit,
+    onOpen: onOpenExit,
+    onClose: onCloseExit,
+  } = useDisclosure();
   const handleCheckAndDelete = (data) => {
     onOpen();
+
+    setGetinfTableData(data);
+  };
+  const handleAddExitImage = (data) => {
+    onOpenExit();
 
     setGetinfTableData(data);
   };
@@ -88,16 +105,20 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
-  const fetchData = async (page) => {
-    setIsLoading(true);
-    const { response } = await new UserApi().getDailyAll(page);
-    if (response) {
-      setIsLoading(false);
-      setGettingData(response?.data.results);
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+
+      const paramObj = {
+        page: currentPage + 1,
+      };
+      const { response } = await new UserApi().getDailyAll(paramObj);
+      if (response) {
+        setIsLoading(false);
+        setGettingData(response?.data);
+      }
+    };
     fetchData(currentPage);
   }, [currentPage]);
   const openImageViewer = useCallback((index, idxSec) => {
@@ -177,7 +198,7 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
 
             <Tbody>
               {gettingData &&
-                gettingData.map((item, idx) => (
+                gettingData?.results?.map((item, idx) => (
                   <Tr key={item.id} fontWeight={500}>
                     <Td>{idx + 1}</Td>
                     <Td color={"green.800"} fontWeight={"800"}>
@@ -228,13 +249,14 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                       <Flex gap={2}>
                         <Button
                           float={"right"}
-                          borderColor={"blue.400"}
+                          borderColor={"teal.400"}
                           colorScheme="teal"
-                          bgColor={"blue.400"}
+                          bgColor={"teal.400"}
                           p={0}
-                          _hover={{ bgColor: "blue.400", opacity: "0.7" }}
+                          onClick={() => handleAddExitImage(item)}
+                          _hover={{ bgColor: "teal.400", opacity: "0.7" }}
                         >
-                          <FontAwesomeIcon icon={faDownload} />
+                          <FontAwesomeIcon icon={faFileCirclePlus} />
                         </Button>
                         <Button
                           borderColor={"red"}
@@ -255,16 +277,39 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
           </Table>
         </TableContainer>
       )}
+      <ReactPaginate
+        pageCount={Math.ceil(
+          (gettingData?.count ? gettingData?.count : 0) / 10
+        )}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
       <Deleteted
         isOpen={isOpen}
         onClose={onClose}
         deletedFunction={deleteDaily}
         carriageNumber={getTableData?.carriage_number}
       />
+      <ExitImage
+        isOpen={isOpenExit}
+        onClose={onCloseExit}
+        carriageNumber={getTableData?.carriage_number}
+      />
 
       {isViewerOpen &&
-        gettingData
-          .filter((item) => item.id === isTdOption)
+        gettingData?.results
+          ?.filter((item) => item.id === isTdOption)
           .map((item, idxs) => {
             const newArray = [];
             for (const iterator of item.ivtsa) {
@@ -283,8 +328,8 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
             );
           })}
       {isViewerOpen2 &&
-        gettingData
-          .filter((item) => item.id === isTdOption2)
+        gettingData?.results
+          ?.filter((item) => item.id === isTdOption2)
           .map((item, idxs) => {
             const newArray = [];
             for (const iterator of item.enter_images) {

@@ -147,6 +147,18 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async postExitImage(id, obj) {
+    try {
+      const response = await privateInstanceForMediaData.patch(
+        authEndpoints.dailyExitImage(id),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getDailyToday() {
     try {
       const response = await privateInstance.get(authEndpoints.dailyGetAll);
@@ -156,9 +168,11 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async getDailyAll() {
+  async getDailyAll(paramObj) {
     try {
-      const response = await privateInstance.get(authEndpoints.dailyAll);
+      const response = await privateInstance.get(authEndpoints.dailyAll, {
+        params: paramObj,
+      });
 
       return { response };
     } catch (error) {
@@ -640,6 +654,44 @@ class UserApi extends React.Component {
     try {
       const response = await privateInstance.post(
         authEndpoints.rezervuarPost(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // dalolatnoma
+
+  async postAravaActFront(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.aravaActPostFront(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getALlAravaAct(pageObject) {
+    try {
+      const response = await privateInstance.get(authEndpoints.aravaActGetAll, {
+        params: pageObject,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postAravaActBack(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.aravaActPostBack(carriageId),
         obj
       );
 

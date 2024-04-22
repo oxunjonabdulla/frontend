@@ -41,14 +41,16 @@ export const Auto_dalolatnoma_model = ({ onClose, isOpen }) => {
         <Flex flexDir={"column"} align={"center"} justify={"center"} gap={4}>
           <Flex gap={4}>
             <Button
+              colorScheme="teal"
               onClick={() => setActiveType(1)}
-              variant={activeType === 1 ? "outline_active" : "outline"}
+              variant={activeType === 1 ? "solid" : "outline"}
             >
               Oldi
             </Button>
             <Button
+              colorScheme="teal"
               onClick={() => setActiveType(2)}
-              variant={activeType === 2 ? "outline_active" : "outline"}
+              variant={activeType === 2 ? "solid" : "outline"}
             >
               Orqa
             </Button>
