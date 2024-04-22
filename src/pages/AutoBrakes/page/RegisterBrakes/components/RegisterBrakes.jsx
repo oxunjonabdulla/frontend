@@ -9,6 +9,7 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 import PropTypes from "prop-types";
@@ -23,17 +24,31 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { imageGet } from "../../../../../utils/imageGet";
-import { SimpleLoader } from "../../../../../components";
+import { Deleteted, SimpleLoader } from "../../../../../components";
 import ReactPaginate from "react-paginate";
 const RegisterBrakesTable = memo(function RegisterBrakesTable() {
   const [isLoadingData, setIsLoading] = useState(true);
+  const [deletedData, setDeletedData] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
 
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+  const handleDelete = (id) => {
+    onOpen();
+    setDeletedData(id);
+  };
+
+  const handleDelateFunction = async (carriageID) => {
+    const { response } = await new UserApi().deleteRezervuar(carriageID);
+    if (response) {
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
@@ -141,6 +156,7 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
                       colorScheme="teal"
                       bgColor={"red"}
                       p={0}
+                      onClick={() => handleDelete(Number(item?.carriage))}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
@@ -152,25 +168,32 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
           </Tbody>
         </Table>
       )}
-
-      <ReactPaginate
-        pageCount={Math.ceil(
-          (gettingData?.count ? gettingData?.count : 0) / 10
-        )}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={2}
-        onPageChange={handlePageClick}
-        containerClassName="pagination"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        activeClassName="active"
-        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      <Deleteted
+        isOpen={isOpen}
+        onClose={onClose}
+        carriageNumber={deletedData}
+        deletedFunction={handleDelateFunction}
       />
+      {gettingData?.results?.length ? (
+        <ReactPaginate
+          pageCount={Math.ceil(
+            (gettingData?.count ? gettingData?.count : 0) / 10
+          )}
+          pageRangeDisplayed={5}
+          marginPagesDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName="pagination"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          activeClassName="active"
+          previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+          nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+        />
+      ) : null}
     </>
   );
 });

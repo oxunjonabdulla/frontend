@@ -358,16 +358,27 @@ export const vu_47 = {
 export const carriage_dalolatnoma_head = [
   { label: "Tartib raqami" },
   { label: "Vagon raqami" },
-  { label: "Yon rama raqami " },
+  { label: "Yon rama raqami ", colspan: 4 },
   {
     label: "Ishlab chiqarilishi,zavod tamg’asi",
+    colspan: 4,
   },
   {
     label: "Mavjudlik kodi",
+    colspan: 4,
   },
   {
     label: "Ressor usti balkasi",
-    colspan: 4,
+    colspan: 3,
+  },
+  {
+    label: "Imzo",
+  },
+  {
+    label: "Orqani qo'shish",
+  },
+  {
+    label: "",
   },
 ];
 

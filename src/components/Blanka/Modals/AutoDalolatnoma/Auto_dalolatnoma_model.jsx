@@ -1,6 +1,4 @@
 import {
-  Button,
-  Flex,
   Modal,
   ModalCloseButton,
   ModalContent,
@@ -8,21 +6,9 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { Oldi } from "./Oldi";
-import { Orqa } from "./Orqa";
 
 export const Auto_dalolatnoma_model = ({ onClose, isOpen }) => {
-  const [activeType, setActiveType] = useState(1);
-
-  const renderComponent = () => {
-    switch (activeType) {
-      case 1:
-        return <Oldi onClose={onClose} />;
-      case 2:
-        return <Orqa onClose={onClose} />;
-    }
-  };
   return (
     <Modal
       isOpen={isOpen}
@@ -36,28 +22,10 @@ export const Auto_dalolatnoma_model = ({ onClose, isOpen }) => {
       <ModalContent>
         <ModalHeader textAlign={"center"}>
           Kirish va chiqish dalolatnomasi Aravalar bo‘linmasi{" "}
-          {activeType === 1 ? "oldi" : "orqasi"}
         </ModalHeader>
-        <Flex flexDir={"column"} align={"center"} justify={"center"} gap={4}>
-          <Flex gap={4}>
-            <Button
-              colorScheme="teal"
-              onClick={() => setActiveType(1)}
-              variant={activeType === 1 ? "solid" : "outline"}
-            >
-              Oldi
-            </Button>
-            <Button
-              colorScheme="teal"
-              onClick={() => setActiveType(2)}
-              variant={activeType === 2 ? "solid" : "outline"}
-            >
-              Orqa
-            </Button>
-          </Flex>
-        </Flex>
+
         <ModalCloseButton />
-        {renderComponent()}
+        <Oldi onClose={onClose} />
       </ModalContent>
     </Modal>
   );

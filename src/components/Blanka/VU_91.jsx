@@ -157,24 +157,6 @@ export const VU_91 = () => {
                 ))}
               </Tbody>
             </Table>
-            <ReactPaginate
-              pageCount={Math.ceil(
-                (gettingData?.count ? gettingData?.count : 0) / 10
-              )}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={handlePageClick}
-              containerClassName="pagination"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              activeClassName="active"
-              previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-              nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-            />
           </TableContainer>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
@@ -195,6 +177,25 @@ export const VU_91 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+
+      <ReactPaginate
+        pageCount={Math.ceil(
+          (gettingData?.count ? gettingData?.count : 0) / 10
+        )}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}

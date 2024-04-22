@@ -31,6 +31,11 @@ const authEndpoints = {
   aravaActGetAll: `/aravaact/list/`,
   aravaActPostFront: (carriageID) => `/${carriageID}/arava/act/front/`,
   aravaActPostBack: (carriageID) => `/${carriageID}/arava/act/back/`,
+  // dalolatnoma Avtobirikmaa
+
+  birikmaActGetAll: `/avtoact/list/`,
+  birikmaActPostFront: (carriageID) => `/${carriageID}/act/front/`,
+  birikmaActPostBack: (carriageID) => `/${carriageID}/act/back/`,
 
   phraseList: (page) => `/phrase/list/?page=${page + 1}`,
   phraseUpdate: (carriageID) => `/phrase/${carriageID}/`,

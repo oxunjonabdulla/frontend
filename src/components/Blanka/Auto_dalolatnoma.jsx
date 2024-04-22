@@ -13,18 +13,56 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBook,
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SliderMock } from "../../utils";
 import { AutoBreakes_dalolatnoma_model } from "./Modals/AutoBreakes/AutoBreakes_dalolatnoma_model";
 import { auto_dalolatnoma_head } from "../../utils/mock_heads";
-const data = [0];
+import UserApi from "../../Service/module/userModule.api";
+import ReactPaginate from "react-paginate";
 
 export const AutoDalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const [isLoadingFulStatistik, setIsLoading] = useState(true);
+  const {
+    isOpen: isOPenBack,
+    onClose: onCloseBack,
+    onOpen: onOpenBack,
+  } = useDisclosure();
 
+  const [isLoadingData, setIsLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [gettingData, setGettingData] = useState([]);
+  const [backId, setBackId] = useState(0);
+
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
+  const handleBack = (data) => {
+    onOpenBack();
+    setBackId(data);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const paramsPage = {
+        page: currentPage + 1,
+      };
+      setIsLoading(true);
+      const { response } = await new UserApi().getALlBirikmaAct(paramsPage);
+      if (response) {
+        setIsLoading(false);
+        setGettingData(response?.data);
+      }
+    };
+    fetchData();
+  }, [currentPage]);
   return (
     <Box
       as="div"
@@ -49,8 +87,8 @@ export const AutoDalolatnoma = () => {
       >
         +
       </Button>
-      {!isLoadingFulStatistik ? (
-        data?.length ? (
+      {!isLoadingData ? (
+        gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
             <Table
               borderRadius={10}
@@ -77,7 +115,7 @@ export const AutoDalolatnoma = () => {
 
               <Tbody>
                 <Tr fontWeight={500}>
-                  <Td outline={"1px solid gray"}>1s</Td>
+                  <Td outline={"1px solid gray"}>arava</Td>
                   <Td outline={"1px solid gray"}>asdasfaf</Td>
                   <Td outline={"1px solid gray"}>asfa</Td>
                   <Td outline={"1px solid gray"}>asfasf</Td>
@@ -109,6 +147,27 @@ export const AutoDalolatnoma = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+
+      {gettingData?.results?.length ? (
+        <ReactPaginate
+          pageCount={Math.ceil(
+            (gettingData?.count ? gettingData?.count : 0) / 10
+          )}
+          pageRangeDisplayed={5}
+          marginPagesDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName="pagination"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          activeClassName="active"
+          previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+          nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+        />
+      ) : null}
       <AutoBreakes_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
     </Box>
   );

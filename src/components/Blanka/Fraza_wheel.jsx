@@ -116,7 +116,7 @@ export const Fraza_wheel = () => {
         </Button>
       </Tooltip>
       {!isLoadingFulStatistik ? (
-        gettingData?.results?.length ? (
+        !gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
             <Table
               borderRadius={10}
@@ -196,7 +196,6 @@ export const Fraza_wheel = () => {
                   <Th textAlign={"center"}>9</Th>
                   <Th textAlign={"center"}>10</Th>
                   <Th textAlign={"center"}>11</Th>
-                  <Th textAlign={"center"}>-</Th>
                 </Tr>
               </Thead>
 
@@ -224,10 +223,12 @@ export const Fraza_wheel = () => {
                       <Td>{item?.c51_work_num}</Td>
                       <Td>{item?.c51_left_wheel}</Td>
                       <Td>{item?.c51_right_wheel}</Td>
-                      <Td rowSpan={4}>-</Td>
                       <Td rowSpan={4}>
                         {item?.user_signature_url ? (
-                          <Image src={imageGet(item?.user_signature_url)} />
+                          <Image
+                            w={"100px"}
+                            src={imageGet(item?.user_signature_url)}
+                          />
                         ) : (
                           <Text color={"red"}>Imzo o`chirilgan</Text>
                         )}

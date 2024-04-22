@@ -616,6 +616,19 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deleteAvtoRejim(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.avtoRejimPost(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // rzobkran
   async getRazobkran(paramObj) {
     try {
       const response = await privateInstance.get(authEndpoints.razobKranGet, {
@@ -639,6 +652,19 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deleteRazobKran(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.razobKranPost(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // rezuvuar
   async getRezervuar(paramObj) {
     try {
       const response = await privateInstance.get(authEndpoints.rezervuarGet, {
@@ -655,6 +681,29 @@ class UserApi extends React.Component {
       const response = await privateInstance.post(
         authEndpoints.rezervuarPost(carriageId),
         obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateRezervuar(carriageId, obj) {
+    try {
+      const response = await privateInstance.put(
+        authEndpoints.rezervuarPost(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteRezervuar(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.rezervuarPost(carriageId)
       );
 
       return { response };
@@ -692,6 +741,44 @@ class UserApi extends React.Component {
     try {
       const response = await privateInstance.post(
         authEndpoints.aravaActPostBack(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postBirikmaActFront(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.birikmaActPostFront(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getALlBirikmaAct(pageObject) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.birikmaActGetAll,
+        {
+          params: pageObject,
+        }
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postBirikmaActBack(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.birikmaActPostBack(carriageId),
         obj
       );
 
