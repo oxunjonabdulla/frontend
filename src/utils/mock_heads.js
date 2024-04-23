@@ -253,16 +253,24 @@ export const dalolatnoma_head = [
 export const auto_dalolatnoma_head = [
   { label: "Tartib raqami" },
   { label: "Vagon raqami" },
-  { label: "Avtobirikma raqami" },
+  { colspan: 2, label: "Avtobirikma raqami" },
   {
+    colspan: 2,
     label: "Ishlab chiqarilishi,zavod tamg’asi",
   },
-  {
-    label: "Mavjudlik kodi",
-  },
+  { colspan: 2, label: "Mavjudlik kodi" },
   {
     label: "Tortish xomut ponasining borligi",
-    colspan: 4,
+    colspan: 3,
+  },
+  {
+    label: "Imzo",
+  },
+  {
+    label: "Orqani qo'shish",
+  },
+  {
+    label: "",
   },
 ];
 

@@ -1,8 +1,10 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   Heading,
+  IconButton,
   Table,
   TableContainer,
   Tbody,
@@ -17,6 +19,8 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
+  faEye,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -97,9 +101,8 @@ export const AutoDalolatnoma = () => {
               variant={"striped"}
               overflow={"hidden"}
               colorScheme="blackAlpha"
-              shadow={"lg"}
             >
-              <Thead bg={"#0c6170"} rounded={10} shadow={"2xl"}>
+              <Thead bg={"#0c6170"} rounded={10}>
                 <Tr>
                   {auto_dalolatnoma_head?.map((item) => (
                     <Th
@@ -114,17 +117,79 @@ export const AutoDalolatnoma = () => {
               </Thead>
 
               <Tbody>
-                <Tr fontWeight={500}>
-                  <Td outline={"1px solid gray"}>arava</Td>
-                  <Td outline={"1px solid gray"}>asdasfaf</Td>
-                  <Td outline={"1px solid gray"}>asfa</Td>
-                  <Td outline={"1px solid gray"}>asfasf</Td>
-                  <Td outline={"1px solid gray"}>asfasf</Td>
-                  <Td outline={"1px solid gray"}>asfasf</Td>
-                  <Td outline={"1px solid gray"}>asfasf</Td>
-                  <Td outline={"1px solid gray"}>asfasf</Td>
-                  <Td outline={"1px solid gray"}>asfasf</Td>
-                </Tr>
+                {gettingData?.results?.map((item, idx) => (
+                  <Tr key={item.carriage}>
+                    <Td>{idx + 1}</Td>
+                    <Td fontWeight={700}>{item.carriage}</Td>
+                    <Td>{item?.front_detail.auto_number_1}</Td>
+                    <Td>{item?.front_detail.auto_number_2}</Td>
+                    <Td>{item?.front_detail.auto_zavod_1}</Td>
+                    <Td>{item?.front_detail.auto_zavod_2}</Td>
+                    <Td>{item?.front_detail.mavjud_kod_1}</Td>
+                    <Td>{item?.front_detail.mavjud_kod_2}</Td>
+                    <Td>
+                      Avtobirikma №1: {item?.front_detail.tortish_auto_number_1}
+                      <Divider my={2} />
+                      Avtobirikma №2: {item?.front_detail.tortish_auto_number_2}
+                    </Td>
+                    <Td>
+                      Zavod Tamgasi №1:{" "}
+                      {item?.front_detail.tortish_auto_zavod_1}
+                      <Divider my={2} />
+                      Zavod Tamgasi №2:{" "}
+                      {item?.front_detail.tortish_auto_zavod_2}
+                    </Td>
+                    <Td>
+                      Mavjudlik Kodi №1:{" "}
+                      {item?.front_detail.tortish_mavjud_kod_1}
+                      <Divider my={2} />
+                      Mavjudlik Kodi №2:{" "}
+                      {item?.front_detail.tortish_mavjud_kod_2}
+                    </Td>
+
+                    <Td color={"teal"}>Imzo tasdiqlangan</Td>
+                    <Td color={"teal"}>
+                      {!item?.back_detail ? (
+                        <Flex justify={"center"} gap={2} m={0}>
+                          <Text>Orqa tomonini kiritish:</Text>
+                          <IconButton
+                            onClick={() => handleBack(item?.carriage)}
+                            borderColor={"blue.400"}
+                            colorScheme="teal"
+                            bgColor={"blue.400"}
+                            icon={<FontAwesomeIcon icon={faEye} />}
+                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
+                          />
+                        </Flex>
+                      ) : (
+                        <Flex justify={"center"} gap={2} m={0}>
+                          <Text>Orqa tomoni ko&apos;rish</Text>
+                          <IconButton
+                            borderColor={"blue.400"}
+                            colorScheme="teal"
+                            bgColor={"blue.400"}
+                            icon={<FontAwesomeIcon icon={faEye} />}
+                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
+                          />
+                        </Flex>
+                      )}
+                    </Td>
+                    <Td>
+                      <Flex gap={2} m={0}>
+                        <IconButton
+                          float={"right"}
+                          borderColor={"red"}
+                          minW={"30px"}
+                          colorScheme="teal"
+                          bgColor={"red"}
+                          p={0}
+                          _hover={{ bgColor: "red", opacity: "0.7" }}
+                          icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                        />
+                      </Flex>
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
             </Table>
           </TableContainer>
