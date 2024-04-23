@@ -28,7 +28,7 @@ import { Deleteted, SimpleLoader } from "../../../../../components";
 import ReactPaginate from "react-paginate";
 const RegisterAutoTables = memo(function RegisterAutoTables() {
   const [isLoadingData, setIsLoading] = useState(true);
-  const [deletedData, setDeletedData] = useState(true);
+  const [deletedData, setDeletedData] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
@@ -172,7 +172,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
                       colorScheme="teal"
                       bgColor={"red"}
                       p={0}
-                      onClick={() => handleDelete(Number(item.carriage))}
+                      onClick={() => handleDelete(item.carriage)}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />

@@ -28,7 +28,7 @@ import { Deleteted, SimpleLoader } from "../../../../../components";
 import ReactPaginate from "react-paginate";
 const RegisterBrakesTable = memo(function RegisterBrakesTable() {
   const [isLoadingData, setIsLoading] = useState(true);
-  const [deletedData, setDeletedData] = useState(true);
+  const [deletedData, setDeletedData] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
@@ -51,6 +51,7 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
     }
   };
 
+  console.log(deletedData);
   useEffect(() => {
     const fetchData = async () => {
       const paramsPage = {
@@ -156,7 +157,7 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
                       colorScheme="teal"
                       bgColor={"red"}
                       p={0}
-                      onClick={() => handleDelete(Number(item?.carriage))}
+                      onClick={() => handleDelete(item?.carriage)}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
