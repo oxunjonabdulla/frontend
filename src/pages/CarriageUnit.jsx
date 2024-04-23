@@ -49,13 +49,13 @@ export const CarriageUnit = () => {
           >
             ФРАЗА
           </Button>
-          <Button
+          {/* <Button
             colorScheme="teal"
             variant={activeComponent === "Component4" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component4")}
           >
             ВУ-32
-          </Button>
+          </Button> */}
           <Button
             colorScheme="teal"
             variant={activeComponent === "Component3" ? "solid" : "outline"}

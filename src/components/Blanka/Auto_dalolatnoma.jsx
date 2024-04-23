@@ -29,24 +29,38 @@ import { AutoBreakes_dalolatnoma_model } from "./Modals/AutoBreakes/AutoBreakes_
 import { auto_dalolatnoma_head } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
+import { Orqa } from "./Modals/AutoBreakes/Orqa";
+import { ShowBack } from "./Modals/AutoBreakes/ShowBack";
 
 export const AutoDalolatnoma = () => {
+  const [isLoadingData, setIsLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [gettingData, setGettingData] = useState([]);
+  const [backId, setBackId] = useState(0);
+  const [showBack, setShowBackData] = useState(0);
+
+  const {
+    isOpen: isOpenShowBack,
+    onClose: onCloseShowBack,
+    onOpen: onOpenShowBack,
+  } = useDisclosure();
+
   const { isOpen, onClose, onOpen } = useDisclosure();
+
   const {
     isOpen: isOPenBack,
     onClose: onCloseBack,
     onOpen: onOpenBack,
   } = useDisclosure();
 
-  const [isLoadingData, setIsLoading] = useState(true);
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const [gettingData, setGettingData] = useState([]);
-  const [backId, setBackId] = useState(0);
-
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+  const handleShowBack = (data) => {
+    onOpenShowBack();
+    setShowBackData(data);
   };
   const handleBack = (data) => {
     onOpenBack();
@@ -163,13 +177,10 @@ export const AutoDalolatnoma = () => {
                         </Flex>
                       ) : (
                         <Flex justify={"center"} gap={2} m={0}>
-                          <Text>Orqa tomoni ko&apos;rish</Text>
                           <IconButton
-                            borderColor={"blue.400"}
-                            colorScheme="teal"
-                            bgColor={"blue.400"}
+                            colorScheme="whatsapp"
+                            onClick={() => handleShowBack(item?.back_detail)}
                             icon={<FontAwesomeIcon icon={faEye} />}
-                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
                           />
                         </Flex>
                       )}
@@ -233,6 +244,12 @@ export const AutoDalolatnoma = () => {
           nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
         />
       ) : null}
+      <ShowBack
+        isOpen={isOpenShowBack}
+        onClose={onCloseShowBack}
+        dataBack={showBack}
+      />
+      <Orqa isOpen={isOPenBack} onClose={onCloseBack} carriageID={backId} />
       <AutoBreakes_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
     </Box>
   );

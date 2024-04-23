@@ -19,6 +19,7 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
+  faPlus,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,6 +31,7 @@ import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { Orqa } from "./Modals/AutoDalolatnoma/Orqa";
+import { ShowBack } from "./Modals/AutoDalolatnoma/ShowBack";
 
 export const CarriageDalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -38,12 +40,18 @@ export const CarriageDalolatnoma = () => {
     onClose: onCloseBack,
     onOpen: onOpenBack,
   } = useDisclosure();
+  const {
+    isOpen: isOpenShowBack,
+    onClose: onCloseShowBack,
+    onOpen: onOpenShowBack,
+  } = useDisclosure();
 
   const [isLoadingData, setIsLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [backId, setBackId] = useState(0);
+  const [showBack, setShowBackData] = useState(0);
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -52,6 +60,10 @@ export const CarriageDalolatnoma = () => {
   const handleBack = (data) => {
     onOpenBack();
     setBackId(data);
+  };
+  const handleShowBack = (data) => {
+    onOpenShowBack();
+    setShowBackData(data);
   };
 
   useEffect(() => {
@@ -157,26 +169,20 @@ export const CarriageDalolatnoma = () => {
                     <Td color={"teal"}>Imzo tasdiqlangan</Td>
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
-                        <Flex justify={"center"} gap={2} m={0}>
+                        <Flex justify={"center"} align={"center"} gap={2} m={0}>
                           <Text>Orqa tomonini kiritish:</Text>
                           <IconButton
                             onClick={() => handleBack(item?.carriage)}
-                            borderColor={"blue.400"}
-                            colorScheme="teal"
-                            bgColor={"blue.400"}
-                            icon={<FontAwesomeIcon icon={faEye} />}
-                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
+                            colorScheme="messenger"
+                            icon={<FontAwesomeIcon icon={faPlus} />}
                           />
                         </Flex>
                       ) : (
                         <Flex justify={"center"} gap={2} m={0}>
-                          <Text>Orqa tomoni ko&apos;rish</Text>
                           <IconButton
-                            borderColor={"blue.400"}
-                            colorScheme="teal"
-                            bgColor={"blue.400"}
+                            colorScheme="whatsapp"
+                            onClick={() => handleShowBack(item?.back_detail)}
                             icon={<FontAwesomeIcon icon={faEye} />}
-                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
                           />
                         </Flex>
                       )}
@@ -242,6 +248,11 @@ export const CarriageDalolatnoma = () => {
       ) : null}
 
       <Orqa isOpen={isOPenBack} onClose={onCloseBack} carriageID={backId} />
+      <ShowBack
+        isOpen={isOpenShowBack}
+        onClose={onCloseShowBack}
+        dataBack={showBack}
+      />
       <Auto_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
     </Box>
   );
