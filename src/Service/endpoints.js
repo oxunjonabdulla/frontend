@@ -26,6 +26,9 @@ const authEndpoints = {
 
   rezervuarPost: (carriageID) => `/rezervuar/${carriageID}/`,
   // phrase
+  collectActGetAll: `/collectact/list/`,
+  collectActPostFront: (carriageID) => `/${carriageID}/collect/act/front/`,
+  collectActPostBack: (carriageID) => `/${carriageID}/collect/act/back/`,
 
   // dalolatnoma
   aravaActGetAll: `/aravaact/list/`,

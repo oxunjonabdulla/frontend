@@ -20,6 +20,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faEye,
+  faPlus,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -164,14 +165,14 @@ export const AutoDalolatnoma = () => {
                     <Td color={"teal"}>Imzo tasdiqlangan</Td>
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
-                        <Flex justify={"center"} gap={2} m={0}>
+                        <Flex justify={"center"} align={"center"} gap={2} m={0}>
                           <Text>Orqa tomonini kiritish:</Text>
                           <IconButton
                             onClick={() => handleBack(item?.carriage)}
                             borderColor={"blue.400"}
                             colorScheme="teal"
                             bgColor={"blue.400"}
-                            icon={<FontAwesomeIcon icon={faEye} />}
+                            icon={<FontAwesomeIcon icon={faPlus} />}
                             _hover={{ bgColor: "blue.400", opacity: "0.7" }}
                           />
                         </Flex>

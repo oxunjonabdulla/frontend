@@ -1,7 +1,4 @@
 import {
-  Button,
-  FormControl,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,14 +11,8 @@ import {
   Td,
   Tr,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 export const ShowBack = ({ isOpen, onClose, dataBack }) => {
-  const {
-    register,
-    formState: { errors },
-  } = useForm();
-
   return (
     <Modal
       isOpen={isOpen}

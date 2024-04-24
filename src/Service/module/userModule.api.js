@@ -787,6 +787,44 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async postCollectActFront(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.collectActPostFront(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getALlCollectAct(pageObject) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.collectActGetAll,
+        {
+          params: pageObject,
+        }
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postCollectActBack(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.collectActPostBack(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 }
 
 export default UserApi;

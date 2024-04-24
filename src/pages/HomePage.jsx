@@ -2,12 +2,14 @@ import CountUp from "react-countup";
 import {
   Box,
   Card,
+  CardBody,
   Container,
   Flex,
-  Grid,
-  GridItem,
   Heading,
-  Text,
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
 } from "@chakra-ui/react";
 
 import Chart from "react-apexcharts";
@@ -19,25 +21,38 @@ import {
   chartThree,
   demoFirst,
 } from "../utils/chartData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBook,
+  faBookOpenReader,
+  faPersonDigging,
+} from "@fortawesome/free-solid-svg-icons";
+import { faThinkPeaks } from "@fortawesome/free-brands-svg-icons";
 
 const topInfoData = [
   {
-    numberCnt: 1,
-    title: "Joriy yilda ta’mirlangan inventar vagonlar soni",
+    title: "Inventar vagonlar soni",
+    numberCnt: 2,
+    icon: faPersonDigging,
+    bgColor: "linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%)",
   },
   {
-    title:
-      "Qarshi vagon deposi balansiga qabul qilingan va chiqarilgan vagonlar soni",
+    title: "Qabul qilingan va chiqarilgan vagonlar soni",
     numberCnt: 170,
+    icon: faBook,
+    bgColor: "linear-gradient(135deg, #2AFADF 10%, #4C83FF 100%)",
   },
   {
-    title: "Qarshi vagon deposi hududida turgan nosoz vagonlar soni",
+    title: "Nosoz vagonlar soni",
     numberCnt: 180,
+    icon: faBookOpenReader,
+    bgColor: "linear-gradient(135deg, #FFD3A5 10%, #FD6585 100%)",
   },
   {
-    title:
-      "Qarshi vagon deposida tegishli buyruq asosida ta’mirlangan vagonlar soni",
+    title: "Buyruq asosida ta’mirlangan vagonlar soni",
     numberCnt: 47,
+    icon: faThinkPeaks,
+    bgColor: "linear-gradient(135deg, #EE9AE5 10%, #5961F9 100%)",
   },
 ];
 
@@ -133,47 +148,74 @@ export const HomePage = () => {
         <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
           Таmirlashga oid ma’lumotlar
         </Heading>
-
-        <Grid
+        <Flex
+          w={"100%"}
+          flexWrap={"wrap"}
+          justifyContent={["center", "space-between"]}
+          align={"center"}
           listStyleType={"none"}
-          display={"grid"}
-          templateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(2, 1fr)",
-            "repeat(4, 1fr)",
-          ]}
-          gap={3}
-          mt={10}
+          fontSize={"xs"}
+          gap={5}
+          mt={8}
         >
-          {topInfoData?.map((item, idx) => (
-            <GridItem
+          {topInfoData.map((item, idx) => (
+            <Card
+              colSpan={2}
               key={idx}
-              height={"200px"}
-              bgColor={"#fff"}
-              shadow={" 0 0 15px rgba(0,0,0,0.1)"}
-              flexDir={"column"}
-              justify={"center"}
-              p={5}
-              rounded={"lg"}
+              _hover={{ opacity: 0.7 }}
+              transition={"opacity 0.2s"}
+              width="300px"
               cursor={"pointer"}
-              _hover={{
-                shadow: " 0 0 15px rgba(0,0,0,0.0)",
-              }}
+              height="120px"
+              color={"#fff"}
+              bg={item.bgColor}
             >
-              <Text fontSize={"5xl"} mb={5}>
-                <CountUp
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: "700",
-                  }}
-                  end={item?.numberCnt}
-                  duration={1}
-                />
-              </Text>
-              <Text> {item?.title}</Text>
-            </GridItem>
+              <CardBody>
+                <Flex
+                  flexDirection="row"
+                  align="center"
+                  justify="center"
+                  w="100%"
+                >
+                  <Stat me="auto">
+                    {" "}
+                    <StatLabel
+                      textAlign={"left"}
+                      fontWeight="bold"
+                      pb=".1rem"
+                      fontSize={"sm"}
+                    >
+                      {item.title}
+                    </StatLabel>
+                    <Flex>
+                      <StatNumber fontSize={"3xl"}>
+                        <CountUp end={item.numberCnt} />
+                      </StatNumber>
+                      <StatHelpText
+                        alignSelf="flex-end"
+                        justifySelf="flex-end"
+                        m="0px"
+                        fontWeight="bold"
+                        ps="3px"
+                        fontSize="md"
+                      ></StatHelpText>
+                    </Flex>
+                  </Stat>
+                  <Flex
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    borderRadius={"12px"}
+                    h={"45px"}
+                    w={"45px"}
+                    bg={item.bgColor}
+                  >
+                    <FontAwesomeIcon icon={item?.icon} size="xl" />
+                  </Flex>
+                </Flex>
+              </CardBody>
+            </Card>
           ))}
-        </Grid>
+        </Flex>
 
         {/* <Grid
           listStyleType={"none"}
