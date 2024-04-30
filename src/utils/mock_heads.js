@@ -190,10 +190,7 @@ export const register_auto = {
       label: "Avtorejim velka razmeri \n 265 A -1 =70 mm \n 265 A -4 =120 mm  ",
       rowspan: 3,
     },
-    {
-      label: "So’ngi jumrfk turi 4304, 4314, 271 ",
-      rowspan: 3,
-    },
+
     {
       label: "TC Rejimdagi siqilgan havo bosimi",
       colspan: 3,

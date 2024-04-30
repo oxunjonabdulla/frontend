@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -74,13 +75,18 @@ export const RegisterRazobshitelCreate = () => {
             </FormControl>
 
             <FormControl isInvalid={errors?.repair_type}>
-              <FormLabel>Ta’mir turi</FormLabel>
-              <Input
+              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
+                Talab qilingan ta’mir turi:
+              </FormLabel>
+              <Select
                 borderColor={"gray.600"}
+                placeholder="Ta'mir turi"
                 {...register("repair_type", { required: true })}
-                type="text"
-                placeholder="Ta’mir turi "
-              />
+              >
+                <option value="dr">&apos;ДР&apos; (DТ)</option>
+                <option value="kp">&apos;КР&apos; (KТ)</option>
+                <option value="krp">&apos;KРП&apos; (KTP)</option>
+              </Select>
             </FormControl>
           </Flex>
 
@@ -110,13 +116,16 @@ export const RegisterRazobshitelCreate = () => {
               />
             </FormControl>
             <FormControl isInvalid={errors?.last_jumfrk_type}>
-              <FormLabel>So’ngi jumrfk turi 4304, 4314, 271</FormLabel>
-              <Input
+              <FormLabel>So’ngi jumrak turi</FormLabel>
+              <Select
+                placeholder="So’ngi jumrfk turi"
                 borderColor={"gray.600"}
                 {...register("last_jumfrk_type_1", { required: true })}
-                type="text"
-                placeholder="So’ngi jumrfk turi 4304, 4314, 271"
-              />
+              >
+                <option value="4304">4304</option>
+                <option value="4314">4314</option>
+                <option value="271">271</option>
+              </Select>
             </FormControl>
           </Flex>
           <Flex
@@ -135,13 +144,17 @@ export const RegisterRazobshitelCreate = () => {
               />
             </FormControl>
             <FormControl isInvalid={errors?.last_jumfrk_type}>
-              <FormLabel>So’ngi jumrfk turi 4304, 4314, 271</FormLabel>
-              <Input
+              <FormLabel>So’ngi jumrfk turi 2</FormLabel>
+
+              <Select
+                placeholder="So’ngi jumrfk turi"
                 borderColor={"gray.600"}
                 {...register("last_jumfrk_type_2", { required: true })}
-                type="text"
-                placeholder="So’ngi jumrfk turi 4304, 4314, 271"
-              />
+              >
+                <option value="4304">4304</option>
+                <option value="4314">4314</option>
+                <option value="271">271</option>
+              </Select>
             </FormControl>
             <FormControl isInvalid={errors?.check_gass_1}>
               <FormLabel>Tekshiruv bosimi 6 – 6,5 kg/sm2</FormLabel>

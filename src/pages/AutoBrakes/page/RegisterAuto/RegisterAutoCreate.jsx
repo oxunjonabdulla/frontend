@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   Text,
   useToast,
 } from "@chakra-ui/react";
@@ -66,12 +67,14 @@ export const RegisterAutoCreate = () => {
             />
             <FormControl isInvalid={errors?.automode_type}>
               <FormLabel>Avtorejim turi </FormLabel>
-              <Input
+              <Select
                 borderColor={"gray.600"}
-                {...register("automode_type", { required: true })}
-                type="text"
                 placeholder="Avtorejim turi "
-              />
+                {...register("automode_type", { required: true })}
+              >
+                <option value="265 A -1">265 A -1</option>
+                <option value=" 265 A -4"> 265 A -4</option>
+              </Select>
             </FormControl>
             <FormControl isInvalid={errors?.repair_date}>
               <FormLabel>Ta’mir sana</FormLabel>
@@ -79,15 +82,6 @@ export const RegisterAutoCreate = () => {
                 borderColor={"gray.600"}
                 {...register("repair_date", { required: true })}
                 type="date"
-              />
-            </FormControl>
-            <FormControl isInvalid={errors?.repair_type}>
-              <FormLabel>Ta’mir turi</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("repair_type", { required: true })}
-                type="text"
-                placeholder="Ta’mir turi "
               />
             </FormControl>
           </Flex>
@@ -98,6 +92,20 @@ export const RegisterAutoCreate = () => {
             alignItems={"center"}
             mb={4}
           >
+            <FormControl isInvalid={errors?.repair_type}>
+              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
+                Talab qilingan ta’mir turi:
+              </FormLabel>
+              <Select
+                borderColor={"gray.600"}
+                placeholder="Ta'mir turi"
+                {...register("repair_type", { required: true })}
+              >
+                <option value="dr">&apos;ДР&apos; (DТ)</option>
+                <option value="kp">&apos;КР&apos; (KТ)</option>
+                <option value="krp">&apos;KРП&apos; (KTP)</option>
+              </Select>
+            </FormControl>
             <FormControl isInvalid={errors?.automode_factory_number}>
               <FormLabel>Avtorejim zavod raqami </FormLabel>
               <Input
@@ -109,19 +117,22 @@ export const RegisterAutoCreate = () => {
             </FormControl>
             <FormControl isInvalid={errors?.automode_roll_size}>
               <FormLabel whiteSpace={"nowrap"}>
-                Avtorejim velka razmeri (265 A -1 =70 mm 265 A -4 =120 mm ){" "}
+                Avtorejim velka razmeri{" "}
               </FormLabel>
-              <Input
+              <Select
                 borderColor={"gray.600"}
-                {...register("automode_roll_size", { required: true })}
-                type="text"
                 placeholder="Avtorejim velka razmeri "
-              />
+                {...register("automode_roll_size", { required: true })}
+              >
+                <option value="265 A -1 =70 mm">265 A -1 =70 mm</option>
+                <option value=" 265 A -4 =120 mm"> 265 A -4 =120 mm</option>
+              </Select>
             </FormControl>
-            <FormControl isInvalid={errors?.last_type_jamrak}>
+            <FormControl display={"none"} isInvalid={errors?.last_type_jamrak}>
               <FormLabel>So’ngi jumrak turi (4304, 4314, 271)</FormLabel>
               <Input
                 borderColor={"gray.600"}
+                defaultValue={"4304"}
                 {...register("last_type_jamrak", { required: true })}
                 type="text"
                 placeholder="So’ngi jumrak turi "

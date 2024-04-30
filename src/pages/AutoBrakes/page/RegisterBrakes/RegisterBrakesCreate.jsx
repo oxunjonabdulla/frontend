@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -74,12 +75,15 @@ export const RegisterBrakesCreate = () => {
 
             <FormControl isInvalid={errors?.repair_type}>
               <FormLabel>Ta’mir turi</FormLabel>
-              <Input
+              <Select
                 borderColor={"gray.600"}
+                placeholder="Ta'mir turi"
                 {...register("repair_type", { required: true })}
-                type="text"
-                placeholder="Ta’mir turi "
-              />
+              >
+                <option value="dr">&apos;ДР&apos; (DТ)</option>
+                <option value="kp">&apos;КР&apos; (KТ)</option>
+                <option value="krp">&apos;KРП&apos; (KTP)</option>
+              </Select>
             </FormControl>
           </Flex>
 
@@ -112,13 +116,15 @@ export const RegisterBrakesCreate = () => {
               />
             </FormControl>
             <FormControl isInvalid={errors?.rapair_roll}>
-              <FormLabel>Tormoz silindiri TS002, TS188</FormLabel>
-              <Input
+              <FormLabel>Tormoz silindiri</FormLabel>
+              <Select
+                placeholder="Tormoz silindiri"
                 borderColor={"gray.600"}
                 {...register("rapair_roll", { required: true })}
-                type="text"
-                placeholder="Tormoz silindiri TS002, TS188"
-              />
+              >
+                <option value=" TS002"> TS002</option>
+                <option value="TS188">TS188</option>
+              </Select>
             </FormControl>
           </Flex>
           <Flex
@@ -137,15 +143,16 @@ export const RegisterBrakesCreate = () => {
               />
             </FormControl>
             <FormControl isInvalid={errors?.last_jumfrk_type}>
-              <FormLabel>
-                2X kamerali havotaq simlagich 295.001, 295M.001
-              </FormLabel>
-              <Input
+              <FormLabel>2X kamerali havotaqsimlagich</FormLabel>
+
+              <Select
+                placeholder="2X kamerali havotaqsimlagich"
                 borderColor={"gray.600"}
                 {...register("last_jumfrk_type_2", { required: true })}
-                type="text"
-                placeholder="2X kamerali  havotaq simlagich"
-              />
+              >
+                <option value=" 295.001"> 295.001</option>
+                <option value="295M.001"> 295M.001</option>
+              </Select>
             </FormControl>
             <FormControl isInvalid={errors?.check_gass_1}>
               <FormLabel>Havobosimi (6,0+0,1) kg/sm2</FormLabel>

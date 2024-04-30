@@ -128,7 +128,6 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
                 <Td>{item.repair_type}</Td>
                 <Td>{item.automode_factory_number}</Td>
                 <Td>{item.automode_roll_size}</Td>
-                <Td>{item.last_type_jamrak}</Td>
                 <Td>{item.tc_type_without_freight}</Td>
                 <Td whiteSpace={"nowrap"}>{item.tc_type_middle}</Td>
 
