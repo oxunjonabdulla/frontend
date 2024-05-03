@@ -21,13 +21,12 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
-  faDownload,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
 import { SliderMock } from "../../utils";
-import { mockHeaderFraza } from "../../utils/mock_heads";
+import { mockHeaderCarriage } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
@@ -143,7 +142,7 @@ export const Fraza_carriunit = () => {
                   </Th>
                 </Tr>
                 <Tr>
-                  {mockHeaderFraza?.headers?.map((item) => (
+                  {mockHeaderCarriage?.headers?.map((item) => (
                     <Th
                       fontSize={"10px"}
                       textAlign={"center"}
@@ -162,7 +161,7 @@ export const Fraza_carriunit = () => {
                   <Th rowSpan={3} textAlign={"center"}></Th>
                 </Tr>
                 <Tr>
-                  {mockHeaderFraza?.nestedHeaders?.map((item) => (
+                  {mockHeaderCarriage?.nestedHeaders?.map((item) => (
                     <Th
                       fontSize={"10px"}
                       fontWeight={700}
@@ -188,8 +187,6 @@ export const Fraza_carriunit = () => {
                   <Th textAlign={"center"}>7</Th>
                   <Th textAlign={"center"}>8</Th>
                   <Th textAlign={"center"}>9</Th>
-                  <Th textAlign={"center"}>10</Th>
-                  <Th textAlign={"center"}>11</Th>
                 </Tr>
               </Thead>
 
@@ -215,8 +212,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c61_num_depo}</Td>
                       <Td>{item?.c61_work_date}</Td>
                       <Td>{item?.c61_work_num}</Td>
-                      <Td>{item?.c61_left_wheel}</Td>
-                      <Td>{item?.c61_right_wheel}</Td>
                       <Td rowSpan={8}>
                         {item?.user_signature_url ? (
                           <Image src={imageGet(item?.user_signature_url)} />
@@ -244,8 +239,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c62_num_depo}</Td>
                       <Td>{item?.c62_work_date}</Td>
                       <Td>{item?.c62_work_num}</Td>
-                      <Td>{item?.c62_left_wheel}</Td>
-                      <Td>{item?.c62_right_wheel}</Td>
                     </Tr>
                     <Tr>
                       <Td>63</Td>
@@ -257,8 +250,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c63_num_depo}</Td>
                       <Td>{item?.c63_work_date}</Td>
                       <Td>{item?.c63_work_num}</Td>
-                      <Td>{item?.c63_left_wheel}</Td>
-                      <Td>{item?.c63_right_wheel}</Td>
                     </Tr>
                     <Tr>
                       <Td>64</Td>
@@ -270,8 +261,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c64_num_depo}</Td>
                       <Td>{item?.c64_work_date}</Td>
                       <Td>{item?.c64_work_num}</Td>
-                      <Td>{item?.c64_left_wheel}</Td>
-                      <Td>{item?.c64_right_wheel}</Td>
                     </Tr>
                     <Tr>
                       <Td>71</Td>
@@ -283,8 +272,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c71_num_depo}</Td>
                       <Td>{item?.c71_work_date}</Td>
                       <Td>{item?.c71_work_num}</Td>
-                      <Td>{item?.c71_left_wheel}</Td>
-                      <Td>{item?.c71_right_wheel}</Td>
                     </Tr>
                     <Tr>
                       <Td>72</Td>
@@ -296,8 +283,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c72_num_depo}</Td>
                       <Td>{item?.c72_work_date}</Td>
                       <Td>{item?.c72_work_num}</Td>
-                      <Td>{item?.c72_left_wheel}</Td>
-                      <Td>{item?.c72_right_wheel}</Td>
                     </Tr>
                     <Tr>
                       <Td>73</Td>
@@ -309,8 +294,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c73_num_depo}</Td>
                       <Td>{item?.c73_work_date}</Td>
                       <Td>{item?.c73_work_num}</Td>
-                      <Td>{item?.c73_left_wheel}</Td>
-                      <Td>{item?.c73_right_wheel}</Td>
                     </Tr>
                     <Tr>
                       <Td>74</Td>
@@ -322,8 +305,6 @@ export const Fraza_carriunit = () => {
                       <Td>{item?.c74_num_depo}</Td>
                       <Td>{item?.c74_work_date}</Td>
                       <Td>{item?.c74_work_num}</Td>
-                      <Td>{item?.c74_left_wheel}</Td>
-                      <Td>{item?.c74_right_wheel}</Td>
                     </Tr>
                   </Fragment>
                 ))}

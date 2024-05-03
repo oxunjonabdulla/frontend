@@ -112,7 +112,6 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                       </Td>
                     ))}
                   </Tr>
-
                   <Tr>
                     <Td textAlign={"center"}>-</Td>
                     <Td textAlign={"center"}>1</Td>
@@ -123,14 +122,16 @@ export const Fraza_model = ({ onClose, isOpen, updatedData }) => {
                     <Td textAlign={"center"}>6</Td>
                     <Td textAlign={"center"}>7</Td>
                     <Td textAlign={"center"}>8</Td>
-                    <Td textAlign={"center"}>9</Td>
+                    <Td textAlign={"center"} colSpan={2}>
+                      9
+                    </Td>
                   </Tr>
                   <Tr>
                     <Td>:4634</Td>
                     <Td>408</Td>
                     <Td>73314</Td>
                     <Td>1</Td>
-                    <Td>
+                    <Td colSpan={2}>
                       {" "}
                       <FormControl isInvalid={errors?.date_send_message}>
                         <Input

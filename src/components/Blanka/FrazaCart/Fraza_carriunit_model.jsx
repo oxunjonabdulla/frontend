@@ -30,7 +30,7 @@ import { useForm } from "react-hook-form";
 import { SearchTrain } from "../../../utils";
 import { Signatur } from "../../Signature/Signatur";
 import UserApi from "../../../Service/module/userModule.api";
-import { mockHeaderFraza } from "../../../utils/mock_heads";
+import { mockHeaderCarriage } from "../../../utils/mock_heads";
 
 export const Fraza_carriage_model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
@@ -96,7 +96,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
               <Table variant="striped" colorScheme="gray">
                 <Tbody>
                   <Tr>
-                    {mockHeaderFraza?.headers?.map((item) => (
+                    {mockHeaderCarriage?.headers?.map((item) => (
                       <Td
                         fontSize={"10px"}
                         textAlign={"center"}
@@ -111,7 +111,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                     ))}
                   </Tr>
                   <Tr>
-                    {mockHeaderFraza?.nestedHeaders?.map((item) => (
+                    {mockHeaderCarriage?.nestedHeaders?.map((item) => (
                       <Td
                         fontSize={"10px"}
                         fontWeight={700}
@@ -135,9 +135,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                     <Td textAlign={"center"}>7</Td>
                     <Td textAlign={"center"}>8</Td>
                     <Td textAlign={"center"}>9</Td>
-                    <Td textAlign={"center"}>10</Td>
-                    <Td textAlign={"center"}>11</Td>
-                    <Td textAlign={"center"}>-</Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -206,29 +203,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                           type="text"
                         />
                       </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c61_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c61_left_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c61_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c61_right_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -299,29 +273,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         />
                       </FormControl>
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c62_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c62_left_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c62_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c62_right_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -390,29 +341,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                           type="text"
                         />
                       </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c63_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c63_left_wheel")}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c63_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c63_right_wheel")}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -483,29 +411,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         />
                       </FormControl>
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c64_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c64_left_wheel")}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c64_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c64_right_wheel")}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -574,29 +479,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                           type="text"
                         />
                       </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c71_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c71_left_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c71_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c71_right_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                   <Tr>
@@ -667,29 +549,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         />
                       </FormControl>
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c72_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c72_left_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c72_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c72_right_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -759,29 +618,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         />
                       </FormControl>
                     </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c73_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c73_left_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c73_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c73_right_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
-                    </Td>
                   </Tr>
                   <Tr>
                     <Td textAlign={"center"} fontWeight={700}>
@@ -850,29 +686,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                           type="text"
                         />
                       </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c74_left_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c74_left_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      {" "}
-                      <FormControl isInvalid={errors?.c74_right_wheel}>
-                        <Input
-                          borderColor={"gray.600"}
-                          {...register("c74_right_wheel", { required: true })}
-                          type="text"
-                        />
-                      </FormControl>
-                    </Td>
-                    <Td textAlign={"center"} fontWeight={700}>
-                      :
                     </Td>
                   </Tr>
                 </Tbody>

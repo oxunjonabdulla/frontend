@@ -117,11 +117,7 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
                 {item.label}
               </Th>
             ))}
-
-            <Th textAlign={"center"} rowSpan={2} fontSize={"10px"}>
-              Jarayon
-            </Th>
-            <Th textAlign={"center"} rowSpan={2} fontSize={"10px"}></Th>
+            <Th rowSpan={2}></Th>
           </Tr>
           <Tr>
             <Th textAlign={"center"}>-</Th>
@@ -134,8 +130,9 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
             <Th textAlign={"center"}>7</Th>
             <Th textAlign={"center"}>8</Th>
             <Th textAlign={"center"}>9</Th>
-            <Th textAlign={"center"}>10</Th>
-            <Th textAlign={"center"}>11</Th>
+            <Th textAlign={"center"} fontSize={"10px"}>
+              Jarayon
+            </Th>
           </Tr>
         </Thead>
 
@@ -155,8 +152,6 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
               <Td height={"100%"} fontWeight={700} color={"green"}>
                 {item?.carriage}
               </Td>
-              <Td></Td>
-              <Td>0</Td>
               <Td>
                 {/* {item?.user_signature_url ? (
               <Image src={imageGet(item?.user_signature_url)} />

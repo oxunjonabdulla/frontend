@@ -297,10 +297,36 @@ export const mockHeaderFraza = {
     { label: "Код режима ввода сообщения" },
     { label: "Дата передачи сообщения (ддммгггг)" },
     { label: "Место, для т вид операции с вагоном", colspan: 4 },
-    { label: "Номер вагона" },
+    { label: "Номер вагона", colspan: 2 },
   ],
 };
 
+export const mockHeaderCarriage = {
+  headers: [
+    { label: "Код детали", rowspan: 2 },
+    { label: "Код неисправности", rowspan: 2 },
+    { label: "Код ж.д Администрации собственницы детали", rowspan: 2 },
+    { label: "Номер детали", colspan: 3 },
+    { label: "Место, дата и вид работы по детали", colspan: 3 },
+  ],
+  nestedHeaders: [
+    { label: "Код предприятия изготовителя" },
+    { label: "Заводской номер" },
+    { label: "Год изготовителя" },
+    { label: "Код депо" },
+    { label: "Дата работ (ммгггг)" },
+    { label: "Код вида работ " },
+  ],
+  topHeader: [
+    { label: "Начало сообщения" },
+    { label: "Код с сообщения" },
+    { label: "Код ж.д отправителя" },
+    { label: "Код режима ввода сообщения" },
+    { label: "Дата передачи сообщения (ддммгггг)" },
+    { label: "Место, для т вид операции с вагоном", colspan: 4 },
+    { label: "Номер вагона" },
+  ],
+};
 export const vu_47 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },
