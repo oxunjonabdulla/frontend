@@ -1,15 +1,15 @@
-const chartData = [24, 5, 15, 4, 0];
+const chartData = [29, 8, 17, 6, 5];
 const totalSum = chartData.reduce((acc, curr) => acc + curr, 0);
 
 export const demoFirst = {
   series: [
     {
       name: "Каршида",
-      data: [56, 5, 18, 19, 18, 35, 5, 3, 6, 67],
+      data: [43, 3, 11, 13, 6, 39, 13, 2, null, 60],
     },
     {
       name: "Нишонда",
-      data: [21, 7, null, null, 1, 4, 2, null, null, 7],
+      data: [21, null, 7, null, 1, 4, 1, null, null, 6],
     },
   ],
   options: {
@@ -150,7 +150,7 @@ export const chartFirst = {
     },
   },
 };
-const chartDataSecond = [38, 0, 17, 14, 7];
+const chartDataSecond = [45, 0, 22, 19, 12];
 const totalSumSecond = chartDataSecond.reduce((acc, curr) => acc + curr, 0);
 export const chartSecond = {
   series: [
@@ -228,7 +228,7 @@ export const chartThree = {
   series: [
     {
       name: "Soni",
-      data: [0, null, 19, 79, null],
+      data: [0, 0, 49, 101, 0],
     },
   ],
   options: {
@@ -260,7 +260,7 @@ export const chartThree = {
         "Автомобиловоз ",
         "Ярим очиқ вагон",
         "Цистерна ",
-        "Фитинг ",
+        "Бошка турдаги вагонлар ",
       ],
       position: "top",
       axisBorder: {
@@ -287,7 +287,7 @@ export const chartThree = {
     },
 
     title: {
-      text: "Мукаммал таъмир, Жами " + 98 + "та",
+      text: "Мукаммал таъмир, Жами " + 150 + "та",
 
       style: {
         color: "#444",
@@ -299,7 +299,7 @@ export const chartFour = {
   series: [
     {
       name: "Soni",
-      data: [1, null, 12, null],
+      data: [0, 0, 0, 14, 1],
     },
   ],
   options: {
@@ -332,7 +332,7 @@ export const chartFour = {
         "Автомобиловоз ",
         "Ярим очиқ вагон",
         "Цистерна ",
-        "Фитинг ",
+        "Бошка турдаги вагонлар ",
       ],
       position: "top",
       axisBorder: {
@@ -371,7 +371,7 @@ export const chartFive = {
   series: [
     {
       name: "Soni",
-      data: [2, null, 3, 55, 10],
+      data: [2, 0, 6, 60, 24],
     },
   ],
   options: {
@@ -404,7 +404,7 @@ export const chartFive = {
         "Автомобиловоз ",
         "Ярим очиқ вагон",
         "Цистерна ",
-        "Фитинг ",
+        "Бошка турдаги вагонлар",
       ],
       position: "top",
       axisBorder: {
@@ -431,7 +431,79 @@ export const chartFive = {
     },
 
     title: {
-      text: "Депо таъмири, Жами " + 70 + "та",
+      text: "Депо таъмири, Жами " + 92 + "та",
+
+      style: {
+        color: "#444",
+      },
+    },
+  },
+};
+export const chartSix = {
+  series: [
+    {
+      name: "Soni",
+      data: [16, 0, 2, 7, 0],
+    },
+  ],
+  options: {
+    chart: {
+      height: 350,
+      type: "bar",
+    },
+    colors: ["#FEB019"],
+    plotOptions: {
+      bar: {
+        borderRadius: 10,
+        color: "green",
+        dataLabels: {
+          position: "top", // top, center, bottom
+        },
+      },
+    },
+    dataLabels: {
+      offsetY: -20,
+
+      style: {
+        fontSize: "12px",
+        colors: ["#304758"],
+      },
+    },
+
+    xaxis: {
+      categories: [
+        "Ёпиқ вагон",
+        "Автомобиловоз ",
+        "Ярим очиқ вагон",
+        "Цистерна ",
+        "Бошка турдаги вагонлар ",
+      ],
+      position: "top",
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      crosshairs: {
+        fill: {
+          type: "gradient",
+          gradient: {
+            colorFrom: "#D8E3F0",
+            colorTo: "#BED1E6",
+            stops: [0, 100],
+            opacityFrom: 0.4,
+            opacityTo: 0.5,
+          },
+        },
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+
+    title: {
+      text: "Капитал таъмир, Жами " + 25 + "та",
 
       style: {
         color: "#444",

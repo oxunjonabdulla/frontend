@@ -19,6 +19,7 @@ import {
   chartFour,
   chartSecond,
   chartThree,
+  chartSix,
   demoFirst,
 } from "../utils/chartData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,25 +33,25 @@ import { faThinkPeaks } from "@fortawesome/free-brands-svg-icons";
 const topInfoData = [
   {
     title: "Inventar vagonlar soni",
-    numberCnt: 2,
+    numberCnt: 164,
     icon: faPersonDigging,
     bgColor: "linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%)",
   },
   {
     title: "Qabul qilingan va chiqarilgan vagonlar soni",
-    numberCnt: 170,
+    numberCnt: 188,
     icon: faBook,
     bgColor: "linear-gradient(135deg, #2AFADF 10%, #4C83FF 100%)",
   },
   {
     title: "Nosoz vagonlar soni",
-    numberCnt: 180,
+    numberCnt: 185,
     icon: faBookOpenReader,
     bgColor: "linear-gradient(135deg, #FFD3A5 10%, #FD6585 100%)",
   },
   {
     title: "Buyruq asosida ta’mirlangan vagonlar soni",
-    numberCnt: 47,
+    numberCnt: 0,
     icon: faThinkPeaks,
     bgColor: "linear-gradient(135deg, #EE9AE5 10%, #5961F9 100%)",
   },
@@ -304,7 +305,7 @@ export const HomePage = () => {
       <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
         2024 йил хозирги кунгача Қарши вагон депосида таъмирланган вагонлар
         <br />
-        Жами: 119
+        Жами: 188
       </Heading>
 
       <Flex gap={6}>
@@ -332,18 +333,34 @@ export const HomePage = () => {
         >
           <Chart
             type="bar"
+            options={chartSix.options}
+            series={chartSix.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="bar"
             options={chartSecond.options}
             series={chartSecond.series}
             width="100%"
             height="100%"
           />
         </Card>
+        
       </Flex>
       <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
         2024 йил хозирги кунгача Қарши вагон депосида таъмирланган бошқа
         ташкилот вагонлар
         <br />
-        Жами: 181
+        Жами: 257
       </Heading>
 
       <Flex gap={6}>
