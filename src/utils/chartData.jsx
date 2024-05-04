@@ -359,7 +359,7 @@ export const chartFour = {
     },
 
     title: {
-      text: "Капитал таъмир, Жами " + 13 + "та",
+      text: "Капитал таъмир, Жами " + 15 + "та",
 
       style: {
         color: "#444",
