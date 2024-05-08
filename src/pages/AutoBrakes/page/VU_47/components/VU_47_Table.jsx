@@ -21,12 +21,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-  faDownload,
-  faPenToSquare,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { imageGet } from "../../../../../utils/imageGet";
-const VU_47_table = () => {
+const VU_47_Table = () => {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
@@ -189,4 +187,4 @@ const VU_47_table = () => {
   );
 };
 
-export default VU_47_table;
+export default VU_47_Table;

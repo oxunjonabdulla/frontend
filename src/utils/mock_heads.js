@@ -65,19 +65,42 @@ export const routersSidebar = [
 
   {
     isWork: false,
+    label: "Aravalar bo‘linmasi",
+    path: "/carriage-unit",
+    type: "drop",
+    icon: Aravalar,
+    role: "cartuser",
+    accordItems: [
+      {
+        label: "Bugungi ta'mir",
+        path: "",
+      },
+      // {
+      //   label: "VU-22",
+      //   path: "/vu-22",
+      // },
+      {
+        label: "ФРАЗА",
+        path: "/fraza",
+      },
+
+      {
+        label: "VU-32",
+        path: "/vu-32",
+      },
+      {
+        label: "Кириш ва чиқиш далолатномаси",
+        path: "/entry-exit-control",
+      },
+    ],
+  },
+  {
+    isWork: false,
     label: "Avtobirikma bo‘linmasi",
     path: "/automobile-unit",
     type: "link",
     icon: Avtobirikma,
     role: "avtoconnectoruser",
-  },
-  {
-    isWork: false,
-    label: "Aravalar bo‘linmasi",
-    path: "/carriage-unit",
-    type: "link",
-    icon: Aravalar,
-    role: "cartuser",
   },
   {
     isWork: false,

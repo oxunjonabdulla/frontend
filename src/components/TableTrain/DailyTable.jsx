@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import ReactSimpleImageViewer from "react-simple-image-viewer";
 import { SimpleLoader } from "../TrainLoader/SimpleLoader";
@@ -55,7 +55,6 @@ const columnMockShort = [
   },
 ];
 export const DailyTable = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isTdOption, setTdOption] = useState(0);
@@ -64,14 +63,6 @@ export const DailyTable = () => {
   const [isTdOptionEnter, setTdOptionEnter] = useState(0);
 
   const { data } = useSelector(({ dailyToday }) => dailyToday);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const openImageViewer = useCallback((index, idxSec) => {
     setCurrentImage(index);
@@ -89,7 +80,7 @@ export const DailyTable = () => {
     setIsViewerOpen(false);
   };
 
-  return !isLoading ? (
+  return data ? (
     <Box
       as="div"
       bg={"#ffff"}

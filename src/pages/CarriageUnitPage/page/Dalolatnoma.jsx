@@ -24,14 +24,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
-import { carriage_dalolatnoma_head } from "../../utils/mock_heads";
-import { Auto_dalolatnoma_model } from "./Modals/AutoDalolatnoma/Auto_dalolatnoma_model";
-import UserApi from "../../Service/module/userModule.api";
+import { SliderMock } from "@/utils";
+import { carriage_dalolatnoma_head } from "@/utils/mock_heads";
+import { Auto_dalolatnoma_model } from "./modal/AutoDalolatnoma/Auto_dalolatnoma_model";
+import UserApi from "@/Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
-import { Orqa } from "./Modals/AutoDalolatnoma/Orqa";
-import { ShowBack } from "./Modals/AutoDalolatnoma/ShowBack";
+import { Orqa } from "./modal/AutoDalolatnoma/Orqa";
+import { ShowBack } from "./modal/AutoDalolatnoma/ShowBack";
 
 export const CarriageDalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();

@@ -12,12 +12,10 @@ export * from "./Blanka/VU_93";
 export * from "./Blanka/VU_10";
 export * from "../pages/StatistikaPage/page/Fraza";
 export * from "./Blanka/Fraza_wheel";
-export * from "./Blanka/Fraza_carriunit";
 
 export * from "./Blanka/Dalolatnoma";
 export * from "./Deletete";
 export * from "./Blanka/Auto_dalolatnoma";
-export * from "./Blanka/Carriage_dalolatnoma";
 export * from "./PtoServices/PtoOperator";
 export * from "./ArchiveStatisticks/FindText";
 export * from "./TableTrain/DailyTable";

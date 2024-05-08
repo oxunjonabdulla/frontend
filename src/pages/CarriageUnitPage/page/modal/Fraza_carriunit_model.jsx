@@ -27,10 +27,10 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../utils";
-import { Signatur } from "../../Signature/Signatur";
-import UserApi from "../../../Service/module/userModule.api";
-import { mockHeaderCarriage } from "../../../utils/mock_heads";
+import { SearchTrain } from "../../../../utils";
+import { Signatur } from "../../../../components/Signature/Signatur";
+import UserApi from "../../../../Service/module/userModule.api";
+import { mockHeaderCarriage } from "../../../../utils/mock_heads";
 
 export const Fraza_carriage_model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);

@@ -25,7 +25,9 @@ export * from "./AutoBrakes/page/RegisterRukvas/RegisterRukvas";
 export * from "./AutoBrakes/page/RegisterRukvas/RukvaCreatte";
 
 export * from "./AutomobileUnit";
-export * from "./CarriageUnit";
+export * from "./CarriageUnitPage/CarriageUnit";
+export * from "./CarriageUnitPage/page/Dalolatnoma";
+export * from "./CarriageUnitPage/page/FrazaCarriage";
 export * from "./Defectoscopes";
 export * from "./EquipmentUnit";
 export * from "./PtoPage/PtoUnit";

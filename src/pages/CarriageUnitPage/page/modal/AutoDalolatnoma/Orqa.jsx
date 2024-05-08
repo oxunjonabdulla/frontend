@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import UserApi from "../../../../Service/module/userModule.api";
+import UserApi from "@/Service/module/userModule.api";
 import { useState } from "react";
 export const Orqa = ({ isOpen, onClose, carriageID }) => {
   const [isLoading, setLoading] = useState(false);

@@ -20,6 +20,8 @@ export const RouteNames = {
   EQUIPMENT_UNIT: "/equipment-unit",
   DEFECTOSCOPES: "/defectoscopes",
   CARRIAGE_UNIT: "/carriage-unit",
+  CARRIAGE_UNIT_FRAZA: "/carriage-unit/fraza",
+  CARRIAGE_UNIT_DEED: "/carriage-unit/entry-exit-control",
   PRO_UNIT: "/pto-unit",
   LOGIN: "/login",
   WHEEL_PAIRS: "/wheel-pairs",

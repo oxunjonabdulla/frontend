@@ -36,6 +36,8 @@ import {
   VU_47_Create,
   RukvaCreate,
   RegisterRegularCreate,
+  FrazaCarriage,
+  CarriageDalolatnoma,
 } from "../pages";
 import {
   CollectUser,
@@ -252,6 +254,14 @@ export const routes = [
           />
         ),
         path: RouteNames.CARRIAGE_UNIT,
+        children: [
+          { element: <DailyTable />, index: true },
+          { element: <FrazaCarriage />, path: RouteNames.CARRIAGE_UNIT_FRAZA },
+          {
+            element: <CarriageDalolatnoma />,
+            path: RouteNames.CARRIAGE_UNIT_DEED,
+          },
+        ],
       },
 
       {

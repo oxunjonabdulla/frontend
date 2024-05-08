@@ -25,15 +25,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
-import { mockHeaderCarriage } from "../../utils/mock_heads";
-import UserApi from "../../Service/module/userModule.api";
+import { SliderMock } from "@/utils";
+import { mockHeaderCarriage } from "@/utils/mock_heads";
+import UserApi from "@/Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
-import { Deleteted } from "../Deletete";
-import { imageGet } from "../../utils/imageGet";
-import { Fraza_carriage_model } from "./FrazaCart/Fraza_carriunit_model";
+import { imageGet } from "@/utils/imageGet";
+import { Deleteted } from "../../../components";
+import { Fraza_carriage_model } from "./modal/Fraza_carriunit_model";
 
-export const Fraza_carriunit = () => {
+export const FrazaCarriage = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -356,12 +356,12 @@ export const Fraza_carriunit = () => {
         deletedFunction={handleDelate}
       />
       {/* {updateOpen && (
-        <Fraza_wheel_update
-          updatedData={updatedData}
-          isOpen={updateOpen}
-          onClose={setUpdateOpen}
-        />
-      )} */}
+          <Fraza_wheel_update
+            updatedData={updatedData}
+            isOpen={updateOpen}
+            onClose={setUpdateOpen}
+          />
+        )} */}
       <Fraza_carriage_model isOpen={isOpen} onClose={onClose} />
     </Box>
   );
