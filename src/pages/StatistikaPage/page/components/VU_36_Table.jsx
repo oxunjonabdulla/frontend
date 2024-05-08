@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Divider, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { timeClear } from "@/utils/timeClear";
 import { vu_36 } from "@/utils/mock_heads";
-const VU_36_Table = memo(function VU_36_Table({ gettingData }) {
+const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
   return (
     <Table
       borderRadius={10}
@@ -25,7 +25,7 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData }) {
       <Tbody>
         {gettingData?.results?.map((item, idx) => (
           <Tr key={idx}>
-            <Td>{idx + 1}</Td>
+            <Td>{currentPage * 10 + idx + 1}</Td>
             <Td fontWeight={700} color={"green.900"}>
               {item.carriage}
             </Td>

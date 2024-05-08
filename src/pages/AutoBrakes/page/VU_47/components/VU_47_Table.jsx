@@ -1,8 +1,8 @@
-import { memo, useEffect, useState } from "react";
 import {
   Button,
   Flex,
   Image,
+  Img,
   Table,
   Tbody,
   Td,
@@ -12,9 +12,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-import PropTypes from "prop-types";
-import { register_breakes_silindir } from "@/utils/mock_heads";
 import UserApi from "../../../../../Service/module/userModule.api";
+import { vu_47 } from "@/utils/mock_heads";
+import { useEffect, useState } from "react";
+import { Deleteted, SimpleLoader } from "../../../../../components";
+import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -24,12 +26,9 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { imageGet } from "../../../../../utils/imageGet";
-import { Deleteted, SimpleLoader } from "../../../../../components";
-import ReactPaginate from "react-paginate";
-const RegisterBrakesTable = memo(function RegisterBrakesTable() {
+const VU_47_table = () => {
   const [isLoadingData, setIsLoading] = useState(true);
-  const [deletedData, setDeletedData] = useState(null);
-
+  const [deletedData, setDeletedData] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
 
@@ -45,20 +44,19 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
   };
 
   const handleDelateFunction = async (carriageID) => {
-    const { response } = await new UserApi().deleteRezervuar(carriageID);
+    const { response } = await new UserApi().deleteVu47(carriageID);
     if (response) {
       window.location.reload();
     }
   };
 
-  console.log(deletedData);
   useEffect(() => {
     const fetchData = async () => {
       const paramsPage = {
         page: currentPage + 1,
       };
       setIsLoading(true);
-      const { response } = await new UserApi().getRezervuar(paramsPage);
+      const { response } = await new UserApi().getVu47(paramsPage);
       if (response) {
         setIsLoading(false);
         setGettingData(response?.data);
@@ -68,9 +66,7 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
   }, [currentPage]);
   return (
     <>
-      {isLoadingData ? (
-        <SimpleLoader />
-      ) : (
+      {!isLoadingData ? (
         <Table
           borderRadius={10}
           size={"sm"}
@@ -78,10 +74,11 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
           variant={"striped"}
           overflow={"hidden"}
           colorScheme="blackAlpha"
+          shadow={"lg"}
         >
           <Thead bg={"#0c6170"} rounded={10}>
             <Tr>
-              {register_breakes_silindir?.map((item) => (
+              {vu_47?.headers?.map((item) => (
                 <Th
                   fontSize={"10px"}
                   textAlign={"center"}
@@ -92,25 +89,43 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
                   {item.label}
                 </Th>
               ))}
+              <Th rowSpan={2}></Th>
+            </Tr>
+            <Tr>
+              {vu_47?.nestedHeaders?.map((item, idx) => (
+                <Th
+                  fontSize={"10px"}
+                  key={idx}
+                  textAlign={"center"}
+                  rowSpan={item.rowspan}
+                  colSpan={item.colspan}
+                >
+                  {item?.isImg ? (
+                    <Img src={item?.label} w={"80%"} mx={"auto"} />
+                  ) : (
+                    item?.label
+                  )}
+                </Th>
+              ))}
             </Tr>
           </Thead>
 
           <Tbody>
             {gettingData?.results?.map((item, idx) => (
-              <Tr key={item.carriage}>
+              <Tr key={item.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
-                <Td>{item.rezervuar_date}</Td>
-                <Td color={"teal.600"} fontWeight={700}>
-                  {item.carriage}
-                </Td>
-                <Td>{item.repair_type}</Td>
-                <Td>{item.spare_sum}</Td>
-                <Td>{item.water_gass}</Td>
-                <Td>{item.rapair_roll}</Td>
-                <Td>{item.check_gass_2}</Td>
-                <Td>{item.last_jumfrk_type_2}</Td>
-                <Td>{item.check_gass_3}</Td>
-                <Td>{item.check_result}</Td>
+                <Td>{item.carriage}</Td>
+                <Td>{item.date}</Td>
+                <Td>{item.device_type}</Td>
+                <Td>{item.serial_number}</Td>
+                <Td>{item.charging_time_12}</Td>
+                <Td>{item.charging_time_40}</Td>
+                <Td>{item.slow_release_through_calibrated_orifices}</Td>
+                <Td>{item.brake_cylinder_fill_time}</Td>
+                <Td>{item.cylinder_pressure_empty}</Td>
+                <Td>{item.cylinder_pressure_normal}</Td>
+                <Td>{item.cylinder_pressure_full}</Td>
+                <Td>{item.release_time_to_04}</Td>
 
                 <Td>
                   <Image
@@ -118,38 +133,10 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
                     src={imageGet(item?.author_info?.user_signature_url)}
                   />
                 </Td>
-                <Td>
-                  <Image
-                    width={"100px"}
-                    src={imageGet(item?.author_info?.user_signature_url)}
-                  />
-                </Td>
+                <Td>{item.acceptor_signature}</Td>
                 <Td>
                   {" "}
                   <Flex gap={2} m={0}>
-                    <Button
-                      float={"right"}
-                      borderColor={"blue.400"}
-                      colorScheme="teal"
-                      bgColor={"blue.400"}
-                      minW={"30px"}
-                      p={0}
-                      _hover={{ bgColor: "blue.400", opacity: "0.7" }}
-                    >
-                      <FontAwesomeIcon icon={faDownload} />
-                    </Button>
-                    <Button
-                      float={"right"}
-                      borderColor={"green.400"}
-                      colorScheme="teal"
-                      bgColor={"green.400"}
-                      p={0}
-                      minW={"30px"}
-                      _hover={{ bgColor: "green.500", opacity: "0.7" }}
-                      // onClick={() => handleUpdate(item)}
-                    >
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                    </Button>
                     <Button
                       float={"right"}
                       borderColor={"red"}
@@ -157,8 +144,8 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
                       colorScheme="teal"
                       bgColor={"red"}
                       p={0}
-                      onClick={() => handleDelete(item?.carriage)}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
+                      onClick={() => handleDelete(item?.id)}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </Button>
@@ -168,7 +155,10 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
             ))}
           </Tbody>
         </Table>
+      ) : (
+        <SimpleLoader />
       )}
+
       <Deleteted
         isOpen={isOpen}
         onClose={onClose}
@@ -197,10 +187,6 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
       ) : null}
     </>
   );
-});
-
-RegisterBrakesTable.propTypes = {
-  gettingData: PropTypes.object,
 };
 
-export default RegisterBrakesTable;
+export default VU_47_table;

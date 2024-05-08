@@ -8,7 +8,7 @@ export const RegisterRazobshitel = () => {
       title="Razobshitelniy va so'ngi jumraklarni ro‘yxatga olish jurnali"
       path="/auto-brakes/register-rozobshitel/create"
     >
-      <TableContainer p={4} border={"1px solid #eeeee"} shadow={"lg"}>
+      <TableContainer p={4} border={"1px solid #eeeee"}>
         <RegisterRazobshitelTable />
       </TableContainer>
     </MainHeads>

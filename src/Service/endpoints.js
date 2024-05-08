@@ -23,8 +23,16 @@ const authEndpoints = {
   razobKranPost: (carriageID) => `/razobkran/${carriageID}/`,
 
   rezervuarGet: `/rezervuar/list/`,
-
   rezervuarPost: (carriageID) => `/rezervuar/${carriageID}/`,
+  // Rukva
+
+  rukvaGet: `/rukva/list/`,
+  rukvaPost: (carriageID) => `/rukva/${carriageID}/`,
+  // Regular
+
+  regularGet: `/regulyator/list/`,
+  regularPost: (carriageID) => `/regulyator/${carriageID}/`,
+
   // phrase
   collectActGetAll: `/collectact/list/`,
   collectActPostFront: (carriageID) => `/${carriageID}/collect/act/front/`,
@@ -76,6 +84,10 @@ const authEndpoints = {
   // vu_36
   vu36All: (page) => `/vu36/list/?page=${page + 1}`,
   vu36: (carriageID) => `/vu36/${carriageID}/`,
+
+  vu47All: `/vu47/list/`,
+
+  vu47: (carriageID) => `/vu47/${carriageID}/`,
 
   // vu 50
   vu50: (carriageID) => `/vu50/${carriageID}/`,

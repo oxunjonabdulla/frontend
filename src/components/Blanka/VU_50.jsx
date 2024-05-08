@@ -125,7 +125,7 @@ export const VU_50 = () => {
               <Tbody>
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item?.id}>
-                    <Td>{idx + 1}</Td>
+                    <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td fontWeight={700} color={"green.900"}>
                       {item?.carriage}
                     </Td>

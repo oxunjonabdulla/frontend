@@ -101,7 +101,7 @@ export const VU_36 = () => {
               <Spinner color="green" size={"xl"} />
             </Box>
           )}
-          <VU_36_Table gettingData={memoData} />
+          <VU_36_Table gettingData={memoData} currentPage={currentPage} />
           <ReactPaginate
             pageCount={Math.ceil(
               (gettingData?.count ? gettingData?.count : 0) / 10

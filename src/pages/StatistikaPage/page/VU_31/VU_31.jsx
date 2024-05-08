@@ -99,7 +99,7 @@ export const VU_31 = () => {
             </Box>
           )}
 
-          <VU_31_Table gettingData={memoData} />
+          <VU_31_Table gettingData={memoData} currentPage={currentPage} />
 
           <ReactPaginate
             pageCount={Math.ceil((memoData?.count ? memoData?.count : 0) / 10)}

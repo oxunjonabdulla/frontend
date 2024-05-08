@@ -31,7 +31,6 @@ import { Deleteted } from "../../../../../components";
 const RegisterRazobshitelTable = memo(function RegisterRazobshitelTable() {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(true);
-  console.log(deletedData);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
 
@@ -97,7 +96,7 @@ const RegisterRazobshitelTable = memo(function RegisterRazobshitelTable() {
           <Tbody>
             {gettingData?.results?.map((item, idx) => (
               <Tr key={item.carriage}>
-                <Td>{idx + 1}</Td>
+                <Td>{currentPage * 10 + idx + 1}</Td>
                 <Td>{item.razabshitel_date}</Td>
                 <Td>{item.carriage}</Td>
                 <Td>{item.repair_type}</Td>

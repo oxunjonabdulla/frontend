@@ -89,10 +89,10 @@ export const routersSidebar = [
         label: "Bugungi ta'mir",
         path: "",
       },
-      {
-        label: "VU-22",
-        path: "/vu-22",
-      },
+      // {
+      //   label: "VU-22",
+      //   path: "/vu-22",
+      // },
       {
         label: "VU-47 Jurnali",
         path: "/vu-47",
@@ -119,7 +119,7 @@ export const routersSidebar = [
         path: "/register-rukvas",
       },
       {
-        label: "Кириш ва чиқиш назорати",
+        label: "Чиқиш",
         path: "/entry-exit-control",
       },
     ],
@@ -159,6 +159,38 @@ export const register_razobshitel = [
   { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 " },
   { label: "Tekshiruv  xulosasi " },
   { label: "Ta'mirlovchini imzosi" },
+  { label: "Qabulqiluvchi imzosi" },
+  { label: "" },
+];
+export const register_rukva = [
+  { label: "T/R" },
+  { label: "Sana" },
+  { label: "Vagon nomeri" },
+  { label: "Ulanish rukva markasi" },
+  { label: "Ulanish rukva markasi" },
+  { label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2" },
+  { label: "Ushlab turish vaqti 10 daqiqa" },
+  { label: "Suv bilan tekshiruvi 12-0.2 kgs/sm2" },
+  { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa" },
+  { label: "Ta'mirlovchini" },
+  { label: "Qabulqiluvchi imzosi" },
+  { label: "" },
+];
+export const register_rehulyator = [
+  { label: "T/R" },
+  { label: "Sana" },
+  { label: "Vagon nomeri" },
+  { label: "5746, PTPП 675, PTPП 675M, РТРП 300 turi 10" },
+  { label: "Zavod raqami" },
+  { label: "4,0-4,2 kgs/sm2 tekshirish" },
+  { label: "«A»> 5746, PTPП 675, PTPN 675M, PTPN 300 90-110 MM " },
+  {
+    label:
+      "«<a>> 5745, PTPN 675, PTPN 675M 300-350 MM РТРП 300 100-150 MM gacha",
+  },
+  { label: "5746 5-7 MM, PTPП 675, PTPN 675M 7-20 MM PTPN 300 5-10 MM gacha" },
+  { label: "Texnik xolati " },
+  { label: "Ta'mirlovchini" },
   { label: "Qabulqiluvchi imzosi" },
   { label: "" },
 ];

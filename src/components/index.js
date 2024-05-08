@@ -13,7 +13,7 @@ export * from "./Blanka/VU_10";
 export * from "../pages/StatistikaPage/page/Fraza";
 export * from "./Blanka/Fraza_wheel";
 export * from "./Blanka/Fraza_carriunit";
-export * from "./Blanka/VU_47";
+
 export * from "./Blanka/Dalolatnoma";
 export * from "./Deletete";
 export * from "./Blanka/Auto_dalolatnoma";

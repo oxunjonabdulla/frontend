@@ -122,7 +122,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
           <Tbody>
             {gettingData?.results?.map((item, idx) => (
               <Tr key={item.carriage}>
-                <Td>{idx + 1}</Td>
+                <Td>{currentPage * 10 + idx + 1}</Td>
                 <Td>{item.repair_date}</Td>
                 <Td>{item.automode_type}</Td>
                 <Td>{item.repair_type}</Td>

@@ -33,6 +33,9 @@ import {
   RegisterAutoCreate,
   RegisterRazobshitelCreate,
   RegisterBrakesCreate,
+  VU_47_Create,
+  RukvaCreate,
+  RegisterRegularCreate,
 } from "../pages";
 import {
   CollectUser,
@@ -143,7 +146,17 @@ export const routes = [
           { element: <DailyTable />, index: true },
 
           { element: <VU_22 />, path: RouteNames.VU_22 },
-          { element: <VU_47 />, path: RouteNames.VU_47 },
+          {
+            element: <Outlet />,
+            path: RouteNames.VU_47,
+            children: [
+              { element: <VU_47 />, index: true },
+              {
+                element: <VU_47_Create />,
+                path: RouteNames.CREATE(RouteNames.VU_47),
+              },
+            ],
+          },
           {
             element: <Outlet />,
             path: RouteNames.REGISTER_AUTO,
@@ -155,8 +168,34 @@ export const routes = [
               },
             ],
           },
-          { element: <RegisterRegular />, path: RouteNames.REGISTER_REGULAR },
-          { element: <RegisterRukvas />, path: RouteNames.REGISTER_RUKVAS },
+          {
+            element: <Outlet />,
+            path: RouteNames.REGISTER_REGULAR,
+            children: [
+              {
+                element: <RegisterRegular />,
+                index: true,
+              },
+              {
+                element: <RegisterRegularCreate />,
+                path: RouteNames.CREATE(RouteNames.REGISTER_REGULAR),
+              },
+            ],
+          },
+          {
+            element: <Outlet />,
+            path: RouteNames.REGISTER_RUKVAS,
+            children: [
+              {
+                element: <RegisterRukvas />,
+                index: true,
+              },
+              {
+                element: <RukvaCreate />,
+                path: RouteNames.CREATE(RouteNames.REGISTER_RUKVAS),
+              },
+            ],
+          },
           {
             element: <Outlet />,
             path: RouteNames.REGISTER_RAZOBSHITEL,

@@ -138,7 +138,7 @@ export const VU_92 = () => {
                 {gettingData?.results.map((item, idx) => (
                   <Tr key={item.id}>
                     <Td textAlign={"center"} fontSize={"lg"}>
-                      {idx + 1}
+                      {currentPage * 10 + idx + 1}
                     </Td>
                     <Td>{item?.inspection_date}</Td>
                     <Td fontWeight={700}>{item?.carriage}</Td>

@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   Heading,
+  Image,
   Table,
   TableContainer,
   Tbody,
@@ -28,6 +29,7 @@ import { VU_68_Model } from "./Modals/VU_68_Model";
 import { vu_68 } from "../../utils/mock_heads";
 import ReactPaginate from "react-paginate";
 import UserApi from "../../Service/module/userModule.api";
+import { imageGet } from "../../utils/imageGet";
 
 export const VU_68 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -121,7 +123,7 @@ export const VU_68 = () => {
               <Tbody>
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item?.id}>
-                    <Td>{idx + 1}</Td>
+                    <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td fontWeight={700} color={"green.900"}>
                       {item?.carriage}
                     </Td>
@@ -134,28 +136,17 @@ export const VU_68 = () => {
                     <Td>{item?.medium}</Td>
                     <Td>{item?.not_cargo}</Td>
                     <Td>{item?.air_test_date}</Td>
+                    <Td>
+                      <Image
+                        width={"100px"}
+                        src={imageGet(item?.author_info?.user_signature_url)}
+                      />
+                    </Td>
+                    <Td></Td>
                   </Tr>
                 ))}
               </Tbody>
             </Table>
-            <ReactPaginate
-              pageCount={Math.ceil(
-                (gettingData?.count ? gettingData?.count : 0) / 10
-              )}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={handlePageClick}
-              containerClassName="pagination"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              activeClassName="active"
-              previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-              nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-            />
           </TableContainer>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
@@ -176,7 +167,24 @@ export const VU_68 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-
+      <ReactPaginate
+        pageCount={Math.ceil(
+          (gettingData?.count ? gettingData?.count : 0) / 10
+        )}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
       <VU_68_Model onClose={onClose} isOpen={isOpen} />
     </Box>
   );

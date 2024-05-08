@@ -283,6 +283,38 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+
+  //vu-47
+  async getVu47(page) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu47All, {
+        params: page,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu47(id, obj) {
+    try {
+      const response = await privateInstance.post(authEndpoints.vu47(id), obj);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu47(id) {
+    try {
+      const response = await privateInstance.delete(authEndpoints.vu47(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
   // vu 50 model
   async getVu50(page) {
     try {
@@ -711,7 +743,77 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  //Rukva
+  // rezuvuar
+  async getRukva(paramObj) {
+    try {
+      const response = await privateInstance.get(authEndpoints.rukvaGet, {
+        params: paramObj,
+      });
 
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postRukva(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.rukvaPost(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteRukva(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.rukvaPost(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  // Regular
+  async getRegulyator(paramObj) {
+    try {
+      const response = await privateInstance.get(authEndpoints.regularGet, {
+        params: paramObj,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postRegulyator(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.regularPost(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteRegulyator(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.regularPost(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   // dalolatnoma
 
   async postAravaActFront(carriageId, obj) {

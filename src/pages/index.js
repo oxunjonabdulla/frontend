@@ -12,14 +12,18 @@ export * from "./AutoBrakes/AutoBrakes";
 export * from "./AutoBrakes/page/RegisterAuto/RegisterAuto";
 export * from "./AutoBrakes/page/RegisterAuto/RegisterAutoCreate";
 export * from "./AutoBrakes/page/RegisterRegular/RegisterRegular";
+export * from "./AutoBrakes/page/RegisterRegular/RegisterRegularCreate";
 export * from "./AutoBrakes/page/VU_22/VU_22";
 export * from "./AutoBrakes/page/VU_47/VU_47";
+export * from "./AutoBrakes/page/VU_47/VU_47_Create";
 export * from "./AutoBrakes/page/EntryExit/EntryExit";
 export * from "./AutoBrakes/page/RegisterBrakes/RegisterBrakes";
 export * from "./AutoBrakes/page/RegisterBrakes/RegisterBrakesCreate";
 export * from "./AutoBrakes/page/RegisterRazobshitel/RegisterRazobshitel";
 export * from "./AutoBrakes/page/RegisterRazobshitel/RegisterRazobshitelCreate";
 export * from "./AutoBrakes/page/RegisterRukvas/RegisterRukvas";
+export * from "./AutoBrakes/page/RegisterRukvas/RukvaCreatte";
+
 export * from "./AutomobileUnit";
 export * from "./CarriageUnit";
 export * from "./Defectoscopes";

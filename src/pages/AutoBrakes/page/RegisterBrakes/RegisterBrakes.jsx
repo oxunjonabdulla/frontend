@@ -8,7 +8,7 @@ export const RegisterBrakes = () => {
       title="Rezervuar, tormoz silindr va ishchi kameralarni ro‘yxatga olish kitobi"
       path="/auto-brakes/register-brake-silindir/create"
     >
-      <TableContainer p={4} border={"1px solid #eeeee"} shadow={"lg"}>
+      <TableContainer p={4} border={"1px solid #eeeee"}>
         <RegisterBrakesTable />
       </TableContainer>
     </MainHeads>

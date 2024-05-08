@@ -130,7 +130,7 @@ export const Dalolatnoma = () => {
               <Tbody>
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item.carriage}>
-                    <Td>{idx + 1}</Td>
+                    <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td fontWeight={700}>{item.carriage}</Td>
                     <Td>{item?.front_detail?.created_act_date}</Td>
                     <Td>{item?.front_detail?.train_number_act}</Td>

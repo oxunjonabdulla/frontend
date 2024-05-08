@@ -196,7 +196,7 @@ export const PtoArxiv = ({ deleateCarriage }) => {
             {gettingCarriageData?.results &&
               gettingCarriageData?.results?.map((item, index) => (
                 <Tr key={index}>
-                  <Td>{index + 1}</Td>
+                  <Td>{currentPage * 10 + index + 1}</Td>
                   <Td color={"green.800"} fontWeight={"800"}>
                     <Link
                       to={`/pto-unit/carriage-${item.carriage_number}`}

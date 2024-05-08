@@ -134,7 +134,7 @@ export const AutoDalolatnoma = () => {
               <Tbody>
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item.carriage}>
-                    <Td>{idx + 1}</Td>
+                    <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td fontWeight={700}>{item.carriage}</Td>
                     <Td>{item?.front_detail.auto_number_1}</Td>
                     <Td>{item?.front_detail.auto_number_2}</Td>

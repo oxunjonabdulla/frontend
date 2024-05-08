@@ -200,7 +200,7 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
               {gettingData &&
                 gettingData?.results?.map((item, idx) => (
                   <Tr key={item.id} fontWeight={500}>
-                    <Td>{idx + 1}</Td>
+                    <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td color={"green.800"} fontWeight={"800"}>
                       {item.carriage_number}
                     </Td>

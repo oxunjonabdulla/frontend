@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { VU_31_Update } from "./VU_31_Update";
 import PropTypes from "prop-types";
-const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
+const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
 
   const {
@@ -72,7 +72,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
         <Tbody>
           {gettingData?.results?.map((item, idx) => (
             <Tr key={item.carriage}>
-              <Td>{idx + 1}</Td>
+              <Td>{currentPage * 10 + idx + 1}</Td>
               <Td fontWeight={700} color={"green.900"}>
                 {item.carriage_number}
               </Td>
@@ -168,6 +168,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData }) {
 
 VU_31_Table.propTypes = {
   gettingData: PropTypes.object,
+  currentPage: PropTypes.number,
 };
 
 export default VU_31_Table;

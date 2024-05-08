@@ -8,7 +8,7 @@ export const RegisterAuto = () => {
       title="Avtorejimlarni ro‘yxatga olish"
       path="/auto-brakes/register-auto/create"
     >
-      <TableContainer p={4} border={"1px solid #eeeee"} shadow={"lg"}>
+      <TableContainer p={4} border={"1px solid #eeeee"}>
         <RegisterAutoTables />
       </TableContainer>
     </MainHeads>

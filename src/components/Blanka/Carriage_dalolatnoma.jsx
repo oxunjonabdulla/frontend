@@ -134,7 +134,7 @@ export const CarriageDalolatnoma = () => {
               <Tbody>
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item.carriage}>
-                    <Td>{idx + 1}</Td>
+                    <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td fontWeight={700}>{item.carriage}</Td>
                     <Td>{item?.front_detail.yon_raqam_1}</Td>
                     <Td>{item?.front_detail.yon_raqam_2}</Td>
