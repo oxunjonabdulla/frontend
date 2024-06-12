@@ -194,7 +194,6 @@ export const AccaptedTable = ({ data }) => {
                   {idx + 1}
                 </Td>
                 <Td textAlign={"center"} colSpan={19} fontWeight={700}>
-                  {item?.carriage}
                   {item?.carriage} raqami uchun vagon ishi tugallanmagan
                   ma`lumot joylash uchun vagon raqami orqali quyish bolimini
                   to`ldiring.

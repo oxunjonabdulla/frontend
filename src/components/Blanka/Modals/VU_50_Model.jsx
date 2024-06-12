@@ -11,30 +11,35 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
-import { SearchTrain } from "../../../utils";
+import { FormWheel } from "./FormWheel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 export const VU_50_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "wheel_pair",
+  });
 
   const onSubmit = async (data) => {
+    console.log(data);
     setLoading(true);
 
-    const { response, error } = await new UserApi().postVu50(
-      serachingResult,
-      data
-    );
+    const { response, error } = await new UserApi().postVu50(data);
     setLoading(false);
     if (response) {
       toast({
@@ -80,8 +85,6 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <SearchTrain setSerachingResult={setSerachingResult} />
-
               <FormControl isInvalid={errors?.referral_number}>
                 <FormLabel>Yo‘naltirish varaqasi raqami </FormLabel>
                 <Input
@@ -90,9 +93,6 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
                   type="number"
                 />
               </FormControl>
-            </Flex>
-
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.wheels_send_pair}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   G‘ildirak juftlarini yuborish uchun-ta&apos;mirlash(ga){" "}
@@ -103,6 +103,9 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
                   type="text"
                 />
               </FormControl>
+            </Flex>
+
+            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.via_carriage_number}>
                 <FormLabel>Vagon orqali №</FormLabel>
                 <Input
@@ -158,52 +161,47 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
                 />
               </FormControl>
             </Flex>
-
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.wheel_pair_number}>
-                <FormLabel>G‘ildirak juftligi raqami</FormLabel>
-                <Input
-                  type="text"
-                  {...register("wheel_pair_number", { required: true })}
-                  borderColor={"gray.600"}
-                />
-              </FormControl>
-
-              <FormControl isInvalid={errors?.wheel_pair_type}>
-                <FormLabel>G‘ildirak juftligi turi</FormLabel>
-                <Input
-                  type="text"
-                  {...register("wheel_pair_type", { required: true })}
-                  borderColor={"gray.600"}
-                />
-              </FormControl>
-            </Flex>
-
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.condition_servicable_defects}>
-                <FormLabel>
-                  Holati: xizmatga yaroqli-yangi shakllanish yoki
-                  ta&apos;mirlangan; nosoz-kerakli ta&apos;mirlash
-                  (klassifikator bo‘yicha nuqson raqami
-                </FormLabel>
-                <Input
-                  type="text"
-                  {...register("condition_servicable_defects", {
-                    required: true,
-                  })}
-                  borderColor={"gray.600"}
-                />
-              </FormControl>
-
-              <FormControl isInvalid={errors?.wheels_pair_priice_list}>
-                <FormLabel>G‘ildirak juftliklarining ro‘yxat narxi</FormLabel>
-                <Input
-                  type="text"
-                  {...register("wheels_pair_priice_list", { required: true })}
-                  borderColor={"gray.600"}
-                />
-              </FormControl>
-            </Flex>
+            {fields?.length < 6 ? (
+              <Button
+                colorScheme="messenger"
+                onClick={() => append()}
+                leftIcon={
+                  <FontAwesomeIcon
+                    icon={faPlus}
+                    style={{
+                      border: "1px solid rgba(255,255,255,0.2)",
+                      padding: "5px",
+                      borderRadius: 50,
+                    }}
+                  />
+                }
+              >
+                Ma'lumor birligi qushish
+              </Button>
+            ) : (
+              <Text
+                fontWeight={700}
+                color="white"
+                bgColor={"orange"}
+                rounded={4}
+                p={"5px 10px"}
+              >
+                Ma'lumot chegarasi 20 ta dan oshmasligi kerak
+              </Text>
+            )}
+            {fields.map((group, idx) => (
+              <FormWheel
+                key={group.id}
+                {...{
+                  group,
+                  idx,
+                  control,
+                  register,
+                  remove,
+                  errors,
+                }}
+              />
+            ))}
           </ModalBody>
 
           <ModalFooter>

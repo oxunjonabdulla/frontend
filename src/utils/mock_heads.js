@@ -151,7 +151,7 @@ export const routersSidebar = [
     role: "avtotormozuser",
   },
   {
-    isWork: true,
+    isWork: false,
     label: "Defektoskoplar",
     path: "/defectoscopes",
     type: "link",
@@ -595,7 +595,6 @@ export const vu_51 = {
       { label: "Қабул қилинган сана", rowspan: 2 },
       { label: "Ғилидрак жуфтлиги рақами", rowspan: 2 },
       { label: "Тури ", rowspan: 2 },
-      { label: "Ғилдирак айланиш юзаси диаметри", rowspan: 2 },
       { label: "Сана ва вақт", colspan: 2 },
       { label: "Вагон остидан олинди", rowspan: 2 },
       { label: "Қабул қилган ВЧД, Завод, ПТО", rowspan: 2 },
@@ -876,6 +875,25 @@ export const vu_68 = {
 
     "Topshiruvchining ",
     "Qabul qiluvchining ",
+  ],
+};
+export const defectoscope = {
+  nestedHeaders: [
+    { label: "Tartib Raqami" },
+    { label: "sana" },
+    { label: "Келган вагон раками №" },
+    {
+      label: "Detal nomi",
+    },
+    {
+      label: "Yil/raqam/zavod",
+    },
+
+    { label: "Nosozlik xulosasi" },
+    { label: "N/A imzosi " },
+    { label: "Usta imzosi " },
+
+    { label: "V/S/Q/Q imzosi " },
   ],
 };
 

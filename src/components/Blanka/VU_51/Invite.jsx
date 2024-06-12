@@ -93,7 +93,6 @@ export const InviteTable = ({ data }) => {
                 <Td>{invite_detail?.invite_date}</Td>
                 <Td fontWeight={700}> {invite_detail?.wheel_pair_number}</Td>
                 <Td> {invite_detail?.wheel_pair_type}</Td>
-                <Td> {invite_detail?.wheel_surface_diametr}</Td>
                 <Td> {invite_detail?.last_formation}</Td>
                 <Td> {invite_detail?.full_inspaction}</Td>
                 <Td> {invite_detail?.carriage_under}</Td>

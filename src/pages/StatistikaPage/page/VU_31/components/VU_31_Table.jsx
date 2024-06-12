@@ -10,19 +10,24 @@ import {
   Thead,
   Tr,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { timeClear } from "@/utils/timeClear";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDownload,
-  faPenToSquare,
-  faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { VU_31_Update } from "./VU_31_Update";
 import PropTypes from "prop-types";
+
+import { Deleteted } from "@/components";
+import UserApi from "../../../../../Service/module/userModule.api";
 const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
-
+  const [getTableData, setGetinfTableData] = useState(null);
+  const {
+    isOpen: openDelateModal,
+    onOpen: onOpenDelateModal,
+    onClose: onCloseDelateModal,
+  } = useDisclosure();
   const {
     isOpen: onUpdateIsOpen,
     onOpen: onUpdateOpen,
@@ -35,6 +40,28 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   };
 
   const memoData = useMemo(() => updateData, [updateData]);
+  const handleCheckAndDelete = (deletedID) => {
+    onOpenDelateModal();
+    setGetinfTableData(deletedID);
+  };
+  const toast = useToast();
+  const handleDelate = async (carriageID) => {
+    const { response, error } = await new UserApi().deleteVu31(carriageID);
+    if (response) {
+      window.location.reload();
+    } else {
+      toast({
+        status: "error",
+        title:
+          error?.detail &&
+          carriageID + " vagon raqami ma'lumoti avval o'chirilgan",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
 
   return (
     <>
@@ -117,17 +144,6 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
                 <Flex gap={2} m={0}>
                   <Button
                     float={"right"}
-                    borderColor={"blue.400"}
-                    colorScheme="teal"
-                    bgColor={"blue.400"}
-                    minW={"30px"}
-                    p={0}
-                    _hover={{ bgColor: "blue.400", opacity: "0.7" }}
-                  >
-                    <FontAwesomeIcon icon={faDownload} />
-                  </Button>
-                  <Button
-                    float={"right"}
                     borderColor={"green.400"}
                     colorScheme="teal"
                     bgColor={"green.400"}
@@ -146,6 +162,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
                     bgColor={"red"}
                     p={0}
                     _hover={{ bgColor: "red", opacity: "0.7" }}
+                    onClick={() => handleCheckAndDelete(item?.carriage_number)}
                   >
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </Button>
@@ -155,6 +172,14 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
           ))}
         </Tbody>
       </Table>
+      {openDelateModal && (
+        <Deleteted
+          isOpen={openDelateModal}
+          onClose={onCloseDelateModal}
+          carriageNumber={getTableData}
+          deletedFunction={handleDelate}
+        />
+      )}{" "}
       {onUpdateIsOpen && (
         <VU_31_Update
           isOpen={onUpdateIsOpen}

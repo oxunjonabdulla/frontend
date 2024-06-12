@@ -1,15 +1,14 @@
 import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
 import { useState } from "react";
-import { DailyTable } from "../components";
+import { DailyTable } from "@/components";
+import { DefectoscopeTable } from "./page/DefectoscopeTable";
 
 export const Defectoscopes = () => {
   const [activeComponent, setActiveComponent] = useState(null);
   const renderComponent = () => {
     switch (activeComponent) {
-      case "Component1":
-        return "<VU_31 />";
       case "Component2":
-        return "<TrainType />";
+        return <DefectoscopeTable />;
       default:
         return <DailyTable />;
     }
@@ -30,9 +29,8 @@ export const Defectoscopes = () => {
           p={4}
         >
           <Button
-            variant={
-              activeComponent === "Component2" ? "outline_active" : "outline"
-            }
+            colorScheme="teal"
+            variant={activeComponent === "Component2" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component2")}
           >
             Нуқсонларни рўйхатга олиш китоби

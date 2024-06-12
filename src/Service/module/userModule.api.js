@@ -234,6 +234,15 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deleteVu31(id) {
+    try {
+      const response = await privateInstance.delete(authEndpoints.vu31(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getVu31(page) {
     try {
       const response = await privateInstance.get(authEndpoints.vu31All(page));

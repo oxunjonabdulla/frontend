@@ -28,7 +28,7 @@ export * from "./AutomobileUnit";
 export * from "./CarriageUnitPage/CarriageUnit";
 export * from "./CarriageUnitPage/page/Dalolatnoma";
 export * from "./CarriageUnitPage/page/FrazaCarriage";
-export * from "./Defectoscopes";
+export * from "./Defectoscopes/Defectoscopes";
 export * from "./EquipmentUnit";
 export * from "./PtoPage/PtoUnit";
 export * from "./WheelPairsPage";

@@ -96,7 +96,7 @@ export const WheelPairsPage = () => {
           >
             ВУ-51
           </Button>
-          {/* <Button
+          <Button
             colorScheme="teal"
             variant={activeComponent === "vu53" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu53")}
@@ -116,7 +116,7 @@ export const WheelPairsPage = () => {
             onClick={() => getLocalActiveComp("vu90")}
           >
             ВУ-90
-          </Button> */}
+          </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu91" ? "solid" : "outline"}

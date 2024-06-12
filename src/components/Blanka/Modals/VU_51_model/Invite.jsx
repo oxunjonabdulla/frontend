@@ -25,12 +25,11 @@ export const Invite = ({ onClose }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
     setLoading(true);
 
     const { response, error } = await new UserApi().postIntiveVu51Api(
       serachingResult,
-      data
+      { ...data, wheel_surface_diametr: "455" }
     );
     setLoading(false);
     if (response) {
@@ -126,14 +125,6 @@ export const Invite = ({ onClose }) => {
             <Input
               borderColor={"gray.600"}
               {...register("wheel_pair_type", { required: true })}
-              type="text"
-            />
-          </FormControl>
-          <FormControl isInvalid={errors?.wheel_surface_diametr}>
-            <FormLabel>G‘ildirak aylanish yuzasi diametri</FormLabel>
-            <Input
-              borderColor={"gray.600"}
-              {...register("wheel_surface_diametr", { required: true })}
               type="text"
             />
           </FormControl>
