@@ -138,9 +138,10 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
               <Td whiteSpace={"nowrap"}>{item.tamir_yulida_gr13} soat</Td>
               <Td whiteSpace={"nowrap"}>{item.tamir_vaqtida_gr13} soat</Td>
               <Td whiteSpace={"nowrap"}>{item.umumiy_turish_gr11} soat</Td>
-              <Td>{item.nosoz_hujjat_raqam}</Td>
               <Td>
-                {" "}
+                <Button colorScheme="blue">VU-10</Button> ?
+              </Td>
+              <Td>
                 <Flex gap={2} m={0}>
                   <Button
                     float={"right"}

@@ -107,7 +107,7 @@ const authEndpoints = {
   vu68All: (page) => `/vu68/list/?page=${page + 1}`,
 
   // vu91
-  vu91: (carriageID) => `/vu91/${carriageID}/`,
+  vu91: `/vu91/`,
   vu91Delate: (carriageID) => `/vu91/${carriageID}/`,
   vu91All: (page) => `/vu91/list/?page=${page + 1}`,
 
@@ -117,9 +117,13 @@ const authEndpoints = {
   vu92All: (page) => `/vu92/list/?page=${page + 1}`,
 
   // vu93
-  vu93: (carriageID) => `/vu93/${carriageID}/`,
+  vu93: `/vu93/`,
   vu93Delate: (carriageID) => `/vu92/${carriageID}/`,
   vu93All: (page) => `/vu93/list/?page=${page + 1}`,
+
+  // defestoskop
+  defestoskopList: `/defestoskop/list/`,
+  defestoskopId: (id) => `/defestoskop/${id}/`,
 };
 
 export { authEndpoints };

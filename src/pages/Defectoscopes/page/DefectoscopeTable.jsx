@@ -22,6 +22,8 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
+  faPenToSquare,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { SliderMock } from "../../../utils";
@@ -30,6 +32,7 @@ import UserApi from "../../../Service/module/userModule.api";
 import { imageGet } from "../../../utils/imageGet";
 import { defectoscope } from "../../../utils/mock_heads";
 import { CreateDefectoscope } from "./CreateDefectoscope";
+import { Deleteted } from "../../../components";
 
 export const DefectoscopeTable = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -37,23 +40,36 @@ export const DefectoscopeTable = () => {
   const [gettingData, setGettingData] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [delateModal, setDelateModal] = useState(false);
+  const [getTableData, setGetinfTableData] = useState(null);
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu68(page);
+    const { response } = await new UserApi().getDefestoskop(page);
     if (response) {
       setIsLoading(false);
-      setGettingData([]);
+      setGettingData(response?.data);
     }
   };
 
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
+  const handleCheckAndDelete = (deletedID) => {
+    setDelateModal(true);
+    setGetinfTableData(deletedID);
+  };
 
+  const handleDelate = async (carriageID) => {
+    const { response } = await new UserApi().deleteDefestoskop(carriageID);
+    if (response) {
+      window.location.reload();
+    }
+  };
   return (
     <Box
       as="div"
@@ -109,6 +125,7 @@ export const DefectoscopeTable = () => {
                       {item.label}
                     </Th>
                   ))}
+                  <Th></Th>
                 </Tr>
               </Thead>
 
@@ -116,18 +133,13 @@ export const DefectoscopeTable = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item?.id}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
+                    <Td>{item?.defectoscope_date}</Td>
                     <Td fontWeight={700} color={"green.900"}>
                       {item?.carriage}
                     </Td>
-                    <Td>{item?.stop_remont_date}</Td>
-                    <Td>{item?.air_dropper_type}</Td>
-                    <Td>{item?.last_remont_stop_date}</Td>
-                    <Td>{item?.air_pipe}</Td>
-                    <Td>{item?.stop_silindr}</Td>
-                    <Td>{item?.cargo}</Td>
-                    <Td>{item?.medium}</Td>
-                    <Td>{item?.not_cargo}</Td>
-                    <Td>{item?.air_test_date}</Td>
+                    <Td>{item?.detail_number}</Td>
+                    <Td>{item?.year_number_factory}</Td>
+                    <Td>{item?.break_detail}</Td>
                     <Td>
                       <Image
                         width={"100px"}
@@ -135,6 +147,35 @@ export const DefectoscopeTable = () => {
                       />
                     </Td>
                     <Td></Td>
+                    <Td></Td>
+                    <Td>
+                      <Flex gap={2}>
+                        <Button
+                          float={"right"}
+                          borderColor={"green.400"}
+                          colorScheme="teal"
+                          bgColor={"green.400"}
+                          p={0}
+                          minW={"30px"}
+                          _hover={{ bgColor: "green.500", opacity: "0.7" }}
+                          // onClick={() => handleUpdate(item)}
+                        >
+                          <FontAwesomeIcon icon={faPenToSquare} />
+                        </Button>
+                        <Button
+                          float={"right"}
+                          borderColor={"red"}
+                          minW={"30px"}
+                          colorScheme="teal"
+                          bgColor={"red"}
+                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          p={0}
+                          _hover={{ bgColor: "red", opacity: "0.7" }}
+                        >
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </Button>
+                      </Flex>
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -179,6 +220,12 @@ export const DefectoscopeTable = () => {
           nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
         />
       )}
+      <Deleteted
+        isOpen={delateModal}
+        onClose={setDelateModal}
+        carriageNumber={getTableData}
+        deletedFunction={handleDelate}
+      />
       <CreateDefectoscope onClose={onClose} isOpen={isOpen} />
     </Box>
   );

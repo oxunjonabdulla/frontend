@@ -29,8 +29,7 @@ export const VU_53_Model = ({ onClose, isOpen }) => {
       isOpen={isOpen}
       w={"100%"}
       onClose={onClose}
-      size={["sm", "md", "lg", "6xl"]}
-      isCentered
+      size={["full"]}
       motionPreset="slideInLeft"
     >
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
@@ -46,14 +45,16 @@ export const VU_53_Model = ({ onClose, isOpen }) => {
 
           <Flex gap={4}>
             <Button
+              colorScheme="teal"
               onClick={() => setActiveType(1)}
-              variant={activeType === 1 ? "outline_active" : "outline"}
+              variant={activeType === 1 ? "solid" : "outline"}
             >
               Qabul
             </Button>
             <Button
+              colorScheme="teal"
               onClick={() => setActiveType(2)}
-              variant={activeType === 2 ? "outline_active" : "outline"}
+              variant={activeType === 2 ? "solid" : "outline"}
             >
               Istemol
             </Button>

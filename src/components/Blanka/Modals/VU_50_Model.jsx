@@ -161,7 +161,7 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
                 />
               </FormControl>
             </Flex>
-            {fields?.length < 6 ? (
+            {fields?.length < 20 ? (
               <Button
                 colorScheme="messenger"
                 onClick={() => append()}

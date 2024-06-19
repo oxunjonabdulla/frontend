@@ -400,9 +400,9 @@ class UserApi extends React.Component {
     }
   }
   // vu92
-  async postVu91(id, obj) {
+  async postVu91(obj) {
     try {
-      const response = await privateInstance.post(authEndpoints.vu91(id), obj);
+      const response = await privateInstance.post(authEndpoints.vu91, obj);
 
       return { response };
     } catch (error) {
@@ -461,9 +461,9 @@ class UserApi extends React.Component {
     }
   }
   // vu93
-  async postVu93(id, obj) {
+  async postVu93(obj) {
     try {
-      const response = await privateInstance.post(authEndpoints.vu93(id), obj);
+      const response = await privateInstance.post(authEndpoints.vu93, obj);
 
       return { response };
     } catch (error) {
@@ -928,6 +928,55 @@ class UserApi extends React.Component {
     try {
       const response = await privateInstance.post(
         authEndpoints.collectActPostBack(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // defestoskop
+  async getDefestoskop(page) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.defestoskopList,
+        { params: page }
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postDefestoskop(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.defestoskopId(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteDefestoskop(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.defestoskopId(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateDefestoskop(carriageId, obj) {
+    try {
+      const response = await privateInstance.put(
+        authEndpoints.defestoskopId(carriageId),
         obj
       );
 

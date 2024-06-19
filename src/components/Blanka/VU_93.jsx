@@ -139,7 +139,6 @@ export const VU_93 = () => {
                 {gettingData?.results.map((item, idx) => (
                   <Tr key={item.id}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-                    <Td fontWeight={700}>{item?.carriage}</Td>
                     <Td>{item?.chartley_rapair_date}</Td>
                     <Td>
                       {item?.chartley_model_chartley_number} <Divider my={2} />

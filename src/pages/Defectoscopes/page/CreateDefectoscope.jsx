@@ -29,37 +29,36 @@ export const CreateDefectoscope = ({ onClose, isOpen }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // setLoading(true);
-    // const { response, error } = await new UserApi().postVu68(
-    //   serachingResult,
-    //   data
-    // );
-    // setLoading(false);
-    // if (response) {
-    //   toast({
-    //     status: "success",
-    //     title: "VU-68 jurnaliga vagon muvaffaqiyatli qo'shildi.",
-    //     duration: 4000,
-    //     isClosable: true,
-    //     position: "top-right",
-    //     fontSize: "3xl",
-    //   });
-    //   window.location.reload();
-    // }
-    // if (error) {
-    //   toast({
-    //     status: "error",
-    //     title: error?.detail
-    //       ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
-    //       : "Bu vagon raqami uchun VU-68 jurnali mavjud.",
-    //     duration: 4000,
-    //     isClosable: true,
-    //     position: "top-right",
-    //     fontSize: "3xl",
-    //   });
-    // }
+    setLoading(true);
+    const { response, error } = await new UserApi().postDefestoskop(
+      serachingResult,
+      data
+    );
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "Defestoskop yaraldi",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+      window.location.reload();
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.detail
+          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
+          : "Bu vagon raqami uchun defestoskop jurnali mavjud.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
   };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -80,41 +79,41 @@ export const CreateDefectoscope = ({ onClose, isOpen }) => {
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <SearchTrain setSerachingResult={setSerachingResult} />
 
-              <FormControl isInvalid={errors?.stop_remont_date}>
+              <FormControl isInvalid={errors?.defectoscope_date}>
                 <FormLabel>Tormoz ta’mirlangan sana</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("stop_remont_date", { required: true })}
+                  {...register("defectoscope_date", { required: true })}
                   type="date"
                 />
               </FormControl>
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.air_test_date}>
+              <FormControl isInvalid={errors?.detail_number}>
                 <FormLabel>Detal nomi</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("air_test_date", { required: true })}
+                  {...register("detail_number", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.air_dropper_type}>
+              <FormControl isInvalid={errors?.year_number_factory}>
                 <FormLabel>Yil/raqam/zavod</FormLabel>
                 <Input
                   type="text"
                   placeholder="yil/raqam/zavodi"
-                  {...register("air_dropper_type", { required: true })}
+                  {...register("year_number_factory", { required: true })}
                   borderColor={"gray.600"}
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.last_remont_stop_date}>
+              <FormControl isInvalid={errors?.break_detail}>
                 <FormLabel whiteSpace={["pre-wrap", "nowrap"]}>
                   Nosozlik xulosasi
                 </FormLabel>
                 <Input
                   type="text"
-                  {...register("last_remont_stop_date", { required: true })}
+                  {...register("break_detail", { required: true })}
                   borderColor={"gray.600"}
                 />
               </FormControl>

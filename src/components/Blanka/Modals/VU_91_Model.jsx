@@ -17,11 +17,9 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Signatur } from "../../Signature/Signatur";
-import { SearchTrain } from "../../../utils";
 import UserApi from "../../../Service/module/userModule.api";
 export const VU_91_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
     register,
@@ -31,10 +29,7 @@ export const VU_91_Model = ({ onClose, isOpen }) => {
   const onSubmit = async (data) => {
     setLoading(true);
 
-    const { response, error } = await new UserApi().postVu91(
-      serachingResult,
-      data
-    );
+    const { response, error } = await new UserApi().postVu91(data);
     setLoading(false);
     if (response) {
       toast({
@@ -80,7 +75,6 @@ export const VU_91_Model = ({ onClose, isOpen }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <SearchTrain setSerachingResult={setSerachingResult} />
               <FormControl isInvalid={errors?.seen_date}>
                 <FormLabel>Ko‘rilgan sanasi </FormLabel>
                 <Input

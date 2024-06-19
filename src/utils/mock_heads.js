@@ -550,7 +550,6 @@ export const vu_36 = {
 export const vu_50 = {
   headers: [
     { label: "Tartib raqami" },
-    { label: "Vagon raqami" },
     { label: "Yo‘naltirish varaqasi raqami " },
     {
       label:
@@ -568,21 +567,10 @@ export const vu_50 = {
     {
       label: "Qabul qiluvchi tashkilot nomi  ",
     },
+
     {
-      label: "G‘ildirak juftligi raqami ",
-    },
-    {
-      label: "G‘ildirak juftligi turi",
-    },
-    {
-      label:
-        "Holati: xizmatga yaroqli-yangi shakllanish yoki ta'mirlangan; nosoz-kerakli ta'mirlash (klassifikator bo‘yicha nuqson raqami",
-    },
-    {
-      label: "G‘ildirak juftliklarining ro‘yxat narxi",
-    },
-    {
-      label: "Yuklab olsih / O'chirish",
+      label: "",
+      colspan: 5,
     },
   ],
 };
@@ -671,6 +659,183 @@ export const vu_51 = {
   },
 };
 
+export const vu_53_form = {
+  headers: [
+    { label: "№ п/п (№ жетона)" },
+    { label: "Индивидуальный номер колесной пары Собственник колесной пары" },
+    {
+      label: "Собственник колесной пары",
+    },
+    { label: "Тип колесной пары" },
+    { label: "Дата поступления в ремонт" },
+    {
+      label: "Поступила с завода, ВКМ, ВЧД, ПТО",
+    },
+    { label: "Номер пересылочной ведомости " },
+    { label: "G`ildirak juftligi chiqarib olingan vagon raqami" },
+    { label: "Vagon ta`mir turi" },
+    {
+      label: "G`ildirak juftligining  oxirgi yig`ilgan vaqti (formirivaniya)",
+    },
+    {
+      label: "G`ildirak juftligining  oxirgi yig`ilgan  joyi(formirivaniya)",
+    },
+    { label: "Oxirgi o`rta ta`mirlangan vaqti" },
+    { label: "Oxirgi o`rta ta`mirlangan joyi" },
+    {
+      label:
+        "G`ildirak juftligining  yurish qismini oxirgi qayta tiklangan vaqti",
+    },
+    {
+      label:
+        "G`ildirak juftligining  yurish qismini oxirgi qayta tiklangan joyi",
+    },
+    { label: "G`ildirak juftligining tomonlari" },
+  ],
+
+  antoher: [
+    { label: "Buksa holatining belgisi", colspan: 2 },
+    { label: "G`ildirak holatining belgisi", colspan: 2 },
+
+    {
+      label: "G`ildirak juftligi o`lchamlari (мм)",
+      colspan: 6,
+    },
+  ],
+
+  nestedHeaders: [
+    { label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)" },
+    { label: "Soz yoki Nosoz" },
+    { label: "Soz (yangi yig`ilgan yoki ta`mirlangan)" },
+    { label: "Nosoz(klassifikator bo`yicha nuqson raqami )" },
+    { label: "Yurish qismining diametri" },
+    { label: "Obod qalinligi" },
+    { label: "Greben qalinligi" },
+    { label: "Greben тiklik o`lchamlari" },
+    { label: "Prokat" },
+    { label: "Obodning ichki yuzalari orasidagi masofa" },
+  ],
+};
+
+export const vu_53_form_second = {
+  secondHeader: [
+    { label: "Ta`mirlangan vaqti" },
+    {
+      label: " Zavod, VCHD, TXSH yoki vagon ostiga berilgan vaqti",
+    },
+    {
+      label: "G`ildirak juftligini jo`natilgan joy nomi (Zavod, VCHD,TXSH)",
+    },
+    { label: "Peresilochniy raqami" },
+    { label: "G`ildirak juftligi berilgan vagon raqami" },
+    { label: "Vagon ta`mir turi" },
+    { label: "G`ildirak juftligining tomonlari" },
+  ],
+
+  another_second: [
+    {
+      label: "Bajarilgan ta`mir ishlari",
+      colspan: 12,
+    },
+  ],
+  another_head_second: [
+    {
+      label:
+        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami )",
+      rowspan: 3,
+    },
+    { label: "Еlementlardan hosil bo'lgan g`ildirak juftligi ", colspan: 4 },
+    {
+      label: "Yig`ilgan g`ildirak juftligi  ",
+      rowspan: 3,
+    },
+    {
+      label: "O`rta ta`mir",
+      rowspan: 3,
+    },
+    {
+      label: "Joriy ta`mir",
+      rowspan: 3,
+    },
+    {
+      label: "G`ildirak juftligining  yurish qismini  qayta tiklangan",
+      rowspan: 3,
+    },
+    {
+      label: "Greben qismi payvandlangandan so`ng  g`ildirak ",
+      rowspan: 3,
+    },
+    {
+      label: "O`qning bo`yin qismidagi M110 rezbasin qayta tiklash",
+      rowspan: 3,
+    },
+    {
+      label: "O`qning bo`yin qismini  qayta tiklash",
+      rowspan: 3,
+    },
+  ],
+  another_sub_head_second: [
+    { label: "Yangi", colspan: 2 },
+    { label: "Eski yilgi", colspan: 2 },
+  ],
+  another_sub_extra_head_second: [
+    { label: "O`q (kod 1)" },
+    { label: "G`ildirak (kod 1)" },
+    { label: "O`q (kod 1)" },
+    { label: "G`ildirak (kod 1)" },
+  ],
+
+  antoher_loser_second: [
+    { label: "G`ildirak", colspan: 5 },
+    { label: "Obodning ichki yuzalari orasidagi masofa", rowspan: 2 },
+  ],
+  antoher_loser_head_second: [
+    { label: "O`qning рostupochniy qismini diametri " },
+    { label: "Yurish qismining diametri" },
+    { label: "Greben qalinligi" },
+    { label: "Obod qalinligi" },
+    { label: "Prokat" },
+  ],
+
+  another_three: [
+    {
+      label:
+        "G`ildirak juftligining yurish qismini qayta tiklangankbr sababi (klassifikator bo`yicha nosozlik raqami )",
+      rowspan: 3,
+    },
+    {
+      label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)",
+      rowspan: 3,
+    },
+    {
+      label: "Defektoskop uskunasi bilan tekshiruchining imzosi",
+      colspan: 6,
+    },
+    {
+      label: "Ishlab chiqaruvching imzosi",
+      colspan: 2,
+    },
+    {
+      label: "Izoh",
+      rowspan: 3,
+    },
+  ],
+  another_head_three: [
+    { label: "O'q", colspan: 4 },
+    { label: "G`ildirak", colspan: 2 },
+
+    { label: " G`ildirak juftliklarini  tekshirgan", rowspan: 2 },
+    { label: "  G`ildirak juftliklarini  bergan", rowspan: 2 },
+  ],
+  another_sub_head_three: [
+    { label: "Bo`yni va old postupichniy qismi" },
+    { label: " postupichniy qismi" },
+    { label: "Boyinidagi ichki xalqasi" },
+    { label: "O`rta qismi" },
+    { label: "Obod, Disk, Stupitsa" },
+    { label: "Greben qismini payvandlangandan so`ng " },
+  ],
+};
 export const vu_53 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },
@@ -983,7 +1148,6 @@ export const vu_90 = {
 
 export const vu_91 = [
   "Tartib raqami",
-  "Vagon raqami",
   "Ko‘rilgan sana",
   "Podshipnik shartli belgisi",
   "Podshipnik ishlab chiqarilgan zavodi va yili ",
@@ -1013,7 +1177,7 @@ export const vu_92 = {
 export const vu_93 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },
-    { label: "Vagon raqami", rowspan: 2 },
+
     { label: "Podshipnik ta’mirlangan  sanasi", rowspan: 2 },
     {
       label:

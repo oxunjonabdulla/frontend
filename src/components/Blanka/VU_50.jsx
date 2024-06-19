@@ -20,6 +20,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faDownload,
+  faEye,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -126,21 +127,22 @@ export const VU_50 = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item?.id}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-                    <Td fontWeight={700} color={"green.900"}>
-                      {item?.carriage}
-                    </Td>
+
                     <Td>{item?.referral_number}</Td>
                     <Td>{item?.wheels_send_pair}</Td>
                     <Td>{item?.sanding_station_railway}</Td>
                     <Td>{item?.sending_station_name}</Td>
                     <Td>{item?.receiving_station_railway}</Td>
                     <Td>{item?.receiving_station_name}</Td>
-                    <Td>{item?.wheel_pair_number}</Td>
-                    <Td>{item?.wheel_pair_type}</Td>
-                    <Td>{item?.condition_servicable_defects}</Td>
-                    <Td>{item?.wheels_pair_priice_list}</Td>
+                    <Td colSpan={4}>
+                      <IconButton
+                        size={"lg"}
+                        colorScheme="whatsapp"
+                        icon={<FontAwesomeIcon icon={faEye} />}
+                      />
+                    </Td>
+
                     <Td>
-                      {" "}
                       <Flex gap={2} justifyContent={"center"}>
                         <IconButton
                           colorScheme="linkedin"

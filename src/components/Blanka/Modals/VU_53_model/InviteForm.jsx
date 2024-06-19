@@ -6,13 +6,21 @@ import {
   Input,
   ModalBody,
   ModalFooter,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { SearchTrain } from "../../../../utils";
+import { vu_53, vu_53_form } from "../../../../utils/mock_heads";
 export const InviteForm = ({ onClose }) => {
   const [trainFixType, setTrainFixType] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -29,7 +37,133 @@ export const InviteForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <ModalBody>
-        <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+        <TableContainer>
+          <Table variant="striped" colorScheme="gray">
+            <Tbody>
+              <Tr>
+                {vu_53_form?.headers?.map((item) => (
+                  <Td
+                    fontSize={"12px"}
+                    textAlign={"center"}
+                    key={item.label}
+                    whiteSpace={"pre-wrap"}
+                    fontWeight={700}
+                  >
+                    {item.label}
+                  </Td>
+                ))}
+              </Tr>
+              <Tr>
+                <Td textAlign={"center"}>1</Td>
+                <Td textAlign={"center"}>2</Td>
+                <Td textAlign={"center"}>3</Td>
+                <Td textAlign={"center"}>4</Td>
+                <Td textAlign={"center"}>5</Td>
+                <Td textAlign={"center"}>6</Td>
+                <Td textAlign={"center"}>7</Td>
+                <Td textAlign={"center"}>8</Td>
+                <Td textAlign={"center"}>9</Td>
+                <Td textAlign={"center"}>10</Td>
+                <Td textAlign={"center"}>11</Td>
+                <Td textAlign={"center"}>12</Td>
+                <Td textAlign={"center"}>13</Td>
+                <Td textAlign={"center"}>14</Td>
+
+                <Td textAlign={"center"}>15</Td>
+                <Td textAlign={"center"}>16</Td>
+              </Tr>
+              <Tr>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("sinovi", { required: true })}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    p={0}
+                    fontSize={"10px"}
+                    borderColor={"gray.600"}
+                    {...register("sinovi", { required: true })}
+                    type="text"
+                  />
+                </Td>
+              </Tr>
+            </Tbody>
+          </Table>
+        </TableContainer>
+        <TableContainer mt={10}>
+          <Table variant="striped" colorScheme="gray">
+            <Tbody>
+              <Tr>
+                {vu_53_form?.antoher?.map((item) => (
+                  <Td
+                    fontSize={"12px"}
+                    textAlign={"center"}
+                    key={item.label}
+                    whiteSpace={"pre-wrap"}
+                    rowSpan={item.rowspan}
+                    fontWeight={700}
+                    colSpan={item.colspan}
+                  >
+                    {item.label}
+                  </Td>
+                ))}
+              </Tr>
+              <Tr>
+                {vu_53_form?.nestedHeaders?.map((item) => (
+                  <Td
+                    fontSize={"12px"}
+                    fontWeight={700}
+                    textAlign={"center"}
+                    whiteSpace={"pre-wrap"}
+                    key={item.label}
+                    rowSpan={item.rowspan}
+                    colSpan={item.colspan}
+                  >
+                    {item.label}
+                  </Td>
+                ))}
+              </Tr>
+              <Tr>
+                <Td textAlign={"center"}>17</Td>
+                <Td textAlign={"center"}>18</Td>
+                <Td textAlign={"center"}>19</Td>
+                <Td textAlign={"center"}>20</Td>
+                <Td textAlign={"center"}>21</Td>
+                <Td textAlign={"center"}>22</Td>
+                <Td textAlign={"center"}>23</Td>
+                <Td textAlign={"center"}>24</Td>
+                <Td textAlign={"center"}>25</Td>
+                <Td textAlign={"center"}>26</Td>
+              </Tr>
+              <Tr>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("sinovi", { required: true })}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    p={0}
+                    fontSize={"10px"}
+                    borderColor={"gray.600"}
+                    {...register("sinovi", { required: true })}
+                    type="text"
+                  />
+                </Td>
+              </Tr>
+            </Tbody>
+          </Table>
+        </TableContainer>
+        {/* <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <SearchTrain setSerachingResult={setSerachingResult} />
           <FormControl isInvalid={errors?.sinovi}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
@@ -369,7 +503,7 @@ export const InviteForm = ({ onClose }) => {
               type="text"
             />
           </FormControl>
-        </Flex>
+        </Flex> */}
       </ModalBody>
 
       <ModalFooter>

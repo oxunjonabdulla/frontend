@@ -21,6 +21,7 @@ import {
   chartThree,
   chartSix,
   demoFirst,
+  demoZero,
 } from "../utils/chartData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -282,6 +283,27 @@ export const HomePage = () => {
         </Grid> */}
       </Box>
       <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
+        Қаршидаги вагонлар
+      </Heading>
+
+      <Flex gap={6}>
+        <Card
+          display={"flex"}
+          py="1rem"
+          height={"300px"}
+          width="100%"
+          position="relative"
+        >
+          <Chart
+            type="area"
+            options={demoZero.options}
+            series={demoZero.series}
+            width="100%"
+            height="100%"
+          />
+        </Card>
+      </Flex>
+      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
         Қаршидаги нуксонли вагонлар
       </Heading>
 
@@ -354,7 +376,6 @@ export const HomePage = () => {
             height="100%"
           />
         </Card>
-        
       </Flex>
       <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
         2024 йил хозирги кунгача Қарши вагон депосида таъмирланган бошқа
