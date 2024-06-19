@@ -17,13 +17,13 @@ export const FormWheel = memo(function FormWheel({
     <Flex gap={3} flexWrap={["wrap", "nowrap"]} alignItems={"flex-end"} my="4">
       <FormControl
         isInvalid={
-          errors?.wheel_pair && errors?.wheel_pair[idx]?.wheel_pair_number
+          errors?.wheel_pairs && errors?.wheel_pairs[idx]?.wheel_pair_number
         }
       >
         <FormLabel>G‘ildirak juftligi raqami</FormLabel>
         <Input
           type="text"
-          {...register(`wheel_pair.${idx}.wheel_pair_number`, {
+          {...register(`wheel_pairs.${idx}.wheel_pair_number`, {
             required: true,
           })}
           borderColor={"gray.600"}
@@ -32,26 +32,29 @@ export const FormWheel = memo(function FormWheel({
 
       <FormControl
         isInvalid={
-          errors?.wheel_pair && errors?.wheel_pair[idx]?.wheel_pair_type
+          errors?.wheel_pairs && errors?.wheel_pairs[idx]?.wheel_pair_type
         }
       >
         <FormLabel>G‘ildirak juftligi turi</FormLabel>
         <Input
           type="text"
-          {...register(`wheel_pair.${idx}.wheel_pair_type`, { required: true })}
+          {...register(`wheel_pairs.${idx}.wheel_pair_type`, {
+            required: true,
+          })}
           borderColor={"gray.600"}
         />
       </FormControl>
 
       <FormControl
         isInvalid={
-          errors?.wheel_pair && errors?.wheel_pair[idx]?.wheels_pair_priice_list
+          errors?.wheel_pairs &&
+          errors?.wheel_pairs[idx]?.wheels_pair_priice_list
         }
       >
         <FormLabel>G‘ildirak juftliklarining ro‘yxat narxi</FormLabel>
         <Input
           type="text"
-          {...register(`wheel_pair.${idx}.wheels_pair_priice_list`, {
+          {...register(`wheel_pairs.${idx}.wheels_pair_priice_list`, {
             required: true,
           })}
           borderColor={"gray.600"}
@@ -59,14 +62,14 @@ export const FormWheel = memo(function FormWheel({
       </FormControl>
       <FormControl
         isInvalid={
-          errors?.wheel_pair &&
-          errors?.wheel_pair[idx]?.condition_servicable_defects
+          errors?.wheel_pairs &&
+          errors?.wheel_pairs[idx]?.condition_servicable_defects
         }
       >
         <FormLabel>Holati</FormLabel>
         <Input
           type="text"
-          {...register(`wheel_pair.${idx}.condition_servicable_defects`, {
+          {...register(`wheel_pairs.${idx}.condition_servicable_defects`, {
             required: true,
           })}
           borderColor={"gray.600"}

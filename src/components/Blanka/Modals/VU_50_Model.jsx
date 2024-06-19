@@ -32,7 +32,7 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
   } = useForm();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "wheel_pair",
+    name: "wheel_pairs",
   });
 
   const onSubmit = async (data) => {

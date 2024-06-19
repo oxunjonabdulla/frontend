@@ -334,9 +334,9 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async postVu50(id, obj) {
+  async postVu50(obj) {
     try {
-      const response = await privateInstance.post(authEndpoints.vu50(id), obj);
+      const response = await privateInstance.post(authEndpoints.vu50, obj);
 
       return { response };
     } catch (error) {

@@ -574,6 +574,25 @@ export const vu_50 = {
     },
   ],
 };
+
+export const vu_50_show_head = [
+  {
+    label: "T/R",
+  },
+  {
+    label: "G‘ildirak raqami",
+  },
+  {
+    label: "G‘ildirak juftligi turi",
+  },
+  {
+    label:
+      "Holati: xizmatga yaroqli-yangi shakllanish yoki ta'mirlangan; nosoz-kerakli ta'mirlash (klassifikator bo‘yicha nuqson raqami",
+  },
+  {
+    label: "G‘ildirak juftliklarining ro‘yxat narxi",
+  },
+];
 export const vu_51 = {
   invite: {
     headers: [

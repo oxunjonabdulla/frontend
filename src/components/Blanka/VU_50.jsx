@@ -31,13 +31,20 @@ import { vu_50 } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
+import Show_VU50_model from "./Modals/Show_VU50_model";
 export const VU_50 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
+  const [showModel, setShowModel] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenShowModel,
+    onOpen: onOpenShowModel,
+    onClose: onCloseShowModel,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -65,6 +72,11 @@ export const VU_50 = () => {
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
+
+  const handleOpenEye = (data) => {
+    setShowModel(data);
+    onOpenShowModel();
+  };
 
   return (
     <Box
@@ -137,6 +149,7 @@ export const VU_50 = () => {
                     <Td colSpan={4}>
                       <IconButton
                         size={"lg"}
+                        onClick={() => handleOpenEye(item)}
                         colorScheme="whatsapp"
                         icon={<FontAwesomeIcon icon={faEye} />}
                       />
@@ -205,6 +218,12 @@ export const VU_50 = () => {
         deletedFunction={handleDelate}
       />
       <VU_50_Model onClose={onClose} isOpen={isOpen} />
+
+      <Show_VU50_model
+        isOpen={isOpenShowModel}
+        onClose={onCloseShowModel}
+        showData={showModel}
+      />
     </Box>
   );
 };
