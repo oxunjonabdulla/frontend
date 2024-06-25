@@ -26,7 +26,11 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      made_date: null,
+    },
+  });
 
   const onSubmit = async (data) => {
     setLoading(true);
