@@ -69,7 +69,10 @@ const columnMockShort = [
   {
     header: "Kirish",
     accessorKey: "train_img_in",
-    colspan: 2,
+  },
+  {
+    header: "Chiqish",
+    accessorKey: "train_img_in",
   },
 ];
 export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
@@ -209,7 +212,7 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                     <Td>{item?.repair_type?.toUpperCase()}</Td>
                     <Td>{item.approximate_completion}</Td>
                     <Td>{item.date_of_registration}</Td>
-                    <Td cursor={"pointer"} colSpan="2">
+                    <Td cursor={"pointer"}>
                       <Flex
                         w="100%"
                         gap={"1"}
@@ -217,6 +220,25 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                         align={"center"}
                       >
                         {item.enter_images?.map((elem, idxImage) => (
+                          <Img
+                            key={idxImage}
+                            objectFit={"cover"}
+                            onClick={() => openImageViewer2(idxImage, item.id)}
+                            cursor={"pointer"}
+                            w="50px"
+                            src={`https://api.evagon.uz/${elem.image_url}`}
+                          />
+                        ))}
+                      </Flex>
+                    </Td>
+                    <Td cursor={"pointer"}>
+                      <Flex
+                        w="100%"
+                        gap={"1"}
+                        flexWrap={"wrap"}
+                        align={"center"}
+                      >
+                        {item.exit_images?.map((elem, idxImage) => (
                           <Img
                             key={idxImage}
                             objectFit={"cover"}
@@ -304,7 +326,7 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
       <ExitImage
         isOpen={isOpenExit}
         onClose={onCloseExit}
-        carriageNumber={getTableData?.carriage_number}
+        carriageNumber={getTableData?.id}
       />
 
       {isViewerOpen &&
