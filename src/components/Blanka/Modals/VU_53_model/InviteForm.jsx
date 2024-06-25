@@ -1,38 +1,56 @@
 import {
   Button,
-  Flex,
-  FormControl,
-  FormLabel,
   Input,
   ModalBody,
   ModalFooter,
+  Select,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
-  Th,
-  Thead,
   Tr,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../../utils";
-import { vu_53, vu_53_form } from "../../../../utils/mock_heads";
+import { vu_53_form } from "../../../../utils/mock_heads";
+import UserApi from "../../../../Service/module/userModule.api";
 export const InviteForm = ({ onClose }) => {
-  const [trainFixType, setTrainFixType] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+    const { response, error } = await new UserApi().postVu53Prihod(data);
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "VU-53 shakliga vagon muvaffaqiyatli qo'shildi.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+
+      window.location.reload();
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.detail
+          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
+          : "Bu vagon raqami uchun VU-50 shakli mavjud.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,24 +91,264 @@ export const InviteForm = ({ onClose }) => {
                 <Td textAlign={"center"}>16</Td>
               </Tr>
               <Tr>
+                <Td></Td>
                 <Td>
                   <Input
                     borderColor={"gray.600"}
                     p={0}
                     fontSize={"10px"}
-                    {...register("sinovi", { required: true })}
+                    {...register("wheel_pair_sostav_1")}
                     type="text"
                   />
                 </Td>
                 <Td>
                   <Input
+                    borderColor={"gray.600"}
                     p={0}
                     fontSize={"10px"}
-                    borderColor={"gray.600"}
-                    {...register("sinovi", { required: true })}
+                    {...register("sobstva_wheel_pair_1")}
                     type="text"
                   />
                 </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("type_wheel_pair_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("date_of_pustupleniya_1")}
+                    type="date"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("factory_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("vedimis_nomer_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("is_pod_carriage_number_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("repair_type_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("last_repair_date_1")}
+                    type="date"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("last_repair_punkt_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("buks_montaj_uzel_date_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("buks_montaj_uzel_last_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("obot_pair_date_1")}
+                    type="date"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("obot_pair_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>Пр</Td>
+              </Tr>
+              <Tr>
+                <Td></Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("wheel_pair_sostav_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("sobstva_wheel_pair_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("type_wheel_pair_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("date_of_pustupleniya_2")}
+                    type="date"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("factory_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("vedimis_nomer_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("is_pod_carriage_number_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("repair_type_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("last_repair_date_2")}
+                    type="date"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("last_repair_punkt_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("buks_montaj_uzel_date_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("buks_montaj_uzel_last_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("obot_pair_date_2")}
+                    type="date"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("obot_pair_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>Лев</Td>
               </Tr>
             </Tbody>
           </Table>
@@ -146,16 +404,186 @@ export const InviteForm = ({ onClose }) => {
                     borderColor={"gray.600"}
                     p={0}
                     fontSize={"10px"}
-                    {...register("sinovi", { required: true })}
+                    {...register("strona_pair_1")}
                     type="text"
                   />
                 </Td>
                 <Td>
                   <Input
+                    borderColor={"gray.600"}
                     p={0}
                     fontSize={"10px"}
+                    {...register("type_buks_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Select
                     borderColor={"gray.600"}
-                    {...register("sinovi", { required: true })}
+                    placeholder="Ta'mir turi"
+                    {...register("is_repair_1")}
+                  >
+                    <option value={true}>Yangi yig`ilgan</option>
+                    <option value={false}>Ta`mirlangan</option>
+                  </Select>
+                </Td>
+                <Td>
+                  <Select
+                    borderColor={"gray.600"}
+                    placeholder="Ta'mir turi"
+                    {...register("is_repair_newtype_1")}
+                  >
+                    <option value={true}>Yangi yig`ilgan</option>
+                    <option value={false}>Ta`mirlangan</option>
+                  </Select>
+                </Td>
+                <Td>
+                  <Select
+                    borderColor={"gray.600"}
+                    placeholder="Ta'mir turi"
+                    {...register("is_repair_error_1")}
+                  >
+                    <option value={true}>Yangi yig`ilgan</option>
+                    <option value={false}>Ta`mirlangan</option>
+                  </Select>
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("katana_diametr_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("tolshnik_obod_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("greb_setting_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("prokat_1")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("away_obod_1")}
+                    type="text"
+                  />
+                </Td>
+              </Tr>
+              <Tr>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("strona_pair_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("type_buks_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Select
+                    borderColor={"gray.600"}
+                    placeholder="Ta'mir turi"
+                    {...register("is_repair_2")}
+                  >
+                    <option value={true}>Yangi yig`ilgan</option>
+                    <option value={false}>Ta`mirlangan</option>
+                  </Select>
+                </Td>
+                <Td>
+                  <Select
+                    borderColor={"gray.600"}
+                    placeholder="Ta'mir turi"
+                    {...register("is_repair_newtype_2")}
+                  >
+                    <option value={true}>Yangi yig`ilgan</option>
+                    <option value={false}>Ta`mirlangan</option>
+                  </Select>
+                </Td>
+                <Td>
+                  <Select
+                    borderColor={"gray.600"}
+                    placeholder="Ta'mir turi"
+                    {...register("is_repair_error_2")}
+                  >
+                    <option value={true}>Yangi yig`ilgan</option>
+                    <option value={false}>Ta`mirlangan</option>
+                  </Select>
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("katana_diametr_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("tolshnik_obod_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("greb_setting_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("prokat_2")}
+                    type="text"
+                  />
+                </Td>
+                <Td>
+                  <Input
+                    borderColor={"gray.600"}
+                    p={0}
+                    fontSize={"10px"}
+                    {...register("away_obod_2")}
                     type="text"
                   />
                 </Td>
@@ -171,7 +599,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -181,7 +609,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -194,7 +622,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -202,7 +630,7 @@ export const InviteForm = ({ onClose }) => {
             <FormLabel>Ta`mirga kelgan vaqti </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="date"
             />
           </FormControl>
@@ -210,7 +638,7 @@ export const InviteForm = ({ onClose }) => {
             <FormLabel>Kelgan joyi (Zavod, VCHD, TXSH) </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -218,7 +646,7 @@ export const InviteForm = ({ onClose }) => {
             <FormLabel>Peresilochniy raqami</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -230,7 +658,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -238,7 +666,7 @@ export const InviteForm = ({ onClose }) => {
             <FormLabel>Vagon ta`mir turi</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -250,7 +678,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -260,7 +688,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -270,7 +698,7 @@ export const InviteForm = ({ onClose }) => {
             <FormLabel>Oxirgi o`rta ta`mirlangan vaqti</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="date"
             />
           </FormControl>
@@ -278,7 +706,7 @@ export const InviteForm = ({ onClose }) => {
             <FormLabel>Oxirgi o`rta ta`mirlangan joyi</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -290,7 +718,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="date"
             />
           </FormControl>
@@ -300,7 +728,7 @@ export const InviteForm = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>
@@ -324,13 +752,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -341,13 +769,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -363,13 +791,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -384,13 +812,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -412,13 +840,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -429,13 +857,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -446,13 +874,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -463,13 +891,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -480,13 +908,13 @@ export const InviteForm = ({ onClose }) => {
             <Flex flexDir={"column"} gap={3}>
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder="O'ng"
               />
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
+                {...register("sinovi")}
                 type="text"
                 placeholder={"Chap"}
               />
@@ -499,7 +927,7 @@ export const InviteForm = ({ onClose }) => {
             <FormLabel>Obodning ichki yuzalari orasidagi masofa</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("sinovi", { required: true })}
+              {...register("sinovi")}
               type="text"
             />
           </FormControl>

@@ -12,6 +12,7 @@ import {
   VU_91,
   VU_92,
   VU_93,
+  WheelDalolatnoma,
 } from "../components";
 
 export const WheelPairsPage = () => {
@@ -48,6 +49,8 @@ export const WheelPairsPage = () => {
         return <VU_92 />;
       case "vu93":
         return <VU_93 />;
+      case "chech_passport":
+        return <WheelDalolatnoma />;
       default:
         return <DailyTable />;
     }
@@ -143,7 +146,7 @@ export const WheelPairsPage = () => {
             variant={activeComponent === "chech_passport" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("chech_passport")}
           >
-            Ғилдирак жуфтлигининг техник паспорти
+            Кириш ва чиқиш далолатномаси
           </Button>
         </Flex>
 

@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   Heading,
+  IconButton,
   Image,
   Table,
   TableContainer,
@@ -18,23 +19,22 @@ import {
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBook,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBook, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { SliderMock } from "../../utils";
 import { VU_68_Model } from "./Modals/VU_68_Model";
 import { vu_68 } from "../../utils/mock_heads";
-import ReactPaginate from "react-paginate";
 import UserApi from "../../Service/module/userModule.api";
 import { imageGet } from "../../utils/imageGet";
+import { Pagination } from "../pagination/Pagination";
+import { Deleteted } from "../Deletete";
 
 export const VU_68 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
+  const [delateModal, setDelateModal] = useState(null);
+  const [deletedID, setDeleteID] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handlePageClick = (data) => {
@@ -53,6 +53,16 @@ export const VU_68 = () => {
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
+  const handleDelate = async (carriageID) => {
+    const { response } = await new UserApi().deleteVu68(carriageID);
+    if (response) {
+      window.location.reload();
+    }
+  };
+  const handleCheckAndDelete = (deletedID) => {
+    setDelateModal(true);
+    setDeleteID(deletedID);
+  };
 
   return (
     <Box
@@ -110,6 +120,7 @@ export const VU_68 = () => {
                       {item.label}
                     </Th>
                   ))}
+                  <Th rowSpan={2}></Th>
                 </Tr>
                 <Tr>
                   {vu_68?.nestedTwo.map((item, idx) => (
@@ -143,6 +154,13 @@ export const VU_68 = () => {
                       />
                     </Td>
                     <Td></Td>
+                    <Td>
+                      <IconButton
+                        onClick={() => handleCheckAndDelete(item?.carriage)}
+                        colorScheme="red"
+                        icon={<FontAwesomeIcon icon={faTrash} />}
+                      />
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -167,25 +185,18 @@ export const VU_68 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-      <ReactPaginate
-        pageCount={Math.ceil(
-          (gettingData?.count ? gettingData?.count : 0) / 10
-        )}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={2}
+
+      <Pagination
+        pageCount={gettingData?.count}
         onPageChange={handlePageClick}
-        containerClassName="pagination"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        activeClassName="active"
-        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
       />
       <VU_68_Model onClose={onClose} isOpen={isOpen} />
+      <Deleteted
+        isOpen={delateModal}
+        onClose={setDelateModal}
+        carriageNumber={deletedID}
+        deletedFunction={handleDelate}
+      />
     </Box>
   );
 };

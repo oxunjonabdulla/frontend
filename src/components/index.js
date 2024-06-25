@@ -10,6 +10,8 @@ export * from "./Blanka/VU_91";
 export * from "./Blanka/VU_92";
 export * from "./Blanka/VU_93";
 export * from "./Blanka/VU_10";
+export * from "./Blanka/WheelDalolatnoma";
+export * from "./pagination/Pagination";
 export * from "../pages/StatistikaPage/page/Fraza";
 export * from "./Blanka/Fraza_wheel";
 

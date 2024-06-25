@@ -183,14 +183,8 @@ export const Dalolatnoma = () => {
                     <Td>
                       <Flex gap={2} m={0}>
                         <IconButton
-                          float={"right"}
-                          borderColor={"red"}
-                          minW={"30px"}
-                          colorScheme="teal"
-                          bgColor={"red"}
-                          p={0}
+                          colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.carriage)}
-                          _hover={{ bgColor: "red", opacity: "0.7" }}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>

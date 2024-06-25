@@ -63,7 +63,6 @@ export const VU_92 = () => {
     if (response) {
       window.location.reload();
     }
-    console.log(response);
   };
   useEffect(() => {
     fetchData(currentPage);

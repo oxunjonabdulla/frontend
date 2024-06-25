@@ -466,6 +466,19 @@ export const carriage_dalolatnoma_head = [
     label: "",
   },
 ];
+export const wheel_dalolatnoma_head = [
+  { label: "Tartib raqami" },
+  { label: "Vagon raqami" },
+  { label: "G’ildirak juftligi raqami	 ", colspan: 4 },
+  {
+    label: "Ishlab chiqarilishi,zavod tamg’asi",
+    colspan: 4,
+  },
+  {
+    label: "Mavjudlik kodi",
+    colspan: 4,
+  },
+];
 
 export const vu_31 = {
   nestedHeaders: [

@@ -15,18 +15,14 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import {
-  faBook,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
 import { SliderMock } from "../../utils";
 import { vu_90 } from "../../utils/mock_heads";
 import { VU_90_Model } from "./Modals/VU_90_Model";
 import UserApi from "../../Service/module/userModule.api";
-import ReactPaginate from "react-paginate";
+import { Pagination } from "../pagination/Pagination";
 const data = [0];
 export const VU_90 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -191,23 +187,9 @@ export const VU_90 = () => {
                 ))}
               </Tbody>
             </Table>
-            <ReactPaginate
-              pageCount={Math.ceil(
-                (gettingData?.count ? gettingData?.count : 0) / 10
-              )}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
+            <Pagination
+              pageCount={gettingData?.count}
               onPageChange={handlePageClick}
-              containerClassName="pagination"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              activeClassName="active"
-              previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-              nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
             />
           </TableContainer>
         ) : (

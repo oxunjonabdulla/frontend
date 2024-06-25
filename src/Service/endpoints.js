@@ -37,9 +37,15 @@ const authEndpoints = {
   collectActGetAll: `/collectact/list/`,
   collectActPostFront: (carriageID) => `/${carriageID}/collect/act/front/`,
   collectActPostBack: (carriageID) => `/${carriageID}/collect/act/back/`,
+  // wheel
+  wheelActGetAll: `/kolesoact/list/`,
+  wheelActPostFront: (carriageID) => `/${carriageID}/koleso/act/front/`,
+  wheelActPostBack: (carriageID) => `/${carriageID}/koleso/act/back/`,
+  deleteActWheel: (carriageID) => `/${carriageID}/koleso/act/`,
 
   // dalolatnoma
   aravaActGetAll: `/aravaact/list/`,
+  aravaActDelete: (carriageID) => `/${carriageID}/arava/act/`,
   aravaActPostFrontID: (carriageID) => `/${carriageID}/collect/act/`,
   aravaActPostFront: (carriageID) => `/${carriageID}/arava/act/front/`,
   aravaActPostBack: (carriageID) => `/${carriageID}/arava/act/back/`,
@@ -48,6 +54,7 @@ const authEndpoints = {
   birikmaActGetAll: `/avtoact/list/`,
   birikmaActPostFront: (carriageID) => `/${carriageID}/act/front/`,
   birikmaActPostBack: (carriageID) => `/${carriageID}/act/back/`,
+  birikmaActdelete: (carriageID) => `/${carriageID}/act/`,
 
   phraseList: (page) => `/phrase/list/?page=${page + 1}`,
   phraseUpdate: (carriageID) => `/phrase/${carriageID}/`,
@@ -102,6 +109,10 @@ const authEndpoints = {
   getInviteVu51: (carriageID) => `/${carriageID}/vu51/invite/`,
   postAcceptedVu51: (carriageID) => `/${carriageID}/vu51/accepted/`,
   vu51All: (page) => `/vu51/list/?page=${page + 1}`,
+  // vu 53
+  getVu53All: `/vu53/`,
+  vu53IDPrihod: (id) => `/vu53_prihod/${id}/`,
+  postVu53Prihod: `/vu53_prihod/create/`,
 
   // vu 68
   vu68: (carriageID) => `/vu68/${carriageID}/`,

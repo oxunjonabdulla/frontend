@@ -294,6 +294,15 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deleteVu68(id) {
+    try {
+      const response = await privateInstance.delete(authEndpoints.vu68(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 
   //vu-47
   async getVu47(page) {
@@ -514,11 +523,10 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async delVu93(id, obj) {
+  async delVu93(id) {
     try {
       const response = await privateInstance.delete(
-        authEndpoints.vu93(id),
-        obj
+        authEndpoints.vu93Delate(id)
       );
 
       return { response };
@@ -892,6 +900,17 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deleteAravaAct(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.aravaActDelete(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getALlAravaAct(pageObject) {
     try {
       const response = await privateInstance.get(authEndpoints.aravaActGetAll, {
@@ -953,6 +972,17 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deleteBirikmaAct(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.birikmaActdelete(carriageId)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async postCollectActFront(carriageId, obj) {
     try {
       const response = await privateInstance.post(
@@ -984,6 +1014,52 @@ class UserApi extends React.Component {
       const response = await privateInstance.post(
         authEndpoints.collectActPostBack(carriageId),
         obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postWheelActBack(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.wheelActPostBack(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postWheelActFront(carriageId, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.wheelActPostFront(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getWheelAll(params) {
+    try {
+      const response = await privateInstance.get(authEndpoints.wheelActGetAll, {
+        params,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteWheelAct(carriageID) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.deleteActWheel(carriageID)
       );
 
       return { response };
@@ -1032,6 +1108,55 @@ class UserApi extends React.Component {
     try {
       const response = await privateInstance.put(
         authEndpoints.defestoskopId(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // vu 53
+
+  async getVu53All(params) {
+    try {
+      const response = await privateInstance.get(authEndpoints.getVu53All, {
+        params,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu53Prihod(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.postVu53Prihod,
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu53Prihod(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu53IDPrihod(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateVu53Prihod(id, obj) {
+    try {
+      const response = await privateInstance.put(
+        authEndpoints.vu53IDPrihod(id),
         obj
       );
 

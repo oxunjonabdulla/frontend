@@ -17,8 +17,6 @@ import {
 } from "@chakra-ui/react";
 import {
   faBook,
-  faChevronLeft,
-  faChevronRight,
   faEye,
   faPlus,
   faTrashAlt,
@@ -29,9 +27,10 @@ import { SliderMock } from "../../utils";
 import { AutoBreakes_dalolatnoma_model } from "./Modals/AutoBreakes/AutoBreakes_dalolatnoma_model";
 import { auto_dalolatnoma_head } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
-import ReactPaginate from "react-paginate";
 import { Orqa } from "./Modals/AutoBreakes/Orqa";
 import { ShowBack } from "./Modals/AutoBreakes/ShowBack";
+import { Deleteted } from "../Deletete";
+import { Pagination } from "../pagination/Pagination";
 
 export const AutoDalolatnoma = () => {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -39,6 +38,8 @@ export const AutoDalolatnoma = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [backId, setBackId] = useState(0);
+  const [deleteID, setDeleteID] = useState(null);
+  const [deleteModel, setDeleteModal] = useState(false);
   const [showBack, setShowBackData] = useState(0);
 
   const {
@@ -68,6 +69,12 @@ export const AutoDalolatnoma = () => {
     setBackId(data);
   };
 
+  const handleDelate = async (carriageID) => {
+    const { response } = await new UserApi().deleteBirikmaAct(carriageID);
+    if (response) {
+      window.location.reload();
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       const paramsPage = {
@@ -169,11 +176,8 @@ export const AutoDalolatnoma = () => {
                           <Text>Orqa tomonini kiritish:</Text>
                           <IconButton
                             onClick={() => handleBack(item?.carriage)}
-                            borderColor={"blue.400"}
-                            colorScheme="teal"
-                            bgColor={"blue.400"}
+                            colorScheme="blue"
                             icon={<FontAwesomeIcon icon={faPlus} />}
-                            _hover={{ bgColor: "blue.400", opacity: "0.7" }}
                           />
                         </Flex>
                       ) : (
@@ -189,13 +193,11 @@ export const AutoDalolatnoma = () => {
                     <Td>
                       <Flex gap={2} m={0}>
                         <IconButton
-                          float={"right"}
-                          borderColor={"red"}
-                          minW={"30px"}
-                          colorScheme="teal"
-                          bgColor={"red"}
-                          p={0}
-                          _hover={{ bgColor: "red", opacity: "0.7" }}
+                          colorScheme="red"
+                          onClick={() => {
+                            setDeleteID(item?.carriage);
+                            setDeleteModal(true);
+                          }}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
@@ -226,23 +228,9 @@ export const AutoDalolatnoma = () => {
       )}
 
       {gettingData?.results?.length ? (
-        <ReactPaginate
-          pageCount={Math.ceil(
-            (gettingData?.count ? gettingData?.count : 0) / 10
-          )}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={2}
+        <Pagination
           onPageChange={handlePageClick}
-          containerClassName="pagination"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          previousLinkClassName="page-link"
-          nextClassName="page-item"
-          nextLinkClassName="page-link"
-          activeClassName="active"
-          previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-          nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+          pageCount={gettingData?.count}
         />
       ) : null}
       <ShowBack
@@ -252,6 +240,13 @@ export const AutoDalolatnoma = () => {
       />
       <Orqa isOpen={isOPenBack} onClose={onCloseBack} carriageID={backId} />
       <AutoBreakes_dalolatnoma_model isOpen={isOpen} onClose={onClose} />
+
+      <Deleteted
+        isOpen={deleteModel}
+        onClose={setDeleteModal}
+        carriageNumber={deleteID}
+        deletedFunction={handleDelate}
+      />
     </Box>
   );
 };

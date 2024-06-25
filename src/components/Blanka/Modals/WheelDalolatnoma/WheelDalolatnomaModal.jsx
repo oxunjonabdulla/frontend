@@ -1,43 +1,37 @@
 import {
-  Flex,
   Modal,
   ModalCloseButton,
   ModalContent,
+  ModalHeader,
   ModalOverlay,
-  Text,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { InviteForm } from "./InviteForm";
+import { Oldi } from "./Oldi";
 
-export const VU_53_Model = ({ onClose, isOpen }) => {
+export const WheelDalolatnomaModal = ({ onClose, isOpen }) => {
   return (
     <Modal
       isOpen={isOpen}
       w={"100%"}
       onClose={onClose}
-      size={["full"]}
+      size={["sm", "md", "lg", "6xl"]}
+      isCentered
       motionPreset="slideInLeft"
     >
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
-        <Flex
-          flexDir={"column"}
-          align={"center"}
-          justify={"center"}
-          mt={8}
-          gap={4}
-        >
-          <Text>VU-53 shakl turini tanlang</Text>
-        </Flex>
+        <ModalHeader textAlign={"center"}>
+          Kirish va chiqish dalolatnomasi g‘ildirak bo‘linmasi
+        </ModalHeader>
 
         <ModalCloseButton />
-        <InviteForm />
+
+        <Oldi onClose={onClose} />
       </ModalContent>
     </Modal>
   );
 };
-
-VU_53_Model.propTypes = {
+WheelDalolatnomaModal.propTypes = {
   onClose: PropTypes.func,
   isOpen: PropTypes.bool,
 };
