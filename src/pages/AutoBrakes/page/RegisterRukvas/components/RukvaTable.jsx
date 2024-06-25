@@ -26,6 +26,7 @@ import { imageGet } from "@/utils/imageGet";
 import { SimpleLoader } from "@/components";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../../../../../components";
+import { timeMoment } from "../../../../../utils/roleTest";
 const RukvaTable = memo(function RukvaTable() {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(true);
@@ -95,8 +96,10 @@ const RukvaTable = memo(function RukvaTable() {
             {gettingData?.results?.map((item, idx) => (
               <Tr key={item.carriage}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
-                <Td></Td>
-                <Td>{item.carriage}</Td>
+                <Td>{timeMoment(item?.created_at)?.day}</Td>
+                <Td fontWeight={"700"} color={"teal"}>
+                  {item.carriage}
+                </Td>
                 <Td>{item.connect_rukva_brand_1}</Td>
                 <Td>{item.connect_rukva_brand_2}</Td>
                 <Td>{item.check_with_gass}</Td>

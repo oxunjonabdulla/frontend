@@ -36,7 +36,6 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     setLoading(true);
 
     const { response, error } = await new UserApi().postVu50(data);
@@ -176,7 +175,7 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
                   />
                 }
               >
-                Ma'lumor birligi qushish
+                Ma&apos;lumor birligi qushish
               </Button>
             ) : (
               <Text
@@ -186,7 +185,7 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
                 rounded={4}
                 p={"5px 10px"}
               >
-                Ma'lumot chegarasi 20 ta dan oshmasligi kerak
+                Ma&apos;lumot chegarasi 20 ta dan oshmasligi kerak
               </Text>
             )}
             {fields.map((group, idx) => (

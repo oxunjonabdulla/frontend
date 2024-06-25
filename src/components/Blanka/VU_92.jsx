@@ -21,6 +21,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faDownload,
+  faEye,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -157,7 +158,15 @@ export const VU_92 = () => {
                         src={imageGet(item?.user_signature_url)}
                       />
                     </Td>
-
+                    <Td>
+                      <Flex gap={2} justifyContent={"center"}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          size={"lg"}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
+                    </Td>
                     <Td>
                       {" "}
                       <Flex gap={2} justifyContent={"center"}>

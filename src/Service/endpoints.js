@@ -40,6 +40,7 @@ const authEndpoints = {
 
   // dalolatnoma
   aravaActGetAll: `/aravaact/list/`,
+  aravaActPostFrontID: (carriageID) => `/${carriageID}/collect/act/`,
   aravaActPostFront: (carriageID) => `/${carriageID}/arava/act/front/`,
   aravaActPostBack: (carriageID) => `/${carriageID}/arava/act/back/`,
   // dalolatnoma Avtobirikmaa
@@ -106,6 +107,10 @@ const authEndpoints = {
   vu68: (carriageID) => `/vu68/${carriageID}/`,
   vu68All: (page) => `/vu68/list/?page=${page + 1}`,
 
+  // vu91
+  vu90: `/vu90/`,
+  vu90Id: (carriageID) => `/vu90/${carriageID}/`,
+  vu90All: `/vu90/list/`,
   // vu91
   vu91: `/vu91/`,
   vu91Delate: (carriageID) => `/vu91/${carriageID}/`,

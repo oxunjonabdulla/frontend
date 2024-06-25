@@ -33,15 +33,21 @@ import { imageGet } from "../../../utils/imageGet";
 import { defectoscope } from "../../../utils/mock_heads";
 import { CreateDefectoscope } from "./CreateDefectoscope";
 import { Deleteted } from "../../../components";
+import { UpdateDefectoscope } from "./UpdateDefectoscope";
 
 export const DefectoscopeTable = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   const [delateModal, setDelateModal] = useState(false);
   const [getTableData, setGetinfTableData] = useState(null);
+  const [updatedObject, setUpdateObject] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenUpdate,
+    onOpen: onOpenUpdate,
+    onClose: onCloseUpdate,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -69,6 +75,10 @@ export const DefectoscopeTable = () => {
     if (response) {
       window.location.reload();
     }
+  };
+  const handleUpdate = async (obj) => {
+    setUpdateObject(obj);
+    onOpenUpdate();
   };
   return (
     <Box
@@ -134,7 +144,7 @@ export const DefectoscopeTable = () => {
                   <Tr key={item?.id}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td>{item?.defectoscope_date}</Td>
-                    <Td fontWeight={700} color={"green.900"}>
+                    <Td fontWeight={700} color={"teal"}>
                       {item?.carriage}
                     </Td>
                     <Td>{item?.detail_number}</Td>
@@ -158,7 +168,7 @@ export const DefectoscopeTable = () => {
                           p={0}
                           minW={"30px"}
                           _hover={{ bgColor: "green.500", opacity: "0.7" }}
-                          // onClick={() => handleUpdate(item)}
+                          onClick={() => handleUpdate(item)}
                         >
                           <FontAwesomeIcon icon={faPenToSquare} />
                         </Button>
@@ -227,6 +237,11 @@ export const DefectoscopeTable = () => {
         deletedFunction={handleDelate}
       />
       <CreateDefectoscope onClose={onClose} isOpen={isOpen} />
+      <UpdateDefectoscope
+        onClose={onCloseUpdate}
+        isOpen={isOpenUpdate}
+        updatedObject={updatedObject}
+      />
     </Box>
   );
 };

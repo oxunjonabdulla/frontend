@@ -15,16 +15,53 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBook,
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { SliderMock } from "../../utils";
 import { vu_90 } from "../../utils/mock_heads";
 import { VU_90_Model } from "./Modals/VU_90_Model";
+import UserApi from "../../Service/module/userModule.api";
+import ReactPaginate from "react-paginate";
 const data = [0];
 export const VU_90 = () => {
-  const { isOpen, onClose, onOpen } = useDisclosure();
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
+  const [getTableData, setGetinfTableData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [gettingData, setGettingData] = useState([]);
+  const [delateModal, setDelateModal] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
+  const fetchData = async (page) => {
+    setIsLoading(true);
+    const { response } = await new UserApi().getVu90(page);
+    if (response) {
+      setIsLoading(false);
+      setGettingData(response?.data);
+    }
+  };
+  const handleCheckAndDelete = (deletedID) => {
+    setDelateModal(true);
+    setGetinfTableData(deletedID);
+  };
+
+  const handleDelate = async (carriageID) => {
+    const { response } = await new UserApi().delVu91(carriageID);
+    if (response) {
+      window.location.reload();
+    }
+  };
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
 
   return (
     <Box
@@ -58,7 +95,7 @@ export const VU_90 = () => {
         </Button>
       </Tooltip>
       {!isLoadingFulStatistik ? (
-        data?.length ? (
+        gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
             <Table
               borderRadius={10}
@@ -110,67 +147,68 @@ export const VU_90 = () => {
               </Thead>
 
               <Tbody>
-                <Tr>
-                  <Td rowSpan={2}>asd</Td>
-                  <Td rowSpan={2}>asd</Td>
-                  <Td rowSpan={2}>asd</Td>
-                  <Td rowSpan={2}>asd</Td>
-                  <Td rowSpan={2}>asd</Td>
-                  <Td>o&apos;ng</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                </Tr>
-                <Tr>
-                  <Td>Chap</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                  <Td>asd</Td>
-                </Tr>
+                {gettingData?.results?.map((e, idx) => (
+                  <Fragment key={e?.id}>
+                    <Tr>
+                      <Td rowSpan={2}>{currentPage * 10 + idx + 1}</Td>
+                      <Td rowSpan={2}>{e?.collection_date}</Td>
+                      <Td rowSpan={2}>{e?.wheel_pair}</Td>
+                      <Td rowSpan={2}>{e?.wheel_pair_medal}</Td>
+                      <Td>O&apos;ng</Td>
+                      <Td colSpan={2}>{e?.neck_stumb_right_d1}</Td>
+                      <Td colSpan={2}>{e?.neck_stumb_right_d2}</Td>
+                      <Td colSpan={2}>{e?.neck_stumb_right_d3}</Td>
+                      <Td rowSpan={2}>{e?.neck_stumb_right_d3}</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Chap</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                      <Td>asd</Td>
+                    </Tr>
+                  </Fragment>
+                ))}
               </Tbody>
             </Table>
+            <ReactPaginate
+              pageCount={Math.ceil(
+                (gettingData?.count ? gettingData?.count : 0) / 10
+              )}
+              pageRangeDisplayed={5}
+              marginPagesDisplayed={2}
+              onPageChange={handlePageClick}
+              containerClassName="pagination"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              previousClassName="page-item"
+              previousLinkClassName="page-link"
+              nextClassName="page-item"
+              nextLinkClassName="page-link"
+              activeClassName="active"
+              previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+              nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+            />
           </TableContainer>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>

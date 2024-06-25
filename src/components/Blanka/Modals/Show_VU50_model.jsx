@@ -50,8 +50,8 @@ const Show_VU50_model = ({ isOpen, onClose, showData }) => {
                     <Td>{idx + 1}</Td>
                     <Td>{item?.wheel_pair_number}</Td>
                     <Td>{item?.wheel_pair_type}</Td>
-                    <Td>{item?.wheels_pair_priice_list}</Td>
                     <Td>{item?.condition_servicable_defects}</Td>
+                    <Td>{item?.wheels_pair_priice_list}</Td>
                   </Tr>
                 ))}
               </Tbody>

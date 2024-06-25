@@ -401,6 +401,48 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  // vu90
+  async postVu90(obj) {
+    try {
+      const response = await privateInstance.post(authEndpoints.vu90, obj);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu90(paramsData) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu90All, {
+        params: paramsData,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu90(id) {
+    try {
+      const response = await privateInstance.delete(authEndpoints.vu90Id(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateVu90(id, obj) {
+    try {
+      const response = await privateInstance.patch(
+        authEndpoints.vu90Id(id),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   // vu92
   async postVu91(obj) {
     try {
@@ -832,6 +874,17 @@ class UserApi extends React.Component {
       const response = await privateInstance.post(
         authEndpoints.aravaActPostFront(carriageId),
         obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteAct(carriageId) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.aravaActPostFrontID(carriageId)
       );
 
       return { response };

@@ -11,12 +11,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Signatur } from "../../Signature/Signatur";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { SearchTrain } from "../../../utils";
 import UserApi from "../../../Service/module/userModule.api";
 export const VU_92_Model = ({ onClose, isOpen }) => {
@@ -27,7 +27,21 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    control,
+  } = useForm({
+    defaultValues: {
+      wheel_pair_data: [
+        { wheel_pair_number: "", buttock_parts: "", execution_inspection: "" },
+        { wheel_pair_number: "", buttock_parts: "", execution_inspection: "" },
+        { wheel_pair_number: "", buttock_parts: "", execution_inspection: "" },
+        { wheel_pair_number: "", buttock_parts: "", execution_inspection: "" },
+      ],
+    },
+  });
+  const { fields } = useFieldArray({
+    control,
+    name: "wheel_pair_data",
+  });
   const onSubmit = async (data) => {
     setLoading(true);
 
@@ -91,41 +105,62 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
                 />
               </FormControl>
             </Flex>
-
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.wheel_pair_number}>
-                <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  G‘ildirak juftligi raqami
-                </FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("wheel_pair_number", { required: true })}
-                  type="text"
-                />
-              </FormControl>
-              <FormControl isInvalid={errors?.buttock_parts}>
-                <FormLabel> Buksa qismlarning holati </FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("buttock_parts", { required: true })}
-                  type="text"
-                />
-              </FormControl>
-              <FormControl isInvalid={errors?.execution_inspection}>
-                <FormLabel>
-                  Taftish ishlarini bajarishda amalga oshiriladi
-                </FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("execution_inspection", { required: true })}
-                  type="text"
-                />
-              </FormControl>
-            </Flex>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <Signatur title={"Taftish qilingan imzosi"} />
-              <Signatur title={"Taftish qilingan usta imzosi"} />
-            </Flex>
+            {fields.map((field, index) => (
+              <Flex
+                key={field.id}
+                gap={3}
+                flexWrap={["wrap", "nowrap"]}
+                align={"center"}
+                my={4}
+              >
+                <Text>{index + 1}.</Text>
+                <FormControl
+                  isInvalid={
+                    errors?.wheel_pair_data?.[index]?.wheel_pair_number
+                  }
+                >
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    G‘ildirak juftligi raqami
+                  </FormLabel>
+                  <Controller
+                    name={`wheel_pair_data.${index}.wheel_pair_number`}
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} borderColor={"gray.600"} type="text" />
+                    )}
+                  />
+                </FormControl>
+                <FormControl
+                  isInvalid={errors?.wheel_pair_data?.[index]?.buttock_parts}
+                >
+                  <FormLabel> Buksa qismlarning holati </FormLabel>
+                  <Controller
+                    name={`wheel_pair_data.${index}.buttock_parts`}
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} borderColor={"gray.600"} type="text" />
+                    )}
+                  />
+                </FormControl>
+                <FormControl
+                  isInvalid={
+                    errors?.wheel_pair_data?.[index]?.execution_inspection
+                  }
+                >
+                  <FormLabel>
+                    {" "}
+                    Taftish ishlarini bajarishda amalga oshiriladi{" "}
+                  </FormLabel>
+                  <Controller
+                    name={`wheel_pair_data.${index}.execution_inspection`}
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} borderColor={"gray.600"} type="text" />
+                    )}
+                  />
+                </FormControl>
+              </Flex>
+            ))}
           </ModalBody>
 
           <ModalFooter>

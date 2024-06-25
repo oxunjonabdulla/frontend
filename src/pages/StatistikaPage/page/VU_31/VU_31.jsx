@@ -90,19 +90,19 @@ export const VU_31 = () => {
           +
         </Button>
       </Tooltip>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+          />
+        </FormControl>
+      </Box>
 
       {memoData?.results?.length ? (
         <TableContainer p={4} border={"1px solid #eeeee"} shadow={"lg"}>
-          <Box my={3}>
-            <FormControl w={"200px"}>
-              <FormLabel>Vagon nomer bo'yicha qidirish</FormLabel>
-              <Input
-                onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Vagon Raqami Yozing"
-                borderColor={"gray.600"}
-              />
-            </FormControl>
-          </Box>
           {isLoadingData && (
             <Box
               width={"100%"}

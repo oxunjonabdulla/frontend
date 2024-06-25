@@ -32,6 +32,7 @@ import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Orqa } from "./Modals/Dalolatnoma/Orqa";
 import ShowBack from "./Modals/Dalolatnoma/ShowBack";
+import { Deleteted } from "../Deletete";
 
 export const Dalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -45,8 +46,9 @@ export const Dalolatnoma = () => {
     onClose: onCloseShowBack,
     onOpen: onOpenShowBack,
   } = useDisclosure();
-
   const [isLoadingData, setIsLoading] = useState(true);
+  const [deletedId, setDeletedId] = useState(null);
+  const [delateModal, setDelateModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
@@ -80,6 +82,19 @@ export const Dalolatnoma = () => {
     };
     fetchData();
   }, [currentPage]);
+
+  const handleCheckAndDelete = (deletedID) => {
+    setDelateModal(true);
+    setDeletedId(deletedID);
+  };
+
+  const handleDelate = async (carriageID) => {
+    const { response } = await new UserApi().deleteAct(carriageID);
+    if (response) {
+      window.location.reload();
+    }
+  };
+
   return (
     <Box
       as="div"
@@ -174,6 +189,7 @@ export const Dalolatnoma = () => {
                           colorScheme="teal"
                           bgColor={"red"}
                           p={0}
+                          onClick={() => handleCheckAndDelete(item?.carriage)}
                           _hover={{ bgColor: "red", opacity: "0.7" }}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
@@ -229,6 +245,12 @@ export const Dalolatnoma = () => {
         isOpen={isOpenShowBack}
         onClose={onCloseShowBack}
         dataBack={showBack}
+      />
+      <Deleteted
+        carriageNumber={deletedId}
+        isOpen={delateModal}
+        onClose={setDelateModal}
+        deletedFunction={handleDelate}
       />
       <Orqa isOpen={isOPenBack} onClose={onCloseBack} carriageID={backId} />
       <Dalolatnoma_Model isOpen={isOpen} onClose={onClose} />

@@ -11,15 +11,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Signatur } from "../../Signature/Signatur";
 import UserApi from "../../../Service/module/userModule.api";
-export const VU_93_Model = ({ onClose, isOpen }) => {
+export const UpdateDefectoscope = ({ onClose, isOpen, updatedObject }) => {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
   const {
@@ -30,27 +28,26 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-
-    const { response, error } = await new UserApi().postVu93(data);
+    const { response, error } = await new UserApi().updateDefestoskop(
+      updatedObject?.carriage,
+      data
+    );
     setLoading(false);
     if (response) {
       toast({
         status: "success",
-        title: "VU-93 jurnaliga vagon muvaffaqiyatli qo'shildi.",
+        title: "Defestoskop yangilandi",
         duration: 4000,
         isClosable: true,
         position: "top-right",
         fontSize: "3xl",
       });
-
       window.location.reload();
     }
     if (error) {
       toast({
         status: "error",
-        title: error?.detail
-          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
-          : "Bu vagon raqami uchun VU-93 jurnali mavjud.",
+        title: error?.detail,
         duration: 4000,
         isClosable: true,
         position: "top-right",
@@ -58,7 +55,6 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
       });
     }
   };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -71,84 +67,63 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
         <ModalHeader textAlign={"center"}>
-          VU-93 Jurnalini qo&apos;shish
+          Defektoskoplar qayd etish
         </ModalHeader>
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.chartley_rapair_date}>
-                <FormLabel> Podshipnik ta&apos;mirlangan sanasi </FormLabel>
+              <FormControl>
+                <FormLabel>Vagon raqami</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("chartley_rapair_date", { required: true })}
+                  defaultValue={updatedObject?.carriage}
+                  readOnly
+                  type="text"
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.defectoscope_date}>
+                <FormLabel>Tormoz ta’mirlangan sana</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("defectoscope_date", { required: true })}
                   type="date"
+                  defaultValue={updatedObject?.defectoscope_date}
                 />
               </FormControl>
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.chartley_model_chartley_number}>
-                <FormLabel>
-                  Podshipnik shartli belgilari, Podshipnik raqami{" "}
+              <FormControl isInvalid={errors?.detail_number}>
+                <FormLabel>Detal nomi</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("detail_number", { required: true })}
+                  type="text"
+                  defaultValue={updatedObject?.detail_number}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.year_number_factory}>
+                <FormLabel>Yil/raqam/zavod</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="yil/raqam/zavodi"
+                  {...register("year_number_factory", { required: true })}
+                  borderColor={"gray.600"}
+                  defaultValue={updatedObject?.year_number_factory}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.break_detail}>
+                <FormLabel whiteSpace={["pre-wrap", "nowrap"]}>
+                  Nosozlik xulosasi
                 </FormLabel>
                 <Input
-                  borderColor={"gray.600"}
-                  placeholder="Podshipnik belgisi va raqami kiritilsin "
-                  {...register("chartley_model_chartley_number", {
-                    required: true,
-                  })}
                   type="text"
-                />
-              </FormControl>
-              <FormControl isInvalid={errors?.made_in}>
-                <FormLabel>Ishlab chiqorgan zavod </FormLabel>
-                <Input
+                  {...register("break_detail", { required: true })}
                   borderColor={"gray.600"}
-                  {...register("made_in", { required: true })}
-                  type="text"
+                  defaultValue={updatedObject?.break_detail}
                 />
               </FormControl>
-              <FormControl>
-                <FormLabel>Ishlab chiqorgan sanasi </FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("made_date")}
-                  type="date"
-                />
-              </FormControl>
-            </Flex>
-
-            <Text
-              as={"h1"}
-              textAlign={"center"}
-              m={0}
-              fontSize={"xl"}
-              fontWeight={700}
-            >
-              Ko&apos;rinishi
-            </Text>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.not_allowed}>
-                <FormLabel>Yaroqsiz</FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("not_allowed", { required: true })}
-                  type="text"
-                />
-              </FormControl>
-              <FormControl isInvalid={errors?.rapair_works}>
-                <FormLabel>Amalga oshirilgan ta&apos;mir ishlari</FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("rapair_works", { required: true })}
-                  type="text"
-                />
-              </FormControl>
-            </Flex>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <Signatur title={"Ta'mirlagan shaxs imzosi"} />
-              <Signatur title={"Usta imzosi"} />
             </Flex>
           </ModalBody>
 
@@ -172,7 +147,8 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
   );
 };
 
-VU_93_Model.propTypes = {
+UpdateDefectoscope.propTypes = {
   onClose: PropTypes.func,
   isOpen: PropTypes.bool,
+  updatedObject: PropTypes.object,
 };

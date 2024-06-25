@@ -171,9 +171,8 @@ export const routersSidebar = [
 
 export const register_razobshitel = [
   { label: "T/R" },
-  { label: "Sana" },
+  { label: "Tamirlangan sanasi" },
   { label: "Vagon nomeri" },
-  { label: "Ta’mir turi" },
   { label: "Razabshitlni kran turi 4300" },
   { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2" },
   { label: "So’ngi jumrfk turi 4304, 4314, 271" },
@@ -1084,7 +1083,6 @@ export const defectoscope = {
 export const vu_90 = {
   headers: [
     { label: "Tartib raqami", rowspan: 3 },
-    { label: "Vagon raqami", rowspan: 3 },
     { label: "Yig‘ilgan sana", rowspan: 3 },
     {
       label: "Qo’yish va g’ildirak juftligi raqami",
@@ -1141,6 +1139,10 @@ export const vu_90 = {
       label: "Izoh",
       rowspan: 3,
     },
+    {
+      label: "",
+      rowspan: 3,
+    },
   ],
 
   nestedHeaders: [
@@ -1183,6 +1185,7 @@ export const vu_92 = {
     { label: "Buksa qismlarini holati", rowspan: 2 },
     { label: "Taftish ishlarni bajarishda amalga oshiriladi", rowspan: 2 },
     { label: "Imzosi", colspan: 2 },
+    { label: "Ma'lumotni ko'rish", rowspan: 2 },
     { label: "Yuklash / O'chirish", rowspan: 2 },
   ],
 

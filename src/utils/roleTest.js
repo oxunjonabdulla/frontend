@@ -1,3 +1,4 @@
+import moment from "moment/moment";
 import { useSelector } from "react-redux";
 
 const userRoles = [
@@ -17,4 +18,16 @@ export const NavigateWithPath = () => {
   const data = userRoles.filter((item) => item.role === user?.role)[0];
 
   return { data };
+};
+
+export const timeMoment = (str) => {
+  if (str) {
+    const date = moment(str);
+    const time = date.format("HH:mm:ss");
+    const day = date.format("DD.MM.YYYY");
+
+    return { time, day };
+  }
+
+  return null;
 };

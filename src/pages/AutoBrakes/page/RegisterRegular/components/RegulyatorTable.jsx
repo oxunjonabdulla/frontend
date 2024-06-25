@@ -26,6 +26,7 @@ import { SimpleLoader } from "@/components";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../../../../../components";
 import { register_rehulyator } from "../../../../../utils/mock_heads";
+import { timeMoment } from "../../../../../utils/roleTest";
 const RegulyatorTable = memo(function RegulyatorTable() {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(true);
@@ -93,16 +94,18 @@ const RegulyatorTable = memo(function RegulyatorTable() {
 
           <Tbody>
             {gettingData?.results?.map((item, idx) => (
-              <Tr key={item.carriage}>
+              <Tr key={item.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
-                <Td></Td>
-                <Td>{item.carriage}</Td>
-                <Td>{item.connect_rukva_brand_1}</Td>
-                <Td>{item.connect_rukva_brand_2}</Td>
-                <Td>{item.check_with_gass}</Td>
-                <Td>{item.stay_time_10}</Td>
-                <Td>{item.water_gass}</Td>
-                <Td>{item.stay_time_2}</Td>
+                <Td>{timeMoment(item.created_at)?.day}</Td>
+                <Td>{item.carriage_number}</Td>
+                <Td>{item.ptp_type}</Td>
+                <Td>{item.corp_number}</Td>
+                <Td>{item.kgs_check}</Td>
+                <Td>{item.a_ptp_to_mm}</Td>
+                <Td>{item.b_ptp_to_mm}</Td>
+                <Td>{item.prp_to_mm}</Td>
+                <Td>{item.prp_to_mm}</Td>
+                <Td>{item.repair_check}</Td>
 
                 <Td>
                   <Image
@@ -110,7 +113,6 @@ const RegulyatorTable = memo(function RegulyatorTable() {
                     src={imageGet(item?.author_info?.user_signature_url)}
                   />
                 </Td>
-                <Td></Td>
                 <Td>
                   {" "}
                   <Flex gap={2} m={0}>

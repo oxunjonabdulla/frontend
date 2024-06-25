@@ -19,19 +19,60 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Signatur } from "../../Signature/Signatur";
 import { SearchTrain } from "../../../utils";
+import UserApi from "../../../Service/module/userModule.api";
 export const VU_90_Model = ({ onClose, isOpen }) => {
-  const [trainFixType, setTrainFixType] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
+
+  const toast = useToast();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
+    const {
+      maded_factory_creating_back,
+      maded_factory_creating_front,
+      maded_factory_creating_back_adding,
+      maded_factory_creating_front_adding,
+    } = data;
     setLoading(true);
-  };
 
+    const object = {
+      ...data,
+      maded_factory_creating_back:
+        maded_factory_creating_back + "|" + maded_factory_creating_back_adding,
+      maded_factory_creating_front:
+        maded_factory_creating_front +
+        "|" +
+        maded_factory_creating_front_adding,
+    };
+
+    const { response, error } = await new UserApi().postVu90(object);
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "VU-90 jurnaliga vagon muvaffaqiyatli qo'shildi.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+
+      // window.location.reload();
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.detail,
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
   return (
     <Modal
       isOpen={isOpen}
@@ -50,33 +91,32 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <SearchTrain setSerachingResult={setSerachingResult} />
-              <FormControl isInvalid={errors?.Tormoz}>
+              <FormControl isInvalid={errors?.collection_date}>
                 <FormLabel>Yig‘ilgan sana </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("collection_date")}
                   type="date"
                 />
               </FormControl>
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.Tormoz}>
+              <FormControl isInvalid={errors?.wheel_pair}>
                 <FormLabel>Qo’yish va g’ildirak juftligi raqami </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("wheel_pair")}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.wheel_pair_medal}>
                 <FormLabel>
                   G‘ildirak juftligining o‘rta ta’mir tamg‘asi
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("wheel_pair_medal")}
                   type="text"
                 />
               </FormControl>
@@ -115,51 +155,45 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   align={"center"}
                   my={4}
                 >
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>d1</FormLabel>
+                  <FormControl>
                     <Input
                       borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
+                      {...register("neck_stumb_right_d1")}
+                      placeholder="d1"
+                      type="text"
+                    />
+                    <Input
+                      borderColor={"gray.600"}
+                      {...register("neck_stumb_right_dc1")}
+                      placeholder="d'1"
                       type="text"
                     />
                   </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>dc1</FormLabel>
+                  <FormControl>
                     <Input
                       borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
+                      placeholder="d2"
+                      {...register("neck_stumb_right_d2")}
+                      type="text"
+                    />
+                    <Input
+                      borderColor={"gray.600"}
+                      placeholder="d'2"
+                      {...register("neck_stumb_right_dc2")}
                       type="text"
                     />
                   </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>d2</FormLabel>
+                  <FormControl>
                     <Input
                       borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
+                      {...register("neck_stumb_right_d3")}
                       type="text"
+                      placeholder="d3"
                     />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>dc2</FormLabel>
                     <Input
                       borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>d3</FormLabel>
-                    <Input
-                      borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>dc3</FormLabel>
-                    <Input
-                      borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
+                      {...register("neck_stumb_right_dc3")}
+                      placeholder="d'3"
                       type="text"
                     />
                   </FormControl>
@@ -181,52 +215,46 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   align={"center"}
                   my={4}
                 >
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>d1</FormLabel>
+                  <FormControl>
                     <Input
                       borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
+                      {...register("neck_stumb_left_d1")}
+                      type="text"
+                      placeholder="d1"
+                    />
+                    <Input
+                      borderColor={"gray.600"}
+                      {...register("neck_stumb_left_dc1")}
+                      type="text"
+                      placeholder="d'1"
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <Input
+                      borderColor={"gray.600"}
+                      {...register("neck_stumb_left_d2")}
+                      type="text"
+                      placeholder="d2"
+                    />
+                    <Input
+                      borderColor={"gray.600"}
+                      {...register("neck_stumb_left_dc2")}
+                      placeholder="d'2"
                       type="text"
                     />
                   </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>dc1</FormLabel>
+                  <FormControl>
                     <Input
                       borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
+                      {...register("neck_stumb_left_d3")}
                       type="text"
+                      placeholder="d3"
                     />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>d2</FormLabel>
                     <Input
                       borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
+                      {...register("neck_stumb_left_dc3")}
                       type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>dc2</FormLabel>
-                    <Input
-                      borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>d3</FormLabel>
-                    <Input
-                      borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel>dc3</FormLabel>
-                    <Input
-                      borderColor={"gray.600"}
-                      {...register("sinovi", { required: true })}
-                      type="text"
+                      placeholder="d'3"
                     />
                   </FormControl>
                 </Flex>
@@ -234,51 +262,72 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.Tormoz}>
+              <FormControl>
                 <FormLabel> Sheykaning eng katta oval qismi (mm)</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("part_of_neck")}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl>
                 <FormLabel>Sheykaning eng katta konus qismi (mm) </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("large_cone_part")}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.Tormoz}>
+              <FormControl>
                 <FormLabel>
                   Labirint halqasini o‘rnatilish diametri (mm)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("labyrinth_ring_d4")}
+                  type="text"
+                  placeholder="d4"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("labyrinth_ring_dc4")}
+                  placeholder="d'4"
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl>
                 <FormLabel>
                   Labirint halqasini o‘rnatishdagi farqi (mm)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("labyrinth_ring_another_d3")}
+                  type="text"
+                  placeholder="d3"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("labyrinth_ring_another_d4")}
+                  placeholder="d4"
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl>
                 <FormLabel whiteSpace={["pre-wrap", "nowrap"]}>
                   Erkin yoki sheykadagi to‘g‘ridan to‘g‘ri radial oraliq (mm)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("radial_free_back")}
+                  placeholder="задний"
+                  type="text"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="передний"
+                  {...register("radial_free_front")}
                   type="text"
                 />
               </FormControl>
@@ -294,22 +343,31 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
             </Text>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.Tormoz}>
-                <FormLabel>d1, dc1</FormLabel>
+              <FormControl>
                 <Input
-                  placeholder="O‘q"
+                  placeholder="O‘q d1"
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("fasad_buks_d1")}
+                  type="text"
+                />
+                <Input
+                  placeholder="O‘q d'1"
+                  borderColor={"gray.600"}
+                  {...register("fasad_buks_dc1")}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
-                <FormLabel>d2, dc2</FormLabel>
-
+              <FormControl>
                 <Input
-                  placeholder="O‘q"
+                  placeholder="O‘q d2"
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("fasad_buks_d2")}
+                  type="text"
+                />
+                <Input
+                  placeholder="O‘q d'2"
+                  borderColor={"gray.600"}
+                  {...register("fasad_buks_dс2")}
                   type="text"
                 />
               </FormControl>
@@ -326,95 +384,94 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
             </Text>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.Tormoz}>
+              <FormControl>
                 <FormLabel>Orqa</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("maded_factory_creating_back")}
                   type="text"
+                  placeholder="So'z shakli"
                 />
-              </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
-                <FormLabel>Oldi</FormLabel>
-
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("maded_factory_creating_back_adding")}
+                  type="number"
+                  placeholder="Son shakli"
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Oldi</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("maded_factory_creating_front")}
                   type="text"
+                  placeholder="So'z shakli"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("maded_factory_creating_front_adding")}
+                  type="number"
+                  placeholder="Son shakli"
                 />
               </FormControl>
             </Flex>
-            <Text
-              as={"h1"}
-              textAlign={"center"}
-              m={0}
-              fontSize={"xl"}
-              fontWeight={700}
-            >
-              ___________{" "}
-            </Text>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.Tormoz}>
+              <FormControl>
                 <FormLabel>
                   Qotirish vtulkasini chiqishi yoki minimal osevoy oraliq (mm)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("bushing_clearance")}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
-                <FormLabel>
-                  Qotirish vtulkasini siljishi yoki ichki halqaning o‘rnatilish
-                  diametri (mm)
-                </FormLabel>
+              <FormControl>
+                <FormLabel>Qotirish vtulkasini siljishi diametr (mm)</FormLabel>
 
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("next_fasad_vtuk")}
                   type="text"
                 />
               </FormControl>
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.Tormoz}>
+              <FormControl>
                 <FormLabel>
-                  Vtulkani bosim yordamida preslash yoki ichki halqani
-                  o‘rnatishdagi farqi (mm){" "}
+                  Vtulkani bosim yordamida preslash farqi (mm){" "}
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("Tormoz", { required: true })}
+                  {...register("gass_pass_wheel")}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl>
                 <FormLabel>Yog‘ (rusumi, zavod, partiya) </FormLabel>
 
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("lzsini_1")}
+                  type="text"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("lzsini_2")}
                   type="text"
                 />
               </FormControl>
             </Flex>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <Signatur
-                title={"TNB ustasi yoki podshipnikni o‘lchovchi texnik"}
-              />
-              <Signatur title={"Smena ustasi	"} />
-            </Flex>
 
-            <FormControl isInvalid={errors?.sinovi}>
+            <FormControl isInvalid={errors?.comment}>
               <FormLabel>Izoh </FormLabel>
 
               <Input
                 borderColor={"gray.600"}
-                {...register("sinovi", { required: true })}
-                type="text"
+                {...register("sinovi")}
+                type="comment"
               />
             </FormControl>
           </ModalBody>

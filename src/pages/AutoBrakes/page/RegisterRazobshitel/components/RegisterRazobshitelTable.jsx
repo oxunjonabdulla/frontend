@@ -98,8 +98,9 @@ const RegisterRazobshitelTable = memo(function RegisterRazobshitelTable() {
               <Tr key={item.carriage}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
                 <Td>{item.razabshitel_date}</Td>
-                <Td>{item.carriage}</Td>
-                <Td>{item.repair_type}</Td>
+                <Td color={"teal"} fontWeight={"700"}>
+                  {item.carriage}
+                </Td>
                 <Td>{item.razabshitel_kran_type}</Td>
                 <Td>{item.check_gass_1}</Td>
                 <Td>{item.last_jumfrk_type_1}</Td>
