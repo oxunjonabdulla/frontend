@@ -1,11 +1,11 @@
-const chartData = [29, 8, 17, 6, 5];
+const chartData = [46, 12, 28, 28, 29];
 const totalSum = chartData.reduce((acc, curr) => acc + curr, 0);
 
 export const demoZero = {
   series: [
     {
       name: "Каршида",
-      data: [46, 6, 35, 18, 61, 166],
+      data: [48, 10, 19, 6, 60, 143],
     },
   ],
   options: {
@@ -181,13 +181,7 @@ export const chartFirst = {
     },
 
     xaxis: {
-      categories: [
-        "Ёпиқ вагон",
-        "Платформа",
-        "Ярим очиқ вагон",
-        "Цистерна ",
-        "Бошқа турдаги вагонлар",
-      ],
+      categories: ["Крытый", "Платформа", "Полвагон", "Цистерна ", "Прочие "],
       position: "top",
       axisBorder: {
         show: false,
@@ -221,7 +215,7 @@ export const chartFirst = {
     },
   },
 };
-const chartDataSecond = [45, 0, 22, 19, 12];
+const chartDataSecond = [61, 0, 37, 36, 24];
 const totalSumSecond = chartDataSecond.reduce((acc, curr) => acc + curr, 0);
 export const chartSecond = {
   series: [
@@ -258,9 +252,9 @@ export const chartSecond = {
       categories: [
         "Ёпиқ вагон",
         "Платформа",
-        "Ярим очиқ вагон",
+        "Полвагон",
         "Цистерна ",
-        "Бошқа турдаги вагонлар",
+        "Бошқа турдаги ",
       ],
       position: "top",
       axisBorder: {
@@ -514,7 +508,7 @@ export const chartSix = {
   series: [
     {
       name: "Soni",
-      data: [16, 0, 2, 7, 0],
+      data: [24, 2, 18],
     },
   ],
   options: {
@@ -542,13 +536,7 @@ export const chartSix = {
     },
 
     xaxis: {
-      categories: [
-        "Ёпиқ вагон",
-        "Автомобиловоз ",
-        "Ярим очиқ вагон",
-        "Цистерна ",
-        "Бошка турдаги вагонлар ",
-      ],
+      categories: ["Крытый", "Полвагон", "Цистерна "],
       position: "top",
       axisBorder: {
         show: false,
@@ -574,7 +562,7 @@ export const chartSix = {
     },
 
     title: {
-      text: "Капитал таъмир, Жами " + 25 + "та",
+      text: "Капитал таъмир, Жами " + 44 + "та",
 
       style: {
         color: "#444",

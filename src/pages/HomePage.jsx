@@ -34,19 +34,19 @@ import { faThinkPeaks } from "@fortawesome/free-brands-svg-icons";
 const topInfoData = [
   {
     title: "Inventar vagonlar soni",
-    numberCnt: 164,
+    numberCnt: 345,
     icon: faPersonDigging,
     bgColor: "linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%)",
   },
   {
     title: "Qabul qilingan va chiqarilgan vagonlar soni",
-    numberCnt: 188,
+    numberCnt: 721,
     icon: faBook,
     bgColor: "linear-gradient(135deg, #2AFADF 10%, #4C83FF 100%)",
   },
   {
     title: "Nosoz vagonlar soni",
-    numberCnt: 185,
+    numberCnt: 186,
     icon: faBookOpenReader,
     bgColor: "linear-gradient(135deg, #FFD3A5 10%, #FD6585 100%)",
   },
