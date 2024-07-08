@@ -43,12 +43,12 @@ export const PtoCompleks = ({ setActiveStep }) => {
         title: `Vagon ${localStorage.getItem(
           "carriage_number"
         )} raqami bo'yicha komplektatsiyasi yaratildi`,
-        duration: 150000,
+        duration: 2000,
         isClosable: true,
         position: "top-right",
         fontSize: "3xl",
       });
-
+      window.location.reload();
       JSON.stringify(
         localStorage.setItem("carriage_number", response?.data?.carriage_number)
       );

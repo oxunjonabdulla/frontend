@@ -1,8 +1,64 @@
-import { memo } from "react";
-import { Divider, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { memo, useMemo, useState } from "react";
+import {
+  Divider,
+  Flex,
+  IconButton,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import { timeClear } from "@/utils/timeClear";
 import { vu_36 } from "@/utils/mock_heads";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import UserApi from "../../../../Service/module/userModule.api";
+import { Deleteted } from "../../../../components";
+import { VU_36_Update } from "./VU_36_Update";
 const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
+  const [updateData, setUpdateData] = useState(null);
+  const [getTableData, setGetinfTableData] = useState(null);
+  const {
+    isOpen: openDelateModal,
+    onOpen: onOpenDelateModal,
+    onClose: onCloseDelateModal,
+  } = useDisclosure();
+  const {
+    isOpen: onUpdateIsOpen,
+    onOpen: onUpdateOpen,
+    onClose: onUpdateClose,
+  } = useDisclosure();
+
+  const handleUpdate = (data) => {
+    onUpdateOpen();
+    setUpdateData(data);
+  };
+
+  const memoData = useMemo(() => updateData, [updateData]);
+  const handleCheckAndDelete = (deletedID) => {
+    onOpenDelateModal();
+    setGetinfTableData(deletedID);
+  };
+  const toast = useToast();
+  const handleDelate = async (carriageID) => {
+    const { response, error } = await new UserApi().deleteVu36(carriageID);
+    if (response) {
+      window.location.reload();
+    } else {
+      toast({
+        status: "error",
+        title:
+          error?.detail &&
+          carriageID + " vagon raqami ma'lumoti avval o'chirilgan",
+      });
+    }
+  };
+
   return (
     <Table
       borderRadius={10}
@@ -21,7 +77,6 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
           ))}
         </Tr>
       </Thead>
-
       <Tbody>
         {gettingData?.results?.map((item, idx) => (
           <Tr key={idx}>
@@ -62,9 +117,38 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             <Td>{item.kod_moder_2}</Td>
             <Td>{item.kod_moder_3}</Td>
             <Td>{item.kod_moder_4}</Td>
+            <Td>
+              <Flex gap={2}>
+                <IconButton
+                  colorScheme="whatsapp"
+                  icon={<FontAwesomeIcon icon={faPenToSquare} />}
+                  onClick={() => handleUpdate(item)}
+                />
+                <IconButton
+                  colorScheme="red"
+                  icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                  onClick={() => handleCheckAndDelete(item?.carriage)}
+                />
+              </Flex>
+            </Td>
           </Tr>
         ))}
       </Tbody>
+      {openDelateModal && (
+        <Deleteted
+          isOpen={openDelateModal}
+          onClose={onCloseDelateModal}
+          carriageNumber={getTableData}
+          deletedFunction={handleDelate}
+        />
+      )}{" "}
+      {onUpdateIsOpen && (
+        <VU_36_Update
+          isOpen={onUpdateIsOpen}
+          onClose={onUpdateClose}
+          updateData={memoData}
+        />
+      )}
     </Table>
   );
 });

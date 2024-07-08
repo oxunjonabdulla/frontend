@@ -26,13 +26,12 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      made_date: null,
-    },
-  });
+  } = useForm();
 
   const onSubmit = async (data) => {
+    if (!data.made_date) {
+      delete data.made_date;
+    }
     setLoading(true);
 
     const { response, error } = await new UserApi().postVu93(data);

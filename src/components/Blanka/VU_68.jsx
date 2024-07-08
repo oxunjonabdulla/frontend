@@ -2,9 +2,12 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
   Image,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -28,6 +31,7 @@ import UserApi from "../../Service/module/userModule.api";
 import { imageGet } from "../../utils/imageGet";
 import { Pagination } from "../pagination/Pagination";
 import { Deleteted } from "../Deletete";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const VU_68 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -35,6 +39,9 @@ export const VU_68 = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(null);
   const [deletedID, setDeleteID] = useState(null);
+
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handlePageClick = (data) => {
@@ -51,8 +58,13 @@ export const VU_68 = () => {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+
+    fetchData(params);
+  }, [carriageSerach, currentPage]);
   const handleDelate = async (carriageID) => {
     const { response } = await new UserApi().deleteVu68(carriageID);
     if (response) {
@@ -96,6 +108,17 @@ export const VU_68 = () => {
           +
         </Button>
       </Tooltip>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
           <TableContainer p={2} border={"1px solid #eeeee"}>

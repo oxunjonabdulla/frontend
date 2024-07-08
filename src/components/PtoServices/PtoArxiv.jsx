@@ -3,6 +3,9 @@ import {
   Button,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
+  Input,
   Spinner,
   Table,
   TableContainer,
@@ -33,6 +36,7 @@ import { Link } from "react-router-dom";
 import UserApi from "../../Service/module/userModule.api";
 import { PtopUpdate } from "./PtoUpdate";
 import { Deleteted } from "../Deletete";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const itemsPerPage = 10;
 
@@ -41,6 +45,9 @@ export const PtoArxiv = ({ deleateCarriage }) => {
   const [updateOpen, setUpdateOpen] = useState(false);
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
+
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
 
   const [gettingCarriageData, setGettingCarriageData] = useState({});
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -92,8 +99,13 @@ export const PtoArxiv = ({ deleateCarriage }) => {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+
+    fetchData(params);
+  }, [carriageSerach, currentPage]);
 
   return (
     <Box
@@ -108,6 +120,17 @@ export const PtoArxiv = ({ deleateCarriage }) => {
       flexDir={"column"}
       justifyContent={"space-between"}
     >
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       <TableContainer
         borderRadius={10}
         border={"1px solid #eeeee"}

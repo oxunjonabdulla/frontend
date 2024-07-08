@@ -72,7 +72,8 @@ class UserApi extends React.Component {
   async getCarriagePage(page) {
     try {
       const response = await privateInstance.get(
-        authEndpoints.carriagePageGet(page)
+        authEndpoints.carriagePageGet,
+        { params: page }
       );
 
       return { response };
@@ -265,9 +266,29 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async updateVu36(id, obj) {
+    try {
+      const response = await privateInstance.patch(authEndpoints.vu36(id), obj);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu36(id) {
+    try {
+      const response = await privateInstance.delete(authEndpoints.vu36(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getVu36(page) {
     try {
-      const response = await privateInstance.get(authEndpoints.vu36All(page));
+      const response = await privateInstance.get(authEndpoints.vu36All, {
+        params: page,
+      });
 
       return { response };
     } catch (error) {
@@ -278,7 +299,9 @@ class UserApi extends React.Component {
   // vu 68 model
   async getVu68(page) {
     try {
-      const response = await privateInstance.get(authEndpoints.vu68All(page));
+      const response = await privateInstance.get(authEndpoints.vu68All, {
+        params: page,
+      });
 
       return { response };
     } catch (error) {

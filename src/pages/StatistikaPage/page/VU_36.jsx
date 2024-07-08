@@ -2,7 +2,10 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
+  Input,
   Spinner,
   TableContainer,
   Text,
@@ -23,9 +26,12 @@ import ReactPaginate from "react-paginate";
 import { BrendCrumbs } from "@/components";
 import VU_36_Table from "./components/VU_36_Table";
 import { SimpleLoader } from "@/components";
+import { useDebounce } from "../../../hooks/useDebounce";
 
 export const VU_36 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentPage, setCurrentPage] = useState(0);
@@ -45,9 +51,13 @@ export const VU_36 = () => {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
 
+    fetchData(params);
+  }, [carriageSerach, currentPage]);
   const memoData = useMemo(() => gettingData, [gettingData]);
 
   return (
@@ -83,6 +93,17 @@ export const VU_36 = () => {
           +
         </Button>
       </Tooltip>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {gettingData?.results?.length ? (
         <TableContainer p={4} border={"1px solid #eeeee"}>
           {isLoadingData && (

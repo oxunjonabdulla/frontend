@@ -384,7 +384,6 @@ export const mockHeaderCarriage = {
 export const vu_47 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },
-    { label: "Vagon raqami", rowspan: 2 },
     { label: "Дата", rowspan: 2 },
     { label: "Тип прибора ", rowspan: 2 },
     { label: "Заводской номер прибор год и месяц выпуска ", rowspan: 2 },
@@ -555,6 +554,9 @@ export const vu_36 = {
     },
     {
       label: "Ko‘d maderniyzatsiya",
+    },
+    {
+      label: "DIQQAT!!!! Ehtiyoj bulgandagina uzgartiring",
     },
   ],
 };

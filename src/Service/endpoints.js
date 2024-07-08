@@ -76,7 +76,7 @@ const authEndpoints = {
   // pto
   dailyDelete: (id) => `/daily/delete/${id}`,
   ptoUpdate: (id) => `carriage/${id}/`,
-  carriagePageGet: (page) => `carriage/?page=${page + 1}`,
+  carriagePageGet: `carriage/`,
   carriageDelete: (id) => `carriage/${id}/`,
   carriageGetOne: (id) => `carriage/${id}/`,
   carriagePut: (id) => `carriage/${id}/`,
@@ -90,7 +90,7 @@ const authEndpoints = {
   vu31All: `/vu31/list/`,
 
   // vu_36
-  vu36All: (page) => `/vu36/list/?page=${page + 1}`,
+  vu36All: `/vu36/list/`,
   vu36: (carriageID) => `/vu36/${carriageID}/`,
 
   vu47All: `/vu47/list/`,
@@ -116,7 +116,7 @@ const authEndpoints = {
 
   // vu 68
   vu68: (carriageID) => `/vu68/${carriageID}/`,
-  vu68All: (page) => `/vu68/list/?page=${page + 1}`,
+  vu68All: `/vu68/list/`,
 
   // vu91
   vu90: `/vu90/`,

@@ -112,7 +112,7 @@ const VU_47_Table = () => {
             {gettingData?.results?.map((item, idx) => (
               <Tr key={item.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
-                <Td>{item.carriage}</Td>
+
                 <Td>{item.date}</Td>
                 <Td>{item.device_type}</Td>
                 <Td>{item.serial_number}</Td>
