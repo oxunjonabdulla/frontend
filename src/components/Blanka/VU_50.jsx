@@ -163,7 +163,7 @@ export const VU_50 = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
@@ -214,7 +214,7 @@ export const VU_50 = () => {
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}
-        carriageNumber={getTableData}
+        carriageNumber={String(getTableData)}
         deletedFunction={handleDelate}
       />
       <VU_50_Model onClose={onClose} isOpen={isOpen} />

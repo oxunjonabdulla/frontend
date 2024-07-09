@@ -99,7 +99,7 @@ const authEndpoints = {
 
   // vu 50
   vu50: `/vu50/list/`,
-  vu50Delate: (carriageID) => `/vu50/${carriageID}/`,
+  vu50Delate: (carriageID) => `/vu50/detail/${carriageID}/`,
   vu50All: (page) => `/vu50/list/?page=${page + 1}`,
 
   // vu 51
