@@ -142,29 +142,52 @@ export const VU_92 = () => {
                     </Td>
                     <Td>{item?.inspection_date}</Td>
                     <Td fontWeight={700}>{item?.carriage}</Td>
-                    <Td>{item?.wheel_pair_number}</Td>
-                    <Td>{item?.buttock_parts}</Td>
-                    <Td>{item?.execution_inspection}</Td>
+
+                    <Td>
+                      <ul>
+                        {item?.inspection_details?.map((item, id) => (
+                          <li key={id}>
+                            {id + 1}.{" "}
+                            <Box as="span" fontWeight={700}>
+                              {" "}
+                              {item?.wheel_pair_number}
+                            </Box>
+                          </li>
+                        ))}
+                      </ul>
+                    </Td>
+                    <Td>
+                      <ul>
+                        {item?.inspection_details?.map((item, id) => (
+                          <li key={id}>
+                            {id + 1}.{" "}
+                            <Box as="span" fontWeight={700}>
+                              {" "}
+                              {item?.buttock_parts}
+                            </Box>
+                          </li>
+                        ))}
+                      </ul>
+                    </Td>
+                    <Td>
+                      <ul>
+                        {item?.inspection_details?.map((item, id) => (
+                          <li key={id}>
+                            {id + 1}.{" "}
+                            <Box as="span" fontWeight={700}>
+                              {" "}
+                              {item?.execution_inspection}
+                            </Box>
+                          </li>
+                        ))}
+                      </ul>
+                    </Td>
+                    <Td></Td>
                     <Td>
                       <Image
                         width={"100px"}
                         src={imageGet(item?.user_signature_url)}
                       />
-                    </Td>
-                    <Td>
-                      <Image
-                        width={"100px"}
-                        src={imageGet(item?.user_signature_url)}
-                      />
-                    </Td>
-                    <Td>
-                      <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                          colorScheme="whatsapp"
-                          size={"lg"}
-                          icon={<FontAwesomeIcon icon={faEye} />}
-                        />
-                      </Flex>
                     </Td>
                     <Td>
                       {" "}

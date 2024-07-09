@@ -1196,20 +1196,15 @@ export const vu_92 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },
     { label: "Taftish sanasi", rowspan: 2 },
-    { label: "Raqam", colspan: 2 },
+    { label: "Vagon raqam", rowspan: 2 },
+    { label: "G‘ildirak juftligi raqam", rowspan: 2 },
     { label: "Buksa qismlarini holati", rowspan: 2 },
     { label: "Taftish ishlarni bajarishda amalga oshiriladi", rowspan: 2 },
     { label: "Imzosi", colspan: 2 },
-    { label: "Ma'lumotni ko'rish", rowspan: 2 },
     { label: "Yuklash / O'chirish", rowspan: 2 },
   ],
 
-  nestedHeaders: [
-    { label: "Vagon" },
-    { label: "G‘ildirak juftligi" },
-    { label: "Taftish qilingan" },
-    { label: "Usta" },
-  ],
+  nestedHeaders: [{ label: "Taftish qilingan" }, { label: "Usta" }],
 };
 export const vu_93 = {
   headers: [

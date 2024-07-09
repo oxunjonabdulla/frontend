@@ -30,7 +30,7 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
     control,
   } = useForm({
     defaultValues: {
-      wheel_pair_data: [
+      inspection_details: [
         { wheel_pair_number: "", buttock_parts: "", execution_inspection: "" },
         { wheel_pair_number: "", buttock_parts: "", execution_inspection: "" },
         { wheel_pair_number: "", buttock_parts: "", execution_inspection: "" },
@@ -40,9 +40,10 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
   });
   const { fields } = useFieldArray({
     control,
-    name: "wheel_pair_data",
+    name: "inspection_details",
   });
   const onSubmit = async (data) => {
+    console.log(data);
     setLoading(true);
 
     const { response, error } = await new UserApi().postVu92(
@@ -60,7 +61,7 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
         fontSize: "3xl",
       });
 
-      window.location.reload();
+      // window.location.reload();
     }
     if (error) {
       toast({
@@ -116,14 +117,14 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
                 <Text>{index + 1}.</Text>
                 <FormControl
                   isInvalid={
-                    errors?.wheel_pair_data?.[index]?.wheel_pair_number
+                    errors?.inspection_details?.[index]?.wheel_pair_number
                   }
                 >
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
                     G‘ildirak juftligi raqami
                   </FormLabel>
                   <Controller
-                    name={`wheel_pair_data.${index}.wheel_pair_number`}
+                    name={`inspection_details.${index}.wheel_pair_number`}
                     control={control}
                     render={({ field }) => (
                       <Input {...field} borderColor={"gray.600"} type="text" />
@@ -131,11 +132,11 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
                   />
                 </FormControl>
                 <FormControl
-                  isInvalid={errors?.wheel_pair_data?.[index]?.buttock_parts}
+                  isInvalid={errors?.inspection_details?.[index]?.buttock_parts}
                 >
                   <FormLabel> Buksa qismlarning holati </FormLabel>
                   <Controller
-                    name={`wheel_pair_data.${index}.buttock_parts`}
+                    name={`inspection_details.${index}.buttock_parts`}
                     control={control}
                     render={({ field }) => (
                       <Input {...field} borderColor={"gray.600"} type="text" />
@@ -144,7 +145,7 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
                 </FormControl>
                 <FormControl
                   isInvalid={
-                    errors?.wheel_pair_data?.[index]?.execution_inspection
+                    errors?.inspection_details?.[index]?.execution_inspection
                   }
                 >
                   <FormLabel>
@@ -152,7 +153,7 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
                     Taftish ishlarini bajarishda amalga oshiriladi{" "}
                   </FormLabel>
                   <Controller
-                    name={`wheel_pair_data.${index}.execution_inspection`}
+                    name={`inspection_details.${index}.execution_inspection`}
                     control={control}
                     render={({ field }) => (
                       <Input {...field} borderColor={"gray.600"} type="text" />
