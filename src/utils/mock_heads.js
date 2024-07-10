@@ -158,15 +158,15 @@ export const routersSidebar = [
     icon: Defostoskop,
     role: "defestoskopuser",
   },
-  {
-    isWork: true,
-    label: "Jixozlash bo‘linmasi",
-    path: "/equipment-unit",
-    type: "link",
+  // {
+  //   isWork: true,
+  //   label: "Jixozlash bo‘linmasi",
+  //   path: "/equipment-unit",
+  //   type: "link",
 
-    role: "equipmentuser",
-    icon: Joxozlash,
-  },
+  //   role: "equipmentuser",
+  //   icon: Joxozlash,
+  // },
 ];
 
 export const register_razobshitel = [
