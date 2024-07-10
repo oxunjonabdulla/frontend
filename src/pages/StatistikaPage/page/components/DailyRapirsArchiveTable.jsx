@@ -1,7 +1,11 @@
 import {
+  Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Img,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -27,7 +31,9 @@ import UserApi from "@/Service/module/userModule.api";
 import { Deleteted } from "@/components";
 import { SimpleLoader } from "@/components/TrainLoader/SimpleLoader";
 import ReactPaginate from "react-paginate";
+import { useDebounce } from "../../../../hooks/useDebounce";
 import ExitImage from "../modals/DailyRepair/ExitImage";
+import { reverseDateFormat } from "../../../../utils";
 
 const columnsMock = [
   { header: "T/R", accessorKey: "t/r_id", rowSpan: 2 },
@@ -88,9 +94,11 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
   const [getTableData, setGetinfTableData] = useState(null);
   const [isLoadingData, setIsLoading] = useState(true);
 
+  const [searchValue, setSearchValue] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const carriageSerach = useDebounce(searchValue);
   const {
     isOpen: isOpenExit,
     onOpen: onOpenExit,
@@ -118,6 +126,7 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
 
       const paramObj = {
         page: currentPage + 1,
+        ...(carriageSerach && { search: carriageSerach }),
       };
       const { response } = await new UserApi().getDailyAll(paramObj);
       if (response) {
@@ -126,7 +135,8 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
       }
     };
     fetchData(currentPage);
-  }, [currentPage]);
+  }, [carriageSerach, currentPage]);
+
   const openImageViewer = useCallback((index, idxSec) => {
     setCurrentImage(index);
     setTdOption(idxSec);
@@ -166,6 +176,17 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
 
   return (
     <>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {isLoadingData ? (
         <SimpleLoader />
       ) : (
@@ -221,10 +242,10 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                       {item.carriage_number}
                     </Td>
                     <Td>{item.year_of_manufacture}</Td>
-                    <Td>{item.repair_date}</Td>
+                    <Td>{reverseDateFormat(item?.repair_date)}</Td>
                     <Td>{item?.repair_type?.toUpperCase()}</Td>
-                    <Td>{item.approximate_completion}</Td>
-                    <Td>{item.date_of_registration}</Td>
+                    <Td>{reverseDateFormat(item.approximate_completion)}</Td>
+                    <Td>{reverseDateFormat(item.date_of_registration)}</Td>
                     <Td cursor={"pointer"}>
                       <Flex
                         w="100%"
