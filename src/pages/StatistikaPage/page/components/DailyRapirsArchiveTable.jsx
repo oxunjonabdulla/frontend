@@ -78,10 +78,13 @@ const columnMockShort = [
 export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
   const [currentImage, setCurrentImage] = useState(0);
   const [currentImage2, setCurrentImage2] = useState(0);
+  const [currentImage3, setCurrentImage3] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isViewerOpen2, setIsViewerOpen2] = useState(false);
+  const [isViewerOpen3, setIsViewerOpen3] = useState(false);
   const [isTdOption, setTdOption] = useState(0);
   const [isTdOption2, setTdOption2] = useState(0);
+  const [isTdOption3, setTdOption3] = useState(0);
   const [getTableData, setGetinfTableData] = useState(null);
   const [isLoadingData, setIsLoading] = useState(true);
 
@@ -142,6 +145,16 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
   const closeImageViewer2 = () => {
     setCurrentImage2(0);
     setIsViewerOpen2(false);
+  };
+  const openImageViewer3 = useCallback((index, idxSec) => {
+    setCurrentImage3(index);
+    setTdOption3(idxSec);
+    setIsViewerOpen3(true);
+  }, []);
+
+  const closeImageViewer3 = () => {
+    setCurrentImage3(0);
+    setIsViewerOpen3(false);
   };
 
   const deleteDaily = async (number) => {
@@ -242,7 +255,7 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                           <Img
                             key={idxImage}
                             objectFit={"cover"}
-                            onClick={() => openImageViewer2(idxImage, item.id)}
+                            onClick={() => openImageViewer3(idxImage, item.id)}
                             cursor={"pointer"}
                             w="50px"
                             src={`https://api.evagon.uz/${elem.image_url}`}
@@ -366,6 +379,26 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                 disableScroll={false}
                 closeOnClickOutside={true}
                 onClose={closeImageViewer2}
+              />
+            );
+          })}
+      {isViewerOpen3 &&
+        gettingData?.results
+          ?.filter((item) => item.id === isTdOption3)
+          .map((item, idxs) => {
+            const newArray = [];
+            for (const iterator of item.exit_images) {
+              newArray.push(`https://api.evagon.uz/${iterator.image_url}`);
+            }
+
+            return (
+              <ImageViewer
+                key={idxs}
+                src={newArray}
+                currentIndex={currentImage3}
+                disableScroll={false}
+                closeOnClickOutside={true}
+                onClose={closeImageViewer3}
               />
             );
           })}
