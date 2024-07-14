@@ -2,18 +2,21 @@ import {
   Button,
   Flex,
   FormControl,
+  FormLabel,
   Input,
   ModalBody,
   ModalFooter,
+  Select,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Tr,
   useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../../../utils";
+import { repairTypes, SearchTrain } from "../../../../../utils";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import UserApi from "../../../../../Service/module/userModule.api";
@@ -64,6 +67,21 @@ export const Oldi = ({ onClose }) => {
       <ModalBody>
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <SearchTrain setSerachingResult={setSerachingResult} />{" "}
+          <FormControl>
+            <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
+              <Text as={"span"} color={"crimson"}>
+                *
+              </Text>
+              Talab qilingan ta’mir turi:
+            </FormLabel>
+            <Select borderColor={"gray.600"} {...register("repair_type")}>
+              {repairTypes.map((type) => (
+                <option key={type.value} value={type.value}>
+                  {type.label}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
         </Flex>
 
         <TableContainer>

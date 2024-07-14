@@ -3,8 +3,11 @@ import {
   Button,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -27,6 +30,8 @@ import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { Orqa } from "./modal/AutoDalolatnoma/Orqa";
 import { ShowBack } from "./modal/AutoDalolatnoma/ShowBack";
 import { Deleteted, Pagination } from "../../../components";
+import { repairTypesName } from "../../../utils";
+import { useDebounce } from "../../../hooks/useDebounce";
 
 export const CarriageDalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -50,6 +55,9 @@ export const CarriageDalolatnoma = () => {
   const [deleteModel, setDeleteModal] = useState(false);
   const [showBack, setShowBackData] = useState(0);
 
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
@@ -72,6 +80,8 @@ export const CarriageDalolatnoma = () => {
     const fetchData = async () => {
       const paramsPage = {
         page: currentPage + 1,
+
+        ...(carriageSerach && { search: carriageSerach }),
       };
       setIsLoading(true);
       const { response } = await new UserApi().getALlAravaAct(paramsPage);
@@ -81,7 +91,7 @@ export const CarriageDalolatnoma = () => {
       }
     };
     fetchData();
-  }, [currentPage]);
+  }, [carriageSerach, currentPage]);
 
   return (
     <Box
@@ -107,6 +117,17 @@ export const CarriageDalolatnoma = () => {
       >
         +
       </Button>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingData ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
@@ -138,6 +159,7 @@ export const CarriageDalolatnoma = () => {
                   <Tr key={item.carriage}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
                     <Td fontWeight={700}>{item.carriage}</Td>
+                    <Td>{repairTypesName(item?.front_detail.repair_type)}</Td>
                     <Td>{item?.front_detail.yon_raqam_1}</Td>
                     <Td>{item?.front_detail.yon_raqam_2}</Td>
                     <Td>{item?.front_detail.yon_raqam_3}</Td>

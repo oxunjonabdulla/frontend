@@ -26,6 +26,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import UserApi from "@/Service/module/userModule.api";
 import { Deleteted } from "@/components";
+import { repairTypesName } from "../../../../utils";
 
 const columnsMock = [
   { header: "T/R", accessorKey: "t/r_id", rowSpan: 2 },
@@ -167,7 +168,7 @@ export const DailyRepairsTable = memo(function DailyRepairsTable({ dataMock }) {
                       </Td>
                       <Td>{item.year_of_manufacture}</Td>
                       <Td>{item.repair_date}</Td>
-                      <Td>{item?.repair_type?.toUpperCase()}</Td>
+                      <Td>{repairTypesName(item?.repair_type)}</Td>
                       <Td>{item.approximate_completion}</Td>
                       <Td>{item.date_of_registration}</Td>
                       <Td cursor={"pointer"} colSpan="2">

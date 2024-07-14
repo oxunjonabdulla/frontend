@@ -4,7 +4,6 @@ import {
   Avtotormoz,
   Defostoskop,
   Gildirak,
-  Joxozlash,
   Statistika,
   Yiguv,
   PtoOperator,
@@ -442,6 +441,7 @@ export const vu_47 = {
 export const carriage_dalolatnoma_head = [
   { label: "Tartib raqami" },
   { label: "Vagon raqami" },
+  { label: "Ta'mir turi" },
   { label: "Yon rama raqami ", colspan: 4 },
   {
     label: "Ishlab chiqarilishi,zavod tamg’asi",

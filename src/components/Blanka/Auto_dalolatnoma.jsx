@@ -3,8 +3,11 @@ import {
   Button,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -31,6 +34,7 @@ import { Orqa } from "./Modals/AutoBreakes/Orqa";
 import { ShowBack } from "./Modals/AutoBreakes/ShowBack";
 import { Deleteted } from "../Deletete";
 import { Pagination } from "../pagination/Pagination";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const AutoDalolatnoma = () => {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -42,6 +46,8 @@ export const AutoDalolatnoma = () => {
   const [deleteModel, setDeleteModal] = useState(false);
   const [showBack, setShowBackData] = useState(0);
 
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
   const {
     isOpen: isOpenShowBack,
     onClose: onCloseShowBack,
@@ -79,6 +85,7 @@ export const AutoDalolatnoma = () => {
     const fetchData = async () => {
       const paramsPage = {
         page: currentPage + 1,
+        ...(carriageSerach && { search: carriageSerach }),
       };
       setIsLoading(true);
       const { response } = await new UserApi().getALlBirikmaAct(paramsPage);
@@ -88,7 +95,7 @@ export const AutoDalolatnoma = () => {
       }
     };
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, carriageSerach]);
   return (
     <Box
       as="div"
@@ -113,6 +120,17 @@ export const AutoDalolatnoma = () => {
       >
         +
       </Button>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingData ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>

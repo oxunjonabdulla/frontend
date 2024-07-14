@@ -26,6 +26,7 @@ import {
 import { imageGet } from "../../../../../utils/imageGet";
 import { Deleteted, SimpleLoader } from "../../../../../components";
 import ReactPaginate from "react-paginate";
+import { repairTypesName } from "../../../../../utils";
 const RegisterBrakesTable = memo(function RegisterBrakesTable() {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(null);
@@ -103,7 +104,7 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
                 <Td color={"teal.600"} fontWeight={700}>
                   {item.carriage}
                 </Td>
-                <Td>{item.repair_type}</Td>
+                <Td>{repairTypesName(item?.repair_type)}</Td>
                 <Td>{item.spare_sum}</Td>
                 <Td>{item.water_gass}</Td>
                 <Td>{item.rapair_roll}</Td>

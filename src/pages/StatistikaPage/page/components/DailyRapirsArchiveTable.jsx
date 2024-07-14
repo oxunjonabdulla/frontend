@@ -33,7 +33,7 @@ import { SimpleLoader } from "@/components/TrainLoader/SimpleLoader";
 import ReactPaginate from "react-paginate";
 import { useDebounce } from "../../../../hooks/useDebounce";
 import ExitImage from "../modals/DailyRepair/ExitImage";
-import { reverseDateFormat } from "../../../../utils";
+import { repairTypesName, reverseDateFormat } from "../../../../utils";
 
 const columnsMock = [
   { header: "T/R", accessorKey: "t/r_id", rowSpan: 2 },
@@ -243,7 +243,7 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                     </Td>
                     <Td>{item.year_of_manufacture}</Td>
                     <Td>{reverseDateFormat(item?.repair_date)}</Td>
-                    <Td>{item?.repair_type?.toUpperCase()}</Td>
+                    <Td>{repairTypesName(item?.repair_type)}</Td>
                     <Td>{reverseDateFormat(item.approximate_completion)}</Td>
                     <Td>{reverseDateFormat(item.date_of_registration)}</Td>
                     <Td cursor={"pointer"}>

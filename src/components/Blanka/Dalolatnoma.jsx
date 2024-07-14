@@ -3,8 +3,11 @@ import {
   Button,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -25,7 +28,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
+import { repairTypesName, SliderMock } from "../../utils";
 import { Dalolatnoma_Model } from "./Modals/Dalolatnoma/Dalolatnoma_Model";
 import { dalolatnoma_head } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
@@ -33,6 +36,7 @@ import ReactPaginate from "react-paginate";
 import { Orqa } from "./Modals/Dalolatnoma/Orqa";
 import ShowBack from "./Modals/Dalolatnoma/ShowBack";
 import { Deleteted } from "../Deletete";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const Dalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -55,6 +59,8 @@ export const Dalolatnoma = () => {
   const [backId, setBackId] = useState(0);
   const [showBack, setShowBackData] = useState(0);
 
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
@@ -72,6 +78,7 @@ export const Dalolatnoma = () => {
     const fetchData = async () => {
       const paramsPage = {
         page: currentPage + 1,
+        ...(carriageSerach && { search: carriageSerach }),
       };
       setIsLoading(true);
       const { response } = await new UserApi().getALlCollectAct(paramsPage);
@@ -81,7 +88,7 @@ export const Dalolatnoma = () => {
       }
     };
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, carriageSerach]);
 
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
@@ -119,6 +126,17 @@ export const Dalolatnoma = () => {
       >
         +
       </Button>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingData ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
@@ -151,7 +169,11 @@ export const Dalolatnoma = () => {
                     <Td>{item?.front_detail?.train_number_act}</Td>
                     <Td>{item?.front_detail?.station_act}</Td>
                     <Td>{item?.front_detail?.number_act}</Td>
-                    <Td>{item?.front_detail?.telegramma_repair_act}</Td>
+                    <Td>
+                      {repairTypesName(
+                        item?.front_detail?.telegramma_repair_act
+                      )}
+                    </Td>
                     <Td>{item?.front_detail?.carriage_number_act}</Td>
                     <Td>{item?.front_detail?.made_date}</Td>
                     <Td>
