@@ -11,12 +11,10 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MainHeads } from "@/components";
-import { SearchTrain } from "@/utils";
 import UserApi from "../../../../Service/module/userModule.api";
 import { useNavigate } from "react-router";
 export const VU_47_Create = () => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const navigate = useNavigate();
   const {
@@ -26,11 +24,7 @@ export const VU_47_Create = () => {
   } = useForm();
   const onSubmit = async (data) => {
     setLoading(true);
-    console.log(data);
-    const { response, error } = await new UserApi().postVu47(
-      serachingResult,
-      data
-    );
+    const { response, error } = await new UserApi().postVu47(data);
 
     setLoading(false);
     if (response) {
@@ -60,8 +54,6 @@ export const VU_47_Create = () => {
       <Container maxW={"container.xl"} my={8}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-            <SearchTrain setSerachingResult={setSerachingResult} />
-
             <FormControl isInvalid={errors?.date}>
               <FormLabel>Дата </FormLabel>
               <Input
