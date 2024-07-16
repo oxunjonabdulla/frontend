@@ -375,6 +375,7 @@ export const PtopUpdate = ({ onClose, isOpen, updateData }) => {
                 >
                   <option value="tr">&apos;ТР&apos;(JT)</option>
                   <option value="dr">&apos;ДР&apos; (DТ)</option>
+                  <option value="drp">&apos;ДРП&apos; (DТ)</option>
                   <option value="kp">&apos;КР&apos; (KТ)</option>
                   <option value="krp">&apos;KРП&apos; (KTP)</option>
                 </Select>

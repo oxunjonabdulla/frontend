@@ -309,6 +309,8 @@ export const PtoAddTrain = ({
             <Select borderColor={"gray.600"} {...register("repair_type")}>
               <option value="tr">&apos;ТР&apos;(JT)</option>
               <option value="dr">&apos;ДР&apos; (DТ)</option>
+
+              <option value="drp">&apos;ДРП&apos; </option>
               <option value="kp">&apos;КР&apos; (KТ)</option>
               <option value="krp">&apos;KРП&apos; (KTP)</option>
             </Select>
