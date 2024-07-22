@@ -11,23 +11,20 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  Text,
+  Spinner,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "@/Service/module/userModule.api";
 import { SearchTrain } from "@/utils";
 
 export const VU_36_Model = ({ onClose, isOpen }) => {
   const [serarchingResult, setSerachingResult] = useState(null);
+  const [vu31Data, setVu31Data] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [vu31Loadig, setLoadingVu31] = useState(false);
 
   const toast = useToast();
 
@@ -37,12 +34,39 @@ export const VU_36_Model = ({ onClose, isOpen }) => {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    const getVu31Data = async () => {
+      setLoadingVu31(true);
+      const { response } = await new UserApi().getVu31ID(serarchingResult);
+      setVu31Data(response?.data);
+      setLoadingVu31(false);
+    };
+
+    if (serarchingResult) {
+      getVu31Data();
+    }
+  }, [serarchingResult]);
+
   const onSubmit = async (data) => {
+    const {
+      tamir_turi_date,
+      tamir_turi_hour,
+      tamir_turi_minute,
+      tamir_date,
+      tamir_hour,
+      tamir_minute,
+    } = data;
+
     setLoading(true);
-    const { response, error } = await new UserApi().postVu36(
-      serarchingResult,
-      data
-    );
+    const { response, error } = await new UserApi().postVu36(serarchingResult, {
+      tamir_turi_date: vu31Data?.nosoz_chiqish_date,
+      tamir_turi_hour: vu31Data?.nosoz_chiqish_hour,
+      tamir_turi_minute: vu31Data?.nosoz_chiqish_minute,
+      tamir_date: vu31Data?.tamir_boshlanish_date,
+      tamir_hour: vu31Data?.tamir_boshlanish_hour,
+      tamir_minute: vu31Data?.tamir_boshlanish_minute,
+      ...data,
+    });
 
     setLoading(false);
     if (response) {
@@ -86,6 +110,24 @@ export const VU_36_Model = ({ onClose, isOpen }) => {
           VU-36 Jurnalini qo&apos;shish
         </ModalHeader>
         <ModalCloseButton />
+        {vu31Loadig && (
+          <Flex
+            position={"absolute"}
+            display={"flex"}
+            top={0}
+            left={0}
+            justifyContent={"center"}
+            align={"center"}
+            width={"100%"}
+            height={"100%"}
+            bgColor={"rgba(255,255,255,0.5)"}
+            backdropFilter={"blur(2px)"}
+            rounded={10}
+            zIndex={1000}
+          >
+            <Spinner size={"xl"} color="teal" />
+          </Flex>
+        )}
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <Flex
@@ -141,65 +183,6 @@ export const VU_36_Model = ({ onClose, isOpen }) => {
                 />
               </FormControl>
             </Flex>
-            <Flex
-              gap={3}
-              flexWrap={["wrap", "nowrap"]}
-              alignItems={"center"}
-              justifyContent={"center"}
-              my={8}
-            >
-              <FormControl
-                display={"flex"}
-                gap={3}
-                flexWrap={["wrap", "nowrap"]}
-                alignItems={"center"}
-                isInvalid={errors?.tamir_turi_date}
-              >
-                <Text as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
-                  Vaqt va sanasi. sana
-                </Text>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("tamir_turi_date", { required: true })}
-                  type="date"
-                />
-              </FormControl>
-              <Text as={"h1"} fontWeight={500} textAlign={"center"} my="4">
-                soat
-              </Text>
-              <NumberInput
-                maxW="100px"
-                mr="1rem"
-                max={23}
-                defaultValue={localDate.getHours()}
-                min={0}
-                borderColor={"gray.600"}
-              >
-                <NumberInputField {...register("tamir_turi_hour")} />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-
-              <Text as={"h1"} fontWeight={500} textAlign={"center"} my="4">
-                daqiqa.
-              </Text>
-              <NumberInput
-                maxW="100px"
-                mr="1rem"
-                max={59}
-                defaultValue={localDate.getMinutes()}
-                min={0}
-                borderColor={"gray.600"}
-              >
-                <NumberInputField {...register("tamir_turi_minute")} />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            </Flex>
 
             <Flex
               flexWrap={["wrap", "nowrap"]}
@@ -236,66 +219,6 @@ export const VU_36_Model = ({ onClose, isOpen }) => {
                   {...register("ega_kodi", { required: true })}
                 />
               </FormControl>
-            </Flex>
-
-            <Flex
-              gap={3}
-              flexWrap={["wrap", "nowrap"]}
-              alignItems={"center"}
-              justifyContent={"center"}
-              my={8}
-            >
-              <FormControl
-                display={"flex"}
-                gap={3}
-                flexWrap={["wrap", "nowrap"]}
-                alignItems={"center"}
-                isInvalid={errors?.tamir_date}
-              >
-                <Text as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
-                  Ta&apos;mir sanasi va vaqti
-                </Text>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("tamir_date", { required: true })}
-                  type="date"
-                />
-              </FormControl>
-              <Text as={"h1"} fontWeight={500} textAlign={"center"} my="4">
-                soat
-              </Text>
-              <NumberInput
-                maxW="100px"
-                mr="1rem"
-                max={23}
-                defaultValue={localDate.getHours()}
-                min={0}
-                borderColor={"gray.600"}
-              >
-                <NumberInputField {...register("tamir_hour")} />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-
-              <Text as={"h1"} fontWeight={500} textAlign={"center"} my="4">
-                daqiqa.
-              </Text>
-              <NumberInput
-                maxW="100px"
-                mr="1rem"
-                max={59}
-                defaultValue={localDate.getMinutes()}
-                min={0}
-                borderColor={"gray.600"}
-              >
-                <NumberInputField {...register("tamir_minute")} />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
             </Flex>
 
             <Flex

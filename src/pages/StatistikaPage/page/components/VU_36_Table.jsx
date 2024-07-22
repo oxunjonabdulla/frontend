@@ -20,6 +20,7 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import UserApi from "../../../../Service/module/userModule.api";
 import { Deleteted } from "../../../../components";
 import { VU_36_Update } from "./VU_36_Update";
+import { reverseDateFormat } from "../../../../utils";
 const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -93,7 +94,7 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             </Td>
 
             <Td whiteSpace={"nowrap"}>
-              {item.tamir_turi_date}
+              {reverseDateFormat(item.tamir_turi_date)}
               <Divider bgColor={"gray.400"} my={2} />
               {timeClear(item.tamir_turi_hour) +
                 ":" +
@@ -108,7 +109,7 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             <Td whiteSpace={"nowrap"}>{item.ega_kodi}</Td>
 
             <Td whiteSpace={"nowrap"}>
-              {item.tamir_date}
+              {reverseDateFormat(item.tamir_date)}
               <Divider bgColor={"gray.400"} my={2} />
               {timeClear(item.tamir_hour) + ":" + timeClear(item.tamir_minute)}
             </Td>

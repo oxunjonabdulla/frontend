@@ -4,6 +4,9 @@ export * from "./BreadCumbs";
 // dateUtils.js
 
 export const reverseDateFormat = (dateString) => {
+  if (!dateString) {
+    return "0";
+  }
   const [year, month, day] = dateString.split("-");
   return `${day}-${month}-${year}`;
 };

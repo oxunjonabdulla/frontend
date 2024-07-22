@@ -37,6 +37,7 @@ import UserApi from "../../Service/module/userModule.api";
 import { PtopUpdate } from "./PtoUpdate";
 import { Deleteted } from "../Deletete";
 import { useDebounce } from "../../hooks/useDebounce";
+import { reverseDateFormat } from "../../utils";
 
 const itemsPerPage = 10;
 
@@ -272,7 +273,7 @@ export const PtoArxiv = ({ deleateCarriage }) => {
                     <ul>
                       <li>
                         {" "}
-                        <b>Sana: </b> {item.warning_date}
+                        <b>Sana: </b> {reverseDateFormat(item.warning_date)}
                       </li>
                       <li>
                         <b>Vaqti: </b> {timeClear(item.warning_hour)} :{" "}

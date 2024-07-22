@@ -24,7 +24,10 @@ export const VU_47_Create = () => {
   } = useForm();
   const onSubmit = async (data) => {
     setLoading(true);
-    const { response, error } = await new UserApi().postVu47(data);
+    const { response, error } = await new UserApi().postVu47({
+      front_detail: data,
+      back_detail: null,
+    });
 
     setLoading(false);
     if (response) {

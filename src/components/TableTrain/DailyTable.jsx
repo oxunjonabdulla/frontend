@@ -18,7 +18,7 @@ import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import ReactSimpleImageViewer from "react-simple-image-viewer";
 import { SimpleLoader } from "../TrainLoader/SimpleLoader";
-import { repairTypesName } from "../../utils";
+import { repairTypesName, reverseDateFormat } from "../../utils";
 const columnsMock = [
   { header: "Вагон раками", accessorKey: "train_id", rowSpan: 2 },
   { header: "Курилган йили", accessorKey: "seen_year", rowSpan: 2 },
@@ -142,7 +142,7 @@ export const DailyTable = () => {
                   <Tr key={item.id} fontWeight={500}>
                     <Td>{item.carriage_number}</Td>
                     <Td>{item.year_of_manufacture}</Td>
-                    <Td>{item.repair_date}</Td>
+                    <Td>{reverseDateFormat(item.repair_date)}</Td>
                     <Td>{repairTypesName(item?.repair_type)}</Td>
                     <Td>{item.approximate_completion}</Td>
                     <Td>{item.date_of_registration}</Td>

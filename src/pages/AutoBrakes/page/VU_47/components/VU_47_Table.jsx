@@ -110,20 +110,22 @@ const VU_47_Table = () => {
 
           <Tbody>
             {gettingData?.results?.map((item, idx) => (
-              <Tr key={item.id}>
+              <Tr key={item?.front_detail?.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
 
-                <Td>{item.date}</Td>
-                <Td>{item.device_type}</Td>
-                <Td>{item.serial_number}</Td>
-                <Td>{item.charging_time_12}</Td>
-                <Td>{item.charging_time_40}</Td>
-                <Td>{item.slow_release_through_calibrated_orifices}</Td>
-                <Td>{item.brake_cylinder_fill_time}</Td>
-                <Td>{item.cylinder_pressure_empty}</Td>
-                <Td>{item.cylinder_pressure_normal}</Td>
-                <Td>{item.cylinder_pressure_full}</Td>
-                <Td>{item.release_time_to_04}</Td>
+                <Td>{item?.front_detail?.date}</Td>
+                <Td>{item?.front_detail?.device_type}</Td>
+                <Td>{item?.front_detail?.serial_number}</Td>
+                <Td>{item?.front_detail?.charging_time_12}</Td>
+                <Td>{item?.front_detail?.charging_time_40}</Td>
+                <Td>
+                  {item?.front_detail?.slow_release_through_calibrated_orifices}
+                </Td>
+                <Td>{item?.front_detail?.brake_cylinder_fill_time}</Td>
+                <Td>{item?.front_detail?.cylinder_pressure_empty}</Td>
+                <Td>{item?.front_detail?.cylinder_pressure_normal}</Td>
+                <Td>{item?.front_detail?.cylinder_pressure_full}</Td>
+                <Td>{item?.front_detail?.release_time_to_04}</Td>
 
                 <Td>
                   <Image
@@ -131,7 +133,7 @@ const VU_47_Table = () => {
                     src={imageGet(item?.author_info?.user_signature_url)}
                   />
                 </Td>
-                <Td>{item.acceptor_signature}</Td>
+                <Td>{item?.front_detail?.acceptor_signature}</Td>
                 <Td>
                   {" "}
                   <Flex gap={2} m={0}>
@@ -143,7 +145,7 @@ const VU_47_Table = () => {
                       bgColor={"red"}
                       p={0}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
-                      onClick={() => handleDelete(item?.id)}
+                      onClick={() => handleDelete(item?.front_detail?.uuid)}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </Button>

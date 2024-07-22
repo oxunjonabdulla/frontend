@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 
 import { Deleteted } from "@/components";
 import UserApi from "../../../../../Service/module/userModule.api";
+import { reverseDateFormat } from "../../../../../utils";
 const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -110,13 +111,17 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
               <Td>{item.rolik_podshipnik}</Td>
               <Td>{item.boshqa_tech_error}</Td>
               <Td>{item.junatish_park}</Td>
-              <Td whiteSpace={"nowrap"}>{item.nosoz_kirish_date}</Td>
+              <Td whiteSpace={"nowrap"}>
+                {reverseDateFormat(item?.nosoz_kirish_date)}
+              </Td>
               <Td>
                 {timeClear(item.nosoz_kirish_hour) +
                   ":" +
                   timeClear(item.nosoz_kirish_minute)}
               </Td>
-              <Td whiteSpace={"nowrap"}>{item.tamir_uzatish_date}</Td>
+              <Td whiteSpace={"nowrap"}>
+                {reverseDateFormat(item?.tamir_uzatish_date)}
+              </Td>
               <Td>
                 {timeClear(item.tamir_uzatish_hour) +
                   ":" +
@@ -128,7 +133,9 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
                   ":" +
                   timeClear(item.tamir_boshlanish_minute)}
               </Td>
-              <Td whiteSpace={"nowrap"}>{item.nosoz_chiqish_date}</Td>
+              <Td whiteSpace={"nowrap"}>
+                {reverseDateFormat(item.nosoz_chiqish_date)}
+              </Td>
               <Td>
                 {timeClear(item.nosoz_chiqish_hour) +
                   ":" +
