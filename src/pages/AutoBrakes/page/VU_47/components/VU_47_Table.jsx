@@ -1,11 +1,13 @@
 import {
   Button,
   Flex,
+  IconButton,
   Image,
   Img,
   Table,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -21,16 +23,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
+  faEye,
+  faPlus,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { imageGet } from "../../../../../utils/imageGet";
+import { VU_47_Update } from "./VU_47_Update";
 const VU_47_Table = () => {
   const [isLoadingData, setIsLoading] = useState(true);
-  const [deletedData, setDeletedData] = useState(true);
+  const [deletedData, setDeletedData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const {
+    isOpen: isOpenBack,
+    onClose: onCloseBack,
+    onOpen: onOpenBack,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -42,12 +52,16 @@ const VU_47_Table = () => {
   };
 
   const handleDelateFunction = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu47(carriageID);
+    const { response } = await new UserApi().deleteVu47(deletedData?.uuid);
     if (response) {
       window.location.reload();
     }
   };
 
+  const handleBack = (data) => {
+    setDeletedData(data);
+    onOpenBack();
+  };
   useEffect(() => {
     const fetchData = async () => {
       const paramsPage = {
@@ -62,6 +76,7 @@ const VU_47_Table = () => {
     };
     fetchData();
   }, [currentPage]);
+
   return (
     <>
       {!isLoadingData ? (
@@ -121,10 +136,10 @@ const VU_47_Table = () => {
                 <Td>
                   {item?.front_detail?.slow_release_through_calibrated_orifices}
                 </Td>
-                <Td>{item?.front_detail?.brake_cylinder_fill_time}</Td>
-                <Td>{item?.front_detail?.cylinder_pressure_empty}</Td>
-                <Td>{item?.front_detail?.cylinder_pressure_normal}</Td>
-                <Td>{item?.front_detail?.cylinder_pressure_full}</Td>
+                <Td>{item?.back_detail?.brake_cylinder_fill_time}</Td>
+                <Td>{item?.back_detail?.cylinder_pressure_empty}</Td>
+                <Td>{item?.back_detail?.cylinder_pressure_normal}</Td>
+                <Td>{item?.back_detail?.cylinder_pressure_full}</Td>
                 <Td>{item?.front_detail?.release_time_to_04}</Td>
 
                 <Td>
@@ -135,7 +150,16 @@ const VU_47_Table = () => {
                 </Td>
                 <Td>{item?.front_detail?.acceptor_signature}</Td>
                 <Td>
-                  {" "}
+                  {item?.back_detail?.device_type === "null" && (
+                    <Flex justify={"center"} align={"center"} gap={2} m={0}>
+                      <Text>Orqa tomonini kiritish:</Text>
+                      <IconButton
+                        onClick={() => handleBack(item?.back_detail)}
+                        colorScheme="messenger"
+                        icon={<FontAwesomeIcon icon={faPlus} />}
+                      />
+                    </Flex>
+                  )}
                   <Flex gap={2} m={0}>
                     <Button
                       float={"right"}
@@ -145,7 +169,7 @@ const VU_47_Table = () => {
                       bgColor={"red"}
                       p={0}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
-                      onClick={() => handleDelete(item?.front_detail?.uuid)}
+                      onClick={() => handleDelete(item?.front_detail)}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </Button>
@@ -162,8 +186,14 @@ const VU_47_Table = () => {
       <Deleteted
         isOpen={isOpen}
         onClose={onClose}
-        carriageNumber={deletedData}
+        carriageNumber={String(deletedData?.id)}
         deletedFunction={handleDelateFunction}
+      />
+
+      <VU_47_Update
+        updateData={deletedData}
+        isOpen={isOpenBack}
+        onClose={onCloseBack}
       />
       {gettingData?.results?.length ? (
         <ReactPaginate

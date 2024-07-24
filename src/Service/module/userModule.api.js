@@ -357,6 +357,18 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async patchBackVu47(uuid, obj) {
+    try {
+      const response = await privateInstance.patch(
+        authEndpoints.vu47Back(uuid),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async deleteVu47(id) {
     try {
       const response = await privateInstance.delete(authEndpoints.vu47(id));

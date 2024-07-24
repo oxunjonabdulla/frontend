@@ -96,6 +96,7 @@ const authEndpoints = {
   vu47All: `/vu47/list/`,
 
   vu47: (carriageID) => `/vu47/detail/${carriageID}/`,
+  vu47Back: (carriageID) => `/vu47/back/update/${carriageID}/`,
   vu47Post: `/vu47/create/`,
 
   // vu 50

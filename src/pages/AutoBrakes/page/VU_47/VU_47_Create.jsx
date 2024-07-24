@@ -26,7 +26,17 @@ export const VU_47_Create = () => {
     setLoading(true);
     const { response, error } = await new UserApi().postVu47({
       front_detail: data,
-      back_detail: null,
+      back_detail: {
+        date: "2001-11-11",
+        device_type: "null",
+        serial_number: "null",
+        charging_time_40: "null",
+        brake_cylinder_fill_time: "null",
+        cylinder_pressure_empty: "null",
+        cylinder_pressure_normal: "null",
+        cylinder_pressure_full: "null",
+        acceptor_signature: "null",
+      },
     });
 
     setLoading(false);
