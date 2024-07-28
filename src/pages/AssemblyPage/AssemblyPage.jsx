@@ -1,6 +1,6 @@
 import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
 import { useState } from "react";
-import { DailyTable, Dalolatnoma, VU_68 } from "../../components";
+import { DailyTable, Dalolatnoma, VU_22, VU_68 } from "../../components";
 
 export const AssemblyPage = () => {
   const [activeComponent, setActiveComponent] = useState(null);
@@ -8,7 +8,7 @@ export const AssemblyPage = () => {
   const renderComponent = () => {
     switch (activeComponent) {
       case "Component1":
-        return "<VU_68 />";
+        return <VU_22 />;
       case "Component2":
         return <VU_68 />;
       case "Component3":

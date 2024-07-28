@@ -35,6 +35,43 @@ class UserApi extends React.Component {
     }
   }
 
+  // Vu22
+
+  async postVu22(id, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu22WithId(id),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu22(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu22WithId(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu22(params) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu22get, {
+        params,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
   // Pto Operatori
   async postCarriage(obj) {
     try {

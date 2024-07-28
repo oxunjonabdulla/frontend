@@ -5,7 +5,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Text,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -141,56 +140,7 @@ export const VU_47_Create = () => {
               />
             </FormControl>
           </Flex>
-          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-            <FormControl isInvalid={errors?.brake_cylinder_fill_time}>
-              <FormLabel>
-                {" "}
-                Время наполнения тормоз цилиндра до 3; 5 кгс/см2 при экстрен .
-                Или полном служебном торможении, с{" "}
-              </FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("brake_cylinder_fill_time", { required: true })}
-                type="text"
-              />
-            </FormControl>
-          </Flex>
-          <Text
-            as={"h1"}
-            textAlign={"center"}
-            m={0}
-            fontSize={"xl"}
-            fontWeight={700}
-          >
-            Давление в тормозном цилиндре (ТЦ) на режимах кгс/см2 при экстр.
-            торможении (ЭТ) и полном служебном (ПСТ)
-          </Text>
-          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-            <FormControl isInvalid={errors?.cylinder_pressure_empty}>
-              <FormLabel>порожнем</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("cylinder_pressure_empty", { required: true })}
-                type="text"
-              />
-            </FormControl>
-            <FormControl isInvalid={errors?.cylinder_pressure_normal}>
-              <FormLabel>среднем </FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("cylinder_pressure_normal", { required: true })}
-                type="text"
-              />
-            </FormControl>
-            <FormControl isInvalid={errors?.cylinder_pressure_full}>
-              <FormLabel>груженом </FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("cylinder_pressure_full", { required: true })}
-                type="text"
-              />
-            </FormControl>
-          </Flex>
+
           <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
             <FormControl isInvalid={errors?.release_time_to_04}>
               <FormLabel>

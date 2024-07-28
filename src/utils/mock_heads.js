@@ -588,6 +588,38 @@ export const vu_50 = {
     },
   ],
 };
+export const vu_22_assabmle = [
+  { label: "Tartib raqami" },
+  { label: "Vagon raqami" },
+  {
+    label: "Yuk ko'tara olishi",
+  },
+  {
+    label: "Kuzov qoplamasi materiali",
+  },
+  {
+    label: "Oxirgi rejali ta'mir joyi",
+  },
+  {
+    label: "Oxirgi rejali ta'mir sanasi",
+  },
+  {
+    label: "Ta'mirga olingan sanasi va vaqti ",
+  },
+  {
+    label: "Ta'mirga tugashi sanasi va vaqti ",
+  },
+  {
+    label: "Vu22 yaratgan xodim imzosi ",
+  },
+
+  {
+    label: "VU-22 ma'lumotini to'liq ko'rish",
+  },
+  {
+    label: "",
+  },
+];
 
 export const vu_50_show_head = [
   {

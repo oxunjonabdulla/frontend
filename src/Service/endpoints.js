@@ -142,6 +142,9 @@ const authEndpoints = {
   // defestoskop
   defestoskopList: `/defestoskop/list/`,
   defestoskopId: (id) => `/defestoskop/${id}/`,
+
+  vu22WithId: (id) => `/vu22/maintenance_record/${id}/`,
+  vu22get: `/vu22/maintenance_records/list/`,
 };
 
 export { authEndpoints };
