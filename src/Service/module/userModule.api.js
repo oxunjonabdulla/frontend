@@ -1076,6 +1076,18 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async updateCollectActFront(carriageId, obj) {
+    try {
+      const response = await privateInstance.patch(
+        authEndpoints.collectActPostFront(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getALlCollectAct(pageObject) {
     try {
       const response = await privateInstance.get(
@@ -1093,6 +1105,18 @@ class UserApi extends React.Component {
   async postCollectActBack(carriageId, obj) {
     try {
       const response = await privateInstance.post(
+        authEndpoints.collectActPostBack(carriageId),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateCollectActBack(carriageId, obj) {
+    try {
+      const response = await privateInstance.patch(
         authEndpoints.collectActPostBack(carriageId),
         obj
       );

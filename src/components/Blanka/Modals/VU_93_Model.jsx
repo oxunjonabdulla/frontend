@@ -17,7 +17,6 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Signatur } from "../../Signature/Signatur";
 import UserApi from "../../../Service/module/userModule.api";
 export const VU_93_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
@@ -148,10 +147,6 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
                   type="text"
                 />
               </FormControl>
-            </Flex>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <Signatur title={"Ta'mirlagan shaxs imzosi"} />
-              <Signatur title={"Usta imzosi"} />
             </Flex>
           </ModalBody>
 

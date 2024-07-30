@@ -12,7 +12,6 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Signatur } from "../../../Signature/Signatur";
 import { SearchTrain } from "../../../../utils";
 import UserApi from "../../../../Service/module/userModule.api";
 export const Invite = ({ onClose }) => {
@@ -173,11 +172,11 @@ export const Invite = ({ onClose }) => {
               type="text"
             />
           </FormControl>
-          <FormControl isInvalid={errors?.invite_vchd}>
+          <FormControl>
             <FormLabel>Qabul qilgan VCHD, Zavod, pto</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("invite_vchd", { required: true })}
+              {...register("invite_vchd")}
               type="text"
             />
           </FormControl>
@@ -185,7 +184,7 @@ export const Invite = ({ onClose }) => {
             <FormLabel>Yunaltiruvchi vedomostlar raqami</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("referance_number", { required: true })}
+              {...register("referance_number")}
               type="text"
             />
           </FormControl>
@@ -198,7 +197,7 @@ export const Invite = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("valid_invalid_text", { required: true })}
+              {...register("valid_invalid_text")}
               type="text"
             />
           </FormControl>
@@ -221,7 +220,6 @@ export const Invite = ({ onClose }) => {
               type="date"
             />
           </FormControl>
-          <Signatur title={"Imzo"} />
         </Flex>
       </ModalBody>
 

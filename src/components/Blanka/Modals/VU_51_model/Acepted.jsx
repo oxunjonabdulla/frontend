@@ -12,7 +12,6 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Signatur } from "../../../Signature/Signatur";
 import { SearchTrain } from "../../../../utils";
 import UserApi from "../../../../Service/module/userModule.api";
 export const Acepted = ({ onClose }) => {
@@ -132,7 +131,7 @@ export const Acepted = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("referance_number", { required: true })}
+              {...register("referance_number")}
               type="text"
             />
           </FormControl>
@@ -362,9 +361,6 @@ export const Acepted = ({ onClose }) => {
               type="date"
             />
           </FormControl>
-          <Signatur title={"Tekshirilgan va bajrilgan ishlar imzosi"} />
-        </Flex>
-        <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <FormControl w={"50%"} isInvalid={errors?.invited_date}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
               Qo&apos;yilgan kun imzosi
@@ -375,7 +371,6 @@ export const Acepted = ({ onClose }) => {
               type="date"
             />
           </FormControl>
-          <Signatur title={"Imzo (Vagon ostiga berilgan)"} />
         </Flex>
       </ModalBody>
 

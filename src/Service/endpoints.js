@@ -136,7 +136,7 @@ const authEndpoints = {
 
   // vu93
   vu93: `/vu93/`,
-  vu93Delate: (carriageID) => `/vu92/${carriageID}/`,
+  vu93Delate: (carriageID) => `/vu93/${carriageID}/`,
   vu93All: (page) => `/vu93/list/?page=${page + 1}`,
 
   // defestoskop

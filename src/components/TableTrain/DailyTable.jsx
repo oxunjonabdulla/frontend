@@ -144,8 +144,8 @@ export const DailyTable = () => {
                     <Td>{item.year_of_manufacture}</Td>
                     <Td>{reverseDateFormat(item.repair_date)}</Td>
                     <Td>{repairTypesName(item?.repair_type)}</Td>
-                    <Td>{item.approximate_completion}</Td>
-                    <Td>{item.date_of_registration}</Td>
+                    <Td>{reverseDateFormat(item.approximate_completion)}</Td>
+                    <Td>{reverseDateFormat(item.date_of_registration)}</Td>
                     <Td cursor={"pointer"} colSpan={2}>
                       <Flex
                         w="100%"

@@ -14,14 +14,10 @@ import { SearchTrain } from "../../../../utils";
 import { useEffect, useState } from "react";
 import UserApi from "../../../../Service/module/userModule.api";
 
-export const Oldi = () => {
+export const OldiUpdate = ({ updateData }) => {
   const [isLoading, setLoading] = useState(false);
   const [serachingResult, setSerachingResult] = useState(null);
 
-  const [getDataLoading, setDataLoading] = useState(false);
-  const [trainFixType, setTrainFixType] = useState(null);
-
-  const [getTestResult, setTestResult] = useState([]);
   const toast = useToast();
 
   const {
@@ -30,53 +26,32 @@ export const Oldi = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    const handleCarriageData = async () => {
-      setDataLoading(true);
-      const { response } = await new UserApi().getCarriageOne(serachingResult);
-      setDataLoading(false);
-      setTrainFixType(response?.data);
-    };
-
-    if (serachingResult === getTestResult[0]?.carriage_number) {
-      handleCarriageData();
-    }
-  }, [getTestResult, serachingResult]);
-
   const onSubmit = async (data) => {
-    const allObj = {
-      ...data,
-      created_act_date: trainFixType?.warning_date,
-      train_number_act: trainFixType?.train_number,
-      station_act: trainFixType?.station,
-      telegramma_repair_act: trainFixType?.repair_type,
-      carriage_number_act: trainFixType?.carriage_number,
-    };
     setLoading(true);
 
-    const { response, error } = await new UserApi().postCollectActFront(
-      serachingResult,
-      allObj
+    const { response, error } = await new UserApi().updateCollectActFront(
+      updateData?.carriage,
+      data
     );
     setLoading(false);
     if (response) {
       toast({
         status: "success",
-        title: "Dalolatnoma tuzildi!",
+        title: "Dalolatnoma oldi qismi yangilandi!",
         duration: 4000,
         isClosable: true,
         position: "top-right",
         fontSize: "3xl",
       });
 
-      // window.location.reload();
+      window.location.reload();
     }
     if (error) {
       toast({
         status: "error",
         title: error?.detail
           ? error?.detail
-          : "Bu vagon raqami uchun Dalolatnoma shakillangan.",
+          : "Bu vagon raqami uchun Dalolatnoma shakli mavjud.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
@@ -84,28 +59,8 @@ export const Oldi = () => {
       });
     }
   };
-
   return (
     <>
-      {getDataLoading && (
-        <Flex
-          position={"absolute"}
-          display={"flex"}
-          top={0}
-          left={0}
-          justifyContent={"center"}
-          align={"center"}
-          width={"100%"}
-          height={"100%"}
-          bgColor={"rgba(255,255,255,0.5)"}
-          backdropFilter={"blur(2px)"}
-          rounded={10}
-          zIndex={1000}
-        >
-          <Spinner size={"xl"} color="teal" />
-        </Flex>
-      )}
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalBody>
           <Flex
@@ -115,16 +70,21 @@ export const Oldi = () => {
             my="4"
             gap={3}
           >
-            <SearchTrain
-              setSerachingResult={setSerachingResult}
-              setTestResult={setTestResult}
-            />
             <FormControl>
               <FormLabel>Dalolatnoma tuzilgan sana</FormLabel>
               <Input
                 borderColor={"gray.600"}
-                isReadOnly
-                defaultValue={trainFixType?.warning_date}
+                defaultValue={updateData?.front_detail?.created_act_date}
+                {...register("created_act_date")}
+                type="date"
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Poyezddan kelgan №</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                defaultValue={updateData?.front_detail?.train_number_act}
+                {...register("train_number_act")}
                 type="text"
               />
             </FormControl>
@@ -137,20 +97,11 @@ export const Oldi = () => {
             gap={3}
           >
             <FormControl>
-              <FormLabel>Poyezddan kelgan №</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                defaultValue={trainFixType?.train_number}
-                isReadOnly
-                type="text"
-              />
-            </FormControl>
-            <FormControl>
               <FormLabel>Tuzilgan dalolatnoma bekati tarkib</FormLabel>
               <Input
                 borderColor={"gray.600"}
-                defaultValue={trainFixType?.station}
-                isReadOnly
+                defaultValue={updateData?.front_detail?.station_act}
+                {...register("station_act")}
                 type="text"
               />
             </FormControl>
@@ -158,8 +109,9 @@ export const Oldi = () => {
               <FormLabel>Raqami №</FormLabel>
               <Input
                 borderColor={"gray.600"}
-                type="number"
+                defaultValue={updateData?.front_detail?.number_act}
                 {...register("number_act")}
+                type="number"
               />
             </FormControl>
           </Flex>
@@ -177,8 +129,8 @@ export const Oldi = () => {
               <Input
                 borderColor={"gray.600"}
                 placeholder="Ta'mir turi kodi"
-                isReadOnly
-                defaultValue={trainFixType?.repair_type}
+                defaultValue={updateData?.front_detail?.telegramma_repair_act}
+                {...register("telegramma_repair_act")}
                 type="text"
               />
             </FormControl>
@@ -197,8 +149,8 @@ export const Oldi = () => {
               <Input
                 borderColor={"gray.600"}
                 placeholder="Raqami"
-                isReadOnly
-                defaultValue={trainFixType?.carriage_number}
+                defaultValue={updateData?.front_detail?.carriage_number_act}
+                {...register("carriage_number_act")}
                 type="text"
               />
             </FormControl>
@@ -206,6 +158,7 @@ export const Oldi = () => {
               <FormLabel>Ishlab chiqarilgan </FormLabel>
               <Input
                 borderColor={"gray.600"}
+                defaultValue={updateData?.front_detail?.made_date}
                 type="text"
                 {...register("made_date", { required: true })}
               />
@@ -214,6 +167,7 @@ export const Oldi = () => {
               <FormLabel> kod </FormLabel>
               <Input
                 borderColor={"gray.600"}
+                defaultValue={updateData?.front_detail?.kod_act}
                 type="text"
                 {...register("kod_act", { required: true })}
               />
@@ -223,6 +177,7 @@ export const Oldi = () => {
               <Input
                 borderColor={"gray.600"}
                 type="text"
+                defaultValue={updateData?.front_detail?.whom_act}
                 {...register("whom_act", { required: true })}
               />
             </FormControl>

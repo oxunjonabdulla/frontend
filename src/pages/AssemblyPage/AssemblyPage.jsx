@@ -3,7 +3,17 @@ import { useState } from "react";
 import { DailyTable, Dalolatnoma, VU_22, VU_68 } from "../../components";
 
 export const AssemblyPage = () => {
-  const [activeComponent, setActiveComponent] = useState(null);
+  const [activeComponent, setActiveComponent] = useState(
+    localStorage.getItem("collect_page")
+      ? localStorage.getItem("collect_page")
+      : null
+  );
+
+  const getLocalActiveComp = (component) => {
+    localStorage.setItem("collect_page", component);
+
+    setActiveComponent(component);
+  };
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -35,7 +45,7 @@ export const AssemblyPage = () => {
         >
           <Button
             colorScheme="teal"
-            onClick={() => setActiveComponent("Component1")}
+            onClick={() => getLocalActiveComp("Component1")}
             variant={activeComponent === "Component1" ? "solid" : "outline"}
           >
             ВУ-22
@@ -43,7 +53,7 @@ export const AssemblyPage = () => {
           <Button
             colorScheme="teal"
             variant={activeComponent === "Component2" ? "solid" : "outline"}
-            onClick={() => setActiveComponent("Component2")}
+            onClick={() => getLocalActiveComp("Component2")}
             whiteSpace={"pre-wrap"}
           >
             ВУ-68
@@ -51,7 +61,7 @@ export const AssemblyPage = () => {
           <Button
             colorScheme="teal"
             variant={activeComponent === "Component3" ? "solid" : "outline"}
-            onClick={() => setActiveComponent("Component3")}
+            onClick={() => getLocalActiveComp("Component3")}
           >
             Кириш ва чиқиш назорати далолатномаси
           </Button>

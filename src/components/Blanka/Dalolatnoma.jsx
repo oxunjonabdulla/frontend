@@ -20,8 +20,6 @@ import {
 } from "@chakra-ui/react";
 import {
   faBook,
-  faChevronLeft,
-  faChevronRight,
   faEye,
   faPlus,
   faTrashAlt,
@@ -32,11 +30,13 @@ import { repairTypesName, SliderMock } from "../../utils";
 import { Dalolatnoma_Model } from "./Modals/Dalolatnoma/Dalolatnoma_Model";
 import { dalolatnoma_head } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
-import ReactPaginate from "react-paginate";
 import { Orqa } from "./Modals/Dalolatnoma/Orqa";
 import ShowBack from "./Modals/Dalolatnoma/ShowBack";
 import { Deleteted } from "../Deletete";
 import { useDebounce } from "../../hooks/useDebounce";
+import { Pagination } from "../pagination/Pagination";
+import { faEdit } from "@fortawesome/free-regular-svg-icons";
+import { Update_Dalolatnoma } from "./Modals/Dalolatnoma/UpdateDalolatnoma";
 
 export const Dalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -50,9 +50,15 @@ export const Dalolatnoma = () => {
     onClose: onCloseShowBack,
     onOpen: onOpenShowBack,
   } = useDisclosure();
+  const {
+    isOpen: isOpenUpdate,
+    onClose: onCloseUpdate,
+    onOpen: onOpenUpdate,
+  } = useDisclosure();
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedId, setDeletedId] = useState(null);
   const [delateModal, setDelateModal] = useState(false);
+  const [updateData, setUpdateData] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
@@ -92,7 +98,11 @@ export const Dalolatnoma = () => {
 
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
-    setDeletedId(deletedID);
+    setDeletedId(deletedID?.carriage);
+  };
+  const handleCheckAndUpdate = (data) => {
+    onOpenUpdate(true);
+    setUpdateData(data);
   };
 
   const handleDelate = async (carriageID) => {
@@ -205,8 +215,13 @@ export const Dalolatnoma = () => {
                     <Td>
                       <Flex gap={2} m={0}>
                         <IconButton
+                          colorScheme="green"
+                          onClick={() => handleCheckAndUpdate(item)}
+                          icon={<FontAwesomeIcon icon={faEdit} />}
+                        />
+                        <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
@@ -237,23 +252,11 @@ export const Dalolatnoma = () => {
       )}
 
       {gettingData?.results?.length ? (
-        <ReactPaginate
+        <Pagination
           pageCount={Math.ceil(
             (gettingData?.count ? gettingData?.count : 0) / 10
           )}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={2}
           onPageChange={handlePageClick}
-          containerClassName="pagination"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          previousLinkClassName="page-link"
-          nextClassName="page-item"
-          nextLinkClassName="page-link"
-          activeClassName="active"
-          previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-          nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
         />
       ) : null}
 
@@ -270,6 +273,11 @@ export const Dalolatnoma = () => {
       />
       <Orqa isOpen={isOPenBack} onClose={onCloseBack} carriageID={backId} />
       <Dalolatnoma_Model isOpen={isOpen} onClose={onClose} />
+      <Update_Dalolatnoma
+        isOpen={isOpenUpdate}
+        onClose={onCloseUpdate}
+        updateData={updateData}
+      />
     </Box>
   );
 };
