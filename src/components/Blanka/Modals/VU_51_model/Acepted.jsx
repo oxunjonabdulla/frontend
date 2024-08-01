@@ -12,11 +12,9 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../../utils";
 import UserApi from "../../../../Service/module/userModule.api";
 export const Acepted = ({ onClose }) => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
     register,
@@ -26,10 +24,7 @@ export const Acepted = ({ onClose }) => {
   const onSubmit = async (data) => {
     setLoading(true);
 
-    const { response, error } = await new UserApi().postAcceptedVu51Api(
-      serachingResult,
-      data
-    );
+    const { response, error } = await new UserApi().createVu51(data);
     setLoading(false);
     if (response) {
       toast({
@@ -59,10 +54,6 @@ export const Acepted = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <ModalBody>
-        <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-          <SearchTrain setSerachingResult={setSerachingResult} />
-        </Flex>
-
         <Text
           as={"h1"}
           textAlign={"center"}

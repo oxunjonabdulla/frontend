@@ -16,7 +16,6 @@ import { SearchTrain } from "../../../../utils";
 import UserApi from "../../../../Service/module/userModule.api";
 export const Invite = ({ onClose }) => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
     register,
@@ -26,10 +25,10 @@ export const Invite = ({ onClose }) => {
   const onSubmit = async (data) => {
     setLoading(true);
 
-    const { response, error } = await new UserApi().postIntiveVu51Api(
-      serachingResult,
-      { ...data, wheel_surface_diametr: "455" }
-    );
+    const { response, error } = await new UserApi().postAcceptedVu51Api({
+      ...data,
+      wheel_surface_diametr: "455",
+    });
     setLoading(false);
     if (response) {
       toast({
@@ -61,7 +60,6 @@ export const Invite = ({ onClose }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <ModalBody>
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-          <SearchTrain setSerachingResult={setSerachingResult} />
           <FormControl isInvalid={errors?.carriage_depo_station}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
               Vagon Depo, Zavod
@@ -82,24 +80,6 @@ export const Invite = ({ onClose }) => {
           </FormControl>
         </Flex>
 
-        <Text
-          as={"h1"}
-          textAlign={"center"}
-          m={0}
-          fontSize={"xl"}
-          fontWeight={700}
-        >
-          G‘ildirak juftligi to‘liq ro‘yxati
-        </Text>
-        <Text
-          as={"h1"}
-          textAlign={"center"}
-          m={0}
-          fontSize={"xl"}
-          fontWeight={700}
-        >
-          Keldi
-        </Text>
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <FormControl isInvalid={errors?.invite_date}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
@@ -129,15 +109,6 @@ export const Invite = ({ onClose }) => {
           </FormControl>
         </Flex>
 
-        <Text
-          as={"h1"}
-          textAlign={"center"}
-          m={0}
-          fontSize={"xl"}
-          fontWeight={700}
-        >
-          Sana va vaqt
-        </Text>
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <FormControl isInvalid={errors?.last_formation}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
@@ -212,7 +183,7 @@ export const Invite = ({ onClose }) => {
         </Flex>
 
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-          <FormControl w={"50%"} isInvalid={errors?.inviting_date}>
+          <FormControl isInvalid={errors?.inviting_date}>
             <Input
               mt={8}
               borderColor={"gray.600"}

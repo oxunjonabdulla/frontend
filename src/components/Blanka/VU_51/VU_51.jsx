@@ -26,7 +26,6 @@ import { AccaptedTable } from "./Accepted";
 export const VU_51 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
 
-  const [activeType, setActiveType] = useState(2);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,14 +43,14 @@ export const VU_51 = () => {
     }
   };
 
-  const renderComponent = (data) => {
-    switch (activeType) {
-      case 2:
-        return <InviteTable data={data} />;
-      case 1:
-        return <AccaptedTable data={data} />;
-    }
-  };
+  // const renderComponent = (data) => {
+  //   switch (activeType) {
+  //     case 2:
+  //       return;
+  //     case 1:
+  //       return <AccaptedTable data={data} />;
+  //   }
+  // };
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
@@ -90,24 +89,8 @@ export const VU_51 = () => {
       {!isLoadingFulStatistik ? (
         gettingData?.count > 0 ? (
           <>
-            <Flex gap={4} justify={"center"}>
-              <Button
-                colorScheme="teal"
-                onClick={() => setActiveType(2)}
-                variant={activeType === 2 ? "solid" : "outline"}
-              >
-                Келди
-              </Button>
-              <Button
-                colorScheme="teal"
-                onClick={() => setActiveType(1)}
-                variant={activeType === 1 ? "solid" : "outline"}
-              >
-                Қўйилди
-              </Button>
-            </Flex>
             <TableContainer p={4} border={"1px solid #eeeee"}>
-              {renderComponent(gettingData?.results)}
+              <InviteTable data={gettingData?.results} />
             </TableContainer>
           </>
         ) : (

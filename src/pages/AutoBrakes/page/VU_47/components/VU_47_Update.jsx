@@ -122,26 +122,6 @@ export const VU_47_Update = ({ updateData, onClose, isOpen }) => {
                   type="text"
                 />
               </FormControl>
-            </Flex>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl
-                isInvalid={errors?.slow_release_through_calibrated_orifices}
-              >
-                <FormLabel>
-                  {" "}
-                  Отпуск медленным темпом через калиброванные отверстия
-                  диаметром 0,8 или 0,65 мм{" "}
-                </FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("slow_release_through_calibrated_orifices", {
-                    required: true,
-                  })}
-                  type="text"
-                />
-              </FormControl>
-            </Flex>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.brake_cylinder_fill_time}>
                 <FormLabel>
                   {" "}
@@ -155,16 +135,7 @@ export const VU_47_Update = ({ updateData, onClose, isOpen }) => {
                 />
               </FormControl>
             </Flex>
-            <Text
-              as={"h1"}
-              textAlign={"center"}
-              m={0}
-              fontSize={"xl"}
-              fontWeight={700}
-            >
-              Давление в тормозном цилиндре (ТЦ) на режимах кгс/см2 при экстр.
-              торможении (ЭТ) и полном служебном (ПСТ)
-            </Text>
+
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.cylinder_pressure_empty}>
                 <FormLabel>порожнем</FormLabel>

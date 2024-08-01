@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -78,11 +79,15 @@ export const VU_47_Create = () => {
               <FormLabel whiteSpace={["wrap", "nowrap"]}>
                 Тип прибора{" "}
               </FormLabel>
-              <Input
+              <Select
                 borderColor={"gray.600"}
-                {...register("device_type", { required: true })}
-                type="text"
-              />
+                placeholder=" Тип прибора"
+                {...register("device_type")}
+              >
+                <option value={"483"}>483</option>
+                <option value={"483M"}>483M</option>
+                <option value={"483A"}>483A</option>
+              </Select>
             </FormControl>
             <FormControl isInvalid={errors?.serial_number}>
               <FormLabel whiteSpace={["wrap", "nowrap"]}>
@@ -97,18 +102,6 @@ export const VU_47_Create = () => {
           </Flex>
 
           <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-            <FormControl isInvalid={errors?.charging_time_12}>
-              <FormLabel>
-                {" "}
-                Время зарядки золотниковой камеры и запасного резервуара, с{" "}
-              </FormLabel>
-              <FormLabel> ЗК до 1,2 кгс/см2</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("charging_time_12", { required: true })}
-                type="text"
-              />
-            </FormControl>
             <FormControl isInvalid={errors?.charging_time_40}>
               <FormLabel>
                 {" "}
@@ -121,8 +114,6 @@ export const VU_47_Create = () => {
                 type="text"
               />
             </FormControl>
-          </Flex>
-          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
             <FormControl
               isInvalid={errors?.slow_release_through_calibrated_orifices}
             >
@@ -149,7 +140,7 @@ export const VU_47_Create = () => {
               <Input
                 borderColor={"gray.600"}
                 {...register("release_time_to_04", { required: true })}
-                type="text"
+                type="number"
               />
             </FormControl>
 

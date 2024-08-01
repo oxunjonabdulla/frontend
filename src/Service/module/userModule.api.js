@@ -479,10 +479,10 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async postAcceptedVu51Api(id, obj) {
+  async postAcceptedVu51Api(obj) {
     try {
       const response = await privateInstance.post(
-        authEndpoints.postAcceptedVu51(id),
+        authEndpoints.createVu51,
         obj
       );
 
@@ -543,9 +543,11 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async getVu91(page) {
+  async getVu91(params) {
     try {
-      const response = await privateInstance.get(authEndpoints.vu91All(page));
+      const response = await privateInstance.get(authEndpoints.vu91All, {
+        params,
+      });
 
       return { response };
     } catch (error) {

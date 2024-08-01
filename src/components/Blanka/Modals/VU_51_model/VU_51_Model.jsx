@@ -13,17 +13,6 @@ import { Invite } from "./Invite";
 import { Acepted } from "./Acepted";
 
 export const VU_51_Model = ({ onClose, isOpen }) => {
-  const [activeType, setActiveType] = useState(1);
-
-  const renderComponent = () => {
-    switch (activeType) {
-      case 1:
-        return <Invite />;
-      case 2:
-        return <Acepted />;
-    }
-  };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -42,27 +31,12 @@ export const VU_51_Model = ({ onClose, isOpen }) => {
           mt={8}
           gap={4}
         >
-          <Text>VU-51 shakl turini tanlang</Text>
-
-          <Flex gap={4}>
-            <Button
-              onClick={() => setActiveType(1)}
-              variant={activeType === 1 ? "outline_active" : "outline"}
-            >
-              Keldi
-            </Button>
-            <Button
-              onClick={() => setActiveType(2)}
-              variant={activeType === 2 ? "outline_active" : "outline"}
-            >
-              Qo&apos;yildi
-            </Button>
-          </Flex>
+          <Text>VU-51 shakl kelgan qismini qo'shish</Text>
         </Flex>
 
         <ModalCloseButton />
 
-        {renderComponent()}
+        <Invite />
       </ModalContent>
     </Modal>
   );

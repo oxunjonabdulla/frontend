@@ -2,9 +2,12 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
   Image,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -32,6 +35,7 @@ import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { imageGet } from "../../utils/imageGet";
 import { Deleteted } from "../Deletete";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const VU_91 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -40,6 +44,9 @@ export const VU_91 = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -64,10 +71,15 @@ export const VU_91 = () => {
       window.location.reload();
     }
   };
-  useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
 
+  useEffect(() => {
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+
+    fetchData(params);
+  }, [carriageSerach, currentPage]);
   return (
     <Box
       as="div"
@@ -99,6 +111,17 @@ export const VU_91 = () => {
           +
         </Button>
       </Tooltip>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>

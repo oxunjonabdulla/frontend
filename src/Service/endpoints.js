@@ -110,6 +110,7 @@ const authEndpoints = {
   postInviteVu51: (carriageID) => `/${carriageID}/vu51/invite/`,
   getInviteVu51: (carriageID) => `/${carriageID}/vu51/invite/`,
   postAcceptedVu51: (carriageID) => `/${carriageID}/vu51/accepted/`,
+  createVu51: `/vu51/create/`,
   vu51All: (page) => `/vu51/list/?page=${page + 1}`,
   // vu 53
   getVu53All: `/vu53/`,
@@ -127,7 +128,7 @@ const authEndpoints = {
   // vu91
   vu91: `/vu91/`,
   vu91Delate: (carriageID) => `/vu91/${carriageID}/`,
-  vu91All: (page) => `/vu91/list/?page=${page + 1}`,
+  vu91All: `/vu91/list/`,
 
   // vu92
   vu92: (carriageID) => `/vu92/${carriageID}/`,
