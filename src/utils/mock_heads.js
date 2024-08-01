@@ -643,7 +643,6 @@ export const vu_51 = {
   invite: {
     headers: [
       { label: "Tartib raqami", rowspan: 2 },
-      { label: "Vagon raqami", rowspan: 2 },
       { label: "Вагон депо, завод ___ ж.д", rowspan: 2 },
       { label: "Қабул қилинган сана", rowspan: 2 },
       { label: "Ғилидрак жуфтлиги рақами", rowspan: 2 },
@@ -678,7 +677,6 @@ export const vu_51 = {
   accepted: {
     headers: [
       { label: "Tartib raqami", rowspan: 3 },
-      { label: "Vagon raqami", rowspan: 3 },
       { label: "Сана ва жой", colspan: 2 },
       { label: "№ вагон учун ишлатилган", rowspan: 3 },
       { label: "Юборилган ВЧД, Завод ПТО си", rowspan: 3 },
@@ -695,10 +693,10 @@ export const vu_51 = {
         rowspan: 3,
         label: "Qo'yilgan kun imzosi / Imzo (Vagon ostiga berilgan)",
       },
-      {
-        rowspan: 3,
-        label: "Yuklash / O`chirish",
-      },
+      // {
+      //   rowspan: 3,
+      //   label: "Yuklash / O`chirish",
+      // },
     ],
     nestedHeaders: [
       { label: "Охирги шаклланиш", rowspan: 2 },

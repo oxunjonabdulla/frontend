@@ -6,13 +6,11 @@ import {
   Input,
   ModalBody,
   ModalFooter,
-  Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../../utils";
 import UserApi from "../../../../Service/module/userModule.api";
 export const Invite = ({ onClose }) => {
   const [isLoading, setLoading] = useState(false);
@@ -26,8 +24,10 @@ export const Invite = ({ onClose }) => {
     setLoading(true);
 
     const { response, error } = await new UserApi().postAcceptedVu51Api({
-      ...data,
-      wheel_surface_diametr: "455",
+      invite_detail: {
+        ...data,
+        wheel_surface_diametr: "455",
+      },
     });
     setLoading(false);
     if (response) {

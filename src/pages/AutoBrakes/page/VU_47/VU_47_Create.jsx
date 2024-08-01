@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { MainHeads } from "@/components";
 import UserApi from "../../../../Service/module/userModule.api";
 import { useNavigate } from "react-router";
+import { Signatur } from "../../../../components";
 export const VU_47_Create = () => {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
@@ -25,7 +26,7 @@ export const VU_47_Create = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     const { response, error } = await new UserApi().postVu47({
-      front_detail: data,
+      front_detail: { acceptor_signature: "Imzo quyildi", ...data },
       back_detail: {
         date: "2001-11-11",
         device_type: "null",
@@ -107,7 +108,7 @@ export const VU_47_Create = () => {
                 {" "}
                 Время зарядки золотниковой камеры и запасного резервуара, с{" "}
               </FormLabel>
-              <FormLabel> ЗР от 4,0 кгс/см2 4,5 кгс/см2</FormLabel>
+              <FormLabel>ЗК до 1.2 кг/см²</FormLabel>
               <Input
                 borderColor={"gray.600"}
                 {...register("charging_time_40", { required: true })}
@@ -146,11 +147,7 @@ export const VU_47_Create = () => {
 
             <FormControl isInvalid={errors?.acceptor_signature}>
               <FormLabel>Подпись принявшего прибор </FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("acceptor_signature", { required: true })}
-                type="text"
-              />
+              <Signatur />
             </FormControl>
           </Flex>
 

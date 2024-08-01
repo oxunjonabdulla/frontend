@@ -479,10 +479,10 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async postAcceptedVu51Api(obj) {
+  async postAcceptedVu51Api(uuid, obj) {
     try {
-      const response = await privateInstance.post(
-        authEndpoints.createVu51,
+      const response = await privateInstance.patch(
+        authEndpoints.postAcceptedVu51(uuid),
         obj
       );
 

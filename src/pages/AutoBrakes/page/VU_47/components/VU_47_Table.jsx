@@ -131,8 +131,8 @@ const VU_47_Table = () => {
                 <Td>{item?.front_detail?.date}</Td>
                 <Td>{item?.front_detail?.device_type}</Td>
                 <Td>{item?.front_detail?.serial_number}</Td>
-                <Td>{item?.front_detail?.charging_time_12}</Td>
                 <Td>{item?.front_detail?.charging_time_40}</Td>
+                <Td>{item?.back_detail?.charging_time_40}</Td>
                 <Td>
                   {item?.front_detail?.slow_release_through_calibrated_orifices}
                 </Td>

@@ -8,12 +8,7 @@ import {
   Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
-import ReactPaginate from "react-paginate";
-import {
-  faBook,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { SliderMock } from "../../../utils";
@@ -21,7 +16,7 @@ import { VU_51_Model } from "../Modals/VU_51_model/VU_51_Model";
 import UserApi from "../../../Service/module/userModule.api";
 
 import { InviteTable } from "./Invite";
-import { AccaptedTable } from "./Accepted";
+import { Pagination } from "../../pagination/Pagination";
 
 export const VU_51 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -43,14 +38,6 @@ export const VU_51 = () => {
     }
   };
 
-  // const renderComponent = (data) => {
-  //   switch (activeType) {
-  //     case 2:
-  //       return;
-  //     case 1:
-  //       return <AccaptedTable data={data} />;
-  //   }
-  // };
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
@@ -113,23 +100,12 @@ export const VU_51 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-      <ReactPaginate
+
+      <Pagination
         pageCount={Math.ceil(
           (gettingData?.count ? gettingData?.count : 0) / 10
         )}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={2}
         onPageChange={handlePageClick}
-        containerClassName="pagination"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        activeClassName="active"
-        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
       />
 
       <VU_51_Model onClose={onClose} isOpen={isOpen} />

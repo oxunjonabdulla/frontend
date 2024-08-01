@@ -113,10 +113,10 @@ export const VU_91 = () => {
       </Tooltip>
       <Box my={3}>
         <FormControl w={"250px"}>
-          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <FormLabel>Sana buyicha qidirish</FormLabel>
           <Input
             onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Vagon Raqami Yozing"
+            placeholder="yil-oy-kun"
             borderColor={"gray.600"}
             type="text"
           />

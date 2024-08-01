@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "@/Service/module/userModule.api";
+import { Signatur } from "../../../../../components";
 
 export const VU_47_Update = ({ updateData, onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
@@ -32,7 +33,7 @@ export const VU_47_Update = ({ updateData, onClose, isOpen }) => {
     setLoading(true);
     const { response, error } = await new UserApi().patchBackVu47(
       updateData?.uuid,
-      data
+      { acceptor_signature: "Orqa qismiga imzo quyildi", ...data }
     );
 
     setLoading(false);
@@ -165,11 +166,8 @@ export const VU_47_Update = ({ updateData, onClose, isOpen }) => {
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.acceptor_signature}>
                 <FormLabel>Подпись принявшего прибор </FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("acceptor_signature", { required: true })}
-                  type="text"
-                />
+
+                <Signatur />
               </FormControl>
             </Flex>
 
