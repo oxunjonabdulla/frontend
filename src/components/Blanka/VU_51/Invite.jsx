@@ -145,7 +145,7 @@ export const InviteTable = ({ data }) => {
                 <Td>
                   {" "}
                   <Flex gap={2} justifyContent={"center"}>
-                    {item?.accepted_detail?.last_formation === "string" ? (
+                    {!item?.accepted_detail ? (
                       <Flex justify={"center"} align={"center"} gap={2} m={0}>
                         <Text>Orqa tomonini kiritish:</Text>
                         <IconButton

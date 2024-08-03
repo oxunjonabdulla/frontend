@@ -456,10 +456,10 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async postIntiveVu51Api(id, obj) {
+  async postIntiveVu51Api(obj) {
     try {
       const response = await privateInstance.post(
-        authEndpoints.postInviteVu51(id),
+        authEndpoints.createVu51,
         obj
       );
 

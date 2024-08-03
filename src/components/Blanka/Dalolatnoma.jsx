@@ -253,9 +253,7 @@ export const Dalolatnoma = () => {
 
       {gettingData?.results?.length ? (
         <Pagination
-          pageCount={Math.ceil(
-            (gettingData?.count ? gettingData?.count : 0) / 10
-          )}
+          pageCount={gettingData?.count}
           onPageChange={handlePageClick}
         />
       ) : null}

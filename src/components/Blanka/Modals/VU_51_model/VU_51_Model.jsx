@@ -8,9 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { Invite } from "./Invite";
-import { Acepted } from "./Acepted";
 
 export const VU_51_Model = ({ onClose, isOpen }) => {
   return (

@@ -23,7 +23,7 @@ export const Invite = ({ onClose }) => {
   const onSubmit = async (data) => {
     setLoading(true);
 
-    const { response, error } = await new UserApi().postAcceptedVu51Api({
+    const { response, error } = await new UserApi().postIntiveVu51Api({
       invite_detail: {
         ...data,
         wheel_surface_diametr: "455",

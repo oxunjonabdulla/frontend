@@ -215,9 +215,7 @@ export const VU_22 = () => {
       )}
       <Pagination
         onPageChange={handlePageClick}
-        pageCount={Math.ceil(
-          (gettingData?.count ? gettingData?.count : 0) / 10
-        )}
+        pageCount={gettingData?.count}
       />
       <Deleteted
         isOpen={delateModal}
