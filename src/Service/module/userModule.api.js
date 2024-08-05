@@ -1272,6 +1272,38 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async getVu32All(params) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu32List, {
+        params,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu32(id, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu32Id(id),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu32(id) {
+    try {
+      const response = await privateInstance.delete(authEndpoints.vu32Id(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 }
 
 export default UserApi;

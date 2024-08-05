@@ -38,6 +38,7 @@ import {
   RegisterRegularCreate,
   FrazaCarriage,
   CarriageDalolatnoma,
+  VU_32,
 } from "../pages";
 import {
   CollectUser,
@@ -260,6 +261,10 @@ export const routes = [
           {
             element: <CarriageDalolatnoma />,
             path: RouteNames.CARRIAGE_UNIT_DEED,
+          },
+          {
+            element: <VU_32 />,
+            path: RouteNames.VU_32,
           },
         ],
       },

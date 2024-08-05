@@ -17,7 +17,7 @@ import {
 import UserApi from "../../../../../Service/module/userModule.api";
 import { vu_47 } from "@/utils/mock_heads";
 import { useEffect, useState } from "react";
-import { Deleteted, SimpleLoader } from "../../../../../components";
+import { Deleteted, Pagination, SimpleLoader } from "../../../../../components";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -29,13 +29,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { imageGet } from "../../../../../utils/imageGet";
 import { VU_47_Update } from "./VU_47_Update";
+import { Vu_47ShowBack } from "./Vu_47ShowBack";
+import { reverseDateFormat } from "../../../../../utils";
 const VU_47_Table = () => {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
+  const [showBack, setShowBackData] = useState({});
 
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const {
+    isOpen: isOpenShowBack,
+    onClose: onCloseShowBack,
+    onOpen: onOpenShowBack,
+  } = useDisclosure();
+  const handleShowBack = (data) => {
+    onOpenShowBack();
+    setShowBackData(data);
+  };
+
   const {
     isOpen: isOpenBack,
     onClose: onCloseBack,
@@ -128,7 +141,9 @@ const VU_47_Table = () => {
               <Tr key={item?.front_detail?.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
 
-                <Td>{item?.front_detail?.date}</Td>
+                <Td whiteSpace={"nowrap"}>
+                  {reverseDateFormat(item?.front_detail?.date)}
+                </Td>
                 <Td>{item?.front_detail?.device_type}</Td>
                 <Td>{item?.front_detail?.serial_number}</Td>
                 <Td>{item?.front_detail?.charging_time_40}</Td>
@@ -150,29 +165,28 @@ const VU_47_Table = () => {
                 </Td>
                 <Td>{item?.front_detail?.acceptor_signature}</Td>
                 <Td>
-                  {item?.back_detail?.device_type === "null" && (
-                    <Flex justify={"center"} align={"center"} gap={2} m={0}>
-                      <Text>Orqa tomonini kiritish:</Text>
-                      <IconButton
+                  <Flex gap={2} m={0} alignItems={"center"}>
+                    {item?.back_detail?.device_type === "null" ? (
+                      <Button
                         onClick={() => handleBack(item?.back_detail)}
                         colorScheme="messenger"
-                        icon={<FontAwesomeIcon icon={faPlus} />}
+                        fontSize={"0.8rem"}
+                        leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                      >
+                        Orqa tomonini kiritish
+                      </Button>
+                    ) : (
+                      <IconButton
+                        colorScheme="green"
+                        icon={<FontAwesomeIcon icon={faEye} />}
+                        onClick={() => handleShowBack(item?.back_detail)}
                       />
-                    </Flex>
-                  )}
-                  <Flex gap={2} m={0}>
-                    <Button
-                      float={"right"}
-                      borderColor={"red"}
-                      minW={"30px"}
-                      colorScheme="teal"
-                      bgColor={"red"}
-                      p={0}
-                      _hover={{ bgColor: "red", opacity: "0.7" }}
+                    )}
+                    <IconButton
+                      colorScheme="red"
+                      icon={<FontAwesomeIcon icon={faTrashAlt} />}
                       onClick={() => handleDelete(item?.front_detail)}
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </Button>
+                    />
                   </Flex>
                 </Td>
               </Tr>
@@ -189,30 +203,20 @@ const VU_47_Table = () => {
         carriageNumber={String(deletedData?.id)}
         deletedFunction={handleDelateFunction}
       />
-
+      <Vu_47ShowBack
+        isOpen={isOpenShowBack}
+        onClose={onCloseShowBack}
+        showData={showBack}
+      />
       <VU_47_Update
         updateData={deletedData}
         isOpen={isOpenBack}
         onClose={onCloseBack}
       />
       {gettingData?.results?.length ? (
-        <ReactPaginate
-          pageCount={Math.ceil(
-            (gettingData?.count ? gettingData?.count : 0) / 10
-          )}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={2}
+        <Pagination
+          pageCount={gettingData?.count}
           onPageChange={handlePageClick}
-          containerClassName="pagination"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          previousLinkClassName="page-link"
-          nextClassName="page-item"
-          nextLinkClassName="page-link"
-          activeClassName="active"
-          previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-          nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
         />
       ) : null}
     </>

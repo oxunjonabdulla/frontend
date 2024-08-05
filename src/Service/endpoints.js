@@ -146,6 +146,11 @@ const authEndpoints = {
 
   vu22WithId: (id) => `/vu22/maintenance_record/${id}/`,
   vu22get: `/vu22/maintenance_records/list/`,
+
+  // vu32
+
+  vu32List: "/vu32/",
+  vu32Id: (carriage_number) => `/vu32/${carriage_number}/`,
 };
 
 export { authEndpoints };
