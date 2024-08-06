@@ -353,15 +353,15 @@ export const VU_32 = () => {
                     <Td colSpan={8} textAlign={"center"}>
                       Chаp yon rаmаsi
                     </Td>
-                    <Td rowSpan={4}>d</Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
+                    <Td rowSpan={4}>{e?.ressor_number_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_factory_medal_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_made_year_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_pyatnik_deep_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_pyatnik_deep_diametr_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_reverse_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_service_life_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_new_year_expired_copy}</Td>
+                    <Td rowSpan={4}>{e?.ressor_extend_factory_copy}</Td>
                     <Td colSpan={6} textAlign={"center"}>
                       Chap yon rаmаsi
                     </Td>

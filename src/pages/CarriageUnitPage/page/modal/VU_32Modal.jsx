@@ -674,15 +674,96 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                     <Td colSpan={8} textAlign={"center"}>
                       Chаp yon rаmаsi
                     </Td>
-                    <Td rowSpan={4}>d</Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
-                    <Td rowSpan={4}></Td>
+
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl isInvalid={errors?.ressor_number_copy}>
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_number_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl
+                        isInvalid={errors?.ressor_factory_medal_copy}
+                      >
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_factory_medal_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl isInvalid={errors?.ressor_made_year_copy}>
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_made_year_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl isInvalid={errors?.ressor_pyatnik_deep_copy}>
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_pyatnik_deep_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl
+                        isInvalid={errors?.ressor_pyatnik_deep_diametr_copy}
+                      >
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_pyatnik_deep_diametr_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl isInvalid={errors?.ressor_reverse_copy}>
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_reverse_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl isInvalid={errors?.ressor_service_life_copy}>
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_service_life_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl
+                        isInvalid={errors?.ressor_new_year_expired_copy}
+                      >
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_new_year_expired_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
+                    <Td rowSpan={4} textAlign={"center"} fontWeight={700}>
+                      <FormControl
+                        isInvalid={errors?.ressor_extend_factory_copy}
+                      >
+                        <Input
+                          borderColor={"gray.600"}
+                          {...register("ressor_extend_factory_copy")}
+                          type="text"
+                        />
+                      </FormControl>
+                    </Td>
                     <Td colSpan={6} textAlign={"center"}>
                       Chap yon rаmаsi
                     </Td>
@@ -745,7 +826,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       </FormControl>
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("new_service_second_levaya")}
@@ -754,7 +835,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       </FormControl>
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("service_extend_second_levaya")}
@@ -764,7 +845,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                     </Td>
 
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_left_second_levaya")}
@@ -773,7 +854,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       </FormControl>
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_right_second_levaya")}
@@ -782,7 +863,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       </FormControl>
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("telejka_side_left_second_levaya")}
@@ -791,7 +872,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       </FormControl>
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("telejka_side_right_second_levaya")}
@@ -800,7 +881,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       </FormControl>
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_left_second_levaya")}
@@ -809,7 +890,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       </FormControl>
                     </Td>
                     <Td textAlign={"center"} fontWeight={700}>
-                      <FormControl>
+                      <FormControl width={"100px"}>
                         <Input
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_right_second_levaya")}
