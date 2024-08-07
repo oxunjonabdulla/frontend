@@ -36,6 +36,7 @@ import ReactPaginate from "react-paginate";
 import { imageGet } from "../../utils/imageGet";
 import { Deleteted } from "../Deletete";
 import { useDebounce } from "../../hooks/useDebounce";
+import { Pagination } from "../pagination/Pagination";
 
 export const VU_91 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -170,7 +171,7 @@ export const VU_91 = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
@@ -200,28 +201,14 @@ export const VU_91 = () => {
         <SliderMock setIsLoading={setIsLoading} />
       )}
 
-      <ReactPaginate
-        pageCount={Math.ceil(
-          (gettingData?.count ? gettingData?.count : 0) / 10
-        )}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={2}
+      <Pagination
+        pageCount={gettingData?.count}
         onPageChange={handlePageClick}
-        containerClassName="pagination"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        activeClassName="active"
-        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
       />
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}
-        carriageNumber={getTableData}
+        carriageNumber={String(getTableData)}
         deletedFunction={handleDelate}
       />
 

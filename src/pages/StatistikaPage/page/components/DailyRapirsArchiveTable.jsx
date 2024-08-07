@@ -34,6 +34,7 @@ import ReactPaginate from "react-paginate";
 import { useDebounce } from "../../../../hooks/useDebounce";
 import ExitImage from "../modals/DailyRepair/ExitImage";
 import { repairTypesName, reverseDateFormat } from "../../../../utils";
+import { useSelector } from "react-redux";
 
 const columnsMock = [
   { header: "T/R", accessorKey: "t/r_id", rowSpan: 2 },
@@ -119,6 +120,8 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
+
+  const { user } = useSelector(({ userMe }) => userMe);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -301,32 +304,34 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                         ))}
                       </Flex>
                     </Td>
-                    <Td>
-                      <Flex gap={2}>
-                        <Button
-                          float={"right"}
-                          borderColor={"teal.400"}
-                          colorScheme="teal"
-                          bgColor={"teal.400"}
-                          p={0}
-                          onClick={() => handleAddExitImage(item)}
-                          _hover={{ bgColor: "teal.400", opacity: "0.7" }}
-                        >
-                          <FontAwesomeIcon icon={faFileCirclePlus} />
-                        </Button>
-                        <Button
-                          borderColor={"red"}
-                          colorScheme="teal"
-                          bgColor={"red"}
-                          float={"right"}
-                          p={0}
-                          _hover={{ bgColor: "red", opacity: "0.7" }}
-                          onClick={() => handleCheckAndDelete(item)}
-                        >
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </Button>
-                      </Flex>
-                    </Td>
+                    {user?.role === "statisticuser" && (
+                      <Td>
+                        <Flex gap={2}>
+                          <Button
+                            float={"right"}
+                            borderColor={"teal.400"}
+                            colorScheme="teal"
+                            bgColor={"teal.400"}
+                            p={0}
+                            onClick={() => handleAddExitImage(item)}
+                            _hover={{ bgColor: "teal.400", opacity: "0.7" }}
+                          >
+                            <FontAwesomeIcon icon={faFileCirclePlus} />
+                          </Button>
+                          <Button
+                            borderColor={"red"}
+                            colorScheme="teal"
+                            bgColor={"red"}
+                            float={"right"}
+                            p={0}
+                            _hover={{ bgColor: "red", opacity: "0.7" }}
+                            onClick={() => handleCheckAndDelete(item)}
+                          >
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </Button>
+                        </Flex>
+                      </Td>
+                    )}
                   </Tr>
                 ))}
             </Tbody>
