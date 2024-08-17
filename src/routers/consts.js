@@ -5,6 +5,7 @@ export const RouteNames = {
   CREATE: (id) => id + "/create",
   VU_36: "/statistics/vu-36",
   FRAZA: "/statistics/fraza",
+  SIGNATURE: "/signatures-list",
   STATISTIKAARCHIVE: "/statistics/archive",
   ASSEMBLY: "/assembly-unit",
   AUTO_BRAKES: "/auto-brakes",

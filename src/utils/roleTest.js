@@ -12,6 +12,25 @@ const userRoles = [
   { path: "/defectoscopes", role: "defestoskopuser" },
   { path: "/equipment-unit", role: "equipmentuser" },
 ];
+export const signature_roles = [
+  "deputyheadrepairsuser",
+  "collectworkshopmaster",
+  "technicalcontrolworker",
+  "head_vtxkb_user",
+  "traffic_safety_depot_duty_officer_user",
+  "receiving_master",
+  "wheel_signature_user",
+  "defestoskop_signature_user",
+  "wheel_plumber_user",
+  "aravalar_brigadr_or_master_user",
+  "avto_connector_brigadr_or_master_user",
+  "avto_connector_plumber_signature_user",
+  "avto_connector_payvandchi_signature_user",
+  "avto_connector_defektoskopistr_signature_user",
+  "avtotormoz_plumber_user",
+  "avtotormoz_receiving_master_user",
+];
+
 export const NavigateWithPath = () => {
   const { user } = useSelector(({ userMe }) => userMe);
 

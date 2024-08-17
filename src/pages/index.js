@@ -34,6 +34,7 @@ export * from "./EquipmentUnit";
 export * from "./PtoPage/PtoUnit";
 export * from "./WheelPairsPage";
 export * from "./PtoPage/PtoUnitId";
+export * from "./SignaturePage/SignaturePage";
 export * from "./Login";
 import NotFoundPage from "./NotFoundPage";
 

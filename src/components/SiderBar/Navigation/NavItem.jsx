@@ -24,6 +24,7 @@ export const NavItem = ({ item, collapse }) => {
   const testPath = item?.accordItems?.some(
     (item) => "/journals" + item.path === pathname
   );
+
   if (type === "link") {
     return (
       <Box display="flex" alignItems="center" my={6} justifyContent="center">
@@ -75,6 +76,62 @@ export const NavItem = ({ item, collapse }) => {
       </Box>
     );
   }
+  // if (type === "signature" || data?.unsigned_logs?.length > 0) {
+  //   return (
+  //     <Box display="flex" alignItems="center" my={6} justifyContent="center">
+  //       <Tooltip isDisabled={collapse} label={label} placement="right">
+  //         {!collapse ? (
+  //           <LinkChakra to={isWork ? "" : path} as={Link}>
+  //             <Box
+  //               display={"flex"}
+  //               justifyContent={"center"}
+  //               alignItems={"center"}
+  //               as="div"
+  //               color={testPath ? "black" : "gray.400"}
+  //             >
+  //               <Image src={icon} width={"25px"} />
+  //             </Box>
+  //           </LinkChakra>
+  //         ) : (
+  //           <LinkChakra
+  //             to={isWork ? "" : path}
+  //             as={Link}
+  //             gap={3}
+  //             display="flex"
+  //             alignItems="center"
+  //             _hover={{ textDecoration: "none", color: "black" }}
+  //             fontWeight="medium"
+  //             color={path === pathname ? "black" : "gray.400"}
+  //             w="full"
+  //             justifyContent={!collapse ? "center" : ""}
+  //           >
+  //             <Box
+  //               w={"10%"}
+  //               display={"flex"}
+  //               justifyContent={"center"}
+  //               alignItems={"center"}
+  //               as="div"
+  //             >
+  //               <Image src={icon} width={"25px"} />
+  //             </Box>
+
+  //             {collapse && <Text>{label}</Text>}
+  //             {data?.unsigned_logs?.length > 0 && (
+  //               <Badge
+  //                 variant="outline"
+  //                 rounded={"2xl"}
+  //                 colorScheme="blue"
+  //                 p={2}
+  //               >
+  //                 {data?.unsigned_logs?.length}
+  //               </Badge>
+  //             )}
+  //           </LinkChakra>
+  //         )}
+  //       </Tooltip>
+  //     </Box>
+  //   );
+  // }
   return (
     type === "drop" &&
     (collapse ? (

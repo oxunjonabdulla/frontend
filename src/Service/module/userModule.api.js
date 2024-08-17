@@ -1188,10 +1188,10 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async postDefestoskop(carriageId, obj) {
+  async postDefestoskop(obj) {
     try {
       const response = await privateInstance.post(
-        authEndpoints.defestoskopId(carriageId),
+        authEndpoints.postDefectoscope,
         obj
       );
 
@@ -1298,6 +1298,26 @@ class UserApi extends React.Component {
   async deleteVu32(id) {
     try {
       const response = await privateInstance.delete(authEndpoints.vu32Id(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getAlSsignatures() {
+    try {
+      const response = await privateInstance.get(authEndpoints.signature);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postSignsSignature(signatureSigns) {
+    try {
+      const response = await privateInstance.patch(
+        authEndpoints.signatureSigns(signatureSigns)
+      );
 
       return { response };
     } catch (error) {

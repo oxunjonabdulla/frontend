@@ -1,13 +1,5 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Heading,
-  IconButton,
-} from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Heading } from "@chakra-ui/react";
 import { memo, useMemo, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { useSelector } from "react-redux";
 import { BrendCrumbs } from "@/components";

@@ -304,34 +304,35 @@ export const DailyRapirsArchiveTable = memo(function DailyRapirsArchiveTable() {
                         ))}
                       </Flex>
                     </Td>
-                    {user?.role === "statisticuser" && (
-                      <Td>
-                        <Flex gap={2}>
-                          <Button
-                            float={"right"}
-                            borderColor={"teal.400"}
-                            colorScheme="teal"
-                            bgColor={"teal.400"}
-                            p={0}
-                            onClick={() => handleAddExitImage(item)}
-                            _hover={{ bgColor: "teal.400", opacity: "0.7" }}
-                          >
-                            <FontAwesomeIcon icon={faFileCirclePlus} />
-                          </Button>
-                          <Button
-                            borderColor={"red"}
-                            colorScheme="teal"
-                            bgColor={"red"}
-                            float={"right"}
-                            p={0}
-                            _hover={{ bgColor: "red", opacity: "0.7" }}
-                            onClick={() => handleCheckAndDelete(item)}
-                          >
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                          </Button>
-                        </Flex>
-                      </Td>
-                    )}
+                    {user?.role === "statisticuser" ||
+                      (user?.role === "Superuser" && (
+                        <Td>
+                          <Flex gap={2}>
+                            <Button
+                              float={"right"}
+                              borderColor={"teal.400"}
+                              colorScheme="teal"
+                              bgColor={"teal.400"}
+                              p={0}
+                              onClick={() => handleAddExitImage(item)}
+                              _hover={{ bgColor: "teal.400", opacity: "0.7" }}
+                            >
+                              <FontAwesomeIcon icon={faFileCirclePlus} />
+                            </Button>
+                            <Button
+                              borderColor={"red"}
+                              colorScheme="teal"
+                              bgColor={"red"}
+                              float={"right"}
+                              p={0}
+                              _hover={{ bgColor: "red", opacity: "0.7" }}
+                              onClick={() => handleCheckAndDelete(item)}
+                            >
+                              <FontAwesomeIcon icon={faTrashAlt} />
+                            </Button>
+                          </Flex>
+                        </Td>
+                      ))}
                   </Tr>
                 ))}
             </Tbody>

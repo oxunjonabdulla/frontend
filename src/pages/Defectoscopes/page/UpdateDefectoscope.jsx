@@ -29,7 +29,7 @@ export const UpdateDefectoscope = ({ onClose, isOpen, updatedObject }) => {
   const onSubmit = async (data) => {
     setLoading(true);
     const { response, error } = await new UserApi().updateDefestoskop(
-      updatedObject?.carriage,
+      updatedObject?.id,
       data
     );
     setLoading(false);
@@ -60,7 +60,7 @@ export const UpdateDefectoscope = ({ onClose, isOpen, updatedObject }) => {
       isOpen={isOpen}
       w={"100%"}
       onClose={onClose}
-      size={["sm", "md", "lg", "6xl"]}
+      size={["sm", "md", "lg"]}
       isCentered
       motionPreset="slideInLeft"
     >
@@ -72,28 +72,13 @@ export const UpdateDefectoscope = ({ onClose, isOpen, updatedObject }) => {
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl>
-                <FormLabel>Vagon raqami</FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  defaultValue={updatedObject?.carriage}
-                  readOnly
-                  type="text"
-                />
-              </FormControl>
-              <FormControl isInvalid={errors?.defectoscope_date}>
-                <FormLabel>Tormoz ta’mirlangan sana</FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("defectoscope_date", { required: true })}
-                  type="date"
-                  defaultValue={updatedObject?.defectoscope_date}
-                />
-              </FormControl>
-            </Flex>
-
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+            <Flex
+              gap={3}
+              flexDir={"column"}
+              flexWrap={["wrap", "nowrap"]}
+              align={"center"}
+              my={4}
+            >
               <FormControl isInvalid={errors?.detail_number}>
                 <FormLabel>Detal nomi</FormLabel>
                 <Input
@@ -115,7 +100,7 @@ export const UpdateDefectoscope = ({ onClose, isOpen, updatedObject }) => {
               </FormControl>
               <FormControl isInvalid={errors?.break_detail}>
                 <FormLabel whiteSpace={["pre-wrap", "nowrap"]}>
-                  Nosozlik xulosasi
+                  Xulosasi
                 </FormLabel>
                 <Input
                   type="text"

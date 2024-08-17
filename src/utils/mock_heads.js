@@ -1119,8 +1119,7 @@ export const vu_68 = {
 export const defectoscope = {
   nestedHeaders: [
     { label: "Tartib Raqami" },
-    { label: "sana" },
-    { label: "Келган вагон раками №" },
+    { label: "Defektoskop yaratilgan sana" },
     {
       label: "Detal nomi",
     },
@@ -1247,6 +1246,16 @@ export const vu_92 = {
 
   nestedHeaders: [{ label: "Taftish qilingan" }, { label: "Usta" }],
 };
+export const signature_head = [
+  { label: "Tartib raqami" },
+  { label: "Jurnal turi" },
+  { label: "Vagon raqam" },
+  { label: "Xodim roli" },
+  { label: "Xodim logini" },
+  { label: "Jurnal imzo jo'natilgan vaqti" },
+  { label: "Yuklash " },
+];
+
 export const vu_93 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },

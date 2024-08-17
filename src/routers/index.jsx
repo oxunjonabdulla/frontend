@@ -39,6 +39,7 @@ import {
   FrazaCarriage,
   CarriageDalolatnoma,
   VU_32,
+  SignaturePage,
 } from "../pages";
 import {
   CollectUser,
@@ -294,6 +295,15 @@ export const routes = [
           />
         ),
         path: RouteNames.EQUIPMENT_UNIT,
+      },
+      {
+        element: (
+          <ProtectedRoute
+            element={<SignaturePage />}
+            redirectPath={RouteNames.LOGIN}
+          />
+        ),
+        path: RouteNames.SIGNATURE,
       },
       {
         element: (

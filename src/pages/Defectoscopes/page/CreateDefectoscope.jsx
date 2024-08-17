@@ -17,10 +17,8 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
-import { SearchTrain } from "../../../utils";
 export const CreateDefectoscope = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
     register,
@@ -30,10 +28,7 @@ export const CreateDefectoscope = ({ onClose, isOpen }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const { response, error } = await new UserApi().postDefestoskop(
-      serachingResult,
-      data
-    );
+    const { response, error } = await new UserApi().postDefestoskop(data);
     setLoading(false);
     if (response) {
       toast({
@@ -64,7 +59,7 @@ export const CreateDefectoscope = ({ onClose, isOpen }) => {
       isOpen={isOpen}
       w={"100%"}
       onClose={onClose}
-      size={["sm", "md", "lg", "6xl"]}
+      size={["sm", "md", "lg"]}
       isCentered
       motionPreset="slideInLeft"
     >
@@ -76,20 +71,13 @@ export const CreateDefectoscope = ({ onClose, isOpen }) => {
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <SearchTrain setSerachingResult={setSerachingResult} />
-
-              <FormControl isInvalid={errors?.defectoscope_date}>
-                <FormLabel>Tormoz ta’mirlangan sana</FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("defectoscope_date", { required: true })}
-                  type="date"
-                />
-              </FormControl>
-            </Flex>
-
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+            <Flex
+              gap={3}
+              flexDir={"column"}
+              flexWrap={["wrap", "nowrap"]}
+              align={"center"}
+              my={4}
+            >
               <FormControl isInvalid={errors?.detail_number}>
                 <FormLabel>Detal nomi</FormLabel>
                 <Input
@@ -109,7 +97,7 @@ export const CreateDefectoscope = ({ onClose, isOpen }) => {
               </FormControl>
               <FormControl isInvalid={errors?.break_detail}>
                 <FormLabel whiteSpace={["pre-wrap", "nowrap"]}>
-                  Nosozlik xulosasi
+                  Xulosasi
                 </FormLabel>
                 <Input
                   type="text"

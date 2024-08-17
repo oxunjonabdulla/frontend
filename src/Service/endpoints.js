@@ -141,8 +141,9 @@ const authEndpoints = {
   vu93All: (page) => `/vu93/list/?page=${page + 1}`,
 
   // defestoskop
-  defestoskopList: `/defestoskop/list/`,
+  defestoskopList: `/defestoskop/`,
   defestoskopId: (id) => `/defestoskop/${id}/`,
+  postDefectoscope: `/defestoskop/`,
 
   vu22WithId: (id) => `/vu22/maintenance_record/${id}/`,
   vu22get: `/vu22/maintenance_records/list/`,
@@ -151,6 +152,10 @@ const authEndpoints = {
 
   vu32List: "/vu32/",
   vu32Id: (carriage_number) => `/vu32/${carriage_number}/`,
+
+  signature: "/unsigned-logs/",
+  signatureSigns: (signData) =>
+    `/sign-log/${signData.log_type}/${signData.identifier}/${signData.user_role}/`,
 };
 
 export { authEndpoints };

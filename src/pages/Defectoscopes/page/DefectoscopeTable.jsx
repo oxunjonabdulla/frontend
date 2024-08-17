@@ -34,6 +34,7 @@ import { defectoscope } from "../../../utils/mock_heads";
 import { CreateDefectoscope } from "./CreateDefectoscope";
 import { Deleteted } from "../../../components";
 import { UpdateDefectoscope } from "./UpdateDefectoscope";
+import { timeMoment } from "../../../utils/roleTest";
 
 export const DefectoscopeTable = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -143,10 +144,8 @@ export const DefectoscopeTable = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item?.id}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-                    <Td>{item?.defectoscope_date}</Td>
-                    <Td fontWeight={700} color={"teal"}>
-                      {item?.carriage}
-                    </Td>
+                    <Td>{timeMoment(item?.created_at).day}</Td>
+
                     <Td>{item?.detail_number}</Td>
                     <Td>{item?.year_number_factory}</Td>
                     <Td>{item?.break_detail}</Td>
