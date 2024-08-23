@@ -142,8 +142,8 @@ export const VU_93 = () => {
                     <Td>{item?.chartley_rapair_date}</Td>
                     <Td>
                       {item?.chartley_model_chartley_number} <Divider my={2} />
-                      {item?.made_in} / {item?.made_date}
                     </Td>
+                    <Td> {item?.made_in}</Td>
                     <Td>{item?.not_allowed}</Td>
                     <Td>{item?.rapair_works}</Td>
 

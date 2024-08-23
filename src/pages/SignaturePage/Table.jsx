@@ -1,8 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import {
+  Box,
   Button,
   ButtonGroup,
   Flex,
+  FormControl,
+  FormLabel,
+  Input,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -30,11 +34,12 @@ import {
   faSignature,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { SliderMock } from "../../utils";
 import ReactPaginate from "react-paginate";
 import UserApi from "../../Service/module/userModule.api";
 import { timeMoment } from "../../utils/roleTest";
 import { signature_head } from "../../utils/mock_heads";
+import { TrainLoader } from "../../components";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const SignatureTable = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -43,6 +48,9 @@ export const SignatureTable = () => {
   const [openPopoverIndex, setOpenPopoverIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState(null);
+
+  const [searchValue, setSearchValue] = useState(null);
+  const carriageSerach = useDebounce(searchValue);
   const toast = useToast();
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -58,8 +66,13 @@ export const SignatureTable = () => {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage, dataRefetch]);
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+
+    fetchData(params);
+  }, [currentPage, dataRefetch, carriageSerach]);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -93,6 +106,17 @@ export const SignatureTable = () => {
   };
   return (
     <>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingFulStatistik ? (
         gettingData?.count > 0 ? (
           <TableContainer p={2} border={"1px solid #eeeee"}>
@@ -197,24 +221,26 @@ export const SignatureTable = () => {
             </Table>
           </TableContainer>
         ) : (
-          <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
-            <FontAwesomeIcon
-              icon={faSignature}
-              fontSize={"70px"}
-              opacity={"0.4"}
-            />
-            <Text
-              as={"h1"}
-              fontWeight={600}
-              textAlign={"center"}
-              fontSize={"2xl"}
-            >
-              Imzolar topilmadi{" "}
-            </Text>
-          </Flex>
+          gettingData?.count > 0 && (
+            <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
+              <FontAwesomeIcon
+                icon={faSignature}
+                fontSize={"70px"}
+                opacity={"0.4"}
+              />
+              <Text
+                as={"h1"}
+                fontWeight={600}
+                textAlign={"center"}
+                fontSize={"2xl"}
+              >
+                Imzolar topilmadi{" "}
+              </Text>
+            </Flex>
+          )
         )
       ) : (
-        <SliderMock setIsLoading={setIsLoading} />
+        <TrainLoader />
       )}
       {gettingData?.count > 0 && (
         <ReactPaginate

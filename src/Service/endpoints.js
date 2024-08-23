@@ -14,8 +14,8 @@ const authEndpoints = {
 
   //AVTOREJIM
 
-  avtoRejim: `/autorejim/list/`,
-  avtoRejimPost: (carriageID) => `/autorejim/${carriageID}/`,
+  avtoRejim: `/autorejim/`,
+  avtoRejimId: (carriageID) => `/autorejim/${carriageID}/`,
 
   //razobkran
 

@@ -14,6 +14,7 @@ export * from "./Blanka/WheelDalolatnoma";
 export * from "./pagination/Pagination";
 export * from "../pages/StatistikaPage/page/Fraza";
 export * from "./Blanka/Fraza_wheel";
+export * from "./ImageSignature";
 
 export * from "./Blanka/Dalolatnoma";
 export * from "./Deletete";

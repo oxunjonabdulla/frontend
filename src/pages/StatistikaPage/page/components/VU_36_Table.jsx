@@ -3,6 +3,7 @@ import {
   Divider,
   Flex,
   IconButton,
+  Image,
   Table,
   Tbody,
   Td,
@@ -13,14 +14,15 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { timeClear } from "@/utils/timeClear";
-import { vu_36 } from "@/utils/mock_heads";
+import { vu_36 } from "../../../../utils/mock_heads";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import UserApi from "../../../../Service/module/userModule.api";
-import { Deleteted } from "../../../../components";
+import { Deleteted, ImageSignature } from "../../../../components";
 import { VU_36_Update } from "./VU_36_Update";
 import { reverseDateFormat } from "../../../../utils";
+import { imageGet } from "../../../../utils/imageGet";
 const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -118,6 +120,24 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             <Td>{item.kod_moder_2}</Td>
             <Td>{item.kod_moder_3}</Td>
             <Td>{item.kod_moder_4}</Td>
+            <Td>
+              <ImageSignature
+                signatureImage={item?.receiving_master_user_signature}
+              />
+            </Td>
+            <Td>
+              <ImageSignature
+                signatureImage={item?.technical_control_worker_user_signature}
+              />
+            </Td>
+            <Td>
+              <ImageSignature
+                signatureImage={item?.collect_workshop_master_signature}
+              />
+            </Td>
+            <Td>
+              <ImageSignature signatureImage={item?.deputy_head_signature} />
+            </Td>
             <Td>
               <Flex gap={2}>
                 <IconButton

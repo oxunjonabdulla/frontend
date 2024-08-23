@@ -567,6 +567,18 @@ export const vu_36 = {
       label: "Ko‘d maderniyzatsiya",
     },
     {
+      label: "Vagon qabul qiluvchi usta imzosi",
+    },
+    {
+      label: "Texnik Nazorat Ishchisi imzosi ",
+    },
+    {
+      label: "Yig‘uv sexi ustasi imzosi ",
+    },
+    {
+      label: "Ta'mir ishlari bo'yicha boshliq o'rinbosari imzosi ",
+    },
+    {
       label: "DIQQAT!!!! Ehtiyoj bulgandagina uzgartiring",
     },
   ],
@@ -1262,8 +1274,11 @@ export const vu_93 = {
 
     { label: "Podshipnik ta’mirlangan  sanasi", rowspan: 2 },
     {
-      label:
-        "Podshipnik shartli belgilari, raqami, ishlab chiqargan zavod va sanasi ",
+      label: "Podshipnik shartli belgilari, ",
+      rowspan: 2,
+    },
+    {
+      label: " Ishlab chiqargan zavod raqami va sanasi ",
       rowspan: 2,
     },
     { label: "Ko‘rinish", colspan: 2 },

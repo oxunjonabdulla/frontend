@@ -19,13 +19,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-  faDownload,
-  faPenToSquare,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { imageGet } from "../../../../../utils/imageGet";
 import { Deleteted, SimpleLoader } from "../../../../../components";
 import ReactPaginate from "react-paginate";
+import { repairTypesName } from "../../../../../utils";
 const RegisterAutoTables = memo(function RegisterAutoTables() {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(null);
@@ -121,11 +120,11 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
 
           <Tbody>
             {gettingData?.results?.map((item, idx) => (
-              <Tr key={item.carriage}>
+              <Tr key={item.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
                 <Td>{item.repair_date}</Td>
                 <Td>{item.automode_type}</Td>
-                <Td>{item.repair_type}</Td>
+                <Td>{repairTypesName(item?.repair_type)}</Td>
                 <Td>{item.automode_factory_number}</Td>
                 <Td>{item.automode_roll_size}</Td>
                 <Td>{item.tc_type_without_freight}</Td>
@@ -142,7 +141,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
                 <Td>
                   {" "}
                   <Flex gap={2} m={0}>
-                    <Button
+                    {/* <Button
                       float={"right"}
                       borderColor={"blue.400"}
                       colorScheme="teal"
@@ -163,7 +162,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
                       _hover={{ bgColor: "green.500", opacity: "0.7" }}
                     >
                       <FontAwesomeIcon icon={faPenToSquare} />
-                    </Button>
+                    </Button> */}
                     <Button
                       float={"right"}
                       borderColor={"red"}
@@ -171,7 +170,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
                       colorScheme="teal"
                       bgColor={"red"}
                       p={0}
-                      onClick={() => handleDelete(item.carriage)}
+                      onClick={() => handleDelete(item?.id)}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
@@ -188,7 +187,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
       <Deleteted
         isOpen={isOpen}
         onClose={onClose}
-        carriageNumber={deletedData}
+        carriageNumber={String(deletedData)}
         deletedFunction={handleDelateFunction}
       />
       {gettingData?.results?.length ? (

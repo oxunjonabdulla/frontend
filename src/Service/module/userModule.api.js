@@ -780,12 +780,9 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async postAvtoRejim(carriageId, obj) {
+  async postAvtoRejim(obj) {
     try {
-      const response = await privateInstance.post(
-        authEndpoints.avtoRejimPost(carriageId),
-        obj
-      );
+      const response = await privateInstance.post(authEndpoints.avtoRejim, obj);
 
       return { response };
     } catch (error) {
@@ -1304,9 +1301,11 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async getAlSsignatures() {
+  async getAlSsignatures(params) {
     try {
-      const response = await privateInstance.get(authEndpoints.signature);
+      const response = await privateInstance.get(authEndpoints.signature, {
+        params,
+      });
 
       return { response };
     } catch (error) {
