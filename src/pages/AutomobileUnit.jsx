@@ -7,6 +7,8 @@ export const AutomobileUnit = () => {
 
   const renderComponent = () => {
     switch (activeComponent) {
+      case "Component5":
+        return <DailyTable />;
       case "Component1":
         return "<VU_31 />";
       case "Component2":
@@ -30,6 +32,13 @@ export const AutomobileUnit = () => {
           overflow={"auto"}
           p={4}
         >
+          <Button
+            colorScheme="teal"
+            variant={activeComponent === "Component5" ? "solid" : "outline"}
+            onClick={() => setActiveComponent("Component5")}
+          >
+            Bugungi ta'mir
+          </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "Component1" ? "solid" : "outline"}

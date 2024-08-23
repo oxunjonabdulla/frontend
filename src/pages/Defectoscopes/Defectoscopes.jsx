@@ -7,6 +7,8 @@ export const Defectoscopes = () => {
   const [activeComponent, setActiveComponent] = useState(null);
   const renderComponent = () => {
     switch (activeComponent) {
+      case "Component1":
+        return <DailyTable />;
       case "Component2":
         return <DefectoscopeTable />;
       default:
@@ -28,6 +30,13 @@ export const Defectoscopes = () => {
           overflow={"auto"}
           p={4}
         >
+          <Button
+            colorScheme="teal"
+            variant={activeComponent === "Component1" ? "solid" : "outline"}
+            onClick={() => setActiveComponent("Component1")}
+          >
+            Bugungi ta'mir
+          </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "Component2" ? "solid" : "outline"}

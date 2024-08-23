@@ -177,7 +177,7 @@ export const DefectoscopeTable = () => {
                           minW={"30px"}
                           colorScheme="teal"
                           bgColor={"red"}
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.id)}
                           p={0}
                           _hover={{ bgColor: "red", opacity: "0.7" }}
                         >
@@ -232,7 +232,7 @@ export const DefectoscopeTable = () => {
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}
-        carriageNumber={getTableData}
+        carriageNumber={String(getTableData)}
         deletedFunction={handleDelate}
       />
       <CreateDefectoscope onClose={onClose} isOpen={isOpen} />

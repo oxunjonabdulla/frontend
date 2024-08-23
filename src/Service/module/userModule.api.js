@@ -792,7 +792,7 @@ class UserApi extends React.Component {
   async deleteAvtoRejim(carriageId) {
     try {
       const response = await privateInstance.delete(
-        authEndpoints.avtoRejimPost(carriageId)
+        authEndpoints.avtoRejimId(carriageId)
       );
 
       return { response };
