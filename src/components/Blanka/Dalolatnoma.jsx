@@ -37,6 +37,7 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { Pagination } from "../pagination/Pagination";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { Update_Dalolatnoma } from "./Modals/Dalolatnoma/UpdateDalolatnoma";
+import { ImageSignature } from "../ImageSignature";
 
 export const Dalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -191,7 +192,36 @@ export const Dalolatnoma = () => {
                       Tegishli qismi {item?.front_detail?.whom_act}
                     </Td>
 
-                    <Td color={"teal"}>Imzo tasdiqlangan</Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
+                        signatureImage={item?.wheel_signature_user}
+                      />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
+                        signatureImage={
+                          item?.traffic_safety_depot_duty_officer_user
+                        }
+                      />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature signatureImage={item?.head_vtxkb_user} />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
+                        signatureImage={item?.receiving_master_user_signature}
+                      />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
+                        signatureImage={item?.collect_workshop_master_signature}
+                      />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
+                        signatureImage={item?.deputy_head_signature}
+                      />
+                    </Td>
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
                         <Flex justify={"center"} align={"center"} gap={2} m={0}>

@@ -32,6 +32,7 @@ import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
 import Show_VU50_model from "./Modals/Show_VU50_model";
+import { ImageSignature } from "../ImageSignature";
 export const VU_50 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -146,6 +147,11 @@ export const VU_50 = () => {
                     <Td>{item?.sending_station_name}</Td>
                     <Td>{item?.receiving_station_railway}</Td>
                     <Td>{item?.receiving_station_name}</Td>
+                    <Td>
+                      <ImageSignature
+                        signatureImage={item?.wheel_signature_user}
+                      />
+                    </Td>
                     <Td colSpan={4}>
                       <IconButton
                         size={"lg"}

@@ -299,6 +299,24 @@ export const dalolatnoma_head = [
   {
     label: "Ishlab chiqarilgan, kod va tegishli qismi",
   },
+  {
+    label: " G'ildirak bo'limi ishchisi imzosi",
+  },
+  {
+    label: "Harakat xavfsizligi bo'yicha depo navbatchisi imzosi",
+  },
+  {
+    label: "VTXKB boshlig'i imzosi",
+  },
+  {
+    label: "Vagon qabul qiluvchi usta imzosi",
+  },
+  {
+    label: "Yig‘uv sexi ustasi imzosi ",
+  },
+  {
+    label: "Ta'mir ishlari bo'yicha boshliq o'rinbosari imzosi",
+  },
 ];
 export const auto_dalolatnoma_head = [
   { label: "Tartib raqami" },
@@ -603,6 +621,9 @@ export const vu_50 = {
     },
     {
       label: "Qabul qiluvchi tashkilot nomi  ",
+    },
+    {
+      label: "G'ildirak bo'limi ishchisi imzosi ",
     },
 
     {

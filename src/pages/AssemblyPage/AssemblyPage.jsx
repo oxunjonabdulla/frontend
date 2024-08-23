@@ -19,6 +19,8 @@ export const AssemblyPage = () => {
     switch (activeComponent) {
       case "Component1":
         return <VU_22 />;
+      case "Component5":
+        return <DailyTable />;
       case "Component2":
         return <VU_68 />;
       case "Component3":
@@ -43,6 +45,14 @@ export const AssemblyPage = () => {
           flexWrap={"wrap"}
           p={4}
         >
+          <Button
+            colorScheme="teal"
+            variant={activeComponent === "Component5" ? "solid" : "outline"}
+            onClick={() => getLocalActiveComp("Component5")}
+            whiteSpace={"pre-wrap"}
+          >
+            Bugungi ta'mir
+          </Button>
           <Button
             colorScheme="teal"
             onClick={() => getLocalActiveComp("Component1")}

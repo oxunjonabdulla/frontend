@@ -32,6 +32,7 @@ import { imageGet } from "../../utils/imageGet";
 import { Pagination } from "../pagination/Pagination";
 import { Deleteted } from "../Deletete";
 import { useDebounce } from "../../hooks/useDebounce";
+import { ImageSignature } from "../ImageSignature";
 
 export const VU_68 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -176,7 +177,11 @@ export const VU_68 = () => {
                         src={imageGet(item?.author_info?.user_signature_url)}
                       />
                     </Td>
-                    <Td></Td>
+                    <Td>
+                      <ImageSignature
+                        signatureImage={item?.collect_workshop_master_signature}
+                      />
+                    </Td>
                     <Td>
                       <IconButton
                         onClick={() => handleCheckAndDelete(item?.carriage)}

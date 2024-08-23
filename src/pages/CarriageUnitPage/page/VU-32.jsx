@@ -33,7 +33,7 @@ import ReactPaginate from "react-paginate";
 import { BrendCrumbs } from "@/components";
 import { SimpleLoader } from "@/components";
 import { useDebounce } from "../../../hooks/useDebounce";
-import { Deleteted, Pagination } from "../../../components";
+import { Deleteted, ImageSignature, Pagination } from "../../../components";
 import { VU_32Modal } from "./modal/VU_32Modal";
 import { reverseDateFormat } from "../../../utils";
 
@@ -285,10 +285,24 @@ export const VU_32 = () => {
                     <Td rowSpan={8}>{e?.balka_factory}</Td>
                     <Td rowSpan={8}>{e?.balka_made_year}</Td>
                     <Td rowSpan={8}>{e?.balka_pyatnik}</Td>
-                    <Td rowSpan={8}>Imzo qo'yildi</Td>
-                    <Td rowSpan={8}></Td>
-                    <Td rowSpan={8}></Td>
-                    <Td rowSpan={8}></Td>
+                    <Td rowSpan={8}>
+                      <ImageSignature
+                        signatureImage={e?.defestoskop_signature_user}
+                      />
+                    </Td>
+                    <Td rowSpan={8}>
+                      <ImageSignature signatureImage={e?.repair_master_info} />
+                    </Td>
+                    <Td rowSpan={8}>
+                      <ImageSignature
+                        signatureImage={e?.receiving_master_user_signature}
+                      />
+                    </Td>
+                    <Td rowSpan={8}>
+                      <ImageSignature
+                        signatureImage={e?.deputy_head_signature}
+                      />
+                    </Td>
                     <Td rowSpan={8}>
                       <Flex gap={2} m={0}>
                         <IconButton
