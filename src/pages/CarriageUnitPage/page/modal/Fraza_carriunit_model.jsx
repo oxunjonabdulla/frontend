@@ -16,11 +16,11 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Select,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Tr,
   useToast,
 } from "@chakra-ui/react";
@@ -28,7 +28,6 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { SearchTrain } from "../../../../utils";
-import { Signatur } from "../../../../components/Signature/Signatur";
 import UserApi from "../../../../Service/module/userModule.api";
 import { mockHeaderCarriage } from "../../../../utils/mock_heads";
 
@@ -90,7 +89,61 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
-            <SearchTrain setSerachingResult={setSerachingResult} />
+            <Flex
+              gap={3}
+              flexWrap={["wrap", "nowrap"]}
+              alignItems={"center"}
+              my={4}
+            >
+              <SearchTrain setSerachingResult={setSerachingResult} />
+              <FormControl>
+                <FormLabel fontSize={"10px"}>Tanlash</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Mad"
+                  {...register("mad_3108")}
+                >
+                  <option value={"Mad"}>Mad</option>
+                  <option value={"3108"}>3108</option>
+                </Select>
+              </FormControl>
+              <FormControl isInvalid={errors?.nosoz_kirish_date}>
+                <FormLabel fontSize={"10px"}>sana:</FormLabel>
+                <Input borderColor={"gray.600"} type="date" />
+              </FormControl>
+              <FormControl isInvalid={errors?.nosoz_kirish_hour}>
+                <FormLabel fontSize={"10px"}>soat:</FormLabel>
+                <NumberInput
+                  borderColor={"gray.600"}
+                  mr="1rem"
+                  max={23}
+                  defaultValue={localDate.getHours()}
+                  min={0}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </FormControl>
+              <FormControl isInvalid={errors?.nosoz_kirish_minute}>
+                <FormLabel fontSize={"10px"}>daqiqa:</FormLabel>
+                <NumberInput
+                  mr="1rem"
+                  max={59}
+                  defaultValue={localDate.getMinutes()}
+                  min={0}
+                  borderColor={"gray.600"}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+              </FormControl>
+            </Flex>
             <br />
             <TableContainer>
               <Table variant="striped" colorScheme="gray">
@@ -181,6 +234,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                           borderColor={"gray.600"}
                           {...register("c61_num_depo", { required: true })}
                           type="text"
+                          defaultValue={704}
                         />
                       </FormControl>
                     </Td>
@@ -250,6 +304,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                           borderColor={"gray.600"}
                           {...register("c62_num_depo", { required: true })}
                           type="text"
+                          defaultValue={704}
                         />
                       </FormControl>
                     </Td>
@@ -318,6 +373,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         <Input
                           borderColor={"gray.600"}
                           {...register("c63_num_depo")}
+                          defaultValue={704}
                           type="text"
                         />
                       </FormControl>
@@ -387,6 +443,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         <Input
                           borderColor={"gray.600"}
                           {...register("c64_num_depo")}
+                          defaultValue={704}
                           type="text"
                         />
                       </FormControl>
@@ -456,6 +513,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         <Input
                           borderColor={"gray.600"}
                           {...register("c71_num_depo", { required: true })}
+                          defaultValue={704}
                           type="text"
                         />
                       </FormControl>
@@ -525,6 +583,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         <Input
                           borderColor={"gray.600"}
                           {...register("c72_num_depo", { required: true })}
+                          defaultValue={704}
                           type="text"
                         />
                       </FormControl>
@@ -594,6 +653,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         <Input
                           borderColor={"gray.600"}
                           {...register("c73_num_depo", { required: true })}
+                          defaultValue={704}
                           type="text"
                         />
                       </FormControl>
@@ -663,6 +723,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                         <Input
                           borderColor={"gray.600"}
                           {...register("c74_num_depo", { required: true })}
+                          defaultValue={704}
                           type="text"
                         />
                       </FormControl>
@@ -691,64 +752,6 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                 </Tbody>
               </Table>
             </TableContainer>
-
-            <Flex
-              gap={3}
-              flexWrap={["wrap", "nowrap"]}
-              alignItems={"center"}
-              my={4}
-            >
-              <Text
-                as={"h1"}
-                textAlign={"center"}
-                m={0}
-                fontSize={"md"}
-                fontWeight={700}
-                whiteSpace={"nowrap"}
-              >
-                Сдал бригадир тележечного цеха: <br />
-                Турсунов О.
-              </Text>
-              <FormControl isInvalid={errors?.nosoz_kirish_date}>
-                <FormLabel fontSize={"10px"}>sana:</FormLabel>
-                <Input borderColor={"gray.600"} type="date" />
-              </FormControl>
-              <FormControl isInvalid={errors?.nosoz_kirish_hour}>
-                <FormLabel fontSize={"10px"}>soat:</FormLabel>
-                <NumberInput
-                  borderColor={"gray.600"}
-                  mr="1rem"
-                  max={23}
-                  defaultValue={localDate.getHours()}
-                  min={0}
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </FormControl>
-              <FormControl isInvalid={errors?.nosoz_kirish_minute}>
-                <FormLabel fontSize={"10px"}>daqiqa:</FormLabel>
-                <NumberInput
-                  mr="1rem"
-                  max={59}
-                  defaultValue={localDate.getMinutes()}
-                  min={0}
-                  borderColor={"gray.600"}
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </FormControl>
-              <Flex w={"100%"}>
-                <Signatur />
-              </Flex>
-            </Flex>
           </ModalBody>
 
           <ModalFooter>

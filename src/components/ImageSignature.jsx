@@ -7,6 +7,10 @@ export const ImageSignature = ({ signatureImage }) => {
       Imzo qo'yilmagan{" "}
     </Text>
   ) : (
-    <Image width={"100px"} src={signatureImage} alt="Rasmd xatolik bor" />
+    <Image
+      width={"100px"}
+      src={`https://api.evagon.uz/${signatureImage}`}
+      alt="Rasmd xatolik bor"
+    />
   );
 };
