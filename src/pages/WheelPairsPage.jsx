@@ -29,6 +29,8 @@ export const WheelPairsPage = () => {
 
   const renderComponent = () => {
     switch (activeComponent) {
+      case "daily":
+        return <DailyTable />;
       case "vu22":
         return <VU_22 />;
       case "fraza_wheel":
@@ -71,6 +73,13 @@ export const WheelPairsPage = () => {
           overflow={"auto"}
           p={4}
         >
+          <Button
+            colorScheme="teal"
+            variant={activeComponent === "daily" ? "solid" : "outline"}
+            onClick={() => getLocalActiveComp("daily")}
+          >
+            Bugungi ta`mir
+          </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu22" ? "solid" : "outline"}
