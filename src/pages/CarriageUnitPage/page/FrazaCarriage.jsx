@@ -2,9 +2,12 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
   Image,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -32,14 +35,18 @@ import ReactPaginate from "react-paginate";
 import { imageGet } from "@/utils/imageGet";
 import { Deleteted } from "../../../components";
 import { Fraza_carriage_model } from "./modal/Fraza_carriunit_model";
+import { useDebounce } from "../../../hooks/useDebounce";
 
 export const FrazaCarriage = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
+
+  const [searchValue, setSearchValue] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const carriageSerach = useDebounce(searchValue);
 
   const toast = useToast();
   const handlePageClick = (data) => {
@@ -79,8 +86,13 @@ export const FrazaCarriage = () => {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+
+    fetchData(params);
+  }, [carriageSerach, currentPage]);
 
   return (
     <Box
@@ -108,6 +120,18 @@ export const FrazaCarriage = () => {
           +
         </Button>
       </Tooltip>
+
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
@@ -139,6 +163,15 @@ export const FrazaCarriage = () => {
                     fontWeight={700}
                   >
                     Вагон Номер
+                  </Th>
+                  <Th
+                    fontSize={"10px"}
+                    textAlign={"center"}
+                    whiteSpace={"pre-wrap"}
+                    rowSpan={"3"}
+                    fontWeight={700}
+                  >
+                    Mad 3108
                   </Th>
                 </Tr>
                 <Tr>
@@ -178,6 +211,7 @@ export const FrazaCarriage = () => {
                 <Tr>
                   <Th textAlign={"center"}></Th>
                   <Th textAlign={"center"}></Th>
+                  <Th textAlign={"center"}></Th>
                   <Th textAlign={"center"}>1</Th>
                   <Th textAlign={"center"}>2</Th>
                   <Th textAlign={"center"}>3</Th>
@@ -202,6 +236,9 @@ export const FrazaCarriage = () => {
                         color={"green"}
                       >
                         {item?.carriage}
+                      </Td>
+                      <Td rowSpan={8} textAlign={"center"}>
+                        {item?.mad_3108 ? item?.mad_3108 : "N/A"}
                       </Td>
                       <Td>61</Td>
                       <Td>0</Td>
@@ -310,24 +347,6 @@ export const FrazaCarriage = () => {
                 ))}
               </Tbody>
             </Table>
-            <ReactPaginate
-              pageCount={Math.ceil(
-                (gettingData?.count ? gettingData?.count : 0) / 10
-              )}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={handlePageClick}
-              containerClassName="pagination"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              activeClassName="active"
-              previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-              nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-            />
           </TableContainer>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
@@ -348,7 +367,24 @@ export const FrazaCarriage = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-
+      <ReactPaginate
+        pageCount={Math.ceil(
+          (gettingData?.count ? gettingData?.count : 0) / 10
+        )}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}

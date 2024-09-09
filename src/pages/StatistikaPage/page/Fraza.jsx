@@ -1,4 +1,13 @@
-import { Box, Flex, Heading, TableContainer, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  TableContainer,
+  Text,
+} from "@chakra-ui/react";
 import {
   faBook,
   faChevronLeft,
@@ -12,11 +21,14 @@ import ReactPaginate from "react-paginate";
 import FrazaTable from "./components/FrazaTable";
 
 import { BrendCrumbs } from "@/components";
+import { useDebounce } from "../../../hooks/useDebounce";
 export const Fraza = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
+  const [searchValue, setSearchValue] = useState(null);
 
+  const carriageSerach = useDebounce(searchValue);
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
@@ -31,8 +43,13 @@ export const Fraza = () => {
   };
 
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+
+    fetchData(params);
+  }, [carriageSerach, currentPage]);
   const memoData = useMemo(() => gettingData, [gettingData]);
   return (
     <Box
@@ -47,30 +64,23 @@ export const Fraza = () => {
         ФРАЗА
       </Heading>
 
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       <BrendCrumbs />
 
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
             <FrazaTable gettingData={memoData} />
-            <ReactPaginate
-              pageCount={Math.ceil(
-                (gettingData?.count ? gettingData?.count : 0) / 10
-              )}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={handlePageClick}
-              containerClassName="pagination"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              activeClassName="active"
-              previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-              nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-            />
           </TableContainer>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
@@ -88,6 +98,24 @@ export const Fraza = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+      <ReactPaginate
+        pageCount={Math.ceil(
+          (gettingData?.count ? gettingData?.count : 0) / 10
+        )}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
     </Box>
   );
 };

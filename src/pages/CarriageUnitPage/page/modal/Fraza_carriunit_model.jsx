@@ -16,7 +16,6 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  Select,
   Table,
   TableContainer,
   Tbody,
@@ -98,14 +97,12 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
               <SearchTrain setSerachingResult={setSerachingResult} />
               <FormControl>
                 <FormLabel fontSize={"10px"}>Tanlash</FormLabel>
-                <Select
+                <Input
                   borderColor={"gray.600"}
-                  placeholder="Mad"
                   {...register("mad_3108")}
-                >
-                  <option value={"Mad"}>Mad</option>
-                  <option value={"3108"}>3108</option>
-                </Select>
+                  type="text"
+                  defaultValue={"Mad3108"}
+                />
               </FormControl>
               <FormControl isInvalid={errors?.nosoz_kirish_date}>
                 <FormLabel fontSize={"10px"}>sana:</FormLabel>

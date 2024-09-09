@@ -630,9 +630,9 @@ class UserApi extends React.Component {
   // phrase service
   async getPhraseList(page) {
     try {
-      const response = await privateInstance.get(
-        authEndpoints.phraseList(page)
-      );
+      const response = await privateInstance.get(authEndpoints.phraseList, {
+        params: page,
+      });
 
       return { response };
     } catch (error) {
@@ -667,7 +667,8 @@ class UserApi extends React.Component {
   async getPhraseWheelList(page) {
     try {
       const response = await privateInstance.get(
-        authEndpoints.phraseWheelList(page)
+        authEndpoints.phraseWheelList,
+        { params: page }
       );
 
       return { response };
@@ -714,9 +715,9 @@ class UserApi extends React.Component {
 
   async getPhraseCartList(page) {
     try {
-      const response = await privateInstance.get(
-        authEndpoints.phraseCartList(page)
-      );
+      const response = await privateInstance.get(authEndpoints.phraseCartList, {
+        params: page,
+      });
 
       return { response };
     } catch (error) {

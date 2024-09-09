@@ -2,9 +2,12 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
   Image,
+  Input,
   Table,
   TableContainer,
   Tbody,
@@ -21,7 +24,6 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
-  faDownload,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,16 +35,20 @@ import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
 import { imageGet } from "../../utils/imageGet";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const Fraza_wheel = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
+  const [searchValue, setSearchValue] = useState(null);
   // const [updatedData, setUpdateData] = useState(null);
   // const [updateOpen, setUpdateOpen] = useState(false);
   const [delateModal, setDelateModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const carriageSerach = useDebounce(searchValue);
 
   const toast = useToast();
   const handlePageClick = (data) => {
@@ -85,9 +91,15 @@ export const Fraza_wheel = () => {
   //   setUpdateData(selectedItem);
   //   setUpdateOpen(true);
   // };
+
   useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+    const params = {
+      page: currentPage + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+
+    fetchData(params);
+  }, [carriageSerach, currentPage]);
 
   return (
     <Box
@@ -115,6 +127,17 @@ export const Fraza_wheel = () => {
           +
         </Button>
       </Tooltip>
+      <Box my={3}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingFulStatistik ? (
         !gettingData?.results?.length ? (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
@@ -301,30 +324,29 @@ export const Fraza_wheel = () => {
                 ))}
               </Tbody>
             </Table>
-            <ReactPaginate
-              pageCount={Math.ceil(
-                (gettingData?.count ? gettingData?.count : 0) / 10
-              )}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={handlePageClick}
-              containerClassName="pagination"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              activeClassName="active"
-              previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-              nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-            />
           </TableContainer>
         )
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-
+      <ReactPaginate
+        pageCount={Math.ceil(
+          (gettingData?.count ? gettingData?.count : 0) / 10
+        )}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        activeClassName="active"
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}

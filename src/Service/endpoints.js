@@ -56,19 +56,19 @@ const authEndpoints = {
   birikmaActPostBack: (carriageID) => `/${carriageID}/act/back/`,
   birikmaActdelete: (carriageID) => `/${carriageID}/act/`,
 
-  phraseList: (page) => `/phrase/list/?page=${page + 1}`,
+  phraseList: `/phrase/list/`,
   phraseUpdate: (carriageID) => `/phrase/${carriageID}/`,
   phraseDelate: (carriageID) => `/phrase/${carriageID}/`,
   phraseDownload: (carriageID) => `/${carriageID}/phrase/download/`,
 
   // phrase wheel
-  phraseWheelList: (page) => `/phrase_wheel/list/?page=${page + 1}`,
+  phraseWheelList: `/phrase_wheel/list/`,
   phraseWheelGet: (carriageID) => `/${carriageID}/phrase_wheel/`,
   phraseWheelPost: (carriageID) => `/${carriageID}/phrase_wheel/`,
   phraseWheelDelete: (carriageID) => `/${carriageID}/phrase_wheel/`,
 
   // phrase cart
-  phraseCartList: (page) => `/phrase_cart/list/?page=${page + 1}`,
+  phraseCartList: `/phrase_cart/list/`,
   phraseCartGet: (carriageID) => `/${carriageID}/phrase_cart/`,
   phraseCartPost: (carriageID) => `/${carriageID}/phrase_cart/`,
   phraseCartDelete: (carriageID) => `/${carriageID}/phrase_cart/`,
