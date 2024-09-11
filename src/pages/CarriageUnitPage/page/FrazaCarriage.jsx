@@ -250,10 +250,10 @@ export const FrazaCarriage = () => {
                       <Td>{item?.c61_work_date}</Td>
                       <Td>{item?.c61_work_num}</Td>
                       <Td rowSpan={8}>
-                        {item?.user_signature_url ? (
-                          <Image src={imageGet(item?.user_signature_url)} />
+                        {item?.signature_image_url ? (
+                          <Image src={imageGet(item?.signature_image_url)} />
                         ) : (
-                          <Text color={"red"}>Imzo o`chirilgan</Text>
+                          <Text color={"red"}>Imzo qo`yilmagan</Text>
                         )}
                       </Td>
                       <Td rowSpan={8}>

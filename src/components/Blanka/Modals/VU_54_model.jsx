@@ -17,11 +17,9 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../utils";
+import UserApi from "../../../Service/module/userModule.api";
 export const VU_54_Model = ({ onClose, isOpen }) => {
-  const [trainFixType, setTrainFixType] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
     register,
@@ -29,7 +27,36 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+    const { response, error } = await new UserApi().postVu54(data);
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "VU-54 jurnaliga vagon muvaffaqiyatli qo'shildi.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+
+      window.location.reload();
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.detail
+          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
+          : "Bu vagon raqami uchun VU-68 jurnali mavjud.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
 
   return (
     <Modal
@@ -49,50 +76,30 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <SearchTrain setSerachingResult={setSerachingResult} />
-              <FormControl isInvalid={errors?.sinovi}>
-                <FormLabel whiteSpace={["wrap", "nowrap"]}>Sana</FormLabel>
-                <Input
-                  borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
-                  type="date"
-                />
-              </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.wheel_pair_number}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Ғилдирак жуфтлиги тури
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("wheel_pair_number", { required: true })}
                   type="text"
                 />
               </FormControl>
-            </Flex>
-            <Text
-              as={"h1"}
-              textAlign={"center"}
-              m={0}
-              fontSize={"xl"}
-              fontWeight={700}
-            >
-              Кунлик қабул қилинган
-            </Text>
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.grph_3_4_plus}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Хаммаси (3-графа = 4- ва 10-гача бўлган графалар йиғиндиси)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("grph_3_4_plus", { required: true })}
                   type="text"
                 />
-              </FormControl>
+              </FormControl>{" "}
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.vkm_get_new}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Бошка ташкилотлардан{" "}
                 </FormLabel>
@@ -101,11 +108,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("vkm_get_new", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.vkm_get_depot_new}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Бошка ташкилотлардан{" "}
                 </FormLabel>
@@ -114,13 +121,13 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("vkm_get_depot_new", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.not_change_elements}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Таьмир учун деполардан{" "}
                 </FormLabel>
@@ -129,11 +136,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("not_change_elements", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.change_elements}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Таьмир учун деполардан{" "}
                 </FormLabel>
@@ -142,24 +149,24 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("change_elements", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.defective}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Вагон остидан олинган{" "}
                 </FormLabel>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>Носоз</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("defective", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.is_defect_not_change}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Вагон остидан олинган{" "}
                 </FormLabel>
@@ -168,11 +175,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("is_defect_not_change", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.is_defect_change}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Вагон остидан олинган{" "}
                 </FormLabel>
@@ -181,19 +188,19 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("is_defect_change", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.grph_11_12_13_plus}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Хаммаси (11-графа=12-ва 13-графа йиғиндисига)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("grph_11_12_13_plus", { required: true })}
                   type="text"
                 />
               </FormControl>
@@ -209,7 +216,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
               Тайёрланган
             </Text>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.new_elements}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Шаклланган
                 </FormLabel>
@@ -218,11 +225,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("new_elements", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.new_point_enter}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Шаклланган
                 </FormLabel>
@@ -231,7 +238,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("new_point_enter", { required: true })}
                   type="text"
                 />
               </FormControl>
@@ -246,7 +253,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
               Янгиланган (Тайёрланган)
             </Text>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.new_wheel_enter}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Ўзгарувчан элементлар{" "}
                 </FormLabel>
@@ -255,11 +262,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("new_wheel_enter", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.expired_elements_made}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Ўзгарувчан элементлар{" "}
                 </FormLabel>
@@ -268,13 +275,13 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("expired_elements_made", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.buks_circle_face_repair}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Ўзгармас элементлар (Буксанинг тўлиқ кўрилиши)
                 </FormLabel>
@@ -283,11 +290,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("buks_circle_face_repair", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.buks_circle_face_repair_not_turn}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Ўзгармас элементлар (Буксанинг тўлиқ кўрилиши)
                 </FormLabel>
@@ -296,47 +303,49 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("buks_circle_face_repair_not_turn", {
+                    required: true,
+                  })}
                   type="text"
                 />
               </FormControl>
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.three_typeof_wheel_turn}>
                 <FormLabel>
                   3- турдаги ғилдирак жуфтлигининг айланиш юзасини йўниш йўли
                   билан
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("three_typeof_wheel_turn", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.rolls_gun_repair}>
                 <FormLabel>
                   3-турдаги ғилдирак жуфтлиги ўқлари бўйнини буриш билан
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("rolls_gun_repair", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.rolls_neeg_with_repair}>
                 <FormLabel>
                   Роликли ўқнинг бўйни резбасини тиклаш билан{" "}
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("rolls_neeg_with_repair", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.rolls_circle_face_repair}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Роликли буксани оралиқ кўриб чиқиш
                 </FormLabel>
@@ -345,11 +354,13 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("rolls_circle_face_repair", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl
+                isInvalid={errors?.rolls_circle_face_repair_not_turn}
+              >
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Роликли буксани оралиқ кўриб чиқиш
                 </FormLabel>
@@ -358,17 +369,19 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("rolls_circle_face_repair_not_turn", {
+                    required: true,
+                  })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.antoher_works}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Бошқа бажарилган ишлар
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("antoher_works", { required: true })}
                   type="text"
                 />
               </FormControl>
@@ -384,19 +397,19 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
               Ҳисобдан чиқарилган{" "}
             </Text>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.grph_24_25_28_plus}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Хаммаси (24-графа=25 – дан 28 – гача графалар йиғиндиси)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("grph_24_25_28_plus", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.after_repair_send_way}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Яроқли
                 </FormLabel>
@@ -405,11 +418,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("after_repair_send_way", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.under_carriage_number}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Яроқли
                 </FormLabel>
@@ -418,13 +431,13 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("under_carriage_number", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.invetor_sended}>
                 <FormLabel fontWeight={"700"} whiteSpace={["wrap", "nowrap"]}>
                   Яроқсиз
                 </FormLabel>
@@ -433,11 +446,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("invetor_sended", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.vkm_with_changes}>
                 <FormLabel fontWeight={"700"}>
                   Яроқсиз (Завод, КВМ ёки деполарга таьмирга жўнатилган)
                 </FormLabel>
@@ -446,11 +459,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("vkm_with_changes", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.vkm_without_changes}>
                 <FormLabel fontWeight={"700"}>
                   Яроқсиз (Завод, КВМ ёки деполарга таьмирга жўнатилган)
                 </FormLabel>
@@ -459,44 +472,44 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("vkm_without_changes", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.grph_30_31_32_plus}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Хаммаси (30-графа= = 31- ва 32-графалар йиғиндиси){" "}
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("grph_30_31_32_plus", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.is_use}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>Яроқли </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("is_use", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.grph_32_33_34_plus}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Яроқсиз (32- графа= 33- ва 34- графалар йиғиндиси){" "}
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("grph_32_33_34_plus", { required: true })}
                   type="text"
                 />
               </FormControl>
             </Flex>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.do_repair_with_changes}>
                 <FormLabel fontWeight={"700"}>
                   Улардан таьмирлаш талаб этилади
                 </FormLabel>
@@ -505,11 +518,11 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("do_repair_with_changes", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.do_repair_without_changes}>
                 <FormLabel fontWeight={"700"}>
                   Улардан таьмирлаш талаб этилади
                 </FormLabel>
@@ -518,7 +531,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("do_repair_without_changes", { required: true })}
                   type="text"
                 />
               </FormControl>
@@ -535,43 +548,43 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
             </Text>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.grph_35_36_38_plus}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Хаммаси (35- графа=36-дан 38-гача графалар йиғиндиси ){" "}
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("grph_35_36_38_plus", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.sheyk_type}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Шейка қисмида
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("sheyk_type", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.stupid_under_type}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Ступица ости қисмида
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("stupid_under_type", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.between_type}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Ўрта қисмида
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("between_type", { required: true })}
                   type="text"
                 />
               </FormControl>
@@ -588,23 +601,23 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
             </Text>
 
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.resba_is_break}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Резбаси носозлиги сабабли{" "}
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("resba_is_break", { required: true })}
                   type="text"
                 />
               </FormControl>
-              <FormControl isInvalid={errors?.sinovi}>
+              <FormControl isInvalid={errors?.is_energy_uq}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   Ўқда электр учқунлари мавжудлиги
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sinovi", { required: true })}
+                  {...register("is_energy_uq", { required: true })}
                   type="text"
                 />
               </FormControl>

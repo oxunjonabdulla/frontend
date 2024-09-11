@@ -16,6 +16,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Select,
   Table,
   TableContainer,
   Tbody,
@@ -139,6 +140,17 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                     <NumberDecrementStepper />
                   </NumberInputStepper>
                 </NumberInput>
+              </FormControl>
+              <FormControl isInvalid={errors?.nosoz_kirish_date}>
+                <FormLabel fontSize={"10px"}>Imzolovchi xodim</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Imzolovchi xodim"
+                  {...register("repair_master", { required: true })}
+                >
+                  <option value={"shamil_shodmonov"}>Shamil Shodmonov</option>
+                  <option value={"uzoqov_nusrat"}>Uzoqov Nusrat</option>
+                </Select>
               </FormControl>
             </Flex>
             <br />

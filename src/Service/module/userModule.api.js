@@ -1324,6 +1324,48 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+
+  async getVu54All(params) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu54All, {
+        params,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu54(obj) {
+    try {
+      const response = await privateInstance.post(authEndpoints.vu54All, obj);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu54(id) {
+    try {
+      const response = await privateInstance.delete(authEndpoints.vu54ById(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateVu54(id, obj) {
+    try {
+      const response = await privateInstance.patch(
+        authEndpoints.vu54ById(id),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 }
 
 export default UserApi;
