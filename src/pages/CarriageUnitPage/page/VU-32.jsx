@@ -259,7 +259,7 @@ export const VU_32 = () => {
                       {e?.carriage}
                     </Td>
                     <Td rowSpan={8} whiteSpace={"nowrap"}>
-                      {reverseDateFormat(e?.carriage_build_date)}
+                      {e?.carriage_build_date}
                     </Td>
                     <Td rowSpan={4}>1</Td>
                     <Td colSpan={8} textAlign={"center"}>
@@ -444,10 +444,10 @@ export const VU_32 = () => {
             textAlign={"center"}
             fontSize={"2xl"}
           >
-            VU-36 jurnali topilmadi
+            VU-32 jurnali topilmadi
           </Text>
           <Button colorScheme="teal" onClick={onOpen}>
-            VU-36 qo&apos;shish
+            VU-32 qo&apos;shish
           </Button>
         </Flex>
       ) : (

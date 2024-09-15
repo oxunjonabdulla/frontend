@@ -60,7 +60,7 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
         fontSize: "3xl",
       });
 
-      // window.location.reload();
+      window.location.reload();
     }
     if (error) {
       toast({
@@ -99,9 +99,6 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   type="date"
                 />
               </FormControl>
-            </Flex>
-
-            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.wheel_pair}>
                 <FormLabel>Qo’yish va g’ildirak juftligi raqami </FormLabel>
                 <Input
@@ -309,8 +306,20 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                 />
                 <Input
                   borderColor={"gray.600"}
+                  {...register("labyrinth_ring_another_dc3")}
+                  type="text"
+                  placeholder="d'3"
+                />
+                <Input
+                  borderColor={"gray.600"}
                   {...register("labyrinth_ring_another_d4")}
                   placeholder="d4"
+                  type="text"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("labyrinth_ring_another_dc4")}
+                  placeholder="d'4"
                   type="text"
                 />
               </FormControl>
@@ -321,13 +330,25 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                 <Input
                   borderColor={"gray.600"}
                   {...register("radial_free_back")}
-                  placeholder="задний"
+                  placeholder="задний 1"
                   type="text"
                 />
                 <Input
                   borderColor={"gray.600"}
-                  placeholder="передний"
+                  {...register("radial_free_back1")}
+                  placeholder="задний 2"
+                  type="text"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="передний 1"
                   {...register("radial_free_front")}
+                  type="text"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="передний 2 "
+                  {...register("radial_free_front2")}
                   type="text"
                 />
               </FormControl>
@@ -345,29 +366,53 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl>
                 <Input
-                  placeholder="O‘q d1"
+                  placeholder="O‘q d1 1"
                   borderColor={"gray.600"}
                   {...register("fasad_buks_d1")}
                   type="text"
                 />
                 <Input
-                  placeholder="O‘q d'1"
+                  placeholder="O‘q d1 2"
+                  borderColor={"gray.600"}
+                  {...register("fasad_buks_d1_1")}
+                  type="text"
+                />
+                <Input
+                  placeholder="O‘q d'1 1"
                   borderColor={"gray.600"}
                   {...register("fasad_buks_dc1")}
+                  type="text"
+                />
+                <Input
+                  placeholder="O‘q d'1 2"
+                  borderColor={"gray.600"}
+                  {...register("fasad_buks_dc1_1")}
                   type="text"
                 />
               </FormControl>
               <FormControl>
                 <Input
-                  placeholder="O‘q d2"
+                  placeholder="O‘q d2 1"
                   borderColor={"gray.600"}
                   {...register("fasad_buks_d2")}
                   type="text"
                 />
                 <Input
-                  placeholder="O‘q d'2"
+                  placeholder="O‘q d2 2"
                   borderColor={"gray.600"}
-                  {...register("fasad_buks_dс2")}
+                  {...register("fasad_buks_d2_1")}
+                  type="text"
+                />
+                <Input
+                  placeholder="O‘q d'2 1"
+                  borderColor={"gray.600"}
+                  {...register("fasad_buks_dc2")}
+                  type="text"
+                />
+                <Input
+                  placeholder="O‘q d'2 1"
+                  borderColor={"gray.600"}
+                  {...register("fasad_buks_dc2_1")}
                   type="text"
                 />
               </FormControl>
@@ -390,13 +435,26 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back")}
                   type="text"
-                  placeholder="So'z shakli"
+                  placeholder="So'z shakli 1"
                 />
                 <Input
                   borderColor={"gray.600"}
-                  {...register("maded_factory_creating_back_adding")}
-                  type="number"
-                  placeholder="Son shakli"
+                  {...register("maded_factory_creating_back2")}
+                  type="text"
+                  placeholder="So'z shakli 2"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("maded_factory_creating_back3")}
+                  type="text"
+                  placeholder="So'z shakli 3"
+                />
+
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("maded_factory_creating_back4")}
+                  type="text"
+                  placeholder="So'z shakli 4"
                 />
               </FormControl>
               <FormControl>
@@ -405,13 +463,25 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front")}
                   type="text"
-                  placeholder="So'z shakli"
+                  placeholder="So'z shakli 1"
                 />
                 <Input
                   borderColor={"gray.600"}
-                  {...register("maded_factory_creating_front_adding")}
-                  type="number"
-                  placeholder="Son shakli"
+                  {...register("maded_factory_creating_front2")}
+                  type="text"
+                  placeholder="So'z shakli 2"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("maded_factory_creating_front3")}
+                  type="text"
+                  placeholder="So'z shakli 3"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("maded_factory_creating_front4")}
+                  type="text"
+                  placeholder="So'z shakli 4"
                 />
               </FormControl>
             </Flex>
@@ -425,6 +495,25 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   {...register("bushing_clearance")}
                   type="text"
+                  placeholder="1"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("bushing_clearance2")}
+                  type="text"
+                  placeholder="2"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("bushing_clearance3")}
+                  type="text"
+                  placeholder="3"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("bushing_clearance4")}
+                  type="text"
+                  placeholder="4"
                 />
               </FormControl>
               <FormControl>
@@ -434,6 +523,25 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   borderColor={"gray.600"}
                   {...register("next_fasad_vtuk")}
                   type="text"
+                  placeholder="1"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("next_fasad_vtuk2")}
+                  type="text"
+                  placeholder="2"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("next_fasad_vtuk3")}
+                  type="text"
+                  placeholder="3"
+                />
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("next_fasad_vtuk4")}
+                  type="text"
+                  placeholder="4"
                 />
               </FormControl>
             </Flex>

@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   Heading,
+  IconButton,
   Img,
   Table,
   TableContainer,
@@ -15,14 +16,15 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
+import { reverseDateFormat, SliderMock } from "../../utils";
 import { vu_90 } from "../../utils/mock_heads";
 import { VU_90_Model } from "./Modals/VU_90_Model";
 import UserApi from "../../Service/module/userModule.api";
 import { Pagination } from "../pagination/Pagination";
+import { Deleteted } from "../Deletete";
 const data = [0];
 export const VU_90 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -50,7 +52,7 @@ export const VU_90 = () => {
   };
 
   const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().delVu91(carriageID);
+    const { response } = await new UserApi().deleteVu90(carriageID);
     if (response) {
       window.location.reload();
     }
@@ -147,41 +149,94 @@ export const VU_90 = () => {
                   <Fragment key={e?.id}>
                     <Tr>
                       <Td rowSpan={2}>{currentPage * 10 + idx + 1}</Td>
-                      <Td rowSpan={2}>{e?.collection_date}</Td>
+                      <Td rowSpan={2} whiteSpace={"nowrap"}>
+                        {reverseDateFormat(e?.collection_date)}
+                      </Td>
                       <Td rowSpan={2}>{e?.wheel_pair}</Td>
                       <Td rowSpan={2}>{e?.wheel_pair_medal}</Td>
                       <Td>O&apos;ng</Td>
-                      <Td colSpan={2}>{e?.neck_stumb_right_d1}</Td>
-                      <Td colSpan={2}>{e?.neck_stumb_right_d2}</Td>
-                      <Td colSpan={2}>{e?.neck_stumb_right_d3}</Td>
-                      <Td rowSpan={2}>{e?.neck_stumb_right_d3}</Td>
+                      <Td>{e?.neck_stumb_right_d1}</Td>
+                      <Td>{e?.neck_stumb_right_dc1}</Td>
+                      <Td>{e?.neck_stumb_right_d2}</Td>
+                      <Td>{e?.neck_stumb_right_dc2}</Td>
+                      <Td>{e?.neck_stumb_right_d3}</Td>
+                      <Td>{e?.neck_stumb_right_dc3}</Td>
+                      <Td rowSpan={2}>{e?.part_of_neck}</Td>
+                      <Td rowSpan={2}>{e?.large_cone_part}</Td>
+                      <Td rowSpan={2}>
+                        <ul>
+                          <li>D4: {e?.labyrinth_ring_d4}</li>
+                          <li>D`4: {e?.labyrinth_ring_dc4}</li>
+                        </ul>
+                      </Td>
+                      <Td rowSpan={2}>
+                        <li>D3: {e?.labyrinth_ring_another_d3}</li>
+                        <li>D`3: {e?.labyrinth_ring_another_dc3}</li>
+                        <li>D4: {e?.labyrinth_ring_another_d4}</li>
+                        <li>D`4: {e?.labyrinth_ring_another_dc4}</li>
+                      </Td>
+                      <Td rowSpan={2}>
+                        <li>Oldi 1: {e?.radial_free_front}</li>
+                        <li>Oldi 2: {e?.radial_free_front1}</li>
+                        <li>Orqa 1: {e?.radial_free_back}</li>
+                        <li>Orqa 2: {e?.radial_free_back1}</li>
+                      </Td>
+                      <Td>{e?.fasad_buks_d1}</Td>
+                      <Td>{e?.fasad_buks_dc1}</Td>
+                      <Td>{e?.fasad_buks_d2}</Td>
+                      <Td>{e?.fasad_buks_dc2}</Td>
+                      <Td rowSpan={2} whiteSpace={"nowrap"}>
+                        <li>Orqa 1: {e?.maded_factory_creating_back}</li>
+                        <li>Orqa 2: {e?.maded_factory_creating_back2}</li>
+                        <li>Orqa 1: {e?.maded_factory_creating_back3}</li>
+                        <li>Orqa 2: {e?.maded_factory_creating_back4}</li>
+                      </Td>
+                      <Td rowSpan={2} whiteSpace={"nowrap"}>
+                        <li>Orqa 1: {e?.maded_factory_creating_front}</li>
+                        <li>Orqa 2: {e?.maded_factory_creating_front2}</li>
+                        <li>Orqa 1: {e?.maded_factory_creating_front3}</li>
+                        <li>Orqa 2: {e?.maded_factory_creating_front4}</li>
+                      </Td>
+                      <Td rowSpan={2} whiteSpace={"nowrap"}>
+                        <li> 1: {e?.bushing_clearance}</li>
+                        <li> 2: {e?.bushing_clearance2}</li>
+                        <li> 1: {e?.bushing_clearance3}</li>
+                        <li> 2: {e?.bushing_clearance4}</li>
+                      </Td>
+                      <Td rowSpan={2} whiteSpace={"nowrap"}>
+                        <li> 1: {e?.next_fasad_vtuk}</li>
+                        <li> 2: {e?.next_fasad_vtuk2}</li>
+                        <li> 1: {e?.next_fasad_vtuk3}</li>
+                        <li> 2: {e?.next_fasad_vtuk4}</li>
+                      </Td>
+                      <Td rowSpan={2}>{e?.gass_pass_wheel}</Td>
+                      <Td rowSpan={2} whiteSpace={"nowrap"}>
+                        <li> 1: {e?.lzsini_1}</li>
+                        <li> 2: {e?.lzsini_2}</li>
+                      </Td>
+                      <Td rowSpan={2}>Imzo</Td>
+                      <Td rowSpan={2}>Imzo</Td>
+                      <Td rowSpan={2}>{e?.comment}</Td>
+                      <Td rowSpan={2}>
+                        <IconButton
+                          onClick={() => handleCheckAndDelete(e?.id)}
+                          colorScheme="red"
+                          icon={<FontAwesomeIcon icon={faTrash} />}
+                        />
+                      </Td>
                     </Tr>
                     <Tr>
                       <Td>Chap</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
-                      <Td>asd</Td>
+                      <Td>{e?.neck_stumb_left_d1}</Td>
+                      <Td>{e?.neck_stumb_left_dc1}</Td>
+                      <Td>{e?.neck_stumb_left_d2}</Td>
+                      <Td>{e?.neck_stumb_left_dc2}</Td>
+                      <Td>{e?.neck_stumb_left_d3}</Td>
+                      <Td>{e?.neck_stumb_left_dc3}</Td>
+                      <Td>{e?.fasad_buks_d1_1}</Td>
+                      <Td>{e?.fasad_buks_dc1_1}</Td>
+                      <Td>{e?.fasad_buks_d2_1}</Td>
+                      <Td>{e?.fasad_buks_dc2_1}</Td>
                     </Tr>
                   </Fragment>
                 ))}
@@ -212,6 +267,12 @@ export const VU_90 = () => {
         <SliderMock setIsLoading={setIsLoading} />
       )}
 
+      <Deleteted
+        isOpen={delateModal}
+        onClose={setDelateModal}
+        carriageNumber={String(getTableData)}
+        deletedFunction={handleDelate}
+      />
       <VU_90_Model isOpen={isOpen} onClose={onClose} />
     </Box>
   );

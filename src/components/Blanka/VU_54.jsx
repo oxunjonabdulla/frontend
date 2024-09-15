@@ -19,8 +19,6 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
-  faDownload,
-  faEye,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,20 +29,14 @@ import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
 import { ImageSignature } from "../ImageSignature";
-import { vu_50, vu_54 } from "../../utils/mock_heads";
+import { vu_54 } from "../../utils/mock_heads";
 export const VU_54 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
-  const [showModel, setShowModel] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    isOpen: isOpenShowModel,
-    onOpen: onOpenShowModel,
-    onClose: onCloseShowModel,
-  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;

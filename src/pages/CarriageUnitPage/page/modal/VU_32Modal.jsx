@@ -229,7 +229,9 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                         <Input
                           borderColor={"gray.600"}
                           {...register("carriage_build_date")}
-                          type="date"
+                          placeholder="oy/yil"
+                          w={"150px"}
+                          type="text"
                         />
                       </FormControl>
                     </Td>
