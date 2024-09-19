@@ -6,6 +6,7 @@ import {
   FormLabel,
   Heading,
   IconButton,
+  Image,
   Input,
   Spinner,
   Table,
@@ -36,6 +37,7 @@ import { useDebounce } from "../../../hooks/useDebounce";
 import { Deleteted, ImageSignature, Pagination } from "../../../components";
 import { VU_32Modal } from "./modal/VU_32Modal";
 import { reverseDateFormat } from "../../../utils";
+import { imageGet } from "../../../utils/imageGet";
 
 export const VU_32 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -291,7 +293,11 @@ export const VU_32 = () => {
                       />
                     </Td>
                     <Td rowSpan={8}>
-                      <ImageSignature signatureImage={e?.repair_master_info} />
+                      {e?.signature_image_url ? (
+                        <Image src={imageGet(e?.signature_image_url)} />
+                      ) : (
+                        <Text color={"red"}>Imzo qo`yilmagan</Text>
+                      )}
                     </Td>
                     <Td rowSpan={8}>
                       <ImageSignature

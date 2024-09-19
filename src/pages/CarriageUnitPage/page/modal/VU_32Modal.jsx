@@ -16,6 +16,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Select,
   Table,
   TableContainer,
   Tbody,
@@ -91,7 +92,25 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
-            <SearchTrain setSerachingResult={setSerachingResult} />
+            <Flex
+              gap={3}
+              flexWrap={["wrap", "nowrap"]}
+              alignItems={"center"}
+              my={4}
+            >
+              <SearchTrain setSerachingResult={setSerachingResult} />
+              <FormControl isInvalid={errors?.repair_master}>
+                <FormLabel fontSize={"10px"}>Imzolovchi xodim</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Imzolovchi xodim"
+                  {...register("repair_master", { required: true })}
+                >
+                  <option value={"shamil_shodmonov"}>Shamil Shodmonov</option>
+                  <option value={"uzoqov_nusrat"}>Uzoqov Nusrat</option>
+                </Select>
+              </FormControl>
+            </Flex>
             <br />
             <TableContainer p={4} border={"1px solid #eeeee"}>
               <Table
@@ -158,10 +177,6 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                       Bog’lovchi bаlkаsi pyatnik osti qurilmаsining diаmetri,
                       mm.
                     </Th>
-                    <Th>Defektoskopchining imzosi </Th>
-                    <Th>Brigаdir imzosi </Th>
-                    <Th>TTNB vаgon qаbul qiluvchisining imzosi </Th>
-                    <Th>Korxonа rаhbаrining imzosi yoki muovinining </Th>
                   </Tr>
                   <Tr>
                     <Th>1</Th>
@@ -197,10 +212,6 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                     <Th>31</Th>
                     <Th>32</Th>
                     <Th>33</Th>
-                    <Th>34</Th>
-                    <Th>35</Th>
-                    <Th>36</Th>
-                    <Th>37</Th>
                   </Tr>
                 </Thead>
 
@@ -389,10 +400,6 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                         />
                       </FormControl>
                     </Td>
-                    <Td rowSpan={8}>Imzo</Td>
-                    <Td rowSpan={8}>Imzo</Td>
-                    <Td rowSpan={8}>Imzo</Td>
-                    <Td rowSpan={8}>Imzo</Td>
                   </Tr>
 
                   <Tr>

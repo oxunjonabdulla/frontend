@@ -141,7 +141,7 @@ export const Fraza_carriage_model = ({ onClose, isOpen }) => {
                   </NumberInputStepper>
                 </NumberInput>
               </FormControl>
-              <FormControl isInvalid={errors?.nosoz_kirish_date}>
+              <FormControl isInvalid={errors?.repair_master}>
                 <FormLabel fontSize={"10px"}>Imzolovchi xodim</FormLabel>
                 <Select
                   borderColor={"gray.600"}
