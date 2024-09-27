@@ -23,6 +23,7 @@ import { Deleteted, ImageSignature } from "../../../../components";
 import { VU_36_Update } from "./VU_36_Update";
 import { reverseDateFormat } from "../../../../utils";
 import { imageGet } from "../../../../utils/imageGet";
+import { timeMoment } from "../../../../utils/roleTest";
 const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -86,6 +87,14 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             <Td>{currentPage * 10 + idx + 1}</Td>
             <Td fontWeight={700} color={"green.900"}>
               {item.carriage}
+            </Td>
+            <Td fontWeight={700} color={"green.900"} whiteSpace={"nowrap"}>
+              <ul>
+                <li>
+                  Kun: {timeMoment(item?.created_at)?.day} <br />
+                </li>
+                <li> Soat:{timeMoment(item?.created_at)?.time}</li>
+              </ul>
             </Td>
             <Td>{item.yuk_vagon_tamir_turi}</Td>
             <Td>{item.bildirish_number}</Td>

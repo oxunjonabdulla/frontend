@@ -157,6 +157,14 @@ export const routersSidebar = [
     icon: Defostoskop,
     role: "defestoskopuser",
   },
+  {
+    isWork: false,
+    label: "Hisobot",
+    path: "/report",
+    type: "link",
+    icon: Statistika,
+    role: "superadmin",
+  },
   // {
   //   isWork: true,
   //   label: "Jixozlash bo‘linmasi",
@@ -512,6 +520,7 @@ export const vu_31 = {
   nestedHeaders: [
     { label: "T/R", rowspan: 2 },
     { label: "Vagon Raqami", rowspan: 2 },
+    { label: "Ma'lumot yozilgan vaqti", rowspan: 2 },
     { label: "Yuklangan, yuksiz", rowspan: 2 },
     {
       label: "Poezd raqami  nosoz parkga o'tkazilgan yo'l",
@@ -559,6 +568,7 @@ export const vu_36 = {
   nestedHeaders: [
     { label: "T/R" },
     { label: "Vagon Raqami" },
+    { label: "Ma'lumot yozilgan vaqti" },
     { label: "Temir yo'l nomi" },
     { label: "BILDIRISHNOMA №" },
     {
@@ -605,6 +615,7 @@ export const vu_36 = {
 export const vu_50 = {
   headers: [
     { label: "Tartib raqami" },
+    { label: "Ma'lumot yozilgan vaqti " },
     { label: "Yo‘naltirish varaqasi raqami " },
     {
       label:

@@ -36,6 +36,7 @@ import { imageGet } from "@/utils/imageGet";
 import { Deleteted } from "../../../components";
 import { Fraza_carriage_model } from "./modal/Fraza_carriunit_model";
 import { useDebounce } from "../../../hooks/useDebounce";
+import { timeMoment } from "../../../utils/roleTest";
 
 export const FrazaCarriage = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -162,6 +163,15 @@ export const FrazaCarriage = () => {
                     rowSpan={"3"}
                     fontWeight={700}
                   >
+                    Ma'lumot yozilgan vaqti
+                  </Th>
+                  <Th
+                    fontSize={"10px"}
+                    textAlign={"center"}
+                    whiteSpace={"pre-wrap"}
+                    rowSpan={"3"}
+                    fontWeight={700}
+                  >
                     Вагон Номер
                   </Th>
                   <Th
@@ -212,6 +222,7 @@ export const FrazaCarriage = () => {
                   <Th textAlign={"center"}></Th>
                   <Th textAlign={"center"}></Th>
                   <Th textAlign={"center"}></Th>
+                  <Th textAlign={"center"}></Th>
                   <Th textAlign={"center"}>1</Th>
                   <Th textAlign={"center"}>2</Th>
                   <Th textAlign={"center"}>3</Th>
@@ -229,6 +240,19 @@ export const FrazaCarriage = () => {
                   <Fragment key={item?.id}>
                     <Tr>
                       <Td rowSpan={8}>{idx + 1}</Td>
+                      <Td
+                        rowSpan={8}
+                        fontWeight={700}
+                        color={"green.900"}
+                        whiteSpace={"nowrap"}
+                      >
+                        <ul>
+                          <li>
+                            Kun: {timeMoment(item?.created_at)?.day} <br />
+                          </li>
+                          <li> Soat:{timeMoment(item?.created_at)?.time}</li>
+                        </ul>
+                      </Td>
                       <Td
                         rowSpan={8}
                         height={"100%"}

@@ -40,6 +40,8 @@ import {
   CarriageDalolatnoma,
   VU_32,
   SignaturePage,
+  Reports,
+  ReportUniqPage,
 } from "../pages";
 import {
   CollectUser,
@@ -304,6 +306,24 @@ export const routes = [
           />
         ),
         path: RouteNames.SIGNATURE,
+      },
+      {
+        element: (
+          <ProtectedRoute
+            element={<Reports />}
+            redirectPath={RouteNames.LOGIN}
+          />
+        ),
+        path: RouteNames.REPORT,
+      },
+      {
+        element: (
+          <ProtectedRoute
+            element={<ReportUniqPage />}
+            redirectPath={RouteNames.LOGIN}
+          />
+        ),
+        path: RouteNames.REPORT + "/:reportId",
       },
       {
         element: (

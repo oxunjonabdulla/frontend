@@ -78,7 +78,7 @@ export const SearchTrain = ({
           position={"absolute"}
           w={"100%"}
           rounded={2}
-          zIndex={100}
+          zIndex={1000}
         >
           {!isLoading ? (
             searchResults?.map((item, idx) =>

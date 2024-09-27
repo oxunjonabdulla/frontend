@@ -22,6 +22,7 @@ import UserApi from "@/Service/module/userModule.api";
 import { Deleteted } from "@/components";
 import { mockHeaderFraza } from "@/utils/mock_heads";
 import { Fraza_model } from "../modals/Fraza_model";
+import { timeMoment } from "../../../../utils/roleTest";
 const FrazaTable = memo(function FrazaTable({ gettingData }) {
   const [getTableData, setGetinfTableData] = useState(null);
   const {
@@ -101,6 +102,15 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
             >
               Tartib raqami
             </Th>
+            <Th
+              fontSize={"10px"}
+              textAlign={"center"}
+              whiteSpace={"pre-wrap"}
+              rowSpan={"3"}
+              fontWeight={700}
+            >
+              Ma'lumot yozilgan vaqti
+            </Th>
           </Tr>
 
           <Tr>
@@ -140,6 +150,14 @@ const FrazaTable = memo(function FrazaTable({ gettingData }) {
           {gettingData?.results?.map((item, idx) => (
             <Tr key={item?.id}>
               <Td>{idx + 1}</Td>
+              <Td fontWeight={700} color={"green.900"} whiteSpace={"nowrap"}>
+                <ul>
+                  <li>
+                    Kun: {timeMoment(item?.created_at)?.day} <br />
+                  </li>
+                  <li> Soat:{timeMoment(item?.created_at)?.time}</li>
+                </ul>
+              </Td>
               <Td>:4634</Td>
               <Td>408</Td>
               <Td>73314</Td>

@@ -33,6 +33,7 @@ import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
 import Show_VU50_model from "./Modals/Show_VU50_model";
 import { ImageSignature } from "../ImageSignature";
+import { timeMoment } from "../../utils/roleTest";
 export const VU_50 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -140,7 +141,18 @@ export const VU_50 = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item?.id}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-
+                    <Td
+                      fontWeight={700}
+                      color={"green.900"}
+                      whiteSpace={"nowrap"}
+                    >
+                      <ul>
+                        <li>
+                          Kun: {timeMoment(item?.created_at)?.day} <br />
+                        </li>
+                        <li> Soat:{timeMoment(item?.created_at)?.time}</li>
+                      </ul>
+                    </Td>
                     <Td>{item?.referral_number}</Td>
                     <Td>{item?.wheels_send_pair}</Td>
                     <Td>{item?.sanding_station_railway}</Td>

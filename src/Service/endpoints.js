@@ -156,6 +156,9 @@ const authEndpoints = {
   vu32List: "/vu32/",
   vu32Id: (carriage_number) => `/vu32/${carriage_number}/`,
 
+  generalReport: "/general-report-list/",
+  generalReportCreate: "/general-report/",
+
   signature: "/unsigned-logs/",
   signatureSigns: (signData) =>
     `/sign-log/${signData.log_type}/${signData.identifier}/${signData.user_role}/`,

@@ -37,6 +37,7 @@ import { useDebounce } from "../../../hooks/useDebounce";
 import { Deleteted, ImageSignature, Pagination } from "../../../components";
 import { VU_32Modal } from "./modal/VU_32Modal";
 import { reverseDateFormat } from "../../../utils";
+import { timeMoment } from "../../../utils/roleTest";
 import { imageGet } from "../../../utils/imageGet";
 
 export const VU_32 = () => {
@@ -153,6 +154,7 @@ export const VU_32 = () => {
               <Tr>
                 <Th>Sana</Th>
                 <Th>Telejka uzatilgan vagonning raqami</Th>
+                <Th>Ma'lumot yaratilgan vaqti</Th>
                 <Th>Vagon qurilgan sanasi</Th>
                 <Th>Vagon ostidagi telejkaning tartib raqami</Th>
                 <Th>Yon ramaning raqami</Th>
@@ -259,6 +261,19 @@ export const VU_32 = () => {
                     </Td>
                     <Td rowSpan={8} fontWeight={"bold"}>
                       {e?.carriage}
+                    </Td>
+                    <Td
+                      rowSpan={8}
+                      fontWeight={700}
+                      color={"green.900"}
+                      whiteSpace={"nowrap"}
+                    >
+                      <ul>
+                        <li>
+                          Kun: {timeMoment(e?.created_at)?.day} <br />
+                        </li>
+                        <li> Soat:{timeMoment(e?.created_at)?.time}</li>
+                      </ul>
                     </Td>
                     <Td rowSpan={8} whiteSpace={"nowrap"}>
                       {e?.carriage_build_date}

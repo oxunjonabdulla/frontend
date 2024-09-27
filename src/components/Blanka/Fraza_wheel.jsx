@@ -36,6 +36,7 @@ import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
 import { imageGet } from "../../utils/imageGet";
 import { useDebounce } from "../../hooks/useDebounce";
+import { timeMoment } from "../../utils/roleTest";
 
 export const Fraza_wheel = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -204,6 +205,7 @@ export const Fraza_wheel = () => {
                     Imzo
                   </Th>
                   <Th rowSpan={3} textAlign={"center"}></Th>
+                  <Th rowSpan={3}>Ma'lumot yozilgan vaqti</Th>
                 </Tr>
                 <Tr>
                   {mockHeaderFraza?.nestedHeaders?.map((item) => (
@@ -279,6 +281,19 @@ export const Fraza_wheel = () => {
                             icon={<FontAwesomeIcon icon={faTrashAlt} />}
                           />
                         </Flex>
+                      </Td>
+                      <Td
+                        rowSpan={4}
+                        fontWeight={700}
+                        color={"green.900"}
+                        whiteSpace={"nowrap"}
+                      >
+                        <ul>
+                          <li>
+                            Kun: {timeMoment(item?.created_at)?.day} <br />
+                          </li>
+                          <li> Soat:{timeMoment(item?.created_at)?.time}</li>
+                        </ul>
                       </Td>
                     </Tr>
                     <Tr>

@@ -42,7 +42,7 @@ export const NavigateWithPath = () => {
 export const timeMoment = (str) => {
   if (str) {
     const date = moment(str);
-    const time = date.format("HH:mm:ss");
+    const time = date.format("HH:mm");
     const day = date.format("DD.MM.YYYY");
 
     return { time, day };

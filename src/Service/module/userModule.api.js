@@ -1366,6 +1366,38 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async getReportData() {
+    try {
+      const response = await privateInstance.get(authEndpoints.generalReport);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async createGeneralReport(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.generalReportCreate,
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getUniqGeneralReport(id) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.generalReportCreate + `${id}/`
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 }
 
 export default UserApi;

@@ -35,6 +35,8 @@ export * from "./PtoPage/PtoUnit";
 export * from "./WheelPairsPage";
 export * from "./PtoPage/PtoUnitId";
 export * from "./SignaturePage/SignaturePage";
+export * from "./Report/Report";
+export * from "./Report/page/ReportUniqPage";
 export * from "./Login";
 import NotFoundPage from "./NotFoundPage";
 
