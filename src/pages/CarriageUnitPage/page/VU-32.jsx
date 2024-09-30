@@ -257,7 +257,7 @@ export const VU_32 = () => {
                 <>
                   <Tr>
                     <Td rowSpan={8} whiteSpace={"nowrap"}>
-                      {reverseDateFormat(e?.created_at)}{" "}
+                      {timeMoment(e?.created_at)?.day}{" "}
                     </Td>
                     <Td rowSpan={8} fontWeight={"bold"}>
                       {e?.carriage}

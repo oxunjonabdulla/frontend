@@ -2,7 +2,6 @@ import {
   Button,
   Flex,
   FormControl,
-  FormLabel,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -95,9 +94,15 @@ export const ReportModal = ({ onClose, isOpen }) => {
                 >
                   <option value={"vu31"}>VU-31 Jurnali</option>
                   <option value={"vu36"}>VU-36 Jurnali</option>
-                  <option value={"collect_act"}>
-                    Yiguv bo'limi dalolatnomasi
+                  <option value={"vu92"}>VU-92 Jurnali</option>
+                  <option value={"collect_act"}>Yig'uv dalolatnomasi</option>
+                  <option value={"koleso_act"}>G'ildiriak dalolatnomasi</option>
+                  <option value={"phrase_wheel"}>
+                    G'ildiriak juftliklari frazasi
                   </option>
+                  <option value={"phrase_cart"}>Fraza</option>
+                  <option value={"razob_kran"}>Razobkran jurnali</option>
+                  <option value={"razob_kran"}>Razobkran jurnali</option>
                 </Select>
               </FormControl>
             </Flex>

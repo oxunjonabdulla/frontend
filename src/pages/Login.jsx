@@ -11,7 +11,6 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Link,
   Stack,
   Text,
   useColorModeValue,
@@ -34,8 +33,6 @@ export const Login = () => {
   const navigate = useNavigate();
   const textColor = useColorModeValue("navy.700", "white");
   const textColorSecondary = "gray.400";
-  const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
-  const textColorBrand = useColorModeValue("brand.500", "white");
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const {
@@ -210,20 +207,7 @@ export const Login = () => {
             alignItems="start"
             maxW="100%"
             mt="0px"
-          >
-            <Text color={textColorDetails} fontWeight="400" fontSize="14px">
-              Tezkor yordam ximati
-              <Link
-                color={textColorBrand}
-                as="a"
-                href="tel:+998 90 517 30 07"
-                ms="5px"
-                fontWeight="500"
-              >
-                +998 90 517 30 07
-              </Link>
-            </Text>
-          </Flex>
+          ></Flex>
         </Flex>
       </Flex>
     </LoginComponent>
