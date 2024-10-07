@@ -27,7 +27,7 @@ import {
 import { imageGet } from "@/utils/imageGet";
 import { SimpleLoader } from "@/components";
 import ReactPaginate from "react-paginate";
-import { Deleteted } from "../../../../../components";
+import { Deleteted, ImageSignature } from "../../../../../components";
 const RegisterRazobshitelTable = memo(function RegisterRazobshitelTable() {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(true);
@@ -114,6 +114,12 @@ const RegisterRazobshitelTable = memo(function RegisterRazobshitelTable() {
                   <Image
                     width={"100px"}
                     src={imageGet(item?.author_info?.user_signature_url)}
+                  />
+                </Td>
+
+                <Td>
+                  <ImageSignature
+                    signatureImage={item?.avtotormoz_plumber_user_signature}
                   />
                 </Td>
                 <Td>

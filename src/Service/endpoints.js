@@ -120,6 +120,8 @@ const authEndpoints = {
   vu53IDPrihod: (id) => `/vu53_prihod/${id}/`,
   postVu53Prihod: `/vu53_prihod/create/`,
 
+  vu31TOVu10: (carriageID) => `/vu31/${carriageID}/transfer_to_vu10/`,
+  vu10: "/api/vu10/",
   // vu 68
   vu68: (carriageID) => `/vu68/${carriageID}/`,
   vu68All: `/vu68/list/`,

@@ -2,6 +2,7 @@ export const RouteNames = {
   HOME: "/",
   STATISTIKA: "/statistics",
   VU_31: "/statistics/vu-31",
+  VU_10: "/statistics/vu-10",
   CREATE: (id) => id + "/create",
   VU_36: "/statistics/vu-36",
   FRAZA: "/statistics/fraza",

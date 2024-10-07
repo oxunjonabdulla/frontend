@@ -3,6 +3,7 @@ export * from "./StatistikaPage/StatistikaPage";
 export * from "./StatistikaPage/page/StatistikaArchive";
 export * from "./StatistikaPage/page/DailyRepairs";
 export * from "./StatistikaPage/page/VU_31/VU_31";
+export * from "./StatistikaPage/page/VU-10";
 export * from "./StatistikaPage/page/VU_31/VU_31_Create";
 export * from "./StatistikaPage/page/VU_36";
 export * from "./StatistikaPage/page/Fraza";

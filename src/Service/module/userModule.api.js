@@ -263,6 +263,15 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async postVu31TOVu10(id) {
+    try {
+      const response = await privateInstance.post(authEndpoints.vu31TOVu10(id));
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async updateVu31(id, obj) {
     try {
       const response = await privateInstance.patch(authEndpoints.vu31(id), obj);
@@ -284,6 +293,17 @@ class UserApi extends React.Component {
   async getVu31(page) {
     try {
       const response = await privateInstance.get(authEndpoints.vu31All, {
+        params: page,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu10(page) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu10, {
         params: page,
       });
 

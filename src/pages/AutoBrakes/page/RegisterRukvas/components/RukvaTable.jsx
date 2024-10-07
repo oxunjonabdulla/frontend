@@ -25,7 +25,7 @@ import {
 import { imageGet } from "@/utils/imageGet";
 import { SimpleLoader } from "@/components";
 import ReactPaginate from "react-paginate";
-import { Deleteted } from "../../../../../components";
+import { Deleteted, ImageSignature } from "../../../../../components";
 import { timeMoment } from "../../../../../utils/roleTest";
 const RukvaTable = memo(function RukvaTable() {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -114,6 +114,11 @@ const RukvaTable = memo(function RukvaTable() {
                   />
                 </Td>
                 <Td></Td>
+                <Td>
+                  <ImageSignature
+                    signatureImage={item?.avtotormoz_plumber_user_signature}
+                  />
+                </Td>
                 <Td>
                   {" "}
                   <Flex gap={2} m={0}>

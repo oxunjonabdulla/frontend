@@ -1,5 +1,4 @@
 import {
-  Button,
   Divider,
   Flex,
   IconButton,
@@ -130,10 +129,10 @@ export const InviteTable = ({ data }) => {
                   {reverseDateFormat(invite_detail?.inviting_date)}
                   <Divider my={2} />
 
-                  {invite_detail?.user_signature_url ? (
+                  {item?.wheel_signature_user_signature ? (
                     <Image
                       width={"100px"}
-                      src={imageGet(invite_detail?.user_signature_url)}
+                      src={imageGet(item?.wheel_signature_user_signature)}
                     />
                   ) : (
                     <Text as={"p"} color={"teal"}>

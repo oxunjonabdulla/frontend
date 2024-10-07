@@ -17,7 +17,12 @@ import {
 import UserApi from "../../../../../Service/module/userModule.api";
 import { vu_47 } from "@/utils/mock_heads";
 import { useEffect, useState } from "react";
-import { Deleteted, Pagination, SimpleLoader } from "../../../../../components";
+import {
+  Deleteted,
+  ImageSignature,
+  Pagination,
+  SimpleLoader,
+} from "../../../../../components";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -164,6 +169,11 @@ const VU_47_Table = () => {
                   />
                 </Td>
                 <Td>{item?.front_detail?.acceptor_signature}</Td>
+                <Td>
+                  <ImageSignature
+                    signatureImage={item?.avtotormoz_plumber_user_signature}
+                  />
+                </Td>
                 <Td>
                   <Flex gap={2} m={0} alignItems={"center"}>
                     {item?.back_detail?.device_type === "null" ? (

@@ -219,6 +219,13 @@ export const Dalolatnoma = () => {
                     </Td>
                     <Td color={"teal"}>
                       <ImageSignature
+                        signatureImage={
+                          item?.avto_connector_brigadr_or_master_user_signature
+                        }
+                      />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
                         signatureImage={item?.deputy_head_signature}
                       />
                     </Td>
