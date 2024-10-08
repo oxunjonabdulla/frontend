@@ -12,6 +12,7 @@ import {
   Tbody,
   Td,
   Text,
+  Th,
   Thead,
   Tr,
   useDisclosure,
@@ -29,6 +30,8 @@ import ReactPaginate from "react-paginate";
 import { BrendCrumbs } from "@/components";
 import { SimpleLoader } from "@/components";
 import { useDebounce } from "../../../hooks/useDebounce";
+import { timeMoment } from "../../../utils/roleTest";
+import { timeClear } from "../../../utils/timeClear";
 
 export const VU_10 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -115,7 +118,15 @@ export const VU_10 = () => {
             colorScheme="blackAlpha"
           >
             <Thead bg={"#0c6170"} rounded={10}>
-              <Tr></Tr>
+              <Tr>
+                <Th>T/R</Th>
+                <Th>Vagon raqami</Th>
+                <Th>VU-10 bulgan vaqti</Th>
+                <Th> Yukli | yuksiz</Th>
+                <Th> Poyezd nomeri|yoki nosoz parkga o'tkazilgan yo'l</Th>
+                <Th> Oxirgi ta'mir</Th>
+                <Th> Nosoz holdagi hisobi sanasi va vaqti </Th>
+              </Tr>
             </Thead>
 
             <Tbody>
@@ -125,24 +136,16 @@ export const VU_10 = () => {
                   <Td fontWeight={700} color={"green.900"}>
                     {item.carriage_number}
                   </Td>
-                  <Td
-                    fontWeight={700}
-                    color={"green.900"}
-                    whiteSpace={"nowrap"}
-                  >
-                    <ul>
-                      <li>
-                        Kun: {timeMoment(item?.created_at)?.day} <br />
-                      </li>
-                      <li> Soat:{timeMoment(item?.created_at)?.time}</li>
-                    </ul>
-                  </Td>
+                  <Td>{timeMoment(item.created_at)?.day}</Td>
+
                   <Td>{item.is_freight ? "Yukli" : "Yuksiz"}</Td>
                   <Td>{item.train_number}</Td>
-                  <Td>{item.last_repair}</Td>
-                  <Td>{item.buksa}</Td>
-                  <Td>{item.rolik_podshipnik}</Td>
-                  <Td>{item.boshqa_tech_error}</Td>
+                  <Td>{timeMoment(item.nosoz_kirish_date)?.day}</Td>
+                  <Td>
+                    {timeClear(item.nosoz_kirish_hour) +
+                      ":" +
+                      timeClear(item.nosoz_kirish_minute)}
+                  </Td>
                 </Tr>
               ))}
             </Tbody>
