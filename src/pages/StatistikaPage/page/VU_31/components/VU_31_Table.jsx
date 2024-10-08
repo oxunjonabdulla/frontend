@@ -30,6 +30,7 @@ import { Deleteted } from "@/components";
 import UserApi from "../../../../../Service/module/userModule.api";
 import { reverseDateFormat } from "../../../../../utils";
 import { timeMoment } from "../../../../../utils/roleTest";
+import { useNavigate } from "react-router";
 const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -57,12 +58,33 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
     onOpenVu10();
     setUpdateData(data);
   };
+  const navigate = useNavigate();
   const hanldeSendTOVu10 = async () => {
     const { response } = await new UserApi().postVu31TOVu10(
       updateData?.carriage_number
     );
 
-    console.log(response);
+    if (response.status === 200) {
+      toast({
+        status: "success",
+        title: response.data?.status,
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+      onCloseVu10();
+      navigate("/statistics/vu-10/");
+    } else {
+      toast({
+        status: "error",
+        title: "Xatolik mavjud operator bilan bog'laning",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
   };
 
   const memoData = useMemo(() => updateData, [updateData]);

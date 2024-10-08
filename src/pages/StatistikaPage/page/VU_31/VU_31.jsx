@@ -53,8 +53,6 @@ export const VU_31 = () => {
   }, [carriageSerach, currentPage]);
   const memoData = useMemo(() => gettingData, [gettingData]);
 
-  console.log(memoData);
-
   return (
     <Box
       as="div"
