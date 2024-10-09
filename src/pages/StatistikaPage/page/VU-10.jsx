@@ -5,13 +5,22 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  IconButton,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Spinner,
   Table,
   TableContainer,
   Tbody,
   Td,
   Text,
+  Textarea,
   Th,
   Thead,
   Tr,
@@ -21,6 +30,7 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
+  faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useMemo, useState } from "react";
@@ -35,6 +45,9 @@ import { timeClear } from "../../../utils/timeClear";
 
 export const VU_10 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
+
+  const [updateData, setUpdateData] = useState(null);
+  const [telegrammaText, setTelegrammaText] = useState("");
   const [searchValue, setSearchValue] = useState(null);
   const carriageSerach = useDebounce(searchValue);
 
@@ -54,6 +67,15 @@ export const VU_10 = () => {
       setGettingData(response?.data);
     }
   };
+  const handleUpdateAndSubmit = async () => {
+    setIsLoading(true);
+    const { response } = await new UserApi().updateVu10(updateData?.id, {
+      telegramma: telegrammaText,
+    });
+    if (response) {
+      window.location.reload();
+    }
+  };
 
   useEffect(() => {
     const params = {
@@ -63,7 +85,10 @@ export const VU_10 = () => {
 
     fetchData(params);
   }, [carriageSerach, currentPage]);
-  const memoData = useMemo(() => gettingData, [gettingData]);
+  const handleUpdate = (data) => {
+    onOpen();
+    setUpdateData(data);
+  };
 
   return (
     <Box
@@ -74,6 +99,42 @@ export const VU_10 = () => {
       rounded={"lg"}
       position={"relative"}
     >
+      <Modal
+        isOpen={isOpen}
+        w={"100%"}
+        onClose={onClose}
+        size={["sm", "md", "lg"]}
+        isCentered
+        motionPreset="slideInLeft"
+      >
+        <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
+        <ModalContent>
+          <ModalHeader textAlign={"center"}>
+            VU-10 Telegramma qo'shish
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text mb={2} fontSize="lg" fontWeight="medium">
+              Telegramma kiriting
+            </Text>
+            <Textarea
+              placeholder="Telegramma matnini kiriting..."
+              size="md"
+              value={telegrammaText}
+              onChange={(e) => setTelegrammaText(e.target.value)}
+              resize="vertical"
+              rows={10}
+            />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme={"teal"} onClick={handleUpdateAndSubmit}>
+              Saqlash
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
         VU-10 Jurnali
       </Heading>
@@ -125,7 +186,9 @@ export const VU_10 = () => {
                 <Th> Yukli | yuksiz</Th>
                 <Th> Poyezd nomeri|yoki nosoz parkga o'tkazilgan yo'l</Th>
                 <Th> Oxirgi ta'mir</Th>
+                <Th> Telegramma</Th>
                 <Th> Nosoz holdagi hisobi sanasi va vaqti </Th>
+                <Th> </Th>
               </Tr>
             </Thead>
 
@@ -141,10 +204,20 @@ export const VU_10 = () => {
                   <Td>{item.is_freight ? "Yukli" : "Yuksiz"}</Td>
                   <Td>{item.train_number}</Td>
                   <Td>{timeMoment(item.nosoz_kirish_date)?.day}</Td>
+                  <Td>{item?.telegramma}</Td>
                   <Td>
                     {timeClear(item.nosoz_kirish_hour) +
                       ":" +
                       timeClear(item.nosoz_kirish_minute)}
+                  </Td>
+                  <Td>
+                    <Flex gap={2}>
+                      <IconButton
+                        colorScheme="whatsapp"
+                        icon={<FontAwesomeIcon icon={faPenToSquare} />}
+                        onClick={() => handleUpdate(item)}
+                      />
+                    </Flex>
                   </Td>
                 </Tr>
               ))}
