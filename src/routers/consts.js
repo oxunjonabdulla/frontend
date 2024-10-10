@@ -4,6 +4,7 @@ export const RouteNames = {
   VU_31: "/statistics/vu-31",
   CREATE: (id) => id + "/create",
   VU_36: "/statistics/vu-36",
+  VU_36_test: "/statistics/vu-36-test",
   FRAZA: "/statistics/fraza",
   SIGNATURE: "/signatures-list",
   REPORT: "/report",

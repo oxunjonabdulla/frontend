@@ -38,6 +38,8 @@ export * from "./SignaturePage/SignaturePage";
 export * from "./Report/Report";
 export * from "./Report/page/ReportUniqPage";
 export * from "./Login";
+export * from "./StatistikaPage/page/VU_36_test/VU_36_test";
+export * from "./StatistikaPage/page/VU_36_test/VU_31_Create";
 import NotFoundPage from "./NotFoundPage";
 
 export { NotFoundPage };

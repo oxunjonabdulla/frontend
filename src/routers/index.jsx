@@ -42,6 +42,7 @@ import {
   SignaturePage,
   Reports,
   ReportUniqPage,
+  VU_36_test,
 } from "../pages";
 import {
   CollectUser,
@@ -58,6 +59,7 @@ import { ProtectedRoute } from "../utils/PrivateComponent";
 import { RouteNames } from "./consts";
 import { Outlet } from "react-router";
 import { DailyTable } from "../components";
+import { element } from "prop-types";
 export const routes = [
   {
     element: <RouteLayout />,
@@ -103,6 +105,7 @@ export const routes = [
           },
           { element: <VU_36 />, path: RouteNames.VU_36 },
           { element: <Fraza />, path: RouteNames.FRAZA },
+          { element: <VU_36_test />, path: RouteNames.VU_36_test },
         ],
       },
       {

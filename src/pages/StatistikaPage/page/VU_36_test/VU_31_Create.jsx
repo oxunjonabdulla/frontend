@@ -1,0 +1,594 @@
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Spinner,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import UserApi from "@/Service/module/userModule.api";
+import { SearchTrain } from "@/utils";
+import { calculateHour } from "@/utils/dateToHourConverter";
+import { BrendCrumbs } from "@/components";
+import { useNavigate } from "react-router";
+export const VU_31_Create = () => {
+  const [trainFixType, setTrainFixType] = useState(null);
+  const [serarchingResult, setSerachingResult] = useState(null);
+  const [getTestResult, setTestResult] = useState([]);
+  const [getDataLoading, setDataLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [get11To10, set11To10] = useState("0");
+  const [get13To11, set13To11] = useState("0");
+  const [get13To12, set13To12] = useState("0");
+  const [get13To10, set13To10] = useState("0");
+  const toast = useToast();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      tamir_boshlanish_date: null,
+      nosoz_kirish_date: null,
+      nosoz_chiqish_date: null,
+      tamir_uzatish_date: null,
+    },
+  });
+
+  useEffect(() => {
+    const handleCarriageData = async () => {
+      setDataLoading(true);
+      const { response } = await new UserApi().getCarriageOne(serarchingResult);
+      setDataLoading(false);
+      setTrainFixType(response?.data);
+    };
+
+    if (serarchingResult === getTestResult[0]?.carriage_number) {
+      handleCarriageData();
+    }
+  }, [serarchingResult, getTestResult]);
+
+  const navigate = useNavigate();
+  const onSubmit = async (data) => {
+    const obj = {
+      ...data,
+      tamir_yulida_gr13: get13To11,
+      bekat_yulida_gr11: get11To10,
+      umumiy_turish_gr11: get13To10,
+      tamir_vaqtida_gr13: get13To12,
+    };
+    setLoading(true);
+    const { response, error } = await new UserApi().postVu31(
+      serarchingResult,
+      obj
+    );
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "VU-31 jurnaliga vagon muvaffaqiyatli qo'shildi.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+
+      navigate("/statistics/vu-31/");
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.detail
+          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
+          : "Bu vagon raqami uchun VU-31 jurnali mavjud.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
+
+  const type10Date = watch("nosoz_kirish_date"),
+    type10Time =
+      watch("nosoz_kirish_hour") + ":" + watch("nosoz_kirish_minute");
+  const type11Date = watch("tamir_uzatish_date"),
+    type11Time =
+      watch("tamir_uzatish_hour") + ":" + watch("tamir_uzatish_minute");
+  const type12Date = watch("tamir_boshlanish_date"),
+    type12Time =
+      watch("tamir_boshlanish_hour") + ":" + watch("tamir_boshlanish_minute");
+  const type13Date = watch("nosoz_chiqish_date"),
+    type13Time =
+      watch("nosoz_chiqish_hour") + ":" + watch("nosoz_chiqish_minute");
+
+  const handleCalculate = () => {
+    set11To10(calculateHour(type11Date, type11Time, type10Date, type10Time));
+    set13To11(calculateHour(type13Date, type13Time, type11Date, type11Time));
+    set13To12(calculateHour(type13Date, type13Time, type12Date, type12Time));
+    set13To10(calculateHour(type13Date, type13Time, type10Date, type10Time));
+  };
+
+  return (
+    <Box
+      as="div"
+      bg={"#ffff"}
+      my={8}
+      mx="auto"
+      rounded={"lg"}
+      position={"relative"}
+    >
+      <BrendCrumbs />
+      <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
+        VU-31 Jurnalini qo&apos;shish
+      </Heading>
+
+      <Container maxW={"container.xl"} my={8}>
+        {getDataLoading && (
+          <Flex
+            position={"absolute"}
+            display={"flex"}
+            top={0}
+            left={0}
+            justifyContent={"center"}
+            align={"center"}
+            width={"100%"}
+            height={"100%"}
+            bgColor={"rgba(255,255,255,0.5)"}
+            backdropFilter={"blur(2px)"}
+            rounded={10}
+            zIndex={1000}
+          >
+            <Spinner size={"xl"} color="teal" />
+          </Flex>
+        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+            <SearchTrain
+              setSerachingResult={setSerachingResult}
+              setTestResult={setTestResult}
+            />
+            <FormControl isInvalid={errors?.repair_date}>
+              <FormLabel>Yuklangan, yuksiz</FormLabel>
+              <Input
+                type="text"
+                borderColor={"gray.600"}
+                disabled
+                placeholder={trainFixType?.is_freight ? "Yukli" : "Yuksiz"}
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.repair_date}>
+              <FormLabel whiteSpace={"nowrap"}>
+                Poezd raqami yoki nosoz parkga o&apos;tkazilgan yo&apos;l
+              </FormLabel>
+              <Input
+                type="text"
+                borderColor={"gray.600"}
+                disabled
+                placeholder={trainFixType?.train_number}
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.repair_date}>
+              <FormLabel whiteSpace={"nowrap"}>
+                Oxirgi ta&apos;mir turi
+              </FormLabel>
+              <Input
+                type="text"
+                borderColor={"gray.600"}
+                disabled
+                placeholder={trainFixType?.last_repair?.toUpperCase()}
+              />
+            </FormControl>
+          </Flex>
+
+          <Text
+            as={"h1"}
+            textAlign={"center"}
+            m={0}
+            fontSize={"xl"}
+            fontWeight={700}
+          >
+            Poezddan uzilgan vagonlar
+          </Text>
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+            <FormControl>
+              <FormLabel>buksa qizishi bo&apos;yicha</FormLabel>
+              <Input
+                type="text"
+                {...register("buksa")}
+                borderColor={"gray.600"}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>rolikli podshipniklarda</FormLabel>
+              <Input
+                type="text"
+                {...register("rolik_podshipnik")}
+                borderColor={"gray.600"}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>boshqa texnik nosozliklar bo&apos;yicha</FormLabel>
+              <Input
+                type="text"
+                {...register("boshqa_tech_error")}
+                borderColor={"gray.600"}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>jo&apos;natish parkida mahalliy tuzilgan</FormLabel>
+              <Input
+                type="text"
+                {...register("junatish_park")}
+                borderColor={"gray.600"}
+              />
+            </FormControl>
+          </Flex>
+
+          <Text
+            as={"h1"}
+            textAlign={"center"}
+            m={0}
+            fontSize={"xl"}
+            fontWeight={700}
+          >
+            Nosoz holdagi vaqti hisobi{" "}
+          </Text>
+          <Flex
+            gap={3}
+            flexWrap={["wrap", "nowrap"]}
+            alignItems={"center"}
+            mb={4}
+          >
+            <FormControl isInvalid={errors?.nosoz_kirish_date}>
+              <FormLabel>sana:</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("nosoz_kirish_date")}
+                type="date"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.nosoz_kirish_hour}>
+              <FormLabel>soat:</FormLabel>
+              <NumberInput
+                borderColor={"gray.600"}
+                mr="1rem"
+                max={23}
+                defaultValue={0}
+                min={0}
+              >
+                <NumberInputField
+                  {...register("nosoz_kirish_hour", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+            <FormControl isInvalid={errors?.nosoz_kirish_minute}>
+              <FormLabel>daqiqa:</FormLabel>
+              <NumberInput
+                mr="1rem"
+                max={59}
+                defaultValue={0}
+                min={0}
+                borderColor={"gray.600"}
+              >
+                <NumberInputField
+                  {...register("nosoz_kirish_minute", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+          </Flex>
+          <Text
+            as={"h1"}
+            textAlign={"center"}
+            m={0}
+            fontSize={"xl"}
+            fontWeight={700}
+          >
+            Ta&apos;mir yo&apos;liga uzatish vaqti{" "}
+          </Text>
+          <Flex
+            gap={3}
+            flexWrap={["wrap", "nowrap"]}
+            alignItems={"center"}
+            mb={4}
+          >
+            <FormControl isInvalid={errors?.tamir_uzatish_date}>
+              <FormLabel>sana:</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("tamir_uzatish_date")}
+                type="date"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.tamir_uzatish_hour}>
+              <FormLabel>soat:</FormLabel>
+              <NumberInput
+                borderColor={"gray.600"}
+                mr="1rem"
+                max={23}
+                defaultValue={0}
+                min={0}
+              >
+                <NumberInputField
+                  {...register("tamir_uzatish_hour", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+            <FormControl isInvalid={errors?.tamir_uzatish_minute}>
+              <FormLabel>daqiqa:</FormLabel>
+              <NumberInput
+                mr="1rem"
+                max={59}
+                defaultValue={0}
+                min={0}
+                borderColor={"gray.600"}
+              >
+                <NumberInputField
+                  {...register("tamir_uzatish_minute", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+          </Flex>
+          <Text
+            as={"h1"}
+            textAlign={"center"}
+            m={0}
+            fontSize={"xl"}
+            fontWeight={700}
+          >
+            Ta&apos;mir boshlanish vaqti
+          </Text>
+          <Flex
+            gap={3}
+            flexWrap={["wrap", "nowrap"]}
+            alignItems={"center"}
+            mb={4}
+          >
+            <FormControl isInvalid={errors?.tamir_boshlanish_date}>
+              <FormLabel>sana:</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("tamir_boshlanish_date")}
+                type="date"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.tamir_boshlanish_hour}>
+              <FormLabel>soat:</FormLabel>
+              <NumberInput
+                borderColor={"gray.600"}
+                mr="1rem"
+                max={23}
+                defaultValue={0}
+                min={0}
+              >
+                <NumberInputField
+                  {...register("tamir_boshlanish_hour", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+            <FormControl isInvalid={errors?.tamir_boshlanish_minute}>
+              <FormLabel>daqiqa:</FormLabel>
+              <NumberInput
+                mr="1rem"
+                max={59}
+                defaultValue={0}
+                min={0}
+                borderColor={"gray.600"}
+              >
+                <NumberInputField
+                  {...register("tamir_boshlanish_minute", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+          </Flex>
+          <Text
+            as={"h1"}
+            textAlign={"center"}
+            m={0}
+            fontSize={"xl"}
+            fontWeight={700}
+          >
+            Nosoz holdan chiqarish vaqti
+          </Text>
+          <Flex
+            gap={3}
+            flexWrap={["wrap", "nowrap"]}
+            alignItems={"center"}
+            mb={4}
+          >
+            <FormControl isInvalid={errors?.nosoz_chiqish_date}>
+              <FormLabel>sana:</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("nosoz_chiqish_date")}
+                type="date"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.nosoz_chiqish_hour}>
+              <FormLabel>soat:</FormLabel>
+              <NumberInput
+                borderColor={"gray.600"}
+                mr="1rem"
+                max={23}
+                defaultValue={0}
+                min={0}
+              >
+                <NumberInputField
+                  {...register("nosoz_chiqish_hour", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+            <FormControl isInvalid={errors?.nosoz_chiqish_minute}>
+              <FormLabel>daqiqa:</FormLabel>
+              <NumberInput
+                mr="1rem"
+                max={59}
+                defaultValue={0}
+                min={0}
+                borderColor={"gray.600"}
+              >
+                <NumberInputField
+                  {...register("nosoz_chiqish_minute", {
+                    setValueAs: (value) => value.toString(),
+                  })}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+          </Flex>
+          <Flex justify={"center"} my={4}>
+            <Button
+              colorScheme="teal"
+              opacity={
+                !type10Date || !type11Date || !type12Date || !type13Date
+                  ? "0.5"
+                  : "1"
+              }
+              pointerEvents={
+                !type10Date || !type11Date || !type12Date || !type13Date
+                  ? "none"
+                  : "inherit"
+              }
+              onClick={handleCalculate}
+            >
+              Hisoblash
+            </Button>
+          </Flex>
+          <Text
+            as={"h1"}
+            textAlign={"center"}
+            m={0}
+            fontSize={"xl"}
+            fontWeight={700}
+          >
+            Nosoz holda turgan vaqti
+          </Text>
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+            <FormControl isInvalid={errors?.bekat_yulida_gr11}>
+              <FormLabel>bekat yo&apos;llarida gr,11 - gr.10</FormLabel>
+              <Input
+                type="text"
+                {...register("bekat_yulida_gr11")}
+                borderColor={"gray.600"}
+                value={get11To10}
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.tamir_yulida_gr13}>
+              <FormLabel>ta&apos;mir yo&apos;llarida gr.13 - gr11</FormLabel>
+              <Input
+                type="text"
+                {...register("tamir_yulida_gr13")}
+                borderColor={"gray.600"}
+                value={get13To11}
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.tamir_vaqtida_gr13}>
+              <FormLabel>ta&apos;mir vaqtida gr.13 - gr12</FormLabel>
+              <Input
+                type="text"
+                {...register("tamir_vaqtida_gr13")}
+                borderColor={"gray.600"}
+                value={get13To12}
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.umumiy_turish_gr11}>
+              <FormLabel>umumiy turib qolishi gr.13 - gr.10</FormLabel>
+              <Input
+                type="text"
+                {...register("umumiy_turish_gr11", {
+                  required: true,
+                })}
+                borderColor={"gray.600"}
+                value={get13To10}
+              />
+            </FormControl>
+          </Flex>
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"}>
+            <FormControl isInvalid={errors?.nosoz_hujjat_raqam}>
+              <FormLabel>
+                Vagonni nosoz holdan chiqaruvchi hujjat raqami va sanasi
+                (inventardan chiqarilgan, boshqa depo yoki zavodga ta&apos;mir
+                uchun jo&apos;natilgan)
+              </FormLabel>
+              <Input
+                type="text"
+                {...register("nosoz_hujjat_raqam")}
+                borderColor={"gray.600"}
+              />
+            </FormControl>
+          </Flex>
+
+          <Flex my={4} justify={"end"}>
+            <Button
+              colorScheme="teal"
+              isLoading={isLoading}
+              loadingText="Saqlash"
+              spinnerPlacement="end"
+              type="submit"
+            >
+              Saqlash
+            </Button>
+          </Flex>
+        </form>
+      </Container>
+    </Box>
+  );
+};
