@@ -162,6 +162,14 @@ const authEndpoints = {
   signature: "/unsigned-logs/",
   signatureSigns: (signData) =>
     `/sign-log/${signData.log_type}/${signData.identifier}/${signData.user_role}/`,
+
+  // vu32 current repair
+  vu31Current: (carriageID) => `/vu31-current/${carriageID}/`,
+  vu31CurrentAll: `/vu31-current/list/`,
+
+  // vu36 current repair
+  vu36Current: (carriageID) => `/vu36-current/${carriageID}/`,
+  vu36CurrentAll: `/vu36-current/`,
 };
 
 export { authEndpoints };

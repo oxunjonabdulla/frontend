@@ -39,6 +39,24 @@ export const routersSidebar = [
   },
   {
     isWork: false,
+    label: "Joriy tamir",
+    path: "/current-repair",
+    type: "drop",
+    accordItems: [
+      {
+        label: "VU-31 Jurnali",
+        path: "/vu-31",
+      },
+      {
+        label: "VU-36 Jurnali",
+        path: "/vu-36",
+      },
+    ],
+    icon: Statistika,
+    role: "statisticuser",
+  },
+  {
+    isWork: false,
     label: "PTO operator",
     path: "/pto-unit",
     type: "link",

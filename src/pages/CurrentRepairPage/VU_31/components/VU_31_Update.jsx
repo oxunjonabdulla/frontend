@@ -58,7 +58,7 @@ export const VU_31_Update = memo(function VU_31_Update({
       tamir_vaqtida_gr13: get13To12,
     };
     setLoading(true);
-    const { response, error } = await new UserApi().updateVu31(
+    const { response, error } = await new UserApi().updateVu31Current(
       updatedData?.carriage_number,
       obj
     );

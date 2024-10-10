@@ -25,9 +25,9 @@ import ReactPaginate from "react-paginate";
 import VU_31_Table from "./components/VU_31_Table";
 import { BrendCrumbs, SimpleLoader } from "@/components";
 import { Link } from "react-router-dom";
-import { useDebounce } from "../../../../hooks/useDebounce";
+import { useDebounce } from "../../../hooks/useDebounce";
 
-export const VU_31_test = () => {
+export const VU_31_Current = () => {
   const [isLoadingData, setIsLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -40,7 +40,7 @@ export const VU_31_test = () => {
   };
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu31(page);
+    const { response } = await new UserApi().getVu31_Current(page);
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
@@ -161,6 +161,6 @@ export const VU_31_test = () => {
   );
 };
 
-VU_31.propTypes = {
+VU_31_Current.propTypes = {
   data: PropTypes.array,
 };

@@ -42,7 +42,9 @@ import {
   SignaturePage,
   Reports,
   ReportUniqPage,
-  VU_36_test,
+  VU_31_Current,
+  VU_31_Current_Create,
+  VU_36_Current,
 } from "../pages";
 import {
   CollectUser,
@@ -59,7 +61,6 @@ import { ProtectedRoute } from "../utils/PrivateComponent";
 import { RouteNames } from "./consts";
 import { Outlet } from "react-router";
 import { DailyTable } from "../components";
-import { element } from "prop-types";
 export const routes = [
   {
     element: <RouteLayout />,
@@ -105,9 +106,41 @@ export const routes = [
           },
           { element: <VU_36 />, path: RouteNames.VU_36 },
           { element: <Fraza />, path: RouteNames.FRAZA },
-          { element: <VU_36_test />, path: RouteNames.VU_36_test },
         ],
       },
+      //start current
+      {
+        element: (
+          <ProtectedRoute
+            element={
+              <StatisticUser>
+                <StatistikaPage />
+              </StatisticUser>
+            }
+            redirectPath={RouteNames.LOGIN}
+          />
+        ),
+        path: RouteNames.CURRENT_REPAIR,
+        children: [
+          { element: <DailyRepairs />, index: true },
+          {
+            element: <Outlet />,
+            path: RouteNames.VU_31_CURRENT,
+            children: [
+              {
+                element: <VU_31_Current />, index: true,
+                path: RouteNames.VU_31_CURRENT
+              },
+              {
+                element: <VU_31_Current_Create />,
+                path: RouteNames.CREATE(RouteNames.VU_31_CURRENT),
+              },
+            ],
+          },
+          { element: <VU_36_Current />, path: RouteNames.VU_36_CURRENT },
+        ],
+      },
+      //end current
       {
         element: (
           <ProtectedRoute

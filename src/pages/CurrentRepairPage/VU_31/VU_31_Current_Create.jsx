@@ -23,7 +23,8 @@ import { SearchTrain } from "@/utils";
 import { calculateHour } from "@/utils/dateToHourConverter";
 import { BrendCrumbs } from "@/components";
 import { useNavigate } from "react-router";
-export const VU_31_Create = () => {
+
+export const VU_31_Current_Create = () => {
   const [trainFixType, setTrainFixType] = useState(null);
   const [serarchingResult, setSerachingResult] = useState(null);
   const [getTestResult, setTestResult] = useState([]);
@@ -71,7 +72,7 @@ export const VU_31_Create = () => {
       tamir_vaqtida_gr13: get13To12,
     };
     setLoading(true);
-    const { response, error } = await new UserApi().postVu31(
+    const { response, error } = await new UserApi().postVu31Current(
       serarchingResult,
       obj
     );
@@ -86,7 +87,7 @@ export const VU_31_Create = () => {
         fontSize: "3xl",
       });
 
-      navigate("/statistics/vu-31/");
+      navigate("/current-repair/vu-31/");
     }
     if (error) {
       toast({

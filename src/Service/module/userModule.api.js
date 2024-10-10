@@ -1392,7 +1392,97 @@ class UserApi extends React.Component {
       const response = await privateInstance.get(
         authEndpoints.generalReportCreate + `${id}/`
       );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu31_Current(page) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu31CurrentAll, {
+        params: page,
+      });
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 
+  async postVu31Current(id, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu31Current(id),
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu31Current(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu31Current(id)
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateVu31Current(id, obj) {
+    try {
+      const response = await privateInstance.patch(
+        authEndpoints.vu31Current(id),
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu31CurrentID(id) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu31Current(id));
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  // vu 36 current
+  async postVu36Current(id, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu36Current(id),
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu36Current(page) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu36CurrentAll, {
+        params: page,
+      });
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteVu36Current(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu36Current(id)
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async updateVu36Current(id, obj) {
+    try {
+      const response = await privateInstance.patch(authEndpoints.vu36Current(id), obj);
       return { response };
     } catch (error) {
       return { error };

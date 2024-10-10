@@ -1,0 +1,282 @@
+import {
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Spinner,
+  useToast,
+} from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import UserApi from "@/Service/module/userModule.api";
+import { SearchTrain } from "@/utils";
+
+export const VU_36_Model = ({ onClose, isOpen }) => {
+  const [serarchingResult, setSerachingResult] = useState(null);
+  const [vu31Data, setVu31Data] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+  const [vu31Loadig, setLoadingVu31] = useState(false);
+
+  const toast = useToast();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
+    const getVu31Data = async () => {
+      setLoadingVu31(true);
+      const { response } = await new UserApi().getVu31CurrentID(serarchingResult);
+      setVu31Data(response?.data);
+      setLoadingVu31(false);
+    };
+
+    if (serarchingResult) {
+      getVu31Data();
+    }
+  }, [serarchingResult]);
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    const { response, error } = await new UserApi().postVu36Current(serarchingResult, {
+      tamir_turi_date: vu31Data?.nosoz_chiqish_date,
+      tamir_turi_hour: vu31Data?.nosoz_chiqish_hour,
+      tamir_turi_minute: vu31Data?.nosoz_chiqish_minute,
+      tamir_date: vu31Data?.tamir_boshlanish_date,
+      tamir_hour: vu31Data?.tamir_boshlanish_hour,
+      tamir_minute: vu31Data?.tamir_boshlanish_minute,
+      ...data,
+    });
+
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "VU-36 jurnaliga vagon muvaffaqiyatli qo'shildi.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+      window.location.reload();
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.error
+          ? error?.error
+          : "Bu vagon raqami uchun VU-36 jurnali mavjud.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      w={"100%"}
+      onClose={onClose}
+      size={["sm", "md", "lg", "6xl"]}
+      isCentered
+      motionPreset="slideInLeft"
+    >
+      <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
+      <ModalContent>
+        <ModalHeader textAlign={"center"}>
+          VU-36 Jurnalini qo&apos;shish
+        </ModalHeader>
+        <ModalCloseButton />
+        {vu31Loadig && (
+          <Flex
+            position={"absolute"}
+            display={"flex"}
+            top={0}
+            left={0}
+            justifyContent={"center"}
+            align={"center"}
+            width={"100%"}
+            height={"100%"}
+            bgColor={"rgba(255,255,255,0.5)"}
+            backdropFilter={"blur(2px)"}
+            rounded={10}
+            zIndex={1000}
+          >
+            <Spinner size={"xl"} color="teal" />
+          </Flex>
+        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <ModalBody>
+            <Flex
+              flexWrap={["wrap", "nowrap"]}
+              justifyContent={"center"}
+              alignItems={"center"}
+              my="4"
+              gap={3}
+            >
+              <SearchTrain setSerachingResult={setSerachingResult} />
+              <FormControl isInvalid={errors?.temir_yul_name}>
+                <FormLabel>Temir yo{"'"}l nomi</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="T.Y"
+                  type="text"
+                  {...register("temir_yul_name", { required: true })}
+                />
+              </FormControl>
+            </Flex>
+            <Flex
+              flexWrap={["wrap", "nowrap"]}
+              justifyContent={"center"}
+              alignItems={"center"}
+              my="4"
+              gap={3}
+            >
+              <FormControl isInvalid={errors?.bildirish_number}>
+                <FormLabel>BILDIRISHNOMA №</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Bildirishnoma Raqami"
+                  type="number"
+                  {...register("bildirish_number", { required: true })}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.yuk_vagon_tamir_turi}>
+                <FormLabel>Yuk vagonining qabul qilingan ta’mir turi</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Mukammal , davriy , joriy va boshqa ta’mir turi"
+                  type="text"
+                  {...register("yuk_vagon_tamir_turi", { required: true })}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.tamir_turi_kodi}>
+                <FormLabel>Kodi</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Ta'mir turi kodi"
+                  type="number"
+                  {...register("tamir_turi_kodi", { required: true })}
+                />
+              </FormControl>
+            </Flex>
+
+            <Flex
+              flexWrap={["wrap", "nowrap"]}
+              justifyContent={"center"}
+              alignItems={"center"}
+              my="4"
+              gap={3}
+            >
+              <FormControl isInvalid={errors?.korxona_tamir_yuli}>
+                <FormLabel> Korxona uchun maxsus ta‘mir yo‘li </FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Korxona uchun maxsus ta‘mir yo‘li"
+                  type="text"
+                  {...register("korxona_tamir_yuli", { required: true })}
+                />
+              </FormControl>
+
+              <FormControl isInvalid={errors?.korxona_kodi}>
+                <FormLabel> korhona kodi</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="korhona kodi"
+                  type="number"
+                  {...register("korxona_kodi", { required: true })}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.ega_kodi}>
+                <FormLabel>Ega kodi</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="korhona kodi"
+                  type="number"
+                  {...register("ega_kodi", { required: true })}
+                />
+              </FormControl>
+            </Flex>
+
+            <Flex
+              flexWrap={["wrap", "nowrap"]}
+              justifyContent={"center"}
+              alignItems={"center"}
+              my="4"
+              gap={3}
+            >
+              <FormControl isInvalid={errors?.kod_moder_1}>
+                <FormLabel>Ko‘d maderniyzatsiya</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Ko‘d maderniyzatsiya"
+                  type="text"
+                  {...register("kod_moder_1", { required: true })}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.kod_moder_2}>
+                <FormLabel>Ko‘d maderniyzatsiya</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Ko‘d maderniyzatsiya"
+                  type="text"
+                  {...register("kod_moder_2", { required: true })}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.kod_moder_3}>
+                <FormLabel>Ko‘d maderniyzatsiya</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Ko‘d maderniyzatsiya"
+                  type="text"
+                  {...register("kod_moder_3", { required: true })}
+                />
+              </FormControl>
+              <FormControl isInvalid={errors?.kod_moder_4}>
+                <FormLabel>Ko‘d maderniyzatsiya</FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  placeholder="Ko‘d maderniyzatsiya"
+                  type="text"
+                  {...register("kod_moder_4", { required: true })}
+                />
+              </FormControl>
+            </Flex>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={onClose}>
+              Yopish
+            </Button>
+            <Button
+              colorScheme="teal"
+              isLoading={isLoading}
+              loadingText="Saqlash"
+              spinnerPlacement="end"
+              type="submit"
+            >
+              Saqlash
+            </Button>
+          </ModalFooter>
+        </form>
+      </ModalContent>
+    </Modal>
+  );
+};
+VU_36_Model.propTypes = {
+  onClose: PropTypes.func,
+  isOpen: PropTypes.bool,
+};

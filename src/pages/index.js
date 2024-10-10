@@ -38,8 +38,9 @@ export * from "./SignaturePage/SignaturePage";
 export * from "./Report/Report";
 export * from "./Report/page/ReportUniqPage";
 export * from "./Login";
-export * from "./StatistikaPage/page/VU_36_test/VU_36_test";
-export * from "./StatistikaPage/page/VU_36_test/VU_31_Create";
+export * from "./CurrentRepairPage/VU_31/VU_31_Current";
+export * from "./CurrentRepairPage/VU_31/VU_31_Current_Create";
+export * from "./CurrentRepairPage/VU_36/VU_36_Current";
 import NotFoundPage from "./NotFoundPage";
 
 export { NotFoundPage };

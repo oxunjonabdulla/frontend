@@ -19,9 +19,9 @@ import { VU_31_Update } from "./VU_31_Update";
 import PropTypes from "prop-types";
 
 import { Deleteted } from "@/components";
-import UserApi from "../../../../../Service/module/userModule.api";
-import { reverseDateFormat } from "../../../../../utils";
-import { timeMoment } from "../../../../../utils/roleTest";
+import UserApi from "../../../../Service/module/userModule.api";
+import { reverseDateFormat } from "../../../../utils";
+import { timeMoment } from "../../../../utils/roleTest";
 const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -48,7 +48,7 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   };
   const toast = useToast();
   const handleDelate = async (carriageID) => {
-    const { response, error } = await new UserApi().deleteVu31(carriageID);
+    const { response, error } = await new UserApi().deleteVu31Current(carriageID);
     if (response) {
       window.location.reload();
     } else {
