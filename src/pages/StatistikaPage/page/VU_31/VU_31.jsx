@@ -14,18 +14,14 @@ import {
 import PropTypes from "prop-types";
 import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBook,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
 
 import UserApi from "@/Service/module/userModule.api";
-import ReactPaginate from "react-paginate";
 import VU_31_Table from "./components/VU_31_Table";
 import { BrendCrumbs, SimpleLoader } from "@/components";
 import { Link } from "react-router-dom";
 import { useDebounce } from "../../../../hooks/useDebounce";
+import { Pagination } from "../../../../components";
 
 export const VU_31 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -56,6 +52,7 @@ export const VU_31 = () => {
     fetchData(params);
   }, [carriageSerach, currentPage]);
   const memoData = useMemo(() => gettingData, [gettingData]);
+
   return (
     <Box
       as="div"
@@ -122,21 +119,9 @@ export const VU_31 = () => {
 
           <VU_31_Table gettingData={memoData} currentPage={currentPage} />
 
-          <ReactPaginate
-            pageCount={Math.ceil((memoData?.count ? memoData?.count : 0) / 10)}
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={2}
+          <Pagination
+            pageCount={memoData?.count}
             onPageChange={handlePageClick}
-            containerClassName="pagination"
-            pageClassName="page-item"
-            pageLinkClassName="page-link"
-            previousClassName="page-item"
-            previousLinkClassName="page-link"
-            nextClassName="page-item"
-            nextLinkClassName="page-link"
-            activeClassName="active"
-            previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-            nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
           />
         </TableContainer>
       ) : !isLoadingData ? (

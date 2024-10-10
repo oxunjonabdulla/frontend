@@ -3,9 +3,17 @@ import { vu_31 } from "@/utils/mock_heads";
 import {
   Button,
   Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Table,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -22,6 +30,7 @@ import { Deleteted } from "@/components";
 import UserApi from "../../../../../Service/module/userModule.api";
 import { reverseDateFormat } from "../../../../../utils";
 import { timeMoment } from "../../../../../utils/roleTest";
+import { useNavigate } from "react-router";
 const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -29,6 +38,11 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
     isOpen: openDelateModal,
     onOpen: onOpenDelateModal,
     onClose: onCloseDelateModal,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenVu10,
+    onOpen: onOpenVu10,
+    onClose: onCloseVu10,
   } = useDisclosure();
   const {
     isOpen: onUpdateIsOpen,
@@ -39,6 +53,38 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
   const handleUpdate = (data) => {
     onUpdateOpen();
     setUpdateData(data);
+  };
+  const handlVu10 = (data) => {
+    onOpenVu10();
+    setUpdateData(data);
+  };
+  const navigate = useNavigate();
+  const hanldeSendTOVu10 = async () => {
+    const { response } = await new UserApi().postVu31TOVu10(
+      updateData?.carriage_number
+    );
+
+    if (response.status === 200) {
+      toast({
+        status: "success",
+        title: response.data?.status,
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+      onCloseVu10();
+      navigate("/statistics/vu-10/");
+    } else {
+      toast({
+        status: "error",
+        title: "Xatolik mavjud operator bilan bog'laning",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
   };
 
   const memoData = useMemo(() => updateData, [updateData]);
@@ -67,6 +113,44 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
 
   return (
     <>
+      <Modal
+        isOpen={isOpenVu10}
+        w={"100%"}
+        onClose={onCloseVu10}
+        size={["sm", "md"]}
+        isCentered
+        motionPreset="slideInLeft"
+      >
+        <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
+        <ModalContent>
+          <ModalHeader textAlign={"center"}>
+            VU-10 Jurnalida o'tkazish
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Siz rostan ham{" "}
+            <Text as={"span"} fontWeight={700} color={"green"}>
+              {updateData?.carriage_number}
+            </Text>{" "}
+            vagon raqamini VU-10ga ot'kazasizmi
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={onCloseVu10}>
+              Yo'q bekor qilish
+            </Button>
+            <Button
+              colorScheme="teal"
+              // isLoading={isLoading}
+              loadingText="Saqlash"
+              spinnerPlacement="end"
+              onClick={hanldeSendTOVu10}
+              type="submit"
+            >
+              Ha VU-10ga o'tkazaman
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Table
         borderRadius={10}
         size={"sm"}
@@ -155,7 +239,9 @@ const VU_31_Table = memo(function VU_31_Table({ gettingData, currentPage }) {
               <Td whiteSpace={"nowrap"}>{item.tamir_vaqtida_gr13} soat</Td>
               <Td whiteSpace={"nowrap"}>{item.umumiy_turish_gr11} soat</Td>
               <Td>
-                <Button colorScheme="blue">VU-10</Button>
+                <Button colorScheme="blue" onClick={() => handlVu10(item)}>
+                  VU-10
+                </Button>
               </Td>
               <Td>
                 <Flex gap={2} m={0}>

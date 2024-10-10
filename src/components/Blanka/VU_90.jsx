@@ -25,7 +25,7 @@ import { VU_90_Model } from "./Modals/VU_90_Model";
 import UserApi from "../../Service/module/userModule.api";
 import { Pagination } from "../pagination/Pagination";
 import { Deleteted } from "../Deletete";
-const data = [0];
+import { ImageSignature } from "../ImageSignature";
 export const VU_90 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -170,10 +170,12 @@ export const VU_90 = () => {
                         </ul>
                       </Td>
                       <Td rowSpan={2}>
-                        <li>D3: {e?.labyrinth_ring_another_d3}</li>
-                        <li>D`3: {e?.labyrinth_ring_another_dc3}</li>
-                        <li>D4: {e?.labyrinth_ring_another_d4}</li>
-                        <li>D`4: {e?.labyrinth_ring_another_dc4}</li>
+                        <ul>
+                          <li>D3: {e?.labyrinth_ring_another_d3}</li>
+                          <li>D`3: {e?.labyrinth_ring_another_dc3}</li>
+                          <li>D4: {e?.labyrinth_ring_another_d4}</li>
+                          <li>D`4: {e?.labyrinth_ring_another_dc4}</li>
+                        </ul>
                       </Td>
                       <Td rowSpan={2}>
                         <li>Oldi 1: {e?.radial_free_front}</li>
@@ -215,7 +217,16 @@ export const VU_90 = () => {
                         <li> 2: {e?.lzsini_2}</li>
                       </Td>
                       <Td rowSpan={2}>Imzo</Td>
-                      <Td rowSpan={2}>Imzo</Td>
+                      <Td rowSpan={2}>
+                        <ImageSignature
+                          signatureImage={e?.wheel_signature_user_signature}
+                        />
+                      </Td>
+                      <Td rowSpan={2}>
+                        <ImageSignature
+                          signatureImage={e?.wheel_plumber_user_signature}
+                        />
+                      </Td>
                       <Td rowSpan={2}>{e?.comment}</Td>
                       <Td rowSpan={2}>
                         <IconButton

@@ -37,6 +37,7 @@ import { imageGet } from "../../utils/imageGet";
 import { Deleteted } from "../Deletete";
 import { useDebounce } from "../../hooks/useDebounce";
 import { Pagination } from "../pagination/Pagination";
+import { ImageSignature } from "../ImageSignature";
 
 export const VU_91 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -154,11 +155,22 @@ export const VU_91 = () => {
                     <Td>{item?.chartley_made_and_year}</Td>
                     <Td>{item?.chartley_number}</Td>
                     <Td>{item?.defect_appearance}</Td>
-
                     <Td>
                       <Image
                         width={"100px"}
                         src={imageGet(item?.user_signature_url)}
+                      />
+                    </Td>
+                    <Td>
+                      <ImageSignature
+                        signatureImage={
+                          item?.defestoskop_signature_user_signature
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <ImageSignature
+                        signatureImage={item?.wheel_plumber_user_signature}
                       />
                     </Td>
 

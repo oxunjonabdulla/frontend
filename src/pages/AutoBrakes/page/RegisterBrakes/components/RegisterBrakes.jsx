@@ -24,7 +24,11 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { imageGet } from "../../../../../utils/imageGet";
-import { Deleteted, SimpleLoader } from "../../../../../components";
+import {
+  Deleteted,
+  ImageSignature,
+  SimpleLoader,
+} from "../../../../../components";
 import ReactPaginate from "react-paginate";
 import { repairTypesName } from "../../../../../utils";
 const RegisterBrakesTable = memo(function RegisterBrakesTable() {
@@ -123,6 +127,11 @@ const RegisterBrakesTable = memo(function RegisterBrakesTable() {
                   <Image
                     width={"100px"}
                     src={imageGet(item?.author_info?.user_signature_url)}
+                  />
+                </Td>
+                <Td>
+                  <ImageSignature
+                    signatureImage={item?.avtotormoz_plumber_user_signature}
                   />
                 </Td>
                 <Td>

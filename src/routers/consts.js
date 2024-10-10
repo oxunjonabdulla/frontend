@@ -3,6 +3,7 @@ export const RouteNames = {
   STATISTIKA: "/statistics",
   CURRENT_REPAIR: "/current-repair",
   VU_31: "/statistics/vu-31",
+  VU_10: "/statistics/vu-10",
   CREATE: (id) => id + "/create",
   VU_36: "/statistics/vu-36",
   FRAZA: "/statistics/fraza",

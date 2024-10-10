@@ -24,7 +24,7 @@ import {
 import { imageGet } from "@/utils/imageGet";
 import { SimpleLoader } from "@/components";
 import ReactPaginate from "react-paginate";
-import { Deleteted } from "../../../../../components";
+import { Deleteted, ImageSignature } from "../../../../../components";
 import { register_rehulyator } from "../../../../../utils/mock_heads";
 import { timeMoment } from "../../../../../utils/roleTest";
 const RegulyatorTable = memo(function RegulyatorTable() {
@@ -111,6 +111,12 @@ const RegulyatorTable = memo(function RegulyatorTable() {
                   <Image
                     width={"100px"}
                     src={imageGet(item?.author_info?.user_signature_url)}
+                  />
+                </Td>
+
+                <Td>
+                  <ImageSignature
+                    signatureImage={item?.avtotormoz_plumber_user_signature}
                   />
                 </Td>
                 <Td>

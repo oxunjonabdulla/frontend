@@ -45,6 +45,7 @@ import {
   VU_31_Current,
   VU_31_Current_Create,
   VU_36_Current,
+  VU_10,
 } from "../pages";
 import {
   CollectUser,
@@ -103,6 +104,11 @@ export const routes = [
                 path: RouteNames.CREATE(RouteNames.VU_31),
               },
             ],
+          },
+          {
+            element: <VU_10 />,
+
+            path: RouteNames.VU_10,
           },
           { element: <VU_36 />, path: RouteNames.VU_36 },
           { element: <Fraza />, path: RouteNames.FRAZA },

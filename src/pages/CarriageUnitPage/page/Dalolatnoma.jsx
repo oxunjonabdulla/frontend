@@ -29,7 +29,7 @@ import UserApi from "@/Service/module/userModule.api";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { Orqa } from "./modal/AutoDalolatnoma/Orqa";
 import { ShowBack } from "./modal/AutoDalolatnoma/ShowBack";
-import { Deleteted, Pagination } from "../../../components";
+import { Deleteted, ImageSignature, Pagination } from "../../../components";
 import { repairTypesName } from "../../../utils";
 import { useDebounce } from "../../../hooks/useDebounce";
 
@@ -189,8 +189,20 @@ export const CarriageDalolatnoma = () => {
                       <Divider my={2} />
                       Mavjudlik Kodi №2: {item?.front_detail.restor_balka_kod_2}
                     </Td>
-
-                    <Td color={"teal"}>Imzo tasdiqlangan</Td>
+                    <Td>
+                      <ImageSignature
+                        signatureImage={
+                          item?.avto_connector_plumber_signature_user
+                        }
+                      />
+                    </Td>
+                    <Td>
+                      <ImageSignature
+                        signatureImage={
+                          item?.avto_connector_defektospopistr_signature_user
+                        }
+                      />
+                    </Td>
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
                         <Flex justify={"center"} align={"center"} gap={2} m={0}>

@@ -166,7 +166,7 @@ export const Dalolatnoma = () => {
                       {item.label}
                     </Th>
                   ))}
-                  <Th textAlign={"center"}>Imzo</Th>
+                  <Th textAlign={"center"}>Aravalar brigadiri imzosi</Th>
                   <Th textAlign={"center"}>Orqa qismi statusi</Th>
                   <Th></Th>
                 </Tr>
@@ -194,7 +194,7 @@ export const Dalolatnoma = () => {
 
                     <Td color={"teal"}>
                       <ImageSignature
-                        signatureImage={item?.wheel_signature_user}
+                        signatureImage={item?.wheel_signature_user_signature}
                       />
                     </Td>
                     <Td color={"teal"}>
@@ -219,7 +219,21 @@ export const Dalolatnoma = () => {
                     </Td>
                     <Td color={"teal"}>
                       <ImageSignature
+                        signatureImage={
+                          item?.avto_connector_brigadr_or_master_user_signature
+                        }
+                      />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
                         signatureImage={item?.deputy_head_signature}
+                      />
+                    </Td>
+                    <Td color={"teal"}>
+                      <ImageSignature
+                        signatureImage={
+                          item?.aravalar_brigadr_or_master_user_signature
+                        }
                       />
                     </Td>
                     <Td color={"teal"}>
