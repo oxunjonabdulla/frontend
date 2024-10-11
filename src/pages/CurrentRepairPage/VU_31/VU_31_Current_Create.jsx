@@ -80,7 +80,7 @@ export const VU_31_Current_Create = () => {
     if (response) {
       toast({
         status: "success",
-        title: "VU-31 jurnaliga vagon muvaffaqiyatli qo'shildi.",
+        title: "VU-31 Tekushi jurnaliga vagon muvaffaqiyatli qo'shildi.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
@@ -89,6 +89,8 @@ export const VU_31_Current_Create = () => {
 
       navigate("/current-repair/vu-31/");
     }
+    console.log(error);
+    
     if (error) {
       toast({
         status: "error",

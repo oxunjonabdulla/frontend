@@ -34,6 +34,7 @@ export const VU_31_Current = () => {
   const [gettingData, setGettingData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const carriageSerach = useDebounce(searchValue);
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
@@ -78,7 +79,7 @@ export const VU_31_Current = () => {
       >
         <Button
           as={Link}
-          to={"/statistics/vu-31/create"}
+          to={"/current-repair/vu-31/create"}
           borderRadius={"50%"}
           colorScheme="teal"
           width={"50px"}
