@@ -151,7 +151,7 @@ export const VU_31_Current = () => {
           >
             VU-31 jurnali topilmadi
           </Text>
-          <Button colorScheme="teal" as={Link} to={"/statistics/vu-31/create"}>
+          <Button colorScheme="teal" as={Link} to={"/current-repair/vu-31/create"}>
             VU-31 qo&apos;shish
           </Button>
         </Flex>
