@@ -69,7 +69,6 @@ export const VU_31_Current = () => {
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
         VU-31 Jurnali
       </Heading>
-
       <BrendCrumbs />
       <Tooltip
         label="VU-31 Jurnalini qo'shish"

@@ -58,7 +58,6 @@ export const VU_31_Current_Create = () => {
       setDataLoading(false);
       setTrainFixType(response?.data);
     };
-
     if (serarchingResult === getTestResult[0]?.carriage_number) {
       handleCarriageData();
     }
@@ -105,13 +104,12 @@ export const VU_31_Current_Create = () => {
         });
       } else if (typeof error === "object" && error !== null) {
         const errorMessages = [];
-        for (const key in error) {
+        for (const key in error) 
           if (Object.prototype.hasOwnProperty.call(error, key)) {
             const message = error[key].join(" ");
             setError(key, { type: "server", message: message });
             errorMessages.push(message);
           }
-        }
         toast({
           status: "error",
           title: errorMessages.join(" "),
@@ -120,8 +118,7 @@ export const VU_31_Current_Create = () => {
           position: "top-right",
           fontSize: "3xl",
         });
-      } else {
-        toast({
+      } else toast({
           status: "error",
           title: "Bu vagon raqami uchun VU-31 jurnali mavjud.",
           duration: 4000,
@@ -129,7 +126,6 @@ export const VU_31_Current_Create = () => {
           position: "top-right",
           fontSize: "3xl",
         });
-      }
     }
   };
 
