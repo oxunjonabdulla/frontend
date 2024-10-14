@@ -4,6 +4,7 @@ import {
   Container,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -40,6 +41,7 @@ export const VU_31_Current_Create = () => {
     handleSubmit,
     watch,
     formState: { errors },
+    setError,
   } = useForm({
     defaultValues: {
       tamir_boshlanish_date: null,
@@ -90,18 +92,44 @@ export const VU_31_Current_Create = () => {
       navigate("/current-repair/vu-31/");
     }
     console.log(error);
-    
     if (error) {
-      toast({
-        status: "error",
-        title: error?.detail
-          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
-          : "Bu vagon raqami uchun VU-31 jurnali mavjud.",
-        duration: 4000,
-        isClosable: true,
-        position: "top-right",
-        fontSize: "3xl",
-      });
+      if (error.detail) {
+        toast({
+          status: "error",
+          title:
+            "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas.",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+          fontSize: "3xl",
+        });
+      } else if (typeof error === "object" && error !== null) {
+        const errorMessages = [];
+        for (const key in error) {
+          if (Object.prototype.hasOwnProperty.call(error, key)) {
+            const message = error[key].join(" ");
+            setError(key, { type: "server", message: message });
+            errorMessages.push(message);
+          }
+        }
+        toast({
+          status: "error",
+          title: errorMessages.join(" "),
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+          fontSize: "3xl",
+        });
+      } else {
+        toast({
+          status: "error",
+          title: "Bu vagon raqami uchun VU-31 jurnali mavjud.",
+          duration: 4000,
+          isClosable: true,
+          position: "top-right",
+          fontSize: "3xl",
+        });
+      }
     }
   };
 
@@ -283,7 +311,11 @@ export const VU_31_Current_Create = () => {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
+              <FormErrorMessage>
+                {errors.nosoz_kirish_hour?.message}
+              </FormErrorMessage>
             </FormControl>
+
             <FormControl isInvalid={errors?.nosoz_kirish_minute}>
               <FormLabel>daqiqa:</FormLabel>
               <NumberInput
