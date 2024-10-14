@@ -79,7 +79,7 @@ export const VU_36_Update = ({ updateData, onClose, isOpen }) => {
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
         <ModalHeader textAlign={"center"}>
-          VU-36 Jurnalini qo&apos;shish
+          VU-36 Jurnalini o&apos;zgartirish
         </ModalHeader>
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
