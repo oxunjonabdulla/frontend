@@ -82,7 +82,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("wheel_pair_number", { required: true })}
+                  {...register("wheel_pair_number")}
                   type="text"
                 />
               </FormControl>
@@ -92,7 +92,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("grph_3_4_plus", { required: true })}
+                  {...register("grph_3_4_plus")}
                   type="text"
                 />
               </FormControl>{" "}
@@ -108,7 +108,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("vkm_get_new", { required: true })}
+                  {...register("vkm_get_new")}
                   type="text"
                 />
               </FormControl>
@@ -121,7 +121,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("vkm_get_depot_new", { required: true })}
+                  {...register("vkm_get_depot_new")}
                   type="text"
                 />
               </FormControl>
@@ -136,7 +136,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("not_change_elements", { required: true })}
+                  {...register("not_change_elements")}
                   type="text"
                 />
               </FormControl>
@@ -149,7 +149,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("change_elements", { required: true })}
+                  {...register("change_elements")}
                   type="text"
                 />
               </FormControl>
@@ -162,7 +162,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>Носоз</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("defective", { required: true })}
+                  {...register("defective")}
                   type="text"
                 />
               </FormControl>
@@ -175,7 +175,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("is_defect_not_change", { required: true })}
+                  {...register("is_defect_not_change")}
                   type="text"
                 />
               </FormControl>
@@ -188,7 +188,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("is_defect_change", { required: true })}
+                  {...register("is_defect_change")}
                   type="text"
                 />
               </FormControl>
@@ -200,7 +200,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("grph_11_12_13_plus", { required: true })}
+                  {...register("grph_11_12_13_plus")}
                   type="text"
                 />
               </FormControl>
@@ -225,7 +225,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("new_elements", { required: true })}
+                  {...register("new_elements")}
                   type="text"
                 />
               </FormControl>
@@ -238,7 +238,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("new_point_enter", { required: true })}
+                  {...register("new_point_enter")}
                   type="text"
                 />
               </FormControl>
@@ -262,7 +262,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("new_wheel_enter", { required: true })}
+                  {...register("new_wheel_enter")}
                   type="text"
                 />
               </FormControl>
@@ -275,7 +275,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("expired_elements_made", { required: true })}
+                  {...register("expired_elements_made")}
                   type="text"
                 />
               </FormControl>
@@ -290,7 +290,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("buks_circle_face_repair", { required: true })}
+                  {...register("buks_circle_face_repair")}
                   type="text"
                 />
               </FormControl>
@@ -303,9 +303,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("buks_circle_face_repair_not_turn", {
-                    required: true,
-                  })}
+                  {...register("buks_circle_face_repair_not_turn")}
                   type="text"
                 />
               </FormControl>
@@ -319,7 +317,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("three_typeof_wheel_turn", { required: true })}
+                  {...register("three_typeof_wheel_turn")}
                   type="text"
                 />
               </FormControl>
@@ -329,7 +327,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("rolls_gun_repair", { required: true })}
+                  {...register("rolls_gun_repair")}
                   type="text"
                 />
               </FormControl>
@@ -339,7 +337,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("rolls_neeg_with_repair", { required: true })}
+                  {...register("rolls_neeg_with_repair")}
                   type="text"
                 />
               </FormControl>
@@ -354,7 +352,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("rolls_circle_face_repair", { required: true })}
+                  {...register("rolls_circle_face_repair")}
                   type="text"
                 />
               </FormControl>
@@ -369,9 +367,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("rolls_circle_face_repair_not_turn", {
-                    required: true,
-                  })}
+                  {...register("rolls_circle_face_repair_not_turn")}
                   type="text"
                 />
               </FormControl>
@@ -381,7 +377,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("antoher_works", { required: true })}
+                  {...register("antoher_works")}
                   type="text"
                 />
               </FormControl>
@@ -403,7 +399,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("grph_24_25_28_plus", { required: true })}
+                  {...register("grph_24_25_28_plus")}
                   type="text"
                 />
               </FormControl>
@@ -418,7 +414,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("after_repair_send_way", { required: true })}
+                  {...register("after_repair_send_way")}
                   type="text"
                 />
               </FormControl>
@@ -431,7 +427,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("under_carriage_number", { required: true })}
+                  {...register("under_carriage_number")}
                   type="text"
                 />
               </FormControl>
@@ -446,7 +442,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("invetor_sended", { required: true })}
+                  {...register("invetor_sended")}
                   type="text"
                 />
               </FormControl>
@@ -459,7 +455,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("vkm_with_changes", { required: true })}
+                  {...register("vkm_with_changes")}
                   type="text"
                 />
               </FormControl>
@@ -472,7 +468,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("vkm_without_changes", { required: true })}
+                  {...register("vkm_without_changes")}
                   type="text"
                 />
               </FormControl>
@@ -484,7 +480,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("grph_30_31_32_plus", { required: true })}
+                  {...register("grph_30_31_32_plus")}
                   type="text"
                 />
               </FormControl>
@@ -492,7 +488,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>Яроқли </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("is_use", { required: true })}
+                  {...register("is_use")}
                   type="text"
                 />
               </FormControl>
@@ -502,7 +498,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("grph_32_33_34_plus", { required: true })}
+                  {...register("grph_32_33_34_plus")}
                   type="text"
                 />
               </FormControl>
@@ -518,7 +514,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("do_repair_with_changes", { required: true })}
+                  {...register("do_repair_with_changes")}
                   type="text"
                 />
               </FormControl>
@@ -531,7 +527,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("do_repair_without_changes", { required: true })}
+                  {...register("do_repair_without_changes")}
                   type="text"
                 />
               </FormControl>
@@ -554,7 +550,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("grph_35_36_38_plus", { required: true })}
+                  {...register("grph_35_36_38_plus")}
                   type="text"
                 />
               </FormControl>
@@ -564,7 +560,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("sheyk_type", { required: true })}
+                  {...register("sheyk_type")}
                   type="text"
                 />
               </FormControl>
@@ -574,7 +570,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("stupid_under_type", { required: true })}
+                  {...register("stupid_under_type")}
                   type="text"
                 />
               </FormControl>
@@ -584,7 +580,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("between_type", { required: true })}
+                  {...register("between_type")}
                   type="text"
                 />
               </FormControl>
@@ -607,7 +603,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("resba_is_break", { required: true })}
+                  {...register("resba_is_break")}
                   type="text"
                 />
               </FormControl>
@@ -617,7 +613,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("is_energy_uq", { required: true })}
+                  {...register("is_energy_uq")}
                   type="text"
                 />
               </FormControl>
