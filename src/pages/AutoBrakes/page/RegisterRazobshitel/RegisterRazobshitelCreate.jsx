@@ -177,6 +177,24 @@ export const RegisterRazobshitelCreate = () => {
                 placeholder="Tekshiruv xulosasi"
               />
             </FormControl>
+            <FormControl isInvalid={errors?.avtotormoz_plumber_user}>
+              <FormLabel>Imzolovchi xodim</FormLabel>
+              <Select
+                borderColor={"gray.600"}
+                placeholder="Imzolovchi xodim"
+                {...register("avtotormoz_plumber_user", { required: true })}
+              >
+                <option value={"baitov_zuvaydilla"}>Baitov Zuvaydilla</option>
+                <option value={"baitov_mirzohid"}>Baitov Mirzohid</option>
+                <option value={"xasanov_gayrat"}>Xasanov Gayrat</option>
+                <option value={"achilov_boxodir"}>Achilov Boxodir</option>
+                <option value={"pulatov_xikmat"}>Pulatov Xikmat</option>
+                <option value={"pulatov_shuxrat"}>Pulatov Shuxrat</option>
+                <option value={"maxmudov_farruxjon"}>Maxmudov Farruxjon</option>
+                <option value={"qahhorov_ravshan"}>Qahhorov Ravshan</option>
+                <option value={"maxmudov_qobil"}>Maxmudov Qobil</option>
+              </Select>
+            </FormControl>
           </Flex>
 
           <Flex my={4} justify={"end"}>

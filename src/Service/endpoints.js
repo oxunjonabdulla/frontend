@@ -30,7 +30,7 @@ const authEndpoints = {
   rukvaPost: (carriageID) => `/rukva/${carriageID}/`,
   // Regular
 
-  regularGet: `/regulyator/list/`,
+  regularGet: `/regulyator/`,
   regularPost: (carriageID) => `/regulyator/${carriageID}/`,
 
   // phrase

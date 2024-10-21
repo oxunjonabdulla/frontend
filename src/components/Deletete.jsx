@@ -20,6 +20,7 @@ export const Deleteted = ({
   deletedFunction,
 }) => {
   const [inputValue, setValueInput] = useState("");
+  
   return (
     <Modal isOpen={isOpen} isCentered onClose={() => onClose(false)}>
       <ModalOverlay backdropFilter={"blur(10px)"} />
@@ -65,7 +66,7 @@ export const Deleteted = ({
             }}
             variant="solid"
             onClick={() => deletedFunction(carriageNumber)}
-            isDisabled={inputValue !== carriageNumber}
+            isDisabled={+inputValue !== carriageNumber}
           >
             O&apos;chirish
           </Button>

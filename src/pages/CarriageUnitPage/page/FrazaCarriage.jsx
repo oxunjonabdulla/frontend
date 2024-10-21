@@ -163,7 +163,7 @@ export const FrazaCarriage = () => {
                     rowSpan={"3"}
                     fontWeight={700}
                   >
-                    Ma'lumot yozilgan vaqti
+                    Ma&#39;lumot yozilgan vaqti
                   </Th>
                   <Th
                     fontSize={"10px"}

@@ -965,13 +965,12 @@ class UserApi extends React.Component {
       return { error };
     }
   }
-  async postRegulyator(carriageId, obj) {
+  async postRegulyator(obj) {
     try {
       const response = await privateInstance.post(
-        authEndpoints.regularPost(carriageId),
+        authEndpoints.regularGet,
         obj
       );
-
       return { response };
     } catch (error) {
       return { error };
@@ -982,7 +981,6 @@ class UserApi extends React.Component {
       const response = await privateInstance.delete(
         authEndpoints.regularPost(carriageId)
       );
-
       return { response };
     } catch (error) {
       return { error };

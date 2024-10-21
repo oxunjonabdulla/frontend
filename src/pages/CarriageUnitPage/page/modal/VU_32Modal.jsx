@@ -11,17 +11,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
   Select,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -31,9 +25,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { SearchTrain } from "../../../../utils";
-import { Signatur } from "../../../../components/Signature/Signatur";
 import UserApi from "../../../../Service/module/userModule.api";
-import { mockHeaderCarriage } from "../../../../utils/mock_heads";
 
 export const VU_32Modal = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
@@ -560,12 +552,12 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
 
                   <Tr>
                     <Td colSpan="8" textAlign={"center"}>
-                      On'g Yon ramasi
+                      On&#39;g Yon ramasi
                     </Td>
                     <Td colSpan="6" textAlign={"center"}>
-                      On'g Yon ramasi
+                      On&#39;g Yon ramasi
                     </Td>
-                    <Td>On'g</Td>
+                    <Td>On&#39;g</Td>
                   </Tr>
 
                   <Tr>
@@ -992,12 +984,12 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
 
                   <Tr>
                     <Td colSpan="8" textAlign={"center"}>
-                      On'g Yon ramasi
+                      On&#39;g Yon ramasi
                     </Td>
                     <Td colSpan="6" textAlign={"center"}>
-                      On'g Yon ramasi
+                      On&#39;g Yon ramasi
                     </Td>
-                    <Td>On'g</Td>
+                    <Td>On&#39;g</Td>
                   </Tr>
 
                   <Tr>

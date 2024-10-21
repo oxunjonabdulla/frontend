@@ -46,9 +46,7 @@ const RegulyatorTable = memo(function RegulyatorTable() {
 
   const handleDelateFunction = async (carriageID) => {
     const { response } = await new UserApi().deleteRegulyator(carriageID);
-    if (response) {
-      window.location.reload();
-    }
+    if (response) window.location.reload();
   };
 
   useEffect(() => {
@@ -65,6 +63,7 @@ const RegulyatorTable = memo(function RegulyatorTable() {
     };
     fetchData();
   }, [currentPage]);
+
   return (
     <>
       {!isLoadingData ? (
@@ -130,7 +129,7 @@ const RegulyatorTable = memo(function RegulyatorTable() {
                       bgColor={"red"}
                       p={0}
                       _hover={{ bgColor: "red", opacity: "0.7" }}
-                      onClick={() => handleDelete(item?.carriage)}
+                      onClick={() => handleDelete(item?.id)}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </Button>

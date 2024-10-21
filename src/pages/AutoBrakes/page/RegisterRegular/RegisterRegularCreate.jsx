@@ -6,6 +6,7 @@ import {
   FormLabel,
   Input,
   useToast,
+  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -15,7 +16,6 @@ import { useNavigate } from "react-router";
 import UserApi from "../../../../Service/module/userModule.api";
 export const RegisterRegularCreate = () => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const navigate = useNavigate();
   const {
@@ -25,10 +25,7 @@ export const RegisterRegularCreate = () => {
   } = useForm();
   const onSubmit = async (data) => {
     setLoading(true);
-    const { response, error } = await new UserApi().postRegulyator(
-      serachingResult,
-      data
-    );
+    const { response, error } = await new UserApi().postRegulyator(data);
 
     setLoading(false);
     if (response) {
@@ -59,10 +56,6 @@ export const RegisterRegularCreate = () => {
       <Container maxW={"container.xl"} my={8}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
-            <SearchTrain
-              setSerachingResult={setSerachingResult}
-              //   setTestResult={setTestResult}
-            />
             <FormControl isInvalid={errors?.date}>
               <FormLabel>Sana</FormLabel>
               <Input
@@ -164,6 +157,25 @@ export const RegisterRegularCreate = () => {
               />
             </FormControl>
           </Flex>
+
+          <FormControl isInvalid={errors?.avtotormoz_plumber_user}>
+            <FormLabel fontSize={"10px"}>Imzolovchi xodim</FormLabel>
+            <Select
+              borderColor={"gray.600"}
+              placeholder="Imzolovchi xodim"
+              {...register("avtotormoz_plumber_user", { required: true })}
+            >
+              <option value={"baitov_zuvaydilla"}>Baitov Zuvaydilla</option>
+              <option value={"baitov_mirzohid"}>Baitov Mirzohid</option>
+              <option value={"xasanov_gayrat"}>Xasanov Gayrat</option>
+              <option value={"achilov_boxodir"}>Achilov Boxodir</option>
+              <option value={"pulatov_xikmat"}>Pulatov Xikmat</option>
+              <option value={"pulatov_shuxrat"}>Pulatov Shuxrat</option>
+              <option value={"maxmudov_farruxjon"}>Maxmudov Farruxjon</option>
+              <option value={"qahhorov_ravshan"}>Qahhorov Ravshan</option>
+              <option value={"maxmudov_qobil"}>Maxmudov Qobil</option>
+            </Select>
+          </FormControl>
 
           <Flex my={4} justify={"end"}>
             <Button
