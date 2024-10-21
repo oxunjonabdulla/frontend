@@ -20,6 +20,7 @@ export const Deleteted = ({
   deletedFunction,
 }) => {
   const [inputValue, setValueInput] = useState("");
+  console.log(inputValue === carriageNumber);
   
   return (
     <Modal isOpen={isOpen} isCentered onClose={() => onClose(false)}>
@@ -66,7 +67,7 @@ export const Deleteted = ({
             }}
             variant="solid"
             onClick={() => deletedFunction(carriageNumber)}
-            isDisabled={+inputValue !== carriageNumber}
+            isDisabled={+inputValue !== +carriageNumber}
           >
             O&apos;chirish
           </Button>
