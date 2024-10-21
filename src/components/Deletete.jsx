@@ -20,7 +20,6 @@ export const Deleteted = ({
   deletedFunction,
 }) => {
   const [inputValue, setValueInput] = useState("");
-  console.log(inputValue === carriageNumber);
   
   return (
     <Modal isOpen={isOpen} isCentered onClose={() => onClose(false)}>

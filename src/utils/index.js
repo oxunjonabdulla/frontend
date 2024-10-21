@@ -22,5 +22,5 @@ export const repairTypesName = (str) => {
   if (!str) {
     return "N/A";
   }
-  return repairTypes?.find((e) => e.value === str?.toLowerCase()).label;
+  return repairTypes?.find((e) => e.value === str?.toLowerCase())?.label;
 };
