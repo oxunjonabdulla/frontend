@@ -96,7 +96,6 @@ const RegulyatorTable = memo(function RegulyatorTable() {
               <Tr key={item.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
                 <Td>{timeMoment(item.created_at)?.day}</Td>
-                <Td>{item.carriage_number}</Td>
                 <Td>{item.ptp_type}</Td>
                 <Td>{item.corp_number}</Td>
                 <Td>{item.kgs_check}</Td>

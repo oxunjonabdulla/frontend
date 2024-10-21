@@ -232,7 +232,6 @@ export const register_rukva = [
 export const register_rehulyator = [
   { label: "T/R" },
   { label: "Sana" },
-  { label: "Vagon nomeri" },
   { label: "5746, PTPП 675, PTPП 675M, РТРП 300 turi 10" },
   { label: "Zavod raqami" },
   { label: "4,0-4,2 kgs/sm2 tekshirish" },
