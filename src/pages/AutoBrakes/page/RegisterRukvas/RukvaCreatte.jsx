@@ -149,12 +149,12 @@ export const RukvaCreate = () => {
                 placeholder="Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa"
               />
             </FormControl>
-            <FormControl isInvalid={errors?.avtotormoz_plumber_user}>
+            <FormControl isInvalid={errors?.avtotormoz_plumber_user_signature}>
               <FormLabel>Imzolovchi xodim</FormLabel>
               <Select
                 borderColor={"gray.600"}
                 placeholder="Imzolovchi xodim"
-                {...register("avtotormoz_plumber_user", { required: true })}
+                {...register("avtotormoz_plumber_user_signature", { required: true })}
               >
                 <option value={"baitov_zuvaydilla"}>Baitov Zuvaydilla</option>
                 <option value={"baitov_mirzohid"}>Baitov Mirzohid</option>
