@@ -115,7 +115,7 @@ const RegulyatorTable = memo(function RegulyatorTable() {
 
                 <Td>
                   <ImageSignature
-                    signatureImage={item?.avtotormoz_plumber_user_signature}
+                    signatureImage={item?.avtotormoz_signature_image_url}
                   />
                 </Td>
                 <Td>

@@ -171,7 +171,7 @@ const VU_47_Table = () => {
                 <Td>{item?.front_detail?.acceptor_signature}</Td>
                 <Td>
                   <ImageSignature
-                    signatureImage={item?.avtotormoz_plumber_user_signature}
+                    signatureImage={item?.avtotormoz_signature_image_url}
                   />
                 </Td>
                 <Td>

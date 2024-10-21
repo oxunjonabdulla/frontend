@@ -145,7 +145,7 @@ const RegisterAutoTables = memo(function RegisterAutoTables() {
                 <Td></Td>
                 <Td>
                   <ImageSignature
-                    signatureImage={item?.avtotormoz_plumber_user_signature}
+                    signatureImage={item?.avtotormoz_signature_image_url}
                   />
                 </Td>
                 <Td>

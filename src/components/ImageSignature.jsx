@@ -4,7 +4,7 @@ export const ImageSignature = ({ signatureImage }) => {
   return !signatureImage ? (
     <Text textAlign={"center"} textColor={"red"}>
       {" "}
-      Imzo qo'yilmagan{" "}
+      Imzo qo&#39;yilmagan{" "}
     </Text>
   ) : (
     <Image
