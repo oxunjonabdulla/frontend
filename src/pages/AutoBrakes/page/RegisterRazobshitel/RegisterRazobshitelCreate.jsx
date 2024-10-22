@@ -73,19 +73,22 @@ export const RegisterRazobshitelCreate = () => {
                 placeholder="Sana"
               />
             </FormControl>
-
-            <FormControl isInvalid={errors?.repair_type}>
-              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
-                Talab qilingan ta’mir turi:
-              </FormLabel>
+            <FormControl isInvalid={errors?.avtotormoz_plumber_user_signature}>
+              <FormLabel>Imzolovchi xodim</FormLabel>
               <Select
                 borderColor={"gray.600"}
-                placeholder="Ta'mir turi"
-                {...register("repair_type", { required: true })}
+                placeholder="Imzolovchi xodim"
+                {...register("avtotormoz_plumber_user_signature", { required: true })}
               >
-                <option value="dr">&apos;ДР&apos; (DТ)</option>
-                <option value="kp">&apos;КР&apos; (KТ)</option>
-                <option value="krp">&apos;KРП&apos; (KTP)</option>
+                <option value={"baitov_zuvaydilla"}>Baitov Zuvaydilla</option>
+                <option value={"baitov_mirzohid"}>Baitov Mirzohid</option>
+                <option value={"xasanov_gayrat"}>Xasanov Gayrat</option>
+                <option value={"achilov_boxodir"}>Achilov Boxodir</option>
+                <option value={"pulatov_xikmat"}>Pulatov Xikmat</option>
+                <option value={"pulatov_shuxrat"}>Pulatov Shuxrat</option>
+                <option value={"maxmudov_farruxjon"}>Maxmudov Farruxjon</option>
+                <option value={"qahhorov_ravshan"}>Qahhorov Ravshan</option>
+                <option value={"maxmudov_qobil"}>Maxmudov Qobil</option>
               </Select>
             </FormControl>
           </Flex>
@@ -166,37 +169,6 @@ export const RegisterRazobshitelCreate = () => {
               />
             </FormControl>
           </Flex>
-
-          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"}>
-            <FormControl isInvalid={errors?.check_result}>
-              <FormLabel>Tekshiruv xulosasi</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("check_result", { required: true })}
-                type="text"
-                placeholder="Tekshiruv xulosasi"
-              />
-            </FormControl>
-            <FormControl isInvalid={errors?.avtotormoz_plumber_user_signature}>
-              <FormLabel>Imzolovchi xodim</FormLabel>
-              <Select
-                borderColor={"gray.600"}
-                placeholder="Imzolovchi xodim"
-                {...register("avtotormoz_plumber_user_signature", { required: true })}
-              >
-                <option value={"baitov_zuvaydilla"}>Baitov Zuvaydilla</option>
-                <option value={"baitov_mirzohid"}>Baitov Mirzohid</option>
-                <option value={"xasanov_gayrat"}>Xasanov Gayrat</option>
-                <option value={"achilov_boxodir"}>Achilov Boxodir</option>
-                <option value={"pulatov_xikmat"}>Pulatov Xikmat</option>
-                <option value={"pulatov_shuxrat"}>Pulatov Shuxrat</option>
-                <option value={"maxmudov_farruxjon"}>Maxmudov Farruxjon</option>
-                <option value={"qahhorov_ravshan"}>Qahhorov Ravshan</option>
-                <option value={"maxmudov_qobil"}>Maxmudov Qobil</option>
-              </Select>
-            </FormControl>
-          </Flex>
-
           <Flex my={4} justify={"end"}>
             <Button
               colorScheme="teal"

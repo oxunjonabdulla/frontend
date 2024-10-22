@@ -101,20 +101,6 @@ export const RegisterAutoCreate = () => {
             alignItems={"center"}
             mb={4}
           >
-            <FormControl isInvalid={errors?.repair_type}>
-              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
-                Talab qilingan ta’mir turi:
-              </FormLabel>
-              <Select
-                borderColor={"gray.600"}
-                placeholder="Ta'mir turi"
-                {...register("repair_type", { required: true })}
-              >
-                <option value="dr">&apos;ДР&apos; (DТ)</option>
-                <option value="kp">&apos;КР&apos; (KТ)</option>
-                <option value="krp">&apos;KРП&apos; (KTP)</option>
-              </Select>
-            </FormControl>
             <FormControl isInvalid={errors?.automode_factory_number}>
               <FormLabel>Avtorejim zavod raqami </FormLabel>
               <Input

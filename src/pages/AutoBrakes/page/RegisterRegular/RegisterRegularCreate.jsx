@@ -81,7 +81,7 @@ export const RegisterRegularCreate = () => {
             </FormControl>
 
             <FormControl isInvalid={errors?.avtotormoz_plumber_user_signature}>
-              <FormLabel fontSize={"10px"}>Imzolovchi xodim</FormLabel>
+              <FormLabel>Imzolovchi xodim</FormLabel>
               <Select
                 borderColor={"gray.600"}
                 placeholder="Imzolovchi xodim"
@@ -106,6 +106,16 @@ export const RegisterRegularCreate = () => {
             alignItems={"center"}
             mb={4}
           >
+            <FormControl isInvalid={errors?.date}>
+              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
+                Sana
+              </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("date", { required: true })}
+                type="date"
+              />
+            </FormControl>
             <FormControl isInvalid={errors?.kgs_check}>
               <FormLabel>4,0-4,2 kgs/sm2 tekshirish</FormLabel>
               <Input
