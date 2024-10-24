@@ -61,6 +61,8 @@ const RukvaTable = memo(function RukvaTable() {
       if (response) {
         setIsLoading(false);
         setGettingData(response?.data);
+
+        console.log(response?.data);
       }
     };
     fetchData();
@@ -103,9 +105,11 @@ const RukvaTable = memo(function RukvaTable() {
                 <Td>{item.connect_rukva_brand_1}</Td>
                 <Td>{item.connect_rukva_brand_2}</Td>
                 <Td>{item.check_with_gass}</Td>
+                <Td>{item.check_with_gass2}</Td>
                 <Td>{item.stay_time_10}</Td>
                 <Td>{item.water_gass}</Td>
                 <Td>{item.stay_time_2}</Td>
+                <Td>{item.stay_time_2_2}</Td>
 
                 <Td>
                   <Image

@@ -165,7 +165,7 @@ export const routersSidebar = [
       // {
       //   label: "Чиқиш",
       //   path: "/entry-exit-control",
-      // },
+      // }
     ],
     icon: Avtotormoz,
 
@@ -219,11 +219,13 @@ export const register_rukva = [
   { label: "Sana" },
   { label: "Vagon nomeri" },
   { label: "Ulanish rukva markasi" },
-  { label: "Ulanish rukva markasi" },
+  { label: "Ulanish rukva markasi 2" },
   { label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2" },
+  { label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2 (2)" },
   { label: "Ushlab turish vaqti 10 daqiqa" },
   { label: "Suv bilan tekshiruvi 12-0.2 kgs/sm2" },
   { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa" },
+  { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (2)" },
   { label: "Ta'mirlovchini" },
   { label: "Qabulqiluvchi imzosi" },
   { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },

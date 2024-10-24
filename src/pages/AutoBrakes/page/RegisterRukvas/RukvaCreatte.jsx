@@ -139,7 +139,7 @@ export const RukvaCreate = () => {
               <FormLabel>Havo bilan tekshirish 6.0 5 0,5 kg/sm2 (2)</FormLabel>
               <Input
                 borderColor={"gray.600"}
-                {...register("check_with_gass", { required: true })}
+                {...register("check_with_gass2", { required: true })}
                 type="text"
                 placeholder="Havo bilan tekshirish 6.0 5 0,5 kg/sm2"
               />
@@ -171,7 +171,7 @@ export const RukvaCreate = () => {
               <FormLabel>Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (2)</FormLabel>
               <Input
                 borderColor={"gray.600"}
-                {...register("stay_time_2", { required: true })}
+                {...register("stay_time_2_2", { required: true })}
                 type="text"
                 placeholder="Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa"
               />
