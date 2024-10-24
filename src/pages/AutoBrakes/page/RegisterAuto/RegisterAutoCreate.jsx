@@ -107,7 +107,7 @@ export const RegisterAutoCreate = () => {
                 borderColor={"gray.600"}
                 {...register("automode_factory_number", { required: true })}
                 type="text"
-                placeholder="Ta’mir turi "
+                placeholder="Avtorejim zavod raqami"
               />
             </FormControl>
             <FormControl isInvalid={errors?.automode_roll_size}>

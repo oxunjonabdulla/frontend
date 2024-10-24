@@ -59,7 +59,7 @@ export const RukvaCreate = () => {
     <MainHeads title="Rukva jurnalini ro‘yxatga olish ">
       <Container maxW={"container.xl"} my={8}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={8}>
             <SearchTrain
               setSerachingResult={setSerachingResult}
               //   setTestResult={setTestResult}
@@ -73,7 +73,6 @@ export const RukvaCreate = () => {
                 placeholder="Sana"
               />
             </FormControl>
-
             <FormControl isInvalid={errors?.connect_rukva_brand_1}>
               <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
                 Ulanish rukva markasi
@@ -85,7 +84,9 @@ export const RukvaCreate = () => {
                 placeholder="    Ulanish rukva markasi 1 "
               />
             </FormControl>
+          </Flex>
 
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={8}>
             <FormControl isInvalid={errors?.connect_rukva_brand_2}>
               <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
                 Ulanish rukva markasi
@@ -97,14 +98,6 @@ export const RukvaCreate = () => {
                 placeholder="Ulanish rukva markasi 2"
               />
             </FormControl>
-          </Flex>
-
-          <Flex
-            gap={3}
-            flexWrap={["wrap", "nowrap"]}
-            alignItems={"center"}
-            mb={4}
-          >
             <FormControl isInvalid={errors?.check_with_gass}>
               <FormLabel>Havo bilan tekshirish 6.0 5 0,5 kg/sm2</FormLabel>
               <Input
@@ -124,6 +117,15 @@ export const RukvaCreate = () => {
                 placeholder="Ushlab turish vaqti 10 daqiqa"
               />
             </FormControl>
+          </Flex>
+          
+          <Flex
+            gap={3}
+            flexWrap={["wrap", "nowrap"]}
+            alignItems={"center"}
+            mb={5}
+          >
+            
             <FormControl isInvalid={errors?.water_gass}>
               <FormLabel>Suv bilan tekshiruvi 12-0.2 kgs/sm2</FormLabel>
               <Input
@@ -133,13 +135,6 @@ export const RukvaCreate = () => {
                 placeholder="Suv bilan tekshiruvi 12-0.2 kgs/sm2"
               />
             </FormControl>
-          </Flex>
-          <Flex
-            gap={3}
-            flexWrap={["wrap", "nowrap"]}
-            alignItems={"center"}
-            mb={4}
-          >
             <FormControl isInvalid={errors?.stay_time_2}>
               <FormLabel>Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa</FormLabel>
               <Input
