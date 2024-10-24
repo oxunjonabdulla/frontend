@@ -73,77 +73,7 @@ export const RukvaCreate = () => {
                 placeholder="Sana"
               />
             </FormControl>
-            <FormControl isInvalid={errors?.connect_rukva_brand_1}>
-              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
-                Ulanish rukva markasi
-              </FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("connect_rukva_brand_1", { required: true })}
-                type="text"
-                placeholder="    Ulanish rukva markasi 1 "
-              />
-            </FormControl>
-          </Flex>
 
-          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={8}>
-            <FormControl isInvalid={errors?.connect_rukva_brand_2}>
-              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
-                Ulanish rukva markasi
-              </FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("connect_rukva_brand_2", { required: true })}
-                type="text"
-                placeholder="Ulanish rukva markasi 2"
-              />
-            </FormControl>
-            <FormControl isInvalid={errors?.check_with_gass}>
-              <FormLabel>Havo bilan tekshirish 6.0 5 0,5 kg/sm2</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("check_with_gass", { required: true })}
-                type="text"
-                placeholder="Havo bilan tekshirish 6.0 5 0,5 kg/sm2"
-              />
-            </FormControl>
-
-            <FormControl isInvalid={errors?.stay_time_10}>
-              <FormLabel>Ushlab turish vaqti 10 daqiqa</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("stay_time_10", { required: true })}
-                type="text"
-                placeholder="Ushlab turish vaqti 10 daqiqa"
-              />
-            </FormControl>
-          </Flex>
-          
-          <Flex
-            gap={3}
-            flexWrap={["wrap", "nowrap"]}
-            alignItems={"center"}
-            mb={5}
-          >
-            
-            <FormControl isInvalid={errors?.water_gass}>
-              <FormLabel>Suv bilan tekshiruvi 12-0.2 kgs/sm2</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("water_gass", { required: true })}
-                type="text"
-                placeholder="Suv bilan tekshiruvi 12-0.2 kgs/sm2"
-              />
-            </FormControl>
-            <FormControl isInvalid={errors?.stay_time_2}>
-              <FormLabel>Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa</FormLabel>
-              <Input
-                borderColor={"gray.600"}
-                {...register("stay_time_2", { required: true })}
-                type="text"
-                placeholder="Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa"
-              />
-            </FormControl>
             <FormControl isInvalid={errors?.avtotormoz_plumber_user_signature}>
               <FormLabel>Imzolovchi xodim</FormLabel>
               <Select
@@ -161,6 +91,100 @@ export const RukvaCreate = () => {
                 <option value={"qahhorov_ravshan"}>Qahhorov Ravshan</option>
                 <option value={"maxmudov_qobil"}>Maxmudov Qobil</option>
               </Select>
+            </FormControl>
+          </Flex>
+
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={8}>
+            <FormControl isInvalid={errors?.connect_rukva_brand_1}>
+              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
+                Ulanish rukva markasi 1
+              </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("connect_rukva_brand_1", { required: true })}
+                type="text"
+                placeholder="Ulanish rukva markasi 1 "
+              />
+            </FormControl>
+
+            <FormControl isInvalid={errors?.connect_rukva_brand_2}>
+              <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
+                Ulanish rukva markasi 2
+              </FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("connect_rukva_brand_2", { required: true })}
+                type="text"
+                placeholder="Ulanish rukva markasi 2"
+              />
+            </FormControl>
+            <FormControl isInvalid={errors?.check_with_gass}>
+              <FormLabel>Havo bilan tekshirish 6.0 5 0,5 kg/sm2 (1)</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("check_with_gass", { required: true })}
+                type="text"
+                placeholder="Havo bilan tekshirish 6.0 5 0,5 kg/sm2"
+              />
+            </FormControl>
+          </Flex>
+          
+          <Flex
+            gap={3}
+            flexWrap={["wrap", "nowrap"]}
+            alignItems={"center"}
+            mb={5}
+          >
+            <FormControl isInvalid={errors?.check_with_gass2}>
+              <FormLabel>Havo bilan tekshirish 6.0 5 0,5 kg/sm2 (2)</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("check_with_gass", { required: true })}
+                type="text"
+                placeholder="Havo bilan tekshirish 6.0 5 0,5 kg/sm2"
+              />
+            </FormControl>
+
+            <FormControl isInvalid={errors?.water_gass}>
+              <FormLabel>Suv bilan tekshiruvi 12-0.2 kgs/sm2</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("water_gass", { required: true })}
+                type="text"
+                placeholder="Suv bilan tekshiruvi 12-0.2 kgs/sm2"
+              />
+            </FormControl>
+
+            <FormControl isInvalid={errors?.stay_time_2}>
+              <FormLabel>Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (1)</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("stay_time_2", { required: true })}
+                type="text"
+                placeholder="Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa"
+              />
+            </FormControl>
+          </Flex>
+
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={8}>
+            <FormControl isInvalid={errors?.stay_time_2_2}>
+              <FormLabel>Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (2)</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("stay_time_2", { required: true })}
+                type="text"
+                placeholder="Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa"
+              />
+            </FormControl>
+            
+            <FormControl isInvalid={errors?.stay_time_10}>
+              <FormLabel>Ushlab turish vaqti 10 daqiqa</FormLabel>
+              <Input
+                borderColor={"gray.600"}
+                {...register("stay_time_10", { required: true })}
+                type="text"
+                placeholder="Ushlab turish vaqti 10 daqiqa"
+              />
             </FormControl>
           </Flex>
 

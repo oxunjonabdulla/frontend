@@ -162,10 +162,10 @@ export const routersSidebar = [
         label: "Rukavalarni ro‘yxatga olish jurnali",
         path: "/register-rukvas",
       },
-      {
-        label: "Чиқиш",
-        path: "/entry-exit-control",
-      },
+      // {
+      //   label: "Чиқиш",
+      //   path: "/entry-exit-control",
+      // },
     ],
     icon: Avtotormoz,
 
