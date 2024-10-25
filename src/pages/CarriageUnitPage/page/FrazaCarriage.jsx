@@ -239,9 +239,9 @@ export const FrazaCarriage = () => {
                 {gettingData?.results.map((item, idx) => (
                   <Fragment key={item?.id}>
                     <Tr>
-                      <Td rowSpan={8}>{idx + 1}</Td>
+                      <Td rowSpan={6}>{idx + 1}</Td>
                       <Td
-                        rowSpan={8}
+                        rowSpan={6}
                         fontWeight={700}
                         color={"green.900"}
                         whiteSpace={"nowrap"}
@@ -254,14 +254,14 @@ export const FrazaCarriage = () => {
                         </ul>
                       </Td>
                       <Td
-                        rowSpan={8}
+                        rowSpan={6}
                         height={"100%"}
                         fontWeight={700}
                         color={"green"}
                       >
                         {item?.carriage}
                       </Td>
-                      <Td rowSpan={8} textAlign={"center"}>
+                      <Td rowSpan={6} textAlign={"center"}>
                         {item?.mad_3108 ? item?.mad_3108 : "N/A"}
                       </Td>
                       <Td>61</Td>
@@ -273,14 +273,14 @@ export const FrazaCarriage = () => {
                       <Td>{item?.c61_num_depo}</Td>
                       <Td>{item?.c61_work_date}</Td>
                       <Td>{item?.c61_work_num}</Td>
-                      <Td rowSpan={8}>
+                      <Td rowSpan={6}>
                         {item?.signature_image_url ? (
                           <Image src={imageGet(item?.signature_image_url)} />
                         ) : (
                           <Text color={"red"}>Imzo qo`yilmagan</Text>
                         )}
                       </Td>
-                      <Td rowSpan={8}>
+                      <Td rowSpan={6}>
                         <Flex gap={2} m={0} flexDir={"column"}>
                           <IconButton
                             colorScheme="red"
@@ -300,28 +300,6 @@ export const FrazaCarriage = () => {
                       <Td>{item?.c62_num_depo}</Td>
                       <Td>{item?.c62_work_date}</Td>
                       <Td>{item?.c62_work_num}</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>63</Td>
-                      <Td>0</Td>
-                      <Td>29</Td>
-                      <Td>{item?.c63_code_builder}</Td>
-                      <Td>{item?.c63_num_zavod}</Td>
-                      <Td>{item?.c63_year_build}</Td>
-                      <Td>{item?.c63_num_depo}</Td>
-                      <Td>{item?.c63_work_date}</Td>
-                      <Td>{item?.c63_work_num}</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>64</Td>
-                      <Td>0</Td>
-                      <Td>29</Td>
-                      <Td>{item?.c64_code_builder}</Td>
-                      <Td>{item?.c64_num_zavod}</Td>
-                      <Td>{item?.c64_year_build}</Td>
-                      <Td>{item?.c64_num_depo}</Td>
-                      <Td>{item?.c64_work_date}</Td>
-                      <Td>{item?.c64_work_num}</Td>
                     </Tr>
                     <Tr>
                       <Td>71</Td>
