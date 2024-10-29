@@ -226,7 +226,6 @@ export const register_rukva = [
   { label: "Suv bilan tekshiruvi 12-0.2 kgs/sm2" },
   { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa" },
   { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (2)" },
-  { label: "Ta'mirlovchini" },
   { label: "Qabulqiluvchi imzosi" },
   { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
   { label: "" },
