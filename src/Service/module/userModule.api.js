@@ -1512,7 +1512,24 @@ class UserApi extends React.Component {
   }
   async updateVu36Current(id, obj) {
     try {
-      const response = await privateInstance.patch(authEndpoints.vu36Current(id), obj);
+      const response = await privateInstance.patch(
+        authEndpoints.vu36Current(id),
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // Wheel User Signature
+  async getWheelUserSignature(paramObj) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.wheelUserSignatureAll,
+        {params: paramObj}
+      );
+
       return { response };
     } catch (error) {
       return { error };

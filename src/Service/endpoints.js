@@ -64,7 +64,7 @@ const authEndpoints = {
   // phrase wheel
   phraseWheelList: `/phrase_wheel/list/`,
   phraseWheelGet: (carriageID) => `/${carriageID}/phrase_wheel/`,
-  phraseWheelPost: (carriageID) => `/${carriageID}/phrase_wheel/`,
+  phraseWheelPost: carriageID => `/${carriageID}/phrase_wheel/`,
   phraseWheelDelete: (carriageID) => `/${carriageID}/phrase_wheel/`,
 
   // phrase cart
@@ -172,6 +172,9 @@ const authEndpoints = {
   // vu36 current repair
   vu36Current: (carriageID) => `/vu36-current/${carriageID}/`,
   vu36CurrentAll: `/vu36-current/`,
+
+  // Wheel User Signature
+  wheelUserSignatureAll: `/wheel-user-signature/list/`,
 };
 
 export { authEndpoints };

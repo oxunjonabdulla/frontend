@@ -204,8 +204,11 @@ export const Fraza_wheel = () => {
                   <Th rowSpan={3} textAlign={"center"}>
                     Imzo
                   </Th>
+                  <Th rowSpan={3} textAlign={"center"}>
+                      Qabulqiluvchi imzosi	
+                  </Th>
                   <Th rowSpan={3} textAlign={"center"}></Th>
-                  <Th rowSpan={3}>Ma'lumot yozilgan vaqti</Th>
+                  <Th rowSpan={3}>Ma&#39;lumot yozilgan vaqti</Th>
                 </Tr>
                 <Tr>
                   {mockHeaderFraza?.nestedHeaders?.map((item) => (
@@ -271,6 +274,16 @@ export const Fraza_wheel = () => {
                           />
                         ) : (
                           <Text color={"red"}>Imzo o`chirilgan</Text>
+                        )}
+                      </Td>
+                      <Td rowSpan={4}>
+                        {item?.wheel_signature_user_info ? (
+                          <Image
+                            w={"100px"}
+                            src={imageGet(item?.wheel_signature_user_info?.signature_image)}
+                          />
+                        ) : (
+                          <Text color={"red"}>Imzo kiritilmagan</Text>
                         )}
                       </Td>
                       <Td rowSpan={4}>
