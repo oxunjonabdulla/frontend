@@ -62,6 +62,9 @@ export const InviteTable = ({ data }) => {
     setShowBackData(data);
   };
 
+  console.log(data);
+  
+
   return (
     <>
       {" "}
@@ -144,7 +147,7 @@ export const InviteTable = ({ data }) => {
                 <Td>
                   {" "}
                   <Flex gap={2} justifyContent={"center"}>
-                    {!item?.accepted_detail ? (
+                    {!item?.accepted_detail.arrow_neck_diametr_chap ? (
                       <Flex justify={"center"} align={"center"} gap={2} m={0}>
                         <Text>Orqa tomonini kiritish:</Text>
                         <IconButton
