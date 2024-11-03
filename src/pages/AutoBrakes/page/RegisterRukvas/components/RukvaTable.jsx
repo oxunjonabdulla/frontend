@@ -116,7 +116,6 @@ const RukvaTable = memo(function RukvaTable() {
                     src={imageGet(item?.author_info?.user_signature_url)}
                   />
                 </Td>
-                <Td></Td>
                 <Td>
                   <ImageSignature
                     signatureImage={item?.avtotormoz_signature_image_url}
