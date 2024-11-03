@@ -161,7 +161,7 @@ export const VU_50 = () => {
                     <Td>{item?.receiving_station_name}</Td>
                     <Td>
                       <ImageSignature
-                        signatureImage={item?.wheel_signature_user}
+                        signatureImage={item?.wheel_signature_user_info?.signature_image}
                       />
                     </Td>
                     <Td colSpan={4}>

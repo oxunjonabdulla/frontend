@@ -11,11 +11,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
 import { FormWheel } from "./FormWheel";
@@ -23,6 +24,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 export const VU_50_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
+  const [wheelUser, setWheelUser] = useState([]);
+
   const toast = useToast();
   const {
     register,
@@ -66,6 +69,20 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response } = await new UserApi().getWheelUserSignature();
+      if (response) setWheelUser(response?.data.filter(u =>
+        u.name === 'bobonazarov_magamet' ||
+        u.name === 'rahmonov_kamol' ||
+        u.name === 'xolyorov_mansur')
+      );
+    };
+    fetchData();
+    // rahmonov_kamol
+    // xolyorov_mansur
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -101,6 +118,19 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
                   {...register("wheels_send_pair", { required: true })}
                   type="text"
                 />
+              </FormControl>
+
+              <FormControl isInvalid={errors?.gildirak_user_signature}>
+                <FormLabel>Imzolovchi xodim</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Imzolovchi xodim"
+                  {...register("gildirak_user_signature", { required: true })}
+                >
+                  {wheelUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
               </FormControl>
             </Flex>
 
