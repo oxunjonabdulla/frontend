@@ -102,7 +102,6 @@ const RegulyatorTable = memo(function RegulyatorTable() {
                 <Td>{item.a_ptp_to_mm}</Td>
                 <Td>{item.b_ptp_to_mm}</Td>
                 <Td>{item.prp_to_mm}</Td>
-                <Td>{item.prp_to_mm}</Td>
                 <Td>{item.repair_check}</Td>
 
                 <Td>

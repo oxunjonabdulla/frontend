@@ -33,7 +33,7 @@ export const AccaptedTable = ({ data, isOpen, onClose }) => {
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
         <ModalHeader textAlign={"center"}>
-          VU-51 Jurnalini orqa qismi ko'rinsihini
+          VU-51 Jurnalini orqa qismi ko&#39;rinsihini
         </ModalHeader>
         <ModalCloseButton />{" "}
         <ModalBody>

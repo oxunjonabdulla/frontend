@@ -64,7 +64,7 @@ const authEndpoints = {
   // phrase wheel
   phraseWheelList: `/phrase_wheel/list/`,
   phraseWheelGet: (carriageID) => `/${carriageID}/phrase_wheel/`,
-  phraseWheelPost: carriageID => `/${carriageID}/phrase_wheel/`,
+  phraseWheelPost: (carriageID) => `/${carriageID}/phrase_wheel/`,
   phraseWheelDelete: (carriageID) => `/${carriageID}/phrase_wheel/`,
 
   // phrase cart
@@ -112,7 +112,7 @@ const authEndpoints = {
   vu51Delate: (carriageID) => `/${carriageID}/vu51/`,
   postInviteVu51: (carriageID) => `/${carriageID}/vu51/invite/`,
   getInviteVu51: (carriageID) => `/${carriageID}/vu51/invite/`,
-  postAcceptedVu51: (carriageID) => `/${carriageID}/vu51/accept/`,
+  postAcceptedVu51: (carriageID) => `/vu51/accept/${carriageID}/`,
   createVu51: `/vu51/create/`,
   vu51All: (page) => `/vu51/list/?page=${page + 1}`,
   // vu 53

@@ -30,10 +30,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
   const onSubmit = async (data) => {
     setLoading(true);
 
-    const { response, error } = await new UserApi().postIntiveVu51Api({
-      invite_detail: accaptedData?.invite_detail,
-      accepted_detail: data,
-    });
+    const { response, error } = await new UserApi().postAcceptedVu51Api(accaptedData.uuid, data);
     setLoading(false);
     if (response) {
       toast({

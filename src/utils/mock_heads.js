@@ -243,7 +243,6 @@ export const register_rehulyator = [
   },
   { label: "5746 5-7 MM, PTPП 675, PTPN 675M 7-20 MM PTPN 300 5-10 MM gacha" },
   { label: "Texnik xolati " },
-  { label: "Ta'mirlovchini" },
   { label: "Qabulqiluvchi imzosi" },
   { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
   { label: "" },

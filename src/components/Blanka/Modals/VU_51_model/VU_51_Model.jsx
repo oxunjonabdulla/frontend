@@ -1,5 +1,4 @@
 import {
-  Button,
   Flex,
   Modal,
   ModalCloseButton,
@@ -29,7 +28,7 @@ export const VU_51_Model = ({ onClose, isOpen }) => {
           mt={8}
           gap={4}
         >
-          <Text>VU-51 shakl kelgan qismini qo'shish</Text>
+          <Text>VU-51 shakl kelgan qismini qo&#39;shish</Text>
         </Flex>
 
         <ModalCloseButton />
