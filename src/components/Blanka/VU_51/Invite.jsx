@@ -41,6 +41,7 @@ export const InviteTable = ({ data }) => {
     onClose: onCloseUpdate,
     onOpen: onOpenUpdate,
   } = useDisclosure();
+  
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
@@ -61,9 +62,6 @@ export const InviteTable = ({ data }) => {
     onOpenShowBack();
     setShowBackData(data);
   };
-
-  console.log(data);
-  
 
   return (
     <>

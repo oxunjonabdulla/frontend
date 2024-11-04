@@ -66,7 +66,7 @@ export const Invite = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("carriage_depo_station", { required: true })}
+              {...register("carriage_depo_station")}
               type="text"
             />
           </FormControl>
@@ -74,7 +74,7 @@ export const Invite = ({ onClose }) => {
             <FormLabel whiteSpace={["wrap", "depo_text"]}>j.d</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("depo_text", { required: true })}
+              {...register("depo_text")}
               type="text"
             />
           </FormControl>
@@ -87,7 +87,7 @@ export const Invite = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("invite_date", { required: true })}
+              {...register("invite_date")}
               type="date"
             />
           </FormControl>
@@ -95,7 +95,7 @@ export const Invite = ({ onClose }) => {
             <FormLabel>G‘ilidrak juftligi raqami </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("wheel_pair_number", { required: true })}
+              {...register("wheel_pair_number")}
               type="text"
             />
           </FormControl>
@@ -103,7 +103,7 @@ export const Invite = ({ onClose }) => {
             <FormLabel>Turi </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("wheel_pair_type", { required: true })}
+              {...register("wheel_pair_type")}
               type="text"
             />
           </FormControl>
@@ -116,7 +116,7 @@ export const Invite = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("last_formation", { required: true })}
+              {...register("last_formation")}
               type="text"
             />
           </FormControl>
@@ -127,7 +127,7 @@ export const Invite = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("full_inspaction", { required: true })}
+              {...register("full_inspaction")}
               type="text"
             />
           </FormControl>
@@ -139,7 +139,7 @@ export const Invite = ({ onClose }) => {
             </FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("carriage_under", { required: true })}
+              {...register("carriage_under")}
               type="text"
             />
           </FormControl>
@@ -176,7 +176,7 @@ export const Invite = ({ onClose }) => {
             <FormLabel>Talab qilingan tamir turi</FormLabel>
             <Input
               borderColor={"gray.600"}
-              {...register("repair_required", { required: true })}
+              {...register("repair_required")}
               type="text"
             />
           </FormControl>
@@ -187,7 +187,7 @@ export const Invite = ({ onClose }) => {
             <Input
               mt={8}
               borderColor={"gray.600"}
-              {...register("inviting_date", { required: true })}
+              {...register("inviting_date")}
               type="date"
             />
           </FormControl>

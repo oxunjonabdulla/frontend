@@ -97,7 +97,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("last_formation", { required: true })}
+                    {...register("last_formation")}
                     type="text"
                   />
                 </FormControl>
@@ -108,7 +108,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("full_inspaction", { required: true })}
+                    {...register("full_inspaction")}
                     type="text"
                   />
                 </FormControl>
@@ -135,7 +135,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("carriage_using_number", { required: true })}
+                    {...register("carriage_using_number")}
                     type="text"
                   />
                 </FormControl>
@@ -143,7 +143,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   <FormLabel>Yuborilgan VCHD, Zavod PTO si </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("shipped_vchd", { required: true })}
+                    {...register("shipped_vchd")}
                     type="text"
                   />
                 </FormControl>
@@ -168,7 +168,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   <FormLabel>Bajarilgan tamir turi</FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("repair_perfomed", { required: true })}
+                    {...register("repair_perfomed")}
                     type="text"
                   />
                 </FormControl>
@@ -296,7 +296,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("shaft_diametr_right", { required: true })}
+                      {...register("shaft_diametr_right")}
                       type="text"
                     />
                   </FormControl>
@@ -304,7 +304,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("shaft_diametr_left", { required: true })}
+                      {...register("shaft_diametr_left")}
                       type="text"
                     />
                   </FormControl>
@@ -325,7 +325,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("wheel_thickness_right", { required: true })}
+                      {...register("wheel_thickness_right")}
                       type="text"
                     />
                   </FormControl>
@@ -333,7 +333,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("wheel_thickness_left", { required: true })}
+                      {...register("wheel_thickness_left")}
                       type="text"
                     />
                   </FormControl>
@@ -346,7 +346,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("wheel_rolling_right", { required: true })}
+                      {...register("wheel_rolling_right")}
                       type="text"
                     />
                   </FormControl>
@@ -354,7 +354,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("wheel_rolling_left", { required: true })}
+                      {...register("wheel_rolling_left")}
                       type="text"
                     />
                   </FormControl>
@@ -367,7 +367,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("wheel_diametr_right", { required: true })}
+                      {...register("wheel_diametr_right")}
                       type="text"
                     />
                   </FormControl>
@@ -375,7 +375,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("wheel_diametr_left", { required: true })}
+                      {...register("wheel_diametr_left")}
                       type="text"
                     />
                   </FormControl>
@@ -419,7 +419,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("date_of_repair", { required: true })}
+                    {...register("date_of_repair")}
                     type="date"
                   />
                 </FormControl>
@@ -429,7 +429,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("invited_date", { required: true })}
+                    {...register("invited_date")}
                     type="date"
                   />
                 </FormControl>

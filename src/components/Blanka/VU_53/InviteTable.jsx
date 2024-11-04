@@ -1,5 +1,6 @@
 import {
   Flex,
+  IconButton,
   Table,
   Tbody,
   Td,
@@ -7,7 +8,6 @@ import {
   Th,
   Thead,
   Tr,
-  useDisclosure,
 } from "@chakra-ui/react";
 
 import { vu_53 } from "../../../utils/mock_heads";
@@ -15,14 +15,16 @@ import UserApi from "../../../Service/module/userModule.api";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SliderMock } from "../../../utils";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { Deleteted } from "../../Deletete";
+
 
 export const InviteTable = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
-  // const [delateModal, setDelateModal] = useState(null);
-  // const [deletedID, setDeleteID] = useState(null);
+  const [delateModal, setDelateModal] = useState(null);
+  const [deletedID, setDeleteID] = useState(null);
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const handlePageClick = (data) => {
@@ -32,29 +34,28 @@ export const InviteTable = () => {
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu53All(page);
-    console.log(response?.data?.response);
+    console.log(response?.data);
     
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
     }
-    console.log(response?.data);
-    
   };
 
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
-  // const handleDelate = async (carriageID) => {
-  //   const { response } = await new UserApi().deleteVu68(carriageID);
-  //   if (response) {
-  //     window.location.reload();
-  //   }
-  // };
-  // const handleCheckAndDelete = (deletedID) => {
-  //   setDelateModal(true);
-  //   setDeleteID(deletedID);
-  // };
+
+  const handleDelate = async (carriageID) => {
+    const { response } = await new UserApi().deleteVu53Prihod(carriageID);
+    if (response) window.location.reload();
+  };
+
+  const handleCheckAndDelete = (deletedID) => {
+    setDelateModal(true);
+    setDeleteID(deletedID);
+  };
+
   return (
     <>
       {!isLoadingFulStatistik ? (
@@ -131,6 +132,13 @@ export const InviteTable = () => {
                   <Td>{e?.vu53_prihod?.greb_setting_1}</Td>
                   <Td>{e?.vu53_prihod?.prokat_1}</Td>
                   <Td>{e?.vu53_prihod?.away_obod_1}</Td>
+                  <Td>
+                    <IconButton
+                      colorScheme="red"
+                      onClick={() => handleCheckAndDelete(e?.id)}
+                      icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                    />
+                  </Td>
                 </Tr>
               ))}
             </Tbody>
@@ -151,6 +159,12 @@ export const InviteTable = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+      <Deleteted
+        isOpen={delateModal}
+        onClose={setDelateModal}
+        carriageNumber={String(deletedID)}
+        deletedFunction={handleDelate}
+      />
     </>
   );
 };

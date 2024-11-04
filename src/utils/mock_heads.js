@@ -1172,6 +1172,7 @@ export const vu_53 = {
       label: "G`ildirak juftligi o`lchamlari (мм)",
       colspan: 6,
     },
+    { label: " ", rowspan: 2 },
   ],
 
   nestedHeaders: [
