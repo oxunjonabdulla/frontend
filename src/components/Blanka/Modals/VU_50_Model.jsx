@@ -79,8 +79,6 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
       );
     };
     fetchData();
-    // rahmonov_kamol
-    // xolyorov_mansur
   }, []);
 
   return (

@@ -21,37 +21,40 @@ export const InviteTable = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
-  const [delateModal, setDelateModal] = useState(null);
-  const [deletedID, setDeleteID] = useState(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const [delateModal, setDelateModal] = useState(null);
+  // const [deletedID, setDeleteID] = useState(null);
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handlePageClick = (data) => {
-    const selectedPage = data.selected;
-    setCurrentPage(selectedPage);
-  };
+  // const handlePageClick = (data) => {
+  //   const selectedPage = data.selected;
+  //   setCurrentPage(selectedPage);
+  // };
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu53All(page);
-
+    console.log(response?.data?.response);
+    
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
     }
+    console.log(response?.data);
+    
   };
 
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
-  const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu68(carriageID);
-    if (response) {
-      window.location.reload();
-    }
-  };
-  const handleCheckAndDelete = (deletedID) => {
-    setDelateModal(true);
-    setDeleteID(deletedID);
-  };
+  // const handleDelate = async (carriageID) => {
+  //   const { response } = await new UserApi().deleteVu68(carriageID);
+  //   if (response) {
+  //     window.location.reload();
+  //   }
+  // };
+  // const handleCheckAndDelete = (deletedID) => {
+  //   setDelateModal(true);
+  //   setDeleteID(deletedID);
+  // };
   return (
     <>
       {!isLoadingFulStatistik ? (
@@ -104,30 +107,30 @@ export const InviteTable = () => {
                   <Td fontWeight={700} color={"green.900"}>
                     {e?.carriage}
                   </Td>
-                  <Td>{e?.vu53_prihod.wheel_pair_sostav_1}</Td>
-                  <Td>{e?.vu53_prihod.sobstva_wheel_pair_1}</Td>
-                  <Td>{e?.vu53_prihod.type_wheel_pair_1}</Td>
-                  <Td>{e?.vu53_prihod.date_of_pustupleniya_1}</Td>
-                  <Td>{e?.vu53_prihod.factory_1}</Td>
-                  <Td>{e?.vu53_prihod.vedimis_nomer_1}</Td>
-                  <Td>{e?.vu53_prihod.is_pod_carriage_number_1}</Td>
-                  <Td>{e?.vu53_prihod.repair_type_1}</Td>
-                  <Td>{e?.vu53_prihod.last_repair_date_1}</Td>
-                  <Td>{e?.vu53_prihod.last_repair_punkt_1}</Td>
-                  <Td>{e?.vu53_prihod.buks_montaj_uzel_date_1}</Td>
-                  <Td>{e?.vu53_prihod.buks_montaj_uzel_last_1}</Td>
-                  <Td>{e?.vu53_prihod.obot_pair_date_1}</Td>
+                  <Td>{e?.vu53_prihod?.wheel_pair_sostav_1}</Td>
+                  <Td>{e?.vu53_prihod?.sobstva_wheel_pair_1}</Td>
+                  <Td>{e?.vu53_prihod?.type_wheel_pair_1}</Td>
+                  <Td>{e?.vu53_prihod?.date_of_pustupleniya_1}</Td>
+                  <Td>{e?.vu53_prihod?.factory_1}</Td>
+                  <Td>{e?.vu53_prihod?.vedimis_nomer_1}</Td>
+                  <Td>{e?.vu53_prihod?.is_pod_carriage_number_1}</Td>
+                  <Td>{e?.vu53_prihod?.repair_type_1}</Td>
+                  <Td>{e?.vu53_prihod?.last_repair_date_1}</Td>
+                  <Td>{e?.vu53_prihod?.last_repair_punkt_1}</Td>
+                  <Td>{e?.vu53_prihod?.buks_montaj_uzel_date_1}</Td>
+                  <Td>{e?.vu53_prihod?.buks_montaj_uzel_last_1}</Td>
+                  <Td>{e?.vu53_prihod?.obot_pair_date_1}</Td>
                   <Td>Chap ong</Td>
-                  <Td>{e?.vu53_prihod.obot_pair_1}</Td>
-                  <Td>{e?.vu53_prihod.type_buks_1}</Td>
-                  <Td>{e?.vu53_prihod.is_repair_1 ? "Ha " : "Yo'q"}</Td>
-                  <Td>{e?.vu53_prihod.is_repair_newtype_1}</Td>
-                  <Td>{e?.vu53_prihod.is_repair_error_1}</Td>
-                  <Td>{e?.vu53_prihod.katana_diametr_1}</Td>
-                  <Td>{e?.vu53_prihod.tolshnik_obod_1}</Td>
-                  <Td>{e?.vu53_prihod.greb_setting_1}</Td>
-                  <Td>{e?.vu53_prihod.prokat_1}</Td>
-                  <Td>{e?.vu53_prihod.away_obod_1}</Td>
+                  <Td>{e?.vu53_prihod?.obot_pair_1}</Td>
+                  <Td>{e?.vu53_prihod?.type_buks_1}</Td>
+                  <Td>{e?.vu53_prihod?.is_repair_1 ? "Ha " : "Yo'q"}</Td>
+                  <Td>{e?.vu53_prihod?.is_repair_newtype_1}</Td>
+                  <Td>{e?.vu53_prihod?.is_repair_error_1}</Td>
+                  <Td>{e?.vu53_prihod?.katana_diametr_1}</Td>
+                  <Td>{e?.vu53_prihod?.tolshnik_obod_1}</Td>
+                  <Td>{e?.vu53_prihod?.greb_setting_1}</Td>
+                  <Td>{e?.vu53_prihod?.prokat_1}</Td>
+                  <Td>{e?.vu53_prihod?.away_obod_1}</Td>
                 </Tr>
               ))}
             </Tbody>

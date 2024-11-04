@@ -1,29 +1,21 @@
 import {
   Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
   ModalBody,
   ModalFooter,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Tr,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../../utils";
-import { Signatur } from "../../../Signature/Signatur";
 import { vu_53_form_second } from "../../../../utils/mock_heads";
+
 export const UseForm = ({ onClose }) => {
-  const [trainFixType, setTrainFixType] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
     register,
