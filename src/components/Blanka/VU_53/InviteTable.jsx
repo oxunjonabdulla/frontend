@@ -19,7 +19,6 @@ import { SliderMock } from "../../../utils";
 import { faBook, faEye, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Deleteted } from "../../Deletete";
 import { UseForm } from "../Modals/VU_53_model/UseForm";
-import { backIn } from "framer-motion";
 import { UseTable } from "./UseTable";
 
 

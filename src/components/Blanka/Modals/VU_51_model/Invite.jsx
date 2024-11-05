@@ -20,6 +20,7 @@ export const Invite = ({ onClose }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
   const onSubmit = async (data) => {
     setLoading(true);
 

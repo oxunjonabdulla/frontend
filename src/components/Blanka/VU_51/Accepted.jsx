@@ -18,6 +18,7 @@ import {
 
 import { vu_51 } from "../../../utils/mock_heads";
 import { imageGet } from "../../../utils/imageGet";
+import PropTypes from "prop-types";
 
 export const AccaptedTable = ({ data, isOpen, onClose }) => {
   const { accepted_detail } = data;
@@ -158,4 +159,10 @@ export const AccaptedTable = ({ data, isOpen, onClose }) => {
       </ModalContent>
     </Modal>
   );
+};
+
+AccaptedTable.propTypes = {
+  data: PropTypes.object,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
 };

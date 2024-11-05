@@ -196,9 +196,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("arrow_neck_length_right", {
-                        required: true,
-                      })}
+                      {...register("arrow_neck_length_right")}
                       type="text"
                     />
                   </FormControl>
@@ -206,9 +204,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("arrow_neck_length_left", {
-                        required: true,
-                      })}
+                      {...register("arrow_neck_length_left")}
                       type="text"
                     />
                   </FormControl>
@@ -221,9 +217,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("arrow_neck_diametr_right", {
-                        required: true,
-                      })}
+                      {...register("arrow_neck_diametr_right")}
                       type="text"
                     />
                   </FormControl>
@@ -231,9 +225,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("arrow_neck_diametr_chap", {
-                        required: true,
-                      })}
+                      {...register("arrow_neck_diametr_chap")}
                       type="text"
                     />
                   </FormControl>
@@ -246,9 +238,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("neck_stupitsa_type_right", {
-                        required: true,
-                      })}
+                      {...register("neck_stupitsa_type_right")}
                       type="text"
                     />
                   </FormControl>
@@ -256,9 +246,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("neck_stupitsa_type_left", {
-                        required: true,
-                      })}
+                      {...register("neck_stupitsa_type_left")}
                       type="text"
                     />
                   </FormControl>
@@ -271,9 +259,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("neck_stupitsa_diametr_right", {
-                        required: true,
-                      })}
+                      {...register("neck_stupitsa_diametr_right")}
                       type="text"
                     />
                   </FormControl>
@@ -281,9 +267,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("neck_stupitsa_diametr_left", {
-                        required: true,
-                      })}
+                      {...register("neck_stupitsa_diametr_left")}
                       type="text"
                     />
                   </FormControl>
@@ -388,9 +372,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="O'ng"
                       borderColor={"gray.600"}
-                      {...register("wheel_distance_between_right", {
-                        required: true,
-                      })}
+                      {...register("wheel_distance_between_right")}
                       type="text"
                     />
                   </FormControl>
@@ -398,9 +380,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     <Input
                       placeholder="Chap"
                       borderColor={"gray.600"}
-                      {...register("wheel_distance_between_left", {
-                        required: true,
-                      })}
+                      {...register("wheel_distance_between_left")}
                       type="text"
                     />
                   </FormControl>
