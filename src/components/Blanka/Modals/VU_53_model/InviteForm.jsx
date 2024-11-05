@@ -23,7 +23,6 @@ export const InviteForm = ({ onClose }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-
     const { response, error } = await new UserApi().postVu53Prihod(data);
     setLoading(false);
     if (response) {
@@ -54,6 +53,7 @@ export const InviteForm = ({ onClose }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {/* VU-53 Create */}
       <ModalBody>
         <TableContainer>
           <Table variant="striped" colorScheme="gray">

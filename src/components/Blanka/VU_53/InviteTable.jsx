@@ -8,6 +8,7 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 import { vu_53 } from "../../../utils/mock_heads";
@@ -15,8 +16,11 @@ import UserApi from "../../../Service/module/userModule.api";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SliderMock } from "../../../utils";
-import { faBook, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faEye, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Deleteted } from "../../Deletete";
+import { UseForm } from "../Modals/VU_53_model/UseForm";
+import { backIn } from "framer-motion";
+import { UseTable } from "./UseTable";
 
 
 export const InviteTable = () => {
@@ -25,6 +29,20 @@ export const InviteTable = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(null);
   const [deletedID, setDeleteID] = useState(null);
+  const [createBackId, setBackId] = useState(null);
+  const [showBack, setShowBackData] = useState({});
+
+  const {
+    isOpen: isOpenShowBack,
+    onClose: onCloseShowBack,
+    onOpen: onOpenShowBack,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenCreate,
+    onClose: onCloseCreate,
+    onOpen: onOpenCreate,
+  } = useDisclosure();
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const handlePageClick = (data) => {
@@ -54,6 +72,15 @@ export const InviteTable = () => {
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setDeleteID(deletedID);
+  };
+
+  const handleBackCreate = (data) => {
+    onOpenCreate();
+    setBackId(data);
+  };
+  const handleShowBack = (data) => {
+    onOpenShowBack();
+    setShowBackData(data);
   };
 
   return (
@@ -133,12 +160,41 @@ export const InviteTable = () => {
                   <Td>{e?.vu53_prihod?.prokat_1}</Td>
                   <Td>{e?.vu53_prihod?.away_obod_1}</Td>
                   <Td>
+                    {/* TODO : Plus OR Show */}
+                    {" "}
+                    <Flex gap={2} justifyContent={"center"}>
+                      {!e?.vu53_rasxod ? (
+                        <Flex justify={"center"} align={"center"} gap={2} m={0}>
+                          <Text>Orqa tomonini kiritish:</Text>
+                          <IconButton
+                            onClick={() => handleBackCreate(e?.id)}
+                            colorScheme="messenger"
+                            icon={<FontAwesomeIcon icon={faPlus} />}
+                          />
+                        </Flex>
+                      ) : (
+                        <Flex justify={"center"} gap={2} m={0}>
+                          <IconButton
+                            colorScheme="whatsapp"
+                              onClick={() => handleShowBack(e?.vu53_rasxod)}
+                            icon={<FontAwesomeIcon icon={faEye} />}
+                          />
+                        </Flex>
+                      )}
+                      <IconButton
+                        colorScheme="red"
+                        onClick={() => handleCheckAndDelete(e?.id)}
+                        icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                      />
+                    </Flex>
+                  </Td>
+                  {/* <Td>
                     <IconButton
                       colorScheme="red"
                       onClick={() => handleCheckAndDelete(e?.id)}
                       icon={<FontAwesomeIcon icon={faTrashAlt} />}
                     />
-                  </Td>
+                  </Td> */}
                 </Tr>
               ))}
             </Tbody>
@@ -159,6 +215,16 @@ export const InviteTable = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+      <UseTable
+        isOpen={isOpenShowBack}
+        onClose={onCloseShowBack}
+        data={showBack}
+      />
+      <UseForm
+        isOpen={isOpenCreate}
+        onClose={onCloseCreate}
+        vu53Id={createBackId}
+      />
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}

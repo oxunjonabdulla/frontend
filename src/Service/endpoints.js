@@ -116,9 +116,15 @@ const authEndpoints = {
   createVu51: `/vu51/create/`,
   vu51All: (page) => `/vu51/list/?page=${page + 1}`,
   // vu 53
+  // vu 53 prihod
   getVu53All: `/vu53/`,
   vu53IDPrihod: (id) => `/vu53_prihod/${id}/`,
   postVu53Prihod: `/vu53_prihod/create/`,
+
+  // vu 53 rasxod
+  getVu53Rasxod: `/vu53_rasxod/`,
+  vu53IDRasxod: (id) => `/vu53_rasxod/${id}/`,
+  postVu53Rasxod: (vu53Id) => `/vu53_rasxod/create/${vu53Id}`,
 
   vu31TOVu10: (carriageID) => `/vu31/${carriageID}/transfer_to_vu10/`,
   vu10: "/vu10/",

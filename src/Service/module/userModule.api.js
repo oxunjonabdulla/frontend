@@ -1253,6 +1253,7 @@ class UserApi extends React.Component {
   }
 
   // vu 53
+  // vu 53 prihod
 
   async getVu53All(params) {
     try {
@@ -1300,6 +1301,32 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  // vu 53 rasxod
+  async getVu53Rasxod(params) {
+    try {
+      const response = await privateInstance.get(authEndpoints.getVu53Rasxod, {
+        params,
+      });
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu53Rasxod(obj, vu53Id) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.postVu53Rasxod(vu53Id),
+        obj
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // vu 32
   async getVu32All(params) {
     try {
       const response = await privateInstance.get(authEndpoints.vu32List, {
@@ -1527,7 +1554,7 @@ class UserApi extends React.Component {
     try {
       const response = await privateInstance.get(
         authEndpoints.wheelUserSignatureAll,
-        {params: paramObj}
+        { params: paramObj }
       );
 
       return { response };

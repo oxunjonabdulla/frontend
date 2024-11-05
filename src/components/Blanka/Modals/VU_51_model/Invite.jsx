@@ -39,10 +39,11 @@ export const Invite = ({ onClose }) => {
         position: "top-right",
         fontSize: "3xl",
       });
-
       window.location.reload();
     }
     if (error) {
+      console.log(error?.detail);
+      
       toast({
         status: "error",
         title: error?.detail
