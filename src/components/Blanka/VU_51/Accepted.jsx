@@ -37,7 +37,7 @@ export const AccaptedTable = ({ data, isOpen, onClose }) => {
           VU-51 Jurnalini orqa qismi ko&#39;rinsihini
         </ModalHeader>
         <ModalCloseButton />{" "}
-        <ModalBody>
+        <ModalBody style={{ overflow: "auto" }}>
           <Table
             borderRadius={10}
             size={"sm"}

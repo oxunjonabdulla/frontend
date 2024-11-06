@@ -63,6 +63,11 @@ export const InviteTable = ({ data }) => {
     setShowBackData(data);
   };
 
+  const isAccepted = data => {
+    for (const k in data) if (k !== 'id' && k !== 'uuid' && data[k] !== null) return true;
+    return false;
+  };
+
   return (
     <>
       {" "}
@@ -145,7 +150,9 @@ export const InviteTable = ({ data }) => {
                 <Td>
                   {" "}
                   <Flex gap={2} justifyContent={"center"}>
-                    {!item?.accepted_detail.arrow_neck_diametr_chap ? (
+                    {/* { !item?.accepted_detail?.arrow_neck_diametr_chap ? ( */}
+                      
+                    {!isAccepted(item?.accepted_detail) ? (
                       <Flex justify={"center"} align={"center"} gap={2} m={0}>
                         <Text>Orqa tomonini kiritish:</Text>
                         <IconButton
