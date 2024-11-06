@@ -1463,14 +1463,13 @@ export const vu_92 = {
     { label: "G‘ildirak juftligi raqam", rowspan: 2 },
     { label: "Buksa qismlarini holati", rowspan: 2 },
     { label: "Taftish ishlarni bajarishda amalga oshiriladi", rowspan: 2 },
-    { label: "Imzolar", colspan: 3 },
+    { label: "Imzolar", colspan: 2 },
     { label: "Yuklash / O'chirish", rowspan: 2 },
   ],
 
   nestedHeaders: [
-    { label: "Taftish qilingan" },
-    { label: "Usta" },
-    { label: "G'ildirak juftliklari bo'linmasi chilangari Imzo qo'yuvchi" },
+    { label: "Gildirak ishchisi ustasi" },
+    { label: "G'ildirak Bo'limining chilangari Imzo qo'yuvchi" },
   ],
 };
 export const signature_head = [
@@ -1497,16 +1496,15 @@ export const vu_93 = {
       rowspan: 2,
     },
     { label: "Ko‘rinish", colspan: 2 },
-    { label: "Imzolar", colspan: 3 },
+    { label: "Imzolar", colspan: 2 },
     { label: "Yuklash / O'chirish", rowspan: 2 },
   ],
 
   nestedHeaders: [
     { label: "Yaroqsiz" },
     { label: "Amalga oshirilgan ta’mir ishlari" },
-    { label: "Ta’mirlagam shaxs imzosi" },
-    { label: "Usta" },
-    { label: "G'ildirak juftliklari bo'linmasi chilangari Imzo qo'yuvchi" },
+    { label: "Gildirak ishchisi ustasi" },
+    { label: "G'ildirak Bo'limining chilangari Imzo qo'yuvchi" },
   ],
 };
 

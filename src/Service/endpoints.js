@@ -181,6 +181,7 @@ const authEndpoints = {
 
   // Wheel User Signature
   wheelUserSignatureAll: `/wheel-user-signature/list/`,
+  wheelPlumberUserSignatureAll: `/wheel-plumber-user-signature/list/`,
 };
 
 export { authEndpoints };

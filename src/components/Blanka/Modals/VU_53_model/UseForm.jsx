@@ -105,7 +105,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                       <Td textAlign={"center"}>33</Td>
                     </Tr>
                     {/* inputs */}
-                    <Tr>
+                    {/* <Tr>
                       <Td>
                         <Input
                           borderColor={"gray.600"}
@@ -220,7 +220,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                         </Select>
                       </Td>
                       <Td>Лев</Td>
-                    </Tr>
+                    </Tr> */}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -267,7 +267,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                       <Td textAlign={"center"}>39</Td>
                     </Tr>
                     {/* inputs */}
-                    <Tr>
+                    {/* <Tr>
                       <Td>
                         <Input
                           borderColor={"gray.600"}
@@ -378,7 +378,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                           type="text"
                         />
                       </Td>
-                    </Tr>
+                    </Tr> */}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -461,7 +461,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                       <Td textAlign={"center"}>52</Td>
                     </Tr>
                     {/* inputs */}
-                    <Tr>
+                    {/* <Tr>
                       <Td>
                         <Input
                           borderColor={"gray.600"}
@@ -680,7 +680,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                           type="text"
                         />
                       </Td>
-                    </Tr>
+                    </Tr> */}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -744,8 +744,8 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                       <Td textAlign={"center"}>62</Td>
                       <Td textAlign={"center"}>63</Td>
                     </Tr>
-{/* inputs */}
-                    <Tr>
+                    {/* inputs */}
+                    {/* <Tr>
                       <Td>
                         <Input
                           borderColor={"gray.600"}
@@ -946,7 +946,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                           type="text"
                         />
                       </Td>
-                    </Tr>
+                    </Tr> */}
                   </Tbody>
                 </Table>
               </TableContainer>

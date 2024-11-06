@@ -11,14 +11,17 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
 export const VU_91_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
+  const [wheelPlumberUser, setWheelPlumberUser] = useState([]);
+
   const toast = useToast();
   const {
     register,
@@ -56,6 +59,14 @@ export const VU_91_Model = ({ onClose, isOpen }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response: wheelPlumberUserSignature } = await new UserApi().getWheelPlumberUserSignature();
+      if (wheelPlumberUserSignature) setWheelPlumberUser(wheelPlumberUserSignature?.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -81,6 +92,18 @@ export const VU_91_Model = ({ onClose, isOpen }) => {
                   {...register("seen_date", { required: true })}
                   type="date"
                 />
+              </FormControl>
+              <FormControl isInvalid={errors?.gildirak_chilangar_user_signature}>
+                <FormLabel>G&rsquo;ildirak Plumber foydalanuvchi imzosi</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="G'ildirak Plumber foydalanuvchi imzosi"
+                  {...register("gildirak_chilangar_user_signature", { required: true })}
+                >
+                  {wheelPlumberUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
               </FormControl>
             </Flex>
 

@@ -11,17 +11,21 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { SearchTrain } from "../../../utils";
 import UserApi from "../../../Service/module/userModule.api";
 export const VU_92_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
   const [serachingResult, setSerachingResult] = useState(null);
+  const [wheelUser, setWheelUser] = useState([]);
+  const [wheelPlumberUser, setWheelPlumberUser] = useState([]);
+
   const toast = useToast();
   const {
     register,
@@ -77,6 +81,16 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response } = await new UserApi().getWheelUserSignature();
+      const { response: wheelPlumberUserSignature } = await new UserApi().getWheelPlumberUserSignature();
+      if (wheelPlumberUserSignature) setWheelPlumberUser(wheelPlumberUserSignature?.data);
+      if (response) setWheelUser(response?.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -104,6 +118,32 @@ export const VU_92_Model = ({ onClose, isOpen }) => {
                   {...register("inspection_date", { required: true })}
                   type="date"
                 />
+              </FormControl>
+            </Flex>
+            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+              <FormControl isInvalid={errors?.gildirak_user_signature}>
+                <FormLabel>Smena ustasi imzosi</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Smena ustasi imzosi"
+                  {...register("gildirak_user_signature", { required: true })}
+                >
+                  {wheelUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl isInvalid={errors?.gildirak_chilangar_user_signature}>
+                <FormLabel>G&rsquo;ildirak Plumber foydalanuvchi imzosi</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="G'ildirak Plumber foydalanuvchi imzosi"
+                  {...register("gildirak_chilangar_user_signature", { required: true })}
+                >
+                  {wheelPlumberUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
               </FormControl>
             </Flex>
             {fields.map((field, index) => (

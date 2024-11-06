@@ -5,9 +5,6 @@ import { timeMoment } from "../../../utils/roleTest";
 
 export const UseTable = ({ data, isOpen, onClose }) => {
 
-  console.log(data);
-  
-
   return (
     <Modal
       isOpen={isOpen}

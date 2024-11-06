@@ -11,15 +11,19 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
 export const VU_93_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
+  const [wheelUser, setWheelUser] = useState([]);
+  const [wheelPlumberUser, setWheelPlumberUser] = useState([]);
+
   const toast = useToast();
   const {
     register,
@@ -61,6 +65,16 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response } = await new UserApi().getWheelUserSignature();
+      const { response: wheelPlumberUserSignature } = await new UserApi().getWheelPlumberUserSignature();
+      if (wheelPlumberUserSignature) setWheelPlumberUser(wheelPlumberUserSignature?.data);
+      if (response) setWheelUser(response?.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -88,7 +102,32 @@ export const VU_93_Model = ({ onClose, isOpen }) => {
                 />
               </FormControl>
             </Flex>
-
+            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+              <FormControl isInvalid={errors?.gildirak_user_signature}>
+                <FormLabel>Smena ustasi imzosi</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Smena ustasi imzosi"
+                  {...register("gildirak_user_signature", { required: true })}
+                >
+                  {wheelUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl isInvalid={errors?.gildirak_chilangar_user_signature}>
+                <FormLabel>G&rsquo;ildirak Plumber foydalanuvchi imzosi</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="G'ildirak Plumber foydalanuvchi imzosi"
+                  {...register("gildirak_chilangar_user_signature", { required: true })}
+                >
+                  {wheelPlumberUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
+              </FormControl>
+            </Flex>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.chartley_model_chartley_number}>
                 <FormLabel>

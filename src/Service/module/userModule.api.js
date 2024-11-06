@@ -489,12 +489,14 @@ class UserApi extends React.Component {
     }
   }
   async postIntiveVu51Api(obj) {
-    for (const key in obj?.invite_detail) 
-      if (!obj?.invite_detail[key]) 
-        obj.invite_detail[key] = null;
-    
+    for (const key in obj?.invite_detail)
+      if (!obj?.invite_detail[key]) obj.invite_detail[key] = null;
+
     try {
-      const response = await privateInstance.post(authEndpoints.createVu51, obj);
+      const response = await privateInstance.post(
+        authEndpoints.createVu51,
+        obj
+      );
       return { response };
     } catch (error) {
       return { error };
@@ -512,10 +514,8 @@ class UserApi extends React.Component {
     }
   }
   async postAcceptedVu51Api(uuid, obj) {
+    for (const key in obj) if (!obj[key]) obj[key] = null;
 
-    for (const key in obj)      
-      if (!obj[key]) obj[key] = null;
-    
     try {
       const response = await privateInstance.patch(
         authEndpoints.postAcceptedVu51(uuid),
@@ -1561,6 +1561,18 @@ class UserApi extends React.Component {
         { params: paramObj }
       );
 
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async getWheelPlumberUserSignature(paramObj) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.wheelPlumberUserSignatureAll,
+        { params: paramObj }
+      );
       return { response };
     } catch (error) {
       return { error };
