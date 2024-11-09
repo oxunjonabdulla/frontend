@@ -1009,7 +1009,8 @@ export const vu_53_form = {
 
 export const vu_53_form_second = {
   secondHeader: [
-    { label: "Ta`mirlangan vaqti" },
+  {label: "T/r", rowspan: 6},
+    { label: "G`ildirak juftligi o`lchamlari мм (o`ng va chap tomonlari)" },
     {
       label: " Zavod, VCHD, TXSH yoki vagon ostiga berilgan vaqti",
     },
@@ -1450,7 +1451,6 @@ export const vu_91 = [
   "Podshipnik ishlab chiqarilgan zavodi va yili ",
   "Podshipnik raqami",
   "Nuqson ko‘rinishi",
-  "Ko‘rib chiqqan shaxs imzosi",
   "Defestoskop ishchisi Imzo qo'yuvchi",
   "G'ildirak juftliklari bo'linmasi chilangari Imzo qo'yuvchi",
   "Yuklab olsih / O'chirish",

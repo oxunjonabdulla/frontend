@@ -152,12 +152,7 @@ export const VU_91 = () => {
                     <Td>{item?.chartley_made_and_year}</Td>
                     <Td>{item?.chartley_number}</Td>
                     <Td>{item?.defect_appearance}</Td>
-                    <Td>
-                      <Image
-                        width={"100px"}
-                        src={imageGet(item?.user_signature_url)}
-                      />
-                    </Td>
+                    
                     <Td>
                       <ImageSignature
                         signatureImage={
