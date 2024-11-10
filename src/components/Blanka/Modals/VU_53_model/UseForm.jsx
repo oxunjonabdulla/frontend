@@ -1,5 +1,7 @@
 import {
   Button,
+  FormControl,
+  FormLabel,
   Input,
   Modal,
   ModalBody,
@@ -19,7 +21,7 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { vu_53_form_second } from "../../../../utils/mock_heads";
+import { vu_53_form2, vu_53_form_second, vu_53_form_second2 } from "../../../../utils/mock_heads";
 import UserApi from "../../../../Service/module/userModule.api";
 
 export const UseForm = ({ onClose, isOpen, vu53Id }) => {
@@ -28,6 +30,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
   const {
     register,
     handleSubmit,
+    formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -60,6 +63,12 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
     }
   };
 
+  console.log(
+    vu_53_form_second2?.map(list => list?.map((item, idx) => item))
+  );
+
+
+
   return (
     <Modal
       isOpen={isOpen}
@@ -81,64 +90,33 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               <TableContainer>
                 <Table variant="striped" colorScheme="gray">
                   <Tbody>
-                    <Tr>
-                      {vu_53_form_second?.secondHeader &&
-                        vu_53_form_second?.secondHeader?.map((item, idx) => (
+                    {vu_53_form_second2?.map(list => ( // lists
+                      <Tr>
+                        {list?.map((item, idx) => ( // objects
                           <Td
-                            fontSize={"10px"}
+                            fontSize={"15px"}
                             key={idx}
                             textAlign={"center"}
                             rowSpan={item?.rowspan}
                             colSpan={item?.colspan}
+                            whiteSpace={"pre-wrap"}
+                            style={{ minWidth: "150px" }}
                           >
                             {item?.label}
                           </Td>
                         ))}
-                    </Tr>
+                      </Tr>
+                    ))}
+                    <Tr></Tr>
                     <Tr>
-                      {vu_53_form_second?.wheelHeader &&
-                        vu_53_form_second?.wheelHeader?.map((item, idx) => (
-                          <Td
-                            fontSize={"10px"}
-                            key={idx}
-                            textAlign={"center"}
-                            rowSpan={item?.rowspan}
-                            colSpan={item?.colspan}
-                          >
-                            {item?.label}
-                          </Td>
-                        ))}
-                    </Tr>
-                    <Tr>
-                      {vu_53_form_second?.threeRows &&
-                        vu_53_form_second?.threeRows?.map((item, idx) => (
-                          <Td
-                            fontSize={"10px"}
-                            key={idx}
-                            textAlign={"center"}
-                            rowSpan={item?.rowspan}
-                            colSpan={item?.colspan}
-                          >
-                            {item?.label}
-                          </Td>
-                        ))}
-                    </Tr>
-                    <Tr>
-                      {vu_53_form_second?.fourRows &&
-                        vu_53_form_second?.fourRows?.map((item, idx) => (
-                          <Td
-                            fontSize={"10px"}
-                            key={idx}
-                            textAlign={"center"}
-                            rowSpan={item?.rowspan}
-                            colSpan={item?.colspan}
-                          >
-                            {item?.label}
-                          </Td>
-                        ))}
-                    </Tr>
-                    <Tr>
-                      
+                      {vu_53_form2.map((item, idx) => (
+                        <Td key={idx}>
+                          <Input
+                            p={1}
+                            {...register(item?.key)}
+                          />
+                        </Td>
+                      ))}
                     </Tr>
                   </Tbody>
                 </Table>

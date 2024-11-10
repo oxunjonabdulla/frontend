@@ -1007,21 +1007,18 @@ export const vu_53_form = {
   ],
 };
 
-export const vu_53_form_second = {
-  // height: 6 -> rowspan,
-  // width: * -> colspan
-  secondHeader: [
-    { label: "T/r", rowspan: 5 },
+export const vu_53_form_second2 = [
+  [
+    // { label: "T/r", rowspan: 5 },
     { label: "G`ildirak juftligi o`lchamlari мм (o`ng va chap tomonlari)", colspan: 6 },
     { label: "Bajarilgan ta`mir ishlari", colspan: 12 },
     { label: "G`ildirak juftligining yurish qismini qayta tiklangankbr sababi (klassifikator bo`yicha nosozlik raqami)", rowspan: 5 },
     { label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)", rowspan: 5 },
     { label: "Defektoskop uskunasi bilan tekshiruchining imzosi", colspan: 6 },
     { label: "Ishlab chiqaruvching imzosi", colspan: 2 },
-    { label: "Izoh", rowspan: 5 },
+    { label: "Izoh", rowspan: 5 }
   ],
-
-  wheelHeader: [
+  [
     { label: "G`ildirak", colspan: 5 },
     { label: "Obodning ichki yuzalari orasidagi masofa", rowspan: 4 },
     { label: "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami )", rowspan: 4 },
@@ -1038,8 +1035,7 @@ export const vu_53_form_second = {
     { label: "G`ildirak juftliklarini  tekshirgan", rowspan: 4 },
     { label: "G`ildirak juftliklarini  bergan", rowspan: 4 },
   ],
-
-  threeRows: [
+  [
     { label: "O`qning рostupochniy qismini diametri", rowspan: 3 },
     { label: "Yurish qismining diametri", rowspan: 3 },
     { label: "Greben qalinligi", rowspan: 3 },
@@ -1047,21 +1043,55 @@ export const vu_53_form_second = {
     { label: "Prokat", rowspan: 3 },
     { label: "Yangi", colspan: 2 },
     { label: "Eski yilgi", colspan: 2 },
-    { lebel: "Bo`yni va old postupichniy qism", rowspan: 3 },
+    { label: "Bo`yni va old postupichniy qism", rowspan: 3 },
     { label: "postupichniy qismi", rowspan: 3 },
     { label: "Boyinidagi ichki xalqasi", rowspan: 3 },
     { label: "O`rta qismi", rowspan: 3 },
     { label: "Obod, Disk, Stupitsa", rowspan: 3 },
     { label: "Greben qismini payvandlangandan so`ng", rowspan: 3 },
   ],
-
-  fourRows: [
+  [
     { label: "O`q (kod 1)", rowspan: 2 },
     { label: "G`ildirak (kod 2)", rowspan: 2 },
     { label: "O`q (kod 1)", rowspan: 2 },
     { label: "G`ildirak (kod 2)", rowspan: 2 },
-  ],
+  ]
+]
 
+export const vu_53_form2 = [
+  { key: 'axle_seating_diameter' },
+  { key: 'running_part_diameter' },
+  { key: 'flange_thickness' },
+  { key: 'rim_thickness' },
+  { key: 'prokat' },
+  { key: 'rim_inner_surface_distance' },
+  { key: 'tire_replacement_reason_code' },
+  { key: 'axle_code_1_new' },
+  { key: 'wheel_code_1_new' },
+  { key: 'axle_code_1_old' },
+  { key: 'wheel_code_1_old' },
+  { key: 'assembled_wheelset' },
+  { key: 'medium_repair' },
+  { key: 'current_repair' },
+  { key: 'restored_running_part' },
+  { key: 'restored_running_part_after_welding' },
+  { key: 'restored_m110_thread_on_axe_neck' },
+  { key: 'restored_axe_neck_section' },
+  { key: 'restoration_reason_running_part_fault_number' },
+  { key: 'bearing_shell_type' },
+  { key: 'neck_and_front_stepping_part' },
+  { key: 'stepping_part' },
+  { key: 'inner_neck_ring' },
+  { key: 'middle_part' },
+  { key: 'rim_disc_hub' },
+  { key: 'after_welding_of_gear_part' },
+  { key: 'gildirak_user_signature	' },
+  { key: 'provided_gildirak_user_signature' },
+  { key: 'comment' },
+  
+]
+
+export const vu_53_form_second = {
   another_second: [
     {
       label: "Bajarilgan ta`mir ishlari",
