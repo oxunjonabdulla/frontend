@@ -1008,19 +1008,58 @@ export const vu_53_form = {
 };
 
 export const vu_53_form_second = {
+  // height: 6 -> rowspan,
+  // width: * -> colspan
   secondHeader: [
-  {label: "T/r", rowspan: 6},
-    { label: "G`ildirak juftligi o`lchamlari мм (o`ng va chap tomonlari)" },
-    {
-      label: " Zavod, VCHD, TXSH yoki vagon ostiga berilgan vaqti",
-    },
-    {
-      label: "G`ildirak juftligini jo`natilgan joy nomi (Zavod, VCHD,TXSH)",
-    },
-    { label: "Peresilochniy raqami" },
-    { label: "G`ildirak juftligi berilgan vagon raqami" },
-    { label: "Vagon ta`mir turi" },
-    { label: "G`ildirak juftligining tomonlari" },
+    { label: "T/r", rowspan: 5 },
+    { label: "G`ildirak juftligi o`lchamlari мм (o`ng va chap tomonlari)", colspan: 6 },
+    { label: "Bajarilgan ta`mir ishlari", colspan: 12 },
+    { label: "G`ildirak juftligining yurish qismini qayta tiklangankbr sababi (klassifikator bo`yicha nosozlik raqami)", rowspan: 5 },
+    { label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)", rowspan: 5 },
+    { label: "Defektoskop uskunasi bilan tekshiruchining imzosi", colspan: 6 },
+    { label: "Ishlab chiqaruvching imzosi", colspan: 2 },
+    { label: "Izoh", rowspan: 5 },
+  ],
+
+  wheelHeader: [
+    { label: "G`ildirak", colspan: 5 },
+    { label: "Obodning ichki yuzalari orasidagi masofa", rowspan: 4 },
+    { label: "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami )", rowspan: 4 },
+    { label: "Еlementlardan hosil bo'lgan g`ildirak juftligi", colspan: 4 },
+    { label: "Yig`ilgan g`ildirak juftligi ", rowspan: 4 },
+    { label: "O`rta ta`mir", rowspan: 4 },
+    { label: "Joriy ta`mir", rowspan: 4 },
+    { label: "G`ildirak juftligining  yurish qismini  qayta tiklangan", rowspan: 4 },
+    { label: "Greben qismi payvandlangandan so`ng  g`ildirak juftligining  yurish qismini  qayta tiklangan", rowspan: 4 },
+    { label: "O`qning bo`yin qismidagi M110 rezbasin qayta tiklash", rowspan: 4 },
+    { label: "O`qning bo`yin qismini  qayta tiklash", rowspan: 4 },
+    { label: "O`q", colspan: 4 },
+    { label: "G`ildirak", colspan: 2 },
+    { label: "G`ildirak juftliklarini  tekshirgan", rowspan: 4 },
+    { label: "G`ildirak juftliklarini  bergan", rowspan: 4 },
+  ],
+
+  threeRows: [
+    { label: "O`qning рostupochniy qismini diametri", rowspan: 3 },
+    { label: "Yurish qismining diametri", rowspan: 3 },
+    { label: "Greben qalinligi", rowspan: 3 },
+    { label: "Obod qalinligi", rowspan: 3 },
+    { label: "Prokat", rowspan: 3 },
+    { label: "Yangi", colspan: 2 },
+    { label: "Eski yilgi", colspan: 2 },
+    { lebel: "Bo`yni va old postupichniy qism", rowspan: 3 },
+    { label: "postupichniy qismi", rowspan: 3 },
+    { label: "Boyinidagi ichki xalqasi", rowspan: 3 },
+    { label: "O`rta qismi", rowspan: 3 },
+    { label: "Obod, Disk, Stupitsa", rowspan: 3 },
+    { label: "Greben qismini payvandlangandan so`ng", rowspan: 3 },
+  ],
+
+  fourRows: [
+    { label: "O`q (kod 1)", rowspan: 2 },
+    { label: "G`ildirak (kod 2)", rowspan: 2 },
+    { label: "O`q (kod 1)", rowspan: 2 },
+    { label: "G`ildirak (kod 2)", rowspan: 2 },
   ],
 
   another_second: [
