@@ -32,7 +32,6 @@ export const VU_51 = () => {
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu51All(page);
-    console.log(response?.data);
     
     if (response) {
       setIsLoading(false);

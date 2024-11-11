@@ -51,8 +51,6 @@ export const InviteTable = () => {
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu53All(page);
-    console.log(response?.data);
-    
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);

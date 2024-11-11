@@ -69,23 +69,18 @@ export const Fraza_wheel = () => {
     setGetinfTableData(deletedID);
   };
   const handleDelate = async (carriageID) => {
-    const { response, error } = await new UserApi().deletePhraseWheel(
-      carriageID
-    );
-    if (response) {
-      window.location.reload();
-    } else {
-      toast({
-        status: "error",
-        title:
-          error?.detail &&
-          carriageID + " vagon raqami ma'lumoti avval o'chirilgan",
-        duration: 4000,
-        isClosable: true,
-        position: "top-right",
-        fontSize: "3xl",
-      });
-    }
+    const { response, error } = await new UserApi().deletePhraseWheel(carriageID);
+    if (response) window.location.reload();
+    else toast({
+      status: "error",
+      title:
+        error?.detail &&
+        carriageID + " vagon raqami ma'lumoti avval o'chirilgan",
+      duration: 4000,
+      isClosable: true,
+      position: "top-right",
+      fontSize: "3xl",
+    });
   };
 
   // const handleUpdate = (selectedItem) => {
@@ -205,7 +200,7 @@ export const Fraza_wheel = () => {
                     Imzo
                   </Th>
                   <Th rowSpan={3} textAlign={"center"}>
-                      Qabulqiluvchi imzosi	
+                    Qabulqiluvchi imzosi
                   </Th>
                   <Th rowSpan={3} textAlign={"center"}></Th>
                   <Th rowSpan={3}>Ma&#39;lumot yozilgan vaqti</Th>

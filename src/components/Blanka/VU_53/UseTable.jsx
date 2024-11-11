@@ -1,6 +1,6 @@
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { vu_53, vu_53_form2, vu_53_form_second2 } from "../../../utils/mock_heads";
+import { vu_53_form2, vu_53_form_second2 } from "../../../utils/mock_heads";
 import { timeMoment } from "../../../utils/roleTest";
 import { useEffect, useState } from "react";
 import { ImageSignature } from "../../ImageSignature";
@@ -15,8 +15,6 @@ export const UseTable = ({ data, isOpen, onClose }) => {
       [{ label: "Kiritilgan vaqti", rowspan: 5 }, ...vu_53_form_second2[0]],
       ...vu_53_form_second2.slice(1)
     ]);
-    console.log(data);
-    
   }, []);
 
   return (
@@ -43,8 +41,8 @@ export const UseTable = ({ data, isOpen, onClose }) => {
             colorScheme="blackAlpha"
           >
             <Thead bg={"#0c6170"} rounded={10}>
-              {vu53Table?.map(list => ( // lists
-                <Tr>
+              {vu53Table?.map((list, idx) => ( // lists
+                <Tr key={idx}>
                   {list?.map((item, idx) => ( // objects
                     <Td
                       fontSize={"15px"}
@@ -77,16 +75,10 @@ export const UseTable = ({ data, isOpen, onClose }) => {
                 </Td>
                 <Td>
                   <ImageSignature
-                    signatureImage={data?.wheel_plumber_user_info?.signature_image}
+                    signatureImage={data?.provided_wheel_signature_user_info?.signature_image}
                   />
                 </Td>
                 <Td>{data?.comment}</Td>
-              </Tr>
-              <Tr>
-                <Td>{timeMoment(data?.date_of_rasxod_1)?.day}</Td>
-              </Tr>
-              <Tr>
-                <Td>{timeMoment(data?.date_of_rasxod_2)?.day}</Td>
               </Tr>
             </Tbody>
           </Table>
