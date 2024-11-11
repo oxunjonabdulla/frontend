@@ -1323,7 +1323,6 @@ class UserApi extends React.Component {
         authEndpoints.postVu53Rasxod(vu53Id),
         obj
       );
-
       return { response };
     } catch (error) {
       return { error };

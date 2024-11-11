@@ -1,7 +1,5 @@
 import {
   Button,
-  FormControl,
-  FormLabel,
   Input,
   Modal,
   ModalBody,
@@ -15,17 +13,20 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Tr,
+  Tr, 
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { vu_53_form2, vu_53_form_second, vu_53_form_second2 } from "../../../../utils/mock_heads";
+import { vu_53_form2, vu_53_form_second2 } from "../../../../utils/mock_heads";
 import UserApi from "../../../../Service/module/userModule.api";
 
 export const UseForm = ({ onClose, isOpen, vu53Id }) => {
   const [isLoading, setLoading] = useState(false);
+  const [wheelUser, setWheelUser] = useState([]);
+  const [wheelPlumberUser, setWheelPlumberUser] = useState([]);
+
   const toast = useToast();
   const {
     register,
@@ -63,11 +64,15 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
     }
   };
 
-  console.log(
-    vu_53_form_second2?.map(list => list?.map((item, idx) => item))
-  );
-
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response } = await new UserApi().getWheelUserSignature();
+      const { response: wheelPlumberUserSignature } = await new UserApi().getWheelPlumberUserSignature();
+      if (wheelPlumberUserSignature) setWheelPlumberUser(wheelPlumberUserSignature?.data);
+      if (response) setWheelUser(response?.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <Modal
@@ -108,7 +113,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                       </Tr>
                     ))}
                     <Tr></Tr>
-                    <Tr>
+                    {/* <Tr>
                       {vu_53_form2.map((item, idx) => (
                         <Td key={idx}>
                           <Input
@@ -117,6 +122,45 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                           />
                         </Td>
                       ))}
+                    </Tr> */}
+                    <Tr>
+                      {vu_53_form2.map((item, idx) => (
+                        <Td key={idx}>
+                          <Input
+                            type="number"
+                            p={1}
+                            {...register(item?.key)}
+                          />
+                        </Td>
+                      ))}
+                      <Td>
+                        <Select
+                          borderColor={"gray.600"}
+                          placeholder="Smena ustasi imzosi"
+                          {...register("gildirak_user_signature")}
+                        >
+                          {wheelUser?.map((item) => (
+                            <option key={item?.id} value={item?.id}>{item?.name}</option>
+                          ))}
+                        </Select> 
+                      </Td>
+                      <Td>
+                        <Select
+                          borderColor={"gray.600"}
+                          placeholder="G'ildirak Plumber foydalanuvchi imzosi"
+                          {...register("gildirak_chilangar_user_signature")}
+                        >
+                          {wheelPlumberUser?.map((item) => (
+                            <option key={item?.id} value={item?.id}>{item?.name}</option>
+                          ))}
+                        </Select>
+                      </Td>
+                      <Td>
+                        <Input
+                          p={1}
+                          {...register('comment')}
+                        />
+                      </Td>
                     </Tr>
                   </Tbody>
                 </Table>

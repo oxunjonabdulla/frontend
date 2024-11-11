@@ -1084,11 +1084,7 @@ export const vu_53_form2 = [
   { key: 'inner_neck_ring' },
   { key: 'middle_part' },
   { key: 'rim_disc_hub' },
-  { key: 'after_welding_of_gear_part' },
-  { key: 'gildirak_user_signature	' },
-  { key: 'provided_gildirak_user_signature' },
-  { key: 'comment' },
-  
+  { key: 'after_welding_of_gear_part' }
 ]
 
 export const vu_53_form_second = {
