@@ -1323,7 +1323,7 @@ class UserApi extends React.Component {
 
     try {
       const response = await privateInstance.post(
-        authEndpoints.postVu53Rasxod(vu53Id),
+        authEndpoints.postVu53Rasxod(vu53Id), // TODO code editing...
         {
           "deputy_head_signature_status": "inactive",
           "collect_workshop_master_signature_status": "inactive",

@@ -124,7 +124,7 @@ const authEndpoints = {
   // vu 53 rasxod
   getVu53Rasxod: `/vu53_rasxod/`,
   vu53IDRasxod: (id) => `/vu53_rasxod/${id}/`,
-  postVu53Rasxod: (vu53Id) => `/vu53_rasxod/create/${vu53Id}`,
+  postVu53Rasxod: (vu53Id) => `/vu53_rasxod/create/${vu53Id}/`,
 
   vu31TOVu10: (carriageID) => `/vu31/${carriageID}/transfer_to_vu10/`,
   vu10: "/vu10/",

@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-import { vu_53 } from "../../../utils/mock_heads";
+import { vu_53, vu_53_table } from "../../../utils/mock_heads";
 import UserApi from "../../../Service/module/userModule.api";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,7 @@ import { faBook, faEye, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-i
 import { Deleteted } from "../../Deletete";
 import { UseForm } from "../Modals/VU_53_model/UseForm";
 import { UseTable } from "./UseTable";
+import { timeMoment } from "../../../utils/roleTest";
 
 
 export const InviteTable = () => {
@@ -94,70 +95,66 @@ export const InviteTable = () => {
           >
             <Thead bg={"#0c6170"} rounded={10}>
               <Tr>
-                <Th fontSize={"10px"} colSpan={32} textAlign={"center"}>
+                <Th fontSize={"10px"} colSpan={33} textAlign={"center"}>
                   Qabul
                 </Th>
               </Tr>
-              <Tr>
-                {vu_53?.headers?.map((item) => (
-                  <Th
-                    fontSize={"10px"}
-                    textAlign={"center"}
-                    key={item.label}
-                    rowSpan={item?.rowspan}
-                    colSpan={item?.colspan}
-                  >
-                    {item.label}
-                  </Th>
-                ))}
-              </Tr>
-              <Tr>
-                {vu_53?.nestedHeaders?.map((item, idx) => (
-                  <Th
-                    fontSize={"10px"}
-                    key={idx}
-                    textAlign={"center"}
-                    rowSpan={item?.rowspan}
-                    colSpan={item?.colspan}
-                  >
-                    {item?.label}
-                  </Th>
-                ))}
-              </Tr>
+              {vu_53_table?.map((item, idx) => (
+                <Tr key={idx}>
+                  {item?.map((e, idx) => (
+                    <Th
+                      fontSize={"10px"}
+                      textAlign={"center"}
+                      key={idx}
+                      rowSpan={e?.rowspan}
+                      colSpan={e?.colspan}
+                      style={{ minWidth: "80px" }}
+                    >
+                      {e?.label}
+                    </Th>
+                  ))}
+                </Tr>
+              ))}
             </Thead>
             <Tbody>
               {gettingData?.results?.map((e, idx) => (
                 <Tr key={e?.id}>
                   <Td>{currentPage * 10 + idx + 1}</Td>
                   <Td fontWeight={700} color={"green.900"}>
-                    {e?.carriage}
+                    {timeMoment(e?.created_at)?.day}
                   </Td>
-                  <Td>{e?.vu53_prihod?.wheel_pair_sostav_1}</Td>
-                  <Td>{e?.vu53_prihod?.sobstva_wheel_pair_1}</Td>
-                  <Td>{e?.vu53_prihod?.type_wheel_pair_1}</Td>
-                  <Td>{e?.vu53_prihod?.date_of_pustupleniya_1}</Td>
-                  <Td>{e?.vu53_prihod?.factory_1}</Td>
-                  <Td>{e?.vu53_prihod?.vedimis_nomer_1}</Td>
-                  <Td>{e?.vu53_prihod?.is_pod_carriage_number_1}</Td>
-                  <Td>{e?.vu53_prihod?.repair_type_1}</Td>
-                  <Td>{e?.vu53_prihod?.last_repair_date_1}</Td>
-                  <Td>{e?.vu53_prihod?.last_repair_punkt_1}</Td>
-                  <Td>{e?.vu53_prihod?.buks_montaj_uzel_date_1}</Td>
-                  <Td>{e?.vu53_prihod?.buks_montaj_uzel_last_1}</Td>
-                  <Td>{e?.vu53_prihod?.obot_pair_date_1}</Td>
-                  <Td>Chap ong</Td>
-                  <Td>{e?.vu53_prihod?.obot_pair_1}</Td>
-                  <Td>{e?.vu53_prihod?.type_buks_1}</Td>
-                  <Td>{e?.vu53_prihod?.is_repair_1 ? "Ha " : "Yo'q"}</Td>
-                  <Td>{e?.vu53_prihod?.is_repair_newtype_1}</Td>
-                  <Td>{e?.vu53_prihod?.is_repair_error_1}</Td>
-                  <Td>{e?.vu53_prihod?.katana_diametr_1}</Td>
-                  <Td>{e?.vu53_prihod?.tolshnik_obod_1}</Td>
-                  <Td>{e?.vu53_prihod?.greb_setting_1}</Td>
-                  <Td>{e?.vu53_prihod?.prokat_1}</Td>
-                  <Td>{e?.vu53_prihod?.away_obod_1}</Td>
+                  <Td>{e?.vu53_prihod?.wheelset_serial_number}</Td>
+                  <Td>{e?.vu53_prihod?.wheelset_owner}</Td>
+                  <Td>{e?.vu53_prihod?.wheelset_type}</Td>
+                  <Td>{e?.vu53_prihod?.repair_arrival_time}</Td>
+                  <Td>{e?.vu53_prihod?.origin_location}</Td>
+                  <Td>{e?.vu53_prihod?.transshipment_number}</Td>
+                  <Td>{e?.vu53_prihod?.carriage_repair_type}</Td>
+                  <Td>{e?.vu53_prihod?.last_assembly_time}</Td>
+                  <Td>{e?.vu53_prihod?.last_medium_repair_time}</Td>
+                  <Td>{e?.vu53_prihod?.last_medium_repair_location}</Td>
+                  <Td>{e?.vu53_prihod?.last_restoration_time_running_part}</Td>
+                  <Td>{e?.vu53_prihod?.last_restoration_location_running_part}</Td>
+                  <Td>{e?.vu53_prihod?.wheelset_sides}</Td>
+                  <Td>{e?.vu53_prihod?.bearing_casing_type}</Td>
+                  <Td>{e?.vu53_prihod?.operational_or_faulty}</Td>
+                  <Td>{e?.vu53_prihod?.operational_newly_assembled_or_repaired}</Td>
+                  <Td>{e?.vu53_prihod?.fault_defect_number_classifier}</Td>
+                  <Td>{e?.vu53_prihod?.running_part_diameter}</Td>
+                  <Td>{e?.vu53_prihod?.bushing_thickness}</Td>
+                  <Td>{e?.vu53_prihod?.rim_thickness}</Td>
+                  <Td>{e?.vu53_prihod?.rim_thickness_dimensions}</Td>
+                  <Td>{e?.vu53_prihod?.rolling}</Td>
+                  <Td>{e?.vu53_prihod?.distance_between_inner_surfaces}</Td>
+                  <Td>{e?.vu53_prihod?.repair_time}</Td>
+                  <Td>{e?.vu53_prihod?.time_given_to_factory_or_under_wagon}</Td>
+                  <Td>{e?.vu53_prihod?.wheelset_sent_location_name}</Td>
+                  <Td>{e?.vu53_prihod?.transfer_number}</Td>
+                  <Td>{e?.vu53_prihod?.assigned_carriage_number}</Td>
+                  <Td>{e?.vu53_prihod?.wagon_repair_type}</Td>
+                  <Td>{e?.vu53_prihod?.wheelset_sides2}</Td>
                   <Td>
-                    {/* TODO : Plus OR Show */}
+                    {/* TODO : Plus OR Show btn */}
                     {" "}
                     <Flex gap={2} justifyContent={"center"}>
                       {!e?.vu53_rasxod ? (
