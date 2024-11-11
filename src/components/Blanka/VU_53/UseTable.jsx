@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Table, Tbody, Td, Thead, Tr } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { vu_53_form2, vu_53_form_second2 } from "../../../utils/mock_heads";
 import { timeMoment } from "../../../utils/roleTest";

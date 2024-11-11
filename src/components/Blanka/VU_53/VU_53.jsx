@@ -13,22 +13,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { SliderMock } from "../../../utils";
 import { InviteTable } from "./InviteTable";
-import { UseTable } from "./UseTable";
 import { VU_53_Model } from "../Modals/VU_53_model/VU_53_Model";
+
 const data = [0];
 
 export const VU_53 = () => {
-  const [activeType, setActiveType] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
-  const renderComponent = () => {
-    switch (activeType) {
-      case 1:
-        return <InviteTable />;
-      case 2:
-        return <UseTable />;
-    }
-  };
+  
   return (
     <Box
       as="div"
@@ -64,27 +56,13 @@ export const VU_53 = () => {
       {!isLoadingFulStatistik ? (
         data?.length ? (
           <>
-            <Flex gap={4} justify={"center"}>
-              <Button
-                onClick={() => setActiveType(1)}
-                variant={activeType === 1 ? "outline_active" : "outline"}
-              >
-                Qabul
-              </Button>
-              <Button
-                onClick={() => setActiveType(2)}
-                variant={activeType === 2 ? "outline_active" : "outline"}
-              >
-                Istemol
-              </Button>
-            </Flex>
             <TableContainer
               p={4}
               border={"1px solid #eeeee"}
               display={"flex"}
               gap={3}
             >
-              {renderComponent()}
+              <InviteTable />
             </TableContainer>
           </>
         ) : (

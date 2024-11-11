@@ -12,18 +12,11 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Thead,
-  Tr, 
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { vu_53_form2, vu_53_form_second2 } from "../../../../utils/mock_heads";
 import UserApi from "../../../../Service/module/userModule.api";
 
 export const UseForm = ({ onClose, isOpen, vu53Id }) => {

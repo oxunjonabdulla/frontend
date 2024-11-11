@@ -1319,11 +1319,11 @@ class UserApi extends React.Component {
   }
   async postVu53Rasxod(obj, vu53Id) {
     for (const key in obj)
-      if (!obj[key]) obj[key] = "string";
-
+      if (!obj[key]) obj[key] = null;
+    
     try {
       const response = await privateInstance.post(
-        authEndpoints.postVu53Rasxod(vu53Id), // TODO code editing...
+        authEndpoints.postVu53Rasxod(vu53Id),
         obj
       );
       return { response };
