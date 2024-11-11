@@ -54,7 +54,7 @@ export const InviteForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* VU-53 Create */}
-      <ModalBody>
+      <ModalBody style={{ overflow: "auto" }}>
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <FormControl isInvalid={errors?.wheelset_serial_number}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>

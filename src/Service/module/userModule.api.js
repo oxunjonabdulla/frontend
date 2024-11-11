@@ -1324,62 +1324,7 @@ class UserApi extends React.Component {
     try {
       const response = await privateInstance.post(
         authEndpoints.postVu53Rasxod(vu53Id), // TODO code editing...
-        {
-          "deputy_head_signature_status": "inactive",
-          "collect_workshop_master_signature_status": "inactive",
-          "receiving_master_user_signature_status": "inactive",
-          "technical_control_worker_user_signature_status": "inactive",
-          "head_vtxkb_user_signature_status": "inactive",
-          "traffic_safety_depot_duty_officer_user_signature_status": "inactive",
-          "wheel_signature_user_signature_status": "inactive",
-          "defestoskop_signature_user_signature_status": "inactive",
-          "wheel_plumber_user_signature_status": "inactive",
-          "aravalar_brigadr_or_master_user_signature_status": "inactive",
-          "avto_connector_brigadr_or_master_user_signature_status": "inactive",
-          "avto_connector_plumber_signature_user_signature_status": "inactive",
-          "avto_connector_payvandchi_signature_status": "inactive",
-          "avto_connector_defektoskopistr_user_signature_status": "inactive",
-          "pto_deputy_head_signature_status": "inactive",
-          "pto_current_repairman_signature_status": "inactive",
-          "axle_seating_diameter": "string",
-          "running_part_diameter": "string",
-          "flange_thickness": "string",
-          "rim_thickness": "string",
-          "prokat": "string",
-          "rim_inner_surface_distance": "string",
-          "tire_replacement_reason_code": "string",
-          "tire_replacement_reason_code2": "string",
-          "axle_code_1_new": "string",
-          "wheel_code_1_new": "string",
-          "axle_code_1_old": "a",
-          "wheel_code_1_old": "string",
-          "assembled_wheelset": "string",
-          "medium_repair": "string",
-          "current_repair": "string",
-          "restored_running_part": "string",
-          "restored_running_part_after_welding": "string",
-          "restored_m110_thread_on_axe_neck": "string",
-          "restored_axe_neck_section": "string",
-          "restoration_reason_running_part_fault_number": "string",
-          "bearing_shell_type": "string",
-          "neck_and_front_stepping_part": "string",
-          "stepping_part": "string",
-          "inner_neck_ring": "string",
-          "middle_part": "string",
-          "rim_disc_hub": "string",
-          "after_welding_of_gear_part": "string",
-          "comment": "string",
-          "gildirak_user_signature": 6,
-          "provided_gildirak_user_signature": 2
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "http://localhost:5173",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization"
-          },
-        }
+        obj
       );
       return { response };
     } catch (error) {
