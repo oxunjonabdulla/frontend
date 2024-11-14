@@ -1261,9 +1261,7 @@ class UserApi extends React.Component {
 
   async getVu53All(params) {
     try {
-      const response = await privateInstance.get(authEndpoints.getVu53All, {
-        params,
-      });
+      const response = await privateInstance.get(authEndpoints.getVu53All(params));
 
       return { response };
     } catch (error) {

@@ -36,6 +36,7 @@ export const InviteTable = ({ data }) => {
     onClose: onCloseShowBack,
     onOpen: onOpenShowBack,
   } = useDisclosure();
+
   const {
     isOpen: isOpenUpdate,
     onClose: onCloseUpdate,
