@@ -43,12 +43,7 @@ export const InviteTable = () => {
     onClose: onCloseCreate,
     onOpen: onOpenCreate,
   } = useDisclosure();
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // const handlePageClick = (data) => {
-  //   const selectedPage = data.selected;
-  //   setCurrentPage(selectedPage);
-  // };
+  
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu53All(page);
@@ -63,7 +58,7 @@ export const InviteTable = () => {
   }, [currentPage]);
 
   const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu53Prihod(carriageID);
+    const { response } = await new UserApi().deleteVu53(carriageID);
     if (response) window.location.reload();
   };
 
@@ -182,13 +177,6 @@ export const InviteTable = () => {
                       />
                     </Flex>
                   </Td>
-                  {/* <Td>
-                    <IconButton
-                      colorScheme="red"
-                      onClick={() => handleCheckAndDelete(e?.id)}
-                      icon={<FontAwesomeIcon icon={faTrashAlt} />}
-                    />
-                  </Td> */}
                 </Tr>
               ))}
             </Tbody>

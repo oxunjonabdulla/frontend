@@ -119,6 +119,7 @@ const authEndpoints = {
   // vu 53 prihod
   getVu53All: `/vu53/`,
   vu53IDPrihod: (id) => `/vu53/${id}/`,
+  vu53Id: (id) => `/vu53/${id}/`,
   postVu53Prihod: `/vu53_prihod/create/`,
 
   // vu 53 rasxod

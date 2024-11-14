@@ -1293,6 +1293,18 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+
+  async deleteVu53(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu53Id(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async updateVu53Prihod(id, obj) {
     try {
       const response = await privateInstance.put(

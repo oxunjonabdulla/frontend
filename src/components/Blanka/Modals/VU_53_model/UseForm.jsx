@@ -37,7 +37,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
     if (response) {
       toast({
         status: "success",
-        title: "VU-53 Rasxod shakliga vagon muvaffaqiyatli qo'shildi.",
+        title: "VU-53 Rasxod shakli muvaffaqiyatli qo'shildi.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
@@ -49,9 +49,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
     if (error) {
       toast({
         status: "error",
-        title: error?.detail
-          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
-          : "Bu vagon raqami uchun VU-50 shakli mavjud.",
+        title: "Vu 53 rasxod shakli qo'shishda xatolik yuz berdi.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
@@ -191,7 +189,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.assembled_wheelset}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  Yig`ilgan g`ildirak juftligi 
+                  Yig`ilgan g`ildirak juftligi
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -200,7 +198,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.medium_repair}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  O`rta ta`mir	
+                  O`rta ta`mir
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -209,7 +207,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.current_repair}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  Joriy ta`mir	
+                  Joriy ta`mir
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -218,7 +216,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.restored_running_part}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  G`ildirak juftligining  yurish qismini  qayta tiklangan	
+                  G`ildirak juftligining  yurish qismini  qayta tiklangan
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -229,7 +227,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.restored_running_part_after_welding}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  Greben qismi payvandlangandan so`ng  g`ildirak juftligining  yurish qismini  qayta tiklangan	
+                  Greben qismi payvandlangandan so`ng  g`ildirak juftligining  yurish qismini  qayta tiklangan
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -238,7 +236,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.restored_m110_thread_on_axe_neck}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  O`qning bo`yin qismidagi M110 rezbasin qayta tiklash	
+                  O`qning bo`yin qismidagi M110 rezbasin qayta tiklash
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -247,7 +245,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.restored_axe_neck_section}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  O`qning bo`yin qismini  qayta tiklash	
+                  O`qning bo`yin qismini  qayta tiklash
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -278,7 +276,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.neck_and_front_stepping_part}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  Bo`yni va old postupichniy qism	
+                  Bo`yni va old postupichniy qism
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -287,7 +285,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.stepping_part}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  postupichniy qismi	
+                  postupichniy qismi
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -296,7 +294,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.inner_neck_ring}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  Boyinidagi ichki xalqasi	
+                  Boyinidagi ichki xalqasi
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -305,7 +303,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.middle_part}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  O`rta qismi	
+                  O`rta qismi
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -314,7 +312,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.rim_disc_hub}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  Obod, Disk, Stupitsa	
+                  Obod, Disk, Stupitsa
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
@@ -334,7 +332,7 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.wheelset_owner}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  G`ildirak juftliklarini  tekshirgan	
+                  G`ildirak juftliklarini  tekshirgan
                 </FormLabel>
                 <Select
                   borderColor={"gray.600"}
@@ -370,78 +368,6 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
                 />
               </FormControl>
             </Flex>
-
-            {/* <ModalBody>
-              <TableContainer>
-                <Table
-                  borderRadius={10}
-                  whiteSpace={"pre-wrap"}
-                  variant={"striped"}
-                  overflow={"hidden"}
-                  colorScheme="blackAlpha">
-                  <Thead bg={"#0c6170"} rounded={10}>
-                    {vu_53_form_second2?.map((list, idx) => ( // lists
-                      <Tr key={idx}>
-                        {list?.map((item, idx) => ( // objects
-                          <Td
-                            fontSize={"15px"}
-                            key={idx}
-                            textAlign={"center"}
-                            rowSpan={item?.rowspan}
-                            colSpan={item?.colspan}
-                            style={{ minWidth: "150px", color: "white" }}
-                          >
-                            {item?.label}
-                          </Td>
-                        ))}
-                      </Tr>
-                    ))}
-                  </Thead>
-                  <Tbody>
-                    <Tr>
-                      {vu_53_form2.map((item, idx) => (
-                        <Td key={idx}>
-                          <Input
-                            type="number"
-                            p={1}
-                            {...register(item?.key)}
-                          />
-                        </Td>
-                      ))}
-                      <Td>
-                        <Select
-                          borderColor={"gray.600"}
-                          placeholder="Smena ustasi imzosi"
-                          {...register("gildirak_user_signature")}
-                        >
-                          {wheelUser?.map((item) => (
-                            <option key={item?.id} value={item?.id}>{item?.name}</option>
-                          ))}
-                        </Select>
-                      </Td>
-                      <Td>
-                        <Select
-                          borderColor={"gray.600"}
-                          placeholder="Smena ustasi imzosi"
-                          {...register("provided_gildirak_user_signature")}
-                        >
-                          {wheelUser?.map((item) => (
-                            <option key={item?.id} value={item?.id}>{item?.name}</option>
-                          ))}
-                        </Select>
-                      </Td>
-                      <Td>
-                        <Input
-                          p={1}
-                          {...register('comment')}
-                        />
-                      </Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
-              </TableContainer>
-            </ModalBody> */}
-
             <ModalFooter>
               <Button colorScheme="red" mr={3} onClick={onClose}>
                 Yopish

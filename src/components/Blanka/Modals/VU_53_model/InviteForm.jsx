@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "../../../../Service/module/userModule.api";
+
 export const InviteForm = ({ onClose }) => {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
@@ -28,7 +29,7 @@ export const InviteForm = ({ onClose }) => {
     if (response) {
       toast({
         status: "success",
-        title: "VU-53 shakliga vagon muvaffaqiyatli qo'shildi.",
+        title: "VU-53 shakli muvaffaqiyatli qo'shildi.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
@@ -40,9 +41,7 @@ export const InviteForm = ({ onClose }) => {
     if (error) {
       toast({
         status: "error",
-        title: error?.detail
-          ? "Vagon raqami kiritilmadi yoki bu turdagi vagon raqami mavjud emas."
-          : "Bu vagon raqami uchun VU-50 shakli mavjud.",
+        title: "VU-53 shakli qo'shishda xatolik yuz berdi.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
