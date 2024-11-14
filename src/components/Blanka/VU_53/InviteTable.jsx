@@ -90,7 +90,7 @@ export const InviteTable = () => {
           >
             <Thead bg={"#0c6170"} rounded={10}>
               <Tr>
-                <Th fontSize={"10px"} colSpan={33} textAlign={"center"}>
+                <Th fontSize={"10px"} colSpan={35} textAlign={"center"}>
                   Qabul
                 </Th>
               </Tr>
@@ -124,8 +124,10 @@ export const InviteTable = () => {
                   <Td>{e?.vu53_prihod?.repair_arrival_time}</Td>
                   <Td>{e?.vu53_prihod?.origin_location}</Td>
                   <Td>{e?.vu53_prihod?.transshipment_number}</Td>
+                  <Td>{e?.vu53_prihod?.removed_wheelset_carriage_number}</Td>
                   <Td>{e?.vu53_prihod?.carriage_repair_type}</Td>
                   <Td>{e?.vu53_prihod?.last_assembly_time}</Td>
+                  <Td>{e?.vu53_prihod?.last_assembly_location}</Td>
                   <Td>{e?.vu53_prihod?.last_medium_repair_time}</Td>
                   <Td>{e?.vu53_prihod?.last_medium_repair_location}</Td>
                   <Td>{e?.vu53_prihod?.last_restoration_time_running_part}</Td>

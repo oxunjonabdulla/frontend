@@ -111,6 +111,15 @@ export const InviteForm = ({ onClose }) => {
               {...register("transshipment_number")}
             />
           </FormControl>
+          <FormControl isInvalid={errors?.removed_wheelset_carriage_number}>
+            <FormLabel whiteSpace={["wrap", "nowrap"]}>
+              G`ildirak juftligi chiqarib olingan vagon raqami
+            </FormLabel>
+            <Input
+              borderColor={"gray.600"}
+              {...register("removed_wheelset_carriage_number	")}
+            />
+          </FormControl>
           <FormControl isInvalid={errors?.carriage_repair_type}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
               Vagon ta`mir turi
@@ -127,6 +136,17 @@ export const InviteForm = ({ onClose }) => {
             <Input
               borderColor={"gray.600"}
               {...register("last_assembly_time")}
+            />
+          </FormControl>
+        </Flex>
+        <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={8}>
+          <FormControl isInvalid={errors?.last_assembly_location}>
+            <FormLabel whiteSpace={["wrap", "nowrap"]}>
+              G`ildirak juftligining  oxirgi yig`ilgan joyi (formirivaniya)
+            </FormLabel>
+            <Input
+              borderColor={"gray.600"}
+              {...register("last_assembly_location")}
             />
           </FormControl>
           <FormControl isInvalid={errors?.last_medium_repair_time}>
