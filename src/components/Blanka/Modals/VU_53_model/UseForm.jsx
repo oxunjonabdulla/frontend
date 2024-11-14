@@ -142,13 +142,24 @@ export const UseForm = ({ onClose, isOpen, vu53Id }) => {
               </FormControl>
               <FormControl isInvalid={errors?.tire_replacement_reason_code}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                  G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami )
+                  G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami)
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
                   {...register("tire_replacement_reason_code")}
                 />
               </FormControl>
+              <FormControl isInvalid={errors?.tire_replacement_reason_code2}>
+                <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                  G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami)
+                </FormLabel>
+                <Input
+                  borderColor={"gray.600"}
+                  {...register("tire_replacement_reason_code")}
+                />
+              </FormControl>
+            </Flex>
+            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
               <FormControl isInvalid={errors?.axle_code_1_new}>
                 <FormLabel whiteSpace={["wrap", "nowrap"]}>
                   O`q (kod 1)

@@ -1011,7 +1011,7 @@ export const vu_53_form_second2 = [
   [
     // { label: "T/r", rowspan: 5 },
     { label: "G`ildirak juftligi o`lchamlari мм (o`ng va chap tomonlari)", colspan: 6 },
-    { label: "Bajarilgan ta`mir ishlari", colspan: 12 },
+    { label: "Bajarilgan ta`mir ishlari", colspan: 13 },
     { label: "G`ildirak juftligining yurish qismini qayta tiklangankbr sababi (klassifikator bo`yicha nosozlik raqami)", rowspan: 5 },
     { label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)", rowspan: 5 },
     { label: "Defektoskop uskunasi bilan tekshiruchining imzosi", colspan: 6 },
@@ -1021,7 +1021,8 @@ export const vu_53_form_second2 = [
   [
     { label: "G`ildirak", colspan: 5 },
     { label: "Obodning ichki yuzalari orasidagi masofa", rowspan: 4 },
-    { label: "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami )", rowspan: 4 },
+    { label: "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami)", rowspan: 4 },
+    { label: "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami) (2)", rowspan: 4 },
     { label: "Еlementlardan hosil bo'lgan g`ildirak juftligi", colspan: 4 },
     { label: "Yig`ilgan g`ildirak juftligi ", rowspan: 4 },
     { label: "O`rta ta`mir", rowspan: 4 },
@@ -1066,6 +1067,7 @@ export const vu_53_form2 = [
   { key: 'prokat' },
   { key: 'rim_inner_surface_distance' },
   { key: 'tire_replacement_reason_code' },
+  { key: 'tire_replacement_reason_code2' },
   { key: 'axle_code_1_new' },
   { key: 'wheel_code_1_new' },
   { key: 'axle_code_1_old' },
@@ -1091,13 +1093,18 @@ export const vu_53_form_second = {
   another_second: [
     {
       label: "Bajarilgan ta`mir ishlari",
-      colspan: 12,
+      colspan: 13,
     },
   ],
   another_head_second: [
     {
       label:
-        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami )",
+        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami)",
+      rowspan: 3,
+    },
+    {
+      label:
+        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami) (2)",
       rowspan: 3,
     },
     { label: "Еlementlardan hosil bo'lgan g`ildirak juftligi ", colspan: 4 },
@@ -1369,7 +1376,7 @@ export const vu_53 = {
     },
     {
       label: "Bajarilgan ta`mir ishlari",
-      colspan: 12,
+      colspan: 13,
     },
     {
       label:
@@ -1399,7 +1406,12 @@ export const vu_53 = {
     { label: "Obodning ichki yuzalari orasidagi masofa", rowspan: 3 },
     {
       label:
-        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami )",
+        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami)",
+      rowspan: 3,
+    },
+    {
+      label:
+        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami) (2)",
       rowspan: 3,
     },
     { label: "Еlementlardan hosil bo'lgan g`ildirak juftligi ", colspan: 4 },
