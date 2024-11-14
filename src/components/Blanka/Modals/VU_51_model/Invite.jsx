@@ -81,7 +81,6 @@ export const Invite = ({ onClose }) => {
             />
           </FormControl>
         </Flex>
-
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <FormControl isInvalid={errors?.invite_date}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
@@ -110,11 +109,10 @@ export const Invite = ({ onClose }) => {
             />
           </FormControl>
         </Flex>
-
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <FormControl isInvalid={errors?.last_formation}>
             <FormLabel whiteSpace={["wrap", "nowrap"]}>
-              Oxirgi Shakllanish
+              oxirgi formirovaniya
             </FormLabel>
             <Input
               borderColor={"gray.600"}
@@ -183,7 +181,6 @@ export const Invite = ({ onClose }) => {
             />
           </FormControl>
         </Flex>
-
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
           <FormControl isInvalid={errors?.inviting_date}>
             <Input
