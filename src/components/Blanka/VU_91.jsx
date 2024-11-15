@@ -57,6 +57,8 @@ export const VU_91 = () => {
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
+      console.log(response?.data);
+      
     }
   };
   const handleCheckAndDelete = (deletedID) => {
@@ -76,9 +78,9 @@ export const VU_91 = () => {
       page: currentPage + 1,
       ...(carriageSerach && { search: carriageSerach }),
     };
-
     fetchData(params);
   }, [carriageSerach, currentPage]);
+
   return (
     <Box
       as="div"
@@ -153,11 +155,9 @@ export const VU_91 = () => {
                     <Td>{item?.chartley_number}</Td>
                     <Td>{item?.defect_appearance}</Td>
                     
-                    <Td>
+                    <Td >
                       <ImageSignature
-                        signatureImage={
-                          item?.defestoskop_signature_user_signature
-                        }
+                        signatureImage={item?.user_signature_url}
                       />
                     </Td>
                     <Td>

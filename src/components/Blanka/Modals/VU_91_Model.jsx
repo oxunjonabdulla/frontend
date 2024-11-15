@@ -94,10 +94,10 @@ export const VU_91_Model = ({ onClose, isOpen }) => {
                 />
               </FormControl>
               <FormControl isInvalid={errors?.gildirak_chilangar_user_signature}>
-                <FormLabel>G&rsquo;ildirak Plumber foydalanuvchi imzosi</FormLabel>
+                <FormLabel>G&#39;ildirak chilangari imzosi</FormLabel>
                 <Select
                   borderColor={"gray.600"}
-                  placeholder="G'ildirak Plumber foydalanuvchi imzosi"
+                  placeholder="G&#39;ildirak chilangari imzosi"
                   {...register("gildirak_chilangar_user_signature", { required: true })}
                 >
                   {wheelPlumberUser?.map((item) => (

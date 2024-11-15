@@ -197,11 +197,11 @@ export const VU_54 = () => {
               textAlign={"center"}
               fontSize={"2xl"}
             >
-              VU-50 Shakl topilmadi
+              VU-54 Shakl topilmadi
             </Text>
             <Button colorScheme="teal" onClick={onOpen}>
               {" "}
-              VU-50 Shakl qo&apos;shish
+              VU-54 Shakl qo&apos;shish
             </Button>
           </Flex>
         )

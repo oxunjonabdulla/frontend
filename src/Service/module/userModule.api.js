@@ -529,9 +529,9 @@ class UserApi extends React.Component {
   }
   // vu90
   async postVu90(obj) {
+    for (const key in obj) if (!obj[key]) obj[key] = null;
     try {
       const response = await privateInstance.post(authEndpoints.vu90, obj);
-
       return { response };
     } catch (error) {
       return { error };

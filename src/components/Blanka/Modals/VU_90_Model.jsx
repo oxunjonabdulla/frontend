@@ -42,11 +42,10 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
     const object = {
       ...data,
       maded_factory_creating_back:
-        maded_factory_creating_back + "|" + maded_factory_creating_back_adding,
+        maded_factory_creating_back + "|" + (maded_factory_creating_back_adding || ""),
       maded_factory_creating_front:
-        maded_factory_creating_front +
-        "|" +
-        maded_factory_creating_front_adding,
+        maded_factory_creating_front + "|" +
+        (maded_factory_creating_front_adding || ""),
     };
 
     const { response, error } = await new UserApi().postVu90(object);
@@ -471,26 +470,22 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back")}
-                  type="text"
                   placeholder="So'z shakli 1"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back2")}
-                  type="text"
                   placeholder="So'z shakli 2"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back3")}
-                  type="text"
                   placeholder="So'z shakli 3"
                 />
 
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back4")}
-                  type="text"
                   placeholder="So'z shakli 4"
                 />
               </FormControl>
@@ -499,25 +494,21 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front")}
-                  type="text"
                   placeholder="So'z shakli 1"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front2")}
-                  type="text"
                   placeholder="So'z shakli 2"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front3")}
-                  type="text"
                   placeholder="So'z shakli 3"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front4")}
-                  type="text"
                   placeholder="So'z shakli 4"
                 />
               </FormControl>
