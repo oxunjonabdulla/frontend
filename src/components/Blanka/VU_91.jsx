@@ -154,7 +154,6 @@ export const VU_91 = () => {
                     <Td>{item?.chartley_made_and_year}</Td>
                     <Td>{item?.chartley_number}</Td>
                     <Td>{item?.defect_appearance}</Td>
-                    
                     <Td >
                       <ImageSignature
                         signatureImage={item?.user_signature_url}
@@ -165,7 +164,6 @@ export const VU_91 = () => {
                         signatureImage={item?.wheel_plumber_user_info?.signature_image}
                       />
                     </Td>
-
                     <Td>
                       {" "}
                       <Flex gap={2} justifyContent={"center"}>

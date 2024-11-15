@@ -60,7 +60,7 @@ export const WheelPairsPage = () => {
   return (
     <Container maxW="container.2xl">
       <Heading size={"xl"} textAlign={"center"} mt={14} fontWeight={500}>
-        G‘ildirak juftlikalar bo‘linmasi
+        G‘ildirak juftliklari bo‘linmasi
       </Heading>
 
       <Box as="div">

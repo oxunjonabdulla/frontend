@@ -12,12 +12,10 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
 import { useParams } from "react-router";
-import UserApi from "../../Service/module/userModule.api";
 import { useState } from "react";
 import { BreadCumbs } from "../../utils";
-import { SimpleLoader, TrainLoader } from "../../components";
+import { SimpleLoader } from "../../components";
 
 export const AssemblyPageUnitId = () => {
   const { id } = useParams();
