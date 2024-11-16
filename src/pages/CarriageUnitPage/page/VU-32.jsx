@@ -249,6 +249,7 @@ export const VU_32 = () => {
                 <Th>35</Th>
                 <Th>36</Th>
                 <Th>37</Th>
+                <Th>38</Th>
                 <Th></Th>
               </Tr>
             </Thead>
