@@ -29,8 +29,8 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-
-    const { response, error } = await new UserApi().postAcceptedVu51Api(accaptedData.uuid, data);
+    
+    const { response, error } = await new UserApi().postAcceptedVu51Api(accaptedData.id, data);
     setLoading(false);
     if (response) {
       toast({
@@ -76,74 +76,39 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
         <ModalBody>
           <form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
-              <Text
-                as={"h1"}
-                textAlign={"center"}
-                m={0}
-                fontSize={"xl"}
-                fontWeight={700}
-              >
-                Sana va joy
-              </Text>
               <Flex
                 gap={3}
                 flexWrap={["wrap", "nowrap"]}
                 align={"center"}
                 my={4}
               >
-                <FormControl isInvalid={errors?.last_formation}>
+                <FormControl isInvalid={errors?.date_of_release_from_repair}>
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                    Oxirgi Shakllanish
+                    Ta'mirdan chiqarilgan vaqti(kun/oy)
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("last_formation")}
+                    {...register("date_of_release_from_repair")}
                     type="text"
                   />
                 </FormControl>
-                <FormControl isInvalid={errors?.full_inspaction}>
+                <FormControl isInvalid={errors?.date_of_sending}>
                   <FormLabel>
-                    Oxirgi to‘liq tekshirish va rolikli rulmonlarni buksaga
-                    o‘rnatish{" "}
+                    Yuborilgan vaqti(oy/yil)
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("full_inspaction")}
-                    type="text"
+                    {...register("date_of_sending")}
+                    type="month"
                   />
                 </FormControl>
-              </Flex>
-
-              <Text
-                as={"h1"}
-                textAlign={"center"}
-                m={0}
-                fontSize={"xl"}
-                fontWeight={700}
-              >
-                __________
-              </Text>
-              <Flex
-                gap={3}
-                flexWrap={["wrap", "nowrap"]}
-                align={"center"}
-                my={4}
-              >
-                <FormControl isInvalid={errors?.carriage_using_number}>
+                <FormControl isInvalid={errors?.place_of_sending}>
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                    № Vagon uchun ishlatilgan
+                    YubYuborilgan joyi Pto, VCHD, Zavod
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("carriage_using_number")}
-                    type="text"
-                  />
-                </FormControl>
-                <FormControl isInvalid={errors?.shipped_vchd}>
-                  <FormLabel>Yuborilgan VCHD, Zavod PTO si </FormLabel>
-                  <Input
-                    borderColor={"gray.600"}
-                    {...register("shipped_vchd")}
+                    {...register("place_of_sending")}
                     type="text"
                   />
                 </FormControl>
@@ -154,263 +119,177 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                 align={"center"}
                 my={4}
               >
-                <FormControl isInvalid={errors?.referance_number}>
+                <FormControl isInvalid={errors?.preservation_number}>
+                  <FormLabel>Preshilochniy raqami</FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("preservation_number")}
+                    type="text"
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.given_to_wagon}>
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                    Yunaltiruvchi vedomostlar raqami
+                    Vagonga berilgan
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("referance_number")}
+                    {...register("given_to_wagon")}
                     type="text"
                   />
                 </FormControl>
-                <FormControl isInvalid={errors?.repair_perfomed}>
-                  <FormLabel>Bajarilgan tamir turi</FormLabel>
+                <FormControl isInvalid={errors?.substep_part_diameter}>
+                  <FormLabel>Podstupichniy osti qismi diametri</FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("repair_perfomed")}
+                    {...register("substep_part_diameter")}
                     type="text"
                   />
                 </FormControl>
               </Flex>
-              <Text
-                as={"h1"}
-                textAlign={"center"}
-                m={0}
-                fontSize={"xl"}
-                fontWeight={700}
-              >
-                G‘ildirak juftligi o‘lchamlari (mm)
-              </Text>
               <Flex
                 gap={3}
                 flexWrap={["wrap", "nowrap"]}
                 align={"center"}
                 my={4}
               >
-                <Flex flexDir={"column"} gap={3}>
-                  <FormControl isInvalid={errors?.arrow_neck_length_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      O‘q bo‘yni uzunligi
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("arrow_neck_length_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.arrow_neck_length_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("arrow_neck_length_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-                <Flex flexDir={"column"} gap={3}>
-                  <FormControl isInvalid={errors?.arrow_neck_diametr_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      O‘q bo‘yni diametr
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("arrow_neck_diametr_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.arrow_neck_diametr_chap}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("arrow_neck_diametr_chap")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-                <Flex flexDir={"column"} gap={3}>
-                  <FormControl isInvalid={errors?.neck_stupitsa_type_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      O‘q diametri Stupitsa ostidan oldingi qism
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("neck_stupitsa_type_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.neck_stupitsa_type_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("neck_stupitsa_type_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-                <Flex flexDir={"column"} gap={3}>
-                  <FormControl isInvalid={errors?.neck_stupitsa_diametr_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      O‘q diametri stupitsa osti
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("neck_stupitsa_diametr_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.neck_stupitsa_diametr_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("neck_stupitsa_diametr_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-                <Flex flexDir={"column"} gap={3}>
-                  <FormControl isInvalid={errors?.shaft_diametr_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      O‘q diametri Obod qalinligi
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("shaft_diametr_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.shaft_diametr_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("shaft_diametr_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-              </Flex>
-
-              <Flex
-                gap={3}
-                flexWrap={["wrap", "nowrap"]}
-                align={"center"}
-                my={4}
-              >
-                <Flex flexDir={"column"} gap={3} w={"100%"}>
-                  <FormControl isInvalid={errors?.wheel_thickness_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      G‘ildirak Obod qalinligi
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("wheel_thickness_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.wheel_thickness_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("wheel_thickness_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-                <Flex flexDir={"column"} gap={3} w={"100%"}>
-                  <FormControl isInvalid={errors?.wheel_rolling_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      G‘ildirak prokat
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("wheel_rolling_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.wheel_rolling_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("wheel_rolling_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-                <Flex flexDir={"column"} gap={3} w={"100%"}>
-                  <FormControl isInvalid={errors?.wheel_diametr_right}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      G‘ildirak Aylana diametri
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("wheel_diametr_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.wheel_diametr_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("wheel_diametr_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-                <Flex flexDir={"column"} gap={3} w={"100%"}>
-                  <FormControl isInvalid={errors?.sinovi}>
-                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                      G‘ildirak Ichki qirrasi orasidagi masofa
-                    </FormLabel>
-                    <Input
-                      placeholder="O'ng"
-                      borderColor={"gray.600"}
-                      {...register("wheel_distance_between_right")}
-                      type="text"
-                    />
-                  </FormControl>
-                  <FormControl isInvalid={errors?.wheel_distance_between_left}>
-                    <Input
-                      placeholder="Chap"
-                      borderColor={"gray.600"}
-                      {...register("wheel_distance_between_left")}
-                      type="text"
-                    />
-                  </FormControl>
-                </Flex>
-              </Flex>
-
-              <Flex
-                gap={3}
-                flexWrap={["wrap", "nowrap"]}
-                align={"center"}
-                my={4}
-              >
-                <FormControl w={"50%"} isInvalid={errors?.date_of_repair}>
+                <FormControl isInvalid={errors?.rotation_surface_diameter}>
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                    Tamirdan chiqarilgan kun
+                    Aylanish yuzasi diametri
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("date_of_repair")}
-                    type="date"
+                    {...register("rotation_surface_diameter")}
+                    type="text"
                   />
                 </FormControl>
-                <FormControl w={"50%"} isInvalid={errors?.invited_date}>
+                <FormControl isInvalid={errors?.hub_thickness}>
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                    Qo&apos;yilgan kun imzosi
+                    Obod qalinligi
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("invited_date")}
-                    type="date"
+                    {...register("hub_thickness")}
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.tooth_thickness}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    Greben qalinligi
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("tooth_thickness")}
+                    type="text"
+                  />
+                </FormControl>
+              </Flex>
+              <Flex
+                gap={3}
+                flexWrap={["wrap", "nowrap"]}
+                align={"center"}
+                my={4}
+              >
+                <FormControl isInvalid={errors?.prokat}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    prokat
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("prokat")}
+                    type="text"
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.distance_between_wheels}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    Gildiraklar orasidagi masofa
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("distance_between_wheels")}
+                    type="text"
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.wheel_pair_formation_date_factory_number}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    G'ildirak juftligi (formirovaniya) (oy/yil)/ Zavod nomeri
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("wheel_pair_formation_date_factory_number")}
+                    type="text"
+                  />
+                </FormControl>
+              </Flex>
+              <Flex
+                gap={3}
+                flexWrap={["wrap", "nowrap"]}
+                align={"center"}
+                my={4}
+              >
+                <FormControl isInvalid={errors?.full_inspection_and_assembly_of_bushing}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    To'liq tekshirish va buksani yig'ish
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("full_inspection_and_assembly_of_bushing")}
+                    type="text"
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.current_inspection}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    Joriy tekshirish
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("current_inspection")}
+                    type="text"
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.wheel_rotation_surface_alignment}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    G'ildirak aylanish yuzasini yo'nilganligi
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("wheel_rotation_surface_alignment")}
+                    type="text"
+                  />
+                </FormControl>
+              </Flex>
+              <Flex
+                gap={3}
+                flexWrap={["wrap", "nowrap"]}
+                align={"center"}
+                my={4}
+              >
+                <FormControl isInvalid={errors?.wheel_surface_alignment_and_greben_filling}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    Gildirak aylanasini yuzasini yo'nish bilan birga Greben qismini to'ldirish
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("wheel_surface_alignment_and_greben_filling")}
+                    type="text"
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.m110_thread_restoration_shaft_neck}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    M110 rezbasini tiklash, o'q bo'yni
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("m110_thread_restoration_shaft_neck")}
+                    type="text"
+                  />
+                </FormControl>
+                <FormControl isInvalid={errors?.thread_restoration_shaft_neck}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    Rezbani tiklash o'q bo'yni
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("thread_restoration_shaft_neck")}
+                    type="text"
                   />
                 </FormControl>
               </Flex>

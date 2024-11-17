@@ -25,11 +25,9 @@ export const VU_51 = () => {
   const [gettingData, setGettingData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handlePageClick = (data) => {
+  const handlePageClick = data => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
-    console.log(selectedPage);
-    
   };
   const fetchData = async (page) => {
     setIsLoading(true);

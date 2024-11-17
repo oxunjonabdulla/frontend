@@ -69,6 +69,9 @@ export const InviteTable = ({ data }) => {
     return false;
   };
 
+  console.log(data);
+  
+
   return (
     <>
       {" "}
@@ -110,7 +113,7 @@ export const InviteTable = ({ data }) => {
         </Thead>
         <Tbody>
           {data?.map((item, idx) => {
-            const { invite_detail } = item;
+            const { vu51_rasxod } = item;
 
             return (
               <Tr key={item.id}>
@@ -118,22 +121,22 @@ export const InviteTable = ({ data }) => {
                   {idx + 1}
                 </Td>
                 <Td>
-                  {invite_detail?.carriage_depo_station}
+                  {vu51_rasxod?.carriage_depo_station}
                   <Divider my={1} />
-                  {invite_detail?.depo_text}
+                  {vu51_rasxod?.depo_text}
                 </Td>
-                <Td>{reverseDateFormat(invite_detail?.invite_date)}</Td>
-                <Td fontWeight={700}> {invite_detail?.wheel_pair_number}</Td>
-                <Td> {invite_detail?.wheel_pair_type}</Td>
-                <Td> {invite_detail?.last_formation}</Td>
-                <Td> {invite_detail?.full_inspaction}</Td>
-                <Td> {invite_detail?.carriage_under}</Td>
-                <Td> {invite_detail?.invite_vchd}</Td>
-                <Td> {invite_detail?.referance_number}</Td>
-                <Td> {invite_detail?.valid_invalid_text}</Td>
-                <Td> {invite_detail?.repair_required}</Td>
+                <Td>{reverseDateFormat(vu51_rasxod?.invite_date)}</Td>
+                <Td fontWeight={700}> {vu51_rasxod?.wheel_pair_number}</Td>
+                <Td> {vu51_rasxod?.wheel_pair_type}</Td>
+                <Td> {vu51_rasxod?.last_formation}</Td>
+                <Td> {vu51_rasxod?.full_inspaction}</Td>
+                <Td> {vu51_rasxod?.carriage_under}</Td>
+                <Td> {vu51_rasxod?.invite_vchd}</Td>
+                <Td> {vu51_rasxod?.referance_number}</Td>
+                <Td> {vu51_rasxod?.valid_invalid_text}</Td>
+                <Td> {vu51_rasxod?.repair_required}</Td>
                 <Td>
-                  {reverseDateFormat(invite_detail?.inviting_date)}
+                  {reverseDateFormat(vu51_rasxod?.inviting_date)}
                   <Divider my={2} />
 
                   {item?.wheel_signature_user_signature ? (
@@ -151,7 +154,7 @@ export const InviteTable = ({ data }) => {
                 <Td>
                   {" "}
                   <Flex gap={2} justifyContent={"center"}>
-                    {!isAccepted(item?.accepted_detail) ? (
+                    {!isAccepted(item?.vu51_rasxod) ? (
                       <Flex justify={"center"} align={"center"} gap={2} m={0}>
                         <Text>Orqa tomonini kiritish:</Text>
                         <IconButton
