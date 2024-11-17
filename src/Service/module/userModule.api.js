@@ -515,7 +515,7 @@ class UserApi extends React.Component {
   }
   async postAcceptedVu51Api(uuid, obj) {
     for (const key in obj) if (!obj[key]) obj[key] = null;
-    
+  
     try {
       const response = await privateInstance.post(
         authEndpoints.postAcceptedVu51(uuid),

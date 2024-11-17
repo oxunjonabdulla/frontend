@@ -11,14 +11,18 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "../../../../Service/module/userModule.api";
+
 export const Acepted = ({ onClose, isOpen, accaptedData }) => {
   const [isLoading, setLoading] = useState(false);
+  const [wheelUser, setWheelUser] = useState([]);
+
   const toast = useToast();
   const {
     register,
@@ -56,6 +60,14 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
       });
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response } = await new UserApi().getWheelUserSignature();
+      if (response) setWheelUser(response?.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <Modal
@@ -254,6 +266,16 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     type="text"
                   />
                 </FormControl>
+                <FormControl isInvalid={errors?.thread_restoration_shaft_neck}>
+                  <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                    Rezbani tiklash o'q bo'yni
+                  </FormLabel>
+                  <Input
+                    borderColor={"gray.600"}
+                    {...register("thread_restoration_shaft_neck")}
+                    type="text"
+                  />
+                </FormControl>
               </Flex>
               <Flex
                 gap={3}
@@ -281,19 +303,22 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                     type="text"
                   />
                 </FormControl>
-                <FormControl isInvalid={errors?.thread_restoration_shaft_neck}>
+                <FormControl isInvalid={errors?.wheelset_owner}>
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                    Rezbani tiklash o'q bo'yni
+                    G`ildirak juftliklarini  tekshirgan
                   </FormLabel>
-                  <Input
+                  <Select
                     borderColor={"gray.600"}
-                    {...register("thread_restoration_shaft_neck")}
-                    type="text"
-                  />
+                    placeholder="G`ildirak juftliklarini  tekshirgan	"
+                    {...register("gildirak_user_signature")}
+                  >
+                    {wheelUser?.map((item) => (
+                      <option key={item?.id} value={item?.id}>{item?.name}</option>
+                    ))}
+                  </Select>
                 </FormControl>
               </Flex>
             </ModalBody>
-
             <ModalFooter>
               <Button colorScheme="red" mr={3} onClick={onClose}>
                 Yopish
