@@ -109,7 +109,7 @@ const authEndpoints = {
 
   // vu 51
   vu51Delate: (carriageID) => `/vu51_m/${carriageID}/`,
-  postAcceptedVu51: (carriageID) => `/vu51_rasxod/${carriageID}/`,
+  postAcceptedVu51: (carriageID) => `/vu51_rasxod/create/${carriageID}/`,
   createVu51: `/vu51_prihod/create/`,
   vu51All: (page) => `/vu51_m/?page=${page + 1}`,
   // vu 53
