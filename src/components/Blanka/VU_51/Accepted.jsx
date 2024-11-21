@@ -1,5 +1,4 @@
 import {
-  Divider,
   Image,
   Modal,
   ModalBody,

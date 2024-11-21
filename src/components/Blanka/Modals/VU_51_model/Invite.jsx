@@ -24,12 +24,7 @@ export const Invite = ({ onClose }) => {
   const onSubmit = async (data) => {
     setLoading(true);
 
-    const { response, error } = await new UserApi().postIntiveVu51Api({
-      invite_detail: {
-        ...data,
-        wheel_surface_diametr: "455",
-      },
-    });
+    const { response, error } = await new UserApi().postIntiveVu51Api(data);
     setLoading(false);
     if (response) {
       toast({
@@ -44,7 +39,6 @@ export const Invite = ({ onClose }) => {
     }
     if (error) {
       console.log(error?.detail);
-      
       toast({
         status: "error",
         title: error?.detail
