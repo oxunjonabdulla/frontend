@@ -309,7 +309,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                   </FormLabel>
                   <Select
                     borderColor={"gray.600"}
-                    placeholder="G`ildirak juftliklarini  tekshirgan	"
+                    placeholder="G`ildirak juftliklarini tekshirgan"
                     {...register("gildirak_user_signature")}
                   >
                     {wheelUser?.map((item) => (

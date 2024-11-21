@@ -48,7 +48,7 @@ export const InviteTable = ({ data }) => {
   };
 
   const handleDelate = async () => {
-    const { response } = await new UserApi().delVu51(getTableData?.uuid);
+    const { response } = await new UserApi().delVu51(getTableData?.id);
     if (response) {
       window.location.reload();
     }
@@ -100,13 +100,13 @@ export const InviteTable = ({ data }) => {
             return (
               <Tr key={item.id}>
                 <Td textAlign={"center"} fontSize={"lg"}>{idx + 1}</Td>
-                <Td>{timeMoment(vu51_prihod?.created_at)?.day}</Td>
                 <Td>{vu51_prihod?.serial_number}</Td>
+                <Td>{timeMoment(vu51_prihod?.created_at)?.day}</Td>
                 <Td>{vu51_prihod?.wagon_depot_factory}</Td>
                 <Td>{vu51_prihod?.depo_text}</Td>
                 <Td>{vu51_prihod?.code}</Td>
                 <Td>{vu51_prihod?.wheel_pair_number}</Td>
-                <Td>{vu51_prihod?.accepted_date}</Td>
+                <Td>{timeMoment(vu51_prihod?.accepted_date)?.day}</Td>
                 <Td>{vu51_prihod?.last_formulation}</Td>
                 <Td>{vu51_prihod?.last_full_check_and_assembly}</Td>
                 <Td>{vu51_prihod?.last_rotational_surface_aligned}</Td>

@@ -869,9 +869,9 @@ export const vu_54 = [
 export const vu_51 = {
   invite: {
     headers: [
+      { label: "#", rowspan: 2 },
       { label: "Tartib raqami", rowspan: 2 },
       { label: "Model yaratilgan sana", rowspan: 2 },
-      { label: "Seriyasi raqami", rowspan: 2 },
       { label: "Vagon Depo, Zavod", rowspan: 2 },
       { label: "J.D ", rowspan: 2 },
       { label: "Kod", rowspan: 2 },
