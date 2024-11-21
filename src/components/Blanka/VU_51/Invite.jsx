@@ -69,9 +69,6 @@ export const InviteTable = ({ data }) => {
     return false;
   };
 
-  console.log(data);
-  
-
   return (
     <>
       {" "}
