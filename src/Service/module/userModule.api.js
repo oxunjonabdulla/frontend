@@ -513,7 +513,7 @@ class UserApi extends React.Component {
   }
   async postAcceptedVu51Api(uuid, obj) {
     for (const key in obj) if (!obj[key]) obj[key] = null;
-  
+
     try {
       const response = await privateInstance.post(
         authEndpoints.postAcceptedVu51(uuid),
@@ -1259,7 +1259,9 @@ class UserApi extends React.Component {
 
   async getVu53All(params) {
     try {
-      const response = await privateInstance.get(authEndpoints.getVu53All(params));
+      const response = await privateInstance.get(
+        authEndpoints.getVu53All(params)
+      );
 
       return { response };
     } catch (error) {
@@ -1292,9 +1294,7 @@ class UserApi extends React.Component {
 
   async deleteVu53(id) {
     try {
-      const response = await privateInstance.delete(
-        authEndpoints.vu53Id(id)
-      );
+      const response = await privateInstance.delete(authEndpoints.vu53Id(id));
 
       return { response };
     } catch (error) {
@@ -1326,9 +1326,8 @@ class UserApi extends React.Component {
     }
   }
   async postVu53Rasxod(obj, vu53Id) {
-    for (const key in obj)
-      if (!obj[key]) obj[key] = null;
-    
+    for (const key in obj) if (!obj[key]) obj[key] = null;
+
     try {
       const response = await privateInstance.post(
         authEndpoints.postVu53Rasxod(vu53Id),
@@ -1636,8 +1635,6 @@ class UserApi extends React.Component {
         authEndpoints.vu36Current(id),
         obj
       );
-<<<<<<< HEAD
-=======
       return { response };
     } catch (error) {
       return { error };
@@ -1664,7 +1661,6 @@ class UserApi extends React.Component {
         authEndpoints.wheelPlumberUserSignatureAll,
         { params: paramObj }
       );
->>>>>>> 80aab1b6d6c63b817a2bd5d75f106a996fc101b8
       return { response };
     } catch (error) {
       return { error };
