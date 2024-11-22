@@ -25,13 +25,14 @@ export const VU_51 = () => {
   const [gettingData, setGettingData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handlePageClick = (data) => {
+  const handlePageClick = data => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu51All(page);
+
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
@@ -75,11 +76,9 @@ export const VU_51 = () => {
       </Tooltip>
       {!isLoadingFulStatistik ? (
         gettingData?.count > 0 ? (
-          <>
-            <TableContainer p={4} border={"1px solid #eeeee"}>
-              <InviteTable data={gettingData?.results} />
-            </TableContainer>
-          </>
+          <TableContainer p={4} border={"1px solid #eeeee"}>
+            <InviteTable data={gettingData?.results} />
+          </TableContainer>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
             <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />

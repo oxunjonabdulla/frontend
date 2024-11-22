@@ -10,25 +10,39 @@ import {
 } from "@chakra-ui/react";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SliderMock } from "../../../utils";
 import { InviteTable } from "./InviteTable";
-import { UseTable } from "./UseTable";
 import { VU_53_Model } from "../Modals/VU_53_model/VU_53_Model";
+import { Pagination } from "../../pagination/Pagination";
+import UserApi from "../../../Service/module/userModule.api";
+
 const data = [0];
 
 export const VU_53 = () => {
-  const [activeType, setActiveType] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
-  const renderComponent = () => {
-    switch (activeType) {
-      case 1:
-        return <InviteTable />;
-      case 2:
-        return <UseTable />;
+  const [currentPage, setCurrentPage] = useState(0);
+  const [gettingData, setGettingData] = useState([]);
+
+  const fetchData = async (page) => {
+    setIsLoading(true);
+    const { response } = await new UserApi().getVu53All(page);
+    if (response) {
+      setIsLoading(false);
+      setGettingData(response?.data);
     }
   };
+
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
+
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
+
   return (
     <Box
       as="div"
@@ -62,31 +76,15 @@ export const VU_53 = () => {
         </Button>
       </Tooltip>
       {!isLoadingFulStatistik ? (
-        data?.length ? (
-          <>
-            <Flex gap={4} justify={"center"}>
-              <Button
-                onClick={() => setActiveType(1)}
-                variant={activeType === 1 ? "outline_active" : "outline"}
-              >
-                Qabul
-              </Button>
-              <Button
-                onClick={() => setActiveType(2)}
-                variant={activeType === 2 ? "outline_active" : "outline"}
-              >
-                Istemol
-              </Button>
-            </Flex>
-            <TableContainer
-              p={4}
-              border={"1px solid #eeeee"}
-              display={"flex"}
-              gap={3}
-            >
-              {renderComponent()}
-            </TableContainer>
-          </>
+        gettingData?.count > 0 ? (
+          <TableContainer
+            p={4}
+            border={"1px solid #eeeee"}
+            display={"flex"}
+            gap={3}
+          >
+            <InviteTable data={gettingData?.results} currentPage={currentPage} />
+          </TableContainer>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
             <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />
@@ -106,6 +104,11 @@ export const VU_53 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+
+      <Pagination
+        pageCount={gettingData?.count}
+        onPageChange={handlePageClick}
+      />
 
       <VU_53_Model isOpen={isOpen} onClose={onClose} />
     </Box>

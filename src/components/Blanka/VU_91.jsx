@@ -21,8 +21,6 @@ import {
 } from "@chakra-ui/react";
 import {
   faBook,
-  faChevronLeft,
-  faChevronRight,
   faDownload,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
@@ -32,7 +30,6 @@ import { SliderMock } from "../../utils";
 import { vu_91 } from "../../utils/mock_heads";
 import { VU_91_Model } from "./Modals/VU_91_Model";
 import UserApi from "../../Service/module/userModule.api";
-import ReactPaginate from "react-paginate";
 import { imageGet } from "../../utils/imageGet";
 import { Deleteted } from "../Deletete";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -60,6 +57,8 @@ export const VU_91 = () => {
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
+      console.log(response?.data);
+      
     }
   };
   const handleCheckAndDelete = (deletedID) => {
@@ -79,9 +78,9 @@ export const VU_91 = () => {
       page: currentPage + 1,
       ...(carriageSerach && { search: carriageSerach }),
     };
-
     fetchData(params);
   }, [carriageSerach, currentPage]);
+
   return (
     <Box
       as="div"
@@ -155,25 +154,16 @@ export const VU_91 = () => {
                     <Td>{item?.chartley_made_and_year}</Td>
                     <Td>{item?.chartley_number}</Td>
                     <Td>{item?.defect_appearance}</Td>
-                    <Td>
-                      <Image
-                        width={"100px"}
-                        src={imageGet(item?.user_signature_url)}
+                    <Td >
+                      <ImageSignature
+                        signatureImage={item?.user_signature_url}
                       />
                     </Td>
                     <Td>
                       <ImageSignature
-                        signatureImage={
-                          item?.defestoskop_signature_user_signature
-                        }
+                        signatureImage={item?.wheel_plumber_user_info?.signature_image}
                       />
                     </Td>
-                    <Td>
-                      <ImageSignature
-                        signatureImage={item?.wheel_plumber_user_signature}
-                      />
-                    </Td>
-
                     <Td>
                       {" "}
                       <Flex gap={2} justifyContent={"center"}>

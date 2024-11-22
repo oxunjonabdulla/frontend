@@ -11,7 +11,6 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MainHeads } from "@/components";
-import { SearchTrain } from "../../../../utils";
 import { useNavigate } from "react-router";
 import UserApi from "../../../../Service/module/userModule.api";
 export const RegisterRegularCreate = () => {
@@ -138,6 +137,7 @@ export const RegisterRegularCreate = () => {
               />
             </FormControl>
           </Flex>
+          
           <Flex
             gap={3}
             flexWrap={["wrap", "nowrap"]}

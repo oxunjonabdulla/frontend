@@ -4,7 +4,6 @@ import {
   Flex,
   Heading,
   IconButton,
-  Image,
   Table,
   TableContainer,
   Tbody,
@@ -144,21 +143,14 @@ export const VU_93 = () => {
                     <Td> {item?.made_in}</Td>
                     <Td>{item?.not_allowed}</Td>
                     <Td>{item?.rapair_works}</Td>
-
                     <Td>
                       <ImageSignature
-                        signatureImage={item?.wheel_signature_user_signature}
-                      />
-                    </Td>
-                    <Td>
-                      <Image
-                        width={"100px"}
-                        src={imageGet(item?.user_signature_url)}
+                        signatureImage={item?.wheel_signature_user_info?.signature_image}
                       />
                     </Td>
                     <Td>
                       <ImageSignature
-                        signatureImage={item?.wheel_plumber_user_signature}
+                        signatureImage={item?.wheel_plumber_user_info?.signature_image}
                       />
                     </Td>
                     <Td>

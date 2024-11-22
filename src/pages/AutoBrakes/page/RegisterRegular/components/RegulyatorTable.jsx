@@ -58,7 +58,7 @@ const RegulyatorTable = memo(function RegulyatorTable() {
       const { response } = await new UserApi().getRegulyator(paramsPage);
       if (response) {
         setIsLoading(false);
-        setGettingData(response?.data);
+        setGettingData(response?.data);        
       }
     };
     fetchData();
@@ -95,13 +95,12 @@ const RegulyatorTable = memo(function RegulyatorTable() {
             {gettingData?.results?.map((item, idx) => (
               <Tr key={item.id}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
-                <Td>{timeMoment(item.created_at)?.day}</Td>
+                <Td>{timeMoment(item.date)?.day}</Td>
                 <Td>{item.ptp_type}</Td>
                 <Td>{item.corp_number}</Td>
                 <Td>{item.kgs_check}</Td>
                 <Td>{item.a_ptp_to_mm}</Td>
                 <Td>{item.b_ptp_to_mm}</Td>
-                <Td>{item.prp_to_mm}</Td>
                 <Td>{item.prp_to_mm}</Td>
                 <Td>{item.repair_check}</Td>
 

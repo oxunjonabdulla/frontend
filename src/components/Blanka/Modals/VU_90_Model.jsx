@@ -11,17 +11,18 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
   Text,
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Signatur } from "../../Signature/Signatur";
-import { SearchTrain } from "../../../utils";
 import UserApi from "../../../Service/module/userModule.api";
 export const VU_90_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
+  const [wheelUser, setWheelUser] = useState([]);
+  const [wheelPlumberUser, setWheelPlumberUser] = useState([]);
 
   const toast = useToast();
   const {
@@ -41,11 +42,10 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
     const object = {
       ...data,
       maded_factory_creating_back:
-        maded_factory_creating_back + "|" + maded_factory_creating_back_adding,
+        maded_factory_creating_back + "|" + (maded_factory_creating_back_adding || ""),
       maded_factory_creating_front:
-        maded_factory_creating_front +
-        "|" +
-        maded_factory_creating_front_adding,
+        maded_factory_creating_front + "|" +
+        (maded_factory_creating_front_adding || ""),
     };
 
     const { response, error } = await new UserApi().postVu90(object);
@@ -73,6 +73,16 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
       });
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response } = await new UserApi().getWheelUserSignature();
+      const { response: wheelPlumberUserSignature } = await new UserApi().getWheelPlumberUserSignature();
+      if (wheelPlumberUserSignature) setWheelPlumberUser(wheelPlumberUserSignature?.data);
+      if (response) setWheelUser(response?.data);
+    };
+    fetchData();
+  }, []);
   return (
     <Modal
       isOpen={isOpen}
@@ -116,6 +126,32 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                   {...register("wheel_pair_medal")}
                   type="text"
                 />
+              </FormControl>
+            </Flex>
+            <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
+              <FormControl isInvalid={errors?.gildirak_user_signature}>
+                <FormLabel>Smena ustasi imzosi</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Smena ustasi imzosi"
+                  {...register("gildirak_user_signature", { required: true })}
+                >
+                  {wheelUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl isInvalid={errors?.gildirak_chilangar_user_signature}>
+                <FormLabel>G&rsquo;ildirak Plumber foydalanuvchi imzosi</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="G'ildirak Plumber foydalanuvchi imzosi"
+                  {...register("gildirak_chilangar_user_signature", { required: true })}
+                >
+                  {wheelPlumberUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
               </FormControl>
             </Flex>
 
@@ -434,26 +470,22 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back")}
-                  type="text"
                   placeholder="So'z shakli 1"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back2")}
-                  type="text"
                   placeholder="So'z shakli 2"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back3")}
-                  type="text"
                   placeholder="So'z shakli 3"
                 />
 
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_back4")}
-                  type="text"
                   placeholder="So'z shakli 4"
                 />
               </FormControl>
@@ -462,25 +494,21 @@ export const VU_90_Model = ({ onClose, isOpen }) => {
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front")}
-                  type="text"
                   placeholder="So'z shakli 1"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front2")}
-                  type="text"
                   placeholder="So'z shakli 2"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front3")}
-                  type="text"
                   placeholder="So'z shakli 3"
                 />
                 <Input
                   borderColor={"gray.600"}
                   {...register("maded_factory_creating_front4")}
-                  type="text"
                   placeholder="So'z shakli 4"
                 />
               </FormControl>

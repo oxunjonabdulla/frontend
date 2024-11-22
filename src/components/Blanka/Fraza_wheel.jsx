@@ -69,23 +69,18 @@ export const Fraza_wheel = () => {
     setGetinfTableData(deletedID);
   };
   const handleDelate = async (carriageID) => {
-    const { response, error } = await new UserApi().deletePhraseWheel(
-      carriageID
-    );
-    if (response) {
-      window.location.reload();
-    } else {
-      toast({
-        status: "error",
-        title:
-          error?.detail &&
-          carriageID + " vagon raqami ma'lumoti avval o'chirilgan",
-        duration: 4000,
-        isClosable: true,
-        position: "top-right",
-        fontSize: "3xl",
-      });
-    }
+    const { response, error } = await new UserApi().deletePhraseWheel(carriageID);
+    if (response) window.location.reload();
+    else toast({
+      status: "error",
+      title:
+        error?.detail &&
+        carriageID + " vagon raqami ma'lumoti avval o'chirilgan",
+      duration: 4000,
+      isClosable: true,
+      position: "top-right",
+      fontSize: "3xl",
+    });
   };
 
   // const handleUpdate = (selectedItem) => {
@@ -204,8 +199,11 @@ export const Fraza_wheel = () => {
                   <Th rowSpan={3} textAlign={"center"}>
                     Imzo
                   </Th>
+                  <Th rowSpan={3} textAlign={"center"}>
+                    Qabulqiluvchi imzosi
+                  </Th>
                   <Th rowSpan={3} textAlign={"center"}></Th>
-                  <Th rowSpan={3}>Ma'lumot yozilgan vaqti</Th>
+                  <Th rowSpan={3}>Ma&#39;lumot yozilgan vaqti</Th>
                 </Tr>
                 <Tr>
                   {mockHeaderFraza?.nestedHeaders?.map((item) => (
@@ -271,6 +269,16 @@ export const Fraza_wheel = () => {
                           />
                         ) : (
                           <Text color={"red"}>Imzo o`chirilgan</Text>
+                        )}
+                      </Td>
+                      <Td rowSpan={4}>
+                        {item?.wheel_signature_user_info ? (
+                          <Image
+                            w={"100px"}
+                            src={imageGet(item?.wheel_signature_user_info?.signature_image)}
+                          />
+                        ) : (
+                          <Text color={"red"}>Imzo kiritilmagan</Text>
                         )}
                       </Td>
                       <Td rowSpan={4}>

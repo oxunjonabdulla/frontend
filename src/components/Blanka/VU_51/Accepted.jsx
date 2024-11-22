@@ -1,5 +1,4 @@
 import {
-  Divider,
   Image,
   Modal,
   ModalBody,
@@ -18,9 +17,14 @@ import {
 
 import { vu_51 } from "../../../utils/mock_heads";
 import { imageGet } from "../../../utils/imageGet";
+import PropTypes from "prop-types";
+import { timeMoment } from "../../../utils/roleTest";
 
 export const AccaptedTable = ({ data, isOpen, onClose }) => {
-  const { accepted_detail } = data;
+  const { vu51_rasxod } = data;
+
+  console.log(vu51_rasxod);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -33,10 +37,10 @@ export const AccaptedTable = ({ data, isOpen, onClose }) => {
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
         <ModalHeader textAlign={"center"}>
-          VU-51 Jurnalini orqa qismi ko'rinsihini
+          VU-51 Jurnalini orqa qismi ko&#39;rinsihini
         </ModalHeader>
         <ModalCloseButton />{" "}
-        <ModalBody>
+        <ModalBody style={{ overflow: "auto" }}>
           <Table
             borderRadius={10}
             size={"sm"}
@@ -59,98 +63,40 @@ export const AccaptedTable = ({ data, isOpen, onClose }) => {
                   </Th>
                 ))}
               </Tr>
-              <Tr>
-                {vu_51?.accepted?.nestedHeaders?.map((item) => (
-                  <Th
-                    fontSize={"10px"}
-                    textAlign={"center"}
-                    key={item.label}
-                    rowSpan={item.rowspan}
-                    colSpan={item.colspan}
-                  >
-                    {item.label}
-                  </Th>
-                ))}
-              </Tr>
-              <Tr>
-                {vu_51?.accepted?.nestedDeepHeaders?.map((item) => (
-                  <Th
-                    fontSize={"10px"}
-                    textAlign={"center"}
-                    key={item.label}
-                    rowSpan={item.rowspan}
-                    colSpan={item.colspan}
-                  >
-                    {item.label}
-                  </Th>
-                ))}
-              </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td rowSpan={2} textAlign={"center"} fontSize={"lg"}>
-                  {1}
-                </Td>
-
-                <Td rowSpan={2}>{accepted_detail?.last_formation}</Td>
-                <Td rowSpan={2}>{accepted_detail?.full_inspaction}</Td>
-                <Td rowSpan={2}>{accepted_detail?.carriage_using_number}</Td>
-                <Td rowSpan={2}>{accepted_detail?.shipped_vchd}</Td>
-                <Td rowSpan={2}>{accepted_detail?.referance_number}</Td>
-                <Td rowSpan={2}>{accepted_detail?.repair_perfomed}</Td>
-                <Td> O`ng</Td>
-                <Td> {accepted_detail?.arrow_neck_length_right}</Td>
-                <Td> {accepted_detail?.arrow_neck_diametr_right}</Td>
-                <Td> {accepted_detail?.neck_stupitsa_type_right}</Td>
-                <Td> {accepted_detail?.neck_stupitsa_diametr_right}</Td>
-                <Td> {accepted_detail?.shaft_diametr_right}</Td>
-                <Td> {accepted_detail?.wheel_thickness_right}</Td>
-                <Td> {accepted_detail?.wheel_rolling_right}</Td>
-                <Td> {accepted_detail?.wheel_diametr_right}</Td>
-                <Td> {accepted_detail?.wheel_distance_between_right}</Td>
-                <Td rowSpan={2}>
-                  {accepted_detail?.date_of_repair}
-                  <Divider my={2} />
-
-                  {accepted_detail?.user_signature_url ? (
+                <Td>{timeMoment(vu51_rasxod?.created_at)?.day}</Td>
+                <Td>{vu51_rasxod?.date_of_release_from_repair}</Td>
+                <Td>{vu51_rasxod?.date_of_sending}</Td>
+                <Td>{vu51_rasxod?.place_of_sending}</Td>
+                <Td>{vu51_rasxod?.preservation_number}</Td>
+                <Td>{vu51_rasxod?.given_to_wagon}</Td>
+                <Td>{vu51_rasxod?.substep_part_diameter}</Td>
+                <Td>{vu51_rasxod?.rotation_surface_diameter}</Td>
+                <Td>{vu51_rasxod?.hub_thickness}</Td>
+                <Td>{vu51_rasxod?.tooth_thickness}</Td>
+                <Td>{vu51_rasxod?.prokat}</Td>
+                <Td>{vu51_rasxod?.distance_between_wheels}</Td>
+                <Td>{vu51_rasxod?.wheel_pair_formation_date_factory_number}</Td>
+                <Td>{vu51_rasxod?.full_inspection_and_assembly_of_bushing}</Td>
+                <Td>{vu51_rasxod?.current_inspection}</Td>
+                <Td>{vu51_rasxod?.wheel_rotation_surface_alignment}</Td>
+                <Td>{vu51_rasxod?.wheel_surface_alignment_and_greben_filling}</Td>
+                <Td>{vu51_rasxod?.m110_thread_restoration_shaft_neck}</Td>
+                <Td>{vu51_rasxod?.thread_restoration_shaft_neck}</Td>
+                <Td>
+                  {vu51_rasxod?.user_signature_url ? (
                     <Image
                       width={"100px"}
-                      src={imageGet(accepted_detail?.user_signature_url)}
+                      src={imageGet(vu51_rasxod?.user_signature_url)}
                     />
                   ) : (
                     <Text as={"p"} color={"teal"}>
-                      Imzo Tadiqlangan
+                      Imzo qo&#39;yilmagan
                     </Text>
                   )}
                 </Td>
-                <Td rowSpan={2}>
-                  {accepted_detail?.invited_date}
-                  <Divider my={2} />
-
-                  {accepted_detail?.user_signature_url ? (
-                    <Image
-                      width={"100px"}
-                      src={imageGet(accepted_detail?.user_signature_url)}
-                    />
-                  ) : (
-                    <Text as={"p"} color={"teal"}>
-                      Imzo Tadiqlangan
-                    </Text>
-                  )}
-                </Td>
-              </Tr>
-
-              <Tr>
-                <Td> Chap</Td>
-                <Td> {accepted_detail?.arrow_neck_length_left}</Td>
-                <Td> {accepted_detail?.arrow_neck_diametr_chap}</Td>
-                <Td> {accepted_detail?.neck_stupitsa_type_left}</Td>
-                <Td> {accepted_detail?.neck_stupitsa_diametr_left}</Td>
-                <Td> {accepted_detail?.shaft_diametr_left}</Td>
-                <Td> {accepted_detail?.wheel_thickness_left}</Td>
-                <Td> {accepted_detail?.wheel_rolling_left}</Td>
-                <Td> {accepted_detail?.wheel_diametr_left}</Td>
-                <Td> {accepted_detail?.wheel_distance_between_left}</Td>
               </Tr>
             </Tbody>
           </Table>
@@ -158,4 +104,10 @@ export const AccaptedTable = ({ data, isOpen, onClose }) => {
       </ModalContent>
     </Modal>
   );
+};
+
+AccaptedTable.propTypes = {
+  data: PropTypes.object,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
 };

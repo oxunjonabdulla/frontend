@@ -108,17 +108,21 @@ const authEndpoints = {
   vu50All: (page) => `/vu50/list/?page=${page + 1}`,
 
   // vu 51
-  getVu51Default: (carriageID) => `/${carriageID}/vu51/`,
-  vu51Delate: (carriageID) => `/${carriageID}/vu51/`,
-  postInviteVu51: (carriageID) => `/${carriageID}/vu51/invite/`,
-  getInviteVu51: (carriageID) => `/${carriageID}/vu51/invite/`,
-  postAcceptedVu51: (carriageID) => `/${carriageID}/vu51/accept/`,
-  createVu51: `/vu51/create/`,
-  vu51All: (page) => `/vu51/list/?page=${page + 1}`,
+  vu51Delate: (carriageID) => `/vu51_m/${carriageID}/`,
+  postAcceptedVu51: (carriageID) => `/vu51_rasxod/create/${carriageID}/`,
+  createVu51: `/vu51_prihod/create/`,
+  vu51All: (page) => `/vu51_m/?page=${page + 1}`,
   // vu 53
-  getVu53All: `/vu53/`,
-  vu53IDPrihod: (id) => `/vu53_prihod/${id}/`,
+  // vu 53 prihod
+  getVu53All: (page) => `/vu53/?page=${page + 1}`,
+  vu53IDPrihod: (id) => `/vu53/${id}/`,
+  vu53Id: (id) => `/vu53/${id}/`,
   postVu53Prihod: `/vu53_prihod/create/`,
+
+  // vu 53 rasxod
+  getVu53Rasxod: `/vu53_rasxod/`,
+  vu53IDRasxod: (id) => `/vu53_rasxod/${id}/`,
+  postVu53Rasxod: (vu53Id) => `/vu53_rasxod/create/${vu53Id}/`,
 
   vu31TOVu10: (carriageID) => `/vu31/${carriageID}/transfer_to_vu10/`,
   vu10: "/vu10/",
@@ -178,6 +182,10 @@ const authEndpoints = {
   // vu36 current repair
   vu36Current: (carriageID) => `/vu36-current/${carriageID}/`,
   vu36CurrentAll: `/vu36-current/`,
+
+  // Wheel User Signature
+  wheelUserSignatureAll: `/wheel-user-signature/list/`,
+  wheelPlumberUserSignatureAll: `/wheel-plumber-user-signature/list/`,
 };
 
 export { authEndpoints };

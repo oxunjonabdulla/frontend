@@ -27,6 +27,7 @@ import { SimpleLoader } from "@/components";
 import ReactPaginate from "react-paginate";
 import { Deleteted, ImageSignature } from "../../../../../components";
 import { timeMoment } from "../../../../../utils/roleTest";
+
 const RukvaTable = memo(function RukvaTable() {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(true);
@@ -96,16 +97,18 @@ const RukvaTable = memo(function RukvaTable() {
             {gettingData?.results?.map((item, idx) => (
               <Tr key={item.carriage}>
                 <Td>{currentPage * 10 + idx + 1}</Td>
-                <Td>{timeMoment(item?.created_at)?.day}</Td>
+                <Td>{timeMoment(item?.date)?.day}</Td>
                 <Td fontWeight={"700"} color={"teal"}>
                   {item.carriage}
                 </Td>
                 <Td>{item.connect_rukva_brand_1}</Td>
                 <Td>{item.connect_rukva_brand_2}</Td>
                 <Td>{item.check_with_gass}</Td>
+                <Td>{item.check_with_gass2}</Td>
                 <Td>{item.stay_time_10}</Td>
                 <Td>{item.water_gass}</Td>
                 <Td>{item.stay_time_2}</Td>
+                <Td>{item.stay_time_2_2}</Td>
 
                 <Td>
                   <Image
@@ -113,7 +116,6 @@ const RukvaTable = memo(function RukvaTable() {
                     src={imageGet(item?.author_info?.user_signature_url)}
                   />
                 </Td>
-                <Td></Td>
                 <Td>
                   <ImageSignature
                     signatureImage={item?.avtotormoz_signature_image_url}

@@ -219,12 +219,12 @@ export const VU_90 = () => {
                       <Td rowSpan={2}>Imzo</Td>
                       <Td rowSpan={2}>
                         <ImageSignature
-                          signatureImage={e?.wheel_signature_user_signature}
+                          signatureImage={e?.wheel_signature_user_info?.signature_image}
                         />
                       </Td>
                       <Td rowSpan={2}>
                         <ImageSignature
-                          signatureImage={e?.wheel_plumber_user_signature}
+                          signatureImage={e?.wheel_plumber_user_info?.signature_image}
                         />
                       </Td>
                       <Td rowSpan={2}>{e?.comment}</Td>

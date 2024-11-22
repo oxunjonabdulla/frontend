@@ -112,7 +112,7 @@ export const VU_32 = () => {
           +
         </Button>
       </Tooltip>
-      {/* <Box my={3}>
+      <Box my={3}>
         <FormControl w={"250px"}>
           <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
           <Input
@@ -122,7 +122,7 @@ export const VU_32 = () => {
             type="text"
           />
         </FormControl>
-      </Box> */}
+      </Box>
       {gettingData?.results?.length ? (
         <TableContainer p={4} border={"1px solid #eeeee"}>
           {isLoadingData && (
@@ -249,6 +249,7 @@ export const VU_32 = () => {
                 <Th>35</Th>
                 <Th>36</Th>
                 <Th>37</Th>
+                <Th>38</Th>
                 <Th></Th>
               </Tr>
             </Thead>

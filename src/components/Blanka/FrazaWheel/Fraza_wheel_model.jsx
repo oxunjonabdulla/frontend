@@ -16,6 +16,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Select,
   Table,
   TableContainer,
   Tbody,
@@ -25,7 +26,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SearchTrain } from "../../../utils";
 import { Signatur } from "../../Signature/Signatur";
@@ -34,6 +35,7 @@ import { mockHeaderFraza } from "../../../utils/mock_heads";
 
 export const Fraza_wheel_model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
+  const [wheelUser, setWheelUser] = useState([]);
   const [serachingResult, setSerachingResult] = useState(null);
   const toast = useToast();
   const {
@@ -76,6 +78,14 @@ export const Fraza_wheel_model = ({ onClose, isOpen }) => {
   };
   const localDate = new Date();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const { response } = await new UserApi().getWheelUserSignature();
+      if (response) setWheelUser(response?.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -90,7 +100,21 @@ export const Fraza_wheel_model = ({ onClose, isOpen }) => {
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
-            <SearchTrain setSerachingResult={setSerachingResult} />
+            <Flex gap={3} flexWrap={["wrap", "nowrap"]} alignItems={"flex-end"}>
+              <SearchTrain setSerachingResult={setSerachingResult} />
+              <FormControl isInvalid={errors?.wheel_signature_user_signature}>
+                <FormLabel>Imzolovchi xodim</FormLabel>
+                <Select
+                  borderColor={"gray.600"}
+                  placeholder="Imzolovchi xodim"
+                  {...register("wheel_signature_user_signature", { required: true })}
+                >
+                  {wheelUser?.map((item) => (
+                    <option key={item?.id} value={item?.id}>{item?.name}</option>
+                  ))}
+                </Select>
+              </FormControl>
+            </Flex>
             <br />
             <TableContainer>
               <Table variant="striped" colorScheme="gray">
