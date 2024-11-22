@@ -150,9 +150,15 @@ const authEndpoints = {
   defestoskopId: (id) => `/defestoskop/${id}/`,
   postDefectoscope: `/defestoskop/`,
 
-  vu22WithId: (id) => `/vu22/maintenance_record/${id}/`,
-  vu22get: `/vu22/maintenance_records/list/`,
+  vu22WithId: (id) => `/vu22/texnik_xizmat/${id}/`,
+  vu22get: `/vu22/texnik_xizmat/`,
 
+  // vu32
+  vu22AutoTomoz: `/vu22/avtotormoz/`,
+  vu22AutoArava: `/vu22/aravalar/`,
+  vu22AutoBirikma: `/vu22/avtobirikma/`,
+  vu22AutoGildirak: `/vu22/gildirak/`,
+  vu22AutoYiguv: `/vu22/yiguv/`,
   // vu32
 
   vu32List: "/vu32/",

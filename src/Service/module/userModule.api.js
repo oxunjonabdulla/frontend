@@ -1478,6 +1478,85 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  // vu 22 autobrakes
+  async postVu22Tormoz(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu22AutoTomoz,
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu22Arava(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu22AutoArava,
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu22Birikma(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu22AutoBirikma,
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu22Gildirak(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu22AutoGildirak,
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postVu22Yiguv(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.vu22AutoYiguv,
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu22Brakes(page) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu22AutoBrakes, {
+        params: page,
+      });
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async getVu22Gildirak(page) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.vu22AutoGildirak,
+        {
+          params: page,
+        }
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   // vu 36 current
   async postVu36Current(id, obj) {
     try {
@@ -1512,7 +1591,10 @@ class UserApi extends React.Component {
   }
   async updateVu36Current(id, obj) {
     try {
-      const response = await privateInstance.patch(authEndpoints.vu36Current(id), obj);
+      const response = await privateInstance.patch(
+        authEndpoints.vu36Current(id),
+        obj
+      );
       return { response };
     } catch (error) {
       return { error };

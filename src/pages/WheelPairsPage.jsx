@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   DailyTable,
   Fraza_wheel,
-  VU_22,
   VU_50,
   VU_51,
   VU_53,
@@ -14,6 +13,7 @@ import {
   VU_93,
   WheelDalolatnoma,
 } from "../components";
+import { VU_22 } from "./GildirakVu22/VU_22";
 
 export const WheelPairsPage = () => {
   const [activeComponent, setActiveComponent] = useState(

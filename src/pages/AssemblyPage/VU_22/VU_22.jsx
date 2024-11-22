@@ -1,18 +1,10 @@
 import {
-  Badge,
   Box,
   Button,
   Flex,
   Heading,
   IconButton,
   Image,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
   Table,
   TableContainer,
   Tbody,
@@ -26,23 +18,20 @@ import {
 } from "@chakra-ui/react";
 import {
   faBook,
-  faCheck,
   faDownload,
   faEye,
   faTrashAlt,
-  faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-import { reverseDateFormat, SliderMock } from "../../../../utils";
-import { vu_22_assabmle } from "../../../../utils/mock_heads";
-import UserApi from "../../../../Service/module/userModule.api";
-import { Deleteted, Pagination } from "../../../../components";
 import { VU_22_Model } from "./VU_22_Modal";
-import { timeClear } from "../../../../utils/timeClear";
-import { imageGet } from "../../../../utils/imageGet";
-
+import UserApi from "../../../Service/module/userModule.api";
+import { vu_22_assabmle } from "../../../utils/mock_heads";
+import { reverseDateFormat, SliderMock } from "../../../utils";
+import { timeClear } from "../../../utils/timeClear";
+import { imageGet } from "../../../utils/imageGet";
+import { Deleteted, Pagination } from "../../../components";
 export const VU_22_Brakes = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -50,7 +39,7 @@ export const VU_22_Brakes = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
-  const [showModel, setShowModel] = useState([]);
+  const [showModel, setShowModel] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpenShowModel,
@@ -62,7 +51,6 @@ export const VU_22_Brakes = () => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
-
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu22(page);
@@ -71,7 +59,6 @@ export const VU_22_Brakes = () => {
       setGettingData(response?.data);
     }
   };
-
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
@@ -83,13 +70,12 @@ export const VU_22_Brakes = () => {
       window.location.reload();
     }
   };
-
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
 
   const handleOpenEye = (data) => {
-    setShowModel(data.avtotomoz_data || []);
+    setShowModel(data);
     onOpenShowModel();
   };
 
@@ -103,57 +89,8 @@ export const VU_22_Brakes = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Yig'uv bo'limida yaratilgan VU-22 Shakli Avtotormoz
+        Yig'uv bulimida yaearatilgan VU-22 Shakli
       </Heading>
-
-      <Modal isOpen={isOpenShowModel} onClose={onCloseShowModel} size="2xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Avtotormoz bo'limi ma'lumotlari</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {showModel.length > 0 ? (
-              <TableContainer>
-                <Table variant="simple">
-                  <Thead bg={"gray.200"}>
-                    <Tr>
-                      <Th>T/R</Th>
-                      <Th>Sarlavha</Th>
-                      <Th>Bo'lim</Th>
-                      <Th>Ishlar soni</Th>
-                      <Th>Qo'shimcha matn</Th>
-                      <Th>Ishchi Familiyasi</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {showModel.flatMap((item) =>
-                      item.qismlar.map((qism, idx) => (
-                        <Tr key={idx}>
-                          <Td>{idx + 1}</Td>
-                          <Td>{qism.title}</Td>
-                          <Td>{qism.vu22_section}</Td>
-                          <Td>{qism.works_quantity}</Td>
-                          <Td>{qism.additional_text}</Td>
-                          <Td>{qism.worker_lastname}</Td>
-                        </Tr>
-                      ))
-                    )}
-                  </Tbody>
-                </Table>
-              </TableContainer>
-            ) : (
-              <Text color="red.500">
-                Bu bo'lim uchun ma'lumot hozircha to'ldirilmagan
-              </Text>
-            )}
-          </ModalBody>
-          <ModalFooter>
-            <Button variant="ghost" onClick={onCloseShowModel}>
-              Yopish
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
 
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
@@ -185,6 +122,7 @@ export const VU_22_Brakes = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item?.id}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
+
                     <Td fontWeight={"bold"}>{item?.carriage}</Td>
                     <Td>{item?.carrying_capacity}</Td>
                     <Td>{item?.cladding_material}</Td>
@@ -205,74 +143,47 @@ export const VU_22_Brakes = () => {
                         timeClear(item?.repair_completion_minute)}
                     </Td>
                     <Td>
-                      <Tooltip
-                        placement="auto-start"
-                        colorScheme={
-                          item.avtotomoz_data.length ? "green" : "red"
-                        }
-                        label={
-                          !item.avtotomoz_data.length
-                            ? "To'ldirilmagan"
-                            : "To'ldirilgan"
-                        }
-                      >
-                        <Badge
-                          cursor={"pointer"}
-                          variant="solid"
-                          borderRadius={"10px"}
-                          padding={"10px"}
-                          colorScheme={
-                            item.avtotomoz_data.length ? "green" : "red"
-                          }
-                        >
-                          <FontAwesomeIcon
-                            style={{ margin: "0 5px" }}
-                            icon={item.avtotomoz_data.length ? faCheck : faX}
-                          />
-                          Avtotormoz bo'limi
-                        </Badge>
-                      </Tooltip>
-                    </Td>
-                    <Td>
                       <Image
                         width={"100px"}
                         src={imageGet(item?.author_info?.user_signature_url)}
                       />
                     </Td>
                     <Td>
-                      {!item.avtotomoz_data.length ? (
-                        <Box
-                          colorScheme="teal"
-                          fontSize={"13px"}
-                          bgColor={"blue.500"}
-                          p={"10px"}
-                          mt={"5px"}
-                          cursor={"pointer"}
-                          rounded={"5"}
-                          color={"#fff"}
-                          fontWeight={700}
-                          whiteSpace={"nowrap"}
-                          textAlign={"center"}
-                          onClick={() => {
-                            setMaintanceRecordId(item?.id);
-                            onOpen();
-                          }}
-                        >
-                          To'ldirish
-                        </Box>
-                      ) : (
-                        <Button
-                          colorScheme="messenger"
-                          onClick={() => handleOpenEye(item)}
-                        >
-                          <FontAwesomeIcon
-                            icon={faEye}
-                            style={{ margin: "0 10px" }}
-                          />
-                          <span>Ma'lumotlarni ko'rish</span>
-                        </Button>
-                      )}
+                      <Box
+                        borderColor={"red.500"}
+                        colorScheme="teal"
+                        fontSize={"13px"}
+                        bgColor={"red.500"}
+                        p={"10px"}
+                        rounded={"5"}
+                        color={"#fff"}
+                        fontWeight={700}
+                        whiteSpace={"nowrap"}
+                        textAlign={"center"}
+                      >
+                        To`liq tugallanmagan
+                      </Box>
+                      <Box
+                        colorScheme="teal"
+                        fontSize={"13px"}
+                        bgColor={"blue.500"}
+                        p={"10px"}
+                        mt={"5px"}
+                        cursor={"pointer"}
+                        rounded={"5"}
+                        color={"#fff"}
+                        fontWeight={700}
+                        whiteSpace={"nowrap"}
+                        textAlign={"center"}
+                        onClick={() => {
+                          setMaintanceRecordId(item?.id);
+                          onOpen();
+                        }}
+                      >
+                        To'ldirish
+                      </Box>
                     </Td>
+
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
                         <IconButton
@@ -313,11 +224,11 @@ export const VU_22_Brakes = () => {
       )}
       <Pagination
         onPageChange={handlePageClick}
-        pageCount={Math.ceil(gettingData?.count / 10)}
+        pageCount={gettingData?.count}
       />
       <Deleteted
         isOpen={delateModal}
-        onClose={() => setDelateModal(false)}
+        onClose={setDelateModal}
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
       />
@@ -326,6 +237,12 @@ export const VU_22_Brakes = () => {
         isOpen={isOpen}
         maintanceRecordId={maintanceRecordId}
       />
+
+      {/* <Show_VU50_model
+        isOpen={isOpenShowModel}
+        onClose={onCloseShowModel}
+        showData={showModel}
+      /> */}
     </Box>
   );
 };

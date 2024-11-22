@@ -1,6 +1,7 @@
 import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import { DailyTable, Dalolatnoma, VU_22, VU_68 } from "../../components";
+import { VU_22 as Vu22Add } from "./YiguvVu22/VU_22";
 
 export const AssemblyPage = () => {
   const [activeComponent, setActiveComponent] = useState(
@@ -19,6 +20,8 @@ export const AssemblyPage = () => {
     switch (activeComponent) {
       case "Component1":
         return <VU_22 />;
+      case "Component6":
+        return <Vu22Add />;
       case "Component5":
         return <DailyTable />;
       case "Component2":
@@ -59,6 +62,13 @@ export const AssemblyPage = () => {
             variant={activeComponent === "Component1" ? "solid" : "outline"}
           >
             ВУ-22
+          </Button>
+          <Button
+            colorScheme="teal"
+            onClick={() => getLocalActiveComp("Component6")}
+            variant={activeComponent === "Component6" ? "solid" : "outline"}
+          >
+            ВУ-22 qo'shilishi
           </Button>
           <Button
             colorScheme="teal"

@@ -35,15 +35,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-import { reverseDateFormat, SliderMock } from "../../../../utils";
-import { vu_22_assabmle } from "../../../../utils/mock_heads";
-import UserApi from "../../../../Service/module/userModule.api";
-import { Deleteted, Pagination } from "../../../../components";
+import { reverseDateFormat, SliderMock } from "../../utils";
+import { vu_22_assabmle } from "../../utils/mock_heads";
+import UserApi from "../../Service/module/userModule.api";
+import { Deleteted, Pagination } from "../../components";
+import { timeClear } from "../../utils/timeClear";
+import { imageGet } from "../../utils/imageGet";
 import { VU_22_Model } from "./VU_22_Modal";
-import { timeClear } from "../../../../utils/timeClear";
-import { imageGet } from "../../../../utils/imageGet";
 
-export const VU_22_Brakes = () => {
+export const VU_22_Arava = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
   const [maintanceRecordId, setMaintanceRecordId] = useState(null);
@@ -89,7 +89,7 @@ export const VU_22_Brakes = () => {
   }, [currentPage]);
 
   const handleOpenEye = (data) => {
-    setShowModel(data.avtotomoz_data || []);
+    setShowModel(data.avtobirikma_data || []);
     onOpenShowModel();
   };
 
@@ -103,13 +103,13 @@ export const VU_22_Brakes = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Yig'uv bo'limida yaratilgan VU-22 Shakli Avtotormoz
+        Yig'uv bo'limida yaratilgan VU-22 Shakli Avtobirikma
       </Heading>
 
       <Modal isOpen={isOpenShowModel} onClose={onCloseShowModel} size="2xl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Avtotormoz bo'limi ma'lumotlari</ModalHeader>
+          <ModalHeader>Avtobirikma bo'limi ma'lumotlari</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {showModel.length > 0 ? (
@@ -208,10 +208,10 @@ export const VU_22_Brakes = () => {
                       <Tooltip
                         placement="auto-start"
                         colorScheme={
-                          item.avtotomoz_data.length ? "green" : "red"
+                          item.avtobirikma_data.length ? "green" : "red"
                         }
                         label={
-                          !item.avtotomoz_data.length
+                          !item.avtobirikma_data.length
                             ? "To'ldirilmagan"
                             : "To'ldirilgan"
                         }
@@ -222,14 +222,14 @@ export const VU_22_Brakes = () => {
                           borderRadius={"10px"}
                           padding={"10px"}
                           colorScheme={
-                            item.avtotomoz_data.length ? "green" : "red"
+                            item.avtobirikma_data.length ? "green" : "red"
                           }
                         >
                           <FontAwesomeIcon
                             style={{ margin: "0 5px" }}
-                            icon={item.avtotomoz_data.length ? faCheck : faX}
+                            icon={item.avtobirikma_data.length ? faCheck : faX}
                           />
-                          Avtotormoz bo'limi
+                          Avtobirikma bo'limi
                         </Badge>
                       </Tooltip>
                     </Td>
@@ -240,7 +240,7 @@ export const VU_22_Brakes = () => {
                       />
                     </Td>
                     <Td>
-                      {!item.avtotomoz_data.length ? (
+                      {!item.avtobirikma_data.length ? (
                         <Box
                           colorScheme="teal"
                           fontSize={"13px"}
