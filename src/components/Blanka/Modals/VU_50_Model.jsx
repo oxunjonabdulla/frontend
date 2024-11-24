@@ -33,6 +33,7 @@ export const VU_50_Model = ({ onClose, isOpen }) => {
     formState: { errors },
     control,
   } = useForm();
+  
   const { fields, append, remove } = useFieldArray({
     control,
     name: "wheel_pairs",
