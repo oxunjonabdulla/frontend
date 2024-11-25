@@ -4,13 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo } from "react";
 
 export const VU_50_Form = memo(function VU_50_Form({
-    // eslint-disable-next-line react/prop-types
     register,
-    // eslint-disable-next-line react/prop-types
     remove,
-    // eslint-disable-next-line react/prop-types
     idx,
-    // eslint-disable-next-line react/prop-types
     errors,
 }) {
 
