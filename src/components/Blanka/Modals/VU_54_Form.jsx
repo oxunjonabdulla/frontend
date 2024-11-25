@@ -9,7 +9,7 @@ export const VU_50_Form = memo(function VU_50_Form({
     idx,
     errors,
 }) {
-    
+
     return (
         <>
             <hr />

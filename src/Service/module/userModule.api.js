@@ -1406,8 +1406,13 @@ class UserApi extends React.Component {
     }
   }
   async postVu54(obj) {
+    let vu54_fields = [];
+    for (const k in obj.vu54_fields)
+      vu54_fields.push(obj.vu54_fields[k]);
+    vu54_fields.pop();
+    
     try {
-      const response = await privateInstance.post(authEndpoints.vu54All, obj);
+      const response = await privateInstance.post(authEndpoints.vu54All, {vu54_fields});
 
       return { response };
     } catch (error) {

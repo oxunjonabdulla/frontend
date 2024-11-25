@@ -39,7 +39,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const { response, error } = await new UserApi().postVu54({vu54_fields: [data]});
+    const { response, error } = await new UserApi().postVu54({vu54_fields: data});
     setLoading(false);
     if (response) {
       toast({

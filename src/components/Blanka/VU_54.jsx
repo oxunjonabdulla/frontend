@@ -109,11 +109,11 @@ export const VU_54 = () => {
             >
               <Thead bg={"#0c6170"} rounded={10}>
                 <Tr>
-                  {vu_54?.map((item) => (
+                  {vu_54?.map((item, idx) => (
                     <Th
                       fontSize={"10px"}
                       textAlign={"center"}
-                      key={item.label}
+                      key={idx}
                       rowSpan={item.rowspan}
                       colSpan={item.colspan}
                     >
@@ -124,61 +124,53 @@ export const VU_54 = () => {
               </Thead>
               <Tbody>
                 {gettingData?.results?.map((item, idx) => (
-                  <Tr key={item?.id}>
+                  <Tr key={idx}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-
-                    <Td>{item?.wheel_pair_number}</Td>
-                    <Td>{item?.grph_3_4_plus}</Td>
-                    <Td>{item?.vkm_get_new}</Td>
-                    <Td>{item?.vkm_get_depot_new}</Td>
-                    <Td>{item?.not_change_elements}</Td>
-                    <Td>{item?.change_elements}</Td>
-                    <Td>{item?.defective}</Td>
-                    <Td>{item?.is_defect_not_change}</Td>
-                    <Td>{item?.is_defect_change}</Td>
-                    <Td>{item?.grph_11_12_13_plus}</Td>
-                    <Td>{item?.new_elements}</Td>
-                    <Td>{item?.new_point_enter}</Td>
-                    <Td>{item?.new_wheel_enter}</Td>
-                    <Td>{item?.expired_elements_made}</Td>
-                    <Td>{item?.buks_circle_face_repair}</Td>
-                    <Td>{item?.buks_circle_face_repair_not_turn}</Td>
-                    <Td>{item?.three_typeof_wheel_turn}</Td>
-                    <Td>{item?.rolls_gun_repair}</Td>
-                    <Td>{item?.rolls_neeg_with_repair}</Td>
-                    <Td>{item?.rolls_circle_face_repair}</Td>
-                    <Td>{item?.rolls_circle_face_repair_not_turn}</Td>
-                    <Td>{item?.antoher_works}</Td>
-                    <Td>{item?.grph_24_25_28_plus}</Td>
-                    <Td>{item?.after_repair_send_way}</Td>
-                    <Td>{item?.under_carriage_number}</Td>
-                    <Td>{item?.invetor_sended}</Td>
-                    <Td>{item?.vkm_with_changes}</Td>
-                    <Td>{item?.vkm_without_changes}</Td>
-                    <Td>{item?.grph_30_31_32_plus}</Td>
-                    <Td>{item?.is_use}</Td>
-                    <Td>{item?.grph_32_33_34_plus}</Td>
-                    <Td>{item?.do_repair_with_changes}</Td>
-                    <Td>{item?.do_repair_without_changes}</Td>
-                    <Td>{item?.grph_35_36_38_plus}</Td>
-                    <Td>{item?.sheyk_type}</Td>
-                    <Td>{item?.stupid_under_type}</Td>
-                    <Td>{item?.between_type}</Td>
-                    <Td>{item?.resba_is_break}</Td>
-                    <Td>{item?.is_energy_uq}</Td>
-                    <Td>{item?.is_energy_uq}</Td>
-
-                    <Td>
-                      <ImageSignature
-                        signatureImage={item?.wheel_signature_user}
-                      />
-                    </Td>
-
+                    <Td>{item?.vu54_fields[0]?.wheel_pair_number}</Td>
+                    <Td>{item?.vu54_fields[0]?.grph_3_4_plus}</Td>
+                    <Td>{item?.vu54_fields[0]?.vkm_get_new}</Td>
+                    <Td>{item?.vu54_fields[0]?.vkm_get_depot_new}</Td>
+                    <Td>{item?.vu54_fields[0]?.not_change_elements}</Td>
+                    <Td>{item?.vu54_fields[0]?.change_elements}</Td>
+                    <Td>{item?.vu54_fields[0]?.defective}</Td>
+                    <Td>{item?.vu54_fields[0]?.is_defect_not_change}</Td>
+                    <Td>{item?.vu54_fields[0]?.is_defect_change}</Td>
+                    <Td>{item?.vu54_fields[0]?.grph_11_12_13_plus}</Td>
+                    <Td>{item?.vu54_fields[0]?.new_elements}</Td>
+                    <Td>{item?.vu54_fields[0]?.new_point_enter}</Td>
+                    <Td>{item?.vu54_fields[0]?.new_wheel_enter}</Td>
+                    <Td>{item?.vu54_fields[0]?.expired_elements_made}</Td>
+                    <Td>{item?.vu54_fields[0]?.buks_circle_face_repair}</Td>
+                    <Td>{item?.vu54_fields[0]?.buks_circle_face_repair_not_turn}</Td>
+                    <Td>{item?.vu54_fields[0]?.three_typeof_wheel_turn}</Td>
+                    <Td>{item?.vu54_fields[0]?.rolls_gun_repair}</Td>
+                    <Td>{item?.vu54_fields[0]?.rolls_neeg_with_repair}</Td>
+                    <Td>{item?.vu54_fields[0]?.rolls_circle_face_repair}</Td>
+                    <Td>{item?.vu54_fields[0]?.rolls_circle_face_repair_not_turn}</Td>
+                    <Td>{item?.vu54_fields[0]?.antoher_works}</Td>
+                    <Td>{item?.vu54_fields[0]?.grph_24_25_28_plus}</Td>
+                    <Td>{item?.vu54_fields[0]?.after_repair_send_way}</Td>
+                    <Td>{item?.vu54_fields[0]?.under_carriage_number}</Td>
+                    <Td>{item?.vu54_fields[0]?.invetor_sended}</Td>
+                    <Td>{item?.vu54_fields[0]?.vkm_with_changes}</Td>
+                    <Td>{item?.vu54_fields[0]?.vkm_without_changes}</Td>
+                    <Td>{item?.vu54_fields[0]?.grph_30_31_32_plus}</Td>
+                    <Td>{item?.vu54_fields[0]?.is_use}</Td>
+                    <Td>{item?.vu54_fields[0]?.grph_32_33_34_plus}</Td>
+                    <Td>{item?.vu54_fields[0]?.do_repair_with_changes}</Td>
+                    <Td>{item?.vu54_fields[0]?.do_repair_without_changes}</Td>
+                    <Td>{item?.vu54_fields[0]?.grph_35_36_38_plus}</Td>
+                    <Td>{item?.vu54_fields[0]?.sheyk_type}</Td>
+                    <Td>{item?.vu54_fields[0]?.stupid_under_type}</Td>
+                    <Td>{item?.vu54_fields[0]?.between_type}</Td>
+                    <Td>{item?.vu54_fields[0]?.resba_is_break}</Td>
+                    <Td>{item?.vu54_fields[0]?.is_energy_uq}</Td>
+                    <Td>{item?.vu54_fields[0]?.is_energy_uq}</Td>
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.id)}
+                          onClick={() => handleCheckAndDelete(item?.vu54_fields[0]?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
