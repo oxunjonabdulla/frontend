@@ -15,7 +15,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
 import { VU_50_Form } from "./VU_54_Form";
@@ -67,6 +67,10 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
     }
   };
 
+  useEffect(() => {
+    if (fields.length == 0) append();
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -84,10 +88,23 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
+            {fields.map((group, idx) => (
+              <VU_50_Form
+                key={group.id}
+                {...{
+                  group,
+                  idx,
+                  control,
+                  register,
+                  remove,
+                  errors,
+                }}
+              />
+            ))}
             {fields?.length < 10 ? (
               <Button
                 colorScheme="messenger"
-                onClick={() => append()}
+                onClick={() => append({ key: fields.length + 1 })}
                 leftIcon={
                   <FontAwesomeIcon
                     icon={faPlus}
@@ -112,19 +129,6 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
                 Ma&apos;lumot chegarasi 10 ta dan oshmasligi kerak
               </Text>
             )}
-            {fields.map((group, idx) => (
-              <VU_50_Form
-                key={group.id}
-                {...{
-                  group,
-                  idx,
-                  control,
-                  register,
-                  remove,
-                  errors,
-                }}
-              />
-            ))}
           </ModalBody>
 
           <ModalFooter>

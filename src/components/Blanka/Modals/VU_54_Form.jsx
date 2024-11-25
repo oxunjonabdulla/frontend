@@ -9,11 +9,11 @@ export const VU_50_Form = memo(function VU_50_Form({
     idx,
     errors,
 }) {
-
-    // TODO Plus bosilsa faqat 1 ta qushilayapdi !!!.
+    
     return (
         <>
             <hr />
+            <div style={{ textAlign: "center", fontSize: "20px" }}>{idx + 1}</div>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
                 <FormControl isInvalid={errors?.wheel_pair_number}>
                     <FormLabel whiteSpace={["wrap", "nowrap"]}>
