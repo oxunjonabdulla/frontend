@@ -24,7 +24,6 @@ import {
   VU_31_Create,
   RegisterAuto,
   RegisterRegular,
-  VU_22,
   VU_47,
   RegisterRukvas,
   RegisterRazobshitel,
@@ -46,6 +45,8 @@ import {
   VU_31_Current_Create,
   VU_36_Current,
   VU_10,
+  VU_22_Brakes,
+  VU_22_Arava,
 } from "../pages";
 import {
   CollectUser,
@@ -134,8 +135,9 @@ export const routes = [
             path: RouteNames.VU_31_CURRENT,
             children: [
               {
-                element: <VU_31_Current />, index: true,
-                path: RouteNames.VU_31_CURRENT
+                element: <VU_31_Current />,
+                index: true,
+                path: RouteNames.VU_31_CURRENT,
               },
               {
                 element: <VU_31_Current_Create />,
@@ -193,7 +195,7 @@ export const routes = [
         children: [
           { element: <DailyTable />, index: true },
 
-          { element: <VU_22 />, path: RouteNames.VU_22 },
+          { element: <VU_22_Brakes />, path: RouteNames.REGISTER_22 },
           {
             element: <Outlet />,
             path: RouteNames.VU_47,
@@ -310,6 +312,10 @@ export const routes = [
           {
             element: <VU_32 />,
             path: RouteNames.VU_32,
+          },
+          {
+            element: <VU_22_Arava />,
+            path: RouteNames.VU_22_Arava,
           },
         ],
       },

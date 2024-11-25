@@ -1,6 +1,7 @@
 import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import { AutoDalolatnoma, DailyTable } from "../components";
+import { VU_22_Arava } from "./AvtobirikmaVu22/VU_22";
 
 export const AutomobileUnit = () => {
   const [activeComponent, setActiveComponent] = useState(null);
@@ -9,8 +10,8 @@ export const AutomobileUnit = () => {
     switch (activeComponent) {
       case "Component5":
         return <DailyTable />;
-      case "Component1":
-        return "<VU_31 />";
+      case "Component4":
+        return <VU_22_Arava />;
       case "Component2":
         return <AutoDalolatnoma />;
       default:
@@ -41,8 +42,8 @@ export const AutomobileUnit = () => {
           </Button>
           <Button
             colorScheme="teal"
-            variant={activeComponent === "Component1" ? "solid" : "outline"}
-            // onClick={() => setActiveComponent("Component2")}
+            variant={activeComponent === "Component4" ? "solid" : "outline"}
+            onClick={() => setActiveComponent("Component4")}
           >
             ВУ-22
           </Button>

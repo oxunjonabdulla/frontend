@@ -96,10 +96,10 @@ export const routersSidebar = [
         label: "Bugungi ta'mir",
         path: "",
       },
-      // {
-      //   label: "VU-22",
-      //   path: "/vu-22",
-      // },
+      {
+        label: "VU-22",
+        path: "/vu-22",
+      },
       {
         label: "ФРАЗА",
         path: "/fraza",
@@ -133,10 +133,10 @@ export const routersSidebar = [
         label: "Bugungi ta'mir",
         path: "",
       },
-      // {
-      //   label: "VU-22",
-      //   path: "/vu-22",
-      // },
+      {
+        label: "VU-22",
+        path: "/vu-22",
+      },
       {
         label: "VU-47 Jurnali",
         path: "/vu-47",
@@ -704,6 +704,9 @@ export const vu_22_assabmle = [
   },
   {
     label: "Ta'mirga tugashi sanasi va vaqti ",
+  },
+  {
+    label: "To'ldirilmagan bo'limlar",
   },
   {
     label: "Vu22 yaratgan xodim imzosi ",

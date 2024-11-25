@@ -1,10 +1,19 @@
 import {
+  Badge,
   Box,
   Button,
   Flex,
   Heading,
   IconButton,
   Image,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Stack,
   Table,
   TableContainer,
   Tbody,
@@ -18,9 +27,11 @@ import {
 } from "@chakra-ui/react";
 import {
   faBook,
+  faCheck,
   faDownload,
   faEye,
   faTrashAlt,
+  faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -33,13 +44,14 @@ import { VU_22_Model } from "./Modals/VU_22_Model";
 import { timeClear } from "../../utils/timeClear";
 import { imageGet } from "../../utils/imageGet";
 import { Pagination } from "../pagination/Pagination";
+
 export const VU_22 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
-  const [showModel, setShowModel] = useState(false);
+  const [showModelData, setShowModelData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpenShowModel,
@@ -51,6 +63,7 @@ export const VU_22 = () => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
+
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu22(page);
@@ -59,6 +72,7 @@ export const VU_22 = () => {
       setGettingData(response?.data);
     }
   };
+
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
@@ -70,12 +84,13 @@ export const VU_22 = () => {
       window.location.reload();
     }
   };
+
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
 
   const handleOpenEye = (data) => {
-    setShowModel(data);
+    setShowModelData(data);
     onOpenShowModel();
   };
 
@@ -87,12 +102,89 @@ export const VU_22 = () => {
       mx="auto"
       rounded={"lg"}
       position={"relative"}
+      p={4}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
         VU-22 Shakl
       </Heading>
+
+      <Modal isOpen={isOpenShowModel} onClose={onCloseShowModel} size="6xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Ma'lumotlarni ko'rish</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {[
+              { data: showModelData.collect_data, title: "Yig'uv bo'limi" },
+              {
+                data: showModelData.avtobirikma_data,
+                title: "Avtobirikma bo'limi",
+              },
+              { data: showModelData.aravalar_data, title: "Aravalar bo'limi" },
+              {
+                data: showModelData.avtotomoz_data,
+                title: "Avtotomoz bo'limi",
+              },
+              { data: showModelData.wheel_data, title: "G'ildirak bo'limi" },
+            ].map((section, index) => {
+              const qismlar = (section.data || []).reduce((acc, curr) => {
+                if (curr.qismlar && curr.qismlar.length > 0) {
+                  acc.push(...curr.qismlar);
+                }
+                return acc;
+              }, []);
+
+              return (
+                <Box key={index} mb={6}>
+                  <Heading as="h4" size="md" mb={3}>
+                    {section.title}
+                  </Heading>
+                  {qismlar.length > 0 ? (
+                    <TableContainer>
+                      <Table variant="simple">
+                        <Thead bg={"gray.200"}>
+                          <Tr>
+                            <Th>T/R</Th>
+                            <Th>Sarlavha</Th>
+                            <Th>Bo'lim</Th>
+                            <Th>Ishlar soni</Th>
+                            <Th>Qo'shimcha matn</Th>
+                            <Th>Ishchi Familiyasi</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          {qismlar.map((item, idx) => (
+                            <Tr key={idx}>
+                              <Td>{idx + 1}</Td>
+                              <Td>{item.title}</Td>
+                              <Td>{item.vu22_section}</Td>
+                              <Td>{item.works_quantity}</Td>
+                              <Td>{item.additional_text}</Td>
+                              <Td>{item.worker_lastname}</Td>
+                            </Tr>
+                          ))}
+                        </Tbody>
+                      </Table>
+                    </TableContainer>
+                  ) : (
+                    <Text color="red.500">
+                      Bu ma'lumot hozircha to'ldirilmagan
+                    </Text>
+                  )}
+                </Box>
+              );
+            })}
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" onClick={onCloseShowModel}>
+              Yopish
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
       <Tooltip
-        label=" VU-50 Shaklni qo'shish"
+        label="VU-22 Shaklni qo'shish"
         placement="top"
         color={"teal.700"}
         bg={"white"}
@@ -110,9 +202,10 @@ export const VU_22 = () => {
           +
         </Button>
       </Tooltip>
+
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
-          <TableContainer p={4} border={"1px solid #eeeee"}>
+          <TableContainer p={4} border={"1px solid #eeeee"} rounded="md">
             <Table
               borderRadius={10}
               size={"sm"}
@@ -121,7 +214,7 @@ export const VU_22 = () => {
               overflow={"hidden"}
               colorScheme="blackAlpha"
             >
-              <Thead bg={"#0c6170"} rounded={10}>
+              <Thead bg={"#0c6170"} color="white" rounded={10}>
                 <Tr>
                   {vu_22_assabmle?.map((item) => (
                     <Th
@@ -137,59 +230,123 @@ export const VU_22 = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {gettingData?.results?.map((item, idx) => (
-                  <Tr key={item?.id}>
-                    <Td>{currentPage * 10 + idx + 1}</Td>
+                {gettingData?.results?.map((item, idx) => {
+                  const data_array_compaltes = [
+                    {
+                      data_check: item.wheel_data,
+                      title: "G'ildirak bo'limi",
+                    },
+                    {
+                      data_check: item.avtotomoz_data,
+                      title: "Avtotomoz bo'limi",
+                    },
+                    {
+                      data_check: item.aravalar_data,
+                      title: "Aravalar bo'limi",
+                    },
+                    {
+                      data_check: item.avtobirikma_data,
+                      title: "Avtobirikma bo'limi",
+                    },
+                    {
+                      data_check: item.collect_data,
+                      title: "Yig'uv bo'limi",
+                    },
+                  ];
 
-                    <Td fontWeight={"bold"}>{item?.carriage}</Td>
-                    <Td>{item?.carrying_capacity}</Td>
-                    <Td>{item?.cladding_material}</Td>
-                    <Td>{item?.place_last_repair}</Td>
-                    <Td>{reverseDateFormat(item?.date_last_repair)}</Td>
-                    <Td>
-                      {reverseDateFormat(item?.date_of_repair)}
-                      <br />
-                      {timeClear(item?.hour_of_repair) +
-                        ":" +
-                        timeClear(item?.minute_of_repair)}
-                    </Td>
-                    <Td>
-                      {reverseDateFormat(item?.repair_completion_date)}
-                      <br />
-                      {timeClear(item?.repair_completion_hour) +
-                        ":" +
-                        timeClear(item?.repair_completion_minute)}
-                    </Td>
-                    <Td>
-                      <Image
-                        width={"100px"}
-                        src={imageGet(item?.author_info?.user_signature_url)}
-                      />
-                    </Td>
-                    <Td>
-                      <IconButton
-                        size={"lg"}
-                        onClick={() => handleOpenEye(item)}
-                        colorScheme="whatsapp"
-                        icon={<FontAwesomeIcon icon={faEye} />}
-                      />
-                    </Td>
+                  return (
+                    <Tr key={item?.id}>
+                      <Td>{currentPage * 10 + idx + 1}</Td>
+                      <Td fontWeight={"bold"}>{item?.carriage}</Td>
+                      <Td>{item?.carrying_capacity}</Td>
+                      <Td>{item?.cladding_material}</Td>
+                      <Td>{item?.place_last_repair}</Td>
+                      <Td>{reverseDateFormat(item?.date_last_repair)}</Td>
+                      <Td>
+                        {reverseDateFormat(item?.date_of_repair)}
+                        <br />
+                        {timeClear(item?.hour_of_repair) +
+                          ":" +
+                          timeClear(item?.minute_of_repair)}
+                      </Td>
+                      <Td>
+                        {reverseDateFormat(item?.repair_completion_date)}
+                        <br />
+                        {timeClear(item?.repair_completion_hour) +
+                          ":" +
+                          timeClear(item?.repair_completion_minute)}
+                      </Td>
+                      <Td>
+                        <Stack align="flex-start">
+                          {data_array_compaltes.map((e) => {
+                            let checkIsHave = e?.data_check?.length;
 
-                    <Td>
-                      <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                          colorScheme="linkedin"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
+                            return (
+                              <Tooltip
+                                key={e.title}
+                                placement="auto-start"
+                                colorScheme="red"
+                                label={
+                                  !checkIsHave
+                                    ? "To'ldirilmagan"
+                                    : "To'ldirilgan"
+                                }
+                              >
+                                <Badge
+                                  cursor={"pointer"}
+                                  variant="solid"
+                                  borderRadius={"10px"}
+                                  padding={"5px 10px"}
+                                  colorScheme={checkIsHave ? "green" : "red"}
+                                >
+                                  <FontAwesomeIcon
+                                    style={{ margin: "0 5px" }}
+                                    icon={checkIsHave ? faCheck : faX}
+                                  />
+                                  {e.title}
+                                </Badge>
+                              </Tooltip>
+                            );
+                          })}
+                        </Stack>
+                      </Td>
+                      <Td>
+                        <Image
+                          width={"100px"}
+                          src={imageGet(item?.author_info?.user_signature_url)}
+                          alt="User Signature"
                         />
-                        <IconButton
-                          colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
-                          icon={<FontAwesomeIcon icon={faTrashAlt} />}
-                        />
-                      </Flex>
-                    </Td>
-                  </Tr>
-                ))}
+                      </Td>
+                      <Td>
+                        <Button
+                          colorScheme="messenger"
+                          onClick={() => handleOpenEye(item)}
+                        >
+                          <FontAwesomeIcon
+                            icon={faEye}
+                            style={{ margin: "0 10px" }}
+                          />
+                          <span>Ma'lumotlarni ko'rish</span>
+                        </Button>
+                      </Td>
+                      <Td>
+                        <Flex gap={2} justifyContent={"center"}>
+                          <IconButton
+                            colorScheme="linkedin"
+                            icon={<FontAwesomeIcon icon={faDownload} />}
+                            aria-label="Download"
+                          />
+                          <IconButton
+                            colorScheme="red"
+                            onClick={() => handleCheckAndDelete(item?.carriage)}
+                            icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                            aria-label="Delete"
+                          />
+                        </Flex>
+                      </Td>
+                    </Tr>
+                  );
+                })}
               </Tbody>
             </Table>
           </TableContainer>
@@ -205,7 +362,6 @@ export const VU_22 = () => {
               VU-22 Shakl topilmadi
             </Text>
             <Button colorScheme="teal" onClick={onOpen}>
-              {" "}
               VU-22 Shakl qo&apos;shish
             </Button>
           </Flex>
@@ -215,21 +371,15 @@ export const VU_22 = () => {
       )}
       <Pagination
         onPageChange={handlePageClick}
-        pageCount={gettingData?.count}
+        pageCount={Math.ceil(gettingData?.count / 10)}
       />
       <Deleteted
         isOpen={delateModal}
-        onClose={setDelateModal}
+        onClose={() => setDelateModal(false)}
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
       />
       <VU_22_Model onClose={onClose} isOpen={isOpen} />
-
-      {/* <Show_VU50_model
-        isOpen={isOpenShowModel}
-        onClose={onCloseShowModel}
-        showData={showModel}
-      /> */}
     </Box>
   );
 };
