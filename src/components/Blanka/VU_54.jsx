@@ -19,6 +19,7 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
+  faEye,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,8 +29,9 @@ import { VU_54_Model } from "./Modals/VU_54_model";
 import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
-import { ImageSignature } from "../ImageSignature";
 import { vu_54 } from "../../utils/mock_heads";
+import Show_VU54_model from "./Modals/Show_VU54_model";
+
 export const VU_54 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -37,11 +39,23 @@ export const VU_54 = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showModel, setShowModel] = useState(false);
+  const {
+    isOpen: isOpenShowModel,
+    onOpen: onOpenShowModel,
+    onClose: onCloseShowModel,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
+
+  const handleOpenEye = (data) => {
+    setShowModel(data);
+    onOpenShowModel();
+  };
+
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu54All(page);
@@ -114,12 +128,19 @@ export const VU_54 = () => {
                       fontSize={"10px"}
                       textAlign={"center"}
                       key={idx}
-                      rowSpan={item.rowspan}
-                      colSpan={item.colspan}
+                      rowSpan={item?.rowspan}
+                      colSpan={item?.colspan}
                     >
                       {item.label}
                     </Th>
                   ))}
+                  <Th
+                    fontSize={"10px"}
+                    textAlign={"center"}
+                    colSpan={2}
+                  >
+                    Action
+                  </Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -166,6 +187,14 @@ export const VU_54 = () => {
                     <Td>{item?.vu54_fields[0]?.resba_is_break}</Td>
                     <Td>{item?.vu54_fields[0]?.is_energy_uq}</Td>
                     <Td>{item?.vu54_fields[0]?.is_energy_uq}</Td>
+                    <Td>
+                      <IconButton
+                        size={"lg"}
+                        onClick={() => handleOpenEye(item)}
+                        colorScheme="whatsapp"
+                        icon={<FontAwesomeIcon icon={faEye} />}
+                      />
+                    </Td>
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
                         <IconButton
@@ -226,11 +255,11 @@ export const VU_54 = () => {
       />
       <VU_54_Model onClose={onClose} isOpen={isOpen} />
 
-      {/* <Show_VU50_model
+      <Show_VU54_model
         isOpen={isOpenShowModel}
         onClose={onCloseShowModel}
         showData={showModel}
-      /> */}
+      />
     </Box>
   );
 };

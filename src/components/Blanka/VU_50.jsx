@@ -34,6 +34,7 @@ import { Deleteted } from "../Deletete";
 import Show_VU50_model from "./Modals/Show_VU50_model";
 import { ImageSignature } from "../ImageSignature";
 import { timeMoment } from "../../utils/roleTest";
+
 export const VU_50 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -52,6 +53,7 @@ export const VU_50 = () => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
+
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu50(page);
@@ -60,6 +62,7 @@ export const VU_50 = () => {
       setGettingData(response?.data);
     }
   };
+
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
@@ -71,6 +74,7 @@ export const VU_50 = () => {
       window.location.reload();
     }
   };
+  
   useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);

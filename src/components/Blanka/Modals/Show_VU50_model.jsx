@@ -14,7 +14,6 @@ import {
 import { vu_50_show_head } from "../../../utils/mock_heads";
 
 const Show_VU50_model = ({ isOpen, onClose, showData }) => {
-  console.log(showData);
   return (
     <Modal
       isOpen={isOpen}
