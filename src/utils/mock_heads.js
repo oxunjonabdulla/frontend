@@ -162,10 +162,6 @@ export const routersSidebar = [
         label: "Rukavalarni ro‘yxatga olish jurnali",
         path: "/register-rukvas",
       },
-      // {
-      //   label: "Чиқиш",
-      //   path: "/entry-exit-control",
-      // }
     ],
     icon: Avtotormoz,
 
@@ -187,84 +183,7 @@ export const routersSidebar = [
     icon: Statistika,
     role: "superadmin",
   },
-  // {
-  //   isWork: true,
-  //   label: "Jixozlash bo‘linmasi",
-  //   path: "/equipment-unit",
-  //   type: "link",
-
-  //   role: "equipmentuser",
-  //   icon: Joxozlash,
-  // },
 ];
-
-export const register_razobshitel = [
-  { label: "T/R" },
-  { label: "Tamirlangan sanasi" },
-  { label: "Vagon nomeri" },
-  { label: "Razabshitlni kran turi 4300" },
-  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2" },
-  { label: "So’ngi jumrfk turi 4304, 4314, 271" },
-  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 " },
-  { label: "So’ngi jumrfk turi 4304, 4314, 271" },
-  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 " },
-  { label: "Tekshiruv  xulosasi " },
-  { label: "Ta'mirlovchini imzosi" },
-  { label: "Qabulqiluvchi imzosi" },
-  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
-  { label: "" },
-];
-export const register_rukva = [
-  { label: "T/R" },
-  { label: "Sana" },
-  { label: "Vagon nomeri" },
-  { label: "Ulanish rukva markasi" },
-  { label: "Ulanish rukva markasi 2" },
-  { label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2" },
-  { label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2 (2)" },
-  { label: "Ushlab turish vaqti 10 daqiqa" },
-  { label: "Suv bilan tekshiruvi 12-0.2 kgs/sm2" },
-  { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa" },
-  { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (2)" },
-  { label: "Qabulqiluvchi imzosi" },
-  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
-  { label: "" },
-];
-export const register_rehulyator = [
-  { label: "T/R" },
-  { label: "Sana" },
-  { label: "5746, PTPП 675, PTPП 675M, РТРП 300 turi 10" },
-  { label: "Zavod raqami" },
-  { label: "4,0-4,2 kgs/sm2 tekshirish" },
-  { label: "«A»> 5746, PTPП 675, PTPN 675M, PTPN 300 90-110 MM " },
-  {
-    label:
-      "«<a>> 5745, PTPN 675, PTPN 675M 300-350 MM РТРП 300 100-150 MM gacha",
-  },
-  { label: "5746 5-7 MM, PTPП 675, PTPN 675M 7-20 MM PTPN 300 5-10 MM gacha" },
-  { label: "Texnik xolati " },
-  { label: "Qabulqiluvchi imzosi" },
-  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
-  { label: "" },
-];
-export const register_breakes_silindir = [
-  { label: "T/R" },
-  { label: "Sana" },
-  { label: "Vagon nomeri" },
-  { label: "Ta’mir turi" },
-  { label: "Zaxirasig‘imi P7-78" },
-  { label: " Suv bosimi (10,05+0,5) kg/sm2" },
-  { label: "Tormozsilindiri TS002,TS188" },
-  { label: "Havobosimi (4,0+0,1) kg/sm2" },
-  { label: "2X kamerali  havotaq simlagich 295.001, 295M.001" },
-  { label: "Havobosimi (6,0+0,1) kg/sm2" },
-  { label: "Texnikxolati" },
-  { label: "Ta'mirlovchini imzosi" },
-  { label: "Qabulqiluvchi imzosi" },
-  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
-  { label: "" },
-];
-
 export const register_auto = {
   top_head: [
     { label: "T/R", rowspan: 3 },
@@ -312,7 +231,23 @@ export const register_auto = {
     },
   ],
 };
-
+export const register_rehulyator = [
+  { label: "T/R" },
+  { label: "Sana" },
+  { label: "5746, PTPП 675, PTPП 675M, РТРП 300 turi 10" },
+  { label: "Zavod raqami" },
+  { label: "4,0-4,2 kgs/sm2 tekshirish" },
+  { label: "«A»> 5746, PTPП 675, PTPN 675M, PTPN 300 90-110 MM " },
+  {
+    label:
+      "«<a>> 5745, PTPN 675, PTPN 675M 300-350 MM РТРП 300 100-150 MM gacha",
+  },
+  { label: "5746 5-7 MM, PTPП 675, PTPN 675M 7-20 MM PTPN 300 5-10 MM gacha" },
+  { label: "Texnik xolati " },
+  { label: "Qabulqiluvchi imzosi" },
+  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
+  { label: "" },
+];
 export const dalolatnoma_head = [
   { label: "Tartib raqami" },
   { label: "Vagon raqami" },
@@ -383,7 +318,6 @@ export const auto_dalolatnoma_head = [
     label: "",
   },
 ];
-
 export const mockHeaderFraza = {
   headers: [
     { label: "Код детали", rowspan: 2 },
@@ -413,136 +347,6 @@ export const mockHeaderFraza = {
     { label: "Номер вагона", colspan: 2 },
   ],
 };
-
-export const mockHeaderCarriage = {
-  headers: [
-    { label: "Код детали", rowspan: 2 },
-    { label: "Код неисправности", rowspan: 2 },
-    { label: "Код ж.д Администрации собственницы детали", rowspan: 2 },
-    { label: "Номер детали", colspan: 3 },
-    { label: "Место, дата и вид работы по детали", colspan: 3 },
-  ],
-  nestedHeaders: [
-    { label: "Код предприятия изготовителя" },
-    { label: "Заводской номер" },
-    { label: "Год изготовителя" },
-    { label: "Код депо" },
-    { label: "Дата работ (ммгггг)" },
-    { label: "Код вида работ " },
-  ],
-  topHeader: [
-    { label: "Начало сообщения" },
-    { label: "Код с сообщения" },
-    { label: "Код ж.д отправителя" },
-    { label: "Код режима ввода сообщения" },
-    { label: "Дата передачи сообщения (ддммгггг)" },
-    { label: "Место, для т вид операции с вагоном", colspan: 4 },
-    { label: "Номер вагона" },
-  ],
-};
-export const vu_47 = {
-  headers: [
-    { label: "Tartib raqami", rowspan: 2 },
-    { label: "Дата", rowspan: 2 },
-    { label: "Тип прибора ", rowspan: 2 },
-    { label: "Заводской номер прибор год и месяц выпуска ", rowspan: 2 },
-    {
-      label: "Время зарядки золотниковой камеры и запасного резервуара, с ",
-      colspan: 2,
-    },
-    {
-      label:
-        "Отпуск медленным темпом через калиброванные отверстия диаметром 0,8 или 0,65 мм ",
-      rowspan: 2,
-    },
-    {
-      label:
-        "Время наполнения тормоз цилиндра до 3; 5 кгс/см2 при экстрен . Или полном служебном торможении, с",
-      rowspan: 2,
-    },
-    {
-      colspan: 3,
-      label:
-        "Давление в тормозном цилиндре (ТЦ) на режимах кгс/см2 при экстр. торможении (ЭТ) и полном служебном (ПСТ)",
-    },
-    {
-      label:
-        "Время отпуска до  0,4 кгс/см2 в ТЦ после ПСТ на равниином режиме ",
-      rowspan: 2,
-    },
-    {
-      label: "Фамилия и подпис производишего ремонт ",
-      rowspan: 2,
-    },
-    {
-      label: "Подпись принявшего прибор ",
-      rowspan: 2,
-    },
-    {
-      label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi ",
-      rowspan: 2,
-    },
-  ],
-
-  nestedHeaders: [
-    {
-      label: "ЗК до 1,2 кгс/см2",
-    },
-    {
-      label: "ЗР от 4,0 кгс/см2 4,5 кгс/см2",
-    },
-    {
-      label: "порожнем ",
-    },
-    {
-      label: "среднем  ",
-    },
-    {
-      label: "груженом ",
-    },
-  ],
-};
-export const vu_47_show = [
-  "Дата",
-  "Тип прибора",
-  "Заводской номер, год и месяц выпуска",
-  "Время зарядки золотниковой камеры Давление ЗР от 4,0 кгс/см2, 4,5 кгс/см2",
-  "Время наполнения тормозного цилиндра",
-  "Давление в тормозном цилиндре в порожнем",
-  "Давление в тормозном цилиндре среднем",
-  "Давление в тормозном цилиндре груженом",
-  "Подпись принявшего прибор",
-];
-export const carriage_dalolatnoma_head = [
-  { label: "Tartib raqami" },
-  { label: "Vagon raqami" },
-  { label: "Ta'mir turi" },
-  { label: "Yon rama raqami ", colspan: 4 },
-  {
-    label: "Ishlab chiqarilishi,zavod tamg’asi",
-    colspan: 4,
-  },
-  {
-    label: "Mavjudlik kodi",
-    colspan: 4,
-  },
-  {
-    label: "Ressor usti balkasi",
-    colspan: 3,
-  },
-  {
-    label: "Avtobirikma chilangari Imzo qo'yuvchi",
-  },
-  {
-    label: "Avtobirikma defektoskopistr Imzo qo'yuvchi",
-  },
-  {
-    label: "Orqani qo'shish",
-  },
-  {
-    label: "",
-  },
-];
 export const wheel_dalolatnoma_head = [
   { label: "Tartib raqami" },
   { label: "Vagon raqami" },
@@ -556,7 +360,6 @@ export const wheel_dalolatnoma_head = [
     colspan: 4,
   },
 ];
-
 export const vu_31 = {
   nestedHeaders: [
     { label: "T/R", rowspan: 2 },
@@ -604,7 +407,6 @@ export const vu_31 = {
     "umumiy turib qolishi gr.13 - gr.10",
   ],
 };
-
 export const vu_36 = {
   nestedHeaders: [
     { label: "T/R" },
@@ -652,7 +454,6 @@ export const vu_36 = {
     },
   ],
 };
-
 export const vu_50 = {
   headers: [
     { label: "Tartib raqami" },
@@ -719,7 +520,6 @@ export const vu_22_assabmle = [
     label: "",
   },
 ];
-
 export const vu_50_show_head = [
   {
     label: "T/R",
@@ -781,6 +581,48 @@ export const vu_54 = [
   {label: "Резбаси носозлиги сабабли"},
   {label: "Ўқда электр учқунлари мавжудлиги"},
 ];
+export const vu_54_keys = [
+  "wheel_pair_number",
+  "grph_3_4_plus",
+  "vkm_get_new",
+  "vkm_get_depot_new",
+  "not_change_elements",
+  "change_elements",
+  "defective",
+  "is_defect_not_change",
+  "is_defect_change",
+  "grph_11_12_13_plus",
+  "new_elements",
+  "new_point_enter",
+  "new_wheel_enter",
+  "expired_elements_made",
+  "buks_circle_face_repair",
+  "buks_circle_face_repair_not_turn",
+  "three_typeof_wheel_turn",
+  "rolls_gun_repair",
+  "rolls_neeg_with_repair",
+  "rolls_circle_face_repair",
+  "rolls_circle_face_repair_not_turn",
+  "antoher_works",
+  "grph_24_25_28_plus",
+  "after_repair_send_way",
+  "under_carriage_number",
+  "invetor_sended",
+  "vkm_with_changes",
+  "vkm_without_changes",
+  "grph_30_31_32_plus",
+  "is_use",
+  "grph_32_33_34_plus",
+  "do_repair_with_changes",
+  "do_repair_without_changes",
+  "grph_35_36_38_plus",
+  "sheyk_type",
+  "stupid_under_type",
+  "between_type",
+  "resba_is_break",
+  "is_energy_uq",
+  "is_energy_uq",
+]
 export const vu_51 = {
   invite: {
     headers: [
@@ -840,89 +682,9 @@ export const vu_51 = {
       //   rowspan: 3,
       //   label: "Yuklash / O`chirish",
       // },
-    ],
-    nestedHeaders: [
-      { label: "Охирги шаклланиш", rowspan: 2 },
-      {
-        label: "Охирги тўлиқ текшириш ва роликли рулмонларни буксага ўрнатиш",
-        rowspan: 2,
-      },
-      { label: "Ўқ бўйни", colspan: 2 },
-      { label: "Ўқ Диаметри ", colspan: 3 },
-      { label: "Ғилдирак ", colspan: 4 },
-    ],
-    nestedDeepHeaders: [
-      { label: "Узунлиги" },
-      { label: "диаметр" },
-      { label: "Ступица остидан олдинги қисм" },
-      { label: "Ступица ости" },
-      { label: "Ўртада Обод қалинлиги" },
-      { label: "Обод қалинлиги" },
-      { label: "прокат" },
-      { label: "Айлана диаметри" },
-      { label: "Ички қирраси орасидаги масофа" },
-    ],
+    ]
   },
 };
-
-export const vu_53_form = {
-  headers: [
-    { label: "№ п/п (№ жетона)" },
-    { label: "Индивидуальный номер колесной пары Собственник колесной пары" },
-    {
-      label: "Собственник колесной пары",
-    },
-    { label: "Тип колесной пары" },
-    { label: "Дата поступления в ремонт" },
-    {
-      label: "Поступила с завода, ВКМ, ВЧД, ПТО",
-    },
-    { label: "Номер пересылочной ведомости " },
-    { label: "G`ildirak juftligi chiqarib olingan vagon raqami" },
-    { label: "Vagon ta`mir turi" },
-    {
-      label: "G`ildirak juftligining  oxirgi yig`ilgan vaqti (formirivaniya)",
-    },
-    {
-      label: "G`ildirak juftligining  oxirgi yig`ilgan  joyi(formirivaniya)",
-    },
-    { label: "Oxirgi o`rta ta`mirlangan vaqti" },
-    { label: "Oxirgi o`rta ta`mirlangan joyi" },
-    {
-      label:
-        "G`ildirak juftligining  yurish qismini oxirgi qayta tiklangan vaqti",
-    },
-    {
-      label:
-        "G`ildirak juftligining  yurish qismini oxirgi qayta tiklangan joyi",
-    },
-    { label: "G`ildirak juftligining tomonlari" },
-  ],
-
-  antoher: [
-    { label: "Buksa holatining belgisi", colspan: 2 },
-    { label: "G`ildirak holatining belgisi", colspan: 2 },
-
-    {
-      label: "G`ildirak juftligi o`lchamlari (мм)",
-      colspan: 6,
-    },
-  ],
-
-  nestedHeaders: [
-    { label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)" },
-    { label: "Soz yoki Nosoz" },
-    { label: "Soz (yangi yig`ilgan yoki ta`mirlangan)" },
-    { label: "Nosoz(klassifikator bo`yicha nuqson raqami )" },
-    { label: "Yurish qismining diametri" },
-    { label: "Obod qalinligi" },
-    { label: "Greben qalinligi" },
-    { label: "Greben тiklik o`lchamlari" },
-    { label: "Prokat" },
-    { label: "Obodning ichki yuzalari orasidagi masofa" },
-  ],
-};
-
 export const vu_53_form_second2 = [
   [
     // { label: "T/r", rowspan: 5 },
@@ -973,8 +735,7 @@ export const vu_53_form_second2 = [
     { label: "O`q (kod 1)", rowspan: 2 },
     { label: "G`ildirak (kod 2)", rowspan: 2 },
   ]
-]
-
+];
 export const vu_53_form2 = [
   { key: 'axle_seating_diameter' },
   { key: 'running_part_diameter' },
@@ -1003,119 +764,7 @@ export const vu_53_form2 = [
   { key: 'middle_part' },
   { key: 'rim_disc_hub' },
   { key: 'after_welding_of_gear_part' }
-]
-
-export const vu_53_form_second = {
-  another_second: [
-    {
-      label: "Bajarilgan ta`mir ishlari",
-      colspan: 13,
-    },
-  ],
-  another_head_second: [
-    {
-      label:
-        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami)",
-      rowspan: 3,
-    },
-    {
-      label:
-        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami) (2)",
-      rowspan: 3,
-    },
-    { label: "Еlementlardan hosil bo'lgan g`ildirak juftligi ", colspan: 4 },
-    {
-      label: "Yig`ilgan g`ildirak juftligi  ",
-      rowspan: 3,
-    },
-    {
-      label: "O`rta ta`mir",
-      rowspan: 3,
-    },
-    {
-      label: "Joriy ta`mir",
-      rowspan: 3,
-    },
-    {
-      label: "G`ildirak juftligining  yurish qismini  qayta tiklangan",
-      rowspan: 3,
-    },
-    {
-      label: "Greben qismi payvandlangandan so`ng  g`ildirak ",
-      rowspan: 3,
-    },
-    {
-      label: "O`qning bo`yin qismidagi M110 rezbasin qayta tiklash",
-      rowspan: 3,
-    },
-    {
-      label: "O`qning bo`yin qismini  qayta tiklash",
-      rowspan: 3,
-    },
-  ],
-  another_sub_head_second: [
-    { label: "Yangi", colspan: 2 },
-    { label: "Eski yilgi", colspan: 2 },
-  ],
-  another_sub_extra_head_second: [
-    { label: "O`q (kod 1)" },
-    { label: "G`ildirak (kod 1)" },
-    { label: "O`q (kod 1)" },
-    { label: "G`ildirak (kod 1)" },
-  ],
-
-  antoher_loser_second: [
-    { label: "G`ildirak", colspan: 5 },
-    { label: "Obodning ichki yuzalari orasidagi masofa", rowspan: 2 },
-  ],
-  antoher_loser_head_second: [
-    { label: "O`qning рostupochniy qismini diametri " },
-    { label: "Yurish qismining diametri" },
-    { label: "Greben qalinligi" },
-    { label: "Obod qalinligi" },
-    { label: "Prokat" },
-  ],
-
-  another_three: [
-    {
-      label:
-        "G`ildirak juftligining yurish qismini qayta tiklangankbr sababi (klassifikator bo`yicha nosozlik raqami )",
-      rowspan: 3,
-    },
-    {
-      label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)",
-      rowspan: 3,
-    },
-    {
-      label: "Defektoskop uskunasi bilan tekshiruchining imzosi",
-      colspan: 6,
-    },
-    {
-      label: "Ishlab chiqaruvching imzosi",
-      colspan: 2,
-    },
-    {
-      label: "Izoh",
-      rowspan: 3,
-    },
-  ],
-  another_head_three: [
-    { label: "O'q", colspan: 4 },
-    { label: "G`ildirak", colspan: 2 },
-
-    { label: " G`ildirak juftliklarini  tekshirgan", rowspan: 2 },
-    { label: "  G`ildirak juftliklarini  bergan", rowspan: 2 },
-  ],
-  another_sub_head_three: [
-    { label: "Bo`yni va old postupichniy qismi" },
-    { label: " postupichniy qismi" },
-    { label: "Boyinidagi ichki xalqasi" },
-    { label: "O`rta qismi" },
-    { label: "Obod, Disk, Stupitsa" },
-    { label: "Greben qismini payvandlangandan so`ng " },
-  ],
-};
-
+];
 export const vu_53_table = [
   [
     { label: "Tartib raqami", rowspan: 2 },
@@ -1208,187 +857,7 @@ export const vu_53_table = [
     { label: "" },
     { label: "chap" },
   ]
-]
-
-export const vu_53 = {
-  headers: [
-    { label: "Tartib raqami", rowspan: 2 },
-    { label: "Vagon raqami", rowspan: 2 },
-    { label: "G`ildirak juftligining maxsus raqami ", rowspan: 2 },
-    {
-      label: "G`ildirak juftligining  egasi",
-      rowspan: 2,
-    },
-    { label: "G`ildirak juftligining  turi", rowspan: 2 },
-    { label: "Ta`mirga kelgan vaqti", rowspan: 2 },
-    {
-      label: "Kelgan joyi (Zavod, VCHD, TXSH)",
-      rowspan: 2,
-    },
-    { label: "G`ildirak juftligi chiqarib olingan vagon raqami", rowspan: 2 },
-    { label: "Vagon ta`mir turi", rowspan: 2 },
-    {
-      label: "G`ildirak juftligining  oxirgi yig`ilgan vaqti (formirivaniya)",
-      rowspan: 2,
-    },
-    {
-      label: "G`ildirak juftligining  oxirgi yig`ilgan  joyi(formirivaniya)",
-      rowspan: 2,
-    },
-    { label: "Oxirgi o`rta ta`mirlangan vaqti", rowspan: 2 },
-    { label: "Oxirgi o`rta ta`mirlangan joyi", rowspan: 2 },
-    {
-      label:
-        "G`ildirak juftligining  yurish qismini oxirgi qayta tiklangan vaqti",
-      rowspan: 2,
-    },
-    {
-      label:
-        "G`ildirak juftligining  yurish qismini oxirgi qayta tiklangan joyi",
-      rowspan: 2,
-    },
-    { label: "G`ildirak juftligining tomonlari", rowspan: 2 },
-
-    { label: "Buksa holatining belgisi", colspan: 2 },
-    { label: "G`ildirak holatining belgisi", colspan: 2 },
-
-    {
-      label: "G`ildirak juftligi o`lchamlari (мм)",
-      colspan: 6,
-    },
-    { label: " ", rowspan: 2 },
-  ],
-
-  nestedHeaders: [
-    { label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)" },
-    { label: "Soz yoki Nosoz" },
-    { label: "Soz (yangi yig`ilgan yoki ta`mirlangan)" },
-    { label: "Nosoz(klassifikator bo`yicha nuqson raqami )" },
-    { label: "Yurish qismining diametri" },
-    { label: "Obod qalinligi" },
-    { label: "Greben qalinligi" },
-    { label: "Greben тiklik o`lchamlari" },
-    { label: "Prokat" },
-    { label: "Obodning ichki yuzalari orasidagi masofa" },
-  ],
-
-  secondHeader: [
-    { label: "Ta`mirlangan vaqti", rowspan: 4 },
-    {
-      label: " Zavod, VCHD, TXSH yoki vagon ostiga berilgan vaqti",
-      rowspan: 4,
-    },
-    {
-      label: "G`ildirak juftligini jo`natilgan joy nomi (Zavod, VCHD,TXSH)",
-      rowspan: 4,
-    },
-    { label: "Peresilochniy raqami", rowspan: 4 },
-    { label: "G`ildirak juftligi berilgan vagon raqami", rowspan: 4 },
-    { label: "Vagon ta`mir turi", rowspan: 4 },
-    { label: "G`ildirak juftligining tomonlari", rowspan: 4 },
-    {
-      label: "G`ildirak juftligi o`lchamlari мм (o`ng va chap tomonlari)",
-      colspan: 6,
-    },
-    {
-      label: "Bajarilgan ta`mir ishlari",
-      colspan: 13,
-    },
-    {
-      label:
-        "G`ildirak juftligining yurish qismini qayta tiklangankbr sababi (klassifikator bo`yicha nosozlik raqami )",
-      rowspan: 4,
-    },
-    {
-      label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)",
-      rowspan: 4,
-    },
-    {
-      label: "Defektoskop uskunasi bilan tekshiruchining imzosi",
-      colspan: 6,
-    },
-    {
-      label: "Ishlab chiqaruvching imzosi",
-      colspan: 2,
-    },
-    {
-      label: "Izoh",
-      rowspan: 4,
-    },
-  ],
-
-  secondHeaderNested: [
-    { label: "G`ildirak", colspan: 5 },
-    { label: "Obodning ichki yuzalari orasidagi masofa", rowspan: 3 },
-    {
-      label:
-        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami)",
-      rowspan: 3,
-    },
-    {
-      label:
-        "G`ildirakni almashtirish sababi (klassifikator bo`yicha nosozlik raqami) (2)",
-      rowspan: 3,
-    },
-    { label: "Еlementlardan hosil bo'lgan g`ildirak juftligi ", colspan: 4 },
-    {
-      label: "Yig`ilgan g`ildirak juftligi  ",
-      rowspan: 3,
-    },
-    {
-      label: "O`rta ta`mir",
-      rowspan: 3,
-    },
-    {
-      label: "Joriy ta`mir",
-      rowspan: 3,
-    },
-    {
-      label: "G`ildirak juftligining  yurish qismini  qayta tiklangan",
-      rowspan: 3,
-    },
-    {
-      label:
-        "Greben qismi payvandlangandan so`ng  g`ildirak juftligining  yurish qismini  qayta tiklangan",
-      rowspan: 3,
-    },
-    {
-      label: "O`qning bo`yin qismidagi M110 rezbasin qayta tiklash",
-      rowspan: 3,
-    },
-    {
-      label: "O`qning bo`yin qismini  qayta tiklash",
-      rowspan: 3,
-    },
-    { label: "O'q", colspan: 4, rowspan: 2 },
-    { label: "G`ildirak", colspan: 2, rowspan: 2 },
-    { label: " G`ildirak juftliklarini  tekshirgan", rowspan: 3 },
-    { label: "  G`ildirak juftliklarini  bergan", rowspan: 3 },
-  ],
-
-  secondNestedDeepHeadersNext: [
-    { label: "O`qning рostupochniy qismini diametri ", rowspan: 2 },
-    { label: "Yurish qismining diametri", rowspan: 2 },
-    { label: "Greben qalinligi", rowspan: 2 },
-    { label: "Obod qalinligi", rowspan: 2 },
-    { label: "Prokat", rowspan: 2 },
-    { label: "Yangi", colspan: 2 },
-    { label: "Eski yilgi", colspan: 2 },
-  ],
-  secondDeepHeadersNext: [
-    { label: "O`q (kod 1)" },
-    { label: "G`ildirak (kod 1)" },
-    { label: "O`q (kod 1)" },
-    { label: "G`ildirak (kod 1)" },
-    { label: "Bo`yni va old postupichniy qismi" },
-    { label: " postupichniy qismi" },
-    { label: "Boyinidagi ichki xalqasi" },
-    { label: "O`rta qismi" },
-    { label: "Obod, Disk, Stupitsa" },
-    { label: "Greben qismini payvandlangandan so`ng " },
-  ],
-};
-
+];
 export const vu_68 = {
   nestedHeaders: [
     { label: "Tartib Raqami", rowspan: 2 },
@@ -1422,25 +891,6 @@ export const vu_68 = {
     "Qabul qiluvchining ",
   ],
 };
-export const defectoscope = {
-  nestedHeaders: [
-    { label: "Tartib Raqami" },
-    { label: "Defektoskop yaratilgan sana" },
-    {
-      label: "Detal nomi",
-    },
-    {
-      label: "Yil/raqam/zavod",
-    },
-
-    { label: "Nosozlik xulosasi" },
-    { label: "N/A imzosi " },
-    { label: "Usta imzosi " },
-
-    { label: "V/S/Q/Q imzosi " },
-  ],
-};
-
 export const vu_90 = {
   headers: [
     { label: "Tartib raqami", rowspan: 3 },
@@ -1531,7 +981,6 @@ export const vu_90 = {
     { label: "Oldi" },
   ],
 };
-
 export const vu_91 = [
   "Tartib raqami",
   "Ko‘rilgan sana",
@@ -1560,16 +1009,6 @@ export const vu_92 = {
     { label: "G'ildirak Bo'limining chilangari Imzo qo'yuvchi" },
   ],
 };
-export const signature_head = [
-  { label: "Tartib raqami" },
-  { label: "Jurnal turi" },
-  { label: "Vagon raqam" },
-  { label: "Xodim roli" },
-  { label: "Xodim logini" },
-  { label: "Jurnal imzo jo'natilgan vaqti" },
-  { label: "Yuklash " },
-];
-
 export const vu_93 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },
@@ -1595,7 +1034,6 @@ export const vu_93 = {
     { label: "G'ildirak Bo'limining chilangari Imzo qo'yuvchi" },
   ],
 };
-
 export const option_kodpaa_data = [
   "100     01   ДИАГ.КОЛ.ПАР     ДИАГНОСТИРОВАНИЕ КОЛЕСНЫХ ПАР",
   "101     03   CXOД C PEЛЬC     НЕИСПР.ВАГ.В РЕЗ.СХОДА С РЕЛЬС",
@@ -1878,40 +1316,208 @@ export const option_kodpaa_data = [
   "920     03   ОТСУТ.1 ДАТ      ОТСУТСТВИЕ 1 ДАТЧИКА",
   "921     03   ОТСУТ.2 ДАТ      ОТСУТСТВИЕ 2 ДАТЧИКА",
 ];
+export const vu_47 = {
+  headers: [
+    { label: "Tartib raqami", rowspan: 2 },
+    { label: "Дата", rowspan: 2 },
+    { label: "Тип прибора ", rowspan: 2 },
+    { label: "Заводской номер прибор год и месяц выпуска ", rowspan: 2 },
+    {
+      label: "Время зарядки золотниковой камеры и запасного резервуара, с ",
+      colspan: 2,
+    },
+    {
+      label:
+        "Отпуск медленным темпом через калиброванные отверстия диаметром 0,8 или 0,65 мм ",
+      rowspan: 2,
+    },
+    {
+      label:
+        "Время наполнения тормоз цилиндра до 3; 5 кгс/см2 при экстрен . Или полном служебном торможении, с",
+      rowspan: 2,
+    },
+    {
+      colspan: 3,
+      label:
+        "Давление в тормозном цилиндре (ТЦ) на режимах кгс/см2 при экстр. торможении (ЭТ) и полном служебном (ПСТ)",
+    },
+    {
+      label:
+        "Время отпуска до  0,4 кгс/см2 в ТЦ после ПСТ на равниином режиме ",
+      rowspan: 2,
+    },
+    {
+      label: "Фамилия и подпис производишего ремонт ",
+      rowspan: 2,
+    },
+    {
+      label: "Подпись принявшего прибор ",
+      rowspan: 2,
+    },
+    {
+      label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi ",
+      rowspan: 2,
+    },
+  ],
 
-export const tableHeadersVu32 = [
-  "Sana",
-  "Telejka uzatilgan vagonning raqami",
-  "Vagon qurilgan sanasi",
-  "Vagon ostidagi telejkaning tartib raqami",
-  "Yon ramaning raqami",
-  "Ishlab - chiqaruvchi zavod (tamg’asi)",
-  "Ishlab chiqarilgan yili",
-  "M o’lchami - Yon ramasining bazasi, mm.",
-  "Tayanch yuzasining tiklanishi (ha/yo’q)",
-  "Xizmat muddati uzaytirilish belgisi (ha/yo’q)",
-  "Yangi xizmat muddati tugagan yili",
-  "Xizmat muddatini uzytirgan tashkilotning tamg’asi",
-  "Ressor usti to’sini-ning raqami",
-  "Ishlab- chiqaruvchi zavod (tamg’asi)",
-  "Ishlab chiqarilgan yili",
-  "Pyatnik osti quril-masining chuqurligi, mm.",
-  "Ressor usti to’sini-dagi pyatnik osti qurilmasining di-ametri, mm",
-  "Pyatnik osti qurilmasini tiklash",
-  "Xizmat muddati uzaytirilish belgisi (ha/yo’q)",
-  "Yangi xizmat muddati tugashining yili",
-  "Xizmat muddatini uzytirgan tashkilot--ning tamg’asi",
-  "Friktsion ponаsining yuqorilаshishi (+) yoki quyilаshishi (-), mm.",
-  "Telejkа yon rаmаsining yonаltiruvchilаri vа buksа korpusi o‘rtаsidаgi umumiy bo’ylаmа orаlig‘i",
-  "Telejkа yon rаmаsi-ning yo‘nаltiruv-chilаri vа buksа korpusi o‘rtаsidаgi umumiy kundаlаng orаlig‘i",
-  "Telejkа vа vаgon sirpаngich-lаri o‘rtаsidаgi orаliq, mm.",
-  "Telejkаdа bаjаrilgаn tаhmir turi: KR-1, DR-2; M-1698-3 modernizаtsiyalаnishi; А.stаki-4 turdаgi tebrаnishlаr friktsion so‘ndirgichlаri bilаn jihozlаnishi",
-  "Bog‘lovchi bаlkаning raqаmi",
-  "Ishlаb - chiqаruvchi zаvod (tаmg’аsi)",
-  "Ishlаb chiqаrilgаn yili",
-  "Bog’lovchi bаlkаsi pyatnik osti qurilmаsining diаmetri, mm.",
-  "Defektoskopchining imzosi",
-  "Brigаdir imzosi",
-  "TTNB vаgon qаbul qiluvchisining imzosi",
-  "Korxonа rаhbаrining imzosi yoki muovinining",
+  nestedHeaders: [
+    {
+      label: "ЗК до 1,2 кгс/см2",
+    },
+    {
+      label: "ЗР от 4,0 кгс/см2 4,5 кгс/см2",
+    },
+    {
+      label: "порожнем ",
+    },
+    {
+      label: "среднем  ",
+    },
+    {
+      label: "груженом ",
+    },
+  ],
+};
+export const vu_47_show = [
+  "Дата",
+  "Тип прибора",
+  "Заводской номер, год и месяц выпуска",
+  "Время зарядки золотниковой камеры Давление ЗР от 4,0 кгс/см2, 4,5 кгс/см2",
+  "Время наполнения тормозного цилиндра",
+  "Давление в тормозном цилиндре в порожнем",
+  "Давление в тормозном цилиндре среднем",
+  "Давление в тормозном цилиндре груженом",
+  "Подпись принявшего прибор",
+];
+export const register_breakes_silindir = [
+  { label: "T/R" },
+  { label: "Sana" },
+  { label: "Vagon nomeri" },
+  { label: "Ta’mir turi" },
+  { label: "Zaxirasig‘imi P7-78" },
+  { label: " Suv bosimi (10,05+0,5) kg/sm2" },
+  { label: "Tormozsilindiri TS002,TS188" },
+  { label: "Havobosimi (4,0+0,1) kg/sm2" },
+  { label: "2X kamerali  havotaq simlagich 295.001, 295M.001" },
+  { label: "Havobosimi (6,0+0,1) kg/sm2" },
+  { label: "Texnikxolati" },
+  { label: "Ta'mirlovchini imzosi" },
+  { label: "Qabulqiluvchi imzosi" },
+  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
+  { label: "" },
+];
+export const register_razobshitel = [
+  { label: "T/R" },
+  { label: "Tamirlangan sanasi" },
+  { label: "Vagon nomeri" },
+  { label: "Razabshitlni kran turi 4300" },
+  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2" },
+  { label: "So’ngi jumrfk turi 4304, 4314, 271" },
+  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 " },
+  { label: "So’ngi jumrfk turi 4304, 4314, 271" },
+  { label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 " },
+  { label: "Tekshiruv  xulosasi " },
+  { label: "Ta'mirlovchini imzosi" },
+  { label: "Qabulqiluvchi imzosi" },
+  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
+  { label: "" },
+];
+export const register_rukva = [
+  { label: "T/R" },
+  { label: "Sana" },
+  { label: "Vagon nomeri" },
+  { label: "Ulanish rukva markasi" },
+  { label: "Ulanish rukva markasi 2" },
+  { label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2" },
+  { label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2 (2)" },
+  { label: "Ushlab turish vaqti 10 daqiqa" },
+  { label: "Suv bilan tekshiruvi 12-0.2 kgs/sm2" },
+  { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa" },
+  { label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (2)" },
+  { label: "Qabulqiluvchi imzosi" },
+  { label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi" },
+  { label: "" },
+];
+export const carriage_dalolatnoma_head = [
+  { label: "Tartib raqami" },
+  { label: "Vagon raqami" },
+  { label: "Ta'mir turi" },
+  { label: "Yon rama raqami ", colspan: 4 },
+  {
+    label: "Ishlab chiqarilishi,zavod tamg’asi",
+    colspan: 4,
+  },
+  {
+    label: "Mavjudlik kodi",
+    colspan: 4,
+  },
+  {
+    label: "Ressor usti balkasi",
+    colspan: 3,
+  },
+  {
+    label: "Avtobirikma chilangari Imzo qo'yuvchi",
+  },
+  {
+    label: "Avtobirikma defektoskopistr Imzo qo'yuvchi",
+  },
+  {
+    label: "Orqani qo'shish",
+  },
+  {
+    label: "",
+  },
+];
+export const mockHeaderCarriage = {
+  headers: [
+    { label: "Код детали", rowspan: 2 },
+    { label: "Код неисправности", rowspan: 2 },
+    { label: "Код ж.д Администрации собственницы детали", rowspan: 2 },
+    { label: "Номер детали", colspan: 3 },
+    { label: "Место, дата и вид работы по детали", colspan: 3 },
+  ],
+  nestedHeaders: [
+    { label: "Код предприятия изготовителя" },
+    { label: "Заводской номер" },
+    { label: "Год изготовителя" },
+    { label: "Код депо" },
+    { label: "Дата работ (ммгггг)" },
+    { label: "Код вида работ " },
+  ],
+  topHeader: [
+    { label: "Начало сообщения" },
+    { label: "Код с сообщения" },
+    { label: "Код ж.д отправителя" },
+    { label: "Код режима ввода сообщения" },
+    { label: "Дата передачи сообщения (ддммгггг)" },
+    { label: "Место, для т вид операции с вагоном", colspan: 4 },
+    { label: "Номер вагона" },
+  ],
+};
+export const defectoscope = {
+  nestedHeaders: [
+    { label: "Tartib Raqami" },
+    { label: "Defektoskop yaratilgan sana" },
+    {
+      label: "Detal nomi",
+    },
+    {
+      label: "Yil/raqam/zavod",
+    },
+
+    { label: "Nosozlik xulosasi" },
+    { label: "N/A imzosi " },
+    { label: "Usta imzosi " },
+
+    { label: "V/S/Q/Q imzosi " },
+  ],
+};
+export const signature_head = [
+  { label: "Tartib raqami" },
+  { label: "Jurnal turi" },
+  { label: "Vagon raqam" },
+  { label: "Xodim roli" },
+  { label: "Xodim logini" },
+  { label: "Jurnal imzo jo'natilgan vaqti" },
+  { label: "Yuklash " },
 ];

@@ -11,12 +11,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-import { vu_53, vu_53_table } from "../../../utils/mock_heads";
+import { vu_53_table } from "../../../utils/mock_heads";
 import UserApi from "../../../Service/module/userModule.api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SliderMock } from "../../../utils";
-import { faBook, faEye, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Deleteted } from "../../Deletete";
 import { UseForm } from "../Modals/VU_53_model/UseForm";
 import { UseTable } from "./UseTable";
@@ -24,7 +23,6 @@ import { timeMoment } from "../../../utils/roleTest";
 
 
 export const InviteTable = ({ data, currentPage }) => {
-  const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [delateModal, setDelateModal] = useState(null);
   const [deletedID, setDeleteID] = useState(null);
   const [createBackId, setBackId] = useState(null);

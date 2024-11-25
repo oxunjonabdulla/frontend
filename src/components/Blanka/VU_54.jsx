@@ -29,7 +29,7 @@ import { VU_54_Model } from "./Modals/VU_54_model";
 import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
 import { Deleteted } from "../Deletete";
-import { vu_54 } from "../../utils/mock_heads";
+import { vu_54, vu_54_keys } from "../../utils/mock_heads";
 import Show_VU54_model from "./Modals/Show_VU54_model";
 
 export const VU_54 = () => {
@@ -147,46 +147,9 @@ export const VU_54 = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={idx}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-                    <Td>{item?.vu54_fields[0]?.wheel_pair_number}</Td>
-                    <Td>{item?.vu54_fields[0]?.grph_3_4_plus}</Td>
-                    <Td>{item?.vu54_fields[0]?.vkm_get_new}</Td>
-                    <Td>{item?.vu54_fields[0]?.vkm_get_depot_new}</Td>
-                    <Td>{item?.vu54_fields[0]?.not_change_elements}</Td>
-                    <Td>{item?.vu54_fields[0]?.change_elements}</Td>
-                    <Td>{item?.vu54_fields[0]?.defective}</Td>
-                    <Td>{item?.vu54_fields[0]?.is_defect_not_change}</Td>
-                    <Td>{item?.vu54_fields[0]?.is_defect_change}</Td>
-                    <Td>{item?.vu54_fields[0]?.grph_11_12_13_plus}</Td>
-                    <Td>{item?.vu54_fields[0]?.new_elements}</Td>
-                    <Td>{item?.vu54_fields[0]?.new_point_enter}</Td>
-                    <Td>{item?.vu54_fields[0]?.new_wheel_enter}</Td>
-                    <Td>{item?.vu54_fields[0]?.expired_elements_made}</Td>
-                    <Td>{item?.vu54_fields[0]?.buks_circle_face_repair}</Td>
-                    <Td>{item?.vu54_fields[0]?.buks_circle_face_repair_not_turn}</Td>
-                    <Td>{item?.vu54_fields[0]?.three_typeof_wheel_turn}</Td>
-                    <Td>{item?.vu54_fields[0]?.rolls_gun_repair}</Td>
-                    <Td>{item?.vu54_fields[0]?.rolls_neeg_with_repair}</Td>
-                    <Td>{item?.vu54_fields[0]?.rolls_circle_face_repair}</Td>
-                    <Td>{item?.vu54_fields[0]?.rolls_circle_face_repair_not_turn}</Td>
-                    <Td>{item?.vu54_fields[0]?.antoher_works}</Td>
-                    <Td>{item?.vu54_fields[0]?.grph_24_25_28_plus}</Td>
-                    <Td>{item?.vu54_fields[0]?.after_repair_send_way}</Td>
-                    <Td>{item?.vu54_fields[0]?.under_carriage_number}</Td>
-                    <Td>{item?.vu54_fields[0]?.invetor_sended}</Td>
-                    <Td>{item?.vu54_fields[0]?.vkm_with_changes}</Td>
-                    <Td>{item?.vu54_fields[0]?.vkm_without_changes}</Td>
-                    <Td>{item?.vu54_fields[0]?.grph_30_31_32_plus}</Td>
-                    <Td>{item?.vu54_fields[0]?.is_use}</Td>
-                    <Td>{item?.vu54_fields[0]?.grph_32_33_34_plus}</Td>
-                    <Td>{item?.vu54_fields[0]?.do_repair_with_changes}</Td>
-                    <Td>{item?.vu54_fields[0]?.do_repair_without_changes}</Td>
-                    <Td>{item?.vu54_fields[0]?.grph_35_36_38_plus}</Td>
-                    <Td>{item?.vu54_fields[0]?.sheyk_type}</Td>
-                    <Td>{item?.vu54_fields[0]?.stupid_under_type}</Td>
-                    <Td>{item?.vu54_fields[0]?.between_type}</Td>
-                    <Td>{item?.vu54_fields[0]?.resba_is_break}</Td>
-                    <Td>{item?.vu54_fields[0]?.is_energy_uq}</Td>
-                    <Td>{item?.vu54_fields[0]?.is_energy_uq}</Td>
+                    {vu_54_keys.map((item2, idx) => (
+                      <Td key={idx}>{item?.vu54_fields[0][item2]}</Td>
+                    ))}
                     <Td>
                       <IconButton
                         size={"lg"}
