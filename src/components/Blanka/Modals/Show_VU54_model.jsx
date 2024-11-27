@@ -29,10 +29,10 @@ const Show_VU54_model = ({ isOpen, onClose, showData }) => {
                         <Table variant="striped" colorScheme="gray">
                             <Tbody>
                                 <Tr>
-                                    {vu_54.map((item) => (
+                                    {vu_54.map((item, idx) => (
                                         <Td
                                             textAlign={"center"}
-                                            key={item.label}
+                                            key={idx}
                                             whiteSpace={"pre-wrap"}
                                             fontWeight={700}
                                         >
