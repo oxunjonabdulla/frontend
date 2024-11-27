@@ -20,7 +20,7 @@ export const Deleteted = ({
   deletedFunction,
 }) => {
   const [inputValue, setValueInput] = useState("");
-  
+
   return (
     <Modal isOpen={isOpen} isCentered onClose={() => onClose(false)}>
       <ModalOverlay backdropFilter={"blur(10px)"} />

@@ -14,12 +14,9 @@ import {
 import { vu_54, vu_54_keys } from "../../../utils/mock_heads";
 
 const Show_VU54_model = ({ isOpen, onClose, showData }) => {
-    console.log(showData);
-    
     return (
         <Modal
             isOpen={isOpen}
-            // w={"100%"}
             onClose={onClose}
             size={["full"]}
         >
@@ -43,7 +40,6 @@ const Show_VU54_model = ({ isOpen, onClose, showData }) => {
                                         </Td>
                                     ))}
                                 </Tr>
-
                                 {showData?.vu54_fields?.map((item, idx) => (
                                     <Tr key={idx}>
                                         <Td>{idx + 1}</Td>

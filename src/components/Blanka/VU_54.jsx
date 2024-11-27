@@ -162,7 +162,7 @@ export const VU_54 = () => {
                       <Flex gap={2} justifyContent={"center"}>
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.vu54_fields[0]?.id)}
+                          onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
