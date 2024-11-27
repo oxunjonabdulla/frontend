@@ -1,3 +1,5 @@
+import UserApi from "@/Service/module/userModule.api";
+import { SearchTrain } from "@/utils";
 import {
   Button,
   Flex,
@@ -17,8 +19,6 @@ import {
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import UserApi from "@/Service/module/userModule.api";
-import { SearchTrain } from "@/utils";
 
 export const VU_36_Model = ({ onClose, isOpen }) => {
   const [serarchingResult, setSerachingResult] = useState(null);
