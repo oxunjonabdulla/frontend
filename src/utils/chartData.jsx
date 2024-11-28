@@ -1,5 +1,6 @@
 const chartData = [46, 12, 28, 28, 29];
-const totalSum = chartData.reduce((acc, curr) => acc + curr, 0);
+// const totalSum = chartData.reduce((acc, curr) => acc + curr, 0);
+const totalSum = 262;
 
 export const demoZero = {
   series: [
@@ -216,7 +217,8 @@ export const chartFirst = {
   },
 };
 const chartDataSecond = [61, 0, 37, 36, 24];
-const totalSumSecond = chartDataSecond.reduce((acc, curr) => acc + curr, 0);
+// const totalSumSecond = chartDataSecond.reduce((acc, curr) => acc + curr, 0);
+const totalSumSecond = 542;
 export const chartSecond = {
   series: [
     {
@@ -562,7 +564,7 @@ export const chartSix = {
     },
 
     title: {
-      text: "Капитал таъмир, Жами " + 44 + "та",
+      text: "Капитал таъмир, Жами " + 84 + "та",
 
       style: {
         color: "#444",

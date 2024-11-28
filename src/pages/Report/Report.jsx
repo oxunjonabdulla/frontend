@@ -29,7 +29,6 @@ export const Reports = () => {
     for (let i = 0; i < gettingData?.journals?.length; i += 2) 
       list.push([gettingData?.journals[i], gettingData?.journals[i + 1]]);
     gettingData?.journals?.length % 2 && list.push([gettingData?.journals[gettingData?.journals?.length - 1]]);
-    console.log(list);
     return list;
   }
 
@@ -61,10 +60,10 @@ export const Reports = () => {
           <Table variant={"striped"}>
             <Tbody>
               <Tr fontSize={24} h={"50px"} fontWeight={500}>
-                <Td textAlign={"center"}>Hisobot nomi</Td>
-                <Td textAlign={"center"}>Action</Td>
-                <Td textAlign={"center"}>Hisobot nomi</Td>
-                <Td textAlign={"center"}>Action</Td>
+                <Td textAlign={"center"}>Jurnal nomi</Td>
+                <Td textAlign={"center"}>Malumotni ko'rish</Td>
+                <Td textAlign={"center"}>Jurnal nomi</Td>
+                <Td textAlign={"center"}>Malumotni ko'rish</Td>
               </Tr>
               {listRewrite().map((item, idx) => (
                 <Tr key={idx}>

@@ -40,13 +40,13 @@ const topInfoData = [
   },
   {
     title: "Qabul qilingan va chiqarilgan vagonlar soni",
-    numberCnt: 721,
+    numberCnt: 890,
     icon: faBook,
     bgColor: "linear-gradient(135deg, #2AFADF 10%, #4C83FF 100%)",
   },
   {
     title: "Nosoz vagonlar soni",
-    numberCnt: 186,
+    numberCnt: 108,
     icon: faBookOpenReader,
     bgColor: "linear-gradient(135deg, #FFD3A5 10%, #FD6585 100%)",
   },
@@ -327,7 +327,7 @@ export const HomePage = () => {
       <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
         2024 йил хозирги кунгача Қарши вагон депосида таъмирланган вагонлар
         <br />
-        Жами: 188
+        Жами: 890
       </Heading>
 
       <Flex gap={6}>
