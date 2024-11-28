@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
 import { SearchTrain } from "../../../utils";
+
 export const VU_68_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
   const [serachingResult, setSerachingResult] = useState(null);

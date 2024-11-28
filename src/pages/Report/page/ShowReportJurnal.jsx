@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { ImageSignature } from "../../../components";
+import { timeMoment } from "../../../utils/roleTest";
 
 export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
 
@@ -23,7 +24,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
             return typeof item[Object.keys(item)[1]] === "object" && item[Object.keys(item)[1]]?.length > 2;
         }) || false;
     }
-    
+
     return (
         <Modal
             isOpen={isOpen}
@@ -45,7 +46,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                     <>
                                         <Tr>
                                             {data[0].map((item, index) => (
-                                                <Td key={index}
+                                                <Td key={index + ".1"}
                                                     textAlign={"center"}
                                                     rowSpan={item?.field_name === "Front Detail"
                                                         || item?.field_name === "Back Detail" ? 1 : 2}
@@ -62,7 +63,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                                 if (item?.field_name === "Front Detail"
                                                     || item?.field_name === "Back Detail") {
                                                     return item[Object.keys(item)[1]].map((item, index) => (
-                                                        <Td key={index}>{item.field_name}</Td>
+                                                        <Td key={index + ".2"}>{item.field_name}</Td>
                                                     ));
                                                 }
                                             })}
@@ -70,16 +71,22 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                         <Tr>
                                             {data[0].map((item, index) => {
                                                 return item[Object.keys(item)[1]] != null && typeof item[Object.keys(item)[1]] === "object" ?
-                                                    item[Object.keys(item)[1]]?.map(item => (<Td key={index}>{item.value}</Td>))
+                                                    item[Object.keys(item)[1]]?.map(item2 => (
+                                                        <Td key={index + ".3"}>
+                                                            {typeof item2.value === "string"
+                                                                && item2.value.endsWith("+05:00")
+                                                                ? timeMoment(item2.value)?.day : item2.value}
+                                                        </Td>
+                                                    ))
                                                     : (
-                                                        <Td key={index}>
+                                                        <Td key={index + ".3"}>
                                                             {item[Object.keys(item)[1]] != null && typeof item[Object.keys(item)[1]] === "object"
                                                                 ? item?.time != null
                                                                 && item?.time[Object.keys(item?.time)[0]] + ":" + item?.time[Object.keys(item?.time)[0]]
                                                                 : item[Object.keys(item)[1]] != null
                                                                     ? typeof item[Object.keys(item)[1]] === "string"
-                                                                        && item[Object.keys(item)[1]].startsWith("/media/")
-                                                                        ? <ImageSignature signatureImage={item[Object.keys(item)[1]]} />
+                                                                        && item[Object.keys(item)[1]].endsWith("+05:00")
+                                                                        ? timeMoment(item[Object.keys(item)[1]])?.day
                                                                         : item[Object.keys(item)[1]]
                                                                     : ""}
                                                         </Td>
@@ -91,12 +98,12 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                     <>
                                         <Tr>
                                             {data[0].map((item, index) => (
-                                                <Td key={index}>{item?.field_name}</Td>
+                                                <Td key={index + ".5"}>{item?.field_name}</Td>
                                             ))}
                                         </Tr>
                                         <Tr>
                                             {data[0].map((item, index) => (
-                                                <Td key={index}>
+                                                <Td key={index + ".6"}>
                                                     {item[Object.keys(item)[1]] != null && typeof item[Object.keys(item)[1]] === "object"
                                                         ? item?.time != null
                                                         && item?.time[Object.keys(item?.time)[0]] + ":" + item?.time[Object.keys(item?.time)[0]]
@@ -104,7 +111,10 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                                             ? typeof item[Object.keys(item)[1]] === "string"
                                                                 && item[Object.keys(item)[1]].startsWith("/media/")
                                                                 ? <ImageSignature signatureImage={item[Object.keys(item)[1]]} />
-                                                                : item[Object.keys(item)[1]]
+                                                                : typeof item[Object.keys(item)[1]] === "string"
+                                                                    && item[Object.keys(item)[1]].endsWith("+05:00")
+                                                                    ? timeMoment(item[Object.keys(item)[1]])?.day
+                                                                    : item[Object.keys(item)[1]]
                                                             : ""}
                                                 </Td>
                                             ))}
