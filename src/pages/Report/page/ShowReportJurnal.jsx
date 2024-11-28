@@ -18,11 +18,12 @@ import { ImageSignature } from "../../../components";
 export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
 
     function isList() {
+        if (!Array.isArray(data[0])) data = [data];
         return data[0]?.some(item => {
             return typeof item[Object.keys(item)[1]] === "object" && item[Object.keys(item)[1]]?.length > 2;
         }) || false;
     }
-
+    
     return (
         <Modal
             isOpen={isOpen}
@@ -77,7 +78,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                                                 && item?.time[Object.keys(item?.time)[0]] + ":" + item?.time[Object.keys(item?.time)[0]]
                                                                 : item[Object.keys(item)[1]] != null
                                                                     ? typeof item[Object.keys(item)[1]] === "string"
-                                                                        && item[Object.keys(item)[1]].startsWith("/media/users/signature")
+                                                                        && item[Object.keys(item)[1]].startsWith("/media/")
                                                                         ? <ImageSignature signatureImage={item[Object.keys(item)[1]]} />
                                                                         : item[Object.keys(item)[1]]
                                                                     : ""}
@@ -101,7 +102,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                                         && item?.time[Object.keys(item?.time)[0]] + ":" + item?.time[Object.keys(item?.time)[0]]
                                                         : item[Object.keys(item)[1]] != null
                                                             ? typeof item[Object.keys(item)[1]] === "string"
-                                                                && item[Object.keys(item)[1]].startsWith("/media/users/signature")
+                                                                && item[Object.keys(item)[1]].startsWith("/media/")
                                                                 ? <ImageSignature signatureImage={item[Object.keys(item)[1]]} />
                                                                 : item[Object.keys(item)[1]]
                                                             : ""}
