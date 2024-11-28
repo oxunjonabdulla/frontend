@@ -22,15 +22,6 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
             return typeof item[Object.keys(item)[1]] === "object" && item[Object.keys(item)[1]]?.length > 2;
         }) || false;
     }
-    
-    console.log(data.length);
-    
-    data.length > 1 && data[0]?.map(item => {
-        if (item?.field_name === "Front Detail" || item?.field_name === "Back Detail") {
-            console.log(item[Object.keys(item)[1]]?.map(item => item.value));
-        } else console.log(item[Object.keys(item)[1]]);
-    })
-
 
     return (
         <Modal

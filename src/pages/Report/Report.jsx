@@ -71,7 +71,8 @@ export const Reports = () => {
                     <>
                       <Td key={idx2} fontSize={"xl"}>{item2?.journal_name}</Td>
                       <Td key={idx2 + ".2"} w={40}>
-                        {item2?.data !== null ? (
+                        {/* TODO phrasecart ni tugiurlash kerak */}
+                        {item2?.data !== null && item2?.journal_name !== "phrasecart" ? ( 
                           <Box w={"100%"} display={"flex"} justifyContent={"center"}>
                             <Button
                               onClick={() => {
