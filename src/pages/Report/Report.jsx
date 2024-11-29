@@ -24,14 +24,8 @@ export const Reports = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const { isOpen: isOpenShow, onClose: onCloseShow, onOpen: onOpenShow } = useDisclosure();
 
-  function listRewrite() {
-    let list = [];
-    for (let i = 0; i < gettingData?.journals?.length; i += 2) 
-      list.push([gettingData?.journals[i], gettingData?.journals[i + 1]]);
-    gettingData?.journals?.length % 2 && list.push([gettingData?.journals[gettingData?.journals?.length - 1]]);
-    return list;
-  }
-
+  console.log(gettingData);
+  
   return (
     <Container maxW="container.2xl">
       <Heading size={"xl"} textAlign={"center"} mt={14} fontWeight={500}>
@@ -56,43 +50,39 @@ export const Reports = () => {
           </Button>
         </Flex>
 
-        {listRewrite()?.length > 0 ? (
-          <Table variant={"striped"}>
+        {gettingData?.journals?.length > 0 ? (
+          <Table variant={"striped"} style={{ borderRadius: "10px" }}>
             <Tbody>
               <Tr fontSize={24} h={"50px"} fontWeight={500}>
-                <Td textAlign={"center"}>Jurnal nomi</Td>
-                <Td textAlign={"center"}>Malumotni ko'rish</Td>
+                <Td textAlign={"center"}>T/r</Td>
+                <Td textAlign={"center"}>Vagon raqami</Td>
                 <Td textAlign={"center"}>Jurnal nomi</Td>
                 <Td textAlign={"center"}>Malumotni ko'rish</Td>
               </Tr>
-              {listRewrite().map((item, idx) => (
+              {gettingData?.journals?.map((item, idx) => (
                 <Tr key={idx}>
-                  {item?.map((item2, idx2) => (
-                    <>
-                      <Td key={idx2} fontSize={"xl"}>{item2?.journal_name}</Td>
-                      <Td key={idx2 + ".2"} w={40}>
-                        {/* TODO phrasecart ni tugiurlash kerak */}
-                        {item2?.data !== null ? ( 
-                        // {item2?.data !== null && item2?.journal_name !== "phrasecart" ? ( 
-                          <Box w={"100%"} display={"flex"} justifyContent={"center"}>
-                            <Button
-                              onClick={() => {
-                                setShowData(item2?.data);
-                                onOpenShow();
-                              }}
-                              colorScheme="teal"
-                            >
-                              <FontAwesomeIcon icon={faEye} />
-                            </Button>
-                          </Box>
-                        ) : (
-                            <Text textAlign={"center"} color={"red"}>
-                              Jurnal mavjud emas
-                            </Text>
-                        )}
-                      </Td>
-                    </>
-                  ))}
+                  <Td textAlign={"center"} fontSize={"xl"} w={100}>{idx + 1}</Td>
+                  <Td textAlign={"center"} fontSize={"xl"} w={200}>{gettingData?.carriage_number}</Td>
+                  <Td fontSize={"xl"}>{item?.journal_name}</Td>
+                  <Td width={"200px"}>
+                    {item?.data !== null ? (
+                      <Box w={"100%"} display={"flex"} justifyContent={"center"}>
+                        <Button
+                          onClick={() => {
+                            setShowData(item?.data);
+                            onOpenShow();
+                          }}
+                          colorScheme="teal"
+                        >
+                          <FontAwesomeIcon icon={faEye} />
+                        </Button>
+                      </Box>
+                    ) : (
+                      <Text textAlign={"center"} color={"red"}>
+                        Jurnal mavjud emas
+                      </Text>
+                    )}
+                  </Td>
                 </Tr>
               ))}
             </Tbody>
