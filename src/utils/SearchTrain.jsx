@@ -30,31 +30,25 @@ export const SearchTrain = ({
       setLoading(true);
       const { response } = await new UserApi().getCarriageNumber();
       setLoading(false);
-      const results = response?.data?.filter((number) =>
+      const results = response?.data?.filter(number =>
         number?.carriage_number.toString().includes(debouncedSearch)
       );
 
       setSerachingResult(debouncedSearch);
       setSearchResults(results);
-      if (typeof setTestResult === "function") {
-        setTestResult(results);
-      }
-
-      if (results.length === 0) {
-        setSearchResults([
-          { errorTitile: "Bu turdagi vagon topilmadi", isNot: true },
-        ]);
-      }
-    } else {
-      setSearchResults([]);
-    }
+      if (typeof setTestResult === "function") setTestResult(results);
+      
+      if (results.length === 0) setSearchResults([
+        { errorTitile: "Bu turdagi vagon topilmadi", isNot: true },
+      ]);
+    } else setSearchResults([]);
   }, [debouncedSearch, setSerachingResult, setTestResult]);
 
   useEffect(() => {
     handleSearch();
   }, [handleSearch]);
 
-  const handleNumberClick = useCallback((clickedNumber) => {
+  const handleNumberClick = useCallback(clickedNumber => {
     setSearchTerm(clickedNumber?.carriage_number.toString());
   }, []);
   return (

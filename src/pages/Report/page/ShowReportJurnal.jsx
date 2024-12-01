@@ -25,6 +25,9 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
         }) || false;
     }
 
+    console.log(data);
+    
+
     return (
         <Modal
             isOpen={isOpen}
@@ -48,10 +51,10 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                             {data[0].map((item, index) => (
                                                 <Td key={index + ".1"}
                                                     textAlign={"center"}
-                                                    rowSpan={item?.field_name === "Front Detail"
-                                                        || item?.field_name === "Back Detail" ? 1 : 2}
-                                                    colSpan={item?.field_name === "Front Detail"
-                                                        || item?.field_name === "Back Detail"
+                                                    rowSpan={item?.field_name === "JURNALNING OLD QISMI"
+                                                        || item?.field_name === "JURNALNING ORQA QISMI" ? 1 : 2}
+                                                    colSpan={item?.field_name === "JURNALNING OLD QISMI"
+                                                        || item?.field_name === "JURNALNING ORQA QISMI"
                                                         ? item[Object.keys(item)[1]].length : 1}
                                                 >
                                                     {item?.field_name}
@@ -60,8 +63,8 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                         </Tr>
                                         <Tr>
                                             {data[0].map(item => {
-                                                if (item?.field_name === "Front Detail"
-                                                    || item?.field_name === "Back Detail") {
+                                                if (item?.field_name === "JURNALNING OLD QISMI"
+                                                    || item?.field_name === "JURNALNING ORQA QISMI") {
                                                     return item[Object.keys(item)[1]].map((item, index) => (
                                                         <Td key={index + ".2"}>{item.field_name}</Td>
                                                     ));

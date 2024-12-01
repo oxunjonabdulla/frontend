@@ -9,23 +9,59 @@ import {
   Td,
   Text,
   Tr,
-  useDisclosure
+  useDisclosure,
+  useToast
 } from "@chakra-ui/react";
 import { faBook, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { ReportModal } from "./ReportModal";
 import { ShowReportJurnal } from "./page/ShowReportJurnal";
+import { SearchTrain } from "../../utils";
+import UserApi from "../../Service/module/userModule.api";
 
 export const Reports = () => {
   const [gettingData, setGettingData] = useState([]);
   const [showData, setShowData] = useState([]);
+  const [serachingResult, setSerachingResult] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+
+  const toast = useToast();
 
   const { isOpen, onClose, onOpen } = useDisclosure();
   const { isOpen: isOpenShow, onClose: onCloseShow, onOpen: onOpenShow } = useDisclosure();
 
-  console.log(gettingData);
-  
+  const onSubmit = async () => {
+    setLoading(true);
+
+    const { response, error } = await new UserApi().getGeneralReport(serachingResult);
+    setLoading(false);
+    if (response) {
+      toast({
+        status: "success",
+        title: "Xisobot Tayyorlash muvaffaqiyatli amalga oshirildi",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+
+      setGettingData(response?.data);
+      onClose();
+      setSerachingResult(null);
+    }
+    if (error) {
+      toast({
+        status: "error",
+        title: error?.error ? error?.error : "Bu vagon raqami uchun Jurnallar mavjud emas.",
+        duration: 4000,
+        isClosable: true,
+        position: "top-right",
+        fontSize: "3xl",
+      });
+    }
+  };
+
   return (
     <Container maxW="container.2xl">
       <Heading size={"xl"} textAlign={"center"} mt={14} fontWeight={500}>
@@ -44,9 +80,12 @@ export const Reports = () => {
           Jurnallar hisbotlar ro'yxati
         </Heading>
 
-        <Flex justifyContent={"flex-end"}>
-          <Button colorScheme="teal" my={10} float={"right"} onClick={onOpen}>
-            Hisobot olish
+        <Flex alignItems={"end"} mb={10}>
+          <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} me={10}>
+            <SearchTrain setSerachingResult={setSerachingResult} key={gettingData?.carriage_number}/>
+          </Flex>
+          <Button colorScheme="teal" onClick={onSubmit} isLoading={isLoading}>
+            Hisobot Tayyorlash
           </Button>
         </Flex>
 
