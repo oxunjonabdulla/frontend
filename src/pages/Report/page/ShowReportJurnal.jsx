@@ -76,9 +76,9 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                                 return item[Object.keys(item)[1]] != null && typeof item[Object.keys(item)[1]] === "object" ?
                                                     item[Object.keys(item)[1]]?.map(item2 => (
                                                         <Td key={index + ".3"}>
-                                                            {typeof item2.value === "string"
-                                                                && item2.value.endsWith("+05:00")
-                                                                ? timeMoment(item2.value)?.day : item2.value}
+                                                            {typeof item2[Object.keys(item2)[1]] === "string" && item2[Object.keys(item2)[1]].endsWith("+05:00")
+                                                                ? timeMoment(item2[Object.keys(item2)[1]])?.day
+                                                                : item2[Object.keys(item2)[1]]} 
                                                         </Td>
                                                     ))
                                                     : (
@@ -88,9 +88,12 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                                                 && item?.time[Object.keys(item?.time)[0]] + ":" + item?.time[Object.keys(item?.time)[0]]
                                                                 : item[Object.keys(item)[1]] != null
                                                                     ? typeof item[Object.keys(item)[1]] === "string"
-                                                                        && item[Object.keys(item)[1]].endsWith("+05:00")
-                                                                        ? timeMoment(item[Object.keys(item)[1]])?.day
-                                                                        : item[Object.keys(item)[1]]
+                                                                        && item[Object.keys(item)[1]].startsWith("/media/")
+                                                                        ? <ImageSignature signatureImage={item[Object.keys(item)[1]]} />
+                                                                        : typeof item[Object.keys(item)[1]] === "string"
+                                                                            && item[Object.keys(item)[1]].endsWith("+05:00")
+                                                                            ? timeMoment(item[Object.keys(item)[1]])?.day
+                                                                            : item[Object.keys(item)[1]]
                                                                     : ""}
                                                         </Td>
                                                     )

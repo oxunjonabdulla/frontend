@@ -82,7 +82,7 @@ export const Reports = () => {
 
         <Flex alignItems={"end"} mb={10}>
           <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} me={10}>
-            <SearchTrain setSerachingResult={setSerachingResult} key={gettingData?.carriage_number}/>
+            <SearchTrain setSerachingResult={setSerachingResult} key={gettingData?.carriage_number} />
           </Flex>
           <Button colorScheme="teal" onClick={onSubmit} isLoading={isLoading}>
             Hisobot Tayyorlash
@@ -127,12 +127,11 @@ export const Reports = () => {
             </Tbody>
           </Table>
         ) : (
-          <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
+          <Flex align={"center"} flexDir={"column"} my={12} gap={4} mt={40}>
             <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />
-            <Button colorScheme="teal" onClick={onOpen} marginTop={5}>
-              {" "}
-              Hisobot olish
-            </Button>
+            <Text>
+                Jurnallar hisbotlar ro'yxati
+            </Text>
           </Flex>
         )
         }
