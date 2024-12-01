@@ -21,12 +21,32 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
     function isList() {
         if (!Array.isArray(data[0])) data = [data];
         return data[0]?.some(item => {
-            return typeof item[Object.keys(item)[1]] === "object" && item[Object.keys(item)[1]]?.length > 2;
+            return typeof item[key(item)] === "object" && item[key(item)]?.length > 2;
         }) || false;
     }
 
-    console.log(data);
-    
+    const key = item => Object.keys(item)[1];
+
+    const tdValue = item => {
+        if (item[key(item)] == null) return "";
+        // if the type is list and the value is time.
+        // target time format
+        if (typeof item[key(item)] === "object" && item?.time != null) {
+            const firstKey = Object.keys(item?.time)[0];
+            return item?.time[firstKey] + ":" + item?.time[firstKey];
+        } else {
+            if (typeof item[key(item)] === "string") {
+                if (item[key(item)].startsWith("/media/")) // if the value is the image address
+                    return <ImageSignature signatureImage={item[key(item)]} />;
+                else if (item[key(item)].endsWith("+05:00")) // if the value is a date
+                    return timeMoment(item[key(item)])?.day;
+            }
+            return item[key(item)]; // if the value is not a string
+        }
+    }
+
+    const isBackAndFort = item =>
+        item?.field_name === "JURNALNING OLD QISMI" || item?.field_name === "JURNALNING ORQA QISMI";
 
     return (
         <Modal
@@ -51,11 +71,8 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                             {data[0].map((item, index) => (
                                                 <Td key={index + ".1"}
                                                     textAlign={"center"}
-                                                    rowSpan={item?.field_name === "JURNALNING OLD QISMI"
-                                                        || item?.field_name === "JURNALNING ORQA QISMI" ? 1 : 2}
-                                                    colSpan={item?.field_name === "JURNALNING OLD QISMI"
-                                                        || item?.field_name === "JURNALNING ORQA QISMI"
-                                                        ? item[Object.keys(item)[1]].length : 1}
+                                                    rowSpan={isBackAndFort(item) ? 1 : 2}
+                                                    colSpan={isBackAndFort(item) ? item[key(item)].length : 1}
                                                 >
                                                     {item?.field_name}
                                                 </Td>
@@ -63,9 +80,8 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                         </Tr>
                                         <Tr>
                                             {data[0].map(item => {
-                                                if (item?.field_name === "JURNALNING OLD QISMI"
-                                                    || item?.field_name === "JURNALNING ORQA QISMI") {
-                                                    return item[Object.keys(item)[1]].map((item, index) => (
+                                                if (isBackAndFort(item)) {
+                                                    return item[key(item)].map((item, index) => (
                                                         <Td key={index + ".2"}>{item.field_name}</Td>
                                                     ));
                                                 }
@@ -73,30 +89,20 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                         </Tr>
                                         <Tr>
                                             {data[0].map((item, index) => {
-                                                return item[Object.keys(item)[1]] != null && typeof item[Object.keys(item)[1]] === "object" ?
-                                                    item[Object.keys(item)[1]]?.map(item2 => (
-                                                        <Td key={index + ".3"}>
-                                                            {typeof item2[Object.keys(item2)[1]] === "string" && item2[Object.keys(item2)[1]].endsWith("+05:00")
-                                                                ? timeMoment(item2[Object.keys(item2)[1]])?.day
-                                                                : item2[Object.keys(item2)[1]]} 
-                                                        </Td>
-                                                    ))
-                                                    : (
-                                                        <Td key={index + ".3"}>
-                                                            {item[Object.keys(item)[1]] != null && typeof item[Object.keys(item)[1]] === "object"
-                                                                ? item?.time != null
-                                                                && item?.time[Object.keys(item?.time)[0]] + ":" + item?.time[Object.keys(item?.time)[0]]
-                                                                : item[Object.keys(item)[1]] != null
-                                                                    ? typeof item[Object.keys(item)[1]] === "string"
-                                                                        && item[Object.keys(item)[1]].startsWith("/media/")
-                                                                        ? <ImageSignature signatureImage={item[Object.keys(item)[1]]} />
-                                                                        : typeof item[Object.keys(item)[1]] === "string"
-                                                                            && item[Object.keys(item)[1]].endsWith("+05:00")
-                                                                            ? timeMoment(item[Object.keys(item)[1]])?.day
-                                                                            : item[Object.keys(item)[1]]
-                                                                    : ""}
-                                                        </Td>
-                                                    )
+                                                const thValue = item =>
+                                                    // Checks if the value is a string and the word ends with +05:00 to format the target hour
+                                                    typeof item[key(item)] === "string" && item[key(item)].endsWith("+05:00")
+                                                        ? timeMoment(item[key(item)])?.day // if it meets the condition, it formats the clock
+                                                        : item[key(item)]; // otherwise, it returns the original value
+
+                                                // scrolling the internal list
+                                                const sumList = item => item?.map(item2 => (
+                                                    <Td key={index + ".3"}>{thValue(item2)}</Td>
+                                                ));
+
+                                                return item[key(item)] != null && typeof item[key(item)] === "object"
+                                                    ? sumList(item[key(item)])
+                                                    : (<Td key={index + ".3"}>{tdValue(item)}</Td>)
                                             })}
                                         </Tr>
                                     </>
@@ -109,20 +115,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                         </Tr>
                                         <Tr>
                                             {data[0].map((item, index) => (
-                                                <Td key={index + ".6"}>
-                                                    {item[Object.keys(item)[1]] != null && typeof item[Object.keys(item)[1]] === "object"
-                                                        ? item?.time != null
-                                                        && item?.time[Object.keys(item?.time)[0]] + ":" + item?.time[Object.keys(item?.time)[0]]
-                                                        : item[Object.keys(item)[1]] != null
-                                                            ? typeof item[Object.keys(item)[1]] === "string"
-                                                                && item[Object.keys(item)[1]].startsWith("/media/")
-                                                                ? <ImageSignature signatureImage={item[Object.keys(item)[1]]} />
-                                                                : typeof item[Object.keys(item)[1]] === "string"
-                                                                    && item[Object.keys(item)[1]].endsWith("+05:00")
-                                                                    ? timeMoment(item[Object.keys(item)[1]])?.day
-                                                                    : item[Object.keys(item)[1]]
-                                                            : ""}
-                                                </Td>
+                                                <Td key={index + ".6"}>{tdValue(item)}</Td>
                                             ))}
                                         </Tr>
                                     </>
