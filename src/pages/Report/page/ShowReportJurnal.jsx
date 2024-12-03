@@ -46,7 +46,9 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
     }
 
     const isBackAndFort = item =>
-        item?.field_name === "JURNALNING OLD QISMI" || item?.field_name === "JURNALNING ORQA QISMI";
+        item?.field_name === "JURNALNING OLD QISMI"
+        || item?.field_name === "JURNALNING ORQA QISMI"
+        || item?.field_name === "Taftish Tafsilotlari";
 
     return (
         <Modal
@@ -81,8 +83,13 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                         <Tr>
                                             {data[0].map(item => {
                                                 if (isBackAndFort(item)) {
+                                                    // TODO hali sozlanmagan
+                                                    if (item[key(item)].length > 2 && item[key(item)] === "Taftish Tafsilotlari")
+                                                        return Object.keys(item[key(item)][0]).map(key =>
+                                                            (key != "id" && key != "updated_at")
+                                                            && <Td key={key}>{key}</Td>);
                                                     return item[key(item)].map((item, index) => (
-                                                        <Td key={index + ".2"}>{item.field_name}</Td>
+                                                        <Td key={index + "-2"}>{item.field_name}</Td>
                                                     ));
                                                 }
                                             })}
@@ -96,13 +103,14 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                                                         : item[key(item)]; // otherwise, it returns the original value
 
                                                 // scrolling the internal list
-                                                const sumList = item => item?.map(item2 => (
-                                                    <Td key={index + ".3"}>{thValue(item2)}</Td>
-                                                ));
+                                                const sumList = (item, idx) => item?.map(item2 => {
+                                                    // TODO tuliq sozlanmagan 
+                                                    return <Td key={idx}>{thValue(item2)}</Td>
+                                                });
 
                                                 return item[key(item)] != null && typeof item[key(item)] === "object"
                                                     ? sumList(item[key(item)])
-                                                    : (<Td key={index + ".3"}>{tdValue(item)}</Td>)
+                                                    : (<Td key={index}>{tdValue(item)}</Td>)
                                             })}
                                         </Tr>
                                     </>

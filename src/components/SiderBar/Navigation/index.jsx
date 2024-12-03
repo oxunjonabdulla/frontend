@@ -39,9 +39,7 @@ export const Navigation = ({ collapse, setMocileCollapse }) => {
   const [data, setData] = useState(null);
   const fetchData = async () => {
     const { response } = await new UserApi().getAlSsignatures();
-    if (response) {
-      setData(response?.data);
-    }
+    if (response) setData(response?.data);
   };
 
   useEffect(() => {

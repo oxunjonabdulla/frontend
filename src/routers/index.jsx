@@ -1,68 +1,72 @@
+import { Outlet } from "react-router";
+import { DailyTable } from "../components";
 import { AssemblyLayout } from "../layouts/AssemblyLayout";
+import {
+  AutoBrakersUser,
+  AutoUnitUser,
+  CarriageUser,
+  CollectUser,
+  DefecTopUser,
+  EquipUser,
+  PtoUser,
+  StatisticUser,
+  WheelUser,
+} from "../layouts/PrivateUsers";
 import { PtoLayout } from "../layouts/PtoLayout";
 import RouteLayout from "../layouts/RouteLayout";
 import {
   AssemblyPage,
   AssemblyPageUnitId,
   AutoBrakes,
+  AutoConnection,
   AutomobileUnit,
+  Carriage,
+  CarriageDalolatnoma,
   CarriageUnit,
+  DailyRepairs,
   Defectoscopes,
+  EntrExit,
   EquipmentUnit,
+  Fraza,
+  FrazaCarriage,
   HomePage,
   Login,
   NotFoundPage,
   PtoUnit,
   PtoUnitId,
-  StatistikaArchive,
-  StatistikaPage,
-  WheelPairsPage,
-  DailyRepairs,
-  VU_31,
-  VU_36,
-  Fraza,
-  VU_31_Create,
   RegisterAuto,
-  RegisterRegular,
-  VU_47,
-  RegisterRukvas,
-  RegisterRazobshitel,
-  RegisterBrakes,
-  EntrExit,
   RegisterAutoCreate,
-  RegisterRazobshitelCreate,
+  RegisterBrakes,
   RegisterBrakesCreate,
-  VU_47_Create,
-  RukvaCreate,
+  RegisterRazobshitel,
+  RegisterRazobshitelCreate,
+  RegisterRegular,
   RegisterRegularCreate,
-  FrazaCarriage,
-  CarriageDalolatnoma,
-  VU_32,
-  SignaturePage,
+  RegisterRukvas,
   Reports,
   ReportUniqPage,
+  RukvaCreate,
+  SignaturePage,
+  StatistikaArchive,
+  StatistikaPage,
+  VU_10,
+  VU_22_Arava,
+  VU_22_Brakes,
+  VU_31,
+  VU_31_Create,
   VU_31_Current,
   VU_31_Current_Create,
+  VU_32,
+  VU_36,
   VU_36_Current,
-  VU_10,
-  VU_22_Brakes,
-  VU_22_Arava,
+  VU_47,
+  VU_47_Create,
+  Wheel,
+  WheelPairsPage,
+  DefectoscopeUnit
 } from "../pages";
-import {
-  CollectUser,
-  DefecTopUser,
-  PtoUser,
-  StatisticUser,
-  WheelUser,
-  AutoBrakersUser,
-  AutoUnitUser,
-  EquipUser,
-  CarriageUser,
-} from "../layouts/PrivateUsers";
 import { ProtectedRoute } from "../utils/PrivateComponent";
 import { RouteNames } from "./consts";
-import { Outlet } from "react-router";
-import { DailyTable } from "../components";
 export const routes = [
   {
     element: <RouteLayout />,
@@ -319,20 +323,43 @@ export const routes = [
           },
         ],
       },
-
+      // TODO start
       {
         element: (
           <ProtectedRoute
             element={
               <DefecTopUser>
-                <Defectoscopes />
+                <DefectoscopeUnit />
               </DefecTopUser>
             }
             redirectPath={RouteNames.LOGIN}
           />
         ),
         path: RouteNames.DEFECTOSCOPES,
+        children: [
+          { element: <AutoConnection />, index: true },
+          { element: <Carriage />, path: RouteNames.CARRIAGE },
+          {
+            element: <Wheel />,
+            path: RouteNames.WHEEL,
+          },
+        ],
       },
+      // TODO end
+      // {
+      //   element: (
+      //     <ProtectedRoute
+      //       element={
+      //         <DefecTopUser>
+      //           <Defectoscopes />
+      //         </DefecTopUser>
+      //       }
+      //       redirectPath={RouteNames.LOGIN}
+      //     />
+      //   ),
+      //   path: RouteNames.DEFECTOSCOPES,
+      // },
+      // TODO --- top
       {
         element: (
           <ProtectedRoute

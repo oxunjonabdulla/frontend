@@ -34,5 +34,8 @@ export const RouteNames = {
   PRO_UNIT: "/pto-unit",
   LOGIN: "/login",
   WHEEL_PAIRS: "/wheel-pairs",
+  CARRIAGE: "/defectoscopes/carriage",
+  WHEEL: "/defectoscopes/wheel",
+
   NOT_FOUND: "*",
 };

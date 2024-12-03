@@ -4,9 +4,7 @@ export * from "./BreadCumbs";
 // dateUtils.js
 
 export const reverseDateFormat = (dateString) => {
-  if (!dateString) {
-    return "0";
-  }
+  if (!dateString) return "0";
   const [year, month, day] = dateString.split("-");
   return `${day}-${month}-${year}`;
 };
@@ -19,8 +17,6 @@ export const repairTypes = [
 ];
 
 export const repairTypesName = (str) => {
-  if (!str) {
-    return "N/A";
-  }
+  if (!str) return "N/A";
   return repairTypes?.find((e) => e.value === str?.toLowerCase())?.label;
 };

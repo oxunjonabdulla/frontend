@@ -171,7 +171,21 @@ export const routersSidebar = [
     isWork: false,
     label: "Defektoskoplar",
     path: "/defectoscopes",
-    type: "link",
+    type: "drop",
+    accordItems: [
+      {
+        label: "Auto birikma",
+        path: "",
+      },
+      {
+        label: "Arava",
+        path: "/carriage",
+      },
+      {
+        label: "G'ildirak",
+        path: "/wheel",
+      }
+    ],
     icon: Defostoskop,
     role: "defestoskopuser",
   },
@@ -1510,6 +1524,22 @@ export const defectoscope = {
     { label: "Usta imzosi " },
 
     { label: "V/S/Q/Q imzosi " },
+  ],
+};
+export const autoConnect = {
+  nestedHeaders: [
+    { label: "Tartib Raqami" },
+    { label: "Vagon nomeri" },
+    { label: "Sana" },
+    { label: "Ta'mir turi"},
+    { label: "Avtobirikma"},
+    { label: "Tortish qisqichi" },
+    { label: "Tortish qisqichi" },
+    { label: "Mayatnikli osma" },
+    { label: "Tartibga soluvchi bolt" },
+    { label: "Detalning yaroqlilik xulosasi" },
+    { label: "Defestoskop detector imzosi" },
+    { label: "" },
   ],
 };
 export const signature_head = [

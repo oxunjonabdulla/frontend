@@ -15,7 +15,7 @@ import {
 import { faBook, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { ReportModal } from "./ReportModal";
+// import { ReportModal } from "./ReportModal"; // TODO agar ishlatilmasa yuq qilish kerak;
 import { ShowReportJurnal } from "./page/ShowReportJurnal";
 import { SearchTrain } from "../../utils";
 import UserApi from "../../Service/module/userModule.api";
@@ -29,7 +29,6 @@ export const Reports = () => {
   const toast = useToast();
 
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { isOpen: isOpenShow, onClose: onCloseShow, onOpen: onOpenShow } = useDisclosure();
 
   const onSubmit = async () => {
     setLoading(true);
@@ -50,8 +49,7 @@ export const Reports = () => {
       onClose();
       setSerachingResult(null);
     }
-    if (error) {
-      toast({
+    if (error) toast({
         status: "error",
         title: error?.error ? error?.error : "Bu vagon raqami uchun Jurnallar mavjud emas.",
         duration: 4000,
@@ -59,7 +57,6 @@ export const Reports = () => {
         position: "top-right",
         fontSize: "3xl",
       });
-    }
   };
 
   return (
@@ -109,7 +106,7 @@ export const Reports = () => {
                         <Button
                           onClick={() => {
                             setShowData(item?.data);
-                            onOpenShow();
+                            onOpen();
                           }}
                           colorScheme="teal"
                         >
@@ -130,13 +127,12 @@ export const Reports = () => {
           <Flex align={"center"} flexDir={"column"} my={12} gap={4} mt={40}>
             <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />
             <Text>
-                Jurnallar hisbotlar ro'yxati
+              Jurnallar hisbotlar ro'yxati
             </Text>
           </Flex>
         )
         }
-        <ReportModal onClose={onClose} isOpen={isOpen} setGettingData={setGettingData} />
-        <ShowReportJurnal onClose={onCloseShow} isOpen={isOpenShow} data={showData} />
+        <ShowReportJurnal onClose={onClose} isOpen={isOpen} data={showData} />
       </Box>
     </Container>
   );

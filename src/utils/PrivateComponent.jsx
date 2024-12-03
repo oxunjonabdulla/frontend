@@ -7,10 +7,8 @@ export const ProtectedRoute = ({ redirectPath = "/", element }) => {
 
   const { isAuth } = useAuth();
   const auth = isAuth();
-  if (!auth) {
+  if (!auth)
     return <Navigate to={redirectPath} state={{ from: location }} replace />;
-  }
-
   return element;
 };
 

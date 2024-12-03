@@ -44,9 +44,7 @@ export const timeMoment = (str) => {
     const date = moment(str);
     const time = date.format("HH:mm");
     const day = date.format("DD.MM.YYYY");
-
     return { time, day };
   }
-
   return null;
 };

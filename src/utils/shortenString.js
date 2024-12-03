@@ -1,7 +1,7 @@
 export function shortenString(inputString, maxLength) {
-  if (inputString.length <= maxLength) {
+  if (inputString.length <= maxLength)
     return inputString;
-  } else {
+  else {
     const words = inputString.split(" ");
 
     let shortenedString = "";
@@ -11,9 +11,7 @@ export function shortenString(inputString, maxLength) {
       if (currentLength + word.length + 1 <= maxLength) {
         shortenedString += word + " ";
         currentLength += word.length + 1;
-      } else {
-        break;
-      }
+      } else break;
     }
     shortenedString = shortenedString.trim() + "...";
     return shortenedString;

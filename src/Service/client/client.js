@@ -62,9 +62,7 @@ privateInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status) {
-      throw error.response.data;
-    }
+    if (error.response.status) throw error.response.data;
     return Promise.reject(error);
   }
 );
@@ -95,9 +93,7 @@ privateInstanceForMediaData.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status) {
-      throw error.response.data;
-    }
+    if (error.response.status) throw error.response.data;
     return Promise.reject(error);
   }
 );

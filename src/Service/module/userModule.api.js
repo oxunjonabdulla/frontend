@@ -1252,6 +1252,54 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async getDefestoskopUserSignature(paramObj) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.defectoscopeUserSignatureAll,
+        { params: paramObj }
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  // Auto connect
+  async getAutoConnect(page) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.autoConnect,
+        { params: page }
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteAutoConnect(carriageID) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.autoConnectCarriage(carriageID)
+      );  
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postAutoConnect(carriageID, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.autoConnectCarriage(carriageID),
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 
   // vu 53
   // vu 53 prihod

@@ -43,6 +43,10 @@ export * from "./Login";
 export * from "./CurrentRepairPage/VU_31/VU_31_Current";
 export * from "./CurrentRepairPage/VU_31/VU_31_Current_Create";
 export * from "./CurrentRepairPage/VU_36/VU_36_Current";
+export * from "./Defectoscopes/AutomaticConnectionPage/AutoConnection";
+export * from "./Defectoscopes/CarriagesPage/Carriage";
+export * from "./Defectoscopes/WheelPage/Whell";
+export * from "./Defectoscopes/DefectoscopeUnit";
 import NotFoundPage from "./NotFoundPage";
 
 export { NotFoundPage };

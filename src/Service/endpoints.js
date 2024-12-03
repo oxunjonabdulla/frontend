@@ -153,9 +153,16 @@ const authEndpoints = {
   defestoskopList: `/defestoskop/`,
   defestoskopId: (id) => `/defestoskop/${id}/`,
   postDefectoscope: `/defestoskop/`,
+  defectoscopeUserSignatureAll: `/defestoskop/users`,
 
   vu22WithId: (id) => `/vu22/texnik_xizmat/${id}/`,
   vu22get: `/vu22/texnik_xizmat/`,
+
+  //Auto connect
+  autoConnect: "/defestoskop/avtobirikma/",
+  autoConnectCarriage: (carriageID) => `/defestoskop/avtobirikma/${carriageID}/`,
+
+
 
   // vu32
   vu22AutoTomoz: `/vu22/avtotormoz/`,
