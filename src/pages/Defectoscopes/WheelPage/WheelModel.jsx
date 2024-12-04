@@ -56,7 +56,7 @@ export const WheelModel = ({ onClose, isOpen }) => {
             onClose={onClose}
             size={["4xl"]}
             isCentered
-            motionPreset="slideInLeft">
+            motionPreset="slideInTop">
             <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
             <ModalContent overflow={"auto"}>
                 <ModalHeader textAlign={"center"}>G&#39;ildirak q&#39;shish</ModalHeader>
