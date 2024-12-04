@@ -156,6 +156,11 @@ export const Carriage = () => {
                                         <Td fontSize={16} textAlign={"center"}>{item?.part_validity_conclusion}</Td>
                                         <Td>
                                             <ImageSignature
+                                                signatureImage={item?.author_info?.user_signature_url}
+                                            />
+                                        </Td>
+                                        <Td>
+                                            <ImageSignature
                                                 signatureImage={item?.defestoskop_detector_user_info?.signature_image}
                                             />
                                         </Td>

@@ -1538,7 +1538,8 @@ export const autoConnect = {
     { label: "Mayatnikli osma" },
     { label: "Tartibga soluvchi bolt" },
     { label: "Detalning yaroqlilik xulosasi" },
-    { label: "Defestoskop ishchisi imzosi" },
+    { label: "Usta imzosi" },
+    { label: "Nuqson aniqlovchi imzosi" },
     { label: "" },
   ],
 };
@@ -1552,7 +1553,8 @@ export const carriageDefc = {
     { label: "Ishlab chiqargan zavod raqami" },
     { label: "Ishlab chiqargan yili" },
     { label: "Qism yaroqlilik xulosasi" },
-    { label: "Defestoskop ishchisi imzosi" },
+    { label: "Usta imzosi" },
+    { label: "Nuqson aniqlovchi imzosi" },
     { label: "" },
   ],
 };
@@ -1563,7 +1565,8 @@ export const wheelDefc = {
     { label: "Sana" },
     { label: "G'ildirak juft o'q raqami" },
     { label: "G'ildirak quyma raqami" },
-    { label: "Defestoskop ishchisi imzosi" },
+    { label: "Usta imzosi" },
+    { label: "Nuqson aniqlovchi imzosi" },
     { label: "" },
   ],
 };
