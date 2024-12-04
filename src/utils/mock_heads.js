@@ -1542,6 +1542,20 @@ export const autoConnect = {
     { label: "" },
   ],
 };
+export const carriageDefc = {
+  nestedHeaders: [
+    { label: "Tartib Raqami" },
+    { label: "Vagon nomeri" },
+    { label: "Sana" },
+    { label: "Qism nomi"},
+    { label: "Qism raqami"},
+    { label: "Ishlab chiqargan zavod raqami" },
+    { label: "Ishlab chiqargan yili" },
+    { label: "Qism yaroqlilik xulosasi" },
+    { label: "Defestoskop detector imzosi" },
+    { label: "" },
+  ],
+};
 export const signature_head = [
   { label: "Tartib raqami" },
   { label: "Jurnal turi" },

@@ -162,7 +162,9 @@ const authEndpoints = {
   autoConnect: "/defestoskop/avtobirikma/",
   autoConnectCarriage: (carriageID) => `/defestoskop/avtobirikma/${carriageID}/`,
 
-
+  //Carriage
+  carriageDefc: "/defestoskop/aravalar/",
+  carriageId: (carriageID) => `/defestoskop/aravalar/${carriageID}/`,
 
   // vu32
   vu22AutoTomoz: `/vu22/avtotormoz/`,

@@ -1300,6 +1300,40 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  // Carrage
+  async getCarriageDefc(page) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.carriageDefc,
+        { params: page }
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteCarriageDefc(carriageID) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.carriageId(carriageID)
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postCarriageDefc(carriageID, obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.carriageId(carriageID),
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 
   // vu 53
   // vu 53 prihod
