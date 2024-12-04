@@ -1556,6 +1556,17 @@ export const carriageDefc = {
     { label: "" },
   ],
 };
+export const wheelDefc = {
+  nestedHeaders: [
+    { label: "#" },
+    { label: "Tartib Raqami" },
+    { label: "Sana" },
+    { label: "G'ildirak juft o'q raqami" },
+    { label: "G'ildirak quyma raqami" },
+    { label: "Defestoskop detector imzosi" },
+    { label: "" },
+  ],
+};
 export const signature_head = [
   { label: "Tartib raqami" },
   { label: "Jurnal turi" },

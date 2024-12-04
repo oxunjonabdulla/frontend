@@ -166,6 +166,10 @@ const authEndpoints = {
   carriageDefc: "/defestoskop/aravalar/",
   carriageId: (carriageID) => `/defestoskop/aravalar/${carriageID}/`,
 
+  //Wheel
+  wheel: "/defestoskop/wheel/",
+  wheelDetailId: (id) => `/defestoskop/wheel/detail/${id}/`,
+
   // vu32
   vu22AutoTomoz: `/vu22/avtotormoz/`,
   vu22AutoArava: `/vu22/aravalar/`,

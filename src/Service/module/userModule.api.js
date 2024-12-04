@@ -1334,6 +1334,40 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  // Wheel
+  async getWheelDefc(page) {
+    try {
+      const response = await privateInstance.get(
+        authEndpoints.wheel,
+        { params: page }
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async deleteWheel(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.wheelDetailId(id)
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+  async postWheelDefc(obj) {
+    try {
+      const response = await privateInstance.post(
+        authEndpoints.wheel,
+        obj
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 
   // vu 53
   // vu 53 prihod
