@@ -163,7 +163,6 @@ export const Invite = ({ onClose }) => {
             <Input
               borderColor={"gray.600"}
               {...register("last_rotational_surface_aligned")}
-              type="number"
             />
           </FormControl>
           <FormControl isInvalid={errors?.rib_thickness}>
