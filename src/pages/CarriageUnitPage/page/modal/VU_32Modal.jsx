@@ -210,11 +210,11 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                 <Tbody>
                   <Tr>
                     <Td rowSpan={8} textAlign={"center"} fontWeight={700}>
-                      <FormControl isInvalid={errors?.entered_date}>
+                      <FormControl isInvalid={errors?.date}>
                         <Input
                           width={"150px"}
                           borderColor={"gray.600"}
-                          {...register("entered_date")}
+                          {...register("date")}
                           type="date"
                         />
                       </FormControl>

@@ -50,6 +50,8 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
         || item?.field_name === "JURNALNING ORQA QISMI"
         || item?.field_name === "Taftish Tafsilotlari";
 
+    console.log(data);
+    
     return (
         <Modal
             isOpen={isOpen}

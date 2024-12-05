@@ -59,6 +59,9 @@ export const Reports = () => {
       });
   };
 
+  console.log(gettingData);
+  
+
   return (
     <Container maxW="container.2xl">
       <Heading size={"xl"} textAlign={"center"} mt={14} fontWeight={500}>

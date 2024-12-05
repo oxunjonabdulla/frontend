@@ -258,7 +258,7 @@ export const VU_32 = () => {
                 <>
                   <Tr>
                     <Td rowSpan={8} whiteSpace={"nowrap"}>
-                      {timeMoment(e?.created_at)?.day}{" "}
+                      {timeMoment(e?.date)?.day}
                     </Td>
                     <Td rowSpan={8} fontWeight={"bold"}>
                       {e?.carriage}
