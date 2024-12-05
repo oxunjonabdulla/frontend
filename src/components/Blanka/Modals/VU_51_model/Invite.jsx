@@ -75,7 +75,6 @@ export const Invite = ({ onClose }) => {
             <Input
               borderColor={"gray.600"}
               {...register("serial_number")}
-              type="number"
             />
           </FormControl>
           <FormControl isInvalid={errors?.wagon_depot_factory}>
@@ -170,7 +169,6 @@ export const Invite = ({ onClose }) => {
             <Input
               borderColor={"gray.600"}
               {...register("rib_thickness")}
-              type="number"
             />
           </FormControl>
         </Flex>
