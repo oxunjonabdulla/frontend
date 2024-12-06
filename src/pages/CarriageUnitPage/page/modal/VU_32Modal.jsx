@@ -53,7 +53,6 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
         position: "top-right",
         fontSize: "3xl",
       });
-
       window.location.reload();
     }
     if (error) {
@@ -225,7 +224,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"150px"}
                           borderColor={"gray.600"}
                           {...register("carriage")}
-                          type="text"
+                          value={serachingResult}
                         />
                       </FormControl>
                     </Td>
@@ -236,7 +235,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           {...register("carriage_build_date")}
                           placeholder="oy/yil"
                           w={"150px"}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -251,7 +250,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_number")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -261,7 +260,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_factory_medal")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -271,7 +270,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_made_year")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -281,7 +280,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_pyatnik_deep")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -293,7 +292,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_pyatnik_deep_diametr")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -303,7 +302,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_reverse")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -313,7 +312,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_service_life")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -323,7 +322,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_new_year_expired")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -333,7 +332,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_extend_factory")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -348,7 +347,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_repair_type")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -358,7 +357,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("balka_number")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -368,7 +367,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("balka_factory")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -378,7 +377,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("balka_made_year")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -388,7 +387,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("balka_pyatnik")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -401,7 +400,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_number_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -411,7 +410,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("factory_medal_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -421,7 +420,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("created_year_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -431,7 +430,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_baza_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -441,7 +440,8 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("stump_stend_first_levaya")}
-                          type="text"
+                          defaultValue={"yo'q"}
+
                         />
                       </FormControl>
                     </Td>
@@ -451,7 +451,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_life_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -461,7 +461,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("new_service_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -471,7 +471,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_extend_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -482,7 +482,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_left_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -492,7 +492,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_right_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -502,7 +502,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_left_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -512,7 +512,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_right_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -522,7 +522,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_left_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -532,7 +532,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_right_first_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -544,7 +544,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           {...register(
                             "telejka_carriage_slip_left_first_levaya"
                           )}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -567,7 +567,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_number_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -577,7 +577,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("factory_medal_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -587,7 +587,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("created_year_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -597,7 +597,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_baza_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -607,7 +607,8 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("stump_stend_first_bokavaya")}
-                          type="text"
+                          defaultValue={"yo'q"}
+
                         />
                       </FormControl>
                     </Td>
@@ -617,7 +618,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_life_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -627,7 +628,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("new_service_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -637,7 +638,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_extend_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -648,7 +649,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_left_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -658,7 +659,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_right_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -668,7 +669,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_left_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -678,7 +679,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_right_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -688,7 +689,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_left_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -698,7 +699,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_right_first_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -710,7 +711,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           {...register(
                             "telejka_carriage_slip_left_first_bokavaya"
                           )}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -728,7 +729,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_number_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -740,7 +741,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_factory_medal_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -750,7 +751,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_made_year_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -760,7 +761,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_pyatnik_deep_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -772,7 +773,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_pyatnik_deep_diametr_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -782,7 +783,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_reverse_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -792,7 +793,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_service_life_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -804,7 +805,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_new_year_expired_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -816,7 +817,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("ressor_extend_factory_copy")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -833,7 +834,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_number_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -843,7 +844,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("factory_medal_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -853,7 +854,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("created_year_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -863,7 +864,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_baza_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -873,7 +874,8 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("stump_stend_second_levaya")}
-                          type="text"
+                          defaultValue={"yo'q"}
+
                         />
                       </FormControl>
                     </Td>
@@ -883,7 +885,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_life_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -893,7 +895,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("new_service_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -903,7 +905,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_extend_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -914,7 +916,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_left_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -924,7 +926,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_right_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -934,7 +936,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_left_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -944,7 +946,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_right_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -954,7 +956,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_left_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -964,7 +966,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayto_right_second_levaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -976,7 +978,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           {...register(
                             "telejka_carriage_slip_left_second_levaya"
                           )}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -999,7 +1001,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_number_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1009,7 +1011,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("factory_medal_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1019,7 +1021,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("created_year_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1029,7 +1031,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("side_baza_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1039,7 +1041,8 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("stump_stend_second_bokavaya")}
-                          type="text"
+                          defaultValue={"yo'q"}
+
                         />
                       </FormControl>
                     </Td>
@@ -1049,7 +1052,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_life_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1059,7 +1062,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("new_service_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1069,7 +1072,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("service_extend_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1080,7 +1083,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_left_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1090,7 +1093,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("friktsion_upper_right_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1100,7 +1103,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_left_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1110,7 +1113,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_side_right_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1120,7 +1123,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayt_left_second_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1130,7 +1133,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_wayt_right_seond_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>
@@ -1140,7 +1143,7 @@ export const VU_32Modal = ({ onClose, isOpen }) => {
                           width={"110px"}
                           borderColor={"gray.600"}
                           {...register("telejka_carriage_slip_seond_bokavaya")}
-                          type="text"
+
                         />
                       </FormControl>
                     </Td>

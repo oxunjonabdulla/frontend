@@ -40,7 +40,8 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                     return <ImageSignature signatureImage={item[key(item)]} />;
                 else if (item[key(item)].endsWith("+05:00")) // if the value is a date
                     return timeMoment(item[key(item)])?.day;
-            }
+            } else if (typeof item[key(item)] === "object" && Object.keys(item[key(item)]).length === 3)// if the value is a list
+                return tdValue({ id: 0, img: item[key(item)]?.user_signature_url });
             return item[key(item)]; // if the value is not a string
         }
     }
@@ -51,7 +52,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
         || item?.field_name === "Taftish Tafsilotlari";
 
     console.log(data);
-    
+
     return (
         <Modal
             isOpen={isOpen}
