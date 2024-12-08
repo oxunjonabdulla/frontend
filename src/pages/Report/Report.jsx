@@ -25,6 +25,7 @@ export const Reports = () => {
   const [showData, setShowData] = useState([]);
   const [serachingResult, setSerachingResult] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [journalName, setJournalName] = useState("");
 
   const toast = useToast();
 
@@ -58,9 +59,6 @@ export const Reports = () => {
         fontSize: "3xl",
       });
   };
-
-  console.log(gettingData);
-  
 
   return (
     <Container maxW="container.2xl">
@@ -109,6 +107,7 @@ export const Reports = () => {
                         <Button
                           onClick={() => {
                             setShowData(item?.data);
+                            setJournalName(item?.journal_name);
                             onOpen();
                           }}
                           colorScheme="teal"
@@ -135,7 +134,7 @@ export const Reports = () => {
           </Flex>
         )
         }
-        <ShowReportJurnal onClose={onClose} isOpen={isOpen} data={showData} />
+        <ShowReportJurnal onClose={onClose} isOpen={isOpen} data={showData} name={journalName} />
       </Box>
     </Container>
   );

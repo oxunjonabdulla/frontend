@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 import { ImageSignature } from "../../../components";
 import { timeMoment } from "../../../utils/roleTest";
 
-export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
+export const ShowReportJurnal = ({ onClose, isOpen, data, name }) => {
 
     function isList() {
         if (!Array.isArray(data[0])) data = [data];
@@ -27,7 +27,19 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
 
     const key = item => Object.keys(item)[1];
 
+    const objToList = item => {
+        if (!item || typeof item !== 'object') return [];
+        return Object.keys(item).map(key => ({ field_name: key, value: item[key] }));
+    }
+
+    function vu32JurnalValue(item) {
+        if (typeof item[key(item)] === "string") return item[key(item)];
+        else return objToList(item[key(item)]).map(item => item.value).join(", ");
+    }
+
     const tdValue = item => {
+        console.log(vu32JurnalValue(item));
+        if (name === "VU32 Jurnali") return vu32JurnalValue(item);
         if (item[key(item)] == null) return "";
         // if the type is list and the value is time.
         // target time format
@@ -42,6 +54,9 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
                     return timeMoment(item[key(item)])?.day;
             } else if (typeof item[key(item)] === "object" && Object.keys(item[key(item)]).length === 3)// if the value is a list
                 return tdValue({ id: 0, img: item[key(item)]?.user_signature_url });
+            // else if (typeof item[key(item)] === "object") {
+            //     return tdValue(item[key(item)]);
+            // }
             return item[key(item)]; // if the value is not a string
         }
     }
@@ -51,7 +66,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data }) => {
         || item?.field_name === "JURNALNING ORQA QISMI"
         || item?.field_name === "Taftish Tafsilotlari";
 
-    console.log(data);
+    console.log(name);
 
     return (
         <Modal
