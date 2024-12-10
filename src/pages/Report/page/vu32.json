@@ -1,0 +1,263 @@
+[
+    {
+        "carriage": "23431828"
+    },
+    {
+        "created_at": "2024-11-08T10:52:21.738799+05:00"
+    },
+    {
+        "date": null
+    },
+    {
+        "carriage_build_date": "1984"
+    },
+    {
+        "side_number_first_levaya": "8605"
+    },
+    {
+        "side_number_first_bokavaya": "43442"
+    },
+    {
+        "side_number_second_levaya": ""
+    },
+    {
+        "side_number_second_bokavaya": ""
+    },
+    {
+        "factory_medal_first_levaya": "14"
+    },
+    {
+        "factory_medal_first_bokavaya": "5"
+    },
+    {
+        "factory_medal_second_levaya": ""
+    },
+    {
+        "factory_medal_second_bokavaya": ""
+    },
+    {
+        "created_year_first_levaya": "1989"
+    },
+    {
+        "created_year_first_bokavaya": "1991"
+    },
+    {
+        "created_year_second_levaya": ""
+    },
+    {
+        "created_year_second_bokavaya": ""
+    },
+    {
+        "side_baza_first_levaya": "2186"
+    },
+    {
+        "side_baza_first_bokavaya": "2187"
+    },
+    {
+        "side_baza_second_levaya": ""
+    },
+    {
+        "side_baza_second_bokavaya": ""
+    },
+    {
+        "stump_stend_first_levaya": "yuq"
+    },
+    {
+        "stump_stend_first_bokavaya": "yuq"
+    },
+    {
+        "stump_stend_second_levaya": "yuq"
+    },
+    {
+        "stump_stend_second_bokavaya": "yuq"
+    },
+    {
+        "service_life_first_levaya": "ha"
+    },
+    {
+        "service_life_first_bokavaya": "ha"
+    },
+    {
+        "service_life_second_levaya": "ha"
+    },
+    {
+        "service_life_second_bokavaya": "ha"
+    },
+    {
+        "new_service_first_levaya": "2026"
+    },
+    {
+        "new_service_first_bokavaya": "2026"
+    },
+    {
+        "new_service_second_levaya": "2026"
+    },
+    {
+        "new_service_second_bokavaya": "2026"
+    },
+    {
+        "service_extend_first_levaya": "704"
+    },
+    {
+        "service_extend_first_bokavaya": "704"
+    },
+    {
+        "service_extend_second_levaya": "704"
+    },
+    {
+        "service_extend_second_bokavaya": "704"
+    },
+    {
+        "ressor_number": "2563"
+    },
+    {
+        "ressor_number_copy": "5026"
+    },
+    {
+        "ressor_factory_medal": "14"
+    },
+    {
+        "ressor_factory_medal_copy": "12"
+    },
+    {
+        "ressor_made_year": "1989"
+    },
+    {
+        "ressor_made_year_copy": "1989"
+    },
+    {
+        "ressor_pyatnik_deep": "31"
+    },
+    {
+        "ressor_pyatnik_deep_copy": "31"
+    },
+    {
+        "ressor_pyatnik_deep_diametr": "306"
+    },
+    {
+        "ressor_pyatnik_deep_diametr_copy": "307"
+    },
+    {
+        "ressor_reverse": "ha"
+    },
+    {
+        "ressor_reverse_copy": "ha"
+    },
+    {
+        "ressor_service_life": "ha"
+    },
+    {
+        "ressor_service_life_copy": "ha"
+    },
+    {
+        "ressor_new_year_expired": "2026"
+    },
+    {
+        "ressor_new_year_expired_copy": "2026"
+    },
+    {
+        "ressor_extend_factory": "704"
+    },
+    {
+        "ressor_extend_factory_copy": "704"
+    },
+    {
+        "friktsion_upper_left_first_levaya": "-5"
+    },
+    {
+        "friktsion_upper_left_first_bokavaya": "-6"
+    },
+    {
+        "friktsion_upper_left_second_levaya": "-4"
+    },
+    {
+        "friktsion_upper_left_second_bokavaya": "-5"
+    },
+    {
+        "friktsion_upper_right_first_levaya": "-4"
+    },
+    {
+        "friktsion_upper_right_first_bokavaya": "-5"
+    },
+    {
+        "friktsion_upper_right_second_levaya": "-6"
+    },
+    {
+        "friktsion_upper_right_second_bokavaya": "-4"
+    },
+    {
+        "telejka_side_left_first_levaya": "8"
+    },
+    {
+        "telejka_side_left_first_bokavaya": "6"
+    },
+    {
+        "telejka_side_left_second_levaya": "7"
+    },
+    {
+        "telejka_side_left_second_bokavaya": "9"
+    },
+    {
+        "telejka_side_right_first_levaya": "7"
+    },
+    {
+        "telejka_side_right_first_bokavaya": "7"
+    },
+    {
+        "telejka_side_right_second_levaya": "8"
+    },
+    {
+        "telejka_side_right_second_bokavaya": "8"
+    },
+    {
+        "telejka_wayto_left_first_levaya": "9"
+    },
+    {
+        "telejka_wayto_left_first_bokavaya": "8"
+    },
+    {
+        "telejka_wayto_left_second_levaya": "9"
+    },
+    {
+        "telejka_wayt_left_second_bokavaya": "7"
+    },
+    {
+        "telejka_wayto_right_first_levaya": null
+    },
+    {
+        "telejka_wayto_right_first_bokavaya": "7"
+    },
+    {
+        "telejka_wayto_right_second_levaya": "6"
+    },
+    {
+        "telejka_wayt_right_seond_bokavaya": "8"
+    },
+    {
+        "telejka_repair_type": "Др  М 1698"
+    },
+    {
+        "balka_number": ""
+    },
+    {
+        "balka_factory": ""
+    },
+    {
+        "balka_made_year": ""
+    },
+    {
+        "balka_pyatnik": ""
+    },
+    {
+        "signature_image_url": "/media/uzoqov.png"
+    },
+    {
+        "deputy_head_signature": "/media/users/signature/2024-11-06/arslon/arslon_signature.png"
+    },
+    {
+        "receiving_master_user_signature": "/media/users/signature/2024-11-06/vagon_mamatov/vagon_mamatov_signature.png"
+    },
+    {
+        "defestoskop_signature_user_signature": null
+    }
+]

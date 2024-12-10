@@ -1,3 +1,5 @@
+import { BrendCrumbs, SimpleLoader } from "@/components";
+import UserApi from "@/Service/module/userModule.api";
 import {
   Box,
   Button,
@@ -22,23 +24,16 @@ import {
 } from "@chakra-ui/react";
 import {
   faBook,
-  faChevronLeft,
-  faChevronRight,
-  faTrashAlt,
+  faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import UserApi from "@/Service/module/userModule.api";
-import ReactPaginate from "react-paginate";
-import { BrendCrumbs } from "@/components";
-import { SimpleLoader } from "@/components";
-import { useDebounce } from "../../../hooks/useDebounce";
+import { useEffect, useState } from "react";
 import { Deleteted, ImageSignature, Pagination } from "../../../components";
-import { VU_32Modal } from "./modal/VU_32Modal";
-import { reverseDateFormat } from "../../../utils";
-import { timeMoment } from "../../../utils/roleTest";
+import { useDebounce } from "../../../hooks/useDebounce";
 import { imageGet } from "../../../utils/imageGet";
+import { timeMoment } from "../../../utils/roleTest";
+import { VU_32Modal } from "./modal/VU_32Modal";
 
 export const VU_32 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
@@ -78,6 +73,9 @@ export const VU_32 = () => {
       window.location.reload();
     }
   };
+
+  console.log(gettingData?.results);
+  
 
   return (
     <Box

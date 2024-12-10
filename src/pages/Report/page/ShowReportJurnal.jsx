@@ -15,6 +15,7 @@ import {
 import PropTypes from "prop-types";
 import { ImageSignature } from "../../../components";
 import { timeMoment } from "../../../utils/roleTest";
+import { VU_32_Table } from "../../CarriageUnitPage/page/VU_32_Table";
 
 export const ShowReportJurnal = ({ onClose, isOpen, data, name }) => {
 
@@ -38,7 +39,6 @@ export const ShowReportJurnal = ({ onClose, isOpen, data, name }) => {
     }
 
     const tdValue = item => {
-        console.log(vu32JurnalValue(item));
         if (name === "VU32 Jurnali") return vu32JurnalValue(item);
         if (item[key(item)] == null) return "";
         // if the type is list and the value is time.
@@ -66,8 +66,6 @@ export const ShowReportJurnal = ({ onClose, isOpen, data, name }) => {
         || item?.field_name === "JURNALNING ORQA QISMI"
         || item?.field_name === "Taftish Tafsilotlari";
 
-    console.log(name);
-
     return (
         <Modal
             isOpen={isOpen}
@@ -82,73 +80,77 @@ export const ShowReportJurnal = ({ onClose, isOpen, data, name }) => {
                 <ModalHeader textAlign={"center"}>Hisobot olish</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody overflow={"auto"}>
-                    <Table variant={"striped"}>
-                        {data?.length > 0 &&
-                            <Tbody>
-                                {isList() ? (
-                                    <>
-                                        <Tr>
-                                            {data[0].map((item, index) => (
-                                                <Td key={index + ".1"}
-                                                    textAlign={"center"}
-                                                    rowSpan={isBackAndFort(item) ? 1 : 2}
-                                                    colSpan={isBackAndFort(item) ? item[key(item)].length : 1}
-                                                >
-                                                    {item?.field_name}
-                                                </Td>
-                                            ))}
-                                        </Tr>
-                                        <Tr>
-                                            {data[0].map(item => {
-                                                if (isBackAndFort(item)) {
-                                                    // TODO hali sozlanmagan
-                                                    if (item[key(item)].length > 2 && item[key(item)] === "Taftish Tafsilotlari")
-                                                        return Object.keys(item[key(item)][0]).map(key =>
-                                                            (key != "id" && key != "updated_at")
-                                                            && <Td key={key}>{key}</Td>);
-                                                    return item[key(item)].map((item, index) => (
-                                                        <Td key={index + "-2"}>{item.field_name}</Td>
-                                                    ));
-                                                }
-                                            })}
-                                        </Tr>
-                                        <Tr>
-                                            {data[0].map((item, index) => {
-                                                const thValue = item =>
-                                                    // Checks if the value is a string and the word ends with +05:00 to format the target hour
-                                                    typeof item[key(item)] === "string" && item[key(item)].endsWith("+05:00")
-                                                        ? timeMoment(item[key(item)])?.day // if it meets the condition, it formats the clock
-                                                        : item[key(item)]; // otherwise, it returns the original value
+                    {name === "VU32 Jurnali" ? (
+                        <VU_32_Table data={data} />
+                    ) : (
+                        <Table variant={"striped"}>
+                            {data?.length > 0 &&
+                                <Tbody>
+                                    {isList() ? (
+                                        <>
+                                            <Tr>
+                                                {data[0].map((item, index) => (
+                                                    <Td key={index + ".1"}
+                                                        textAlign={"center"}
+                                                        rowSpan={isBackAndFort(item) ? 1 : 2}
+                                                        colSpan={isBackAndFort(item) ? item[key(item)].length : 1}
+                                                    >
+                                                        {item?.field_name}
+                                                    </Td>
+                                                ))}
+                                            </Tr>
+                                            <Tr>
+                                                {data[0].map(item => {
+                                                    if (isBackAndFort(item)) {
+                                                        // TODO hali sozlanmagan
+                                                        if (item[key(item)].length > 2 && item[key(item)] === "Taftish Tafsilotlari")
+                                                            return Object.keys(item[key(item)][0]).map(key =>
+                                                                (key != "id" && key != "updated_at")
+                                                                && <Td key={key}>{key}</Td>);
+                                                        return item[key(item)].map((item, index) => (
+                                                            <Td key={index + "-2"}>{item.field_name}</Td>
+                                                        ));
+                                                    }
+                                                })}
+                                            </Tr>
+                                            <Tr>
+                                                {data[0].map((item, index) => {
+                                                    const thValue = item =>
+                                                        // Checks if the value is a string and the word ends with +05:00 to format the target hour
+                                                        typeof item[key(item)] === "string" && item[key(item)].endsWith("+05:00")
+                                                            ? timeMoment(item[key(item)])?.day // if it meets the condition, it formats the clock
+                                                            : item[key(item)]; // otherwise, it returns the original value
 
-                                                // scrolling the internal list
-                                                const sumList = (item, idx) => item?.map(item2 => {
-                                                    // TODO tuliq sozlanmagan 
-                                                    return <Td key={idx}>{thValue(item2)}</Td>
-                                                });
+                                                    // scrolling the internal list
+                                                    const sumList = (item, idx) => item?.map(item2 => {
+                                                        // TODO tuliq sozlanmagan 
+                                                        return <Td key={idx}>{thValue(item2)}</Td>
+                                                    });
 
-                                                return item[key(item)] != null && typeof item[key(item)] === "object"
-                                                    ? sumList(item[key(item)])
-                                                    : (<Td key={index}>{tdValue(item)}</Td>)
-                                            })}
-                                        </Tr>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Tr>
-                                            {data[0].map((item, index) => (
-                                                <Td key={index + ".5"}>{item?.field_name}</Td>
-                                            ))}
-                                        </Tr>
-                                        <Tr>
-                                            {data[0].map((item, index) => (
-                                                <Td key={index + ".6"}>{tdValue(item)}</Td>
-                                            ))}
-                                        </Tr>
-                                    </>
-                                )}
-                            </Tbody>
-                        }
-                    </Table>
+                                                    return item[key(item)] != null && typeof item[key(item)] === "object"
+                                                        ? sumList(item[key(item)])
+                                                        : (<Td key={index}>{tdValue(item)}</Td>)
+                                                })}
+                                            </Tr>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Tr>
+                                                {data[0].map((item, index) => (
+                                                    <Td key={index + ".5"}>{item?.field_name}</Td>
+                                                ))}
+                                            </Tr>
+                                            <Tr>
+                                                {data[0].map((item, index) => (
+                                                    <Td key={index + ".6"}>{tdValue(item)}</Td>
+                                                ))}
+                                            </Tr>
+                                        </>
+                                    )}
+                                </Tbody>
+                            }
+                        </Table>
+                    )}
                 </ModalBody>
                 <ModalFooter>
                     <Button colorScheme="red" mr={3} onClick={onClose}>
