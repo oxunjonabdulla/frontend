@@ -81,7 +81,7 @@ export const ShowReportJurnal = ({ onClose, isOpen, data, name }) => {
                 <ModalCloseButton />
                 <ModalBody overflow={"auto"}>
                     {name === "VU32 Jurnali" ? (
-                        <VU_32_Table data={data} />
+                        <VU_32_Table data={data[0][0]} />
                     ) : (
                         <Table variant={"striped"}>
                             {data?.length > 0 &&
