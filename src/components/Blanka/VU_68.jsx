@@ -22,7 +22,7 @@ import {
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { SliderMock } from "../../utils";
 import { VU_68_Model } from "./Modals/VU_68_Model";
@@ -33,6 +33,8 @@ import { Pagination } from "../pagination/Pagination";
 import { Deleteted } from "../Deletete";
 import { useDebounce } from "../../hooks/useDebounce";
 import { ImageSignature } from "../ImageSignature";
+import { VU_68_Show } from "../../pages/AssemblyPage/VU_68_Show";
+import { IsImzo } from "../IsImzo";
 
 export const VU_68 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -43,12 +45,24 @@ export const VU_68 = () => {
 
   const [searchValue, setSearchValue] = useState(null);
   const carriageSerach = useDebounce(searchValue);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showAllData, setShowAllData] = useState(null);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
+
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
+  };
+
   const fetchData = async (page) => {
     setIsLoading(true);
     const { response } = await new UserApi().getVu68(page);
@@ -144,7 +158,7 @@ export const VU_68 = () => {
                       {item.label}
                     </Th>
                   ))}
-                  <Th rowSpan={2}></Th>
+                  <Th rowSpan={2} colSpan={2}></Th>
                 </Tr>
                 <Tr>
                   {vu_68?.nestedTwo.map((item, idx) => (
@@ -172,14 +186,11 @@ export const VU_68 = () => {
                     <Td>{item?.not_cargo}</Td>
                     <Td>{item?.air_test_date}</Td>
                     <Td>
-                      <Image
-                        width={"100px"}
-                        src={imageGet(item?.author_info?.user_signature_url)}
-                      />
+                      <IsImzo isImzo={item?.author_info?.user_signature_url} />
                     </Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={item?.collect_workshop_master_signature}
+                      <IsImzo
+                        isImzo={item?.collect_workshop_master_signature}
                       />
                     </Td>
                     <Td>
@@ -188,6 +199,15 @@ export const VU_68 = () => {
                         colorScheme="red"
                         icon={<FontAwesomeIcon icon={faTrash} />}
                       />
+                    </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
                     </Td>
                   </Tr>
                 ))}
@@ -217,6 +237,11 @@ export const VU_68 = () => {
       <Pagination
         pageCount={gettingData?.count}
         onPageChange={handlePageClick}
+      />
+      <VU_68_Show
+        onClose={onCloseShowAll}
+        isOpen={isOpenShowAll}
+        data={showAllData}
       />
       <VU_68_Model onClose={onClose} isOpen={isOpen} />
       <Deleteted

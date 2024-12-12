@@ -42,6 +42,7 @@ import { reverseDateFormat, SliderMock } from "../../../utils";
 import { timeClear } from "../../../utils/timeClear";
 import { imageGet } from "../../../utils/imageGet";
 import { Deleteted, Pagination } from "../../../components";
+import { VU_22_Show } from "../VU_22/VU_22_Show";
 
 export const VU_22 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -52,15 +53,27 @@ export const VU_22 = () => {
   const [delateModal, setDelateModal] = useState(false);
   const [showModel, setShowModel] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showAllData, setShowAllData] = useState(null);
+
   const {
     isOpen: isOpenShowModel,
     onOpen: onOpenShowModel,
     onClose: onCloseShowModel,
   } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
 
   const fetchData = async (page) => {
@@ -174,8 +187,7 @@ export const VU_22 = () => {
                       textAlign={"center"}
                       key={item.label}
                       rowSpan={item.rowspan}
-                      colSpan={item.colspan}
-                    >
+                      colSpan={item.colspan}>
                       {item.label}
                     </Th>
                   ))}
@@ -284,6 +296,15 @@ export const VU_22 = () => {
                         />
                       </Flex>
                     </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -312,6 +333,11 @@ export const VU_22 = () => {
       <Pagination
         onPageChange={handlePageClick}
         pageCount={Math.ceil(gettingData?.count / 10)}
+      />
+      <VU_22_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
       />
       <Deleteted
         isOpen={delateModal}

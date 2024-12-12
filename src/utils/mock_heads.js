@@ -309,6 +309,53 @@ export const dalolatnoma_head = [
     label: "Ta'mir ishlari bo'yicha boshliq o'rinbosari imzosi",
   },
 ];
+export const dalolatnoma_head_show = [
+  { label: "Vagon raqami" },
+  { label: "Dalolatnoma tuzilgan sana" },
+  {
+    label: "Poyezddan kelgan №",
+  },
+  {
+    label: "Tuzilgan dalolatnoma bekati tarkib",
+  },
+  {
+    label: "Raqami №",
+  },
+  {
+    label: "Uzilgan vagon raqami №",
+  },
+  {
+    label: "Ta’mirga “V” № 823 17.10.2016 yildagi telegramma asosida.",
+  },
+  {
+    label: "Tekshirish davomida aniqlandi №",
+  },
+  {
+    label: "Ishlab chiqarilgan, kod va tegishli qismi",
+  },
+  {
+    label: " G'ildirak bo'limi ishchisi imzosi",
+  },
+  {
+    label: "Harakat xavfsizligi bo'yicha depo navbatchisi imzosi",
+  },
+  {
+    label: "VTXKB boshlig'i imzosi",
+  },
+  {
+    label: "Vagon qabul qiluvchi usta imzosi",
+  },
+  {
+    label: "Yig‘uv sexi ustasi imzosi ",
+  },
+  {
+    label: "Avtobirikma brigadr yoki master Imzo qo'yuvchi",
+  },
+  {
+    label: "Ta'mir ishlari bo'yicha boshliq o'rinbosari imzosi",
+  },
+  { label: "Aravalar brigadiri imzosi"}
+];
 export const auto_dalolatnoma_head = [
   { label: "Tartib raqami" },
   { label: "Vagon raqami" },
@@ -465,7 +512,51 @@ export const vu_36 = {
     },
     {
       label: "DIQQAT!!!! Ehtiyoj bulgandagina uzgartiring",
+      colspan: 2,
     },
+  ],
+};
+export const vu_36_Show = {
+  nestedHeaders: [
+    { label: "Vagon Raqami" },
+    { label: "Ma'lumot yozilgan vaqti" },
+    { label: "Temir yo'l nomi" },
+    { label: "BILDIRISHNOMA №" },
+    {
+      label: "Yuk vagonining qabul qilingan ta’mir turi va kodi",
+    },
+    {
+      label: "Vaqt va sana",
+    },
+
+    { label: "Korxona uchun maxsus ta‘mir yo‘li va korxona kodi" },
+
+    { label: "Ega kodi" },
+    { label: "Ta’mir sanasi va vaqti" },
+    {
+      label: "Ko‘d maderniyzatsiya",
+    },
+    {
+      label: "Ko‘d maderniyzatsiya",
+    },
+    {
+      label: "Ko‘d maderniyzatsiya",
+    },
+    {
+      label: "Ko‘d maderniyzatsiya",
+    },
+    {
+      label: "Vagon qabul qiluvchi usta imzosi",
+    },
+    {
+      label: "Texnik Nazorat Ishchisi imzosi ",
+    },
+    {
+      label: "Yig‘uv sexi ustasi imzosi ",
+    },
+    {
+      label: "Ta'mir ishlari bo'yicha boshliq o'rinbosari imzosi ",
+    }
   ],
 };
 export const vu_50 = {
@@ -531,7 +622,34 @@ export const vu_22_assabmle = [
     label: "VU-22 ma'lumotini to'liq ko'rish",
   },
   {
-    label: "",
+    label: "", colspan: 2
+  },
+];
+export const vu_22_assabmle_show = [
+  { label: "Vagon raqami" },
+  {
+    label: "Yuk ko'tara olishi",
+  },
+  {
+    label: "Kuzov qoplamasi materiali",
+  },
+  {
+    label: "Oxirgi rejali ta'mir joyi",
+  },
+  {
+    label: "Oxirgi rejali ta'mir sanasi",
+  },
+  {
+    label: "Ta'mirga olingan sanasi va vaqti ",
+  },
+  {
+    label: "Ta'mirga tugashi sanasi va vaqti ",
+  },
+  {
+    label: "To'ldirilmagan bo'limlar",
+  },
+  {
+    label: "Vu22 yaratgan xodim imzosi ",
   },
 ];
 export const vu_50_show_head = [
@@ -553,47 +671,47 @@ export const vu_50_show_head = [
   },
 ];
 export const vu_54 = [
-  {label: "T/R"},
-  {label: "Ғилдирак жуфтлиги тури"},
-  {label: "Хаммаси (3-графа = 4- ва 10-гача бўлган графалар йиғиндиси)"},
-  {label: "Завод ва ВКМ дан олинган янги"},
-  {label: "Завод ва ВКМ дан олинган янги"},
-  {label: "Завод, ВКМ ва деполарда янгиланган"},
-  {label: "Ўзгармас элементлар билан"},
-  {label: "Ўзгарувчан элементлар билан"},
-  {label: "Носоз"},
-  {label: "Яроқли (Ўзгармас элементлар билан)"},
-  {label: "Яроқли (Ўзгарувчан элементлар билан )"},
-  {label: "Хаммаси (11-графа=12-ва 13-графа йиғиндисига)"},
-  {label: "Янги элементлардан"},
-  {label: "Янги ўқ ўрнатиш билан"},
-  {label: "Янги ғилдиракларни ўрнатиш билан"},
-  {label: "Эски элементлардан тайёрланган"},
-  {label: "Айланиш юзасига ишлов бериш"},
-  {label: "Айланиш юзасини йўнмасдан"},
-  {label: "3- турдаги ғилдирак жуфтлигининг айланиш юзасини йўниш йўли билан"},
-  {label: "3-турдаги ғилдирак жуфтлиги ўқлари бўйнини буриш билан"},
-  {label: "Роликли ўқнинг бўйни резбасини тиклаш билан"},
-  {label: "Айланиш юзасига ишлов бериш"},
-  {label: "Айланиш юзасини йўнмасдан"},
-  {label: "Бошқа бажарилган ишлар"},
-  {label: "Хаммаси (24-графа=25 – дан 28 – гача графалар йиғиндиси)"},
-  {label: "Таьмирдан кейин бошқа депога жўнатилган"},
-  {label: "Вагон остига берилган"},
-  {label: "Инвентаризациядан чиқарилган"},
-  {label: "Ўзгарувчан элементлар билан"},
-  {label: "Ўзгармас элементлар билан"},
-  {label: "Хаммаси (30-графа= = 31- ва 32-графалар йиғиндиси)"},
-  {label: "Яроқли"},
-  {label: "Яроқсиз (32- графа= 33- ва 34- графалар йиғиндиси)"},
-  {label: "Ўзгарувчан элементлар билан"},
-  {label: "Ўзгармас элементлар билан"},
-  {label: "Хаммаси (35- графа=36-дан 38-гача графалар йиғиндиси )"},
-  {label: "Шейка қисмида"},
-  {label: "Ступица ости қисмида"},
-  {label: "Ўрта қисмида"},
-  {label: "Резбаси носозлиги сабабли"},
-  {label: "Ўқда электр учқунлари мавжудлиги"},
+  { label: "T/R" },
+  { label: "Ғилдирак жуфтлиги тури" },
+  { label: "Хаммаси (3-графа = 4- ва 10-гача бўлган графалар йиғиндиси)" },
+  { label: "Завод ва ВКМ дан олинган янги" },
+  { label: "Завод ва ВКМ дан олинган янги" },
+  { label: "Завод, ВКМ ва деполарда янгиланган" },
+  { label: "Ўзгармас элементлар билан" },
+  { label: "Ўзгарувчан элементлар билан" },
+  { label: "Носоз" },
+  { label: "Яроқли (Ўзгармас элементлар билан)" },
+  { label: "Яроқли (Ўзгарувчан элементлар билан )" },
+  { label: "Хаммаси (11-графа=12-ва 13-графа йиғиндисига)" },
+  { label: "Янги элементлардан" },
+  { label: "Янги ўқ ўрнатиш билан" },
+  { label: "Янги ғилдиракларни ўрнатиш билан" },
+  { label: "Эски элементлардан тайёрланган" },
+  { label: "Айланиш юзасига ишлов бериш" },
+  { label: "Айланиш юзасини йўнмасдан" },
+  { label: "3- турдаги ғилдирак жуфтлигининг айланиш юзасини йўниш йўли билан" },
+  { label: "3-турдаги ғилдирак жуфтлиги ўқлари бўйнини буриш билан" },
+  { label: "Роликли ўқнинг бўйни резбасини тиклаш билан" },
+  { label: "Айланиш юзасига ишлов бериш" },
+  { label: "Айланиш юзасини йўнмасдан" },
+  { label: "Бошқа бажарилган ишлар" },
+  { label: "Хаммаси (24-графа=25 – дан 28 – гача графалар йиғиндиси)" },
+  { label: "Таьмирдан кейин бошқа депога жўнатилган" },
+  { label: "Вагон остига берилган" },
+  { label: "Инвентаризациядан чиқарилган" },
+  { label: "Ўзгарувчан элементлар билан" },
+  { label: "Ўзгармас элементлар билан" },
+  { label: "Хаммаси (30-графа= = 31- ва 32-графалар йиғиндиси)" },
+  { label: "Яроқли" },
+  { label: "Яроқсиз (32- графа= 33- ва 34- графалар йиғиндиси)" },
+  { label: "Ўзгарувчан элементлар билан" },
+  { label: "Ўзгармас элементлар билан" },
+  { label: "Хаммаси (35- графа=36-дан 38-гача графалар йиғиндиси )" },
+  { label: "Шейка қисмида" },
+  { label: "Ступица ости қисмида" },
+  { label: "Ўрта қисмида" },
+  { label: "Резбаси носозлиги сабабли" },
+  { label: "Ўқда электр учқунлари мавжудлиги" },
 ];
 export const vu_54_keys = [
   "wheel_pair_number",
@@ -900,10 +1018,29 @@ export const vu_68 = {
     "Yuklanganda",
     "O‘rtacha",
     "Yuksizlanganda",
-
     "Topshiruvchining ",
     "Qabul qiluvchining ",
   ],
+  show: [
+    { label: "Vagon Raqami", rowspan: 2 },
+    { label: "Tormoz ta’mirlangan sana", rowspan: 2 },
+    {
+      label: "Vagonga qo’yilgan Xavotaqsimlagichning turi va raqami, ",
+      rowspan: 2,
+    },
+    {
+      label:
+        "Tormozning oxirgi rejaviy ta’mirlangan sanasi va joyi yoki qayta ko‘rib chiqilishi ",
+
+      rowspan: 2,
+    },
+
+    { label: "Ta’mirdan keyingi  zichligi ", colspan: 2 },
+    { label: "Rejimda  tormoz silindridagi bosim ", colspan: 3 },
+    { label: "Xavo g’amlanmasining sinovi sanasi ", colspan: 1, rowspan: 2 },
+
+    { label: "Imzo ", colspan: 2 },
+  ]
 };
 export const vu_90 = {
   headers: [
@@ -1531,8 +1668,8 @@ export const autoConnect = {
     { label: "Tartib Raqami" },
     { label: "Vagon nomeri" },
     { label: "Sana" },
-    { label: "Ta'mir turi"},
-    { label: "Avtobirikma"},
+    { label: "Ta'mir turi" },
+    { label: "Avtobirikma" },
     { label: "Tortish qisqichi" },
     { label: "Tortish qisqichi" },
     { label: "Mayatnikli osma" },
@@ -1548,8 +1685,8 @@ export const carriageDefc = {
     { label: "Tartib Raqami" },
     { label: "Vagon nomeri" },
     { label: "Sana" },
-    { label: "Qism nomi"},
-    { label: "Qism raqami"},
+    { label: "Qism nomi" },
+    { label: "Qism raqami" },
     { label: "Ishlab chiqargan zavod raqami" },
     { label: "Ishlab chiqargan yili" },
     { label: "Qism yaroqlilik xulosasi" },

@@ -38,6 +38,8 @@ import { Pagination } from "../pagination/Pagination";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { Update_Dalolatnoma } from "./Modals/Dalolatnoma/UpdateDalolatnoma";
 import { ImageSignature } from "../ImageSignature";
+import { Dalolatnoma_show } from "../../pages/AssemblyPage/Dalolatnoma_show";
+import { IsImzo } from "../IsImzo";
 
 export const Dalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -56,6 +58,11 @@ export const Dalolatnoma = () => {
     onClose: onCloseUpdate,
     onOpen: onOpenUpdate,
   } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedId, setDeletedId] = useState(null);
   const [delateModal, setDelateModal] = useState(false);
@@ -68,9 +75,15 @@ export const Dalolatnoma = () => {
 
   const [searchValue, setSearchValue] = useState(null);
   const carriageSerach = useDebounce(searchValue);
+  const [showAllData, setShowAllData] = useState(null);
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
   const handleBack = (data) => {
     onOpenBack();
@@ -168,7 +181,7 @@ export const Dalolatnoma = () => {
                   ))}
                   <Th textAlign={"center"}>Aravalar brigadiri imzosi</Th>
                   <Th textAlign={"center"}>Orqa qismi statusi</Th>
-                  <Th></Th>
+                  <Th colSpan={2}></Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -193,46 +206,28 @@ export const Dalolatnoma = () => {
                     </Td>
 
                     <Td color={"teal"}>
-                      <ImageSignature
-                        signatureImage={item?.wheel_signature_user_signature}
-                      />
+                      <IsImzo isImzo={item?.wheel_signature_user_signature} />
                     </Td>
                     <Td color={"teal"}>
-                      <ImageSignature
-                        signatureImage={item?.traffic_safety_depot_duty_officer_user_signature}
-                      />
+                      <IsImzo isImzo={item?.traffic_safety_depot_duty_officer_user_signature} />
                     </Td>
                     <Td color={"teal"}>
-                      <ImageSignature signatureImage={item?.head_vtxkb_user_signature} />
+                      <IsImzo isImzo={item?.head_vtxkb_user_signature} />
                     </Td>
                     <Td color={"teal"}>
-                      <ImageSignature
-                        signatureImage={item?.receiving_master_user_signature}
-                      />
+                      <IsImzo isImzo={item?.receiving_master_user_signature} />
                     </Td>
                     <Td color={"teal"}>
-                      <ImageSignature
-                        signatureImage={item?.collect_workshop_master_signature}
-                      />
+                      <IsImzo isImzo={item?.collect_workshop_master_signature} />
                     </Td>
                     <Td color={"teal"}>
-                      <ImageSignature
-                        signatureImage={
-                          item?.avto_connector_brigadr_or_master_user_signature
-                        }
-                      />
+                      <IsImzo isImzo={item?.avto_connector_brigadr_or_master_user_signature} />
                     </Td>
                     <Td color={"teal"}>
-                      <ImageSignature
-                        signatureImage={item?.deputy_head_signature}
-                      />
+                      <IsImzo isImzo={item?.deputy_head_signature} />
                     </Td>
                     <Td color={"teal"}>
-                      <ImageSignature
-                        signatureImage={
-                          item?.aravalar_brigadr_or_master_user_signature
-                        }
-                      />
+                      <IsImzo isImzo={item?.aravalar_brigadr_or_master_user_signature} />
                     </Td>
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
@@ -268,6 +263,15 @@ export const Dalolatnoma = () => {
                         />
                       </Flex>
                     </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -299,6 +303,12 @@ export const Dalolatnoma = () => {
           onPageChange={handlePageClick}
         />
       ) : null}
+
+      <Dalolatnoma_show 
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
+      />
 
       <ShowBack
         isOpen={isOpenShowBack}

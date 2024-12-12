@@ -12,7 +12,6 @@ import {
   Text,
   Th,
   Thead,
-  Tooltip,
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -32,6 +31,7 @@ import { reverseDateFormat, SliderMock } from "../../../utils";
 import { timeClear } from "../../../utils/timeClear";
 import { imageGet } from "../../../utils/imageGet";
 import { Deleteted, Pagination } from "../../../components";
+
 export const VU_22_Brakes = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -41,15 +41,27 @@ export const VU_22_Brakes = () => {
   const [delateModal, setDelateModal] = useState(false);
   const [showModel, setShowModel] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showAllData, setShowAllData] = useState(null);
+
   const {
     isOpen: isOpenShowModel,
     onOpen: onOpenShowModel,
     onClose: onCloseShowModel,
   } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
   const fetchData = async (page) => {
     setIsLoading(true);
@@ -197,6 +209,15 @@ export const VU_22_Brakes = () => {
                         />
                       </Flex>
                     </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -222,6 +243,7 @@ export const VU_22_Brakes = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+      
       <Pagination
         onPageChange={handlePageClick}
         pageCount={gettingData?.count}

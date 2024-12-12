@@ -15,17 +15,20 @@ import {
 import { timeClear } from "@/utils/timeClear";
 import { vu_36 } from "../../../utils/mock_heads";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import UserApi from "../../../Service/module/userModule.api";
-import { Deleteted, ImageSignature } from "../../../components";
+import { Deleteted, IsImzo } from "../../../components";
 import { VU_36_Update } from "./VU_36_Update";
 import { reverseDateFormat } from "../../../utils";
 import { timeMoment } from "../../../utils/roleTest";
+import { VU_36_Show } from "../../StatistikaPage/page/components/VU_36_Show";
 
 const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
   const [updateData, setUpdateData] = useState(null);
   const [getTableData, setGetinfTableData] = useState(null);
+  const [showAllData, setShowAllData] = useState(null);
+
   const {
     isOpen: openDelateModal,
     onOpen: onOpenDelateModal,
@@ -36,10 +39,20 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
     onOpen: onUpdateOpen,
     onClose: onUpdateClose,
   } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const handleUpdate = (data) => {
     onUpdateOpen();
     setUpdateData(data);
+  };
+
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
 
   const memoData = useMemo(() => updateData, [updateData]);
@@ -74,7 +87,7 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
       <Thead bg={"#0c6170"} rounded={10}>
         <Tr>
           {vu_36?.nestedHeaders?.map((item, idx) => (
-            <Th fontSize={"10px"} textAlign={"center"} key={idx}>
+            <Th fontSize={"10px"} textAlign={"center"} key={idx} colSpan={item?.colspan}>
               {item.label}
             </Th>
           ))}
@@ -129,22 +142,20 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             <Td>{item.kod_moder_3}</Td>
             <Td>{item.kod_moder_4}</Td>
             <Td>
-              <ImageSignature
-                signatureImage={item?.receiving_master_user_signature}
-              />
+              <IsImzo
+                image={item?.receiving_master_user_signature} />
             </Td>
             <Td>
-              <ImageSignature
-                signatureImage={item?.technical_control_worker_user_signature}
-              />
+              <IsImzo
+                image={item?.technical_control_worker_user_signature} />
             </Td>
             <Td>
-              <ImageSignature
-                signatureImage={item?.collect_workshop_master_signature}
-              />
+              <IsImzo
+                image={item?.collect_workshop_master_signature} />
             </Td>
             <Td>
-              <ImageSignature signatureImage={item?.deputy_head_signature} />
+              <IsImzo
+                image={item?.deputy_head_signature} />
             </Td>
             <Td>
               <Flex gap={2}>
@@ -160,9 +171,25 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
                 />
               </Flex>
             </Td>
+            <Td>
+              <Flex justify={"center"} gap={2} m={0}>
+                <IconButton
+                  colorScheme="whatsapp"
+                  onClick={() => handleShowAll(item)}
+                  icon={<FontAwesomeIcon icon={faEye} />}
+                />
+              </Flex>
+            </Td>
           </Tr>
         ))}
       </Tbody>
+      {isOpenShowAll && (
+        <VU_36_Show
+          isOpen={isOpenShowAll}
+          onClose={onCloseShowAll}
+          data={showAllData}
+        />
+      )}
       {openDelateModal && (
         <Deleteted
           isOpen={openDelateModal}

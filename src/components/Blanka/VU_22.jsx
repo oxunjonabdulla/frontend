@@ -44,6 +44,8 @@ import { VU_22_Model } from "./Modals/VU_22_Model";
 import { timeClear } from "../../utils/timeClear";
 import { imageGet } from "../../utils/imageGet";
 import { Pagination } from "../pagination/Pagination";
+import { VU_22_Show } from "../../pages/AssemblyPage/VU_22/VU_22_Show";
+import { IsImzo } from "../IsImzo";
 
 export const VU_22 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -53,15 +55,27 @@ export const VU_22 = () => {
   const [delateModal, setDelateModal] = useState(false);
   const [showModelData, setShowModelData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showAllData, setShowAllData] = useState(null);
+
   const {
     isOpen: isOpenShowModel,
     onOpen: onOpenShowModel,
     onClose: onCloseShowModel,
   } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
 
   const fetchData = async (page) => {
@@ -128,9 +142,7 @@ export const VU_22 = () => {
               { data: showModelData.wheel_data, title: "G'ildirak bo'limi" },
             ].map((section, index) => {
               const qismlar = (section.data || []).reduce((acc, curr) => {
-                if (curr.qismlar && curr.qismlar.length > 0) {
-                  acc.push(...curr.qismlar);
-                }
+                if (curr.qismlar && curr.qismlar.length > 0) acc.push(...curr.qismlar);
                 return acc;
               }, []);
 
@@ -311,11 +323,7 @@ export const VU_22 = () => {
                         </Stack>
                       </Td>
                       <Td>
-                        <Image
-                          width={"100px"}
-                          src={imageGet(item?.author_info?.user_signature_url)}
-                          alt="User Signature"
-                        />
+                        <IsImzo isImzo={item?.author_info?.user_signature_url} />
                       </Td>
                       <Td>
                         <Button
@@ -344,6 +352,15 @@ export const VU_22 = () => {
                           />
                         </Flex>
                       </Td>
+                      <Td>
+                        <Flex justify={"center"} gap={2} m={0}>
+                          <IconButton
+                            colorScheme="whatsapp"
+                            onClick={() => handleShowAll(item)}
+                            icon={<FontAwesomeIcon icon={faEye} />}
+                          />
+                        </Flex>
+                      </Td>
                     </Tr>
                   );
                 })}
@@ -369,6 +386,11 @@ export const VU_22 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
+      <VU_22_Show
+        onClose={onCloseShowAll}
+        isOpen={isOpenShowAll}
+        data={showAllData}
+      />
       <Pagination
         onPageChange={handlePageClick}
         pageCount={Math.ceil(gettingData?.count / 10)}
