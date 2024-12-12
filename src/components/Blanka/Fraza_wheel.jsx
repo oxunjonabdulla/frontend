@@ -24,6 +24,7 @@ import {
   faBook,
   faChevronLeft,
   faChevronRight,
+  faEye,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,6 +38,8 @@ import { Deleteted } from "../Deletete";
 import { imageGet } from "../../utils/imageGet";
 import { useDebounce } from "../../hooks/useDebounce";
 import { timeMoment } from "../../utils/roleTest";
+import { Fraza_show } from "./Fraza_show";
+import { IsImzo } from "../IsImzo";
 
 export const Fraza_wheel = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -48,9 +51,14 @@ export const Fraza_wheel = () => {
   // const [updateOpen, setUpdateOpen] = useState(false);
   const [delateModal, setDelateModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showAllData, setShowAllData] = useState(null);
 
   const carriageSerach = useDebounce(searchValue);
-
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
   const toast = useToast();
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -68,6 +76,12 @@ export const Fraza_wheel = () => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
   };
+
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
+  };
+
   const handleDelate = async (carriageID) => {
     const { response, error } = await new UserApi().deletePhraseWheel(carriageID);
     if (response) window.location.reload();
@@ -202,7 +216,7 @@ export const Fraza_wheel = () => {
                   <Th rowSpan={3} textAlign={"center"}>
                     Qabulqiluvchi imzosi
                   </Th>
-                  <Th rowSpan={3} textAlign={"center"}></Th>
+                  <Th rowSpan={3} colSpan={2} textAlign={"center"}></Th>
                   <Th rowSpan={3}>Ma&#39;lumot yozilgan vaqti</Th>
                 </Tr>
                 <Tr>
@@ -262,24 +276,10 @@ export const Fraza_wheel = () => {
                       <Td>{item?.c51_left_wheel}</Td>
                       <Td>{item?.c51_right_wheel}</Td>
                       <Td rowSpan={4}>
-                        {item?.user_signature_url ? (
-                          <Image
-                            w={"100px"}
-                            src={imageGet(item?.user_signature_url)}
-                          />
-                        ) : (
-                          <Text color={"red"}>Imzo o`chirilgan</Text>
-                        )}
+                        <IsImzo isImzo={item?.user_signature_url} />
                       </Td>
                       <Td rowSpan={4}>
-                        {item?.wheel_signature_user_info ? (
-                          <Image
-                            w={"100px"}
-                            src={imageGet(item?.wheel_signature_user_info?.signature_image)}
-                          />
-                        ) : (
-                          <Text color={"red"}>Imzo kiritilmagan</Text>
-                        )}
+                        <IsImzo isImzo={item?.wheel_signature_user_info?.signature_image} />
                       </Td>
                       <Td rowSpan={4}>
                         <Flex gap={2} m={0} flexDir={"column"}>
@@ -287,6 +287,15 @@ export const Fraza_wheel = () => {
                             colorScheme="red"
                             onClick={() => handleCheckAndDelete(item?.carriage)}
                             icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                          />
+                        </Flex>
+                      </Td>
+                      <Td rowSpan={4}>
+                        <Flex justify={"center"} gap={2} m={0}>
+                          <IconButton
+                            colorScheme="whatsapp"
+                            onClick={() => handleShowAll(item)}
+                            icon={<FontAwesomeIcon icon={faEye} />}
                           />
                         </Flex>
                       </Td>
@@ -369,6 +378,11 @@ export const Fraza_wheel = () => {
         activeClassName="active"
         previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
         nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
+      <Fraza_show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
       />
       <Deleteted
         isOpen={delateModal}
