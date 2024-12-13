@@ -6,7 +6,6 @@ import {
   FormLabel,
   Heading,
   IconButton,
-  Image,
   Input,
   Table,
   TableContainer,
@@ -17,24 +16,26 @@ import {
   Thead,
   Tooltip,
   Tr,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 import {
   faBook,
   faDownload,
+  faEye,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
+import UserApi from "../../Service/module/userModule.api";
 import { SliderMock } from "../../utils";
 import { vu_91 } from "../../utils/mock_heads";
-import { VU_91_Model } from "./Modals/VU_91_Model";
-import UserApi from "../../Service/module/userModule.api";
-import { imageGet } from "../../utils/imageGet";
 import { Deleteted } from "../Deletete";
-import { useDebounce } from "../../hooks/useDebounce";
-import { Pagination } from "../pagination/Pagination";
 import { ImageSignature } from "../ImageSignature";
+import { Pagination } from "../pagination/Pagination";
+import { VU_91_Model } from "./Modals/VU_91_Model";
+import { VU_91_Show } from "./VU_91_Show";
+import { IsImzo } from "../IsImzo";
 
 export const VU_91 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -42,7 +43,14 @@ export const VU_91 = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
+  const [showAllData, setShowAllData] = useState(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const [searchValue, setSearchValue] = useState(null);
   const carriageSerach = useDebounce(searchValue);
@@ -64,6 +72,10 @@ export const VU_91 = () => {
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
 
   const handleDelate = async (carriageID) => {
@@ -142,6 +154,7 @@ export const VU_91 = () => {
                       {item}
                     </Th>
                   ))}
+                  <Th></Th>
                 </Tr>
               </Thead>
 
@@ -154,15 +167,11 @@ export const VU_91 = () => {
                     <Td>{item?.chartley_made_and_year}</Td>
                     <Td>{item?.chartley_number}</Td>
                     <Td>{item?.defect_appearance}</Td>
-                    <Td >
-                      <ImageSignature
-                        signatureImage={item?.user_signature_url}
-                      />
+                    <Td> 
+                      <IsImzo isImzo={item?.user_signature_url}/>
                     </Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={item?.wheel_plumber_user_info?.signature_image}
-                      />
+                      <IsImzo isImzo={item?.wheel_plumber_user_info?.signature_image}/>
                     </Td>
                     <Td>
                       {" "}
@@ -175,6 +184,15 @@ export const VU_91 = () => {
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                        />
+                      </Flex>
+                    </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
                         />
                       </Flex>
                     </Td>
@@ -206,6 +224,11 @@ export const VU_91 = () => {
       <Pagination
         pageCount={gettingData?.count}
         onPageChange={handlePageClick}
+      />
+      <VU_91_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
       />
       <Deleteted
         isOpen={delateModal}

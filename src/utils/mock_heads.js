@@ -1201,6 +1201,15 @@ export const vu_91 = [
   "G'ildirak juftliklari bo'linmasi chilangari Imzo qo'yuvchi",
   "Yuklab olsih / O'chirish",
 ];
+export const vu_91_show = [
+  "Ko‘rilgan sana",
+  "Podshipnik shartli belgisi",
+  "Podshipnik ishlab chiqarilgan zavodi va yili ",
+  "Podshipnik raqami",
+  "Nuqson ko‘rinishi",
+  "Defestoskop ishchisi Imzo qo'yuvchi",
+  "G'ildirak juftliklari bo'linmasi chilangari Imzo qo'yuvchi",
+];
 export const vu_92 = {
   headers: [
     { label: "Tartib raqami", rowspan: 2 },
