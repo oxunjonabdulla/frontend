@@ -1226,6 +1226,14 @@ export const vu_92 = {
     { label: "Gildirak ishchisi ustasi" },
     { label: "G'ildirak Bo'limining chilangari Imzo qo'yuvchi" },
   ],
+  show : [
+    { label: "Taftish sanasi", rowspan: 2 },
+    { label: "Vagon raqam", rowspan: 2 },
+    { label: "G‘ildirak juftligi raqam", rowspan: 2 },
+    { label: "Buksa qismlarini holati", rowspan: 2 },
+    { label: "Taftish ishlarni bajarishda amalga oshiriladi", rowspan: 2 },
+    { label: "Imzolar", colspan: 2 },
+  ]
 };
 export const vu_93 = {
   headers: [

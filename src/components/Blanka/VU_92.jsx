@@ -4,7 +4,6 @@ import {
   Flex,
   Heading,
   IconButton,
-  Image,
   Table,
   TableContainer,
   Tbody,
@@ -14,25 +13,28 @@ import {
   Thead,
   Tooltip,
   Tr,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 import {
   faBook,
   faChevronLeft,
   faChevronRight,
   faDownload,
+  faEye,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
-import { vu_92 } from "../../utils/mock_heads";
-import { VU_92_Model } from "./Modals/VU_92_Model";
 import ReactPaginate from "react-paginate";
 import UserApi from "../../Service/module/userModule.api";
-import { imageGet } from "../../utils/imageGet";
+import { SliderMock } from "../../utils";
+import { vu_92 } from "../../utils/mock_heads";
 import { Deleteted } from "../Deletete";
 import { ImageSignature } from "../ImageSignature";
+import { VU_92_Model } from "./Modals/VU_92_Model";
+import { VU_92_Show } from "./VU_92_show";
+import { get } from "react-hook-form";
+import { IsImzo } from "../IsImzo";
 
 export const VU_92 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -40,7 +42,15 @@ export const VU_92 = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
+  const [showAllData, setShowAllData] = useState(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
@@ -56,6 +66,10 @@ export const VU_92 = () => {
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
 
   const handleDelate = async (carriageID) => {
@@ -124,6 +138,7 @@ export const VU_92 = () => {
                       {item.label}
                     </Th>
                   ))}
+                  <Th rowSpan={2}></Th>
                 </Tr>
                 <Tr>
                   {vu_92?.nestedHeaders?.map((item, idx) => (
@@ -142,7 +157,6 @@ export const VU_92 = () => {
                     </Td>
                     <Td>{item?.inspection_date}</Td>
                     <Td fontWeight={700}>{item?.carriage}</Td>
-
                     <Td>
                       <ul>
                         {item?.inspection_details?.map((item, id) => (
@@ -183,14 +197,10 @@ export const VU_92 = () => {
                       </ul>
                     </Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={item?.wheel_signature_user_info?.signature_image}
-                      />
+                      <IsImzo isImzo={item?.wheel_signature_user_info?.signature_image} />
                     </Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={item?.wheel_plumber_user_info?.signature_image}
-                      />
+                      <IsImzo isImzo={item?.wheel_plumber_user_info?.signature_image} />
                     </Td>
                     <Td>
                       {" "}
@@ -203,6 +213,15 @@ export const VU_92 = () => {
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                        />
+                      </Flex>
+                    </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
                         />
                       </Flex>
                     </Td>
@@ -247,6 +266,11 @@ export const VU_92 = () => {
         activeClassName="active"
         previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
         nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
+      <VU_92_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
       />
       <Deleteted
         isOpen={delateModal}
