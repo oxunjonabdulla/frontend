@@ -27,6 +27,7 @@ import { Pagination } from "../pagination/Pagination";
 import { Deleteted } from "../Deletete";
 import { ImageSignature } from "../ImageSignature";
 import { VU_90_Show } from "./VU_90_Show";
+import { IsImzo } from "../IsImzo";
 
 export const VU_90 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -231,14 +232,10 @@ export const VU_90 = () => {
                       </Td>
                       <Td rowSpan={2}>Imzo</Td>
                       <Td rowSpan={2}>
-                        <ImageSignature
-                          signatureImage={e?.wheel_signature_user_info?.signature_image}
-                        />
+                        <IsImzo isImzo={e?.wheel_signature_user_info?.signature_image} />
                       </Td>
                       <Td rowSpan={2}>
-                        <ImageSignature
-                          signatureImage={e?.wheel_plumber_user_info?.signature_image}
-                        />
+                        <IsImzo isImzo={e?.wheel_plumber_user_info?.signature_image} />
                       </Td>
                       <Td rowSpan={2}>{e?.comment}</Td>
                       <Td rowSpan={2}>
