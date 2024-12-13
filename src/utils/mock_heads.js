@@ -1104,9 +1104,9 @@ export const vu_90 = {
     {
       label: "",
       rowspan: 3,
+      colspan: 2,
     },
   ],
-
   nestedHeaders: [
     { label: TableImg, colspan: 6, isImg: true },
     { label: "O'q", colspan: 4 },
@@ -1131,6 +1131,64 @@ export const vu_90 = {
     { label: "Orqa" },
     { label: "Oldi" },
   ],
+  show: [ 
+    { label: "Yig‘ilgan sana", rowspan: 3 },
+    {
+      label: "Qo’yish va g’ildirak juftligi raqami",
+      rowspan: 3,
+    },
+    { label: "G‘ildirak juftligining o‘rta ta’mir tamg‘asi", rowspan: 3 },
+    { label: "O’q sheykasi", rowspan: 3 },
+    {
+      label:
+        "O‘qning sheyka va stupisa o‘tiradigan qismdan oldingi  qismining diametri (mm)",
+      colspan: 6,
+    },
+    { label: "Sheykaning eng katta oval qismi (mm)", rowspan: 3 },
+    { label: "Sheykaning eng katta konus qismi (mm)", rowspan: 3 },
+    { label: "Labirint halqasini o‘rnatilish diametri (mm)", rowspan: 3 },
+    { label: "Labirint halqasini o‘rnatishdagi farqi (mm)", rowspan: 3 },
+    {
+      label: "Erkin yoki sheykadagi to‘g‘ridan to‘g‘ri radial oraliq (mm)",
+      rowspan: 3,
+    },
+    {
+      label: "Buksani o‘rnatilish diametrlari (mm)",
+      colspan: 4,
+    },
+    {
+      label:
+        "Podshipnikni ishlab chikargan zavodi, belgisi, raqami, ishlab chiqarilgan oyi va yili",
+      rowspan: 2,
+      colspan: 2,
+    },
+    {
+      label: "Qotirish vtulkasini chiqishi yoki minimal osevoy oraliq (mm)",
+      rowspan: 3,
+    },
+    {
+      label:
+        "Qotirish vtulkasini siljishi yoki ichki halqaning o‘rnatilish diametri (mm)",
+      rowspan: 3,
+    },
+    {
+      label:
+        "Vtulkani bosim yordamida preslash yoki ichki halqani o‘rnatishdagi farqi (mm)",
+      rowspan: 3,
+    },
+    {
+      label: "Yog‘ (rusumi, zavod, partiya)",
+      rowspan: 3,
+    },
+    {
+      label: "Imzo",
+      colspan: 3,
+    },
+    {
+      label: "Izoh",
+      rowspan: 3,
+    },
+  ]
 };
 export const vu_91 = [
   "Tartib raqami",

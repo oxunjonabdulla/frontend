@@ -207,7 +207,6 @@ export const VU_50 = () => {
               VU-50 Shakl topilmadi
             </Text>
             <Button colorScheme="teal" onClick={onOpen}>
-              {" "}
               VU-50 Shakl qo&apos;shish
             </Button>
           </Flex>

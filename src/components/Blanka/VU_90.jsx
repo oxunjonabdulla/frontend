@@ -16,7 +16,7 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import { faBook, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
 import { reverseDateFormat, SliderMock } from "../../utils";
@@ -26,6 +26,8 @@ import UserApi from "../../Service/module/userModule.api";
 import { Pagination } from "../pagination/Pagination";
 import { Deleteted } from "../Deletete";
 import { ImageSignature } from "../ImageSignature";
+import { VU_90_Show } from "./VU_90_Show";
+
 export const VU_90 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
   const [getTableData, setGetinfTableData] = useState(null);
@@ -33,10 +35,21 @@ export const VU_90 = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showAllData, setShowAllData] = useState(null);
+
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
   const fetchData = async (page) => {
     setIsLoading(true);
@@ -235,6 +248,15 @@ export const VU_90 = () => {
                           icon={<FontAwesomeIcon icon={faTrash} />}
                         />
                       </Td>
+                      <Td rowSpan={2}>
+                        <Flex justify={"center"} gap={2} m={0}>
+                          <IconButton
+                            colorScheme="whatsapp"
+                            onClick={() => handleShowAll(e)}
+                            icon={<FontAwesomeIcon icon={faEye} />}
+                          />
+                        </Flex>
+                      </Td>
                     </Tr>
                     <Tr>
                       <Td>Chap</Td>
@@ -277,12 +299,16 @@ export const VU_90 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}
         carriageNumber={String(getTableData)}
         deletedFunction={handleDelate}
+      />
+      <VU_90_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
       />
       <VU_90_Model isOpen={isOpen} onClose={onClose} />
     </Box>
