@@ -29,9 +29,10 @@ import UserApi from "@/Service/module/userModule.api";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { Orqa } from "./modal/AutoDalolatnoma/Orqa";
 import { ShowBack } from "./modal/AutoDalolatnoma/ShowBack";
-import { Deleteted, ImageSignature, Pagination } from "../../../components";
+import { Deleteted, ImageSignature, IsImzo, Pagination } from "../../../components";
 import { repairTypesName } from "../../../utils";
 import { useDebounce } from "../../../hooks/useDebounce";
+import { Dalolatnoma_Show } from "./Dalolatnoma_show";
 
 export const CarriageDalolatnoma = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -54,9 +55,14 @@ export const CarriageDalolatnoma = () => {
   const [deleteID, setDeleteID] = useState(null);
   const [deleteModel, setDeleteModal] = useState(false);
   const [showBack, setShowBackData] = useState(0);
-
+  const [showAllData, setShowAllData] = useState(null);
   const [searchValue, setSearchValue] = useState(null);
   const carriageSerach = useDebounce(searchValue);
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -75,6 +81,10 @@ export const CarriageDalolatnoma = () => {
     if (response) {
       window.location.reload();
     }
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -190,18 +200,10 @@ export const CarriageDalolatnoma = () => {
                       Mavjudlik Kodi №2: {item?.front_detail.restor_balka_kod_2}
                     </Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={
-                          item?.avto_connector_plumber_signature_user
-                        }
-                      />
+                      <IsImzo isImzo={item?.avto_connector_plumber_signature_user} />
                     </Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={
-                          item?.avto_connector_defektospopistr_signature_user
-                        }
-                      />
+                      <IsImzo isImzo={item?.avto_connector_defektospopistr_signature_user} />
                     </Td>
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
@@ -232,6 +234,15 @@ export const CarriageDalolatnoma = () => {
                             setDeleteModal(true);
                           }}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                        />
+                      </Flex>
+                    </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
                         />
                       </Flex>
                     </Td>
@@ -266,7 +277,11 @@ export const CarriageDalolatnoma = () => {
           onPageChange={handlePageClick}
         />
       ) : null}
-
+      <Dalolatnoma_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
+      />
       <Orqa isOpen={isOPenBack} onClose={onCloseBack} carriageID={backId} />
       <ShowBack
         isOpen={isOpenShowBack}

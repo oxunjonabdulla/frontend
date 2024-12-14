@@ -1705,6 +1705,30 @@ export const carriage_dalolatnoma_head = [
   },
   {
     label: "",
+    colspan: 2,
+  },
+];
+export const carriage_dalolatnoma_head_show = [
+  { label: "Vagon raqami" },
+  { label: "Ta'mir turi" },
+  { label: "Yon rama raqami ", colspan: 4 },
+  {
+    label: "Ishlab chiqarilishi,zavod tamg’asi",
+    colspan: 4,
+  },
+  {
+    label: "Mavjudlik kodi",
+    colspan: 4,
+  },
+  {
+    label: "Ressor usti balkasi",
+    colspan: 3,
+  },
+  {
+    label: "Avtobirikma chilangari Imzo qo'yuvchi",
+  },
+  {
+    label: "Avtobirikma defektoskopistr Imzo qo'yuvchi",
   },
 ];
 export const mockHeaderCarriage = {
