@@ -7,41 +7,41 @@ import {
   Table,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 
-import UserApi from "../../../../../Service/module/userModule.api";
 import { vu_47 } from "@/utils/mock_heads";
+import {
+  faEye,
+  faPlus,
+  faTrashAlt
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import {
   Deleteted,
   ImageSignature,
+  IsImzo,
   Pagination,
   SimpleLoader,
 } from "../../../../../components";
-import ReactPaginate from "react-paginate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faEye,
-  faPlus,
-  faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import UserApi from "../../../../../Service/module/userModule.api";
+import { reverseDateFormat } from "../../../../../utils";
 import { imageGet } from "../../../../../utils/imageGet";
 import { VU_47_Update } from "./VU_47_Update";
 import { Vu_47ShowBack } from "./Vu_47ShowBack";
-import { reverseDateFormat } from "../../../../../utils";
+import { VU_47_Show } from "./VU_47_show";
+
 const VU_47_Table = () => {
   const [isLoadingData, setIsLoading] = useState(true);
   const [deletedData, setDeletedData] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [showBack, setShowBackData] = useState({});
+  const [showAllData, setShowAllData] = useState(null);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
   const {
@@ -53,11 +53,15 @@ const VU_47_Table = () => {
     onOpenShowBack();
     setShowBackData(data);
   };
-
   const {
     isOpen: isOpenBack,
     onClose: onCloseBack,
     onOpen: onOpenBack,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
   } = useDisclosure();
 
   const handlePageClick = (data) => {
@@ -75,10 +79,13 @@ const VU_47_Table = () => {
       window.location.reload();
     }
   };
-
   const handleBack = (data) => {
     setDeletedData(data);
     onOpenBack();
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -120,7 +127,7 @@ const VU_47_Table = () => {
                   {item.label}
                 </Th>
               ))}
-              <Th rowSpan={2}></Th>
+              <Th rowSpan={2} colSpan={2}></Th>
             </Tr>
             <Tr>
               {vu_47?.nestedHeaders?.map((item, idx) => (
@@ -161,18 +168,12 @@ const VU_47_Table = () => {
                 <Td>{item?.back_detail?.cylinder_pressure_normal}</Td>
                 <Td>{item?.back_detail?.cylinder_pressure_full}</Td>
                 <Td>{item?.front_detail?.release_time_to_04}</Td>
-
                 <Td>
-                  <Image
-                    width={"100px"}
-                    src={imageGet(item?.author_info?.user_signature_url)}
-                  />
+                  <IsImzo isImzo={item?.author_info?.user_signature_url} />
                 </Td>
                 <Td>{item?.front_detail?.acceptor_signature}</Td>
                 <Td>
-                  <ImageSignature
-                    signatureImage={item?.avtotormoz_signature_image_url}
-                  />
+                  <IsImzo isImzo={item?.avtotormoz_signature_image_url} />
                 </Td>
                 <Td>
                   <Flex gap={2} m={0} alignItems={"center"}>
@@ -199,6 +200,15 @@ const VU_47_Table = () => {
                     />
                   </Flex>
                 </Td>
+                <Td>
+                  <Flex justify={"center"} gap={2} m={0}>
+                    <IconButton
+                      colorScheme="whatsapp"
+                      onClick={() => handleShowAll(item)}
+                      icon={<FontAwesomeIcon icon={faEye} />}
+                    />
+                  </Flex>
+                </Td>
               </Tr>
             ))}
           </Tbody>
@@ -207,6 +217,11 @@ const VU_47_Table = () => {
         <SimpleLoader />
       )}
 
+      <VU_47_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
+      />
       <Deleteted
         isOpen={isOpen}
         onClose={onClose}
