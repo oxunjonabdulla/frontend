@@ -29,26 +29,38 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { Deleteted, ImageSignature, Pagination } from "../../../components";
+import { Deleteted, ImageSignature, IsImzo, Pagination } from "../../../components";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { imageGet } from "../../../utils/imageGet";
 import { timeMoment } from "../../../utils/roleTest";
 import { VU_32Modal } from "./modal/VU_32Modal";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
+import { VU_32_Show } from "./VU_32_show";
 
 export const VU_32 = () => {
   const [isLoadingData, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState(null);
   const carriageSerach = useDebounce(searchValue);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
-
   const [deleteID, setDeleteID] = useState(null);
   const [deleteModel, setDeleteModal] = useState(false);
+  const [showAllData, setShowAllData] = useState(null);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
   const fetchData = async (page) => {
     setIsLoading(true);
@@ -73,9 +85,6 @@ export const VU_32 = () => {
       window.location.reload();
     }
   };
-
-  console.log(gettingData?.results);
-  
 
   return (
     <Box
@@ -207,7 +216,7 @@ export const VU_32 = () => {
                 <Th>Brigаdir imzosi </Th>
                 <Th>TTNB vаgon qаbul qiluvchisining imzosi </Th>
                 <Th>Korxonа rаhbаrining imzosi yoki muovinining </Th>
-                <Th></Th>
+                <Th colSpan={2}></Th>
               </Tr>
               <Tr>
                 <Th>1</Th>
@@ -248,7 +257,7 @@ export const VU_32 = () => {
                 <Th>36</Th>
                 <Th>37</Th>
                 <Th>38</Th>
-                <Th></Th>
+                <Th colSpan={2}></Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -302,26 +311,16 @@ export const VU_32 = () => {
                     <Td rowSpan={8}>{e?.balka_made_year}</Td>
                     <Td rowSpan={8}>{e?.balka_pyatnik}</Td>
                     <Td rowSpan={8}>
-                      <ImageSignature
-                        signatureImage={e?.defestoskop_signature_user}
-                      />
+                      <IsImzo isImzo={e?.defestoskop_signature_user} />
                     </Td>
                     <Td rowSpan={8}>
-                      {e?.signature_image_url ? (
-                        <Image src={imageGet(e?.signature_image_url)} />
-                      ) : (
-                        <Text color={"red"}>Imzo qo`yilmagan</Text>
-                      )}
+                      <IsImzo isImzo={e?.signature_image_url} />
                     </Td>
                     <Td rowSpan={8}>
-                      <ImageSignature
-                        signatureImage={e?.receiving_master_user_signature}
-                      />
+                      <IsImzo isImzo={e?.receiving_master_user_signature} />
                     </Td>
                     <Td rowSpan={8}>
-                      <ImageSignature
-                        signatureImage={e?.deputy_head_signature}
-                      />
+                      <IsImzo isImzo={e?.deputy_head_signature} />
                     </Td>
                     <Td rowSpan={8}>
                       <Flex gap={2} m={0}>
@@ -335,8 +334,16 @@ export const VU_32 = () => {
                         />
                       </Flex>
                     </Td>
+                    <Td rowSpan={8}>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(e)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
+                    </Td>
                   </Tr>
-
                   <Tr>
                     <Td>{e?.side_number_first_levaya}</Td>
                     <Td>{e?.factory_medal_first_levaya}</Td>
@@ -473,6 +480,11 @@ export const VU_32 = () => {
       ) : (
         <SimpleLoader />
       )}
+      <VU_32_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
+      />
       <Deleteted
         isOpen={deleteModel}
         onClose={setDeleteModal}
