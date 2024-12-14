@@ -1,4 +1,4 @@
-import { Badge, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack, Table, Tbody, Td, Th, Thead, Tooltip, Tr } from "@chakra-ui/react";
+import { Badge, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Table, Tbody, Td, Th, Thead, Tooltip, Tr } from "@chakra-ui/react";
 import { faCheck, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ImageSignature } from "../../../components";
@@ -36,7 +36,7 @@ export const VU_22_Show = ({ isOpen, onClose, data }) => {
             isOpen={isOpen}
             w={"100%"}
             onClose={onClose}
-            size={["full"]}
+            size={["6xl"]}
             isCentered
             motionPreset="slideInLeft">
             <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
@@ -124,6 +124,9 @@ export const VU_22_Show = ({ isOpen, onClose, data }) => {
                         </Tbody>
                     </Table>
                 </ModalBody>
+                <ModalFooter>
+                    <Button onClick={onClose} colorScheme="red">Close</Button>
+                </ModalFooter>
             </ModalContent>
         </Modal>
     );
