@@ -38,10 +38,11 @@ import { useEffect, useState } from "react";
 import { reverseDateFormat, SliderMock } from "../../utils";
 import { vu_22_assabmle } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
-import { Deleteted, Pagination } from "../../components";
+import { Deleteted, IsImzo, Pagination } from "../../components";
 import { timeClear } from "../../utils/timeClear";
 import { imageGet } from "../../utils/imageGet";
 import { VU_22_Model } from "./VU_22_Modal";
+import { VU_22_Show } from "../AssemblyPage/VU_22/VU_22_Show";
 
 export const VU_22_Arava = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -51,13 +52,19 @@ export const VU_22_Arava = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
   const [showModel, setShowModel] = useState([]);
+  const [showAllData, setShowAllData] = useState(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpenShowModel,
     onOpen: onOpenShowModel,
     onClose: onCloseShowModel,
   } = useDisclosure();
-
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
@@ -82,6 +89,10 @@ export const VU_22_Arava = () => {
     if (response) {
       window.location.reload();
     }
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
 
   useEffect(() => {
@@ -234,10 +245,7 @@ export const VU_22_Arava = () => {
                       </Tooltip>
                     </Td>
                     <Td>
-                      <Image
-                        width={"100px"}
-                        src={imageGet(item?.author_info?.user_signature_url)}
-                      />
+                      <IsImzo isImzo={item?.author_info?.user_signature_url} />
                     </Td>
                     <Td>
                       {!item.avtobirikma_data.length ? (
@@ -286,6 +294,15 @@ export const VU_22_Arava = () => {
                         />
                       </Flex>
                     </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -314,6 +331,11 @@ export const VU_22_Arava = () => {
       <Pagination
         onPageChange={handlePageClick}
         pageCount={Math.ceil(gettingData?.count / 10)}
+      />
+      <VU_22_Show
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
       />
       <Deleteted
         isOpen={delateModal}
