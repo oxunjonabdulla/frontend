@@ -1,3 +1,6 @@
+import UserApi from "@/Service/module/userModule.api";
+import { SliderMock } from "@/utils";
+import { mockHeaderCarriage } from "@/utils/mock_heads";
 import {
   Box,
   Button,
@@ -6,7 +9,6 @@ import {
   FormLabel,
   Heading,
   IconButton,
-  Image,
   Input,
   Table,
   TableContainer,
@@ -18,8 +20,9 @@ import {
   Tooltip,
   Tr,
   useDisclosure,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
 import {
   faBook,
   faChevronLeft,
@@ -28,15 +31,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
-import { SliderMock } from "@/utils";
-import { mockHeaderCarriage } from "@/utils/mock_heads";
-import UserApi from "@/Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
-import { imageGet } from "@/utils/imageGet";
-import { Deleteted } from "../../../components";
-import { Fraza_carriage_model } from "./modal/Fraza_carriunit_model";
+import { Deleteted, IsImzo } from "../../../components";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { timeMoment } from "../../../utils/roleTest";
+import { Fraza_carriage_model } from "./modal/Fraza_carriunit_model";
+import { Fraza_show } from "./Fraza_show";
 
 export const FrazaCarriage = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -46,7 +46,14 @@ export const FrazaCarriage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
+  const [showAllData, setShowAllData] = useState(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
   const carriageSerach = useDebounce(searchValue);
 
   const toast = useToast();
@@ -65,6 +72,10 @@ export const FrazaCarriage = () => {
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
+  };
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
   };
   const handleDelate = async (carriageID) => {
     const { response, error } = await new UserApi().deletePhraseCart(
@@ -201,7 +212,7 @@ export const FrazaCarriage = () => {
                   <Th rowSpan={3} textAlign={"center"}>
                     Imzo
                   </Th>
-                  <Th rowSpan={3} textAlign={"center"}></Th>
+                  <Th rowSpan={3} colspan={2} textAlign={"center"}></Th>
                 </Tr>
                 <Tr>
                   {mockHeaderCarriage?.nestedHeaders?.map((item) => (
@@ -274,11 +285,7 @@ export const FrazaCarriage = () => {
                       <Td>{item?.c61_work_date}</Td>
                       <Td>{item?.c61_work_num}</Td>
                       <Td rowSpan={6}>
-                        {item?.signature_image_url ? (
-                          <Image src={imageGet(item?.signature_image_url)} />
-                        ) : (
-                          <Text color={"red"}>Imzo qo`yilmagan</Text>
-                        )}
+                        <IsImzo isImzo={item?.signature_image_url} />
                       </Td>
                       <Td rowSpan={6}>
                         <Flex gap={2} m={0} flexDir={"column"}>
@@ -286,6 +293,15 @@ export const FrazaCarriage = () => {
                             colorScheme="red"
                             onClick={() => handleCheckAndDelete(item?.carriage)}
                             icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                          />
+                        </Flex>
+                      </Td>
+                      <Td rowSpan={6}>
+                        <Flex justify={"center"} gap={2} m={0}>
+                          <IconButton
+                            colorScheme="whatsapp"
+                            onClick={() => handleShowAll(item)}
+                            icon={<FontAwesomeIcon icon={faEye} />}
                           />
                         </Flex>
                       </Td>
@@ -386,6 +402,11 @@ export const FrazaCarriage = () => {
         activeClassName="active"
         previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
         nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+      />
+      <Fraza_show 
+        isOpen={isOpenShowAll}
+        onClose={onCloseShowAll}
+        data={showAllData}
       />
       <Deleteted
         isOpen={delateModal}
