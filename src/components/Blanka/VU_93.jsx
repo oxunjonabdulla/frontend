@@ -32,6 +32,9 @@ import ReactPaginate from "react-paginate";
 import { imageGet } from "../../utils/imageGet";
 import { Deleteted } from "../Deletete";
 import { ImageSignature } from "../ImageSignature";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
+import { VU_93_Show } from "./VU_93_Show";
+import { IsImzo } from "../IsImzo";
 
 export const VU_93 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -39,7 +42,14 @@ export const VU_93 = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
+  const [showAllData, setShowAllData] = useState(null);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenShowAll,
+    onClose: onCloseShowAll,
+    onOpen: onOpenShowAll,
+  } = useDisclosure();
 
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
@@ -57,7 +67,10 @@ export const VU_93 = () => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
   };
-
+  const handleShowAll = (data) => {
+    onOpenShowAll();
+    setShowAllData(data);
+  };
   const handleDelate = async (carriageID) => {
     const { response } = await new UserApi().delVu93(carriageID);
     if (response) {
@@ -124,6 +137,7 @@ export const VU_93 = () => {
                       {item.label}
                     </Th>
                   ))}
+                  <Th rowSpan={2}></Th>
                 </Tr>
                 <Tr>
                   {vu_93?.nestedHeaders?.map((item, idx) => (
@@ -144,14 +158,10 @@ export const VU_93 = () => {
                     <Td>{item?.not_allowed}</Td>
                     <Td>{item?.rapair_works}</Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={item?.wheel_signature_user_info?.signature_image}
-                      />
+                      <IsImzo isImzo={item?.wheel_signature_user_info?.signature_image} />
                     </Td>
                     <Td>
-                      <ImageSignature
-                        signatureImage={item?.wheel_plumber_user_info?.signature_image}
-                      />
+                      <IsImzo isImzo={item?.wheel_plumber_user_info?.signature_image} />
                     </Td>
                     <Td>
                       {" "}
@@ -164,6 +174,15 @@ export const VU_93 = () => {
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                        />
+                      </Flex>
+                    </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
                         />
                       </Flex>
                     </Td>
@@ -209,6 +228,7 @@ export const VU_93 = () => {
         previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
         nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
       />
+      <VU_93_Show isOpen={isOpenShowAll} onClose={onCloseShowAll} data={showAllData} />
       <Deleteted
         isOpen={delateModal}
         onClose={setDelateModal}

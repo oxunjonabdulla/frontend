@@ -1252,13 +1252,26 @@ export const vu_93 = {
     { label: "Imzolar", colspan: 2 },
     { label: "Yuklash / O'chirish", rowspan: 2 },
   ],
-
   nestedHeaders: [
     { label: "Yaroqsiz" },
     { label: "Amalga oshirilgan ta’mir ishlari" },
     { label: "Gildirak ishchisi ustasi" },
     { label: "G'ildirak Bo'limining chilangari Imzo qo'yuvchi" },
   ],
+  show: [
+
+    { label: "Podshipnik ta’mirlangan  sanasi", rowspan: 2 },
+    {
+      label: "Podshipnik shartli belgilari, ",
+      rowspan: 2,
+    },
+    {
+      label: " Ishlab chiqargan zavod raqami va sanasi ",
+      rowspan: 2,
+    },
+    { label: "Ko‘rinish", colspan: 2 },
+    { label: "Imzolar", colspan: 2 },
+  ]
 };
 export const option_kodpaa_data = [
   "100     01   ДИАГ.КОЛ.ПАР     ДИАГНОСТИРОВАНИЕ КОЛЕСНЫХ ПАР",
