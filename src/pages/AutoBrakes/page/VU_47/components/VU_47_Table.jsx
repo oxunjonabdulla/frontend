@@ -2,7 +2,6 @@ import {
   Button,
   Flex,
   IconButton,
-  Image,
   Img,
   Table,
   Tbody,
@@ -23,17 +22,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import {
   Deleteted,
-  ImageSignature,
   IsImzo,
   Pagination,
-  SimpleLoader,
+  SimpleLoader
 } from "../../../../../components";
 import UserApi from "../../../../../Service/module/userModule.api";
 import { reverseDateFormat } from "../../../../../utils";
-import { imageGet } from "../../../../../utils/imageGet";
+import { VU_47_Show } from "./VU_47_show";
 import { VU_47_Update } from "./VU_47_Update";
 import { Vu_47ShowBack } from "./Vu_47ShowBack";
-import { VU_47_Show } from "./VU_47_show";
 
 const VU_47_Table = () => {
   const [isLoadingData, setIsLoading] = useState(true);

@@ -211,9 +211,6 @@ export const Fraza_wheel = () => {
                     </Th>
                   ))}
                   <Th rowSpan={3} textAlign={"center"}>
-                    Imzo
-                  </Th>
-                  <Th rowSpan={3} textAlign={"center"}>
                     Qabulqiluvchi imzosi
                   </Th>
                   <Th rowSpan={3} colSpan={2} textAlign={"center"}></Th>
@@ -275,9 +272,6 @@ export const Fraza_wheel = () => {
                       <Td>{item?.c51_work_num}</Td>
                       <Td>{item?.c51_left_wheel}</Td>
                       <Td>{item?.c51_right_wheel}</Td>
-                      <Td rowSpan={4}>
-                        <IsImzo isImzo={item?.user_signature_url} />
-                      </Td>
                       <Td rowSpan={4}>
                         <IsImzo isImzo={item?.wheel_signature_user_info?.signature_image} />
                       </Td>

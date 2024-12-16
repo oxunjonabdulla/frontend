@@ -53,9 +53,6 @@ export const Fraza_show = ({ isOpen, onClose, data }) => {
                                     </Th>
                                 ))}
                                 <Th rowSpan={3} textAlign={"center"}>
-                                    Imzo
-                                </Th>
-                                <Th rowSpan={3} textAlign={"center"}>
                                     Qabulqiluvchi imzosi
                                 </Th>
                                 <Th rowSpan={3}>Ma&#39;lumot yozilgan vaqti</Th>
@@ -111,9 +108,6 @@ export const Fraza_show = ({ isOpen, onClose, data }) => {
                                 <Td>{data?.c51_work_num}</Td>
                                 <Td>{data?.c51_left_wheel}</Td>
                                 <Td>{data?.c51_right_wheel}</Td>
-                                <Td rowSpan={4}>
-                                    <ImageSignature signatureImage={data?.user_signature_url} />
-                                </Td>
                                 <Td rowSpan={4}>
                                     <ImageSignature signatureImage={data?.wheel_signature_user_info?.signature_image} />
                                 </Td>
