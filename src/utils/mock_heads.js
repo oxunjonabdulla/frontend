@@ -354,7 +354,7 @@ export const dalolatnoma_head_show = [
   {
     label: "Ta'mir ishlari bo'yicha boshliq o'rinbosari imzosi",
   },
-  { label: "Aravalar brigadiri imzosi"}
+  { label: "Aravalar brigadiri imzosi" }
 ];
 export const auto_dalolatnoma_head = [
   { label: "Tartib raqami" },
@@ -625,6 +625,68 @@ export const vu_22_assabmle = [
     label: "", colspan: 2
   },
 ];
+export const vu_22_assabmle_options = [
+  "Povodok",
+  "Eshik, Tepa lyuk",
+  "Eshik, Tushirish lyuk",
+  "Klin Shayba, Shplint",
+  "Metall qoplama",
+  "Eshik upori / Eshik reykasi",
+  "Eshik kranshtayen / Eshik Reyka",
+  "Lyuk tutgichi",
+  "Eshik soyaboni",
+  "Poyezd tuzuvchining zinapoyasi / Poy.tuz tutqichi",
+  "Yarim vagon valigi / Yarim vagon vtulkasi, shplit",
+  "Sarflangan elektrodlar",
+  "Poyezd tuzuvchining zinapoyasi",
+  "Stremantka",
+  "Old / orqa uporini payvandlash",
+  "Uzish richag zanjirini payvandlash",
+  "Yon taxtalarni saralash",
+  "Pol taxtalarni saralash",
+  "Qoplamani almashtirish",
+  "Qora",
+  "Oq",
+  "Jigarrang",
+  "Rastvoritel",
+  "Kislorod",
+  "Bolt 20 x 145, Gayka 20",
+  "Bolt 20 x 90, Gayka 20",
+  "Bolt 22 x 90, Gayka 22",
+  "Bolt 22 x 110, Gayka 22",
+  "Pyatnik",
+  "Klin - bold\", simi 180, 2.20",
+  "Eshik valigi",
+  "Zaxira sig'im tutgichi",
+  "Asosiy xavo quvur tutgichi",
+  "So'ngi jo'mrak tutgichi va shaybasi",
+  "Bolt 16 x 60, Gayka 16",
+  "Bolt 20 x 210, Gayka 20",
+  "Muhofaza tutgichlar",
+  "Tormoz tyagosi 4.20",
+  "Qo'l tyagosi",
+  "Qo'l rejimi",
+  "GSP ko'rsatgichi",
+  "Qo'l tormoz mexanizmi",
+  "Qo'l tormoz shturvali",
+  "Valik 22 x 70, Gayka 12",
+  "A o'lcham vinti",
+  "Gayka M20, Gayka M30",
+  "Ta'minot quvuri diametr 20",
+  "Asosiy xavo quvur diametr 32",
+  "Takomillashtirilgan uzish richagi",
+  "Uzish zanjiri",
+  "Bolt M16 - 100 Gayka 16",
+  "Sektor, Zakidka",
+  "Bortlarni ta'mirlash",
+  "Bort valigi va vtulkasi",
+  "O'tish yo'lag tutgichi 2.75",
+  "O'tish yo'lagi tirgagi va ustuni",
+  "Tushirish lyuk saqlagichi",
+  "Tushirish lyuk qulfi",
+  "Uzish richagi",
+  "Uzish richag ushlagich tayanchi"
+]
 export const vu_22_assabmle_show = [
   { label: "Vagon raqami" },
   {
@@ -1131,7 +1193,7 @@ export const vu_90 = {
     { label: "Orqa" },
     { label: "Oldi" },
   ],
-  show: [ 
+  show: [
     { label: "Yig‘ilgan sana", rowspan: 3 },
     {
       label: "Qo’yish va g’ildirak juftligi raqami",
@@ -1226,7 +1288,7 @@ export const vu_92 = {
     { label: "Gildirak ishchisi ustasi" },
     { label: "G'ildirak Bo'limining chilangari Imzo qo'yuvchi" },
   ],
-  show : [
+  show: [
     { label: "Taftish sanasi", rowspan: 2 },
     { label: "Vagon raqam", rowspan: 2 },
     { label: "G‘ildirak juftligi raqam", rowspan: 2 },
