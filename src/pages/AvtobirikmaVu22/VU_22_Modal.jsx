@@ -13,11 +13,12 @@ import {
   ModalOverlay,
   useToast,
 } from "@chakra-ui/react";
+import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import UserApi from "../../Service/module/userModule.api";
+import { vu_22_options2 } from "../../utils/mock_heads";
 
 export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
   const [isLoading, setLoading] = useState(false);
@@ -80,12 +81,17 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
               <Flex key={item.id} gap={4} my={4} align="center">
                 <FormControl isInvalid={errors?.qismlar?.[idx]?.title}>
                   <FormLabel>Nomi</FormLabel>
-                  <Input
+                  <Input list="fruit-options"
                     {...register(`qismlar.${idx}.title`, {
                       required: "Nomini kiriting",
                     })}
                     placeholder="Nomini kiriting"
                   />
+                  <datalist id="fruit-options">
+                    {vu_22_options2.map((item, i) => (
+                      <option value={item} key={i} />
+                    ))}
+                  </datalist>
                 </FormControl>
 
                 <FormControl isInvalid={errors?.qismlar?.[idx]?.works_quantity}>

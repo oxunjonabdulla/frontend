@@ -687,6 +687,18 @@ export const vu_22_assabmle_options = [
   "Uzish richagi",
   "Uzish richag ushlagich tayanchi"
 ]
+export const vu_22_options2 = [
+  "Havo taqsimlagichning bosh qismi N 483",
+  "Havo taqsimlagichning bosh qismi No 270",
+  "So'ngi jo'mraklar",
+  "Yeng K - 17",
+  "Avto rostlagich",
+  "Ajratuvchi jo'mrak",
+  "Avtomatik rejim",
+  "Zaxira sigimi",
+  "Ikki kamerali sig'im",
+  "Tormoz silindiri"
+]
 export const vu_22_assabmle_show = [
   { label: "Vagon raqami" },
   {
