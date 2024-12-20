@@ -92,9 +92,7 @@ export const VU_22 = () => {
 
   const handleDelate = async (carriageID) => {
     const { response } = await new UserApi().deleteVu22(carriageID);
-    if (response) {
-      window.location.reload();
-    }
+    if (response) window.location.reload();
   };
 
   useEffect(() => {

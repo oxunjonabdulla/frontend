@@ -78,72 +78,75 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             {fields.map((item, idx) => (
-              <Flex key={item.id} gap={4} my={4} align="center">
-                <FormControl isInvalid={errors?.qismlar?.[idx]?.title}>
-                  <FormLabel>Nomi</FormLabel>
-                  <Input list="fruit-options"
-                    {...register(`qismlar.${idx}.title`, {
-                      required: "Nomini kiriting",
-                    })}
-                    placeholder="Nomini kiriting"
-                  />
-                  <datalist id="fruit-options">
-                    {vu_22_assabmle_options.map((item, i) => (
-                      <option value={item} key={i} />
-                    ))}
-                  </datalist>
-                </FormControl>
-                <FormControl isInvalid={errors?.qismlar?.[idx]?.works_quantity}>
-                  <FormLabel>Hajmi</FormLabel>
-                  <Input
-                    {...register(`qismlar.${idx}.works_quantity`, {
-                      required: "Ish hajmini kiriting",
-                    })}
-                    placeholder="Ish hajmi"
-                  />
-                </FormControl>
+              <>
+                <Flex key={item.id} gap={4} my={4} align="center">
+                  <FormControl isInvalid={errors?.qismlar?.[idx]?.title}>
+                    <FormLabel>Nomi</FormLabel>
+                    <Input list="fruit-options"
+                      {...register(`qismlar.${idx}.title`, {
+                        required: "Nomini kiriting",
+                      })}
+                      placeholder="Nomini kiriting"
+                    />
+                    <datalist id="fruit-options">
+                      {vu_22_assabmle_options.map((item, i) => (
+                        <option value={item} key={i} />
+                      ))}
+                    </datalist>
+                  </FormControl>
+                  <FormControl isInvalid={errors?.qismlar?.[idx]?.works_quantity}>
+                    <FormLabel>Hajmi</FormLabel>
+                    <Input
+                      {...register(`qismlar.${idx}.works_quantity`, {
+                        required: "Ish hajmini kiriting",
+                      })}
+                      placeholder="Ish hajmi"
+                    />
+                  </FormControl>
+                </Flex>
+                <Flex key={idx} gap={4} my={4} align="center">
+                  <FormControl
+                    isInvalid={errors?.qismlar?.[idx]?.worker_lastname}
+                  >
+                    <FormLabel>Ishchi familiyasi</FormLabel>
+                    <Input
+                      {...register(`qismlar.${idx}.worker_lastname`, {
+                        required: "Ishchi familiyasini kiriting",
+                      })}
+                      placeholder="Ishchi familiyasi"
+                    />
+                  </FormControl>
+                  <FormControl
+                    isInvalid={errors?.qismlar?.[idx]?.additional_text}
+                  >
+                    <FormLabel>Qo'shimcha ma'lumot</FormLabel>
+                    <Input
+                      {...register(`qismlar.${idx}.additional_text`)}
+                      placeholder="Qo'shimcha ma'lumot"
+                    />
+                  </FormControl>
 
-                <FormControl
-                  isInvalid={errors?.qismlar?.[idx]?.worker_lastname}
-                >
-                  <FormLabel>Ishchi familiyasi</FormLabel>
-                  <Input
-                    {...register(`qismlar.${idx}.worker_lastname`, {
-                      required: "Ishchi familiyasini kiriting",
-                    })}
-                    placeholder="Ishchi familiyasi"
-                  />
-                </FormControl>
+                  <FormControl isInvalid={errors?.qismlar?.[idx]?.vu22_section}>
+                    <FormLabel>Bo'lim</FormLabel>
+                    <Input
+                      defaultValue={"yig'uv"}
+                      readOnly
+                      {...register(`qismlar.${idx}.vu22_section`, {
+                        required: "Bo'limni kiriting",
+                      })}
+                    />
+                  </FormControl>
 
-                <FormControl
-                  isInvalid={errors?.qismlar?.[idx]?.additional_text}
-                >
-                  <FormLabel>Qo'shimcha ma'lumot</FormLabel>
-                  <Input
-                    {...register(`qismlar.${idx}.additional_text`)}
-                    placeholder="Qo'shimcha ma'lumot"
-                  />
-                </FormControl>
-
-                <FormControl isInvalid={errors?.qismlar?.[idx]?.vu22_section}>
-                  <FormLabel>Bo'lim</FormLabel>
-                  <Input
-                    defaultValue={"yig'uv"}
-                    readOnly
-                    {...register(`qismlar.${idx}.vu22_section`, {
-                      required: "Bo'limni kiriting",
-                    })}
-                  />
-                </FormControl>
-
-                <Button
-                  colorScheme="red"
-                  onClick={() => remove(idx)}
-                  type="button"
-                >
-                  <FontAwesomeIcon icon={faTrashAlt} />
-                </Button>
-              </Flex>
+                  <Button
+                    marginTop={"auto"}
+                    colorScheme="red"
+                    onClick={() => remove(idx)}
+                    type="button"
+                  >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </Button>
+                </Flex>
+              </>
             ))}
 
             <Button

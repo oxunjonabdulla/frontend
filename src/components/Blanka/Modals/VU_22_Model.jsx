@@ -23,6 +23,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
 import { SearchTrain } from "../../../utils";
+
 export const VU_22_Model = ({ onClose, isOpen }) => {
   const [serachingResult, setSerachingResult] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -91,7 +92,7 @@ export const VU_22_Model = ({ onClose, isOpen }) => {
                 <FormLabel> Yuk ko'tara olishi</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("carrying_capacity", { required: true })}
+                  {...register("carrying_capacity")}
                   type="number"
                 />
               </FormControl>
@@ -102,7 +103,7 @@ export const VU_22_Model = ({ onClose, isOpen }) => {
                 </FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("cladding_material", { required: true })}
+                  {...register("cladding_material")}
                   type="text"
                 />
               </FormControl>
@@ -113,7 +114,7 @@ export const VU_22_Model = ({ onClose, isOpen }) => {
                 <FormLabel>Oxirgi rejali ta'mir joyi</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("place_last_repair", { required: true })}
+                  {...register("place_last_repair")}
                   type="text"
                 />
               </FormControl>
@@ -122,7 +123,7 @@ export const VU_22_Model = ({ onClose, isOpen }) => {
                 <FormLabel> Oxirgi rejali ta'mir sanasi</FormLabel>
                 <Input
                   borderColor={"gray.600"}
-                  {...register("date_last_repair", { required: true })}
+                  {...register("date_last_repair")}
                   type="date"
                 />
               </FormControl>
@@ -133,7 +134,7 @@ export const VU_22_Model = ({ onClose, isOpen }) => {
                 <FormLabel> Ta'mirga olingan sanasi </FormLabel>
                 <Input
                   type="date"
-                  {...register("date_of_repair", { required: true })}
+                  {...register("date_of_repair")}
                   borderColor={"gray.600"}
                 />
               </FormControl>
@@ -183,7 +184,7 @@ export const VU_22_Model = ({ onClose, isOpen }) => {
                 <FormLabel> Ta'mirga tugashi sanasi </FormLabel>
                 <Input
                   type="date"
-                  {...register("repair_completion_date", { required: true })}
+                  {...register("repair_completion_date")}
                   borderColor={"gray.600"}
                 />
               </FormControl>
