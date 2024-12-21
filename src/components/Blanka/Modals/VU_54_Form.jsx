@@ -3,7 +3,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo } from "react";
 
-export const VU_50_Form = memo(function VU_50_Form({
+export const VU_54_Form = memo(function VU_54_Form({
     register,
     remove,
     idx,
@@ -13,7 +13,7 @@ export const VU_50_Form = memo(function VU_50_Form({
     return (
         <>
             <hr />
-            <div style={{ textAlign: "center", fontSize: "20px" }}>{idx + 1}</div>
+            <div style={{ textAlign: "center", fontSize: "20px" }}>{idx + 1}‚</div>
             <Flex gap={3} flexWrap={["wrap", "nowrap"]} align={"center"} my={4}>
                 <FormControl isInvalid={errors?.wheel_pair_number}>
                     <FormLabel whiteSpace={["wrap", "nowrap"]}>
@@ -545,6 +545,16 @@ export const VU_50_Form = memo(function VU_50_Form({
                         borderColor={"gray.600"}
                         {...register(`${idx}.is_energy_uq`)}
                         type="text"
+                    />
+                </FormControl>
+                <FormControl isInvalid={errors?.date}>
+                    <FormLabel whiteSpace={["wrap", "nowrap"]}>
+                        дата
+                    </FormLabel>
+                    <Input
+                        borderColor={"gray.600"}
+                        {...register(`${idx}.date`)}
+                        type="date"
                     />
                 </FormControl>
                 <Button type="button" marginTop={"30px"} colorScheme="red" onClick={() => remove(idx)}>

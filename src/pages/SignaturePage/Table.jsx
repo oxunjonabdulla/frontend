@@ -151,7 +151,7 @@ export const SignatureTable = () => {
 
                     <Td>
                       <Tag size={"lg"} variant="solid" colorScheme="teal">
-                        {item?.log_type}
+                        {item?.log_type == 'collectact' && 'Yig\'uv kirish-chiqish dalaolatnomasi'}
                       </Tag>
                     </Td>
                     <Td fontWeight={700} color={"teal.500"}>

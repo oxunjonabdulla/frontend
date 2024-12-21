@@ -147,6 +147,7 @@ export const VU_54 = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={idx}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
+                    <Td>{item?.date}</Td>
                     {vu_54_keys.map((item2, idx) => (
                       <Td key={idx}>{item?.vu54_fields[0][item2]}</Td>
                     ))}

@@ -1,9 +1,5 @@
 import {
   Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,15 +8,15 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
-import { VU_50_Form } from "./VU_54_Form";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { VU_54_Form } from "./VU_54_Form";
 
 export const VU_54_Model = ({ onClose, isOpen }) => {
   const [isLoading, setLoading] = useState(false);
@@ -39,7 +35,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const { response, error } = await new UserApi().postVu54({vu54_fields: data});
+    const { response, error } = await new UserApi().postVu54({ vu54_fields: data });
     setLoading(false);
     if (response) {
       toast({
@@ -89,7 +85,7 @@ export const VU_54_Model = ({ onClose, isOpen }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
             {fields.map((group, idx) => (
-              <VU_50_Form
+              <VU_54_Form
                 key={group.id}
                 {...{
                   group,
