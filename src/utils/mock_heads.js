@@ -1941,5 +1941,6 @@ export const signature_head = [
   { label: "Xodim roli" },
   { label: "Xodim logini" },
   { label: "Jurnal imzo jo'natilgan vaqti" },
-  { label: "Yuklash " },
+  { label: "Imzolash" },
+  { label: "Ko'rish" },
 ];

@@ -6,6 +6,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  IconButton,
   Input,
   Popover,
   PopoverArrow,
@@ -24,6 +25,7 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -31,6 +33,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
+  faEye,
   faSignature,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -40,6 +43,7 @@ import { timeMoment } from "../../utils/roleTest";
 import { signature_head } from "../../utils/mock_heads";
 import { TrainLoader } from "../../components";
 import { useDebounce } from "../../hooks/useDebounce";
+import { SignatureShow } from "./SignatureShow";
 
 export const SignatureTable = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -48,13 +52,23 @@ export const SignatureTable = () => {
   const [openPopoverIndex, setOpenPopoverIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState(null);
-
+  const [showAllJurnal, setShowAllJurnal] = useState(null);
   const [searchValue, setSearchValue] = useState(null);
   const carriageSerach = useDebounce(searchValue);
   const toast = useToast();
+  const {
+    isOpen: isOpenShowJurnal,
+    onClose: onCloseShowJurnal,
+    onOpen: onOpenShowJurnal,
+  } = useDisclosure();
+  
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+  const handleShowJurnal = (data) => {
+    onOpenShowJurnal();
+    setShowAllJurnal(data);
   };
   const fetchData = async (page) => {
     setIsLoading(true);
@@ -151,7 +165,7 @@ export const SignatureTable = () => {
 
                     <Td>
                       <Tag size={"lg"} variant="solid" colorScheme="teal">
-                        {item?.log_type == 'collectact' && 'Yig\'uv kirish-chiqish dalaolatnomasi'}
+                        {item?.log_type == 'collectact' ? 'Yig\'uv kirish dalaolatnomasi' : item?.log_type}
                       </Tag>
                     </Td>
                     <Td fontWeight={700} color={"teal.500"}>
@@ -215,6 +229,15 @@ export const SignatureTable = () => {
                         </Popover>
                       </Flex>
                     </Td>
+                    <Td>
+                      <Flex justify={"center"} gap={2} m={0}>
+                        <IconButton
+                          colorScheme="whatsapp"
+                          onClick={() => handleShowJurnal(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
+                        />
+                      </Flex>
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -234,7 +257,7 @@ export const SignatureTable = () => {
                 textAlign={"center"}
                 fontSize={"2xl"}
               >
-                Imzolar topilmadi{" "}
+                Imzolar topilmadi
               </Text>
             </Flex>
           )
@@ -262,6 +285,11 @@ export const SignatureTable = () => {
           nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
         />
       )}
+      <SignatureShow
+        isOpen={isOpenShowJurnal}
+        onClose={onCloseShowJurnal}
+        data={showAllJurnal}
+      />
     </>
   );
 };

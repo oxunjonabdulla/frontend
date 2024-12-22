@@ -1466,6 +1466,14 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async getVu32(vagonNumber) {
+    try {
+      const response = await privateInstance.get(authEndpoints.vu32Id(vagonNumber));
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async postVu32(id, obj) {
     try {
       const response = await privateInstance.post(
