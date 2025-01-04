@@ -37,7 +37,6 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { Pagination } from "../pagination/Pagination";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { Update_Dalolatnoma } from "./Modals/Dalolatnoma/UpdateDalolatnoma";
-import { ImageSignature } from "../ImageSignature";
 import { Dalolatnoma_show } from "../../pages/AssemblyPage/Dalolatnoma_show";
 import { IsImzo } from "../IsImzo";
 

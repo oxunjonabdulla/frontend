@@ -38,8 +38,14 @@ export const VU_22_Model = ({ onClose, isOpen }) => {
     setLoading(true);
 
     const { response, error } = await new UserApi().postVu22(serachingResult, {
-      carriage_master_signature: "kimdur",
       ...data,
+      collect_workshop_master_signature: null,
+      receiving_master_user_signature: null,
+      collect_data: null,
+      avtobirikma_data: null,
+      aravalar_data: null,
+      avtotomoz_data: null,
+      wheel_data: null,
     });
     setLoading(false);
     if (response) {

@@ -38,6 +38,7 @@ class UserApi extends React.Component {
   // Vu22
 
   async postVu22(id, obj) {
+    for (const key in obj) if (!obj[key]) obj[key] = null;
     try {
       const response = await privateInstance.post(
         authEndpoints.vu22WithId(id),
@@ -1507,6 +1508,7 @@ class UserApi extends React.Component {
     }
   }
   async postSignsSignature(signatureSigns) {
+    
     try {
       const response = await privateInstance.patch(
         authEndpoints.signatureSigns(signatureSigns)

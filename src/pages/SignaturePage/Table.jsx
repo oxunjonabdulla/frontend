@@ -150,8 +150,7 @@ export const SignatureTable = () => {
                       textAlign={"center"}
                       key={item.label}
                       rowSpan={item.rowspan}
-                      colSpan={item.colspan}
-                    >
+                      colSpan={item.colspan}>
                       {item.label}
                     </Th>
                   ))}
