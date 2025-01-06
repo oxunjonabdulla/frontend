@@ -311,7 +311,7 @@ export const VU_32 = () => {
                     <Td rowSpan={8}>{e?.balka_made_year}</Td>
                     <Td rowSpan={8}>{e?.balka_pyatnik}</Td>
                     <Td rowSpan={8}>
-                      <IsImzo isImzo={e?.defestoskop_signature_user} />
+                      <IsImzo isImzo={e?.defestoskop_signature_user_signature} />
                     </Td>
                     <Td rowSpan={8}>
                       <IsImzo isImzo={e?.signature_image_url} />

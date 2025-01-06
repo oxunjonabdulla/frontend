@@ -220,9 +220,9 @@ export const VU_22 = () => {
                     <Td>
                       <Tooltip
                         placement="auto-start"
-                        colorScheme={item.wheel_data.length ? "green" : "red"}
+                        colorScheme={item.wheel_data?.length ? "green" : "red"}
                         label={
-                          !item.wheel_data.length
+                          !item.wheel_data?.length
                             ? "To'ldirilmagan"
                             : "To'ldirilgan"
                         }
@@ -232,11 +232,11 @@ export const VU_22 = () => {
                           variant="solid"
                           borderRadius={"10px"}
                           padding={"10px"}
-                          colorScheme={item.wheel_data.length ? "green" : "red"}
+                          colorScheme={item.wheel_data?.length ? "green" : "red"}
                         >
                           <FontAwesomeIcon
                             style={{ margin: "0 5px" }}
-                            icon={item.wheel_data.length ? faCheck : faX}
+                            icon={item.wheel_data?.length ? faCheck : faX}
                           />
                           G'ildirak bo'limi
                         </Badge>
@@ -246,7 +246,7 @@ export const VU_22 = () => {
                       <IsImzo isImzo={item?.author_info?.user_signature_url} />
                     </Td>
                     <Td>
-                      {!item.wheel_data.length ? (
+                      {!item.wheel_data?.length ? (
                         <Box
                           colorScheme="teal"
                           fontSize={"13px"}

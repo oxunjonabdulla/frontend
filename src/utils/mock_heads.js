@@ -746,7 +746,7 @@ export const vu_50_show_head = [
 ];
 export const vu_54 = [
   { label: "T/R" },
-  { label: "Date" },
+  { label: "Sana" },
   { label: "Ғилдирак жуфтлиги тури" },
   { label: "Хаммаси (3-графа = 4- ва 10-гача бўлган графалар йиғиндиси)" },
   { label: "Завод ва ВКМ дан олинган янги" },

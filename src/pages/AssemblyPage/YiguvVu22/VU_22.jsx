@@ -217,9 +217,9 @@ export const VU_22 = () => {
                     <Td>
                       <Tooltip
                         placement="auto-start"
-                        colorScheme={item.collect_data.length ? "green" : "red"}
+                        colorScheme={item.collect_data?.length ? "green" : "red"}
                         label={
-                          !item.collect_data.length
+                          !item.collect_data?.length
                             ? "To'ldirilmagan"
                             : "To'ldirilgan"
                         }
@@ -230,12 +230,12 @@ export const VU_22 = () => {
                           borderRadius={"10px"}
                           padding={"10px"}
                           colorScheme={
-                            item.collect_data.length ? "green" : "red"
+                            item.collect_data?.length ? "green" : "red"
                           }
                         >
                           <FontAwesomeIcon
                             style={{ margin: "0 5px" }}
-                            icon={item.collect_data.length ? faCheck : faX}
+                            icon={item.collect_data?.length ? faCheck : faX}
                           />
                           Yig'uv bo'limi
                         </Badge>
@@ -248,7 +248,7 @@ export const VU_22 = () => {
                       />
                     </Td>
                     <Td>
-                      {!item.collect_data.length ? (
+                      {!item.collect_data?.length ? (
                         <Box
                           colorScheme="teal"
                           fontSize={"13px"}

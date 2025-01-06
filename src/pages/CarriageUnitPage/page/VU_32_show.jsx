@@ -176,7 +176,7 @@ export const VU_32_Show = ({ isOpen, onClose, data }) => {
                                 <Td rowSpan={8}>{data?.balka_pyatnik}</Td>
                                 <Td rowSpan={8}>
                                     <ImageSignature
-                                        signatureImage={data?.defestoskop_signature_user}
+                                        signatureImage={data?.defestoskop_signature_user_signature}
                                     />
                                 </Td>
                                 <Td rowSpan={8}>
