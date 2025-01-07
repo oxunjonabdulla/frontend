@@ -73,7 +73,10 @@ export const VU_22_Brakes = () => {
 
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu22(page);
+    const paramsPage = {
+      page: page + 1,
+    };
+    const { response } = await new UserApi().getVu22(paramsPage);
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
@@ -220,10 +223,10 @@ export const VU_22_Brakes = () => {
                       <Tooltip
                         placement="auto-start"
                         colorScheme={
-                          item.avtotomoz_data.length ? "green" : "red"
+                          item?.avtotomoz_data?.length ? "green" : "red"
                         }
                         label={
-                          !item.avtotomoz_data.length
+                          !item?.avtotomoz_data?.length
                             ? "To'ldirilmagan"
                             : "To'ldirilgan"
                         }
@@ -234,12 +237,12 @@ export const VU_22_Brakes = () => {
                           borderRadius={"10px"}
                           padding={"10px"}
                           colorScheme={
-                            item.avtotomoz_data.length ? "green" : "red"
+                            item?.avtotomoz_data?.length ? "green" : "red"
                           }
                         >
                           <FontAwesomeIcon
                             style={{ margin: "0 5px" }}
-                            icon={item.avtotomoz_data.length ? faCheck : faX}
+                            icon={item?.avtotomoz_data?.length ? faCheck : faX}
                           />
                           Avtotormoz bo'limi
                         </Badge>
@@ -249,7 +252,7 @@ export const VU_22_Brakes = () => {
                       <IsImzo isImzo={item?.author_info?.user_signature_url} />
                     </Td>
                     <Td>
-                      {!item.avtotomoz_data.length ? (
+                      {!item?.avtotomoz_data?.length ? (
                         <Box
                           colorScheme="teal"
                           fontSize={"13px"}
@@ -331,7 +334,7 @@ export const VU_22_Brakes = () => {
       )}
       <Pagination
         onPageChange={handlePageClick}
-        pageCount={Math.ceil(gettingData?.count / 10)}
+        pageCount={gettingData?.count}
       />
       <VU_22_Show
         isOpen={isOpenShowAll}
