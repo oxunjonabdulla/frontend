@@ -296,12 +296,10 @@ export const Dalolatnoma = () => {
         <SliderMock setIsLoading={setIsLoading} />
       )}
 
-      {gettingData?.results?.length ? (
         <Pagination
           pageCount={gettingData?.count}
           onPageChange={handlePageClick}
         />
-      ) : null}
 
       <Dalolatnoma_show 
         isOpen={isOpenShowAll}

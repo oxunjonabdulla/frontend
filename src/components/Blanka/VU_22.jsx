@@ -3,8 +3,11 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
   IconButton,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -44,6 +47,7 @@ import { Deleteted } from "../Deletete";
 import { IsImzo } from "../IsImzo";
 import { Pagination } from "../pagination/Pagination";
 import { VU_22_Model } from "./Modals/VU_22_Model";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const VU_22 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -52,8 +56,11 @@ export const VU_22 = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
   const [showModelData, setShowModelData] = useState([]);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [showAllData, setShowAllData] = useState(null);
+  const [searchValue, setSearchValue] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const carriageSerach = useDebounce(searchValue);
+
 
   const {
     isOpen: isOpenShowModel,
@@ -78,7 +85,11 @@ export const VU_22 = () => {
 
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu22(page);
+    const paramsPage = {
+      page: page + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+    const { response } = await new UserApi().getVu22(paramsPage);
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
@@ -97,7 +108,7 @@ export const VU_22 = () => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage]);
+  }, [currentPage, carriageSerach]);
 
   const handleOpenEye = (data) => {
     setShowModelData(data);
@@ -114,10 +125,9 @@ export const VU_22 = () => {
       position={"relative"}
       p={4}
     >
-      <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
+      <Heading as={"h3"} size={"lg"} mb={0} textAlign={"center"}>
         VU-22 Shakl
       </Heading>
-
       <Modal isOpen={isOpenShowModel} onClose={onCloseShowModel} size="6xl">
         <ModalOverlay />
         <ModalContent>
@@ -213,7 +223,18 @@ export const VU_22 = () => {
 
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
-          <TableContainer p={4} border={"1px solid #eeeee"} rounded="md">
+          <TableContainer p={4} pt={0} border={"1px solid #eeeee"} rounded="md">
+            <Box my={3} mt={0}>
+              <FormControl w={"250px"}>
+                <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+                <Input
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder="Vagon Raqami Yozing"
+                  borderColor={"gray.600"}
+                  type="text"
+                />
+              </FormControl>
+            </Box>
             <Table
               borderRadius={10}
               size={"sm"}
@@ -389,7 +410,7 @@ export const VU_22 = () => {
       />
       <Pagination
         onPageChange={handlePageClick}
-        pageCount={Math.ceil(gettingData?.count / 10)}
+        pageCount={gettingData?.count}
       />
       <Deleteted
         isOpen={delateModal}
