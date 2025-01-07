@@ -78,7 +78,11 @@ export const VU_22 = () => {
 
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu22(page);
+    const paramsPage = {
+      page: page + 1,
+      // ...(carriageSerach && { search: carriageSerach }),
+    };
+    const { response } = await new UserApi().getVu22(paramsPage);
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
@@ -330,7 +334,7 @@ export const VU_22 = () => {
       )}
       <Pagination
         onPageChange={handlePageClick}
-        pageCount={Math.ceil(gettingData?.count / 10)}
+        pageCount={gettingData?.count}
       />
       <VU_22_Show
         isOpen={isOpenShowAll}
