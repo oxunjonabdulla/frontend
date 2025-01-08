@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 export const DefecTopUser = ({ children }) => {
   const { user } = useSelector(({ userMe }) => userMe);
   if (user === null) return;
-  if (user?.role === "defestoskopuser" || user?.role === "Superuser") 
-    return children;
+  if (user?.role === "defestoskopuser" || user?.role === "Superuser") return children;
   else return <ErrorSend />;
 };
 DefecTopUser.propTypes = {

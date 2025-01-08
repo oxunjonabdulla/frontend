@@ -4,12 +4,9 @@ import PropTypes from "prop-types";
 
 export const AutoUnitUser = ({ children }) => {
   const { user } = useSelector(({ userMe }) => userMe);
-  if (user === null) {
-    return;
-  }
-  if (user?.role === "avtoconnectoruser" || user?.role === "Superuser") {
-    return children;
-  } else return <ErrorSend />;
+  if (user === null) return;
+  if (user?.role === "avtoconnectoruser" || user?.role === "Superuser") return children;
+  else return <ErrorSend />;
 };
 AutoUnitUser.propTypes = {
   children: PropTypes.element,

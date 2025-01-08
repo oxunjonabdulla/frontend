@@ -24,7 +24,7 @@ import {
   CarriageDalolatnoma,
   CarriageUnit,
   DailyRepairs,
-  Defectoscopes,
+  DefectoscopeUnit,
   EntrExit,
   EquipmentUnit,
   Fraza,
@@ -62,8 +62,7 @@ import {
   VU_47,
   VU_47_Create,
   Wheel,
-  WheelPairsPage,
-  DefectoscopeUnit
+  WheelPairsPage
 } from "../pages";
 import { ProtectedRoute } from "../utils/PrivateComponent";
 import { RouteNames } from "./consts";
@@ -323,7 +322,6 @@ export const routes = [
           },
         ],
       },
-      // TODO start
       {
         element: (
           <ProtectedRoute
@@ -345,21 +343,6 @@ export const routes = [
           },
         ],
       },
-      // TODO end
-      // {
-      //   element: (
-      //     <ProtectedRoute
-      //       element={
-      //         <DefecTopUser>
-      //           <Defectoscopes />
-      //         </DefecTopUser>
-      //       }
-      //       redirectPath={RouteNames.LOGIN}
-      //     />
-      //   ),
-      //   path: RouteNames.DEFECTOSCOPES,
-      // },
-      // TODO --- top
       {
         element: (
           <ProtectedRoute

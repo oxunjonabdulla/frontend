@@ -23,6 +23,9 @@ import {
   Tooltip,
   Tr,
   useDisclosure,
+  FormControl,
+  FormLabel,
+  Input,
 } from "@chakra-ui/react";
 import {
   faBook,
@@ -43,6 +46,7 @@ import { timeClear } from "../../../utils/timeClear";
 import { imageGet } from "../../../utils/imageGet";
 import { Deleteted, Pagination } from "../../../components";
 import { VU_22_Show } from "../VU_22/VU_22_Show";
+import { useDebounce } from "../../../hooks/useDebounce";
 
 export const VU_22 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -52,8 +56,12 @@ export const VU_22 = () => {
   const [gettingData, setGettingData] = useState([]);
   const [delateModal, setDelateModal] = useState(false);
   const [showModel, setShowModel] = useState([]);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [showAllData, setShowAllData] = useState(null);
+  const [searchValue, setSearchValue] = useState(null);
+  
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const carriageSerach = useDebounce(searchValue);
+
 
   const {
     isOpen: isOpenShowModel,
@@ -80,7 +88,7 @@ export const VU_22 = () => {
     setIsLoading(true);
     const paramsPage = {
       page: page + 1,
-      // ...(carriageSerach && { search: carriageSerach }),
+      ...(carriageSerach && { search: carriageSerach }),
     };
     const { response } = await new UserApi().getVu22(paramsPage);
     if (response) {
@@ -101,7 +109,7 @@ export const VU_22 = () => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage]);
+  }, [currentPage, carriageSerach]);
 
   const handleOpenEye = (data) => {
     setShowModel(data.collect_data || []);
@@ -173,6 +181,17 @@ export const VU_22 = () => {
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
+            <Box my={3} mt={0}>
+              <FormControl w={"250px"}>
+                <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+                <Input
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder="Vagon Raqami Yozing"
+                  borderColor={"gray.600"}
+                  type="text"
+                />
+              </FormControl>
+            </Box>
             <Table
               borderRadius={10}
               size={"sm"}

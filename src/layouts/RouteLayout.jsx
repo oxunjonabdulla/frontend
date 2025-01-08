@@ -58,9 +58,7 @@ export default function RouteLayout() {
     };
     const fetchDailData = async () => {
       const { response } = await new UserApi().getDailyToday();
-      if (response) {
-        dispatch(setDaily(response?.data));
-      }
+      if (response) dispatch(setDaily(response?.data));
     };
 
     if (accessToken || refreshToken) {
