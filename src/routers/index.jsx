@@ -49,6 +49,7 @@ import {
   SignaturePage,
   StatistikaArchive,
   StatistikaPage,
+  VU23,
   VU_10,
   VU_22_Arava,
   VU_22_Brakes,
@@ -181,6 +182,23 @@ export const routes = [
         children: [
           { element: <AssemblyPage />, index: true },
           { element: <AssemblyPageUnitId />, path: ":id" },
+        ],
+      },
+      {
+        element: (
+          <ProtectedRoute
+            element={
+              <CollectUser>
+                <AssemblyLayout />
+              </CollectUser>
+            }
+            redirectPath={RouteNames.LOGIN}
+          />
+        ),
+
+        path: RouteNames.VU_31_COLLECTOR,
+        children: [
+          { element: <VU23 />, index: true },
         ],
       },
       {

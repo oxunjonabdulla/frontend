@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { home } from "@/assets";
 import { routersSidebar } from "@/utils/mock_heads";
-import { signatur } from "../../../assets";
+import { Aravalar, signatur } from "../../../assets";
 import UserApi from "../../../Service/module/userModule.api";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -35,6 +35,15 @@ const signature_page = {
   type: "signature",
   icon: signatur,
 };
+
+const collectoruser_page = {
+  isWork: true,
+  label: "Vu 31",
+  path: "/collector-vu-31",
+  type: "link",
+  icon: Aravalar,
+  role: "collectoruser",
+}
 export const Navigation = ({ collapse, setMocileCollapse }) => {
   const [data, setData] = useState(null);
   const fetchData = async () => {
@@ -91,6 +100,57 @@ export const Navigation = ({ collapse, setMocileCollapse }) => {
                 </Box>
 
                 {collapse && <Text>{signature_page.label}</Text>}
+                {data?.count > 0 && (
+                  <Badge
+                    variant="outline"
+                    rounded={"2xl"}
+                    colorScheme="blue"
+                    p={2}
+                  >
+                    {data?.count}
+                  </Badge>
+                )}
+              </LinkChakra>
+            </Tooltip>
+          </Box>
+        </ListItem>
+      )}
+      {user?.role === "collectoruser" && (
+        <ListItem onClick={() => setMocileCollapse(false)}>
+          <Box
+            display="flex"
+            alignItems="center"
+            my={6}
+            justifyContent="center"
+          >
+            <Tooltip
+              isDisabled={collapse}
+              label={collectoruser_page.label}
+              placement="right"
+            >
+              <LinkChakra
+                to={collectoruser_page.path}
+                as={Link}
+                gap={3}
+                display="flex"
+                alignItems="center"
+                _hover={{ textDecoration: "none", color: "black" }}
+                fontWeight="medium"
+                color={collectoruser_page.path === pathname ? "black" : "gray.400"}
+                w="full"
+                justifyContent={!collapse ? "center" : ""}
+              >
+                <Box
+                  w={"10%"}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  as="div"
+                >
+                  <Image src={collectoruser_page.icon} width={"25px"} />
+                </Box>
+
+                {collapse && <Text>{collectoruser_page.label}</Text>}
                 {data?.count > 0 && (
                   <Badge
                     variant="outline"

@@ -8,19 +8,12 @@ export const PtoUnit = () => {
 
   const deleateCarriage = async (id) => {
     const { response } = await new UserApi().deleteCarriage(id);
-
-    if (response) {
-      window.location.reload();
-    }
+    if (response) window.location.reload();
   };
 
   const renderComponent = () => {
-    switch (activeComponent) {
-      case "Component1":
-        return <PtoOperator />;
-      default:
-        return <PtoArxiv deleateCarriage={deleateCarriage} />;
-    }
+    if (activeComponent === "Component1") return <PtoOperator />;
+    return <PtoArxiv deleateCarriage={deleateCarriage} />;
   };
 
   return (
@@ -52,7 +45,6 @@ export const PtoUnit = () => {
             VU-23 qo&apos;shish
           </Button>
         </Flex>
-
         {renderComponent()}
       </Box>
     </Container>

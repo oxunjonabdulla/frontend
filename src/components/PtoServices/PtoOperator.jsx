@@ -87,15 +87,12 @@ export const PtoOperator = () => {
         );
       case 1:
         return <PtoCompleks setActiveStep={setActiveStep} />;
-
       default:
         return null;
     }
   };
   useEffect(() => {
-    if (localStorage.getItem("carriage_number")) {
-      setActiveStep(1);
-    }
+    if (localStorage.getItem("carriage_number")) setActiveStep(1);
   }, [setActiveStep]);
   return (
     <Container maxW={"container.xl"}>

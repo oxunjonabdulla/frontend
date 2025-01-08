@@ -47,6 +47,7 @@ export * from "./Defectoscopes/AutomaticConnectionPage/AutoConnection";
 export * from "./Defectoscopes/CarriagesPage/Carriage";
 export * from "./Defectoscopes/WheelPage/Whell";
 export * from "./Defectoscopes/DefectoscopeUnit";
+export * from "./CollectorUser/vu23/Vu23";
 import NotFoundPage from "./NotFoundPage";
 
 export { NotFoundPage };

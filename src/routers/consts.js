@@ -9,6 +9,7 @@ export const RouteNames = {
   FRAZA: "/statistics/fraza",
   VU_36_CURRENT: "/current-repair/vu-36",
   VU_31_CURRENT: "/current-repair/vu-31",
+  VU_31_COLLECTOR: "/collector-vu-31",
   SIGNATURE: "/signatures-list",
   REPORT: "/report",
   STATISTIKAARCHIVE: "/statistics/archive",
