@@ -6,7 +6,6 @@ import {
   FormLabel,
   Heading,
   IconButton,
-  Image,
   Input,
   Table,
   TableContainer,
@@ -18,7 +17,7 @@ import {
   Tooltip,
   Tr,
   useDisclosure,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
 import {
   faBook,
@@ -29,17 +28,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Fragment, useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
-import { Fraza_wheel_model } from "./FrazaWheel/Fraza_wheel_model";
-import { mockHeaderFraza } from "../../utils/mock_heads";
-import UserApi from "../../Service/module/userModule.api";
 import ReactPaginate from "react-paginate";
-import { Deleteted } from "../Deletete";
-import { imageGet } from "../../utils/imageGet";
 import { useDebounce } from "../../hooks/useDebounce";
+import UserApi from "../../Service/module/userModule.api";
+import { SliderMock } from "../../utils";
+import { mockHeaderFraza } from "../../utils/mock_heads";
 import { timeMoment } from "../../utils/roleTest";
-import { Fraza_show } from "./Fraza_show";
+import { Deleteted } from "../Deletete";
 import { IsImzo } from "../IsImzo";
+import { Fraza_show } from "./Fraza_show";
+import { Fraza_wheel_model } from "./FrazaWheel/Fraza_wheel_model";
 
 export const Fraza_wheel = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -47,8 +45,6 @@ export const Fraza_wheel = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const [searchValue, setSearchValue] = useState(null);
-  // const [updatedData, setUpdateData] = useState(null);
-  // const [updateOpen, setUpdateOpen] = useState(false);
   const [delateModal, setDelateModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showAllData, setShowAllData] = useState(null);

@@ -220,21 +220,20 @@ export const VU_22 = () => {
           +
         </Button>
       </Tooltip>
-
+      <Box my={3} mt={0}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} pt={0} border={"1px solid #eeeee"} rounded="md">
-            <Box my={3} mt={0}>
-              <FormControl w={"250px"}>
-                <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
-                <Input
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  placeholder="Vagon Raqami Yozing"
-                  borderColor={"gray.600"}
-                  type="text"
-                />
-              </FormControl>
-            </Box>
             <Table
               borderRadius={10}
               size={"sm"}

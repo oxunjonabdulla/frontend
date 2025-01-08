@@ -128,7 +128,17 @@ export const VU_22 = () => {
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
         Yig'uv bo'limida yaratilgan VU-22 Shakli Yig'uv qo'shish bo'limi
       </Heading>
-
+      <Box my={3} mt={0}>
+        <FormControl w={"250px"}>
+          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       <Modal isOpen={isOpenShowModel} onClose={onCloseShowModel} size="2xl">
         <ModalOverlay />
         <ModalContent>
@@ -181,17 +191,6 @@ export const VU_22 = () => {
       {!isLoadingFulStatistik ? (
         gettingData?.results?.length ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>
-            <Box my={3} mt={0}>
-              <FormControl w={"250px"}>
-                <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
-                <Input
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  placeholder="Vagon Raqami Yozing"
-                  borderColor={"gray.600"}
-                  type="text"
-                />
-              </FormControl>
-            </Box>
             <Table
               borderRadius={10}
               size={"sm"}
