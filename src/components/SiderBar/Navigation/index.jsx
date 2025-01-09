@@ -38,12 +38,13 @@ const signature_page = {
 
 const collectoruser_page = {
   isWork: true,
-  label: "Vu 31",
-  path: "/collector-vu-31",
+  label: "Vu 23",
+  path: "/collector-vu-23",
   type: "link",
   icon: Aravalar,
   role: "collectoruser",
-}
+};
+
 export const Navigation = ({ collapse, setMocileCollapse }) => {
   const [data, setData] = useState(null);
   const fetchData = async () => {
