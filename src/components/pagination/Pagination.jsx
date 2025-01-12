@@ -6,7 +6,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Pagination = ({ pageCount, onPageChange }) => {
+export const Pagination = ({ pageCount = 0, onPageChange }) => {
   return (
     <ReactPaginate
       pageCount={Math.ceil(pageCount / 10)}

@@ -23,8 +23,6 @@ import { timeMoment } from "../../../utils/roleTest";
 export const AccaptedTable = ({ data, isOpen, onClose }) => {
   const { vu51_rasxod } = data;
 
-  console.log(vu51_rasxod);
-
   return (
     <Modal
       isOpen={isOpen}

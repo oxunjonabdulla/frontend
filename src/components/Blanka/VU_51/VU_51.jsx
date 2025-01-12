@@ -2,7 +2,10 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
+  Input,
   TableContainer,
   Text,
   Tooltip,
@@ -17,13 +20,16 @@ import UserApi from "../../../Service/module/userModule.api";
 
 import { InviteTable } from "./Invite";
 import { Pagination } from "../../pagination/Pagination";
+import { useDebounce } from "../../../hooks/useDebounce";
 
 export const VU_51 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const carriageSerach = useDebounce(searchValue);
 
   const handlePageClick = data => {
     const selectedPage = data.selected;
@@ -31,7 +37,12 @@ export const VU_51 = () => {
   };
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu51All(page);
+    
+    const paramsPage = {
+      page: page + 1,
+      ...(carriageSerach && { search: carriageSerach }),
+    };
+    const { response } = await new UserApi().getVu51All(paramsPage);
 
     if (response) {
       setIsLoading(false);
@@ -41,7 +52,7 @@ export const VU_51 = () => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage]);
+  }, [currentPage, carriageSerach]);
 
   return (
     <Box
@@ -74,6 +85,17 @@ export const VU_51 = () => {
           +
         </Button>
       </Tooltip>
+      <Box my={3} mt={0}>
+        <FormControl w={"250px"}>
+          <FormLabel>G&#39;ildirak juftligi chiqarib olingan vagon raqami</FormLabel>
+          <Input
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Vagon Raqami Yozing"
+            borderColor={"gray.600"}
+            type="text"
+          />
+        </FormControl>
+      </Box>
       {!isLoadingFulStatistik ? (
         gettingData?.count > 0 ? (
           <TableContainer p={4} border={"1px solid #eeeee"}>

@@ -9,13 +9,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { Oldi } from "./Oldi";
 import { useState } from "react";
 import { OldiUpdate } from "./OldiUpdate";
 import { OrqaUpdate } from "./OrqaUpdate";
 
 export const Update_Dalolatnoma = ({ onClose, isOpen, updateData }) => {
   const [activeComponent, setActiveComponent] = useState("Component1");
+
   const renderComponent = () => {
     switch (activeComponent) {
       case "Component1":

@@ -105,16 +105,16 @@ const authEndpoints = {
   // vu 50
   vu50: `/vu50/list/`,
   vu50Delate: (carriageID) => `/vu50/detail/${carriageID}/`,
-  vu50All: (page) => `/vu50/list/?page=${page + 1}`,
+  vu50All: (page) => `/vu50/list/?page=${page}`,
 
   // vu 51
   vu51Delate: (carriageID) => `/vu51_m/${carriageID}/`,
   postAcceptedVu51: (carriageID) => `/vu51_rasxod/create/${carriageID}/`,
   createVu51: `/vu51_prihod/create/`,
-  vu51All: (page) => `/vu51_m/?page=${page + 1}`,
+  vu51All: `/vu51_m/`,
   // vu 53
   // vu 53 prihod
-  getVu53All: (page) => `/vu53/?page=${page + 1}`,
+  getVu53All: (page) => `/vu53/?page=${page}`,
   vu53IDPrihod: (id) => `/vu53/${id}/`,
   vu53Id: (id) => `/vu53/${id}/`,
   postVu53Prihod: `/vu53_prihod/create/`,
@@ -157,6 +157,7 @@ const authEndpoints = {
 
   vu22WithId: (id) => `/vu22/texnik_xizmat/${id}/`,
   vu22get: `/vu22/texnik_xizmat/`,
+  vu22WidthYiguv: (id) => `/vu22/yiguv/${id}`,
 
   //Auto connect
   autoConnect: "/defestoskop/avtobirikma/",

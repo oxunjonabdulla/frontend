@@ -5,14 +5,13 @@ import {
   Flex,
   Heading,
   IconButton,
-  Image,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
   ModalBody,
+  ModalCloseButton,
+  ModalContent,
   ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Table,
   TableContainer,
   Tbody,
@@ -22,7 +21,7 @@ import {
   Thead,
   Tooltip,
   Tr,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 import {
   faBook,
@@ -35,14 +34,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-import { reverseDateFormat, SliderMock } from "../../../../utils";
-import { vu_22_assabmle } from "../../../../utils/mock_heads";
 import UserApi from "../../../../Service/module/userModule.api";
 import { Deleteted, IsImzo, Pagination } from "../../../../components";
+import { reverseDateFormat, SliderMock } from "../../../../utils";
+import { vu_22_assabmle } from "../../../../utils/mock_heads";
 import { timeClear } from "../../../../utils/timeClear";
-import { imageGet } from "../../../../utils/imageGet";
-import { VU_22_Model } from "./VU_22_Modal";
 import { VU_22_Show } from "../../../AssemblyPage/VU_22/VU_22_Show";
+import { VU_22_Model } from "./VU_22_Modal";
 
 export const VU_22_Arava = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -336,7 +334,7 @@ export const VU_22_Arava = () => {
         onPageChange={handlePageClick}
         pageCount={gettingData?.count}
       />
-      <VU_22_Show 
+      <VU_22_Show
         isOpen={isOpenShowAll}
         onClose={onCloseShowAll}
         data={showAllData}

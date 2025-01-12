@@ -49,18 +49,15 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
         isClosable: true,
         position: "top-right",
       });
-
       window.location.reload();
     }
-    if (error) {
-      toast({
+    if (error) toast({
         status: "error",
         title: "Xatolik yuz berdi.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
       });
-    }
   };
 
   return (

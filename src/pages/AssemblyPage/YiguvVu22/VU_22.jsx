@@ -31,6 +31,7 @@ import {
   faBook,
   faCheck,
   faDownload,
+  faEdit,
   faEye,
   faTrashAlt,
   faX,
@@ -47,6 +48,7 @@ import { imageGet } from "../../../utils/imageGet";
 import { Deleteted, Pagination } from "../../../components";
 import { VU_22_Show } from "../VU_22/VU_22_Show";
 import { useDebounce } from "../../../hooks/useDebounce";
+import { VU_22_Update } from "./VU_22_Update";
 
 export const VU_22 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -58,11 +60,17 @@ export const VU_22 = () => {
   const [showModel, setShowModel] = useState([]);
   const [showAllData, setShowAllData] = useState(null);
   const [searchValue, setSearchValue] = useState(null);
-  
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [updateData, setUpdateData] = useState(false);
+
   const carriageSerach = useDebounce(searchValue);
 
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenUpdate,
+    onOpen: onOpenUpdate,
+    onClose: onCloseUpdate
+  } = useDisclosure();
   const {
     isOpen: isOpenShowModel,
     onOpen: onOpenShowModel,
@@ -100,6 +108,11 @@ export const VU_22 = () => {
   const handleCheckAndDelete = (deletedID) => {
     setDelateModal(true);
     setGetinfTableData(deletedID);
+  };
+
+  const handleCheckAndUpdate = (data) => {
+    onOpenUpdate();
+    setUpdateData(data);
   };
 
   const handleDelate = async (carriageID) => {
@@ -310,6 +323,11 @@ export const VU_22 = () => {
                           icon={<FontAwesomeIcon icon={faDownload} />}
                         />
                         <IconButton
+                          colorScheme="green"
+                          onClick={() => handleCheckAndUpdate(item)}
+                          icon={<FontAwesomeIcon icon={faEdit} />}
+                        />
+                        <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.carriage)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
@@ -364,6 +382,11 @@ export const VU_22 = () => {
         onClose={() => setDelateModal(false)}
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
+      />
+      <VU_22_Update
+        isOpen={isOpenUpdate}
+        onClose={() => onCloseUpdate()}
+        data={updateData}
       />
       <VU_22_Model
         onClose={onClose}

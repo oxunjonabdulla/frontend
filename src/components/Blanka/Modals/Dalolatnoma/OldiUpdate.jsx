@@ -6,17 +6,14 @@ import {
   Input,
   ModalBody,
   ModalFooter,
-  Spinner,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SearchTrain } from "../../../../utils";
-import { useEffect, useState } from "react";
 import UserApi from "../../../../Service/module/userModule.api";
 
 export const OldiUpdate = ({ updateData }) => {
   const [isLoading, setLoading] = useState(false);
-  const [serachingResult, setSerachingResult] = useState(null);
 
   const toast = useToast();
 

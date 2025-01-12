@@ -53,7 +53,7 @@ class UserApi extends React.Component {
   async deleteVu22(id) {
     try {
       const response = await privateInstance.delete(
-        authEndpoints.vu22WithId(id)
+        authEndpoints.vu22WidthYiguv(id)
       );
 
       return { response };
@@ -481,7 +481,9 @@ class UserApi extends React.Component {
   // vu 51 model
   async getVu51All(page) {
     try {
-      const response = await privateInstance.get(authEndpoints.vu51All(page));
+      const response = await privateInstance.get(authEndpoints.vu51All, {
+        params: page,
+      });
 
       return { response };
     } catch (error) {
