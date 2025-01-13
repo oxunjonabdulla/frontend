@@ -17,23 +17,21 @@ import {
 } from "@chakra-ui/react";
 import {
   faBook,
-  faChevronLeft,
-  faChevronRight,
   faDownload,
   faEye,
-  faTrashAlt,
+  faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
-import { VU_50_Model } from "./Modals/VU_50_Model";
-import { vu_50 } from "../../utils/mock_heads";
 import UserApi from "../../Service/module/userModule.api";
-import ReactPaginate from "react-paginate";
-import { Deleteted } from "../Deletete";
-import Show_VU50_model from "./Modals/Show_VU50_model";
-import { ImageSignature } from "../ImageSignature";
+import { SliderMock } from "../../utils";
+import { vu_50 } from "../../utils/mock_heads";
 import { timeMoment } from "../../utils/roleTest";
+import { Deleteted } from "../Deletete";
+import { ImageSignature } from "../ImageSignature";
+import { Pagination } from "../pagination/Pagination";
+import Show_VU50_model from "./Modals/Show_VU50_model";
+import { VU_50_Model } from "./Modals/VU_50_Model";
 
 export const VU_50 = () => {
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -56,7 +54,10 @@ export const VU_50 = () => {
 
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu50(page);
+    const paramsPage = {
+      page: page + 1,
+    };
+    const { response } = await new UserApi().getVu50(paramsPage);
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
@@ -214,23 +215,9 @@ export const VU_50 = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-      <ReactPaginate
-        pageCount={Math.ceil(
-          (gettingData?.count ? gettingData?.count : 0) / 10
-        )}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={2}
+      <Pagination
+        pageCount={gettingData?.count}
         onPageChange={handlePageClick}
-        containerClassName="pagination"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        activeClassName="active"
-        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
       />
       <Deleteted
         isOpen={delateModal}

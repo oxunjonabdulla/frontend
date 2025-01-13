@@ -17,8 +17,6 @@ import { VU_53_Model } from "../Modals/VU_53_model/VU_53_Model";
 import { Pagination } from "../../pagination/Pagination";
 import UserApi from "../../../Service/module/userModule.api";
 
-const data = [0];
-
 export const VU_53 = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoadingFulStatistik, setIsLoading] = useState(true);
@@ -27,7 +25,10 @@ export const VU_53 = () => {
 
   const fetchData = async (page) => {
     setIsLoading(true);
-    const { response } = await new UserApi().getVu53All(page);
+    const paramsPage = {
+      page: page + 1,
+    };
+    const { response } = await new UserApi().getVu53All(paramsPage);
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);

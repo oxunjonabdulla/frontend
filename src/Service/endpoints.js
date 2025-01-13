@@ -105,7 +105,7 @@ const authEndpoints = {
   // vu 50
   vu50: `/vu50/list/`,
   vu50Delate: (carriageID) => `/vu50/detail/${carriageID}/`,
-  vu50All: (page) => `/vu50/list/?page=${page}`,
+  vu50All: `/vu50/list/`,
 
   // vu 51
   vu51Delate: (carriageID) => `/vu51_m/${carriageID}/`,
@@ -114,7 +114,7 @@ const authEndpoints = {
   vu51All: `/vu51_m/`,
   // vu 53
   // vu 53 prihod
-  getVu53All: (page) => `/vu53/?page=${page}`,
+  getVu53All: `/vu53/`,
   vu53IDPrihod: (id) => `/vu53/${id}/`,
   vu53Id: (id) => `/vu53/${id}/`,
   postVu53Prihod: `/vu53_prihod/create/`,

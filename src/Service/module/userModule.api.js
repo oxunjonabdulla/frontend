@@ -452,7 +452,9 @@ class UserApi extends React.Component {
   // vu 50 model
   async getVu50(page) {
     try {
-      const response = await privateInstance.get(authEndpoints.vu50All(page));
+      const response = await privateInstance.get(authEndpoints.vu50All, {
+        params: page,
+      });
 
       return { response };
     } catch (error) {
@@ -1377,9 +1379,9 @@ class UserApi extends React.Component {
 
   async getVu53All(params) {
     try {
-      const response = await privateInstance.get(
-        authEndpoints.getVu53All(params)
-      );
+      const response = await privateInstance.get(authEndpoints.getVu53All, {
+        params,
+      });
 
       return { response };
     } catch (error) {
