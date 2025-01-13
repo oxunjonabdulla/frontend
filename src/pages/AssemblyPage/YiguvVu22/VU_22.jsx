@@ -265,12 +265,12 @@ export const VU_22 = () => {
                           borderRadius={"10px"}
                           padding={"10px"}
                           colorScheme={
-                            item.collect_data?.length ? "green" : "red"
+                            item?.collect_data?.length ? "green" : "red"
                           }
                         >
                           <FontAwesomeIcon
                             style={{ margin: "0 5px" }}
-                            icon={item.collect_data?.length ? faCheck : faX}
+                            icon={item?.collect_data?.length ? faCheck : faX}
                           />
                           Yig'uv bo'limi
                         </Badge>
@@ -383,11 +383,13 @@ export const VU_22 = () => {
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
       />
-      <VU_22_Update
-        isOpen={isOpenUpdate}
-        onClose={() => onCloseUpdate()}
-        data={updateData}
-      />
+      {isOpenUpdate && 
+        <VU_22_Update
+          isOpen={isOpenUpdate}
+          onClose={() => onCloseUpdate()}
+          data={updateData}
+        />
+      }
       <VU_22_Model
         onClose={onClose}
         isOpen={isOpen}
