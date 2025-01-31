@@ -230,7 +230,7 @@ export const VU_10 = () => {
                       />
                       <IconButton
                         colorScheme="red"
-                        onClick={() => handleCheckAndDelete(item?.carriage_number)}
+                        onClick={() => handleCheckAndDelete(item?.id)}
                         icon={<FontAwesomeIcon icon={faTrashAlt} />}
                       />
                     </Flex>
