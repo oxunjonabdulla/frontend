@@ -1,3 +1,5 @@
+import { BrendCrumbs, SimpleLoader } from "@/components";
+import UserApi from "@/Service/module/userModule.api";
 import {
   Box,
   Button,
@@ -31,14 +33,13 @@ import {
   faChevronLeft,
   faChevronRight,
   faPenToSquare,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import UserApi from "@/Service/module/userModule.api";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { BrendCrumbs } from "@/components";
-import { SimpleLoader } from "@/components";
+import { Deleteted } from "../../../components";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { timeMoment } from "../../../utils/roleTest";
 import { timeClear } from "../../../utils/timeClear";
@@ -49,6 +50,8 @@ export const VU_10 = () => {
   const [updateData, setUpdateData] = useState(null);
   const [telegrammaText, setTelegrammaText] = useState("");
   const [searchValue, setSearchValue] = useState(null);
+  const [delateModal, setDelateModal] = useState(false);
+  const [getTableData, setGetinfTableData] = useState(null);
   const carriageSerach = useDebounce(searchValue);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,6 +61,14 @@ export const VU_10 = () => {
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
+  };
+  const handleCheckAndDelete = (deletedID) => {
+    setDelateModal(true);
+    setGetinfTableData(deletedID);
+  };
+  const handleDelate = async (carriageID) => {
+    const { response } = await new UserApi().deleteVu10(carriageID);
+    if (response) window.location.reload();
   };
   const fetchData = async (page) => {
     setIsLoading(true);
@@ -217,6 +228,11 @@ export const VU_10 = () => {
                         icon={<FontAwesomeIcon icon={faPenToSquare} />}
                         onClick={() => handleUpdate(item)}
                       />
+                      <IconButton
+                        colorScheme="red"
+                        onClick={() => handleCheckAndDelete(item?.carriage_number)}
+                        icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                      />
                     </Flex>
                   </Td>
                 </Tr>
@@ -257,6 +273,12 @@ export const VU_10 = () => {
       ) : (
         <SimpleLoader />
       )}
+      <Deleteted
+        isOpen={delateModal}
+        onClose={() => setDelateModal(false)}
+        carriageNumber={getTableData}
+        deletedFunction={handleDelate}
+      />
     </Box>
   );
 };

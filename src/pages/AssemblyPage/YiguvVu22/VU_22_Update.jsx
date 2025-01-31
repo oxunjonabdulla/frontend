@@ -1,9 +1,9 @@
-import { Box, Button, filter, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useToast } from "@chakra-ui/react";
+import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import UserApi from "../../../Service/module/userModule.api";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 export const VU_22_Update = ({ isOpen, onClose, data }) => {
     const [isLoading, setLoading] = useState(false);
@@ -57,6 +57,9 @@ export const VU_22_Update = ({ isOpen, onClose, data }) => {
             });
         }
     }, [data, remove, append]);
+
+    console.log(data);
+    
 
     return <Modal
         isOpen={isOpen}
