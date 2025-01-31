@@ -18,7 +18,8 @@ export const Deleteted = ({
   onClose,
   carriageNumber,
   deletedFunction,
-  text
+  text,
+  placeholder
 }) => {
   const [inputValue, setValueInput] = useState("");
 
@@ -27,7 +28,7 @@ export const Deleteted = ({
       <ModalOverlay backdropFilter={"blur(10px)"} />
       <ModalContent>
         <ModalHeader fontSize={"3xl"}>
-          Ma&apos;lumotni o&apos;chrish
+          Ma&apos;lumotni o&apos;chirish
         </ModalHeader>
         <ModalCloseButton onClick={() => onClose(false)} />
         <ModalBody>
@@ -43,11 +44,11 @@ export const Deleteted = ({
               {" "}
               {carriageNumber}
             </Text>{" "}
-            {text ? text : "raqamli vagon ma'lumotini' o'chirmoqdasiz."}
+            {text ? text : "raqamli vagon ma'lumotini o'chirmoqdasiz."}
           </Text>
           <Input
             name="vagon_delete"
-            placeholder="Vagon raqamini kirting"
+            placeholder={placeholder ? placeholder : "Vagon raqamini kirting"}
             borderColor={"gray.700"}
             mt={4}
             onChange={(e) => setValueInput(e.target.value)}

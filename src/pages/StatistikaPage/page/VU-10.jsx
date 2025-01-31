@@ -279,6 +279,7 @@ export const VU_10 = () => {
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
         text={"id raqamiga tegishli vagon ma'lumotini o'chirmoqdasiz."}
+        placeholder={"id raqamini kirting"}
       />
     </Box>
   );
