@@ -18,6 +18,7 @@ export const Deleteted = ({
   onClose,
   carriageNumber,
   deletedFunction,
+  text
 }) => {
   const [inputValue, setValueInput] = useState("");
 
@@ -42,7 +43,7 @@ export const Deleteted = ({
               {" "}
               {carriageNumber}
             </Text>{" "}
-            raqamli vagon ma`lumotini` o&apos;chirmoqdasiz.
+            {text ? text : "raqamli vagon ma'lumotini' o'chirmoqdasiz."}
           </Text>
           <Input
             name="vagon_delete"
