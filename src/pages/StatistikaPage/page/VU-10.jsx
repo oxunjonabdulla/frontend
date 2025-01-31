@@ -278,7 +278,7 @@ export const VU_10 = () => {
         onClose={() => setDelateModal(false)}
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
-        text={"id raqamiga tegishli vagon ma'lumotini' o'chirmoqdasiz."}
+        text={"id raqamiga tegishli vagon ma'lumotini o'chirmoqdasiz."}
       />
     </Box>
   );
