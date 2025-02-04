@@ -329,7 +329,7 @@ export const VU_22 = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
@@ -382,7 +382,10 @@ export const VU_22 = () => {
         onClose={() => setDelateModal(false)}
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
+        text={"id raqamiga tegishli vagon ma'lumotini o'chirmoqdasiz."}
+        placeholder={"id raqamini kirting"}
       />
+      
       {isOpenUpdate && 
         <VU_22_Update
           isOpen={isOpenUpdate}

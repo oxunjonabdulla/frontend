@@ -61,6 +61,17 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deleteVu22Gildirak(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu22Gildirak(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
   async getVu22(params) {
     try {
       const response = await privateInstance.get(authEndpoints.vu22get, {

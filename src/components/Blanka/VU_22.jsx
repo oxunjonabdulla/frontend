@@ -416,6 +416,8 @@ export const VU_22 = () => {
         onClose={() => setDelateModal(false)}
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
+        text={"id raqamiga tegishli vagon ma'lumotini o'chirmoqdasiz."}
+        placeholder={"id raqamini kirting"}
       />
       <VU_22_Model onClose={onClose} isOpen={isOpen} />
     </Box>

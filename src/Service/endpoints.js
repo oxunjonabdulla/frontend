@@ -157,7 +157,8 @@ const authEndpoints = {
 
   vu22WithId: (id) => `/vu22/texnik_xizmat/${id}/`,
   vu22get: `/vu22/texnik_xizmat/`,
-  vu22WidthYiguv: (id) => `/vu22/yiguv/${id}`,
+  vu22WidthYiguv: (id) => `/vu22/texnik_xizmat/${id}/`,
+  vu22Gildirak: (id) => `/vu22/gildirak/${id}/`,
 
   //Auto connect
   autoConnect: "/defestoskop/avtobirikma/",

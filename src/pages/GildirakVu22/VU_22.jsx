@@ -93,7 +93,7 @@ export const VU_22 = () => {
   };
 
   const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu22(carriageID);
+    const { response } = await new UserApi().deleteVu22Gildirak(carriageID);
     if (response) window.location.reload();
   };
 
@@ -287,7 +287,7 @@ export const VU_22 = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
@@ -340,6 +340,8 @@ export const VU_22 = () => {
         onClose={() => setDelateModal(false)}
         carriageNumber={getTableData}
         deletedFunction={handleDelate}
+        text={"id raqamiga tegishli vagon ma'lumotini o'chirmoqdasiz."}
+        placeholder={"id raqamini kirting"}
       />
       <VU_22_Model
         onClose={onClose}

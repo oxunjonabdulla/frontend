@@ -101,7 +101,7 @@ export const VU_22_Brakes = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Yig'uv bulimida yaearatilgan VU-22 Shakli
+        Yig'uv bulimida yaratilgan VU-22 Shakli
       </Heading>
 
       {!isLoadingFulStatistik ? (
