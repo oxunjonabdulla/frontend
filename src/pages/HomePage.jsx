@@ -1,436 +1,1023 @@
 import CountUp from "react-countup";
+import {useEffect, useState} from "react";
 import {
-  Box,
-  Card,
-  CardBody,
-  Container,
-  Flex,
-  Heading,
-  Stat,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
+    Badge,
+    Box,
+    Card,
+    CardBody,
+    Container,
+    Divider,
+    Flex,
+    Grid,
+    GridItem,
+    Heading,
+    Progress,
+    SimpleGrid,
+    Stat,
+    StatHelpText,
+    StatLabel,
+    StatNumber,
+    Text,
+    useColorModeValue
 } from "@chakra-ui/react";
-
-import Chart from "react-apexcharts";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-  chartFirst,
-  chartFive,
-  chartFour,
-  chartSecond,
-  chartThree,
-  chartSix,
-  demoFirst,
-  demoZero,
-} from "../utils/chartData";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBook,
-  faBookOpenReader,
-  faPersonDigging,
-} from "@fortawesome/free-solid-svg-icons";
-import { faThinkPeaks } from "@fortawesome/free-brands-svg-icons";
+    faCalendarAlt,
+    faChartPie,
+    faClipboard,
+    faClipboardCheck,
+    faNewspaper,
+    faTools,
+    faTrain,
+    faWrench
+} from "@fortawesome/free-solid-svg-icons"; // Example icons
+import {Link} from "react-router-dom"; 
 
-const topInfoData = [
-  {
-    title: "Inventar vagonlar soni",
-    numberCnt: 345,
-    icon: faPersonDigging,
-    bgColor: "linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%)",
-  },
-  {
-    title: "Qabul qilingan va chiqarilgan vagonlar soni",
-    numberCnt: 890,
-    icon: faBook,
-    bgColor: "linear-gradient(135deg, #2AFADF 10%, #4C83FF 100%)",
-  },
-  {
-    title: "Nosoz vagonlar soni",
-    numberCnt: 108,
-    icon: faBookOpenReader,
-    bgColor: "linear-gradient(135deg, #FFD3A5 10%, #FD6585 100%)",
-  },
-  {
-    title: "Buyruq asosida ta’mirlangan vagonlar soni",
-    numberCnt: 0,
-    icon: faThinkPeaks,
-    bgColor: "linear-gradient(135deg, #EE9AE5 10%, #5961F9 100%)",
-  },
+import {
+    CartesianGrid,
+    Cell,
+    Legend,
+    Line,
+    LineChart,
+    Pie,
+    PieChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
+} from "recharts";
+import {privateInstance} from "@/Service/client/client.js"; // for auth endpoints
+
+const WagonTypeLineChart = () => {
+    return (
+        <ResponsiveContainer width="100%" height={400}>
+            <LineChart
+                data={wagonTypeMonthlyData}
+                margin={{top: 20, right: 30, left: 0, bottom: 0}}
+            >
+                <CartesianGrid strokeDasharray="3 3"/>
+                <XAxis dataKey="month"/>
+                <YAxis/>
+                <Tooltip/>
+                <Legend/>
+
+                <Line type="monotone" dataKey="yopiq" stroke="#2d6a4f" strokeWidth={2} name="Yopiq vagonlar"/>
+                <Line type="monotone" dataKey="platforma" stroke="#1e3c72" strokeWidth={2} name="Platforma"/>
+                <Line type="monotone" dataKey="yarim" stroke="#8e0e00" strokeWidth={2} name="Yarim ochiq"/>
+                <Line type="monotone" dataKey="sisterna" stroke="#4b0082" strokeWidth={2} name="Sisterna"/>
+                <Line type="monotone" dataKey="boshqa" stroke="#ff9900" strokeWidth={2} name="Boshqa turdagi"/>
+            </LineChart>
+        </ResponsiveContainer>
+    );
+};
+const wagonGradients = [
+    {id: "gradGreen", start: "#43cea2", end: "#185a9d"},
+    {id: "gradBlue", start: "#36d1dc", end: "#5b86e5"},
+    {id: "gradOrange", start: "#f7971e", end: "#ffd200"},
+    {id: "gradPurple", start: "#8e2de2", end: "#4a00e0"},
+    {id: "gradRed", start: "#cb2d3e", end: "#ef473a"}
 ];
 
-export const HomePage = () => {
-  // const data = {
-  //   labels: [2020, 2021, 2023],
-  //   datasets: [
-  //     {
-  //       label: "Joriy yilda ta’mirlangan xususiy vagonlar soni",
-  //       data: [50, 100, 83],
-  //       fill: false,
-  //       borderColor: "rgb(75, 192, 192)",
-  //       tension: 0.1,
-  //     },
-  //     {
-  //       label: "Joriy ta’mirlash bo’linmasiga uzilgan vagonlar soni",
-  //       data: [65, 59, 135],
-  //       fill: false,
-  //       borderColor: "#90CDF4",
-  //       tension: 0.1,
-  //     },
-  //     {
-  //       label: "2023 yilda ta'mirlangan ta'mirlangan inventar vagonlar soni. ",
-  //       data: [100, 400, 940],
-  //       fill: false,
-  //       borderColor: "#FBD38D",
-  //       tension: 0.1,
-  //     },
-  //     {
-  //       label: "2023 yilda ta'mirlangan ta'mirlangan xususiy vagonlar soni. ",
-  //       data: [217, 350, 940],
-  //       fill: false,
-  //       borderColor: "#FEB2B2",
-  //       tension: 0.1,
-  //     },
-  //     {
-  //       label:
-  //         "Joriy ta'mirlash bo'linmasiga 2023 yilda uzulgan vagonlar soni.",
-  //       data: [350, 460, 613],
-  //       fill: false,
-  //       borderColor: "green",
-  //       tension: 0.1,
-  //     },
-  //   ],
-  // };
-  // const config = {
-  //   type: "line",
-  //   data: data,
-  //   options: {
-  //     scales: {
-  //       x: {
-  //         type: "time",
-  //         time: {
-  //           displayFormats: {
-  //             quarter: "MMM YYYY",
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  // };
-  // const dughnut = {
-  //   labels: [
-  //     "Qarshi vagon deposi balansiga qabul qilingan va chiqarilgan vagonlar soni",
-  //     "Qarshi vagon deposi hududida turgan nosoz vagonlar soni",
-  //     "Qarshi vagon deposida tegishli buyruq asosida ta’mirlangan vagonlar soni",
-  //   ],
-  //   datasets: [
-  //     {
-  //       label: "2023 yildagi soni",
-  //       data: [170, 180, 47],
-  //       backgroundColor: [
-  //         "rgb(255, 99, 132)",
-  //         "rgb(54, 162, 235)",
-  //         "rgb(255, 205, 86)",
-  //       ],
-  //       hoverOffset: 4,
-  //     },
-  //   ],
-  // };
+function ChorakPieChart({data}) {
 
-  return (
-    <Container
-      as="div"
-      display={"flex"}
-      maxW={"container.2xl"}
-      flexDir={"column"}
-      align={"center"}
-      gap={12}
-      justifyContent={"center"}
-    >
-      <Box rounded={"2xl"} p={8}>
-        <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
-          Таmirlashga oid ma’lumotlar
-        </Heading>
-        <Flex
-          w={"100%"}
-          flexWrap={"wrap"}
-          justifyContent={["center", "space-between"]}
-          align={"center"}
-          listStyleType={"none"}
-          fontSize={"xs"}
-          gap={5}
-          mt={8}
-        >
-          {topInfoData.map((item, idx) => (
-            <Card
-              colSpan={2}
-              key={idx}
-              _hover={{ opacity: 0.7 }}
-              transition={"opacity 0.2s"}
-              width="300px"
-              cursor={"pointer"}
-              height="120px"
-              color={"#fff"}
-              bg={item.bgColor}
-            >
-              <CardBody>
-                <Flex
-                  flexDirection="row"
-                  align="center"
-                  justify="center"
-                  w="100%"
+    return (
+        <ResponsiveContainer width="100%" height={350}>
+            <PieChart>
+                {/* Gradient definitions */}
+                <defs>
+                    {wagonGradients.map((grad) => (
+                        <linearGradient key={grad.id} id={grad.id} x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor={grad.start}/>
+                            <stop offset="100%" stopColor={grad.end}/>
+                        </linearGradient>
+                    ))}
+                </defs>
+
+                <Pie
+                    data={data}
+                    dataKey="count"
+                    nameKey="type"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={110} // bigger size
+                    label
                 >
-                  <Stat me="auto">
-                    {" "}
-                    <StatLabel
-                      textAlign={"left"}
-                      fontWeight="bold"
-                      pb=".1rem"
-                      fontSize={"sm"}
+                    {data.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={`url(#${wagonGradients[index % wagonGradients.length].id})`}/>
+                    ))}
+                </Pie>
+                <Tooltip/>
+                <Legend/>
+            </PieChart>
+        </ResponsiveContainer>
+    );
+}
+
+const topInfoData = [
+    {
+        title: "Korxona balansidagi vagonlar soni",
+        numberCnt: 803,
+        icon: faTrain,
+        bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    },
+    {
+        title: "Korxona balansiga qabul qilingan va chiqarilgan vagonlar soni",
+        numberCnt: 1618,
+        icon: faClipboardCheck,
+        bgColor: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
+    },
+    {
+        title: "Korxona hududidagi nosoz vagonlar soni",
+        numberCnt: 58,
+        icon: faWrench,
+        bgColor: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
+    },
+    {
+        title: "Joriy yil davomida xususiy vagonlar soni",
+        numberCnt: 483,
+        icon: faTools,
+        bgColor: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+    },
+];
+
+const RouteNames = {
+    HOME: "/",
+    STATISTIKA: "/statistics",
+    CURRENT_REPAIR: "/current-repair",
+    VU_31: "/statistics/vu-31",
+    VU_10: "/statistics/vu-10",
+    CREATE: (id) => id + "/create",
+    VU_36: "/statistics/vu-36",
+    FRAZA: "/statistics/fraza",
+    VU_36_CURRENT: "/current-repair/vu-36",
+    VU_31_CURRENT: "/current-repair/vu-31",
+    VU_31_COLLECTOR: "/collector-vu-23",
+    SIGNATURE: "/signatures-list",
+    REPORT: "/report",
+    STATISTIKAARCHIVE: "/statistics/archive",
+    ASSEMBLY: "/assembly-unit",
+    AUTO_BRAKES: "/auto-brakes",
+    VU_22: "/auto-brakes/vu-22",
+    VU_47: "/auto-brakes/vu-47",
+    REGISTER_AUTO: "/auto-brakes/register-auto",
+    REGISTER_REGULAR: "/auto-brakes/register-regular",
+    REGISTER_RUKVAS: "/auto-brakes/register-rukvas",
+    REGISTER_22: "/auto-brakes/vu-22",
+    REGISTER_BRAKES: "/auto-brakes/register-brake-silindir",
+    REGISTER_RAZOBSHITEL: "/auto-brakes/register-rozobshitel",
+    REGISTER_EXITENTRY: "/auto-brakes/entry-exit-control",
+    AUTOMOBILE_UNIT: "/automobile-unit",
+    EQUIPMENT_UNIT: "/equipment-unit",
+    DEFECTOSCOPES: "/defectoscopes",
+    CARRIAGE_UNIT: "/carriage-unit",
+    CARRIAGE_UNIT_FRAZA: "/carriage-unit/fraza",
+    VU_22_Arava: "/carriage-unit/vu-22",
+    CARRIAGE_UNIT_DEED: "/carriage-unit/entry-exit-control",
+    VU_32: "/carriage-unit/vu-32",
+    PRO_UNIT: "/pto-unit",
+    LOGIN: "/login",
+    WHEEL_PAIRS: "/wheel-pairs",
+    CARRIAGE: "/defectoscopes/carriage",
+    WHEEL: "/defectoscopes/wheel",
+    NOT_FOUND: "*",
+};
+
+
+const sectionTitles = {
+    main: "2025-yil avgust holatida korxona vagonlari ma’lumotlari",
+    monthlyProgress: "Oylik ta'mirlash jarayoni",
+    wagonTypes: "Vagon turlari bo'yicha taqsimot",
+    repairHistory: "So'nggi ta'mirlashlar"
+};
+
+const chorakWagonData = [
+    {
+        title: "Birinchi chorak: 305 ta vagonlar",
+        data: [
+            {type: "Yopiq vagonlar", count: 55},
+            {type: "Platforma vagonlar", count: 38},
+            {type: "Yarim vagonlar", count: 85},
+            {type: "Sisterna vagonlar", count: 62},
+            {type: "Boshqa turdagi vagonlar", count: 65},
+        ],
+    },
+
+    {
+        title: "Ikkinchi chorak: 342 ta vagonlar",
+        data: [
+            {type: "Yopiq vagonlar", count: 21},
+            {type: "Platforma vagonlar", count: 12},
+            {type: "Yarim vagonlar", count: 86},
+            {type: "Sisterna vagonlar", count: 73},
+            {type: "Boshqa turdagi vagonlar", count: 150},
+        ],
+    },
+    {
+        title: "Uchinchi chorak",
+        data: [
+            {type: "Yopiq vagonlar", count: 0},
+            {type: "Platforma vagonlar", count: 0},
+            {type: "Yarim vagonlar", count: 0},
+            {type: "Sisterna vagonlar", count: 0},
+            {type: "Boshqa turdagi vagonlar", count: 0},
+        ],
+    },
+    {
+        title: "To‘rtinchi chorak",
+        data: [
+            {type: "Yopiq vagonlar", count: 0},
+            {type: "Platforma vagonlar", count: 0},
+            {type: "Yarim vagonlar", count: 0},
+            {type: "Sisterna vagonlar", count: 0},
+            {type: "Boshqa turdagi vagonlar", count: 0},
+        ],
+    },
+];
+
+
+const monthlyGoals = [
+    {month: "Yanvar", target: 60, completed: 30},
+    {month: "Fevral", target: 50, completed: 50},
+    {month: "Mart", target: 72, completed: 43},
+    {month: "Aprel", target: 55, completed: 65},
+    {month: "May", target: 60, completed: 45},
+    {month: "Iyun", target: 60, completed: 63},
+    {month: "Iyul", target: 60, completed: 35},
+    {month: "Avgust", target: 150, completed: 60, current: true},
+    {month: "Sentyabr", target: 100, completed: 0},
+    {month: "Oktyabr", target: 100, completed: 0},
+    {month: "Noyabr", target: 100, completed: 0},
+    {month: "Dekabr", target: 100, completed: 0}
+];
+const chorakColors = ["green", "blue", "red", "purple"];
+
+const chorakIconGradients = [
+    "linear-gradient(135deg, #2d6a4f 0%, #52b788 100%)", // darker green
+    "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)", // darker blue
+    "linear-gradient(135deg, #8e0e00 0%, #b31217 100%)", // darker red
+    "linear-gradient(135deg, #4b0082 0%, #6a0dad 100%)"  // darker purple
+];
+
+
+const choraklar = [
+    {title: "Birinchi chorak", months: ["Yanvar", "Fevral", "Mart"]},
+    {title: "Ikkinchi chorak", months: ["Aprel", "May", "Iyun"]},
+    {title: "Uchinchi chorak", months: ["Iyul", "Avgust", "Sentyabr"]},
+    {title: "To‘rtinchi chorak", months: ["Oktyabr", "Noyabr", "Dekabr"]}
+];
+
+
+const groupedGoals = choraklar.map(chorak => ({
+    title: chorak.title,
+    months: monthlyGoals.filter(m => chorak.months.includes(m.month))
+}));
+
+const wagonTypeMonthlyData = [
+    {month: "Yanvar", yopiq: 8, platforma: 3, yarim: 8, sisterna: 9, boshqa: 2},
+    {month: "Fevral", yopiq: 16, platforma: 11, yarim: 7, sisterna: 11, boshqa: 5},
+    {month: "Mart", yopiq: 1, platforma: 12, yarim: 14, sisterna: 11, boshqa: 5},
+    {month: "Aprel", yopiq: 3, platforma: 0, yarim: 13, sisterna: 16, boshqa: 33},
+    {month: "May", yopiq: 0, platforma: 1, yarim: 10, sisterna: 13, boshqa: 21},
+    {month: "Iyun", yopiq: 0, platforma: 5, yarim: 16, sisterna: 13, boshqa: 29},
+    {month: "Iyul", yopiq: 1, platforma: 0, yarim: 9, sisterna: 20, boshqa: 5},
+    {month: "Avgust", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
+    {month: "Sentyabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
+    {month: "Oktyabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
+    {month: "Noyabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
+    {month: "Dekabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0}
+];
+
+
+export const HomePage = () => {
+    const [counts, setCounts] = useState({});
+    const apis = [
+        {key: "phraseCount", url: "phrase_cart/list/"},
+        {key: "vu32Count", url: "vu32/"},
+        {key: "aravaActCount", url: "aravaact/list/"},
+        {key: "avtoActCount", url: "avtoact/list/"},
+        {key: "vu47Count", url: "vu47/list/"},
+        {key: "autorejimCount", url: "autorejim/"},
+        {key: "razobkranCount", url: "razobkran/list/"},
+        {key: "rezervuarCount", url: "rezervuar/list/"},
+        {key: "rukvaCount", url: "rukva/list/"},
+        {key: "regulyatorCount", url: "regulyator/"},
+        {key: "phrase_wheelCount", url: "phrase_wheel/list/"},
+        {key: "vu50Count", url: "vu50/list/"},
+        {key: "vu54Count", url: "vu54/"},
+        {key: "vu53Count", url: "vu53/"},
+        {key: "vu90Count", url: "vu90/list/"},
+        {key: "vu91Count", url: "vu91/list/"},
+        {key: "vu92Count", url: "vu92/list/"},
+        {key: "vu93Count", url: "vu93/list/"},
+        {key: "kolesoActCount", url: "kolesoact/list/"},
+        {key: "vu68Count", url: "vu68/list/"},
+        {key: "collectAct", url: "collectact/list/"},
+        {key: "defestoskopAvtobirikmaCount", url: "defestoskop/avtobirikma/"},
+        {key: "defestoskopAravalarCount", url: "defestoskop/aravalar/"},
+        {key: "defestoskopWheelCount", url: "defestoskop/wheel/"},
+        {key: "vu23Count", url: "carriage/"},
+        {key: "vu22Count", url: "vu22/texnik_xizmat/"},
+        {key: "vu36Count", url: "vu36/"},
+        {key: "vu10Count", url: "vu10/"},
+        {key: "PhraseCount", url: "phrase/list/"},
+        {key: "vu51Count", url: "vu51_m/"},
+    ];
+    useEffect(() => {
+        Promise.all(
+            apis.map(api =>
+                privateInstance
+                    .get(api.url)
+                    .then(res => ({key: api.key, count: res.data.count}))
+                    .catch(err => {
+                        console.error(err);
+                        return {key: api.key, count: 0};
+                    })
+            )
+        ).then(results => {
+            const newCounts = {};
+            results.forEach(r => {
+                newCounts[r.key] = r.count;
+            });
+            setCounts(newCounts);
+        });
+    }, []);
+
+    const journalData = [
+
+        {
+            title: "Aravalar-Fraza",
+            icon: faWrench,
+            count: counts.phraseCount || 0,
+            route: RouteNames.CARRIAGE_UNIT_FRAZA,
+            colorScheme: "blue",
+            description: "Aravalar bo‘linmasi Frazasi",
+
+        },
+        {
+            title: "VU32",
+            icon: faWrench,
+            count: counts.vu32Count || 0,
+            route: RouteNames.VU_32,
+            colorScheme: "blue",
+            description: "Aravalar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "Kirish-chiqish dalolatnomasi",
+            icon: faWrench,
+            count: counts.aravaActCount || 0,
+            route: RouteNames.CARRIAGE_UNIT_DEED,
+            colorScheme: "blue",
+            description: "Aravalar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "Kirish-chiqish dalolatnomasi",
+            icon: faWrench,
+            count: counts.avtoActCount,
+            route: RouteNames.AUTOMOBILE_UNIT,
+            colorScheme: "blue",
+            description: "Avtobirikma bo‘linmasi jurnali",
+
+        },
+        {
+            title: "VU47",
+            icon: faWrench,
+            count: counts.vu47Count,
+            route: RouteNames.VU_47,
+            colorScheme: "blue",
+            description: "Avtotormozlar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "Avtorejimlarni ro‘yxatga olish",
+            icon: faWrench,
+            count: counts.autorejimCount,
+            route: RouteNames.REGISTER_AUTO,
+            colorScheme: "blue",
+            description: "Avtotormozlar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "Razobshitelniy va so'ngi jumraklarni ro‘yxatga olish",
+            icon: faWrench,
+            count: counts.razobkranCount,
+            route: RouteNames.REGISTER_RAZOBSHITEL,
+            colorScheme: "blue",
+            description: "Avtotormozlar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "Rezervuar, tormoz silindr va ishchi kameralarni ro‘yxatga olish",
+            icon: faWrench,
+            count: counts.rezervuarCount,
+            route: RouteNames.REGISTER_BRAKES,
+            colorScheme: "blue",
+            description: "Avtotormozlar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "Avtoregulyatorlarni ro‘yxatga olish",
+            icon: faWrench,
+            count: counts.regulyatorCount,
+            route: RouteNames.REGISTER_REGULAR,
+            colorScheme: "blue",
+            description: "Avtotormozlar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "Rukavalarni ro‘yxatga olish jurnali",
+            icon: faWrench,
+            count: counts.rukvaCount,
+            route: RouteNames.REGISTER_RUKVAS,
+            colorScheme: "blue",
+            description: "Avtotormozlar bo‘linmasi jurnali",
+
+        },
+        {
+            title: "G‘ildirak juftliklari-Fraza",
+            icon: faWrench,
+            count: counts.phrase_wheelCount,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        },
+        {
+            title: "VU50",
+            icon: faWrench,
+            count: counts.vu50Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        },
+        {
+            title: "VU53",
+            icon: faWrench,
+            count: counts.vu53Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        },
+        {
+            title: "VU54",
+            icon: faWrench,
+            count: counts.vu54Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        },
+        {
+            title: "VU90",
+            icon: faWrench,
+            count: counts.vu90Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        },
+        {
+            title: "VU91",
+            icon: faWrench,
+            count: counts.vu91Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        }, {
+            title: "VU92",
+            icon: faWrench,
+            count: counts.vu92Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        }, {
+            title: "VU93",
+            icon: faWrench,
+            count: counts.vu93Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi jurnali",
+
+        },
+        {
+            title: "VU68",
+            icon: faWrench,
+            count: counts.vu68Count,
+            route: RouteNames.ASSEMBLY,
+            colorScheme: "blue",
+            description: "Yig'uv bo'limi jurnali",
+
+        },
+        {
+            title: "Defektoskoplar-Auto Birikma",
+            icon: faWrench,
+            count: counts.defestoskopAvtobirikmaCount,
+            route: RouteNames.DEFECTOSCOPES,
+            colorScheme: "blue",
+            description: "Defektoskoplar bo‘limi jurnali",
+
+        }, {
+            title: "Defektoskoplar-Aravalar",
+            icon: faWrench,
+            count: counts.defestoskopAravalarCount,
+            route: RouteNames.CARRIAGE,
+            colorScheme: "blue",
+            description: "Defektoskoplar bo‘limi jurnali",
+
+        }, {
+            title: "Defektoskoplar-G'ildirak",
+            icon: faWrench,
+            count: counts.defestoskopWheelCount,
+            route: RouteNames.WHEEL,
+            colorScheme: "blue",
+            description: "Defektoskoplar bo‘limi jurnali",
+
+        },
+    ]
+    const BlankData = [
+        {
+            title: "VU23",
+            icon: faWrench,
+            count: counts.vu23Count,
+            route: RouteNames.PRO_UNIT,
+            colorScheme: "blue",
+            description: "PTO Operatori",
+
+        }, {
+            title: "VU22",
+            icon: faWrench,
+            count: counts.vu22Count,
+            route: RouteNames.ASSEMBLY,
+            colorScheme: "blue",
+            description: "Yig'uv bo'limi blankasi",
+
+        }, {
+            title: "VU36",
+            icon: faWrench,
+            count: counts.vu36Count,
+            route: RouteNames.VU_36,
+            colorScheme: "blue",
+            description: "Statistika va hisobga olish bo‘limi blankasi",
+
+        },
+        {
+            title: "Kirish-chiqish dalolatnomasi",
+            icon: faWrench,
+            count: counts.collectAct,
+            route: RouteNames.ASSEMBLY,
+            colorScheme: "blue",
+            description: "Yig‘uv bo‘linmasi blankasi",
+
+        },
+        {
+            title: "VU10",
+            icon: faWrench,
+            count: counts.vu10Count,
+            route: RouteNames.VU_10,
+            colorScheme: "blue",
+            description: "Statistika va hisobga olish bo‘limi blankasi",
+
+        }, {
+            title: "Fraza",
+            icon: faWrench,
+            count: counts.PhraseCount,
+            route: RouteNames.FRAZA,
+            colorScheme: "blue",
+            description: "Statistika va hisobga olish bo‘limi blankasi",
+
+        }, {
+            title: "VU51",
+            icon: faWrench,
+            count: counts.vu51Count,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi blankasi",
+
+        }, {
+            title: "Kirish-chiqish dalolatnomasi",
+            icon: faWrench,
+            count: counts.kolesoActCount,
+            route: RouteNames.WHEEL_PAIRS,
+            colorScheme: "blue",
+            description: "G‘ildirak juftliklari bo‘linmasi blankasi",
+
+        }
+    ]
+
+    const cardBg = useColorModeValue("white", "gray.700");
+    const headingColor = useColorModeValue("gray.800", "white");
+    const textColor = useColorModeValue("gray.600", "gray.300");
+    const progressBg = useColorModeValue("gray.100", "gray.600");
+    const borderColor = useColorModeValue("gray.200", "gray.600");
+
+    return (
+        <Container maxW="container.xxl" py={8} px={4}>
+            {/* Header Section */}
+            <Box textAlign="center" mb={12}>
+                <Heading as="h1" size="xl" fontWeight="extrabold" mb={2}>
+                    Vagonlar Monitoring Tizimi
+                </Heading>
+                <Text fontSize="lg" color={textColor}>
+                    Qarshi vagon deposi statistik ma'lumotlari
+                </Text>
+            </Box>
+
+            {/* Stats Cards */}
+            <Heading as="h2" size="lg" mb={6} color={headingColor}>
+                {sectionTitles.main}
+            </Heading>
+            <Grid
+                templateColumns={{base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)"}}
+                gap={6}
+                mb={12}
+            >
+                {topInfoData.map((item, idx) => (
+                    <GridItem key={idx}>
+                        <Card
+                            bg={cardBg}
+                            bgGradient={item.bgColor} // Apply gradient color to the entire card
+
+                            boxShadow="lg"
+                            borderRadius="xl"
+                            overflow="hidden"
+                            transition="all 0.3s"
+                            _hover={{transform: "translateY(-4px)", shadow: "xl"}}
+                            height="100%"
+                        >
+                            <CardBody p={6}>
+                                <Flex direction="column" height="100%">
+                                    <Flex justify="space-between" align="center" mb={4}>
+                                        <Box
+                                            w={12}
+                                            h={12}
+                                            borderRadius="lg"
+                                            display="flex"
+                                            alignItems="center"
+                                            justifyContent="center"
+                                            bgGradient={item.bgColor}
+                                            color="white"
+                                        >
+                                            <FontAwesomeIcon icon={item.icon} size="lg"/>
+                                        </Box>
+                                        <Stat ml={4}>
+                                            <StatNumber fontSize="2xl" fontWeight="bold" color={"white"}>
+
+                                                <CountUp end={item.numberCnt} duration={1.5}/> ta
+                                            </StatNumber>
+                                        </Stat>
+                                    </Flex>
+                                    <Text
+                                        fontSize="md"
+                                        fontWeight="medium"
+                                        color="white" // White text to contrast with gradient
+                                        mt="auto"
+                                        textShadow="1px 1px 4px rgba(0, 0, 0, 0.7)" // Add text shadow for better readability
+                                    >
+                                        {item.title}
+                                    </Text>
+                                </Flex>
+                            </CardBody>
+                        </Card>
+                    </GridItem>
+                ))}
+            </Grid>
+
+            <Box mb={12}>
+                <Heading as="h2" size="lg" mb={6} color={headingColor}>
+                    {sectionTitles.monthlyProgress}
+                </Heading>
+
+                {groupedGoals.map((chorak, idx) => (
+                    <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} mb={8}>
+                        <Flex align="center" mb={4}>
+                            <Box
+                                w={10}
+                                h={10}
+                                borderRadius="lg"
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
+
+                                color="white"
+                                mr={3}
+                            >
+                                <FontAwesomeIcon icon={faCalendarAlt} size="lg"/>
+                            </Box>
+                            <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+                        </Flex>
+
+                        <SimpleGrid columns={{base: 1, md: 2, lg: 3}} spacing={4}>
+                            {chorak.months.map(month => (
+                                <Box key={month.month} p={4} borderWidth="1px" borderRadius="lg"
+                                     borderColor={borderColor}>
+                                    <Flex justify="space-between" mb={2}>
+                                        <Text fontWeight="medium">{month.month}</Text>
+                                        {month.current && <Badge colorScheme="blue">Joriy</Badge>}
+                                    </Flex>
+                                    <Progress
+                                        value={(month.completed / month.target) * 100}
+                                        size="sm"
+                                        colorScheme={chorakColors[idx % chorakColors.length]} // same color for all months in this chorak
+                                        bg={progressBg}
+                                        borderRadius="full"
+                                        mb={2}
+                                    />
+
+                                    <Flex justify="space-between">
+                                        <Text fontSize="sm" color={textColor}>
+                                            {month.completed} / {month.target}
+                                        </Text>
+                                        <Text fontSize="sm" fontWeight="bold">
+                                            {Math.round((month.completed / month.target) * 100)}%
+                                        </Text>
+                                    </Flex>
+                                </Box>
+                            ))}
+                        </SimpleGrid>
+                    </Card>
+                ))}
+            </Box>
+            <Box mb={12}>
+                <WagonTypeLineChart/>
+            </Box>
+
+
+            <Box mb={12}>
+                <Heading as="h2" size="lg" mb={6} color={headingColor}>
+                    {sectionTitles.wagonTypes}
+                </Heading>
+
+                <Grid templateColumns={{base: "1fr", md: "1fr 1fr"}} gap={6}>
+                    {chorakWagonData.map((chorak, idx) => (
+                        <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} height="100%">
+                            <Flex align="center" mb={6}>
+                                <Box
+                                    w={10}
+                                    h={10}
+                                    borderRadius="lg"
+                                    display="flex"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                    bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
+
+                                    color="white"
+                                    mr={3}
+                                >
+                                    <FontAwesomeIcon icon={faChartPie} size="lg"/>
+                                </Box>
+                                <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+                            </Flex>
+
+                            <ChorakPieChart data={chorak.data}/>
+                        </Card>
+                    ))}
+                </Grid>
+            </Box>
+
+
+            {/* Additional Info Section */}
+            <Box mb={8}>
+                <Heading as="h2" size="lg" mb={6} color={headingColor} display="flex" alignItems="center">
+                    {/* Icon with colorful gradient background */}
+                    <Box
+                        w={12}
+                        h={12}
+                        borderRadius="5px"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        bgGradient="linear(to-r, #6a11cb, #2575fc)" // Gradient color
+                        mr={3}
                     >
-                      {item.title}
-                    </StatLabel>
-                    <Flex>
-                      <StatNumber fontSize={"3xl"}>
-                        <CountUp end={item.numberCnt} />
-                      </StatNumber>
-                      <StatHelpText
-                        alignSelf="flex-end"
-                        justifySelf="flex-end"
-                        m="0px"
-                        fontWeight="bold"
-                        ps="3px"
-                        fontSize="md"
-                      ></StatHelpText>
-                    </Flex>
-                  </Stat>
-                  <Flex
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    borderRadius={"12px"}
-                    h={"45px"}
-                    w={"45px"}
-                    bg={item.bgColor}
-                  >
-                    <FontAwesomeIcon icon={item?.icon} size="xl" />
-                  </Flex>
-                </Flex>
-              </CardBody>
-            </Card>
-          ))}
-        </Flex>
+                        <FontAwesomeIcon icon={faNewspaper} size="lg" color="white"/>
+                    </Box>
+                    Jurnallar
+                </Heading>
+                <Divider mb={6}/>
 
-        {/* <Grid
-          listStyleType={"none"}
-          display={"grid"}
-          templateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(4, 1fr)",
-            "repeat(3, 1fr)",
-          ]}
-          fontSize={"lg"}
-          gap={5}
-        >
-          {fixInfo.map((item, idx) => (
-            <GridItem key={idx * 12} display={"flex"} flexDir={"column"} mt={8}>
-              <Card
-                data-type="Card"
-                direction={{ base: "column", sm: "row" }}
-                overflow="hidden"
-                variant="outline"
-                rounded={"xl"}
-                height={"130px"}
-              >
-                <Image
-                  rounded={"xl"}
-                  data-type="Image"
-                  objectFit="cover"
-                  maxW={{ base: "100%", sm: "200px" }}
-                  src={item.image}
-                  shadow={"lg"}
-                />
+                <SimpleGrid columns={{base: 1, sm: 2, md: 3, lg: 4}} spacing={6}>
+                    {journalData.map((journal, index) => (
+                        <Card
+                            key={index}
+                            as={Link}
+                            to={journal.route}
+                            bg={cardBg}
+                            boxShadow="md"
+                            borderRadius="5px"
+                            overflow="hidden"
+                            transition="all 0.2s"
+                            _hover={{
+                                transform: "translateY(-2px)",
+                                boxShadow: "lg",
+                                textDecoration: "none"
+                            }}
+                            height="100%"
+                        >
+                            <CardBody>
+                                <Flex direction="column" height="100%">
+                                    <Flex align="center" mb={4}>
+                                        <Box
+                                            w={12}
+                                            h={12}
+                                            borderRadius="full"
+                                            display="flex"
+                                            alignItems="center"
+                                            justifyContent="center"
+                                            bg={`${journal.colorScheme}.100`}
+                                            color={`${journal.colorScheme}.600`}
+                                            mr={4}
+                                        >
+                                            <FontAwesomeIcon icon={journal.icon} size="lg"/>
+                                        </Box>
+                                        <Box>
+                                            <Heading as="h3" size="md" mb={1}>
+                                                {journal.title}
+                                            </Heading>
+                                            <Badge
+                                                colorScheme={journal.colorScheme}
+                                                variant="subtle"
+                                                fontSize="0.8em"
+                                            >
+                                                {journal.count} ta ma'lumot
+                                            </Badge>
+                                        </Box>
+                                    </Flex>
 
-                <Stack data-type="Stack">
-                  <CardBody data-type="CardBody">
-                    <Heading
-                      data-type="Heading"
-                      textAlign={"start"}
-                      fontSize={"10px"}
+                                    <Text color={textColor} mb={4} flexGrow={1}>
+                                        {journal.description}
+                                    </Text>
+
+                                    <Box mt="auto">
+                                        <Divider mb={2}/>
+                                        <Text fontSize="sm" color="gray.500">
+                                            {/*{journal.lastUpdated}*/}
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                            </CardBody>
+                        </Card>
+                    ))}
+                </SimpleGrid>
+            </Box>
+            <Box mb={8}>
+                <Heading as="h2" size="lg" mb={6} color={headingColor} display="flex" alignItems="center">
+                    <Box
+                        w={12}
+                        h={12}
+                        borderRadius="full"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        bgGradient="linear(to-r, #ff7e5f, #feb47b)" // Gradient color
+                        mr={3}
                     >
-                      <CountUp
-                        style={{
-                          fontSize: "1.5rem",
-                          fontWeight: "700",
-                        }}
-                        end={item.numberCnt}
-                        duration={1}
-                      />
-                    </Heading>
+                        <FontAwesomeIcon icon={faClipboard} size="lg" color="white"/>
+                    </Box>
+                    Blankalar
+                </Heading>
+                <Divider mb={6}/>
 
-                    <Text
-                      data-type="Text"
-                      fontWeight={500}
-                      textAlign={"start"}
-                      py="2"
-                      fontSize={"15px"}
+                <SimpleGrid columns={{base: 1, sm: 2, md: 3, lg: 4}} spacing={6}>
+                    {BlankData.map((journal, index) => (
+                        <Card
+                            key={index}
+                            as={Link}
+                            to={journal.route}
+                            bg={cardBg}
+                            boxShadow="md"
+                            borderRadius="lg"
+                            overflow="hidden"
+                            transition="all 0.2s"
+                            _hover={{
+                                transform: "translateY(-2px)",
+                                boxShadow: "lg",
+                                textDecoration: "none"
+                            }}
+                            height="100%"
+                        >
+                            <CardBody>
+                                <Flex direction="column" height="100%">
+                                    <Flex align="center" mb={4}>
+                                        <Box
+                                            w={12}
+                                            h={12}
+                                            borderRadius="full"
+                                            display="flex"
+                                            alignItems="center"
+                                            justifyContent="center"
+                                            bg="#21BD86" // Custom color
+                                            color="white" // Icon color to contrast with the custom background color
+                                            mr={4}
+                                        >
+                                            <FontAwesomeIcon icon={journal.icon} size="lg"/>
+                                        </Box>
+                                        <Box>
+                                            <Heading as="h3" size="md" mb={1}>
+                                                {journal.title}
+                                            </Heading>
+                                            <Badge
+                                                colorScheme="green" // Green Badge as an indication of custom color
+                                                variant="subtle"
+                                                fontSize="0.8em"
+                                            >
+                                                {journal.count} ta ma'lumot
+                                            </Badge>
+                                        </Box>
+                                    </Flex>
+
+                                    <Text color={textColor} mb={4} flexGrow={1}>
+                                        {journal.description}
+                                    </Text>
+
+                                    <Box mt="auto">
+                                        <Divider mb={2}/>
+                                        <Text fontSize="sm" color="gray.500">
+                                            {/*{journal.lastUpdated}*/}
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                            </CardBody>
+                        </Card>
+                    ))}
+                </SimpleGrid>
+            </Box>
+
+
+            {/* Statistics Section */}
+            <Box mb={8}>
+                <Heading as="h2" size="lg" mb={6} color={headingColor}>
+                    Umumiy statistika
+                </Heading>
+                <Divider mb={6}/>
+
+                <Grid templateColumns={{base: "1fr", md: "repeat(3, 1fr)"}} gap={6}>
+                    <Card
+                        bgGradient="linear(to-r, #ff7e5f, #feb47b)" // Red to pink gradient
+
+                        boxShadow="md"
+                        borderRadius="lg"
                     >
-                      {item.title}
-                    </Text>
-                  </CardBody>
-                </Stack>
-              </Card>
-            </GridItem>
-          ))}
-        </Grid> */}
-      </Box>
-      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
-        Қаршидаги вагонлар
-      </Heading>
+                        <CardBody>
+                            <Stat>
+                                <StatLabel color={"white"} fontWeight={"bold"}>Jami jurnallar soni</StatLabel>
+                                <StatNumber color={"white"} fontWeight={"bold"}>
+                                    <CountUp end={journalData.length} duration={1}/> ta
+                                </StatNumber>
+                                <StatHelpText fontWeight={"bold"} color={"white"}>Barcha mavjud blankalar</StatHelpText>
+                            </Stat>
+                        </CardBody>
+                    </Card>
 
-      <Flex gap={6}>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="area"
-            options={demoZero.options}
-            series={demoZero.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-      </Flex>
-      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
-        Қаршидаги нуксонли вагонлар
-      </Heading>
+                    <Card
+                        bgGradient="linear(to-r, #38ef7d, #11998e)" // Teal to blue gradient
 
-      <Flex gap={6}>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="area"
-            options={demoFirst.options}
-            series={demoFirst.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-      </Flex>
-      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
-        2024 йил хозирги кунгача Қарши вагон депосида таъмирланган вагонлар
-        <br />
-        Жами: 890
-      </Heading>
+                        boxShadow="md"
+                        borderRadius="lg"
+                    >
+                        <CardBody>
+                            <Stat>
+                                <StatLabel fontWeight={"bold"} color={"white"}>Jami blankalar soni</StatLabel>
+                                <StatNumber fontWeight={"bold"} color={"white"}>
+                                    <CountUp end={BlankData.length} duration={1}/> ta
+                                </StatNumber>
+                                <StatHelpText fontWeight={"bold"} color={"white"}>Barcha mavjud blankalar</StatHelpText>
+                            </Stat>
+                        </CardBody>
+                    </Card>
 
-      <Flex gap={6}>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="bar"
-            options={chartFirst.options}
-            series={chartFirst.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="bar"
-            options={chartSix.options}
-            series={chartSix.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="bar"
-            options={chartSecond.options}
-            series={chartSecond.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-      </Flex>
-      <Heading as={"h1"} textAlign={"center"} fontWeight={700} size={"lg"}>
-        2024 йил хозирги кунгача Қарши вагон депосида таъмирланган бошқа
-        ташкилот вагонлар
-        <br />
-        Жами: 257
-      </Heading>
+                    <Card
+                        bgGradient="linear(to-r, #00c6ff, #0072ff)" // Cyan to purple gradient
 
-      <Flex gap={6}>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="bar"
-            options={chartThree.options}
-            series={chartThree.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="bar"
-            options={chartFour.options}
-            series={chartFour.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-        <Card
-          display={"flex"}
-          py="1rem"
-          height={"300px"}
-          width="100%"
-          position="relative"
-        >
-          <Chart
-            type="bar"
-            options={chartFive.options}
-            series={chartFive.series}
-            width="100%"
-            height="100%"
-          />
-        </Card>
-      </Flex>
-    </Container>
-  );
+                        boxShadow="md"
+                        borderRadius="lg"
+                    >
+                        <CardBody>
+                            <Stat>
+                                <StatLabel fontWeight={"bold"} color={"white"}>Jami foydalanuvchilar soni</StatLabel>
+                                <StatNumber fontWeight={"bold"} color={"white"}>
+                                    51 ta
+                                </StatNumber>
+                                <StatHelpText fontWeight={"bold"} color={"white"}>Barcha platforma foydalanuvchilar
+                                </StatHelpText>
+                            </Stat>
+                        </CardBody>
+                    </Card>
+
+                    <Card
+                        bgGradient="linear(to-r, #8A2387, #E94057, #F27121)"
+                        boxShadow="md"
+                        borderRadius="lg">
+                    </Card>
+                </Grid>
+            </Box>
+
+
+        </Container>
+    );
 };
