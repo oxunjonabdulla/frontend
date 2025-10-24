@@ -48,28 +48,65 @@ import {
 } from "recharts";
 import {privateInstance} from "@/Service/client/client.js"; // for auth endpoints
 
-const WagonTypeLineChart = () => {
-    return (
-        <ResponsiveContainer width="100%" height={400}>
-            <LineChart
-                data={wagonTypeMonthlyData}
-                margin={{top: 20, right: 30, left: 0, bottom: 0}}
-            >
-                <CartesianGrid strokeDasharray="3 3"/>
-                <XAxis dataKey="month"/>
-                <YAxis/>
-                <Tooltip/>
-                <Legend/>
 
-                <Line type="monotone" dataKey="yopiq" stroke="#2d6a4f" strokeWidth={2} name="Yopiq vagonlar"/>
-                <Line type="monotone" dataKey="platforma" stroke="#1e3c72" strokeWidth={2} name="Platforma"/>
-                <Line type="monotone" dataKey="yarim" stroke="#8e0e00" strokeWidth={2} name="Yarim ochiq"/>
-                <Line type="monotone" dataKey="sisterna" stroke="#4b0082" strokeWidth={2} name="Sisterna"/>
-                <Line type="monotone" dataKey="boshqa" stroke="#ff9900" strokeWidth={2} name="Boshqa turdagi"/>
-            </LineChart>
-        </ResponsiveContainer>
-    );
+const WagonTypeLineChart = () => {
+  const [wagonTypeMonthlyData, setWagonTypeMonthlyData] = useState([]);
+
+  useEffect(() => {
+    privateInstance
+      .get("carriage_type_statistic/")
+      .then((res) => {
+        const apiData = res.data;
+        const grouped = {};
+
+        apiData.forEach((item) => {
+          const month = item.repair_month.month_name;
+          if (!grouped[month]) {
+            grouped[month] = {
+              month,
+              yopiq: 0,
+              platforma: 0,
+              yarim: 0,
+              sisterna: 0,
+              boshqa: 0,
+            };
+          }
+
+          const name = item.name.toLowerCase();
+          if (name.includes("yopiq")) grouped[month].yopiq = item.count;
+          else if (name.includes("platforma")) grouped[month].platforma = item.count;
+          else if (name.includes("yarim")) grouped[month].yarim = item.count;
+          else if (name.includes("sisterna")) grouped[month].sisterna = item.count;
+          else if (name.includes("boshqa")) grouped[month].boshqa = item.count;
+        });
+
+        setWagonTypeMonthlyData(Object.values(grouped));
+      })
+      .catch((err) => console.error("Error fetching wagon data:", err));
+  }, []);
+
+  return (
+    <ResponsiveContainer width="100%" height={400}>
+      <LineChart
+        data={wagonTypeMonthlyData}
+        margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+
+        <Line type="monotone" dataKey="yopiq" stroke="#2d6a4f" strokeWidth={2} name="Yopiq vagonlar" />
+        <Line type="monotone" dataKey="platforma" stroke="#1e3c72" strokeWidth={2} name="Platforma" />
+        <Line type="monotone" dataKey="yarim" stroke="#8e0e00" strokeWidth={2} name="Yarim ochiq" />
+        <Line type="monotone" dataKey="sisterna" stroke="#4b0082" strokeWidth={2} name="Sisterna" />
+        <Line type="monotone" dataKey="boshqa" stroke="#ff9900" strokeWidth={2} name="Boshqa turdagi" />
+      </LineChart>
+    </ResponsiveContainer>
+  );
 };
+
 const wagonGradients = [
     {id: "gradGreen", start: "#43cea2", end: "#185a9d"},
     {id: "gradBlue", start: "#36d1dc", end: "#5b86e5"},
@@ -115,28 +152,22 @@ function ChorakPieChart({data}) {
 
 const topInfoData = [
     {
-        title: "Korxona balansidagi vagonlar soni",
+        title: "Temiryo'l Cargo AJ ga tegishli nosoz yuk vagonlari soni",
         numberCnt: 803,
         icon: faTrain,
         bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     },
     {
-        title: "Korxona balansiga qabul qilingan va chiqarilgan vagonlar soni",
+        title: "Xususiy tashkilotlarga tegishli nosoz yuk vagonlari soni",
         numberCnt: 1618,
         icon: faClipboardCheck,
         bgColor: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
     },
     {
-        title: "Korxona hududidagi nosoz vagonlar soni",
+        title: "Inventar parkka tegishli nosoz yuk vagonlari soni",
         numberCnt: 58,
         icon: faWrench,
         bgColor: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
-    },
-    {
-        title: "Joriy yil davomida xususiy vagonlar soni",
-        numberCnt: 483,
-        icon: faTools,
-        bgColor: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
     },
 ];
 
@@ -190,65 +221,88 @@ const sectionTitles = {
     repairHistory: "So'nggi ta'mirlashlar"
 };
 
-const chorakWagonData = [
-    {
-        title: "Birinchi chorak: 305 ta vagonlar",
-        data: [
-            {type: "Yopiq vagonlar", count: 55},
-            {type: "Platforma vagonlar", count: 38},
-            {type: "Yarim vagonlar", count: 85},
-            {type: "Sisterna vagonlar", count: 62},
-            {type: "Boshqa turdagi vagonlar", count: 65},
-        ],
-    },
+// const chorakWagonData = [
+//     {
+//         title: "Birinchi chorak: 305 ta vagonlar",
+//         data: [
+//             {type: "Yopiq vagonlar", count: 55},
+//             {type: "Platforma vagonlar", count: 38},
+//             {type: "Yarim vagonlar", count: 85},
+//             {type: "Sisterna vagonlar", count: 62},
+//             {type: "Boshqa turdagi vagonlar", count: 65},
+//         ],
+//     },
+//
+//     {
+//         title: "Ikkinchi chorak: 342 ta vagonlar",
+//         data: [
+//             {type: "Yopiq vagonlar", count: 21},
+//             {type: "Platforma vagonlar", count: 12},
+//             {type: "Yarim vagonlar", count: 86},
+//             {type: "Sisterna vagonlar", count: 73},
+//             {type: "Boshqa turdagi vagonlar", count: 150},
+//         ],
+//     },
+//     {
+//         title: "Uchinchi chorak",
+//         data: [
+//             {type: "Yopiq vagonlar", count: 0},
+//             {type: "Platforma vagonlar", count: 0},
+//             {type: "Yarim vagonlar", count: 0},
+//             {type: "Sisterna vagonlar", count: 0},
+//             {type: "Boshqa turdagi vagonlar", count: 0},
+//         ],
+//     },
+//     {
+//         title: "To‘rtinchi chorak",
+//         data: [
+//             {type: "Yopiq vagonlar", count: 0},
+//             {type: "Platforma vagonlar", count: 0},
+//             {type: "Yarim vagonlar", count: 0},
+//             {type: "Sisterna vagonlar", count: 0},
+//             {type: "Boshqa turdagi vagonlar", count: 0},
+//         ],
+//     },
+// ];
 
-    {
-        title: "Ikkinchi chorak: 342 ta vagonlar",
-        data: [
-            {type: "Yopiq vagonlar", count: 21},
-            {type: "Platforma vagonlar", count: 12},
-            {type: "Yarim vagonlar", count: 86},
-            {type: "Sisterna vagonlar", count: 73},
-            {type: "Boshqa turdagi vagonlar", count: 150},
-        ],
-    },
-    {
-        title: "Uchinchi chorak",
-        data: [
-            {type: "Yopiq vagonlar", count: 0},
-            {type: "Platforma vagonlar", count: 0},
-            {type: "Yarim vagonlar", count: 0},
-            {type: "Sisterna vagonlar", count: 0},
-            {type: "Boshqa turdagi vagonlar", count: 0},
-        ],
-    },
-    {
-        title: "To‘rtinchi chorak",
-        data: [
-            {type: "Yopiq vagonlar", count: 0},
-            {type: "Platforma vagonlar", count: 0},
-            {type: "Yarim vagonlar", count: 0},
-            {type: "Sisterna vagonlar", count: 0},
-            {type: "Boshqa turdagi vagonlar", count: 0},
-        ],
-    },
-];
+// ==============================================================================
 
 
-const monthlyGoals = [
-    {month: "Yanvar", target: 60, completed: 30},
-    {month: "Fevral", target: 50, completed: 50},
-    {month: "Mart", target: 72, completed: 43},
-    {month: "Aprel", target: 55, completed: 65},
-    {month: "May", target: 60, completed: 45},
-    {month: "Iyun", target: 60, completed: 63},
-    {month: "Iyul", target: 60, completed: 35},
-    {month: "Avgust", target: 150, completed: 60, current: true},
-    {month: "Sentyabr", target: 100, completed: 0},
-    {month: "Oktyabr", target: 100, completed: 0},
-    {month: "Noyabr", target: 100, completed: 0},
-    {month: "Dekabr", target: 100, completed: 0}
-];
+// ==============================================================================
+
+
+
+
+// const monthlyGoals = [
+//     {month: "Yanvar", target: 60, completed: 30},
+//     {month: "Fevral", target: 50, completed: 50},
+//     {month: "Mart", target: 72, completed: 43},
+//     {month: "Aprel", target: 55, completed: 65},
+//     {month: "May", target: 60, completed: 45},
+//     {month: "Iyun", target: 60, completed: 63},
+//     {month: "Iyul", target: 60, completed: 35},
+//     {month: "Avgust", target: 150, completed: 60, current: true},
+//     {month: "Sentyabr", target: 100, completed: 0},
+//     {month: "Oktyabr", target: 100, completed: 0},
+//     {month: "Noyabr", target: 100, completed: 0},
+//     {month: "Dekabr", target: 100, completed: 0}
+// ];
+//
+// const choraklar = [
+//     {title: "Birinchi chorak", months: ["Yanvar", "Fevral", "Mart"]},
+//     {title: "Ikkinchi chorak", months: ["Aprel", "May", "Iyun"]},
+//     {title: "Uchinchi chorak", months: ["Iyul", "Avgust", "Sentyabr"]},
+//     {title: "To‘rtinchi chorak", months: ["Oktyabr", "Noyabr", "Dekabr"]}
+// ];
+//
+//
+// const groupedGoals = choraklar.map(chorak => ({
+//     title: chorak.title,
+//     months: monthlyGoals.filter(m => chorak.months.includes(m.month))
+// }));
+
+
+
 const chorakColors = ["green", "blue", "red", "purple"];
 
 const chorakIconGradients = [
@@ -259,18 +313,6 @@ const chorakIconGradients = [
 ];
 
 
-const choraklar = [
-    {title: "Birinchi chorak", months: ["Yanvar", "Fevral", "Mart"]},
-    {title: "Ikkinchi chorak", months: ["Aprel", "May", "Iyun"]},
-    {title: "Uchinchi chorak", months: ["Iyul", "Avgust", "Sentyabr"]},
-    {title: "To‘rtinchi chorak", months: ["Oktyabr", "Noyabr", "Dekabr"]}
-];
-
-
-const groupedGoals = choraklar.map(chorak => ({
-    title: chorak.title,
-    months: monthlyGoals.filter(m => chorak.months.includes(m.month))
-}));
 
 const wagonTypeMonthlyData = [
     {month: "Yanvar", yopiq: 8, platforma: 3, yarim: 8, sisterna: 9, boshqa: 2},
@@ -341,6 +383,106 @@ export const HomePage = () => {
             setCounts(newCounts);
         });
     }, []);
+
+const [chorakWagonData, setChorakWagonData] = useState([]);
+
+useEffect(() => {
+   privateInstance
+      .get("quarter_carriage_type_statistic/")
+      .then((data) => {
+        const grouped = {};
+
+      data.data.forEach((item) => {
+        const quarterName = item.quarter.name;
+        if (!grouped[quarterName]) {
+          grouped[quarterName] = [];
+        }
+        grouped[quarterName].push({
+          type: item.name,
+          count: item.count,
+        });
+      });
+
+      const structuredData = Object.entries(grouped).map(([quarter, values]) => {
+        const totalCount = values.reduce((sum, v) => sum + v.count, 0);
+        return {
+          title: `${quarter}: ${totalCount} ta vagonlar`,
+          data: values,
+        };
+      });
+
+      // Ensure all 4 quarters always appear
+      const allQuarters = [
+        "Birinchi chorak",
+        "Ikkinchi chorak",
+        "Uchinchi chorak",
+        "To‘rtinchi chorak",
+      ];
+
+      const finalData = allQuarters.map((q) => {
+        const found = structuredData.find((d) => d.title.startsWith(q));
+        return (
+          found || {
+            title: q,
+            data: [
+              { type: "Yopiq vagonlar", count: 0 },
+              { type: "Platforma vagonlar", count: 0 },
+              { type: "Yarim ochiq vagonlar", count: 0 },
+              { type: "Sisterna vagonlar", count: 0 },
+              { type: "Boshqa turdagi vagonlar", count: 0 },
+            ],
+          }
+        );
+      });
+
+      setChorakWagonData(finalData);
+    })
+    .catch((err) => console.error("Failed to load data:", err));
+}, []);
+
+const [groupedGoals, setGroupedGoals] = useState([]);
+ useEffect(() => {
+  privateInstance
+    .get("monthly_plan/")
+    .then((response) => {
+      const data = response.data; // API JSON data
+
+
+      // Group months by quarter
+      const grouped = {};
+      data.forEach((item) => {
+        const quarterName = item.quarter.name;
+        if (!grouped[quarterName]) grouped[quarterName] = [];
+        grouped[quarterName].push({
+          month: item.month,
+          target: item.plan,
+          completed: item.completed,
+          current: false, // add logic for current month if needed
+        });
+      });
+
+      // Convert grouped object to array for mapping
+      const groupedArray = Object.keys(grouped)
+  .sort((a, b) => {
+    const orderA = data.find((r) => r.quarter.name === a).quarter.order;
+    const orderB = data.find((r) => r.quarter.name === b).quarter.order;
+    return orderA - orderB;
+  })
+  .map((qName) => ({
+    title: qName,
+    months: grouped[qName].reverse(), // ⬅️ reverses months in each quarter
+  }));
+
+
+
+      // If using React state
+      setGroupedGoals(groupedArray);
+    })
+    .catch((err) => {
+      console.error("Failed to fetch monthly goals:", err);
+    });
+}, []);
+
 
     const journalData = [
 
@@ -615,6 +757,42 @@ export const HomePage = () => {
     const progressBg = useColorModeValue("gray.100", "gray.600");
     const borderColor = useColorModeValue("gray.200", "gray.600");
 
+
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        privateInstance
+      .get("enterprise_wagon_info/") // change to your actual endpoint
+      .then((response) => {
+        if (response.data && response.data.length > 0) {
+          setData(response.data[0]); // we only need the first item
+        }
+      })
+      .catch((err) => console.error("API error:", err));
+    }, []);
+
+    if (!data) return null;
+
+    const topInfoData = [
+    {
+      title: "Temiryo'l Cargo AJ ga tegishli nosoz yuk vagonlari soni",
+      numberCnt: data.temiryol_cargo_pump_wagons,
+      icon: faTrain,
+      bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    },
+    {
+      title: "Xususiy tashkilotlarga tegishli nosoz yuk vagonlari soni",
+      numberCnt: data.private_org_pump_wagons,
+      icon: faClipboardCheck,
+      bgColor: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
+    },
+    {
+      title: "Inventar parkka tegishli nosoz yuk vagonlari soni",
+      numberCnt: data.inventory_park_pump_wagons,
+      icon: faWrench,
+      bgColor: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
+    },
+    ];
     return (
         <Container maxW="container.xxl" py={8} px={4}>
             {/* Header Section */}
@@ -629,10 +807,10 @@ export const HomePage = () => {
 
             {/* Stats Cards */}
             <Heading as="h2" size="lg" mb={6} color={headingColor}>
-                {sectionTitles.main}
+        {data.year}-yil {data.month} holatida korxona vagonlari ma’lumotlari
             </Heading>
             <Grid
-                templateColumns={{base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)"}}
+                templateColumns={{base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)"}}
                 gap={6}
                 mb={12}
             >
@@ -687,98 +865,94 @@ export const HomePage = () => {
                 ))}
             </Grid>
 
-            <Box mb={12}>
-                <Heading as="h2" size="lg" mb={6} color={headingColor}>
-                    {sectionTitles.monthlyProgress}
-                </Heading>
+<Box mb={12}>
+      <Heading as="h2" size="lg" mb={6} color={textColor}>
+        {sectionTitles.monthlyProgress}
+      </Heading>
 
-                {groupedGoals.map((chorak, idx) => (
-                    <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} mb={8}>
-                        <Flex align="center" mb={4}>
-                            <Box
-                                w={10}
-                                h={10}
-                                borderRadius="lg"
-                                display="flex"
-                                alignItems="center"
-                                justifyContent="center"
-                                bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
-
-                                color="white"
-                                mr={3}
-                            >
-                                <FontAwesomeIcon icon={faCalendarAlt} size="lg"/>
-                            </Box>
-                            <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
-                        </Flex>
-
-                        <SimpleGrid columns={{base: 1, md: 2, lg: 3}} spacing={4}>
-                            {chorak.months.map(month => (
-                                <Box key={month.month} p={4} borderWidth="1px" borderRadius="lg"
-                                     borderColor={borderColor}>
-                                    <Flex justify="space-between" mb={2}>
-                                        <Text fontWeight="medium">{month.month}</Text>
-                                        {month.current && <Badge colorScheme="blue">Joriy</Badge>}
-                                    </Flex>
-                                    <Progress
-                                        value={(month.completed / month.target) * 100}
-                                        size="sm"
-                                        colorScheme={chorakColors[idx % chorakColors.length]} // same color for all months in this chorak
-                                        bg={progressBg}
-                                        borderRadius="full"
-                                        mb={2}
-                                    />
-
-                                    <Flex justify="space-between">
-                                        <Text fontSize="sm" color={textColor}>
-                                            {month.completed} / {month.target}
-                                        </Text>
-                                        <Text fontSize="sm" fontWeight="bold">
-                                            {Math.round((month.completed / month.target) * 100)}%
-                                        </Text>
-                                    </Flex>
-                                </Box>
-                            ))}
-                        </SimpleGrid>
-                    </Card>
-                ))}
+      {groupedGoals.map((chorak, idx) => (
+        <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} mb={8}>
+          <Flex align="center" mb={4}>
+            <Box
+              w={10}
+              h={10}
+              borderRadius="lg"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
+              color="white"
+              mr={3}
+            >
+              <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
             </Box>
+            <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+          </Flex>
+
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
+            {chorak.months.map(month => (
+              <Box key={month.month} p={4} borderWidth="1px" borderRadius="lg" borderColor={borderColor}>
+                <Flex justify="space-between" mb={2}>
+                  <Text fontWeight="medium">{month.month}</Text>
+                  {month.current && <Badge colorScheme="blue">Joriy</Badge>}
+                </Flex>
+                <Progress
+                  value={(month.completed / month.target) * 100}
+                  size="sm"
+                  colorScheme={chorakColors[idx % chorakColors.length]}
+                  bg={progressBg}
+                  borderRadius="full"
+                  mb={2}
+                />
+                <Flex justify="space-between">
+                  <Text fontSize="sm" color={textColor}>
+                    {month.completed} / {month.target}
+                  </Text>
+                  <Text fontSize="sm" fontWeight="bold">
+                    {Math.round((month.completed / month.target) * 100)}%
+                  </Text>
+                </Flex>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Card>
+      ))}
+    </Box>
+
             <Box mb={12}>
                 <WagonTypeLineChart/>
             </Box>
 
+<Box mb={12}>
+  <Heading as="h2" size="lg" mb={6} color={headingColor}>
+    {sectionTitles.wagonTypes}
+  </Heading>
 
-            <Box mb={12}>
-                <Heading as="h2" size="lg" mb={6} color={headingColor}>
-                    {sectionTitles.wagonTypes}
-                </Heading>
+  <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6}>
+    {chorakWagonData.map((chorak, idx) => (
+      <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} height="100%">
+        <Flex align="center" mb={6}>
+          <Box
+            w={10}
+            h={10}
+            borderRadius="lg"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
+            color="white"
+            mr={3}
+          >
+            <FontAwesomeIcon icon={faChartPie} size="lg" />
+          </Box>
+          <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+        </Flex>
 
-                <Grid templateColumns={{base: "1fr", md: "1fr 1fr"}} gap={6}>
-                    {chorakWagonData.map((chorak, idx) => (
-                        <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} height="100%">
-                            <Flex align="center" mb={6}>
-                                <Box
-                                    w={10}
-                                    h={10}
-                                    borderRadius="lg"
-                                    display="flex"
-                                    alignItems="center"
-                                    justifyContent="center"
-                                    bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
-
-                                    color="white"
-                                    mr={3}
-                                >
-                                    <FontAwesomeIcon icon={faChartPie} size="lg"/>
-                                </Box>
-                                <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
-                            </Flex>
-
-                            <ChorakPieChart data={chorak.data}/>
-                        </Card>
-                    ))}
-                </Grid>
-            </Box>
+        <ChorakPieChart data={chorak.data} />
+      </Card>
+    ))}
+  </Grid>
+</Box>
 
 
             {/* Additional Info Section */}
