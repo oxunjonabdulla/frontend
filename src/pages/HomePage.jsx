@@ -150,26 +150,7 @@ function ChorakPieChart({data}) {
     );
 }
 
-const topInfoData = [
-    {
-        title: "Temiryo'l Cargo AJ ga tegishli nosoz yuk vagonlari soni",
-        numberCnt: 803,
-        icon: faTrain,
-        bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-    },
-    {
-        title: "Xususiy tashkilotlarga tegishli nosoz yuk vagonlari soni",
-        numberCnt: 1618,
-        icon: faClipboardCheck,
-        bgColor: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
-    },
-    {
-        title: "Inventar parkka tegishli nosoz yuk vagonlari soni",
-        numberCnt: 58,
-        icon: faWrench,
-        bgColor: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
-    },
-];
+
 
 const RouteNames = {
     HOME: "/",
@@ -215,93 +196,10 @@ const RouteNames = {
 
 
 const sectionTitles = {
-    main: "2025-yil avgust holatida korxona vagonlari ma’lumotlari",
     monthlyProgress: "Oylik ta'mirlash jarayoni",
     wagonTypes: "Vagon turlari bo'yicha taqsimot",
     repairHistory: "So'nggi ta'mirlashlar"
 };
-
-// const chorakWagonData = [
-//     {
-//         title: "Birinchi chorak: 305 ta vagonlar",
-//         data: [
-//             {type: "Yopiq vagonlar", count: 55},
-//             {type: "Platforma vagonlar", count: 38},
-//             {type: "Yarim vagonlar", count: 85},
-//             {type: "Sisterna vagonlar", count: 62},
-//             {type: "Boshqa turdagi vagonlar", count: 65},
-//         ],
-//     },
-//
-//     {
-//         title: "Ikkinchi chorak: 342 ta vagonlar",
-//         data: [
-//             {type: "Yopiq vagonlar", count: 21},
-//             {type: "Platforma vagonlar", count: 12},
-//             {type: "Yarim vagonlar", count: 86},
-//             {type: "Sisterna vagonlar", count: 73},
-//             {type: "Boshqa turdagi vagonlar", count: 150},
-//         ],
-//     },
-//     {
-//         title: "Uchinchi chorak",
-//         data: [
-//             {type: "Yopiq vagonlar", count: 0},
-//             {type: "Platforma vagonlar", count: 0},
-//             {type: "Yarim vagonlar", count: 0},
-//             {type: "Sisterna vagonlar", count: 0},
-//             {type: "Boshqa turdagi vagonlar", count: 0},
-//         ],
-//     },
-//     {
-//         title: "To‘rtinchi chorak",
-//         data: [
-//             {type: "Yopiq vagonlar", count: 0},
-//             {type: "Platforma vagonlar", count: 0},
-//             {type: "Yarim vagonlar", count: 0},
-//             {type: "Sisterna vagonlar", count: 0},
-//             {type: "Boshqa turdagi vagonlar", count: 0},
-//         ],
-//     },
-// ];
-
-// ==============================================================================
-
-
-// ==============================================================================
-
-
-
-
-// const monthlyGoals = [
-//     {month: "Yanvar", target: 60, completed: 30},
-//     {month: "Fevral", target: 50, completed: 50},
-//     {month: "Mart", target: 72, completed: 43},
-//     {month: "Aprel", target: 55, completed: 65},
-//     {month: "May", target: 60, completed: 45},
-//     {month: "Iyun", target: 60, completed: 63},
-//     {month: "Iyul", target: 60, completed: 35},
-//     {month: "Avgust", target: 150, completed: 60, current: true},
-//     {month: "Sentyabr", target: 100, completed: 0},
-//     {month: "Oktyabr", target: 100, completed: 0},
-//     {month: "Noyabr", target: 100, completed: 0},
-//     {month: "Dekabr", target: 100, completed: 0}
-// ];
-//
-// const choraklar = [
-//     {title: "Birinchi chorak", months: ["Yanvar", "Fevral", "Mart"]},
-//     {title: "Ikkinchi chorak", months: ["Aprel", "May", "Iyun"]},
-//     {title: "Uchinchi chorak", months: ["Iyul", "Avgust", "Sentyabr"]},
-//     {title: "To‘rtinchi chorak", months: ["Oktyabr", "Noyabr", "Dekabr"]}
-// ];
-//
-//
-// const groupedGoals = choraklar.map(chorak => ({
-//     title: chorak.title,
-//     months: monthlyGoals.filter(m => chorak.months.includes(m.month))
-// }));
-
-
 
 const chorakColors = ["green", "blue", "red", "purple"];
 
@@ -313,76 +211,23 @@ const chorakIconGradients = [
 ];
 
 
-
-const wagonTypeMonthlyData = [
-    {month: "Yanvar", yopiq: 8, platforma: 3, yarim: 8, sisterna: 9, boshqa: 2},
-    {month: "Fevral", yopiq: 16, platforma: 11, yarim: 7, sisterna: 11, boshqa: 5},
-    {month: "Mart", yopiq: 1, platforma: 12, yarim: 14, sisterna: 11, boshqa: 5},
-    {month: "Aprel", yopiq: 3, platforma: 0, yarim: 13, sisterna: 16, boshqa: 33},
-    {month: "May", yopiq: 0, platforma: 1, yarim: 10, sisterna: 13, boshqa: 21},
-    {month: "Iyun", yopiq: 0, platforma: 5, yarim: 16, sisterna: 13, boshqa: 29},
-    {month: "Iyul", yopiq: 1, platforma: 0, yarim: 9, sisterna: 20, boshqa: 5},
-    {month: "Avgust", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
-    {month: "Sentyabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
-    {month: "Oktyabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
-    {month: "Noyabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0},
-    {month: "Dekabr", yopiq: 0, platforma: 0, yarim: 0, sisterna: 0, boshqa: 0}
-];
-
-
 export const HomePage = () => {
     const [counts, setCounts] = useState({});
-    const apis = [
-        {key: "phraseCount", url: "phrase_cart/list/"},
-        {key: "vu32Count", url: "vu32/"},
-        {key: "aravaActCount", url: "aravaact/list/"},
-        {key: "avtoActCount", url: "avtoact/list/"},
-        {key: "vu47Count", url: "vu47/list/"},
-        {key: "autorejimCount", url: "autorejim/"},
-        {key: "razobkranCount", url: "razobkran/list/"},
-        {key: "rezervuarCount", url: "rezervuar/list/"},
-        {key: "rukvaCount", url: "rukva/list/"},
-        {key: "regulyatorCount", url: "regulyator/"},
-        {key: "phrase_wheelCount", url: "phrase_wheel/list/"},
-        {key: "vu50Count", url: "vu50/list/"},
-        {key: "vu54Count", url: "vu54/"},
-        {key: "vu53Count", url: "vu53/"},
-        {key: "vu90Count", url: "vu90/list/"},
-        {key: "vu91Count", url: "vu91/list/"},
-        {key: "vu92Count", url: "vu92/list/"},
-        {key: "vu93Count", url: "vu93/list/"},
-        {key: "kolesoActCount", url: "kolesoact/list/"},
-        {key: "vu68Count", url: "vu68/list/"},
-        {key: "collectAct", url: "collectact/list/"},
-        {key: "defestoskopAvtobirikmaCount", url: "defestoskop/avtobirikma/"},
-        {key: "defestoskopAravalarCount", url: "defestoskop/aravalar/"},
-        {key: "defestoskopWheelCount", url: "defestoskop/wheel/"},
-        {key: "vu23Count", url: "carriage/"},
-        {key: "vu22Count", url: "vu22/texnik_xizmat/"},
-        {key: "vu36Count", url: "vu36/"},
-        {key: "vu10Count", url: "vu10/"},
-        {key: "PhraseCount", url: "phrase/list/"},
-        {key: "vu51Count", url: "vu51_m/"},
-    ];
-    useEffect(() => {
-        Promise.all(
-            apis.map(api =>
-                privateInstance
-                    .get(api.url)
-                    .then(res => ({key: api.key, count: res.data.count}))
-                    .catch(err => {
-                        console.error(err);
-                        return {key: api.key, count: 0};
-                    })
-            )
-        ).then(results => {
-            const newCounts = {};
-            results.forEach(r => {
-                newCounts[r.key] = r.count;
-            });
-            setCounts(newCounts);
-        });
-    }, []);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    privateInstance
+      .get("dashboard-counts/") // or "/api/dashboard-counts/" if your baseURL isn’t set
+      .then((res) => {
+        setCounts(res.data);
+      })
+      .catch((err) => {
+        console.error("Error loading counts:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
 const [chorakWagonData, setChorakWagonData] = useState([]);
 
