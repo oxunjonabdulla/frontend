@@ -10,7 +10,7 @@ import {
     Flex,
     Grid,
     GridItem,
-    Heading,
+    Heading, IconButton,
     Progress,
     SimpleGrid,
     Stat,
@@ -26,7 +26,7 @@ import {
     faChartPie,
     faClipboard,
     faClipboardCheck,
-    faNewspaper,
+    faNewspaper, faTimes,
     faTools,
     faTrain,
     faWrench
@@ -51,6 +51,7 @@ import {privateInstance} from "@/Service/client/client.js"; // for auth endpoint
 
 const WagonTypeLineChart = () => {
   const [wagonTypeMonthlyData, setWagonTypeMonthlyData] = useState([]);
+
 
   useEffect(() => {
     privateInstance
@@ -119,33 +120,59 @@ function ChorakPieChart({data}) {
 
     return (
         <ResponsiveContainer width="100%" height={350}>
-            <PieChart>
-                {/* Gradient definitions */}
-                <defs>
-                    {wagonGradients.map((grad) => (
-                        <linearGradient key={grad.id} id={grad.id} x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor={grad.start}/>
-                            <stop offset="100%" stopColor={grad.end}/>
-                        </linearGradient>
-                    ))}
-                </defs>
+           <PieChart>
+    {/* Gradient definitions */}
+    <defs>
+        {wagonGradients.map((grad) => (
+            <linearGradient
+                key={grad.id}
+                id={grad.id}
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+            >
+                <stop offset="0%" stopColor={grad.start} />
+                <stop offset="100%" stopColor={grad.end} />
+            </linearGradient>
+        ))}
+    </defs>
 
-                <Pie
-                    data={data}
-                    dataKey="count"
-                    nameKey="type"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={110} // bigger size
-                    label
-                >
-                    {data.map((_, index) => (
-                        <Cell key={`cell-${index}`} fill={`url(#${wagonGradients[index % wagonGradients.length].id})`}/>
-                    ))}
-                </Pie>
-                <Tooltip/>
-                <Legend/>
-            </PieChart>
+    <Pie
+        data={data}
+        dataKey="count"
+        nameKey="type"
+        cx="50%"
+        cy="50%"
+        outerRadius={110}
+        label={({ x, y, value }) => (
+            <text
+                x={x}
+                y={y}
+                fill="#000"
+                fontSize="14px"
+                fontWeight="bold"
+                textAnchor="middle"
+                dominantBaseline="central"
+            >
+                {value}
+            </text>
+        )}
+    >
+        {data.map((_, index) => (
+            <Cell
+                key={`cell-${index}`}
+                fill={`url(#${
+                    wagonGradients[index % wagonGradients.length].id
+                })`}
+            />
+        ))}
+    </Pie>
+
+    <Tooltip />
+    <Legend />
+</PieChart>
+
         </ResponsiveContainer>
     );
 }
@@ -213,7 +240,11 @@ const chorakIconGradients = [
 
 export const HomePage = () => {
     const [counts, setCounts] = useState({});
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [hoverChart, setHoverChart] = useState(false);
+
+
 
   useEffect(() => {
     privateInstance
@@ -716,7 +747,14 @@ const [groupedGoals, setGroupedGoals] = useState([]);
       </Heading>
 
       {groupedGoals.map((chorak, idx) => (
-        <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} mb={8}>
+        <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} mb={8}
+        transition="all 0.3s ease"
+transform="translateY(0)"
+_hover={{
+    transform: "translateY(-8px)",
+    boxShadow: "xl",
+}}
+>
           <Flex align="center" mb={4}>
             <Box
               w={10}
@@ -764,18 +802,88 @@ const [groupedGoals, setGroupedGoals] = useState([]);
       ))}
     </Box>
 
-            <Box mb={12}>
-                <WagonTypeLineChart/>
-            </Box>
 
+{/* SMALL CHART */}
 <Box mb={12}>
+  <Card
+    bg={cardBg}
+    p={6}
+    borderRadius="xl"
+    boxShadow="lg"
+    transition="all 0.6s cubic-bezier(0.19, 1, 0.22, 1)"
+onClick={() => setHoverChart(true)}
+    _hover={{ transform: "scale(1.08)", boxShadow: "xl" }}
+  >
+    <WagonTypeLineChart />
+  </Card>
+</Box>
+
+{/* MODAL OVERLAY WRAPPER */}
+{hoverChart && (
+  <Box
+    position="fixed"
+    top="0"
+    left="0"
+    width="100vw"
+    height="100vh"
+    bg="rgba(0,0,0,0.45)"
+    backdropFilter="blur(4px)"
+    zIndex={2000}
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    onClick={() => setHoverChart(false)}          // CLOSE ANYWHERE OUTSIDE
+  >
+    {/* STOP PROPAGATION SO MODAL DOESN’T CLOSE WHEN CLICKED */}
+    <Card
+      onClick={(e) => e.stopPropagation()}        // << IMPORTANT FIX
+      width="95vw"
+      maxWidth="1600px"
+      maxHeight="92vh"
+      overflow="auto"
+      p={10}
+      borderRadius="2xl"
+      boxShadow="4xl"
+      bg={cardBg}
+      position="relative"
+    >
+      <IconButton
+        icon={<FontAwesomeIcon icon={faTimes} />}
+        position="absolute"
+        top="14px"
+        right="14px"
+        onClick={() => setHoverChart(false)}
+        size="sm"
+        borderRadius="full"
+      />
+
+      <WagonTypeLineChart />
+    </Card>
+  </Box>
+)}
+
+
+            <Box mb={12}>
   <Heading as="h2" size="lg" mb={6} color={headingColor}>
     {sectionTitles.wagonTypes}
   </Heading>
 
   <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6}>
     {chorakWagonData.map((chorak, idx) => (
-      <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} height="100%">
+      <Card
+        key={idx}
+        bg={cardBg}
+        boxShadow="lg"
+        borderRadius="xl"
+        p={6}
+        height="100%"
+        transition="all 0.6s cubic-bezier(0.19, 1, 0.22, 1)"
+        onClick={() => setHoveredIndex(idx)}
+        _hover={{
+          transform: "scale(1.08)",
+          boxShadow: "xl",
+        }}
+      >
         <Flex align="center" mb={6}>
           <Box
             w={10}
@@ -790,13 +898,92 @@ const [groupedGoals, setGroupedGoals] = useState([]);
           >
             <FontAwesomeIcon icon={faChartPie} size="lg" />
           </Box>
-          <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+          <Text fontSize="lg" fontWeight="semibold">
+            {chorak.title}
+          </Text>
         </Flex>
 
         <ChorakPieChart data={chorak.data} />
       </Card>
     ))}
   </Grid>
+
+  {/* Background Overlay */}
+  <Box
+    position="fixed"
+    top="0"
+    left="0"
+    width="100vw"
+    height="100vh"
+    bg={hoveredIndex !== null ? "rgba(0, 0, 0, 0.45)" : "transparent"}
+    backdropFilter={hoveredIndex !== null ? "blur(4px)" : "none"}
+    opacity={hoveredIndex !== null ? 1 : 0}
+    pointerEvents={hoveredIndex !== null ? "auto" : "none"}
+    transition="all 0.8s ease"
+    zIndex={1500}
+  onClick={() => setHoveredIndex(null)}  // CHANGED HERE
+  />
+
+  {/* Modal Preview (Always Rendered, Animated Visually) */}
+  <Card
+    position="fixed"
+    top="50%"
+    left="50%"
+    transform={
+      hoveredIndex !== null
+        ? "translate(-50%, -50%) scale(1.25)"
+        : "translate(-50%, -50%) scale(0.85)"
+    }
+    opacity={hoveredIndex !== null ? 1 : 0}
+    pointerEvents={hoveredIndex !== null ? "auto" : "none"}
+    transition="all 0.9s cubic-bezier(0.16, 1, 0.3, 1)"
+    width="520px"
+    maxHeight="85vh"
+    overflow="auto"
+    zIndex={2001}
+    p={8}
+    borderRadius="2xl"
+    boxShadow="4xl"
+    bg={cardBg}
+  >
+    {hoveredIndex !== null && (
+      <>
+        <Flex align="center" mb={6}>
+          <Box
+            w={12}
+            h={12}
+            borderRadius="lg"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            bgGradient={
+              chorakIconGradients[hoveredIndex % chorakIconGradients.length]
+            }
+            color="white"
+            mr={3}
+          >
+            <FontAwesomeIcon icon={faChartPie} size="lg" />
+          </Box>
+          <Text fontSize="xl" fontWeight="bold">
+            {chorakWagonData[hoveredIndex].title}
+          </Text>
+        </Flex>
+
+        <ChorakPieChart data={chorakWagonData[hoveredIndex].data} />
+      </>
+    )}
+
+       <IconButton
+        icon={<FontAwesomeIcon icon={faTimes} />}
+        position="absolute"
+        top="14px"
+        right="14px"
+  onClick={() => setHoveredIndex(null)}  // notice use hoveredIndex state here
+        size="sm"
+        borderRadius="full"
+      />
+  </Card>
+
 </Box>
 
 
@@ -981,6 +1168,14 @@ const [groupedGoals, setGroupedGoals] = useState([]);
 
                         boxShadow="md"
                         borderRadius="lg"
+
+                        transition="all 0.3s ease"
+                        transform="translateY(0)"
+                        _hover={{
+                            transform: "translateY(-8px)",
+                            boxShadow: "xl",
+                        }}
+
                     >
                         <CardBody>
                             <Stat>
@@ -995,9 +1190,15 @@ const [groupedGoals, setGroupedGoals] = useState([]);
 
                     <Card
                         bgGradient="linear(to-r, #38ef7d, #11998e)" // Teal to blue gradient
-
                         boxShadow="md"
                         borderRadius="lg"
+                        transition="all 0.3s ease"
+                        transform="translateY(0)"
+                        _hover={{
+                            transform: "translateY(-8px)",
+                            boxShadow: "xl",
+                        }}
+
                     >
                         <CardBody>
                             <Stat>
@@ -1012,10 +1213,14 @@ const [groupedGoals, setGroupedGoals] = useState([]);
 
                     <Card
                         bgGradient="linear(to-r, #00c6ff, #0072ff)" // Cyan to purple gradient
-
                         boxShadow="md"
                         borderRadius="lg"
-                    >
+                        transition="all 0.3s ease"
+                        transform="translateY(0)"
+                        _hover={{
+                            transform: "translateY(-8px)",
+                            boxShadow: "xl",
+                        }}>
                         <CardBody>
                             <Stat>
                                 <StatLabel fontWeight={"bold"} color={"white"}>Jami foydalanuvchilar soni</StatLabel>

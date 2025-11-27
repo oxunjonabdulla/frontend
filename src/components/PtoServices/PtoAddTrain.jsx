@@ -315,20 +315,41 @@ export const PtoAddTrain = ({
               <option value="krp">&apos;KРП&apos; (KTP)</option>
             </Select>
           </FormControl>
-          <FormControl isInvalid={errors?.carriage_workshop}>
-            <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>
-              <Text as={"span"} color={"crimson"}>
-                *
-              </Text>
-              Vagon qayerga ta’mir uchun jo‘natiladi
-            </FormLabel>
-            <Input
-              borderColor={"gray.600"}
-              placeholder="Vagon qayerga ta’mir uchun jo‘natiladi"
-              {...register("carriage_workshop", { required: true })}
-              type="text"
-            />
-          </FormControl>
+          {/*<FormControl isInvalid={errors?.carriage_workshop}>*/}
+          {/*  <FormLabel as={"h1"} fontWeight={500} whiteSpace={"nowrap"}>*/}
+          {/*    <Text as={"span"} color={"crimson"}>*/}
+          {/*      **/}
+          {/*    </Text>*/}
+          {/*    Vagon qayerga ta’mir uchun jo‘natiladi*/}
+          {/*  </FormLabel>*/}
+          {/*  <Input*/}
+          {/*    borderColor={"gray.600"}*/}
+          {/*    placeholder="Vagon qayerga ta’mir uchun jo‘natiladi"*/}
+          {/*    {...register("carriage_workshop", { required: true })}*/}
+          {/*    type="text"*/}
+          {/*  />*/}
+          {/*</FormControl>*/}
+            <FormControl isInvalid={errors?.carriage_workshop}>
+  <FormLabel as="h1" fontWeight={500} whiteSpace="nowrap">
+    <Text as="span" color="crimson">*</Text>
+    Vagon qayerga ta’mir uchun jo‘natiladi
+  </FormLabel>
+
+  <Select
+    borderColor="gray.600"
+    // placeholder="Tanlang"
+    {...register("carriage_workshop", { required: true })}
+  >
+    <option value="VCHD-8">VCHD-8</option>
+    <option value="Qarshi joriy ta’mir bo‘linmasi">
+      Qarshi joriy ta’mir bo‘linmasi
+    </option>
+    <option value="Mash’al joriy ta’mir bo‘linmasi">
+      Mash’al joriy ta’mir bo‘linmasi
+    </option>
+  </Select>
+</FormControl>
+
         </Flex>
 
         <Flex gap={3} flexWrap={["wrap", "nowrap"]} alignItems={"center"}>

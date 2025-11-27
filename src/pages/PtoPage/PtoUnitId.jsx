@@ -85,7 +85,7 @@ export const PtoUnitId = () => {
                         O{"'"}ng g{"'"}ildirak qalinligi
                       </Th>
                       <Th> Chap g{"'"}ildirak qalinligi</Th>
-                      <Th> Соответсвует или не соответсвует </Th>
+                      {/*<Th> Соответсвует или не соответсвует </Th>*/}
                     </Tr>
                   </Thead>
 
@@ -100,11 +100,11 @@ export const PtoUnitId = () => {
                         <Td>{item?.year}</Td>
                         <Td>{item?.wheel_width_right}</Td>
                         <Td>{item?.wheel_width_left}</Td>
-                        <Td>
-                          {item?.is_correct
-                            ? "cоответсвует"
-                            : "не соответсвует"}
-                        </Td>
+                        {/*<Td>*/}
+                        {/*  {item?.is_correct*/}
+                        {/*    ? "cоответсвует"*/}
+                        {/*    : "не соответсвует"}*/}
+                        {/*</Td>*/}
                       </Tr>
                     ))}
                   </Tbody>
@@ -138,7 +138,7 @@ export const PtoUnitId = () => {
                       <Th>Zavod raqam</Th>
                       <Th>Raqam</Th>
                       <Th>Yili</Th>
-                      <Th>Соответсвует или не соответсвует </Th>
+                      {/*<Th>Соответсвует или не соответсвует </Th>*/}
                     </Tr>
                   </Thead>
 
@@ -151,11 +151,11 @@ export const PtoUnitId = () => {
                         </Td>
                         <Td>{item?.number}</Td>
                         <Td>{item?.year}</Td>
-                        <Td>
-                          {item?.is_correct
-                            ? "cоответсвует"
-                            : "не соответсвует"}
-                        </Td>
+                        {/*<Td>*/}
+                        {/*  {item?.is_correct*/}
+                        {/*    ? "cоответсвует"*/}
+                        {/*    : "не соответсвует"}*/}
+                        {/*</Td>*/}
                       </Tr>
                     ))}
                   </Tbody>
@@ -189,7 +189,7 @@ export const PtoUnitId = () => {
                       <Th>Zavod raqam</Th>
                       <Th>Raqam</Th>
                       <Th>Yili</Th>
-                      <Th> Соответсвует или не соответсвует </Th>
+                      {/*<Th> Соответсвует или не соответсвует </Th>*/}
                     </Tr>
                   </Thead>
 
@@ -202,11 +202,11 @@ export const PtoUnitId = () => {
                         </Td>
                         <Td>{item?.number}</Td>
                         <Td>{item?.year}</Td>
-                        <Td>
-                          {item?.is_correct
-                            ? "cоответсвует"
-                            : "не соответсвует"}
-                        </Td>
+                        {/*<Td>*/}
+                        {/*  {item?.is_correct*/}
+                        {/*    ? "cоответсвует"*/}
+                        {/*    : "не соответсвует"}*/}
+                        {/*</Td>*/}
                       </Tr>
                     ))}
                   </Tbody>
