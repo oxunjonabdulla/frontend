@@ -151,17 +151,17 @@ export const PtoCompleks = ({ setActiveStep }) => {
                   />
                 )}
               />
-              <Controller
-                name={`kol_para[${index}].is_correct`}
-                control={control}
-                defaultValue={true}
-                render={({ field }) => (
-                  <Select {...field} borderColor={"gray.600"}>
-                    <option value="true">соответствует</option>
-                    <option value="false">не соответствует</option>
-                  </Select>
-                )}
-              />
+              {/*<Controller*/}
+              {/*  name={`kol_para[${index}].is_correct`}*/}
+              {/*  control={control}*/}
+              {/*  defaultValue={true}*/}
+              {/*  render={({ field }) => (*/}
+              {/*    <Select {...field} borderColor={"gray.600"}>*/}
+              {/*      <option value="true">соответствует</option>*/}
+              {/*      <option value="false">не соответствует</option>*/}
+              {/*    </Select>*/}
+              {/*  )}*/}
+              {/*/>*/}
             </Flex>
           ))}
         </Flex>
@@ -217,17 +217,17 @@ export const PtoCompleks = ({ setActiveStep }) => {
                   />
                 )}
               />
-              <Controller
-                name={`nad_balka[${index}].is_correct`}
-                control={control}
-                defaultValue={true}
-                render={({ field }) => (
-                  <Select {...field} borderColor={"gray.600"}>
-                    <option value="true">соответствует</option>
-                    <option value="false">не соответствует</option>
-                  </Select>
-                )}
-              />
+              {/*<Controller*/}
+              {/*  name={`nad_balka[${index}].is_correct`}*/}
+              {/*  control={control}*/}
+              {/*  defaultValue={true}*/}
+              {/*  render={({ field }) => (*/}
+              {/*    <Select {...field} borderColor={"gray.600"}>*/}
+              {/*      <option value="true">соответствует</option>*/}
+              {/*      <option value="false">не соответствует</option>*/}
+              {/*    </Select>*/}
+              {/*  )}*/}
+              {/*/>*/}
             </Flex>
           ))}
         </Flex>
@@ -284,17 +284,17 @@ export const PtoCompleks = ({ setActiveStep }) => {
                   />
                 )}
               />
-              <Controller
-                name={`bok_rama[${index}].is_correct`}
-                control={control}
-                defaultValue={true}
-                render={({ field }) => (
-                  <Select {...field} borderColor={"gray.600"}>
-                    <option value="true">соответствует</option>
-                    <option value="false">не соответствует</option>
-                  </Select>
-                )}
-              />
+              {/*<Controller*/}
+              {/*  name={`bok_rama[${index}].is_correct`}*/}
+              {/*  control={control}*/}
+              {/*  defaultValue={true}*/}
+              {/*  render={({ field }) => (*/}
+              {/*    <Select {...field} borderColor={"gray.600"}>*/}
+              {/*      <option value="true">соответствует</option>*/}
+              {/*      <option value="false">не соответствует</option>*/}
+              {/*    </Select>*/}
+              {/*  )}*/}
+              {/*/>*/}
             </Flex>
           ))}
         </Flex>
