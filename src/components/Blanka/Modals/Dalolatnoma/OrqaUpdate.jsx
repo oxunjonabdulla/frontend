@@ -32,7 +32,7 @@ export const OrqaUpdate = ({ updateData }) => {
     if (response) {
       toast({
         status: "success",
-        title: "Dalolatnoma orqa qismi yangilandi!",
+        title: "Dalolatnomaning ta’mirdan keyingi ma’lumotlari yangilandi!",
         duration: 4000,
         isClosable: true,
         position: "top-right",

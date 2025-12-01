@@ -25,7 +25,7 @@ export const ShowBack = ({ isOpen, onClose, dataBack }) => {
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
         <ModalHeader textAlign={"center"}>
-          Kirish va chiqish dalolatnomasi aravalar bo‘linmasi orqa tomoni.
+          Kirish va chiqish dalolatnomasi aravalar bo‘linmasi ta’mirdan keyingi ma’lumotlar.
         </ModalHeader>
 
         <ModalCloseButton />

@@ -179,8 +179,8 @@ export const Dalolatnoma = () => {
                     </Th>
                   ))}
                   <Th textAlign={"center"}>Aravalar brigadiri imzosi</Th>
-                  <Th textAlign={"center"}>Orqa qismi statusi</Th>
-                  <Th colSpan={2}></Th>
+                  <Th textAlign={"center"}>Ta’mirdan keyingi ma’lumotlar holati</Th>
+                  <Th colSpan={2} textAlign={"center"}>Amallar</Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -231,17 +231,19 @@ export const Dalolatnoma = () => {
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
                         <Flex justify={"center"} align={"center"} gap={2} m={0}>
-                          <Text>Orqa tomonini kiritish:</Text>
+                          <Text>Qo'shish</Text>
                           <IconButton
                             onClick={() => handleBack(item?.carriage)}
-                            colorScheme="messenger"
+                            bg="blue.500"
+                            color="white"
                             icon={<FontAwesomeIcon icon={faPlus} />}
                           />
                         </Flex>
                       ) : (
                         <Flex justify={"center"} gap={2} m={0}>
                           <IconButton
-                            colorScheme="whatsapp"
+                            bg="blue.500"
+                            color="white"
                             onClick={() => handleShowBack(item?.back_detail)}
                             icon={<FontAwesomeIcon icon={faEye} />}
                           />
@@ -265,7 +267,9 @@ export const Dalolatnoma = () => {
                     <Td>
                       <Flex justify={"center"} gap={2} m={0}>
                         <IconButton
-                          colorScheme="whatsapp"
+                          // colorScheme="whatsapp"
+                            bg="blue.500"
+                            color="white"
                           onClick={() => handleShowAll(item)}
                           icon={<FontAwesomeIcon icon={faEye} />}
                         />

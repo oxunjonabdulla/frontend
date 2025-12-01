@@ -124,7 +124,7 @@ const VU_47_Table = () => {
                   {item.label}
                 </Th>
               ))}
-              <Th rowSpan={2} colSpan={2}></Th>
+{/*               <Th rowSpan={2} colSpan={2}>Amallar</Th> */}
             </Tr>
             <Tr>
               {vu_47?.nestedHeaders?.map((item, idx) => (
@@ -141,7 +141,9 @@ const VU_47_Table = () => {
                     item?.label
                   )}
                 </Th>
+
               ))}
+
             </Tr>
           </Thead>
 
@@ -181,7 +183,7 @@ const VU_47_Table = () => {
                         fontSize={"0.8rem"}
                         leftIcon={<FontAwesomeIcon icon={faPlus} />}
                       >
-                        Orqa tomonini kiritish
+                          Ta’mirdan keyingi ma’lumotlarni kiritish
                       </Button>
                     ) : (
                       <IconButton
@@ -195,14 +197,11 @@ const VU_47_Table = () => {
                       icon={<FontAwesomeIcon icon={faTrashAlt} />}
                       onClick={() => handleDelete(item?.front_detail)}
                     />
-                  </Flex>
-                </Td>
-                <Td>
-                  <Flex justify={"center"} gap={2} m={0}>
-                    <IconButton
-                      colorScheme="whatsapp"
-                      onClick={() => handleShowAll(item)}
-                      icon={<FontAwesomeIcon icon={faEye} />}
+                     <IconButton
+                       bg="blue.500"
+                       color="white"
+                       onClick={() => handleShowAll(item)}
+                       icon={<FontAwesomeIcon icon={faEye} />}
                     />
                   </Flex>
                 </Td>

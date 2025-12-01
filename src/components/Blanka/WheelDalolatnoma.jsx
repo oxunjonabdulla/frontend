@@ -135,8 +135,8 @@ export const WheelDalolatnoma = () => {
                     </Th>
                   ))}
                   <Th>Imzo</Th>
-                  <Th>Orqa qismi</Th>
-                  <Th></Th>
+                  <Th>Ta’mirdan keyingi ma’lumotlar</Th>
+                  <Th>Amallar</Th>
                 </Tr>
               </Thead>
 
@@ -161,7 +161,7 @@ export const WheelDalolatnoma = () => {
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
                         <Flex justify={"center"} align={"center"} gap={2} m={0}>
-                          <Text>Orqa tomonini kiritish:</Text>
+                          <Text>Qo'shish</Text>
                           <IconButton
                             onClick={() => handleBack(item?.carriage)}
                             colorScheme="blue"
@@ -171,7 +171,8 @@ export const WheelDalolatnoma = () => {
                       ) : (
                         <Flex justify={"center"} gap={2} m={0}>
                           <IconButton
-                            colorScheme="whatsapp"
+                            bg="blue.500"
+                            color="white"
                             onClick={() => handleShowBack(item?.back_detail)}
                             icon={<FontAwesomeIcon icon={faEye} />}
                           />

@@ -158,7 +158,7 @@ export const VU_68 = () => {
                       {item.label}
                     </Th>
                   ))}
-                  <Th rowSpan={2} colSpan={2}></Th>
+                  <Th rowSpan={2} colSpan={2}>Amallar</Th>
                 </Tr>
                 <Tr>
                   {vu_68?.nestedTwo.map((item, idx) => (
@@ -203,7 +203,8 @@ export const VU_68 = () => {
                     <Td>
                       <Flex justify={"center"} gap={2} m={0}>
                         <IconButton
-                          colorScheme="whatsapp"
+                          bg="blue.500"
+                          color="white"
                           onClick={() => handleShowAll(item)}
                           icon={<FontAwesomeIcon icon={faEye} />}
                         />

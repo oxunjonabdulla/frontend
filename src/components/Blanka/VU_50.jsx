@@ -173,17 +173,18 @@ export const VU_50 = () => {
                       <IconButton
                         size={"lg"}
                         onClick={() => handleOpenEye(item)}
-                        colorScheme="whatsapp"
+                        bg="blue.500"
+                        color="white"
                         icon={<FontAwesomeIcon icon={faEye} />}
                       />
                     </Td>
 
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                          colorScheme="linkedin"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
-                        />
+                        {/*<IconButton*/}
+                        {/*  colorScheme="linkedin"*/}
+                        {/*  icon={<FontAwesomeIcon icon={faDownload} />}*/}
+                        {/*/>*/}
                         <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.id)}

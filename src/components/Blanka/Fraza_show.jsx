@@ -53,7 +53,7 @@ export const Fraza_show = ({ isOpen, onClose, data }) => {
                                     </Th>
                                 ))}
                                 <Th rowSpan={3} textAlign={"center"}>
-                                    Qabulqiluvchi imzosi
+                                    Qabul qiluvchi imzosi
                                 </Th>
                                 <Th rowSpan={3}>Ma&#39;lumot yozilgan vaqti</Th>
                             </Tr>

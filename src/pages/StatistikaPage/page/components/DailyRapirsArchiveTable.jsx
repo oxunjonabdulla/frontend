@@ -66,7 +66,7 @@ const columnsMock = [
     accessorKey: "ivtsa_id",
   },
   {
-    header: "",
+    header: "Amallar",
     accessorKey: "delete",
     rowSpan: 2,
   },

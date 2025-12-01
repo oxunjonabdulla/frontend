@@ -18,7 +18,15 @@ import {
     StatLabel,
     StatNumber,
     Text,
-    useColorModeValue
+    useColorModeValue,
+    Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  Button,
 } from "@chakra-ui/react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -177,6 +185,49 @@ function ChorakPieChart({data}) {
     );
 }
 
+function ChorakChart({ data }) {
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <PieChart>
+        <defs>
+          {wagonGradients.map((grad) => (
+            <linearGradient
+              key={grad.id}
+              id={grad.id}
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={grad.start} />
+              <stop offset="100%" stopColor={grad.end} />
+            </linearGradient>
+          ))}
+        </defs>
+
+        <Pie
+          data={data}
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius={100}
+          label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+        >
+          {data.map((_, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={`url(#${wagonGradients[index % wagonGradients.length].id})`}
+            />
+          ))}
+        </Pie>
+
+        <Tooltip formatter={(value) => `${value}`} />
+        <Legend />
+      </PieChart>
+    </ResponsiveContainer>
+  );
+}
 
 
 const RouteNames = {
@@ -243,6 +294,20 @@ export const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [hoverChart, setHoverChart] = useState(false);
+    const [selectedDiagram, setSelectedDiagram] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+// Function to open modal
+const openModal = () => {
+  setIsOpen(true);
+};
+
+// Function to close modal
+const closeModal = () => {
+  setIsOpen(false);
+};
+
+
 
 
 
@@ -669,6 +734,27 @@ const [groupedGoals, setGroupedGoals] = useState([]);
       bgColor: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
     },
     ];
+
+    const top2InfoData = [
+    {
+      title: "Temiryo'l Cargo AJ ga tegishli nosoz yuk vagonlari soni",
+      numberCnt: data.temiryol_cargo_pump_wagons,
+      icon: faTrain,
+      bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    },
+    {
+      title: "Xususiy tashkilotlarga tegishli nosoz yuk vagonlari soni",
+      numberCnt: data.private_org_pump_wagons,
+      icon: faClipboardCheck,
+      bgColor: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
+    },
+    {
+      title: "Inventar parkka tegishli nosoz yuk vagonlari soni",
+      numberCnt: data.inventory_park_pump_wagons,
+      icon: faWrench,
+      bgColor: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
+    },
+    ];
     return (
         <Container maxW="container.xxl" py={8} px={4}>
             {/* Header Section */}
@@ -703,7 +789,7 @@ const [groupedGoals, setGroupedGoals] = useState([]);
                             _hover={{transform: "translateY(-4px)", shadow: "xl"}}
                             height="100%"
                         >
-                            <CardBody p={6}>
+                            <CardBody p={6} onClick={() => setIsOpen(true)} cursor="pointer">
                                 <Flex direction="column" height="100%">
                                     <Flex justify="space-between" align="center" mb={4}>
                                         <Box
@@ -740,6 +826,93 @@ const [groupedGoals, setGroupedGoals] = useState([]);
                     </GridItem>
                 ))}
             </Grid>
+
+
+<Modal isOpen={isOpen} onClose={closeModal} size="6xl" isCentered>
+  <ModalOverlay />
+
+  <ModalContent borderRadius="xl">
+    <ModalHeader fontWeight="bold" fontSize="2xl">
+      Statistika diagrammalari
+    </ModalHeader>
+
+    <ModalCloseButton />
+
+    <ModalBody>
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6}>
+
+        {/* 1 - Vagon turlari bo‘yicha */}
+        <Card p={5} borderRadius="xl" boxShadow="lg">
+          <Text fontWeight="bold" mb={4}>
+            Vagon turlari bo‘yicha taqsimot
+          </Text>
+
+          <ChorakChart
+            data={[
+              { name: "Sisterna", value: 40 },
+              { name: "Yarim", value: 30 },
+              { name: "Yuk", value: 20 },
+              { name: "Boshqa", value: 10 },
+            ]}
+          />
+        </Card>
+
+        {/* 2 - Ta’mir turlari bo‘yicha */}
+        <Card p={5} borderRadius="xl" boxShadow="lg">
+          <Text fontWeight="bold" mb={4}>
+            Ta’mir turlari bo‘yicha diagramma
+          </Text>
+
+          <ChorakChart
+            data={[
+              { name: "Kapital", value: 50 },
+              { name: "Oraliq", value: 30 },
+              { name: "Joriy", value: 20 },
+            ]}
+          />
+        </Card>
+
+        {/* 3 - Tegishli korxonalar bo‘yicha */}
+        <Card p={5} borderRadius="xl" boxShadow="lg">
+          <Text fontWeight="bold" mb={4}>
+            Tegishli korxonalar bo‘yicha diagramma
+          </Text>
+
+          <ChorakChart
+            data={[
+              { name: "Qarshi", value: 35 },
+              { name: "Toshkent", value: 25 },
+              { name: "Buxoro", value: 20 },
+              { name: "Sirdaryo", value: 20 },
+            ]}
+          />
+        </Card>
+
+        {/* 4 - Hisobdan chiqarilishi belgilangan vagonlar */}
+        <Card p={5} borderRadius="xl" boxShadow="lg">
+          <Text fontWeight="bold" mb={4}>
+            Hisobdan chiqarilishi belgilangan vagonlar
+          </Text>
+
+          <ChorakChart
+            data={[
+              { name: "Yaroqsiz", value: 60 },
+              { name: "Ta’mirlab bo‘lmaydi", value: 40 },
+            ]}
+          />
+        </Card>
+
+      </Grid>
+    </ModalBody>
+
+    <ModalFooter>
+      <Button onClick={closeModal} colorScheme="blue">
+        Yopish
+      </Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+
 
 <Box mb={12}>
       <Heading as="h2" size="lg" mb={6} color={textColor}>

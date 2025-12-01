@@ -160,7 +160,8 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             <Td>
               <Flex gap={2}>
                 <IconButton
-                  colorScheme="whatsapp"
+                  bg="blue.500"
+                  color="white"
                   icon={<FontAwesomeIcon icon={faPenToSquare} />}
                   onClick={() => handleUpdate(item)}
                 />
@@ -174,7 +175,8 @@ const VU_36_Table = memo(function VU_36_Table({ gettingData, currentPage }) {
             <Td>
               <Flex justify={"center"} gap={2} m={0}>
                 <IconButton
-                  colorScheme="whatsapp"
+                  bg="blue.500"
+                   color="white"
                   onClick={() => handleShowAll(item)}
                   icon={<FontAwesomeIcon icon={faEye} />}
                 />

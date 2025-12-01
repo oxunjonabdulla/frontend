@@ -191,7 +191,7 @@ export const AutoDalolatnoma = () => {
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
                         <Flex justify={"center"} align={"center"} gap={2} m={0}>
-                          <Text>Orqa tomonini kiritish:</Text>
+                          <Text>Ta’mirdan keyingi ma’lumotlar</Text>
                           <IconButton
                             onClick={() => handleBack(item?.carriage)}
                             colorScheme="blue"
@@ -201,7 +201,8 @@ export const AutoDalolatnoma = () => {
                       ) : (
                         <Flex justify={"center"} gap={2} m={0}>
                           <IconButton
-                            colorScheme="whatsapp"
+                            bg="blue.500"
+                            color="white"
                             onClick={() => handleShowBack(item?.back_detail)}
                             icon={<FontAwesomeIcon icon={faEye} />}
                           />

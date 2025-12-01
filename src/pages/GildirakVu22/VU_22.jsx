@@ -282,7 +282,8 @@ export const VU_22 = () => {
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
                         <IconButton
-                          colorScheme="linkedin"
+                          bg="blue.300"
+                        color="white"
                           icon={<FontAwesomeIcon icon={faDownload} />}
                         />
                         <IconButton
@@ -295,7 +296,8 @@ export const VU_22 = () => {
                     <Td>
                       <Flex justify={"center"} gap={2} m={0}>
                         <IconButton
-                          colorScheme="whatsapp"
+                          bg="blue.500"
+                          color="white"
                           onClick={() => handleShowAll(item)}
                           icon={<FontAwesomeIcon icon={faEye} />}
                         />

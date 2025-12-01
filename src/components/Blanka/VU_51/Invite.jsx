@@ -144,14 +144,16 @@ export const InviteTable = ({ data }) => {
                       <Flex justify={"center"} align={"center"} gap={2} m={0}>
                         <IconButton
                           onClick={() => handleBackUpdate(item)}
-                          colorScheme="messenger"
+                          bg="blue.500"
+                            color="white"
                           icon={<FontAwesomeIcon icon={faPlus} />}
                         />
                       </Flex>
                     ) : (
                       <Flex justify={"center"} gap={2} m={0}>
                         <IconButton
-                          colorScheme="whatsapp"
+                          bg="blue.500"
+                          color="white"
                           onClick={() => handleShowBack(item)}
                           icon={<FontAwesomeIcon icon={faEye} />}
                         />
