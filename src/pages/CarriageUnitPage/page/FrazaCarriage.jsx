@@ -212,7 +212,7 @@ export const FrazaCarriage = () => {
                   <Th rowSpan={3} textAlign={"center"}>
                     Imzo
                   </Th>
-                  <Th rowSpan={3} colspan={2} textAlign={"center"}></Th>
+                  <Th rowSpan={3} colspan={2} textAlign={"center"}>Amallar</Th>
                 </Tr>
                 <Tr>
                   {mockHeaderCarriage?.nestedHeaders?.map((item) => (
@@ -299,7 +299,8 @@ export const FrazaCarriage = () => {
                       <Td rowSpan={6}>
                         <Flex justify={"center"} gap={2} m={0}>
                           <IconButton
-                            colorScheme="whatsapp"
+                            bg="blue.500"
+                            color="white"
                             onClick={() => handleShowAll(item)}
                             icon={<FontAwesomeIcon icon={faEye} />}
                           />

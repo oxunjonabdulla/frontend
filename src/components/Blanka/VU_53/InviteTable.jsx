@@ -137,17 +137,19 @@ export const InviteTable = ({ data, currentPage }) => {
                 <Flex gap={2} justifyContent={"center"}>
                   {!e?.vu53_rasxod ? (
                     <Flex justify={"center"} align={"center"} gap={2} m={0}>
-                      <Text>Orqa tomonini kiritish:</Text>
+                      <Text>Qo'shish</Text>
                       <IconButton
                         onClick={() => handleBackCreate(e?.id)}
-                        colorScheme="messenger"
+                        bg="blue.500"
+                        color="white"
                         icon={<FontAwesomeIcon icon={faPlus} />}
                       />
                     </Flex>
                   ) : (
                     <Flex justify={"center"} gap={2} m={0}>
                       <IconButton
-                        colorScheme="whatsapp"
+                        bg="blue.500"
+                        color="white"
                         onClick={() => handleShowBack(e?.vu53_rasxod)}
                         icon={<FontAwesomeIcon icon={faEye} />}
                       />

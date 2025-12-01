@@ -199,7 +199,7 @@ export const VU_10 = () => {
                 <Th> Oxirgi ta'mir</Th>
                 <Th> Telegramma</Th>
                 <Th> Nosoz holdagi hisobi sanasi va vaqti </Th>
-                <Th> </Th>
+                <Th>Amallar</Th>
               </Tr>
             </Thead>
 
@@ -224,9 +224,11 @@ export const VU_10 = () => {
                   <Td>
                     <Flex gap={2}>
                       <IconButton
-                        colorScheme="whatsapp"
+                        bg="green.500"
+                        color="white"
                         icon={<FontAwesomeIcon icon={faPenToSquare} />}
                         onClick={() => handleUpdate(item)}
+
                       />
                       <IconButton
                         colorScheme="red"

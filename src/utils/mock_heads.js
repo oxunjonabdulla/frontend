@@ -250,7 +250,7 @@ export const register_auto = {
             colspan: 3,
         },
         {
-            label: "",
+            label: "Amallar",
 
             rowspan: 3,
         },
@@ -261,7 +261,7 @@ export const register_auto = {
         {label: "O'rta"},
         {label: "Yukli"},
         {label: "Ta’mirlovchi  ", rowspan: 3},
-        {label: "Qabulqiluvchi  ", rowspan: 3},
+        {label: "Qabul qiluvchi  ", rowspan: 3},
         {label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi", rowspan: 3},
     ],
     bottom_head: [
@@ -289,9 +289,9 @@ export const register_rehulyator = [
     },
     {label: "5746 5-7 MM, PTPП 675, PTPN 675M 7-20 MM PTPN 300 5-10 MM gacha"},
     {label: "Texnik xolati "},
-    {label: "Qabulqiluvchi imzosi"},
+    {label: "Qabul qiluvchi imzosi"},
     {label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi"},
-    {label: ""},
+    {label: "Amallar"},
 ];
 export const dalolatnoma_head = [
     {label: "Tartib raqami"},
@@ -404,10 +404,10 @@ export const auto_dalolatnoma_head = [
         label: "Imzo",
     },
     {
-        label: "Orqani qo'shish",
+        label: "Ta’mirdan keyingi ma’lumotlar",
     },
     {
-        label: "",
+        label: "Amallar",
     },
 ];
 export const mockHeaderFraza = {
@@ -542,7 +542,7 @@ export const vu_36 = {
             label: "Ta'mir ishlari bo'yicha boshliq o'rinbosari imzosi ",
         },
         {
-            label: "DIQQAT!!!! Ehtiyoj bulgandagina uzgartiring",
+            label: "Amallar",
             colspan: 2,
         },
     ],
@@ -616,7 +616,7 @@ export const vu_50 = {
         },
 
         {
-            label: "",
+            label: "Amallar",
             colspan: 5,
         },
     ],
@@ -653,7 +653,7 @@ export const vu_22_assabmle = [
         label: "VU-22 ma'lumotini to'liq ko'rish",
     },
     {
-        label: "", colspan: 2
+        label: "Amallar", colspan: 2
     },
 ];
 export const vu_22_assabmle_options = [
@@ -891,7 +891,7 @@ export const vu_51 = {
             {label: "Nosoz", rowspan: 2},
             {label: "Buksa korpusining turi(yo'lovchi yoki yuk vagon)", rowspan: 2},
             {label: "Imzo", rowspan: 2},
-            {label: "Action", rowspan: 2},
+            {label: "Amallar", rowspan: 2},
         ],
     },
     accepted: {
@@ -935,7 +935,7 @@ export const vu_53_form_second2 = [
         {label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)", rowspan: 5},
         {label: "Defektoskop uskunasi bilan tekshiruchining imzosi", colspan: 6},
         {label: "Ishlab chiqaruvching imzosi", colspan: 2},
-        {label: "Izoh", rowspan: 5}
+        {label: "Izoh", rowspan: 5},
     ],
     [
         {label: "G`ildirak", colspan: 5},
@@ -1038,7 +1038,7 @@ export const vu_53_table = [
         {label: "G`ildirak juftligi berilgan vagon raqami", rowspan: 2},
         {label: "Vagon ta`mir turi", rowspan: 2},
         {label: "G`ildirak juftligining tomonlari", rowspan: 2},
-        {label: "Action", rowspan: 4},
+        {label: "Amallar", rowspan: 4},
     ],
     [
         {label: "Buksa qobig`ining turi (yo`lovchi yoki yuk vagon)"},
@@ -1123,6 +1123,7 @@ export const vu_68 = {
         {label: "Xavo g’amlanmasining sinovi sanasi ", colspan: 1, rowspan: 2},
 
         {label: "Imzo ", colspan: 2},
+
     ],
     nestedTwo: [
         "Xavo  quvuri ",
@@ -1132,6 +1133,7 @@ export const vu_68 = {
         "Yuksizlanganda",
         "Topshiruvchining ",
         "Qabul qiluvchining ",
+
     ],
     show: [
         {label: "Vagon Raqami", rowspan: 2},
@@ -1214,7 +1216,7 @@ export const vu_90 = {
             rowspan: 3,
         },
         {
-            label: "",
+            label: "Amallar",
             rowspan: 3,
             colspan: 2,
         },
@@ -1311,7 +1313,7 @@ export const vu_91 = [
     "Nuqson ko‘rinishi",
     "Defestoskop ishchisi Imzo qo'yuvchi",
     "G'ildirak juftliklari bo'linmasi chilangari Imzo qo'yuvchi",
-    "Yuklab olsih / O'chirish",
+    "Amallar",
 ];
 export const vu_91_show = [
     "Ko‘rilgan sana",
@@ -1331,7 +1333,7 @@ export const vu_92 = {
         {label: "Buksa qismlarini holati", rowspan: 2},
         {label: "Taftish ishlarni bajarishda amalga oshiriladi", rowspan: 2},
         {label: "Imzolar", colspan: 2},
-        {label: "Yuklash / O'chirish", rowspan: 2},
+        {label: "Amallar", rowspan: 2},
     ],
 
     nestedHeaders: [
@@ -1362,7 +1364,7 @@ export const vu_93 = {
         },
         {label: "Ko‘rinish", colspan: 2},
         {label: "Imzolar", colspan: 2},
-        {label: "Yuklash / O'chirish", rowspan: 2},
+        {label: "Amallar", rowspan: 2},
     ],
     nestedHeaders: [
         {label: "Yaroqsiz"},
@@ -1708,7 +1710,11 @@ export const vu_47 = {
         {
             label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi ",
             rowspan: 2,
+        },{
+            label: "Amallar",
+            rowspan: 2,
         },
+
     ],
     nestedHeaders: [
         {
@@ -1793,9 +1799,9 @@ export const register_breakes_silindir = [
     {label: "Havobosimi (6,0+0,1) kg/sm2"},
     {label: "Texnikxolati"},
     {label: "Ta'mirlovchini imzosi"},
-    {label: "Qabulqiluvchi imzosi"},
+    {label: "Qabul qiluvchi imzosi"},
     {label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi"},
-    {label: ""},
+    {label: "Amallar"},
 ];
 export const register_razobshitel = [
     {label: "T/R"},
@@ -1809,9 +1815,9 @@ export const register_razobshitel = [
     {label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2 "},
     {label: "Tekshiruv  xulosasi "},
     {label: "Ta'mirlovchini imzosi"},
-    {label: "Qabulqiluvchi imzosi"},
+    {label: "Qabul qiluvchi imzosi"},
     {label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi"},
-    {label: ""},
+    {label: "Amallar"},
 ];
 export const register_rukva = [
     {label: "T/R"},
@@ -1825,9 +1831,9 @@ export const register_rukva = [
     {label: "Suv bilan tekshiruvi 12-0.2 kgs/sm2"},
     {label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa"},
     {label: "Ushlab turish vaqti 1.5-0.8 1.5-2 daqiqa (2)"},
-    {label: "Qabulqiluvchi imzosi"},
+    {label: "Qabul qiluvchi imzosi"},
     {label: "Avtotormoz ta'mirlovchi chilangar Imzo qo'yuvchi"},
-    {label: ""},
+    {label: "Amallar"},
 ];
 export const carriage_dalolatnoma_head = [
     {label: "Tartib raqami"},
@@ -1853,10 +1859,10 @@ export const carriage_dalolatnoma_head = [
         label: "Avtobirikma defektoskopistr Imzo qo'yuvchi",
     },
     {
-        label: "Orqani qo'shish",
+        label: "Ta’mirdan keyingi ma’lumotlar",
     },
     {
-        label: "",
+        label: "Amallar",
         colspan: 2,
     },
 ];
@@ -1941,7 +1947,7 @@ export const autoConnect = {
         {label: "Detalning yaroqlilik xulosasi"},
         {label: "Usta imzosi"},
         {label: "Nuqson aniqlovchi imzosi"},
-        {label: ""},
+        {label: "Amallar"},
     ],
 };
 export const carriageDefc = {
@@ -1956,7 +1962,7 @@ export const carriageDefc = {
         {label: "Qism yaroqlilik xulosasi"},
         {label: "Usta imzosi"},
         {label: "Nuqson aniqlovchi imzosi"},
-        {label: ""},
+        {label: "Amallar"},
     ],
 };
 export const wheelDefc = {
@@ -1968,7 +1974,7 @@ export const wheelDefc = {
         {label: "G'ildirak quyma raqami"},
         {label: "Usta imzosi"},
         {label: "Nuqson aniqlovchi imzosi"},
-        {label: ""},
+        {label: "Amallar"},
     ],
 };
 export const signature_head = [

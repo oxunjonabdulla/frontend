@@ -33,7 +33,7 @@ export const VU_47_Update = ({ updateData, onClose, isOpen }) => {
     setLoading(true);
     const { response, error } = await new UserApi().patchBackVu47(
       updateData?.uuid,
-      { acceptor_signature: "Orqa qismiga imzo quyildi", ...data }
+      { acceptor_signature: "Ta’mirdan keyingi ma’lumotlar imzolandi", ...data }
     );
 
     setLoading(false);
@@ -74,7 +74,7 @@ export const VU_47_Update = ({ updateData, onClose, isOpen }) => {
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
         <ModalHeader textAlign={"center"}>
-          VU-47 orqa qismini kiritish
+          VU-47 ta’mirdan keyingi ma’lumotlarni kiritish
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>

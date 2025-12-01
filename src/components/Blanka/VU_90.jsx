@@ -248,7 +248,8 @@ export const VU_90 = () => {
                       <Td rowSpan={2}>
                         <Flex justify={"center"} gap={2} m={0}>
                           <IconButton
-                            colorScheme="whatsapp"
+                            bg="blue.500"
+                            color="white"
                             onClick={() => handleShowAll(e)}
                             icon={<FontAwesomeIcon icon={faEye} />}
                           />

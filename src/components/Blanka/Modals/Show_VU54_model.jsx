@@ -22,7 +22,7 @@ const Show_VU54_model = ({ isOpen, onClose, showData }) => {
         >
             <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
             <ModalContent>
-                <ModalHeader textAlign={"center"}>VU-50 ko'rinishi</ModalHeader>
+                <ModalHeader textAlign={"center"}>VU-54 ko'rinishi</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody style={{ overflow: "auto" }}>
                     <TableContainer>

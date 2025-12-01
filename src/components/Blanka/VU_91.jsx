@@ -154,7 +154,6 @@ export const VU_91 = () => {
                       {item}
                     </Th>
                   ))}
-                  <Th></Th>
                 </Tr>
               </Thead>
 
@@ -174,25 +173,21 @@ export const VU_91 = () => {
                       <IsImzo isImzo={item?.wheel_plumber_user_info?.signature_image}/>
                     </Td>
                     <Td>
-                      {" "}
                       <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                          colorScheme="linkedin"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
-                        />
+                        {/*<IconButton*/}
+                        {/*  colorScheme="linkedin"*/}
+                        {/*  icon={<FontAwesomeIcon icon={faDownload} />}*/}
+                        {/*/>*/}
                         <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Flex justify={"center"} gap={2} m={0}>
-                        <IconButton
-                          colorScheme="whatsapp"
-                          onClick={() => handleShowAll(item)}
-                          icon={<FontAwesomeIcon icon={faEye} />}
+                           <IconButton
+                            bg="blue.500"
+                            color="white"
+                            onClick={() => handleShowAll(item)}
+                            icon={<FontAwesomeIcon icon={faEye} />}
                         />
                       </Flex>
                     </Td>

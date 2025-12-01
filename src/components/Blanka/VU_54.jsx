@@ -92,7 +92,7 @@ export const VU_54 = () => {
         VU-54 Shakl
       </Heading>
       <Tooltip
-        label=" VU-50 Shaklni qo'shish"
+        label=" VU-54 Shaklni qo'shish"
         placement="top"
         color={"teal.700"}
         bg={"white"}
@@ -139,7 +139,7 @@ export const VU_54 = () => {
                     textAlign={"center"}
                     colSpan={2}
                   >
-                    Action
+                    Amallar
                   </Th>
                 </Tr>
               </Thead>
@@ -155,7 +155,8 @@ export const VU_54 = () => {
                       <IconButton
                         size={"lg"}
                         onClick={() => handleOpenEye(item)}
-                        colorScheme="whatsapp"
+                        bg="blue.500"
+                        color="white"
                         icon={<FontAwesomeIcon icon={faEye} />}
                       />
                     </Td>

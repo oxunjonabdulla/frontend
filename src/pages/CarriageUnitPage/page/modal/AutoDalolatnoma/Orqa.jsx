@@ -74,7 +74,7 @@ export const Orqa = ({ isOpen, onClose, carriageID }) => {
       <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
       <ModalContent>
         <ModalHeader textAlign={"center"}>
-          Kirish va chiqish dalolatnomasi Aravalar bo‘linmasi Orqa tomonini
+          Kirish va chiqish dalolatnomasi Aravalar bo‘linmasi Ta’mirdan keyingi ma’lumotlarni
           qo&apos;shish!{" "}
         </ModalHeader>
 
@@ -84,7 +84,7 @@ export const Orqa = ({ isOpen, onClose, carriageID }) => {
             <Text my={3} textAlign={"center"}>
               {" "}
               <b>{carriageID} </b>
-              Vagon raqami b&apos;yicha orqa dalolatnomani qo&apos;shish
+              Vagon raqami b&apos;yicha ta’mirdan keyingi dalolatnomani qo&apos;shish
             </Text>
 
             <TableContainer>

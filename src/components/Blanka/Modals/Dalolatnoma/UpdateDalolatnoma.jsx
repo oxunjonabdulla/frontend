@@ -66,7 +66,7 @@ export const Update_Dalolatnoma = ({ onClose, isOpen, updateData }) => {
               onClick={() => setActiveComponent("Component2")}
               variant={activeComponent === "Component2" ? "solid" : "outline"}
             >
-              Orqa qismi yangilash
+              Ta’mirdan keyingi ma’lumotlarni yangilash
             </Button>
           ) : (
             <Text color={"red"}>Orqa qismi kiritilmagan</Text>

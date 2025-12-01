@@ -206,11 +206,18 @@ export const Fraza_wheel = () => {
                       {item.label}
                     </Th>
                   ))}
-                  <Th rowSpan={3} textAlign={"center"}>
-                    Qabulqiluvchi imzosi
-                  </Th>
-                  <Th rowSpan={3} colSpan={2} textAlign={"center"}></Th>
-                  <Th rowSpan={3}>Ma&#39;lumot yozilgan vaqti</Th>
+                  <Th rowSpan={3} textAlign={"center"} fontSize={"10px"}>
+                      Qabul qiluvchi imzosi
+                    </Th>
+
+                    <Th rowSpan={3} colSpan={2} textAlign={"center"} fontSize={"10px"}>
+                      Amallar
+                    </Th>
+
+                    <Th rowSpan={3} fontSize={"10px"}>
+                      Ma'lumot yozilgan vaqti
+                    </Th>
+
                 </Tr>
                 <Tr>
                   {mockHeaderFraza?.nestedHeaders?.map((item) => (
@@ -283,7 +290,8 @@ export const Fraza_wheel = () => {
                       <Td rowSpan={4}>
                         <Flex justify={"center"} gap={2} m={0}>
                           <IconButton
-                            colorScheme="whatsapp"
+                            bg="blue.500"
+                            color="white"
                             onClick={() => handleShowAll(item)}
                             icon={<FontAwesomeIcon icon={faEye} />}
                           />

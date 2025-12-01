@@ -137,7 +137,6 @@ export const VU_93 = () => {
                       {item.label}
                     </Th>
                   ))}
-                  <Th rowSpan={2}></Th>
                 </Tr>
                 <Tr>
                   {vu_93?.nestedHeaders?.map((item, idx) => (
@@ -166,23 +165,16 @@ export const VU_93 = () => {
                     <Td>
                       {" "}
                       <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                          colorScheme="linkedin"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
+                         <IconButton
+                          bg="blue.500"
+                          color="white"
+                          onClick={() => handleShowAll(item)}
+                          icon={<FontAwesomeIcon icon={faEye} />}
                         />
                         <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
-                        />
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Flex justify={"center"} gap={2} m={0}>
-                        <IconButton
-                          colorScheme="whatsapp"
-                          onClick={() => handleShowAll(item)}
-                          icon={<FontAwesomeIcon icon={faEye} />}
                         />
                       </Flex>
                     </Td>

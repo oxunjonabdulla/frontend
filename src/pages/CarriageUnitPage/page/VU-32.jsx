@@ -216,7 +216,7 @@ export const VU_32 = () => {
                 <Th>Brigаdir imzosi </Th>
                 <Th>TTNB vаgon qаbul qiluvchisining imzosi </Th>
                 <Th>Korxonа rаhbаrining imzosi yoki muovinining </Th>
-                <Th colSpan={2}></Th>
+                <Th colSpan={2} textAlign={"center"}>Amallar</Th>
               </Tr>
               <Tr>
                 <Th>1</Th>
@@ -337,7 +337,8 @@ export const VU_32 = () => {
                     <Td rowSpan={8}>
                       <Flex justify={"center"} gap={2} m={0}>
                         <IconButton
-                          colorScheme="whatsapp"
+                          bg="blue.500"
+                          color="white"
                           onClick={() => handleShowAll(e)}
                           icon={<FontAwesomeIcon icon={faEye} />}
                         />

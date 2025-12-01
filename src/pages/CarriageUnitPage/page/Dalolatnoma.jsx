@@ -208,20 +208,25 @@ export const CarriageDalolatnoma = () => {
                     <Td color={"teal"}>
                       {!item?.back_detail ? (
                         <Flex justify={"center"} align={"center"} gap={2} m={0}>
-                          <Text>Orqa tomonini kiritish:</Text>
-                          <IconButton
-                            onClick={() => handleBack(item?.carriage)}
-                            colorScheme="messenger"
-                            icon={<FontAwesomeIcon icon={faPlus} />}
-                          />
+                          <Text>Qo'shish</Text>
+
+                            <IconButton
+                             onClick={() => handleBack(item?.carriage)}
+                              bg="blue.500"
+                              color="white"
+                              icon={<FontAwesomeIcon icon={faPlus} />}
+                            />
+
                         </Flex>
                       ) : (
                         <Flex justify={"center"} gap={2} m={0}>
                           <IconButton
-                            colorScheme="whatsapp"
+                            bg="blue.500"
+                              color="white"
                             onClick={() => handleShowBack(item?.back_detail)}
                             icon={<FontAwesomeIcon icon={faEye} />}
                           />
+
                         </Flex>
                       )}
                     </Td>
@@ -234,15 +239,6 @@ export const CarriageDalolatnoma = () => {
                             setDeleteModal(true);
                           }}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
-                        />
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Flex justify={"center"} gap={2} m={0}>
-                        <IconButton
-                          colorScheme="whatsapp"
-                          onClick={() => handleShowAll(item)}
-                          icon={<FontAwesomeIcon icon={faEye} />}
                         />
                       </Flex>
                     </Td>

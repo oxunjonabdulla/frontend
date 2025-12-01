@@ -108,7 +108,7 @@ const RegisterRazobshitelTable = memo(function RegisterRazobshitelTable() {
                 <Td>{item.last_jumfrk_type_2}</Td>
                 <Td>{item.check_gass_3}</Td>
                 <Td>{item.check_result}</Td>
-                <Td> </Td>
+                <Td></Td>
 
                 <Td>
                   <Image
