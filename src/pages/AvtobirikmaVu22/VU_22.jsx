@@ -88,7 +88,7 @@ export const VU_22_Arava = () => {
   };
 
   const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu22(carriageID);
+    const { response } = await new UserApi().deletevu22autoConnect(carriageID);
     if (response) {
       window.location.reload();
     }
@@ -129,13 +129,11 @@ export const VU_22_Arava = () => {
             {showModel.length > 0 ? (
               <TableContainer>
                 <Table variant="simple">
-                  <Thead bg={"gray.200"}>
+                  <Thead bg={"#0b6270"}>
                     <Tr>
                       <Th>T/R</Th>
                       <Th>Sarlavha</Th>
-                      <Th>Bo'lim</Th>
                       <Th>Ishlar soni</Th>
-                      <Th>Qo'shimcha matn</Th>
                       <Th>Ishchi Familiyasi</Th>
                     </Tr>
                   </Thead>
@@ -145,9 +143,7 @@ export const VU_22_Arava = () => {
                         <Tr key={idx}>
                           <Td>{idx + 1}</Td>
                           <Td>{qism.title}</Td>
-                          <Td>{qism.vu22_section}</Td>
                           <Td>{qism.works_quantity}</Td>
-                          <Td>{qism.additional_text}</Td>
                           <Td>{qism.worker_lastname}</Td>
                         </Tr>
                       ))
@@ -296,7 +292,7 @@ export const VU_22_Arava = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>

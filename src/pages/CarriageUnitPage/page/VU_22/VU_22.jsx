@@ -128,13 +128,13 @@ export const VU_22_Arava = () => {
             {showModel.length > 0 ? (
               <TableContainer>
                 <Table variant="simple">
-                  <Thead bg={"gray.200"}>
+                  <Thead bg={"#0b6270"}>
                     <Tr>
                       <Th>T/R</Th>
                       <Th>Sarlavha</Th>
-                      <Th>Bo'lim</Th>
+
                       <Th>Ishlar soni</Th>
-                      <Th>Qo'shimcha matn</Th>
+
                       <Th>Ishchi Familiyasi</Th>
                     </Tr>
                   </Thead>
@@ -144,9 +144,7 @@ export const VU_22_Arava = () => {
                         <Tr key={idx}>
                           <Td>{idx + 1}</Td>
                           <Td>{qism.title}</Td>
-                          <Td>{qism.vu22_section}</Td>
                           <Td>{qism.works_quantity}</Td>
-                          <Td>{qism.additional_text}</Td>
                           <Td>{qism.worker_lastname}</Td>
                         </Tr>
                       ))
@@ -272,7 +270,8 @@ export const VU_22_Arava = () => {
                         </Box>
                       ) : (
                         <Button
-                          colorScheme="messenger"
+                           color="white"
+                          bg="green.500"
                           onClick={() => handleOpenEye(item)}
                         >
                           <FontAwesomeIcon

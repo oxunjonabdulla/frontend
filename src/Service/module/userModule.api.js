@@ -72,6 +72,18 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deletevu22autoConnect(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu22autoConnect(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
   async getVu22(params) {
     try {
       const response = await privateInstance.get(authEndpoints.vu22get, {
@@ -1685,6 +1697,7 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+
   async postVu22Birikma(obj) {
     try {
       const response = await privateInstance.post(

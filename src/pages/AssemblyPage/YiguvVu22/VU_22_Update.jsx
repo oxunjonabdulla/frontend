@@ -119,26 +119,6 @@ export const VU_22_Update = ({ isOpen, onClose, data }) => {
                                     />
                                 </FormControl>
 
-                                <FormControl
-                                    isInvalid={errors?.qismlar?.[idx]?.additional_text}
-                                >
-                                    <FormLabel>Qo'shimcha ma'lumot</FormLabel>
-                                    <Input
-                                        {...register(`qismlar.${idx}.additional_text`)}
-                                        placeholder="Qo'shimcha ma'lumot"
-                                        defaultValue={item?.additional_text}
-                                    />
-                                </FormControl>
-
-                                <FormControl isInvalid={errors?.qismlar?.[idx]?.vu22_section}>
-                                    <FormLabel>Bo'lim</FormLabel>
-                                    <Input
-                                        defaultValue={item?.vu22_section}
-                                        readOnly
-                                        {...register(`qismlar.${idx}.vu22_section`)}
-                                    />
-                                </FormControl>
-
                                 <Button
                                     marginTop={"auto"}
                                     colorScheme="red"

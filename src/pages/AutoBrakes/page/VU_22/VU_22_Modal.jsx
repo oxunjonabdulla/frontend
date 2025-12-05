@@ -37,9 +37,9 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
     setLoading(true);
     const dataObj = {
       ...data,
-      maintenance_record: maintanceRecordId,
+      texnik_xizmat: maintanceRecordId,
     };
-    const { response, error } = await new UserApi().postVu22Brakes(dataObj);
+    const { response, error } = await new UserApi().postVu22Tormoz(dataObj);
     setLoading(false);
     if (response) {
       toast({
@@ -124,27 +124,6 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                     />
                   </FormControl>
 
-                  <FormControl
-                    isInvalid={errors?.components?.[idx]?.additional_text}
-                  >
-                    <FormLabel>Qo'shimcha ma'lumot</FormLabel>
-                    <Input
-                      {...register(`components.${idx}.additional_text`)}
-                      placeholder="Qo'shimcha ma'lumot"
-                    />
-                  </FormControl>
-
-                  <FormControl
-                    isInvalid={errors?.components?.[idx]?.vu22_section}
-                  >
-                    <FormLabel>Bo'lim</FormLabel>
-                    <Input
-                      {...register(`components.${idx}.vu22_section`, {
-                        required: "Bo'limni kiriting",
-                      })}
-                    />
-                  </FormControl>
-
                   <Button
                     marginTop={"auto"}
                     colorScheme="red"
@@ -165,7 +144,7 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                   works_quantity: "",
                   worker_lastname: "",
                   additional_text: "",
-                  vu22_section: "g'ildirak",
+                  vu22_section: "avtotormoz",
                 })
               }
               leftIcon={<FontAwesomeIcon icon={faPlus} />}
