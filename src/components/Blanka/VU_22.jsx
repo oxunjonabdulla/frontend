@@ -160,13 +160,11 @@ export const VU_22 = () => {
                   {qismlar.length > 0 ? (
                     <TableContainer>
                       <Table variant="simple">
-                        <Thead bg={"gray.200"}>
+                        <Thead bg={"#0b6270"}>
                           <Tr>
                             <Th>T/R</Th>
                             <Th>Sarlavha</Th>
-                            <Th>Bo'lim</Th>
                             <Th>Ishlar soni</Th>
-                            <Th>Qo'shimcha matn</Th>
                             <Th>Ishchi Familiyasi</Th>
                           </Tr>
                         </Thead>
@@ -175,9 +173,7 @@ export const VU_22 = () => {
                             <Tr key={idx}>
                               <Td>{idx + 1}</Td>
                               <Td>{item.title}</Td>
-                              <Td>{item.vu22_section}</Td>
                               <Td>{item.works_quantity}</Td>
-                              <Td>{item.additional_text}</Td>
                               <Td>{item.worker_lastname}</Td>
                             </Tr>
                           ))}

@@ -112,27 +112,6 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                   />
                 </FormControl>
 
-                <FormControl
-                  isInvalid={errors?.components?.[idx]?.additional_text}
-                >
-                  <FormLabel>Qo'shimcha ma'lumot</FormLabel>
-                  <Input
-                    {...register(`components.${idx}.additional_text`)}
-                    placeholder="Qo'shimcha ma'lumot"
-                  />
-                </FormControl>
-
-                <FormControl
-                  isInvalid={errors?.components?.[idx]?.vu22_section}
-                >
-                  <FormLabel>Bo'lim</FormLabel>
-                  <Input
-                    {...register(`components.${idx}.vu22_section`, {
-                      required: "Bo'limni kiriting",
-                    })}
-                  />
-                </FormControl>
-
                 <Button
                   colorScheme="red"
                   onClick={() => remove(idx)}

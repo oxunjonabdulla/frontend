@@ -119,27 +119,6 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                     />
                   </FormControl>
 
-                  <FormControl
-                    isInvalid={errors?.qismlar?.[idx]?.additional_text}
-                  >
-                    <FormLabel>Qo'shimcha ma'lumot</FormLabel>
-                    <Input
-                      {...register(`qismlar.${idx}.additional_text`)}
-                      placeholder="Qo'shimcha ma'lumot"
-                    />
-                  </FormControl>
-
-                  <FormControl isInvalid={errors?.qismlar?.[idx]?.vu22_section}>
-                    <FormLabel>Bo'lim</FormLabel>
-                    <Input
-                      defaultValue={"avtobirikma"}
-                      readOnly
-                      {...register(`qismlar.${idx}.vu22_section`, {
-                        required: "Bo'limni kiriting",
-                      })}
-                    />
-                  </FormControl>
-
                   <Button
                     marginTop={"auto"}
                     colorScheme="red"
