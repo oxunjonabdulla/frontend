@@ -292,7 +292,7 @@ export const VU_22_Arava = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.id)}
+                          onClick={() => handleCheckAndDelete(item?.avtobirikma_id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>

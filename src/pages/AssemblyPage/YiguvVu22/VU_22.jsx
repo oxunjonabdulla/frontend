@@ -116,7 +116,7 @@ export const VU_22 = () => {
   };
 
   const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu22(carriageID);
+    const { response } = await new UserApi().deletevu22Yiguv(carriageID);
     if (response) window.location.reload();
   };
 
@@ -219,7 +219,7 @@ export const VU_22 = () => {
                       colSpan={item.colspan}>
                       {item.label}
                     </Th>
-                  ))}
+                  ))}F
                 </Tr>
               </Thead>
               <Tbody>
@@ -327,7 +327,7 @@ export const VU_22 = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.id)}
+                          onClick={() => handleCheckAndDelete(item?.yiguv_id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
