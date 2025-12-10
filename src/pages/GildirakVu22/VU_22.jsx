@@ -84,6 +84,7 @@ export const VU_22 = () => {
     if (response) {
       setIsLoading(false);
       setGettingData(response?.data);
+      console.log("data : ", response?.data)
     }
   };
 
@@ -282,12 +283,15 @@ export const VU_22 = () => {
                           bg="blue.300"
                         color="white"
                           icon={<FontAwesomeIcon icon={faDownload} />}
+                            />
+                            <IconButton
+                              colorScheme="red"
+                              onClick={() =>
+                                handleCheckAndDelete(item?.wheel_id)
+                              }
+                              icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
-                        <IconButton
-                          colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.id)}
-                          icon={<FontAwesomeIcon icon={faTrashAlt} />}
-                        />
+
                       </Flex>
                     </Td>
                     <Td>

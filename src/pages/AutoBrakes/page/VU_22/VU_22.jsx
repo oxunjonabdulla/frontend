@@ -89,7 +89,7 @@ export const VU_22_Brakes = () => {
   };
 
   const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu22(carriageID);
+    const { response } = await new UserApi().deletevu22autoBrakes(carriageID);
     if (response) {
       window.location.reload();
     }
@@ -291,7 +291,7 @@ export const VU_22_Brakes = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.avtotormoz_id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>

@@ -77,10 +77,10 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
             {fields.map((item, idx) => (
               <>
                 <Flex key={item.id} gap={4} my={4} align="center">
-                  <FormControl isInvalid={errors?.components?.[idx]?.title}>
+                  <FormControl isInvalid={errors?.qismlar?.[idx]?.title}>
                     <FormLabel>Nomi</FormLabel>
                     <Input list="name"
-                      {...register(`components.${idx}.title`, {
+                      {...register(`qismlar.${idx}.title`, {
                         required: "Nomini kiriting",
                       })}
                       placeholder="Nomini kiriting"
@@ -100,11 +100,11 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                   </FormControl>
 
                   <FormControl
-                    isInvalid={errors?.components?.[idx]?.works_quantity}
+                    isInvalid={errors?.qismlar?.[idx]?.works_quantity}
                   >
                     <FormLabel>Hajmi</FormLabel>
                     <Input
-                      {...register(`components.${idx}.works_quantity`, {
+                      {...register(`qismlar.${idx}.works_quantity`, {
                         required: "Ish hajmini kiriting",
                       })}
                       placeholder="Ish hajmi"
@@ -113,11 +113,11 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                 </Flex>
                 <Flex key={idx} gap={4} my={4} align="center">
                   <FormControl
-                    isInvalid={errors?.components?.[idx]?.worker_lastname}
+                    isInvalid={errors?.qismlar?.[idx]?.worker_lastname}
                   >
                     <FormLabel>Ishchi familiyasi</FormLabel>
                     <Input
-                      {...register(`components.${idx}.worker_lastname`, {
+                      {...register(`qismlar.${idx}.worker_lastname`, {
                         required: "Ishchi familiyasini kiriting",
                       })}
                       placeholder="Ishchi familiyasi"

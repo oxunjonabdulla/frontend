@@ -83,6 +83,41 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async deletevu22autoBrakes(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu22autoBrakes(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async deletevu22Aravalar(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu22Aravalar(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
+  async deletevu22Yiguv(id) {
+    try {
+      const response = await privateInstance.delete(
+        authEndpoints.vu22Yiguv(id)
+      );
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
 
   async getVu22(params) {
     try {

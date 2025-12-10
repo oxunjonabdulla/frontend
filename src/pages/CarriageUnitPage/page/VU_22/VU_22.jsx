@@ -91,7 +91,7 @@ export const VU_22_Arava = () => {
   };
 
   const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteVu22(carriageID);
+    const { response } = await new UserApi().deletevu22Aravalar(carriageID);
     if (response) {
       window.location.reload();
     }
@@ -291,7 +291,7 @@ export const VU_22_Arava = () => {
                         />
                         <IconButton
                           colorScheme="red"
-                          onClick={() => handleCheckAndDelete(item?.carriage)}
+                          onClick={() => handleCheckAndDelete(item?.aravalar_id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
                       </Flex>
