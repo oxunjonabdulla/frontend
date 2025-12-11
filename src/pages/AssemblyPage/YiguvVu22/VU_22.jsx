@@ -219,7 +219,7 @@ export const VU_22 = () => {
                       colSpan={item.colspan}>
                       {item.label}
                     </Th>
-                  ))}F
+                  ))}
                 </Tr>
               </Thead>
               <Tbody>
@@ -320,11 +320,11 @@ export const VU_22 = () => {
                           color="white"
                           icon={<FontAwesomeIcon icon={faDownload} />}
                         />
-                        <IconButton
-                          colorScheme="green"
-                          onClick={() => handleCheckAndUpdate(item)}
-                          icon={<FontAwesomeIcon icon={faEdit} />}
-                        />
+{/*                         <IconButton */}
+{/*                           colorScheme="green" */}
+{/*                           onClick={() => handleCheckAndUpdate(item)} */}
+{/*                           icon={<FontAwesomeIcon icon={faEdit} />} */}
+{/*                         /> */}
                         <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.yiguv_id)}
