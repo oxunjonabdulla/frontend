@@ -138,8 +138,6 @@ export const VU_22_Update = ({ isOpen, onClose, data }) => {
                                 title: "",
                                 works_quantity: "",
                                 worker_lastname: "",
-                                additional_text: "",
-                                vu22_section: "g'ildirak",
                             })
                         }
                         leftIcon={<FontAwesomeIcon icon={faPlus} />}

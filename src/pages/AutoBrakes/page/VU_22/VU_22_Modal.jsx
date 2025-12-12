@@ -143,8 +143,6 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                   title: "",
                   works_quantity: "",
                   worker_lastname: "",
-                  additional_text: "",
-                  vu22_section: "avtotormoz",
                 })
               }
               leftIcon={<FontAwesomeIcon icon={faPlus} />}
