@@ -131,7 +131,7 @@ export const VU_22_Arava = () => {
                   <Thead bg={"#0b6270"}>
                     <Tr>
                       <Th>T/R</Th>
-                      <Th>Sarlavha</Th>
+                      <Th>Ishlar nomi</Th>
 
                       <Th>Ishlar soni</Th>
 

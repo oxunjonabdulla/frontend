@@ -12,6 +12,8 @@ import {
   ModalHeader,
   ModalOverlay,
   useToast,
+  Divider,
+  Box
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -23,12 +25,24 @@ import { vu_22_assabmle_options } from "../../../utils/mock_heads";
 export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm();
+    reset,
+  } = useForm({
+    defaultValues: {
+      // Initialize with all predefined options
+      qismlar: vu_22_assabmle_options.map(title => ({
+        title,
+        works_quantity: "",
+        worker_lastname: ""
+      }))
+    }
+  });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "qismlar",
@@ -50,7 +64,7 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
         isClosable: true,
         position: "top-right",
       });
-
+      reset();
       window.location.reload();
     }
     if (error) {
@@ -64,70 +78,108 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
     }
   };
 
+  // Calculate the starting index for dynamic fields
+  const predefinedCount = vu_22_assabmle_options.length;
+
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      isCentered
-      size={["sm", "md", "lg", "6xl"]}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} isCentered size="6xl">
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Ma'lumot qo'shish</ModalHeader>
         <ModalCloseButton />
+
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalBody>
-            {fields.map((item, idx) => (
-              <>
-                <Flex key={item.id} gap={4} my={4} align="center">
-                  <FormControl isInvalid={errors?.qismlar?.[idx]?.title}>
+          <ModalBody maxH="70vh" overflowY="auto">
+            {/* PREDEFINED FIELDS */}
+            {fields.slice(0, predefinedCount).map((item, idx) => (
+              <Box key={item.id}>
+                <Flex gap={4} my={4} align="center">
+                  <FormControl>
                     <FormLabel>Nomi</FormLabel>
-                    <Input list="fruit-options"
-                      {...register(`qismlar.${idx}.title`, {
-                        required: "Nomini kiriting",
-                      })}
-                      placeholder="Nomini kiriting"
+                    <Input
+                      value={vu_22_assabmle_options[idx]}
+                      isReadOnly
+                      {...register(`qismlar.${idx}.title`)}
                     />
-                    <datalist id="fruit-options">
-                      {vu_22_assabmle_options.map((item, i) => (
-                        <option value={item} key={i} />
-                      ))}
-                    </datalist>
                   </FormControl>
-                  <FormControl isInvalid={errors?.qismlar?.[idx]?.works_quantity}>
+
+                  <FormControl>
                     <FormLabel>Hajmi</FormLabel>
                     <Input
-                      {...register(`qismlar.${idx}.works_quantity`, {
-                        required: "Ish hajmini kiriting",
-                      })}
+                      {...register(`qismlar.${idx}.works_quantity`)}
                       placeholder="Ish hajmi"
                     />
                   </FormControl>
                 </Flex>
-                <Flex key={idx} gap={4} my={4} align="center">
-                  <FormControl
-                    isInvalid={errors?.qismlar?.[idx]?.worker_lastname}
-                  >
+
+                <Flex gap={4} my={4} align="center">
+                  <FormControl>
                     <FormLabel>Ishchi familiyasi</FormLabel>
                     <Input
-                      {...register(`qismlar.${idx}.worker_lastname`, {
-                        required: "Ishchi familiyasini kiriting",
-                      })}
+                      {...register(`qismlar.${idx}.worker_lastname`)}
                       placeholder="Ishchi familiyasi"
                     />
                   </FormControl>
-                  <Button
-                    marginTop={"auto"}
-                    colorScheme="red"
-                    onClick={() => remove(idx)}
-                    type="button"
-                  >
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                  </Button>
                 </Flex>
-              </>
+
+                <Divider my={6} />
+              </Box>
             ))}
 
+            {/* DYNAMIC USER-ADDED FIELDS */}
+            {fields.slice(predefinedCount).map((item, i) => {
+              const actualIndex = predefinedCount + i;
+              return (
+                <Box key={item.id}>
+                  <Flex gap={4} my={4} align="center">
+                    <FormControl>
+                      <FormLabel>Nomi</FormLabel>
+                      <Input
+                        {...register(`qismlar.${actualIndex}.title`,{
+                                                        required: "Ish nomini kiriting",
+                            })}
+                        placeholder="Ish nomi"
+                      />
+                    </FormControl>
+
+                    <FormControl>
+                      <FormLabel>Hajmi</FormLabel>
+                      <Input
+                        {...register(`qismlar.${actualIndex}.works_quantity`,{
+                            required: "Ish hajmini kiriting",
+                            })}
+                        placeholder="Ish hajmi"
+                      />
+                    </FormControl>
+                  </Flex>
+
+                  <Flex gap={4} my={4} align="center">
+                    <FormControl>
+                      <FormLabel>Ishchi familiyasi</FormLabel>
+                      <Input
+                        {...register(`qismlar.${actualIndex}.worker_lastname`,{
+                            required: "Ishchi familiyasini kiriting",
+                            })}
+                        placeholder="Ishchi familiyasi"
+                      />
+                    </FormControl>
+
+                    <Button
+                      marginTop="auto"
+                      colorScheme="red"
+                      type="button"
+                      onClick={() => remove(actualIndex)}
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </Button>
+                  </Flex>
+
+                  <Divider my={6} />
+                </Box>
+              );
+            })}
+
+            {/* ADD ONE NEW FIELD */}
             <Button
               colorScheme="blue"
               onClick={() =>
@@ -138,6 +190,7 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                 })
               }
               leftIcon={<FontAwesomeIcon icon={faPlus} />}
+              mb={4}
             >
               Yangi Ma'lumot qo&apos;shish
             </Button>

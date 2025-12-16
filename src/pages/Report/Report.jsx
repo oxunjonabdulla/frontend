@@ -89,41 +89,72 @@ export const Reports = () => {
 
         {gettingData?.journals?.length > 0 ? (
           <Table variant={"striped"} style={{ borderRadius: "10px" }}>
-            <Tbody>
-              <Tr fontSize={24} h={"50px"} fontWeight={500}>
-                <Td textAlign={"center"}>T/r</Td>
-                <Td textAlign={"center"}>Vagon raqami</Td>
-                <Td textAlign={"center"}>Jurnal nomi</Td>
-                <Td textAlign={"center"}>Malumotni ko'rish</Td>
-              </Tr>
-              {gettingData?.journals?.map((item, idx) => (
-                <Tr key={idx}>
-                  <Td textAlign={"center"} fontSize={"xl"} w={100}>{idx + 1}</Td>
-                  <Td textAlign={"center"} fontSize={"xl"} w={200}>{gettingData?.carriage_number}</Td>
-                  <Td fontSize={"xl"}>{item?.journal_name}</Td>
-                  <Td width={"200px"}>
-                    {item?.data !== null ? (
-                      <Box w={"100%"} display={"flex"} justifyContent={"center"}>
-                        <Button
-                          onClick={() => {
-                            setShowData(item?.data);
-                            setJournalName(item?.journal_name);
-                            onOpen();
-                          }}
-                          colorScheme="teal"
-                        >
-                          <FontAwesomeIcon icon={faEye} />
-                        </Button>
-                      </Box>
-                    ) : (
-                      <Text textAlign={"center"} color={"red"}>
-                        Jurnal mavjud emas
-                      </Text>
-                    )}
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
+          <Tbody>
+  {/* Header Row */}
+  <Tr
+    bg="gray.50"
+    _dark={{ bg: "gray.700" }}
+    fontSize="md"
+    fontWeight="600"
+    h="56px"
+  >
+    <Td textAlign="center" color="gray.600">T/r</Td>
+    <Td textAlign="center" color="gray.600">Vagon raqami</Td>
+    <Td textAlign="center" color="gray.600">Jurnal nomi</Td>
+    <Td textAlign="center" color="gray.600">Ma'lumotni ko‘rish</Td>
+  </Tr>
+
+  {/* Data Rows */}
+  {gettingData?.journals?.map((item, idx) => (
+    <Tr
+      key={idx}
+      transition="all 0.2s ease"
+      _hover={{
+        bg: "gray.50",
+        _dark: { bg: "gray.800" },
+      }}
+    >
+      <Td textAlign="center" fontWeight="500">
+        {idx + 1}
+      </Td>
+
+      <Td textAlign="center" fontWeight="500" color="teal.500">
+        {gettingData?.carriage_number}
+      </Td>
+
+      <Td fontWeight="500">
+        {item?.journal_name}
+      </Td>
+
+      <Td textAlign="center">
+        {item?.data !== null ? (
+          <Button
+            size="sm"
+            colorScheme="teal"
+            variant="outline"
+            leftIcon={<FontAwesomeIcon icon={faEye} />}
+            onClick={() => {
+              setShowData(item?.data);
+              setJournalName(item?.journal_name);
+              onOpen();
+            }}
+            _hover={{
+              bg: "teal.500",
+              color: "white",
+            }}
+          >
+            Ko‘rish
+          </Button>
+        ) : (
+          <Text fontSize="sm" color="red.400">
+            Jurnal mavjud emas
+          </Text>
+        )}
+      </Td>
+    </Tr>
+  ))}
+</Tbody>
+
           </Table>
         ) : (
           <Flex align={"center"} flexDir={"column"} my={12} gap={4} mt={40}>
