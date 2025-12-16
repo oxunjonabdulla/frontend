@@ -133,7 +133,7 @@ export const VU_22_Brakes = () => {
                   <Thead bg={"#0b6270"}>
                     <Tr>
                       <Th>T/R</Th>
-                      <Th>Sarlavha</Th>
+                      <Th>Ishlar nomi</Th>
                       <Th>Ishlar soni</Th>
                       <Th>Ishchi Familiyasi</Th>
                     </Tr>

@@ -1,3 +1,179 @@
+// import {
+//   Button,
+//   Flex,
+//   FormControl,
+//   FormLabel,
+//   Input,
+//   Modal,
+//   ModalBody,
+//   ModalCloseButton,
+//   ModalContent,
+//   ModalFooter,
+//   ModalHeader,
+//   ModalOverlay,
+//   useToast,
+// } from "@chakra-ui/react";
+// import { useState } from "react";
+// import { useFieldArray, useForm } from "react-hook-form";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+// import UserApi from "../../../../Service/module/userModule.api";
+//
+// export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
+//   const [isLoading, setLoading] = useState(false);
+//   const toast = useToast();
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: { errors },
+//     control,
+//   } = useForm();
+//   const { fields, append, remove } = useFieldArray({
+//     control,
+//     name: "qismlar",
+//   });
+//
+//   const onSubmit = async (data) => {
+//     setLoading(true);
+//     const dataObj = {
+//       ...data,
+//       texnik_xizmat: maintanceRecordId,
+//     };
+//     const { response, error } = await new UserApi().postVu22Tormoz(dataObj);
+//     setLoading(false);
+//     if (response) {
+//       toast({
+//         status: "success",
+//         title: "Ma'lumot muvaffaqiyatli qo'shildi.",
+//         duration: 4000,
+//         isClosable: true,
+//         position: "top-right",
+//       });
+//
+//       window.location.reload();
+//     }
+//     if (error) toast({
+//         status: "error",
+//         title: "Xatolik yuz berdi.",
+//         duration: 4000,
+//         isClosable: true,
+//         position: "top-right",
+//       });
+//   };
+//
+//   return (
+//     <Modal
+//       isOpen={isOpen}
+//       onClose={onClose}
+//       isCentered
+//       size={["sm", "md", "lg", "6xl"]}
+//     >
+//       <ModalOverlay />
+//       <ModalContent>
+//         <ModalHeader>Ma'lumot qo'shish</ModalHeader>
+//         <ModalCloseButton />
+//         <form onSubmit={handleSubmit(onSubmit)}>
+//           <ModalBody>
+//             {fields.map((item, idx) => (
+//               <>
+//                 <Flex key={item.id} gap={4} my={4} align="center">
+//                   <FormControl isInvalid={errors?.qismlar?.[idx]?.title}>
+//                     <FormLabel>Nomi</FormLabel>
+//                     <Input list="name"
+//                       {...register(`qismlar.${idx}.title`, {
+//                         required: "Nomini kiriting",
+//                       })}
+//                       placeholder="Nomini kiriting"
+//                     />
+//                     <datalist id="name">
+//                       <option value="Havo taqsimlagichning bosh qismi №483" />
+//                       <option value="Havo taqsimlagichning bosh qismi №270" />
+//                       <option value="So'ngi jo'mraklar" />
+//                       <option value="Yeng R-17" />
+//                       <option value="Avto rostlagich" />
+//                       <option value="Ajratuvchi jo'mrak" />
+//                       <option value="Avtomatik rejim" />
+//                       <option value="Ta'minot trubkasi d 27,5" />
+//                       <option value="Asosiy havo quviri d 42" />
+//                       <option value="Zaxira sig'imi" />
+//                       <option value="Ikki kamerali sig'im" />
+//                       <option value="YO'B tutqichi uzun/qisqa" />
+//                       <option value="YO'B plankasi" />
+//                       <option value="Tormoz silindiri" />
+//                       <option value="Tormoz silindir tayoqchasi" />
+//                       <option value="Xavo taqsimlagich uchun qurulma" />
+//                       <option value="Uch tomonlama havo uzatgichi" />
+//                       <option value="2 tomonlama tormoz uzatmasi" />
+//                     </datalist>
+//                   </FormControl>
+//
+//                   <FormControl
+//                     isInvalid={errors?.qismlar?.[idx]?.works_quantity}
+//                   >
+//                     <FormLabel>Hajmi</FormLabel>
+//                     <Input
+//                       {...register(`qismlar.${idx}.works_quantity`, {
+//                         required: "Ish hajmini kiriting",
+//                       })}
+//                       placeholder="Ish hajmi"
+//                     />
+//                   </FormControl>
+//                 </Flex>
+//                 <Flex key={idx} gap={4} my={4} align="center">
+//                   <FormControl
+//                     isInvalid={errors?.qismlar?.[idx]?.worker_lastname}
+//                   >
+//                     <FormLabel>Ishchi familiyasi</FormLabel>
+//                     <Input
+//                       {...register(`qismlar.${idx}.worker_lastname`, {
+//                         required: "Ishchi familiyasini kiriting",
+//                       })}
+//                       placeholder="Ishchi familiyasi"
+//                     />
+//                   </FormControl>
+//
+//                   <Button
+//                     marginTop={"auto"}
+//                     colorScheme="red"
+//                     onClick={() => remove(idx)}
+//                     type="button"
+//                   >
+//                     <FontAwesomeIcon icon={faTrashAlt} />
+//                   </Button>
+//                 </Flex>
+//               </>
+//             ))}
+//
+//             <Button
+//               colorScheme="blue"
+//               onClick={() =>
+//                 append({
+//                   title: "",
+//                   works_quantity: "",
+//                   worker_lastname: "",
+//                 })
+//               }
+//               leftIcon={<FontAwesomeIcon icon={faPlus} />}
+//             >
+//               Yangi Ma'lumot qo&apos;shish
+//             </Button>
+//           </ModalBody>
+//
+//           <ModalFooter>
+//             <Button colorScheme="red" mr={3} onClick={onClose}>
+//               Bekor qilish
+//             </Button>
+//             <Button colorScheme="green" isLoading={isLoading} type="submit">
+//               Saqlash
+//             </Button>
+//           </ModalFooter>
+//         </form>
+//       </ModalContent>
+//     </Modal>
+//   );
+// };
+
+
 import {
   Button,
   Flex,
@@ -12,6 +188,8 @@ import {
   ModalHeader,
   ModalOverlay,
   useToast,
+  Box,
+  Divider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -19,15 +197,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import UserApi from "../../../../Service/module/userModule.api";
 
+// Define the default options
+const defaultTormozOptions = [
+  "Havo taqsimlagichning bosh qismi №483",
+  "Havo taqsimlagichning bosh qismi №270",
+  "So'ngi jo'mraklar",
+  "Yeng R-17",
+  "Avto rostlagich",
+  "Ajratuvchi jo'mrak",
+  "Avtomatik rejim",
+  "Ta'minot trubkasi d 27,5",
+  "Asosiy havo quvuri d 42",
+  "Zaxira sig'imi",
+  "Ikki kamerali sig'im",
+  "YO'B tutqichi uzun/qisqa",
+  "YO'B plankasi",
+  "Tormoz silindiri",
+  "Tormoz silindir tayoqchasi",
+  "Xavo taqsimlagich uchun qurulma",
+  "Uch tomonlama havo uzatgichi",
+  "2 tomonlama tormoz uzatmasi"
+];
+
 export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm();
+    reset,
+  } = useForm({
+    defaultValues: {
+      // Initialize with all predefined options
+      qismlar: defaultTormozOptions.map(title => ({
+        title,
+        works_quantity: "",
+        worker_lastname: ""
+      }))
+    }
+  });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "qismlar",
@@ -49,92 +261,119 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
         isClosable: true,
         position: "top-right",
       });
-
+      reset();
       window.location.reload();
     }
-    if (error) toast({
+    if (error) {
+      toast({
         status: "error",
         title: "Xatolik yuz berdi.",
         duration: 4000,
         isClosable: true,
         position: "top-right",
       });
+    }
   };
+
+  // Calculate the starting index for dynamic fields
+  const predefinedCount = defaultTormozOptions.length;
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
       isCentered
-      size={["sm", "md", "lg", "6xl"]}
+      size="6xl"
     >
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent maxW="80vw" width="80vw">
         <ModalHeader>Ma'lumot qo'shish</ModalHeader>
         <ModalCloseButton />
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ModalBody>
-            {fields.map((item, idx) => (
-              <>
-                <Flex key={item.id} gap={4} my={4} align="center">
-                  <FormControl isInvalid={errors?.qismlar?.[idx]?.title}>
+          <ModalBody maxH="70vh" overflowY="auto">
+            {/* PREDEFINED FIELDS */}
+            {fields.slice(0, predefinedCount).map((item, idx) => (
+              <Box key={item.id} mb={6}>
+                <Flex gap={4} my={4} align="center">
+                  <FormControl>
                     <FormLabel>Nomi</FormLabel>
-                    <Input list="name"
-                      {...register(`qismlar.${idx}.title`, {
-                        required: "Nomini kiriting",
-                      })}
-                      placeholder="Nomini kiriting"
+                    <Input
+                      value={defaultTormozOptions[idx]}
+                      isReadOnly
+                      {...register(`qismlar.${idx}.title`)}
                     />
-                    <datalist id="name">
-                      <option value="Havo taqsimlagichning bosh qismi N 483" />
-                      <option value="Havo taqsimlagichning bosh qismi No 270" />
-                      <option value="So'ngi jo'mraklar" />
-                      <option value="Yeng K-17" />
-                      <option value="Avto rostlagich" />
-                      <option value="Ajratuvchi jo'mrak" />
-                      <option value="Avtomatik rejim" />
-                      <option value="Zaxira sigimi" />
-                      <option value="Ikki kamerali sig'im" />
-                      <option value="Tormoz silindiri" />
-                    </datalist>
                   </FormControl>
 
-                  <FormControl
-                    isInvalid={errors?.qismlar?.[idx]?.works_quantity}
-                  >
+                  <FormControl>
                     <FormLabel>Hajmi</FormLabel>
                     <Input
-                      {...register(`qismlar.${idx}.works_quantity`, {
-                        required: "Ish hajmini kiriting",
-                      })}
+                      {...register(`qismlar.${idx}.works_quantity`)}
                       placeholder="Ish hajmi"
                     />
                   </FormControl>
                 </Flex>
-                <Flex key={idx} gap={4} my={4} align="center">
-                  <FormControl
-                    isInvalid={errors?.qismlar?.[idx]?.worker_lastname}
-                  >
+
+                <Flex gap={4} my={4} align="center">
+                  <FormControl>
                     <FormLabel>Ishchi familiyasi</FormLabel>
                     <Input
-                      {...register(`qismlar.${idx}.worker_lastname`, {
-                        required: "Ishchi familiyasini kiriting",
-                      })}
+                      {...register(`qismlar.${idx}.worker_lastname`)}
                       placeholder="Ishchi familiyasi"
                     />
                   </FormControl>
-
-                  <Button
-                    marginTop={"auto"}
-                    colorScheme="red"
-                    onClick={() => remove(idx)}
-                    type="button"
-                  >
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                  </Button>
+                  {/* No delete button for predefined fields */}
                 </Flex>
-              </>
+
+                {idx < predefinedCount - 1 && <Divider my={4} />}
+              </Box>
             ))}
+
+            {/* DYNAMIC USER-ADDED FIELDS */}
+            {fields.slice(predefinedCount).map((item, i) => {
+              const actualIndex = predefinedCount + i;
+              return (
+                <Box key={item.id} mb={6}>
+                  <Flex gap={4} my={4} align="center">
+                    <FormControl>
+                      <FormLabel>Nomi</FormLabel>
+                      <Input
+                        {...register(`qismlar.${actualIndex}.title`)}
+                        placeholder="Nomini kiriting"
+                      />
+                    </FormControl>
+
+                    <FormControl>
+                      <FormLabel>Hajmi</FormLabel>
+                      <Input
+                        {...register(`qismlar.${actualIndex}.works_quantity`)}
+                        placeholder="Ish hajmi"
+                      />
+                    </FormControl>
+                  </Flex>
+
+                  <Flex gap={4} my={4} align="center">
+                    <FormControl>
+                      <FormLabel>Ishchi familiyasi</FormLabel>
+                      <Input
+                        {...register(`qismlar.${actualIndex}.worker_lastname`)}
+                        placeholder="Ishchi familiyasi"
+                      />
+                    </FormControl>
+
+                    <Button
+                      marginTop="auto"
+                      colorScheme="red"
+                      onClick={() => remove(actualIndex)}
+                      type="button"
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </Button>
+                  </Flex>
+
+                  {(i < fields.slice(predefinedCount).length - 1 || predefinedCount > 0) && <Divider my={4} />}
+                </Box>
+              );
+            })}
 
             <Button
               colorScheme="blue"
@@ -146,6 +385,7 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                 })
               }
               leftIcon={<FontAwesomeIcon icon={faPlus} />}
+              mt={4}
             >
               Yangi Ma'lumot qo&apos;shish
             </Button>

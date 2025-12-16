@@ -152,7 +152,7 @@ export const VU_22 = () => {
           />
         </FormControl>
       </Box>
-      <Modal isOpen={isOpenShowModel} onClose={onCloseShowModel} size="2xl">
+      <Modal isOpen={isOpenShowModel} onClose={onCloseShowModel} size="4xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Yig'uv bo'limi ma'lumotlari</ModalHeader>
@@ -164,7 +164,7 @@ export const VU_22 = () => {
                   <Thead bg={"#0b6270"}>
                     <Tr>
                       <Th>T/R</Th>
-                      <Th>Sarlavha</Th>
+                      <Th>Ishlar nomi</Th>
                       <Th>Ishlar soni</Th>
                       <Th>Ishchi Familiyasi</Th>
                     </Tr>
