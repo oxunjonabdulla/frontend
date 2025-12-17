@@ -9,6 +9,8 @@ import {
     Divider,
     Flex,
     Grid,
+          Stack, // ← ADD THIS IMPORT
+
     GridItem,
     Heading, IconButton,
     Progress,
@@ -27,6 +29,7 @@ import {
   ModalFooter,
   ModalCloseButton,
   Button,
+
 } from "@chakra-ui/react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -212,17 +215,23 @@ function ChorakChart({ data }) {
           cx="50%"
           cy="50%"
           outerRadius={100}
-          label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+          innerRadius={40} // Makes it a donut chart for better visibility
+          label={({ name, value }) => `${name}: ${value}`} // Show name and value, not percentage
         >
           {data.map((_, index) => (
             <Cell
               key={`cell-${index}`}
               fill={`url(#${wagonGradients[index % wagonGradients.length].id})`}
+              stroke="#fff"
+              strokeWidth={2}
             />
           ))}
         </Pie>
 
-        <Tooltip formatter={(value) => `${value}`} />
+        <Tooltip
+          formatter={(value) => [`${value} ta`, 'Soni']}
+          labelFormatter={(name) => `${name}`}
+        />
         <Legend />
       </PieChart>
     </ResponsiveContainer>
@@ -297,17 +306,87 @@ export const HomePage = () => {
     const [selectedDiagram, setSelectedDiagram] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
-// Function to open modal
-const openModal = () => {
-  setIsOpen(true);
-};
+    // Function to open modal
+    const openModal = () => {
+      setIsOpen(true);
+    };
 
-// Function to close modal
-const closeModal = () => {
-  setIsOpen(false);
-};
+    // Function to close modal
+    const closeModal = () => {
+      setIsOpen(false);
+    };
 
 
+// Fixed data with 12 months
+const groupedGoalsInventar = [
+  {
+    title: "I-chorak",
+    months: [
+      { month: "Yanvar", target: 60, completed: 30, current: false },
+      { month: "Fevral", target: 50, completed: 50, current: false },
+      { month: "Mart", target: 72, completed: 43, current: false },
+    ]
+  },
+  {
+    title: "II-chorak",
+    months: [
+      { month: "Aprel", target: 55, completed: 65, current: false },
+      { month: "May", target: 60, completed: 45, current: false },
+      { month: "Iyun", target: 60, completed: 62, current: false },
+    ]
+  },
+  {
+    title: "III-chorak",
+    months: [
+      { month: "Iyul", target: 60, completed: 35, current: false },
+      { month: "Avgust", target: 60, completed: 28, current: false },
+      { month: "Sentyabr", target: 50, completed: 13, current: false },
+    ]
+  },
+  {
+    title: "IV-chorak",
+    months: [
+      { month: "Oktyabr", target: 60, completed: 41, current: false },
+      { month: "Noyabr", target: 63, completed: 51, current: false },
+      { month: "Dekabr", target: 95, completed: 0, current: true },
+    ]
+  }
+];
+
+const groupedGoalsXususiy = [
+  {
+    title: "I-chorak",
+    months: [
+      { month: "Yanvar", target: 50, completed: 67, current: false },
+      { month: "Fevral", target: 50, completed: 35, current: false },
+      { month: "Mart", target: 50, completed: 53, current: false },
+    ]
+  },
+  {
+    title: "II-chorak",
+    months: [
+      { month: "Aprel", target: 50, completed: 38, current: false },
+      { month: "May", target: 50, completed: 56, current: false },
+      { month: "Iyun", target: 50, completed: 48, current: false },
+    ]
+  },
+  {
+    title: "III-chorak",
+    months: [
+      { month: "Iyul", target: 50, completed: 47, current: false },
+      { month: "Avgust", target: 50, completed: 36, current: false },
+      { month: "Sentyabr", target: 50, completed: 55, current: false },
+    ]
+  },
+  {
+    title: "IV-chorak",
+    months: [
+      { month: "Oktyabr", target: 50, completed: 85, current: false },
+      { month: "Noyabr", target: 50, completed: 75, current: false },
+      { month: "Dekabr", target: 50, completed: 68, current: true },
+    ]
+  }
+];
 
 
 
@@ -735,26 +814,8 @@ const [groupedGoals, setGroupedGoals] = useState([]);
     },
     ];
 
-    const top2InfoData = [
-    {
-      title: "Temiryo'l Cargo AJ ga tegishli nosoz yuk vagonlari soni",
-      numberCnt: data.temiryol_cargo_pump_wagons,
-      icon: faTrain,
-      bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-    },
-    {
-      title: "Xususiy tashkilotlarga tegishli nosoz yuk vagonlari soni",
-      numberCnt: data.private_org_pump_wagons,
-      icon: faClipboardCheck,
-      bgColor: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
-    },
-    {
-      title: "Inventar parkka tegishli nosoz yuk vagonlari soni",
-      numberCnt: data.inventory_park_pump_wagons,
-      icon: faWrench,
-      bgColor: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
-    },
-    ];
+
+
     return (
         <Container maxW="container.xxl" py={8} px={4}>
             {/* Header Section */}
@@ -829,106 +890,35 @@ const [groupedGoals, setGroupedGoals] = useState([]);
 
 
 <Modal isOpen={isOpen} onClose={closeModal} size="6xl" isCentered>
-  <ModalOverlay />
+  <ModalOverlay backdropFilter="blur(4px)" bg="blackAlpha.600" />
 
-  <ModalContent borderRadius="xl">
-    <ModalHeader fontWeight="bold" fontSize="2xl">
+  <ModalContent borderRadius="2xl" maxH="90vh" overflow="auto">
+    <ModalHeader
+      fontWeight="bold"
+      fontSize="2xl"
+      bg="blue.50"
+      borderTopRadius="2xl"
+      py={6}
+    >
       Statistika diagrammalari
     </ModalHeader>
 
-    <ModalCloseButton />
+    <ModalCloseButton size="lg" top={4} right={4} />
 
-    <ModalBody>
-      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6}>
+    <ModalBody py={8}>
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={8}>
 
         {/* 1 - Vagon turlari bo‘yicha */}
-        <Card p={5} borderRadius="xl" boxShadow="lg">
-          <Text fontWeight="bold" mb={4}>
-            Vagon turlari bo‘yicha taqsimot
-          </Text>
-
-          <ChorakChart
-            data={[
-              { name: "Sisterna", value: 40 },
-              { name: "Yarim", value: 30 },
-              { name: "Yuk", value: 20 },
-              { name: "Boshqa", value: 10 },
-            ]}
-          />
-        </Card>
-
-        {/* 2 - Ta’mir turlari bo‘yicha */}
-        <Card p={5} borderRadius="xl" boxShadow="lg">
-          <Text fontWeight="bold" mb={4}>
-            Ta’mir turlari bo‘yicha diagramma
-          </Text>
-
-          <ChorakChart
-            data={[
-              { name: "Kapital", value: 50 },
-              { name: "Oraliq", value: 30 },
-              { name: "Joriy", value: 20 },
-            ]}
-          />
-        </Card>
-
-        {/* 3 - Tegishli korxonalar bo‘yicha */}
-        <Card p={5} borderRadius="xl" boxShadow="lg">
-          <Text fontWeight="bold" mb={4}>
-            Tegishli korxonalar bo‘yicha diagramma
-          </Text>
-
-          <ChorakChart
-            data={[
-              { name: "Qarshi", value: 35 },
-              { name: "Toshkent", value: 25 },
-              { name: "Buxoro", value: 20 },
-              { name: "Sirdaryo", value: 20 },
-            ]}
-          />
-        </Card>
-
-        {/* 4 - Hisobdan chiqarilishi belgilangan vagonlar */}
-        <Card p={5} borderRadius="xl" boxShadow="lg">
-          <Text fontWeight="bold" mb={4}>
-            Hisobdan chiqarilishi belgilangan vagonlar
-          </Text>
-
-          <ChorakChart
-            data={[
-              { name: "Yaroqsiz", value: 60 },
-              { name: "Ta’mirlab bo‘lmaydi", value: 40 },
-            ]}
-          />
-        </Card>
-
-      </Grid>
-    </ModalBody>
-
-    <ModalFooter>
-      <Button onClick={closeModal} colorScheme="blue">
-        Yopish
-      </Button>
-    </ModalFooter>
-  </ModalContent>
-</Modal>
-
-
-<Box mb={12}>
-      <Heading as="h2" size="lg" mb={6} color={textColor}>
-        {sectionTitles.monthlyProgress}
-      </Heading>
-
-      {groupedGoals.map((chorak, idx) => (
-        <Card key={idx} bg={cardBg} boxShadow="lg" borderRadius="xl" p={6} mb={8}
-        transition="all 0.3s ease"
-transform="translateY(0)"
-_hover={{
-    transform: "translateY(-8px)",
-    boxShadow: "xl",
-}}
->
-          <Flex align="center" mb={4}>
+        <Card
+          p={6}
+          borderRadius="xl"
+          boxShadow="xl"
+          borderWidth="1px"
+          borderColor="blue.100"
+          transition="all 0.3s"
+          _hover={{ transform: "translateY(-4px)", boxShadow: "2xl" }}
+        >
+          <Flex align="center" mb={5}>
             <Box
               w={10}
               h={10}
@@ -936,44 +926,360 @@ _hover={{
               display="flex"
               alignItems="center"
               justifyContent="center"
-              bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
+              bg="blue.500"
               color="white"
               mr={3}
             >
-              <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
+              <FontAwesomeIcon icon={faTrain} size="lg" />
             </Box>
-            <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+            <Text fontWeight="bold" fontSize="lg">
+              Vagon turlari bo'yicha taqsimot
+            </Text>
           </Flex>
 
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
-            {chorak.months.map(month => (
-              <Box key={month.month} p={4} borderWidth="1px" borderRadius="lg" borderColor={borderColor}>
-                <Flex justify="space-between" mb={2}>
-                  <Text fontWeight="medium">{month.month}</Text>
-                  {month.current && <Badge colorScheme="blue">Joriy</Badge>}
-                </Flex>
-                <Progress
-                  value={(month.completed / month.target) * 100}
-                  size="sm"
-                  colorScheme={chorakColors[idx % chorakColors.length]}
-                  bg={progressBg}
-                  borderRadius="full"
-                  mb={2}
-                />
-                <Flex justify="space-between">
-                  <Text fontSize="sm" color={textColor}>
-                    {month.completed} / {month.target}
-                  </Text>
-                  <Text fontSize="sm" fontWeight="bold">
-                    {Math.round((month.completed / month.target) * 100)}%
-                  </Text>
-                </Flex>
-              </Box>
-            ))}
-          </SimpleGrid>
+          <ChorakChart
+            data={[
+              { name: "Sisterna", value: 5 },
+              { name: "Yarim", value: 15 },
+              { name: "Yopiq", value: 28 },
+              { name: "Platforma", value: 2 },
+              { name: "Boshqa", value: 12 },
+            ]}
+          />
         </Card>
-      ))}
-    </Box>
+
+        {/* 2 - Ta'mir turlari bo'yicha */}
+        <Card
+          p={6}
+          borderRadius="xl"
+          boxShadow="xl"
+          borderWidth="1px"
+          borderColor="green.100"
+          transition="all 0.3s"
+          _hover={{ transform: "translateY(-4px)", boxShadow: "2xl" }}
+        >
+          <Flex align="center" mb={5}>
+            <Box
+              w={10}
+              h={10}
+              borderRadius="lg"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bg="green.500"
+              color="white"
+              mr={3}
+            >
+              <FontAwesomeIcon icon={faTools} size="lg" />
+            </Box>
+            <Text fontWeight="bold" fontSize="lg">
+              Ta'mir turlari bo'yicha diagramma
+            </Text>
+          </Flex>
+
+          <ChorakChart
+            data={[
+              { name: "Kapital", value: 4 },
+              { name: "Uzaytirilgan kapital ta'mir", value: 30 },
+              { name: "Depoli ta'mir", value: 28 },
+            ]}
+          />
+        </Card>
+
+        {/* 3 - Tegishli korxonalar bo'yicha */}
+        <Card
+          p={6}
+          borderRadius="xl"
+          boxShadow="xl"
+          borderWidth="1px"
+          borderColor="orange.100"
+          transition="all 0.3s"
+          _hover={{ transform: "translateY(-4px)", boxShadow: "2xl" }}
+        >
+          <Flex align="center" mb={5}>
+            <Box
+              w={10}
+              h={10}
+              borderRadius="lg"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bg="orange.500"
+              color="white"
+              mr={3}
+            >
+              <FontAwesomeIcon icon={faClipboardCheck} size="lg" />
+            </Box>
+            <Text fontWeight="bold" fontSize="lg">
+              Tegishli korxonalar bo'yicha diagramma
+            </Text>
+          </Flex>
+
+          <ChorakChart
+            data={[
+              { name: "Qarshi", value: 28 },
+              { name: "Toshkent", value: 12 },
+              { name: "Buxoro", value: 15 },
+              { name: "Qo'qon", value: 5 },
+            ]}
+          />
+        </Card>
+
+        {/* 4 - Hisobdan chiqarilishi belgilangan vagonlar */}
+        <Card
+          p={6}
+          borderRadius="xl"
+          boxShadow="xl"
+          borderWidth="1px"
+          borderColor="red.100"
+          transition="all 0.3s"
+          _hover={{ transform: "translateY(-4px)", boxShadow: "2xl" }}
+        >
+          <Flex align="center" mb={5}>
+            <Box
+              w={10}
+              h={10}
+              borderRadius="lg"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bg="red.500"
+              color="white"
+              mr={3}
+            >
+              <FontAwesomeIcon icon={faTimes} size="lg" />
+            </Box>
+            <Text fontWeight="bold" fontSize="lg">
+              Hisobdan chiqarilishi belgilangan vagonlar
+            </Text>
+          </Flex>
+
+          <ChorakChart
+            data={[
+              { name: "Yopiq vagon", value: 3 },
+              { name: "Yarim ochiq vagon", value: 7 },
+            ]}
+          />
+        </Card>
+
+      </Grid>
+    </ModalBody>
+
+    <ModalFooter
+      bg="gray.50"
+      borderBottomRadius="2xl"
+      py={6}
+    >
+      <Button
+        onClick={closeModal}
+        colorScheme="blue"
+        size="lg"
+        px={10}
+        fontWeight="bold"
+      >
+        Yopish
+      </Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+
+<Box mb={12}>
+  <Heading as="h2" size="lg" mb={8} color={textColor}>
+    {sectionTitles.monthlyProgress}
+  </Heading>
+
+  {/* Container for both sections */}
+  <Box>
+    {/* Inventar yuk vagonlar section */}
+    <Card
+      bg={cardBg}
+      boxShadow="2xl"
+      borderRadius="2xl"
+      p={8}
+      mb={10}
+      borderWidth="1px"
+      borderColor="blue.200"
+    >
+      <Flex align="center" mb={6} p={4} bg="blue.50" borderRadius="lg">
+        <Box
+          w={12}
+          h={12}
+          borderRadius="lg"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          bg="blue.600"
+          color="white"
+          mr={4}
+        >
+          <FontAwesomeIcon icon={faTrain} size="lg" />
+        </Box>
+        <Box>
+          <Text fontSize="xl" fontWeight="bold" color="blue.700">
+            Inventar yuk vagonlar
+          </Text>
+          <Text fontSize="sm" color="gray.600">
+            Yillik ta'mirlash rejasi
+          </Text>
+        </Box>
+      </Flex>
+
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+        {groupedGoalsInventar.map((chorak, idx) => (
+          <Box
+            key={idx}
+            p={5}
+            borderWidth="1px"
+            borderRadius="xl"
+            borderColor="blue.100"
+            bg="white"
+            boxShadow="md"
+            transition="all 0.3s"
+            _hover={{ boxShadow: "lg", transform: "scale(1.02)" }}
+          >
+            <Flex align="center" mb={4}>
+              <Box
+                w={10}
+                h={10}
+                borderRadius="lg"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
+                color="white"
+                mr={3}
+              >
+                <Text fontWeight="bold">{idx + 1}</Text>
+              </Box>
+              <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+            </Flex>
+
+            <Stack spacing={3}>
+              {chorak.months.map(month => (
+                <Box key={month.month}>
+                  <Flex justify="space-between" mb={1}>
+                    <Text fontWeight="medium" fontSize="sm">{month.month}</Text>
+                    {month.current && <Badge colorScheme="blue" size="sm">Joriy</Badge>}
+                  </Flex>
+                  <Progress
+                    value={(month.completed / month.target) * 100}
+                    size="sm"
+                    colorScheme={chorakColors[idx % chorakColors.length]}
+                    bg={progressBg}
+                    borderRadius="full"
+                    mb={1}
+                  />
+                  <Flex justify="space-between" fontSize="xs">
+                    <Text color={textColor}>
+                      {month.completed} / {month.target}
+                    </Text>
+                    <Text fontWeight="bold">
+                      {Math.round((month.completed / month.target) * 100)}%
+                    </Text>
+                  </Flex>
+                </Box>
+              ))}
+            </Stack>
+          </Box>
+        ))}
+      </SimpleGrid>
+    </Card>
+
+    {/* Xususiy vagonlar section */}
+    <Card
+      bg={cardBg}
+      boxShadow="2xl"
+      borderRadius="2xl"
+      p={8}
+      borderWidth="1px"
+      borderColor="green.200"
+    >
+      <Flex align="center" mb={6} p={4} bg="green.50" borderRadius="lg">
+        <Box
+          w={12}
+          h={12}
+          borderRadius="lg"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          bg="green.600"
+          color="white"
+          mr={4}
+        >
+          <FontAwesomeIcon icon={faTrain} size="lg" />
+        </Box>
+        <Box>
+          <Text fontSize="xl" fontWeight="bold" color="green.700">
+            Xususiy vagonlar
+          </Text>
+          <Text fontSize="sm" color="gray.600">
+            Yillik ta'mirlash rejasi
+          </Text>
+        </Box>
+      </Flex>
+
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+        {groupedGoalsXususiy.map((chorak, idx) => (
+          <Box
+            key={idx}
+            p={5}
+            borderWidth="1px"
+            borderRadius="xl"
+            borderColor="green.100"
+            bg="white"
+            boxShadow="md"
+            transition="all 0.3s"
+            _hover={{ boxShadow: "lg", transform: "scale(1.02)" }}
+          >
+            <Flex align="center" mb={4}>
+              <Box
+                w={10}
+                h={10}
+                borderRadius="lg"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                bgGradient={chorakIconGradients[idx % chorakIconGradients.length]}
+                color="white"
+                mr={3}
+              >
+                <Text fontWeight="bold">{idx + 1}</Text>
+              </Box>
+              <Text fontSize="lg" fontWeight="semibold">{chorak.title}</Text>
+            </Flex>
+
+            <Stack spacing={3}>
+              {chorak.months.map(month => (
+                <Box key={month.month}>
+                  <Flex justify="space-between" mb={1}>
+                    <Text fontWeight="medium" fontSize="sm">{month.month}</Text>
+                    {month.current && <Badge colorScheme="green" size="sm">Joriy</Badge>}
+                  </Flex>
+                  <Progress
+                    value={(month.completed / month.target) * 100}
+                    size="sm"
+                    colorScheme={chorakColors[idx % chorakColors.length]}
+                    bg={progressBg}
+                    borderRadius="full"
+                    mb={1}
+                  />
+                  <Flex justify="space-between" fontSize="xs">
+                    <Text color={textColor}>
+                      {month.completed} / {month.target}
+                    </Text>
+                    <Text fontWeight="bold">
+                      {Math.round((month.completed / month.target) * 100)}%
+                    </Text>
+                  </Flex>
+                </Box>
+              ))}
+            </Stack>
+          </Box>
+        ))}
+      </SimpleGrid>
+    </Card>
+  </Box>
+</Box>
 
 
 {/* SMALL CHART */}
