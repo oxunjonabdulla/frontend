@@ -97,8 +97,7 @@ export const VU_22_Model = ({ onClose, isOpen, maintanceRecordId }) => {
                   <FormControl>
                     <FormLabel>Nomi</FormLabel>
                     <Input
-                      value={vu_22_assabmle_options[idx]}
-                      isReadOnly
+                      defaultValue={vu_22_assabmle_options[idx]}
                       {...register(`qismlar.${idx}.title`)}
                     />
                   </FormControl>
