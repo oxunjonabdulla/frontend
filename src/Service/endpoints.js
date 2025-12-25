@@ -84,6 +84,7 @@ const authEndpoints = {
   complectationCreate: (carriageID) => `/complectation/create/${carriageID}/`,
   complectationGet: (carriageID) => `/complectation/${carriageID}/`,
   vu23Dowland: (carriageID) => `/${carriageID}/vu23/download/`,
+  vu22Download: (carriageNumber) => `/download/vu22/${carriageNumber}/`,
 
   // vu31
   vu31: (carriageID) => `/vu31/${carriageID}/`,

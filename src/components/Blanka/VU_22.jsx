@@ -115,6 +115,32 @@ export const VU_22 = () => {
     onOpenShowModel();
   };
 
+  const handleDownloadVu22 = async (carriageNumber) => {
+         console.log("carriageNumber:", carriageNumber); // 👈 ADD THIS
+
+    try {
+        const { response, error } = await new UserApi().downloadVu22(carriageNumber);
+
+        if (error) throw error;
+
+        const url = window.URL.createObjectURL(
+            new Blob([response.data])
+        );
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `vu-22-${carriageNumber}.docx`;
+
+        document.body.appendChild(link);
+        link.click();
+
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error("Error downloading VU22 file:", error);
+    }
+};
+
   return (
     <Box
       as="div"
@@ -353,11 +379,13 @@ export const VU_22 = () => {
                       <Td>
                         <Flex gap={2} justifyContent={"center"}>
                           <IconButton
-                            bg="blue.300"
-                            color="white"
-                            icon={<FontAwesomeIcon icon={faDownload} />}
-                            aria-label="Download"
-                          />
+                                bg="blue.300"
+                                color="white"
+                                icon={<FontAwesomeIcon icon={faDownload} />}
+                                aria-label="Download VU22"
+                                _hover={{ opacity: 0.8 }}
+                                onClick={() => handleDownloadVu22(item?.carriage)}
+                            />
                           <IconButton
                             colorScheme="red"
                             onClick={() => handleCheckAndDelete(item?.carriage)}

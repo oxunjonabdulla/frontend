@@ -315,11 +315,7 @@ export const VU_22 = () => {
                     </Td>
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                            bg="blue.300"
-                          color="white"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
-                        />
+
 {/*                         <IconButton */}
 {/*                           colorScheme="green" */}
 {/*                           onClick={() => handleCheckAndUpdate(item)} */}
@@ -384,8 +380,8 @@ export const VU_22 = () => {
         text={"id raqamiga tegishli vagon ma'lumotini o'chirmoqdasiz."}
         placeholder={"id raqamini kirting"}
       />
-      
-      {isOpenUpdate && 
+
+      {isOpenUpdate &&
         <VU_22_Update
           isOpen={isOpenUpdate}
           onClose={() => onCloseUpdate()}
