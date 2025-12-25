@@ -310,6 +310,19 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+      async downloadVu22(carriageNumber) {
+        try {
+            const response = await privateInstance.get(
+                authEndpoints.vu22Download(carriageNumber),
+                { responseType: "blob" }
+            );
+
+            return { response };
+        } catch (error) {
+            return { error };
+        }
+    }
+
 
   // Vu 31 model
 

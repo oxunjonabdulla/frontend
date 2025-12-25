@@ -91,6 +91,8 @@ export const VU_22_Brakes = () => {
     onOpenShowModel();
   };
 
+
+
   return (
     <Box
       as="div"
@@ -198,10 +200,14 @@ export const VU_22_Brakes = () => {
 
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                          colorScheme="linkedin"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
-                        />
+                            {/* <IconButton*/}
+                            {/*    bg="blue.300"*/}
+                            {/*    color="white"*/}
+                            {/*    icon={<FontAwesomeIcon icon={faDownload} />}*/}
+                            {/*    aria-label="Download VU22"*/}
+                            {/*    _hover={{ opacity: 0.8 }}*/}
+                            {/*    onClick={() => handleDownloadVu22(item?.carriage_number)}*/}
+                            {/*/>*/}
                         <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.carriage)}
@@ -243,7 +249,7 @@ export const VU_22_Brakes = () => {
       ) : (
         <SliderMock setIsLoading={setIsLoading} />
       )}
-      
+
       <Pagination
         onPageChange={handlePageClick}
         pageCount={gettingData?.count}
