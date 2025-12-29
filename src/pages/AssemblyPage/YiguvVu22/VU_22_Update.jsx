@@ -19,34 +19,67 @@ export const VU_22_Update = ({ isOpen, onClose, data }) => {
         name: "qismlar",
     });
 
-    const onSubmit = async (data) => {
-        setLoading(true);
-        const dataObj = {
-            ...data,
-            // texnik_xizmat: maintanceRecordId,
-        };
-        console.log(dataObj);
 
-        const { response, error } = await new UserApi().postVu22Gildirak(dataObj);
+
+    const onSubmit = async (formData) => {
+    setLoading(true);
+
+    // 🔑 THIS is the correct yiguv ID
+    const yiguvId = data?.yiguv_id;
+    console.log("data : ", data)
+    console.log("data?.collect_data? : ", data?.collect_data)
+    console.log("data?.collect_data?.[0] : ", data?.collect_data?.[0])
+    console.log("Yiguv id : ", yiguvId)
+
+    if (!yiguvId) {
+        toast({
+            status: "error",
+            title: "Yig‘uv ID topilmadi",
+            duration: 4000,
+            isClosable: true,
+            position: "top-right",
+        });
         setLoading(false);
-        if (response) {
-            toast({
-                status: "success",
-                title: "Ma'lumot muvaffaqiyatli qo'shildi.",
-                duration: 4000,
-                isClosable: true,
-                position: "top-right",
-            });
-            window.location.reload();
-        }
-        if (error) toast({
+        return;
+    }
+
+    const payload = {
+        qismlar: formData.qismlar,
+            texnik_xizmat: maintanceRecordId, // ✅ REQUIRED
+
+    };
+
+    const { response, error } = await new UserApi().putVu22Yiguv(
+        yiguvId,      // ✅ ID
+        payload       // ✅ body
+    );
+
+    setLoading(false);
+
+    if (response) {
+        toast({
+            status: "success",
+            title: "Ma'lumot muvaffaqiyatli yangilandi.",
+            duration: 4000,
+            isClosable: true,
+            position: "top-right",
+        });
+        window.location.reload();
+    }
+
+    if (error) {
+        toast({
             status: "error",
             title: "Xatolik yuz berdi.",
             duration: 4000,
             isClosable: true,
             position: "top-right",
         });
-    };
+    }
+};
+
+
+
 
     useEffect(() => {
         if (data) {
@@ -58,7 +91,7 @@ export const VU_22_Update = ({ isOpen, onClose, data }) => {
         }
     }, [data, remove, append]);
 
-    console.log(data);
+//     console.log(data);
     
 
     return <Modal
