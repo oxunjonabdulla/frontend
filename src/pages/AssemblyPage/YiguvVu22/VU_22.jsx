@@ -316,11 +316,11 @@ export const VU_22 = () => {
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
 
-{/*                         <IconButton */}
-{/*                           colorScheme="green" */}
-{/*                           onClick={() => handleCheckAndUpdate(item)} */}
-{/*                           icon={<FontAwesomeIcon icon={faEdit} />} */}
-{/*                         /> */}
+                        <IconButton
+                          colorScheme="green"
+                          onClick={() => handleCheckAndUpdate(item)}
+                          icon={<FontAwesomeIcon icon={faEdit} />}
+                        />
                         <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.yiguv_id)}

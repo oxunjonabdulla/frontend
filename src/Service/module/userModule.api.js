@@ -1779,6 +1779,18 @@ class UserApi extends React.Component {
       return { error };
     }
   }
+  async putVu22Yiguv(id, obj) {
+  try {
+    const response = await privateInstance.put(
+      authEndpoints.vu22Yiguv(id),
+      obj
+    );
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
+
   async getVu22Brakes(page) {
     try {
       const response = await privateInstance.get(authEndpoints.vu22AutoBrakes, {
