@@ -1,3 +1,6 @@
+
+
+
 import CountUp from "react-countup";
 import {useEffect, useState} from "react";
 import {
@@ -42,7 +45,7 @@ import {
     faTrain,
     faWrench
 } from "@fortawesome/free-solid-svg-icons"; // Example icons
-import {Link} from "react-router-dom"; 
+import {Link} from "react-router-dom";
 
 import {
     CartesianGrid,
@@ -58,6 +61,7 @@ import {
     YAxis
 } from "recharts";
 import {privateInstance} from "@/Service/client/client.js"; // for auth endpoints
+import { useNavigate } from "react-router-dom";
 
 
 const WagonTypeLineChart = () => {
@@ -305,6 +309,10 @@ export const HomePage = () => {
     const [hoverChart, setHoverChart] = useState(false);
     const [selectedDiagram, setSelectedDiagram] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [isBlankModalOpen, setBlankModalOpen] = useState(false);
+    const [isJournalModalOpen, setJournalModalOpen] = useState(false);
+    const navigate = useNavigate();
+
 
     // Function to open modal
     const openModal = () => {
@@ -314,6 +322,24 @@ export const HomePage = () => {
     // Function to close modal
     const closeModal = () => {
       setIsOpen(false);
+    };
+
+    const openBlankModal = () => {
+          setBlankModalOpen(true);
+        };
+
+    // Function to close modal
+    const closeBlankModal = () => {
+      setBlankModalOpen(false);
+    };
+
+    const openJournalModal = () => {
+          setJournalModalOpen(true);
+        };
+
+    // Function to close modal
+    const closeJournalModal = () => {
+      setJournalModalOpen(false);
     };
 
 
@@ -1283,6 +1309,7 @@ const [groupedGoals, setGroupedGoals] = useState([]);
 
 
 {/* SMALL CHART */}
+
 <Box mb={12}>
   <Card
     bg={cardBg}
@@ -1313,7 +1340,7 @@ onClick={() => setHoverChart(true)}
     alignItems="center"
     onClick={() => setHoverChart(false)}          // CLOSE ANYWHERE OUTSIDE
   >
-    {/* STOP PROPAGATION SO MODAL DOESN’T CLOSE WHEN CLICKED */}
+{/*     STOP PROPAGATION SO MODAL DOESN’T CLOSE WHEN CLICKED */}
     <Card
       onClick={(e) => e.stopPropagation()}        // << IMPORTANT FIX
       width="95vw"
@@ -1416,8 +1443,10 @@ onClick={() => setHoverChart(true)}
     opacity={hoveredIndex !== null ? 1 : 0}
     pointerEvents={hoveredIndex !== null ? "auto" : "none"}
     transition="all 0.9s cubic-bezier(0.16, 1, 0.3, 1)"
-    width="520px"
-    maxHeight="85vh"
+    width="90vw"
+    maxWidth="1100px"
+    minHeight="58vh"
+    maxHeight="78vh"
     overflow="auto"
     zIndex={2001}
     p={8}
@@ -1448,7 +1477,20 @@ onClick={() => setHoverChart(true)}
           </Text>
         </Flex>
 
-        <ChorakPieChart data={chorakWagonData[hoveredIndex].data} />
+        <Grid templateColumns="1fr 1fr" gap={6}>
+          <ChorakPieChart
+            data={chorakWagonData[hoveredIndex].data}
+          />
+
+          <ChorakPieChart
+            data={
+              chorakWagonData[
+                (hoveredIndex + 1) % chorakWagonData.length
+              ].data
+            }
+          />
+        </Grid>
+
       </>
     )}
 
@@ -1465,230 +1507,262 @@ onClick={() => setHoverChart(true)}
 
 </Box>
 
+{/*  additional_info*/}
 
-            {/* Additional Info Section */}
-            <Box mb={8}>
-                <Heading as="h2" size="lg" mb={6} color={headingColor} display="flex" alignItems="center">
-                    {/* Icon with colorful gradient background */}
-                    <Box
-                        w={12}
-                        h={12}
-                        borderRadius="5px"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        bgGradient="linear(to-r, #6a11cb, #2575fc)" // Gradient color
-                        mr={3}
+      {/* Additional Info Section */}
+
+
+<Modal
+  isOpen={isJournalModalOpen}
+  onClose={closeJournalModal}
+  size="6xl"
+  isCentered
+  scrollBehavior="inside"
+>
+  <ModalOverlay backdropFilter="blur(6px)" />
+
+  <ModalContent borderRadius="2xl">
+    <ModalHeader display="flex" alignItems="center">
+      <Box
+        w={10}
+        h={10}
+        borderRadius="5px"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        bgGradient="linear(to-r, #6a11cb, #2575fc)"
+        mr={3}
+      >
+        <FontAwesomeIcon icon={faNewspaper} color="white" />
+      </Box>
+      Jurnallar
+    </ModalHeader>
+
+    <ModalCloseButton />
+
+    <ModalBody>
+      <SimpleGrid
+        columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
+        spacing={6}
+      >
+        {journalData.map((journal, index) => (
+          <Card
+            key={index}
+            bg={cardBg}
+            boxShadow="md"
+            borderRadius="5px"
+            cursor="pointer"
+            transition="all 0.2s"
+            _hover={{
+              transform: "translateY(-2px)",
+              boxShadow: "lg",
+            }}
+            onClick={() => {
+              closeJournalModal();          // ✅ close modal
+              navigate(journal.route);      // ✅ then navigate
+            }}
+          >
+            <CardBody>
+              <Flex direction="column" height="100%">
+                <Flex align="center" mb={4}>
+                  <Box
+                    w={12}
+                    h={12}
+                    borderRadius="full"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    bg={`${journal.colorScheme}.100`}
+                    color={`${journal.colorScheme}.600`}
+                    mr={4}
+                  >
+                    <FontAwesomeIcon icon={journal.icon} size="lg" />
+                  </Box>
+
+                  <Box>
+                    <Heading as="h3" size="md" mb={1}>
+                      {journal.title}
+                    </Heading>
+                    <Badge
+                      colorScheme={journal.colorScheme}
+                      variant="subtle"
+                      fontSize="0.8em"
                     >
-                        <FontAwesomeIcon icon={faNewspaper} size="lg" color="white"/>
-                    </Box>
-                    Jurnallar
-                </Heading>
-                <Divider mb={6}/>
+                      {journal.count} ta ma'lumot
+                    </Badge>
+                  </Box>
+                </Flex>
 
-                <SimpleGrid columns={{base: 1, sm: 2, md: 3, lg: 4}} spacing={6}>
-                    {journalData.map((journal, index) => (
-                        <Card
-                            key={index}
-                            as={Link}
-                            to={journal.route}
-                            bg={cardBg}
-                            boxShadow="md"
-                            borderRadius="5px"
-                            overflow="hidden"
-                            transition="all 0.2s"
-                            _hover={{
-                                transform: "translateY(-2px)",
-                                boxShadow: "lg",
-                                textDecoration: "none"
-                            }}
-                            height="100%"
-                        >
-                            <CardBody>
-                                <Flex direction="column" height="100%">
-                                    <Flex align="center" mb={4}>
-                                        <Box
-                                            w={12}
-                                            h={12}
-                                            borderRadius="full"
-                                            display="flex"
-                                            alignItems="center"
-                                            justifyContent="center"
-                                            bg={`${journal.colorScheme}.100`}
-                                            color={`${journal.colorScheme}.600`}
-                                            mr={4}
-                                        >
-                                            <FontAwesomeIcon icon={journal.icon} size="lg"/>
-                                        </Box>
-                                        <Box>
-                                            <Heading as="h3" size="md" mb={1}>
-                                                {journal.title}
-                                            </Heading>
-                                            <Badge
-                                                colorScheme={journal.colorScheme}
-                                                variant="subtle"
-                                                fontSize="0.8em"
-                                            >
-                                                {journal.count} ta ma'lumot
-                                            </Badge>
-                                        </Box>
-                                    </Flex>
+                <Text color={textColor} mb={4} flexGrow={1}>
+                  {journal.description}
+                </Text>
+              </Flex>
+            </CardBody>
+          </Card>
+        ))}
+      </SimpleGrid>
+    </ModalBody>
+  </ModalContent>
+</Modal>
 
-                                    <Text color={textColor} mb={4} flexGrow={1}>
-                                        {journal.description}
-                                    </Text>
 
-                                    <Box mt="auto">
-                                        <Divider mb={2}/>
-                                        <Text fontSize="sm" color="gray.500">
-                                            {/*{journal.lastUpdated}*/}
-                                        </Text>
-                                    </Box>
-                                </Flex>
-                            </CardBody>
-                        </Card>
-                    ))}
-                </SimpleGrid>
-            </Box>
-            <Box mb={8}>
-                <Heading as="h2" size="lg" mb={6} color={headingColor} display="flex" alignItems="center">
-                    <Box
-                        w={12}
-                        h={12}
-                        borderRadius="full"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        bgGradient="linear(to-r, #ff7e5f, #feb47b)" // Gradient color
-                        mr={3}
+{/*   Blanks */}
+<Modal
+  isOpen={isBlankModalOpen}
+  onClose={closeBlankModal}
+  size="6xl"
+  isCentered
+  scrollBehavior="inside"
+>
+  <ModalOverlay backdropFilter="blur(6px)" />
+  <ModalContent borderRadius="2xl">
+    <ModalHeader display="flex" alignItems="center">
+      <Box
+        w={10}
+        h={10}
+        borderRadius="full"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        bgGradient="linear(to-r, #ff7e5f, #feb47b)"
+        mr={3}
+      >
+        <FontAwesomeIcon icon={faClipboard} color="white" />
+      </Box>
+      Blankalar
+    </ModalHeader>
+
+    <ModalCloseButton />
+
+    <ModalBody>
+      {/* 🔽 YOUR EXISTING CODE (UNCHANGED) */}
+      <SimpleGrid
+        columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
+        spacing={6}
+      >
+        {BlankData.map((journal, index) => (
+          <Card
+            key={index}
+            as={Link}
+            to={journal.route}
+            bg={cardBg}
+            boxShadow="md"
+            borderRadius="lg"
+            overflow="hidden"
+            transition="all 0.2s"
+            _hover={{
+              transform: "translateY(-2px)",
+              boxShadow: "lg",
+              textDecoration: "none",
+            }}
+          >
+            <CardBody>
+              <Flex direction="column" height="100%">
+                <Flex align="center" mb={4}>
+                  <Box
+                    w={12}
+                    h={12}
+                    borderRadius="full"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    bg="#21BD86"
+                    color="white"
+                    mr={4}
+                  >
+                    <FontAwesomeIcon icon={journal.icon} size="lg" />
+                  </Box>
+                  <Box>
+                    <Heading as="h3" size="md" mb={1}>
+                      {journal.title}
+                    </Heading>
+                    <Badge
+                      colorScheme="green"
+                      variant="subtle"
+                      fontSize="0.8em"
                     >
-                        <FontAwesomeIcon icon={faClipboard} size="lg" color="white"/>
-                    </Box>
-                    Blankalar
-                </Heading>
-                <Divider mb={6}/>
+                      {journal.count} ta ma'lumot
+                    </Badge>
+                  </Box>
+                </Flex>
 
-                <SimpleGrid columns={{base: 1, sm: 2, md: 3, lg: 4}} spacing={6}>
-                    {BlankData.map((journal, index) => (
-                        <Card
-                            key={index}
-                            as={Link}
-                            to={journal.route}
-                            bg={cardBg}
-                            boxShadow="md"
-                            borderRadius="lg"
-                            overflow="hidden"
-                            transition="all 0.2s"
-                            _hover={{
-                                transform: "translateY(-2px)",
-                                boxShadow: "lg",
-                                textDecoration: "none"
-                            }}
-                            height="100%"
-                        >
-                            <CardBody>
-                                <Flex direction="column" height="100%">
-                                    <Flex align="center" mb={4}>
-                                        <Box
-                                            w={12}
-                                            h={12}
-                                            borderRadius="full"
-                                            display="flex"
-                                            alignItems="center"
-                                            justifyContent="center"
-                                            bg="#21BD86" // Custom color
-                                            color="white" // Icon color to contrast with the custom background color
-                                            mr={4}
-                                        >
-                                            <FontAwesomeIcon icon={journal.icon} size="lg"/>
-                                        </Box>
-                                        <Box>
-                                            <Heading as="h3" size="md" mb={1}>
-                                                {journal.title}
-                                            </Heading>
-                                            <Badge
-                                                colorScheme="green" // Green Badge as an indication of custom color
-                                                variant="subtle"
-                                                fontSize="0.8em"
-                                            >
-                                                {journal.count} ta ma'lumot
-                                            </Badge>
-                                        </Box>
-                                    </Flex>
-
-                                    <Text color={textColor} mb={4} flexGrow={1}>
-                                        {journal.description}
-                                    </Text>
-
-                                    <Box mt="auto">
-                                        <Divider mb={2}/>
-                                        <Text fontSize="sm" color="gray.500">
-                                            {/*{journal.lastUpdated}*/}
-                                        </Text>
-                                    </Box>
-                                </Flex>
-                            </CardBody>
-                        </Card>
-                    ))}
-                </SimpleGrid>
-            </Box>
+                <Text color={textColor} mb={4} flexGrow={1}>
+                  {journal.description}
+                </Text>
+              </Flex>
+            </CardBody>
+          </Card>
+        ))}
+      </SimpleGrid>
+    </ModalBody>
+  </ModalContent>
+</Modal>
 
 
-            {/* Statistics Section */}
+
+ {/* Statistics Section */}
             <Box mb={8}>
                 <Heading as="h2" size="lg" mb={6} color={headingColor}>
                     Umumiy statistika
                 </Heading>
                 <Divider mb={6}/>
-
                 <Grid templateColumns={{base: "1fr", md: "repeat(3, 1fr)"}} gap={6}>
                     <Card
-                        bgGradient="linear(to-r, #ff7e5f, #feb47b)" // Red to pink gradient
+                  bgGradient="linear(to-r, #ff7e5f, #feb47b)"
+                  boxShadow="md"
+                  borderRadius="lg"
+                  cursor="pointer"
+                  transition="all 0.3s ease"
+                  _hover={{
+                    transform: "translateY(-8px)",
+                    boxShadow: "xl",
+                  }}
+                  onClick={openJournalModal}
+                >
 
-                        boxShadow="md"
-                        borderRadius="lg"
+                  <CardBody>
+                    <Stat>
+                      <StatLabel color="white" fontWeight="bold">
+                        Jami jurnallar soni
+                      </StatLabel>
+                      <StatNumber color="white" fontWeight="bold">
+                        <CountUp end={journalData.length} duration={1} /> ta
+                      </StatNumber>
+                      <StatHelpText fontWeight="bold" color="white">
+                        Barcha mavjud blankalar
+                      </StatHelpText>
+                    </Stat>
+                  </CardBody>
+                </Card>
 
-                        transition="all 0.3s ease"
-                        transform="translateY(0)"
-                        _hover={{
-                            transform: "translateY(-8px)",
-                            boxShadow: "xl",
-                        }}
-
-                    >
-                        <CardBody>
-                            <Stat>
-                                <StatLabel color={"white"} fontWeight={"bold"}>Jami jurnallar soni</StatLabel>
-                                <StatNumber color={"white"} fontWeight={"bold"}>
-                                    <CountUp end={journalData.length} duration={1}/> ta
-                                </StatNumber>
-                                <StatHelpText fontWeight={"bold"} color={"white"}>Barcha mavjud blankalar</StatHelpText>
-                            </Stat>
-                        </CardBody>
-                    </Card>
 
                     <Card
-                        bgGradient="linear(to-r, #38ef7d, #11998e)" // Teal to blue gradient
-                        boxShadow="md"
-                        borderRadius="lg"
-                        transition="all 0.3s ease"
-                        transform="translateY(0)"
-                        _hover={{
-                            transform: "translateY(-8px)",
-                            boxShadow: "xl",
-                        }}
+                              bgGradient="linear(to-r, #38ef7d, #11998e)"
+                              boxShadow="md"
+                              borderRadius="lg"
+                              cursor="pointer"
+                              transition="all 0.3s ease"
+                              _hover={{
+                                transform: "translateY(-8px)",
+                                boxShadow: "xl",
+                              }}
+                              onClick={openBlankModal}
+                            >
+                              <CardBody>
+                                <Stat>
+                                  <StatLabel fontWeight="bold" color="white">
+                                    Jami blankalar soni
+                                  </StatLabel>
+                                  <StatNumber fontWeight="bold" color="white">
+                                    <CountUp end={BlankData.length} duration={1} /> ta
+                                  </StatNumber>
+                                  <StatHelpText fontWeight="bold" color="white">
+                                    Barcha mavjud blankalar
+                                  </StatHelpText>
+                                </Stat>
+                              </CardBody>
+                            </Card>
 
-                    >
-                        <CardBody>
-                            <Stat>
-                                <StatLabel fontWeight={"bold"} color={"white"}>Jami blankalar soni</StatLabel>
-                                <StatNumber fontWeight={"bold"} color={"white"}>
-                                    <CountUp end={BlankData.length} duration={1}/> ta
-                                </StatNumber>
-                                <StatHelpText fontWeight={"bold"} color={"white"}>Barcha mavjud blankalar</StatHelpText>
-                            </Stat>
-                        </CardBody>
-                    </Card>
 
                     <Card
                         bgGradient="linear(to-r, #00c6ff, #0072ff)" // Cyan to purple gradient
@@ -1719,7 +1793,6 @@ onClick={() => setHoverChart(true)}
                     </Card>
                 </Grid>
             </Box>
-
 
         </Container>
     );
