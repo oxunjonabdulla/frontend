@@ -1,6 +1,3 @@
-
-
-
 import CountUp from "react-countup";
 import {useEffect, useState} from "react";
 import {
@@ -12,8 +9,7 @@ import {
     Divider,
     Flex,
     Grid,
-          Stack, // ← ADD THIS IMPORT
-
+    Stack, // ← ADD THIS IMPORT
     GridItem,
     Heading, IconButton,
     Progress,
@@ -31,7 +27,11 @@ import {
   ModalBody,
   ModalFooter,
   ModalCloseButton,
+  useDisclosure,
+  Spinner,
   Button,
+    Avatar,
+
 
 } from "@chakra-ui/react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -62,6 +62,7 @@ import {
 } from "recharts";
 import {privateInstance} from "@/Service/client/client.js"; // for auth endpoints
 import { useNavigate } from "react-router-dom";
+import UserApi from "@/Service/module/userModule.api.js";
 
 
 const WagonTypeLineChart = () => {
@@ -304,13 +305,15 @@ const chorakIconGradients = [
 
 export const HomePage = () => {
     const [counts, setCounts] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [hoverChart, setHoverChart] = useState(false);
     const [selectedDiagram, setSelectedDiagram] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [isBlankModalOpen, setBlankModalOpen] = useState(false);
     const [isJournalModalOpen, setJournalModalOpen] = useState(false);
+    const { isOpen: isUserModalOpen, onOpen, onClose } = useDisclosure();
+    const [users, setUsers] = useState([]);
     const navigate = useNavigate();
 
 
@@ -341,6 +344,23 @@ export const HomePage = () => {
     const closeJournalModal = () => {
       setJournalModalOpen(false);
     };
+
+    const handleOpenUsers = async () => {
+          onOpen();
+          setLoading(true);
+
+          const { response } = await new UserApi().getUsers();
+
+          if (response && Array.isArray(response.data)) {
+            setUsers(response.data);
+          } else {
+            setUsers([]);
+          }
+
+          setLoading(false);
+        };
+
+
 
 
 // Fixed data with 12 months
@@ -1764,27 +1784,33 @@ onClick={() => setHoverChart(true)}
                             </Card>
 
 
-                    <Card
-                        bgGradient="linear(to-r, #00c6ff, #0072ff)" // Cyan to purple gradient
-                        boxShadow="md"
-                        borderRadius="lg"
-                        transition="all 0.3s ease"
-                        transform="translateY(0)"
-                        _hover={{
+                            <Card
+                          cursor="pointer"
+                          onClick={handleOpenUsers}
+                          bgGradient="linear(to-r, #00c6ff, #0072ff)"
+                          boxShadow="md"
+                          borderRadius="lg"
+                          transition="all 0.3s ease"
+                          _hover={{
                             transform: "translateY(-8px)",
                             boxShadow: "xl",
-                        }}>
-                        <CardBody>
+                          }}
+                        >
+                          <CardBody>
                             <Stat>
-                                <StatLabel fontWeight={"bold"} color={"white"}>Jami foydalanuvchilar soni</StatLabel>
-                                <StatNumber fontWeight={"bold"} color={"white"}>
-                                    51 ta
-                                </StatNumber>
-                                <StatHelpText fontWeight={"bold"} color={"white"}>Barcha platforma foydalanuvchilar
-                                </StatHelpText>
+                              <StatLabel fontWeight="bold" color="white">
+                                Jami foydalanuvchilar soni
+                              </StatLabel>
+                              <StatNumber fontWeight="bold" color="white">
+                                {Array.isArray(users) ? users.length : "—"} ta
+                              </StatNumber>
+                              <StatHelpText fontWeight="bold" color="white">
+                                Barcha platforma foydalanuvchilar
+                              </StatHelpText>
                             </Stat>
-                        </CardBody>
-                    </Card>
+                          </CardBody>
+                        </Card>
+
 
                     <Card
                         bgGradient="linear(to-r, #8A2387, #E94057, #F27121)"
@@ -1793,6 +1819,63 @@ onClick={() => setHoverChart(true)}
                     </Card>
                 </Grid>
             </Box>
+
+<Modal isOpen={isUserModalOpen} onClose={onClose} size="6xl">
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader> Foydalanuvchilar ro‘yxati</ModalHeader>
+    <ModalCloseButton />
+
+    <ModalBody pb={6}>
+      {loading ? (
+        <Flex justify="center" align="center" minH="200px">
+          <Spinner size="xl" />
+        </Flex>
+      ) : (
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 3 }} spacing={5}>
+          {users.map((user) => (
+            <Box
+              key={user.id}
+              p={4}
+              borderRadius="xl"
+              bg="white"
+              boxShadow="md"
+              transition="all 0.25s ease"
+              _hover={{
+                transform: "translateY(-6px)",
+                boxShadow: "xl",
+              }}
+            >
+              <Flex align="center" mb={3}>
+                <Avatar
+                  name={user.name || user.username}
+                  size="md"
+                  mr={3}
+                />
+                <Box>
+                  <Text fontWeight="bold" noOfLines={1}>
+                    {user.name || user.username}
+                  </Text>
+                  <Text fontSize="sm" color="gray.500">
+                    @{user.username}
+                  </Text>
+                </Box>
+              </Flex>
+
+              <Badge
+                colorScheme="blue"
+                variant="subtle"
+                textTransform="capitalize"
+              >
+                {user.role_display.replace(/_/g, " ")}
+              </Badge>
+            </Box>
+          ))}
+        </SimpleGrid>
+      )}
+    </ModalBody>
+  </ModalContent>
+</Modal>
 
         </Container>
     );

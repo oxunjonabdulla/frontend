@@ -3,6 +3,7 @@ const authEndpoints = {
   jwtRefresh: "auth/jwt/refresh/",
   jwtCreate: "auth/jwt/create/",
   autMe: "user/me/",
+  usersAPI:"users/",
   authImg: "user/signature/",
   carriageGet: "/carriage/",
 

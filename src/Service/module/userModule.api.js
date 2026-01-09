@@ -35,6 +35,16 @@ class UserApi extends React.Component {
     }
   }
 
+  async getUsers(){
+    try {
+      const response = await privateInstance.get(authEndpoints.usersAPI);
+
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  }
+
   // Vu22
 
   async postVu22(id, obj) {
