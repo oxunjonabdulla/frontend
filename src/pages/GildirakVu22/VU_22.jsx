@@ -279,11 +279,7 @@ export const VU_22 = () => {
                     </Td>
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
-                        <IconButton
-                          bg="blue.300"
-                        color="white"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
-                            />
+
                             <IconButton
                               colorScheme="red"
                               onClick={() =>

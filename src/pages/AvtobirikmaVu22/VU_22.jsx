@@ -286,11 +286,6 @@ export const VU_22_Arava = () => {
                     <Td>
                       <Flex gap={2} justifyContent={"center"}>
                         <IconButton
-                        bg="blue.300"
-                          color="white"
-                          icon={<FontAwesomeIcon icon={faDownload} />}
-                        />
-                        <IconButton
                           colorScheme="red"
                           onClick={() => handleCheckAndDelete(item?.avtobirikma_id)}
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}

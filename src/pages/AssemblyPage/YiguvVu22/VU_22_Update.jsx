@@ -45,8 +45,6 @@ export const VU_22_Update = ({ isOpen, onClose, data }) => {
 
     const payload = {
         qismlar: formData.qismlar,
-            texnik_xizmat: maintanceRecordId, // ✅ REQUIRED
-
     };
 
     const { response, error } = await new UserApi().putVu22Yiguv(
