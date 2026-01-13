@@ -61,14 +61,14 @@ export const AssemblyPage = () => {
             onClick={() => getLocalActiveComp("Component1")}
             variant={activeComponent === "Component1" ? "solid" : "outline"}
           >
-            ВУ-22
+            VU-22
           </Button>
           <Button
             colorScheme="teal"
             onClick={() => getLocalActiveComp("Component6")}
             variant={activeComponent === "Component6" ? "solid" : "outline"}
           >
-            ВУ-22 qo'shilishi
+            VU-22 qo'shilishi
           </Button>
           <Button
             colorScheme="teal"
@@ -76,14 +76,14 @@ export const AssemblyPage = () => {
             onClick={() => getLocalActiveComp("Component2")}
             whiteSpace={"pre-wrap"}
           >
-            ВУ-68
+            VU-68
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "Component3" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("Component3")}
           >
-            Кириш ва чиқиш назорати далолатномаси
+            Kirish va chiqish nazorati dalolatnomasi
           </Button>
         </Flex>
 

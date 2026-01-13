@@ -153,7 +153,7 @@ export const VU_10 = () => {
 
       <Box my={3}>
         <FormControl w={"250px"}>
-          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <FormLabel>Vagon raqam bo&apos;yicha qidirish</FormLabel>
           <Input
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Vagon Raqami Yozing"
@@ -195,7 +195,7 @@ export const VU_10 = () => {
                 <Th>Vagon raqami</Th>
                 <Th>VU-10 bulgan vaqti</Th>
                 <Th> Yukli | yuksiz</Th>
-                <Th> Poyezd nomeri|yoki nosoz parkga o'tkazilgan yo'l</Th>
+                <Th> Poyezd raqami|yoki nosoz parkga o'tkazilgan yo'l</Th>
                 <Th> Oxirgi ta'mir</Th>
                 <Th> Telegramma</Th>
                 <Th> Nosoz holdagi hisobi sanasi va vaqti </Th>

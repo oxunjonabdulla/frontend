@@ -92,7 +92,7 @@ export const VU_31_Current = () => {
       </Tooltip>
       <Box my={3}>
         <FormControl w={"250px"}>
-          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <FormLabel>Vagon raqam bo&apos;yicha qidirish</FormLabel>
           <Input
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Vagon Raqami Yozing"

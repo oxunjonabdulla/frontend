@@ -98,7 +98,7 @@ export const WheelDalolatnoma = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Кириш ва чиқиш далолатномаси
+        Kirish va chiqish dalolatnomasi
       </Heading>
       <Button
         borderRadius={"50%"}

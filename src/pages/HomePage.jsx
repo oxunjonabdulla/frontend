@@ -345,20 +345,29 @@ export const HomePage = () => {
       setJournalModalOpen(false);
     };
 
-    const handleOpenUsers = async () => {
+    useEffect(() => {
+      const fetchUsers = async () => {
+        setLoading(true);
+
+      const { response } = await new UserApi().getUsers();
+
+        if (response && Array.isArray(response.data)) {
+          setUsers(response.data);
+        } else {
+          setUsers([]);
+        }
+
+            setLoading(false);
+          };
+
+          fetchUsers();
+        }, []);
+
+
+      const handleOpenUsers = () => {
           onOpen();
-          setLoading(true);
-
-          const { response } = await new UserApi().getUsers();
-
-          if (response && Array.isArray(response.data)) {
-            setUsers(response.data);
-          } else {
-            setUsers([]);
-          }
-
-          setLoading(false);
         };
+
 
 
 
@@ -1757,7 +1766,8 @@ onClick={() => setHoverChart(true)}
 
 
                     <Card
-                              bgGradient="linear(to-r, #38ef7d, #11998e)"
+                              bgGradient="linear(to-r, #43cea2, #185a9d)"
+
                               boxShadow="md"
                               borderRadius="lg"
                               cursor="pointer"

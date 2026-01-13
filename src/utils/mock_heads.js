@@ -94,7 +94,7 @@ export const routersSidebar = [
     },
     {
         isWork: false,
-        label: "G'ildirak juftlikalar bo'linmasi",
+        label: "G'ildirak juftliklari bo'linmasi",
         path: "/wheel-pairs",
         type: "link",
         icon: FiCircle,
@@ -129,7 +129,7 @@ export const routersSidebar = [
                 icon: FiFileText,
             },
             {
-                label: "Кириш ва чиқиш далолатномаси",
+                label: "Kirish va chiqish dalolatnomasi",
                 path: "/entry-exit-control",
                 icon: FiMonitor,
             },
@@ -905,7 +905,7 @@ export const vu_51 = {
             {label: "Greben qalinligi", rowspan: 3,},
             {label: "prokati", rowspan: 3,},
             {label: "Gildiraklar orasidagi masofa", rowspan: 3,},
-            {label: "G'ildirak juftligi (formirovaniya) (oy/yil)/ Zavod nomeri", rowspan: 3,},
+            {label: "G'ildirak juftligi (formirovaniya) (oy/yil)/ Zavod raqami", rowspan: 3,},
             {label: "To'liq tekshirish va buksani yig'ish", rowspan: 3,},
             {label: "Joriy tekshirish", rowspan: 3,},
             {label: "G'ildirak aylanish yuzasini yo'nilganligi", rowspan: 3,},
@@ -1786,7 +1786,7 @@ export const vu_47_show = [
 export const register_breakes_silindir = [
     {label: "T/R"},
     {label: "Sana"},
-    {label: "Vagon nomeri"},
+    {label: "Vagon raqami"},
     {label: "Ta’mir turi"},
     {label: "Zaxirasig‘imi P7-78"},
     {label: " Suv bosimi (10,05+0,5) kg/sm2"},
@@ -1803,7 +1803,7 @@ export const register_breakes_silindir = [
 export const register_razobshitel = [
     {label: "T/R"},
     {label: "Tamirlangan sanasi"},
-    {label: "Vagon nomeri"},
+    {label: "Vagon raqami"},
     {label: "Razabshitlni kran turi 4300"},
     {label: "Tekshiruv  bosimi 6 – 6,5 kg/sm2"},
     {label: "So’ngi jumrfk turi 4304, 4314, 271"},
@@ -1819,7 +1819,7 @@ export const register_razobshitel = [
 export const register_rukva = [
     {label: "T/R"},
     {label: "Sana"},
-    {label: "Vagon nomeri"},
+    {label: "Vagon raqami"},
     {label: "Ulanish rukva markasi"},
     {label: "Ulanish rukva markasi 2"},
     {label: "Havo bilan tekshirish 6.0 5 0,5 kg/sm2"},
@@ -1933,7 +1933,7 @@ export const defectoscope = {
 export const autoConnect = {
     nestedHeaders: [
         {label: "Tartib Raqami"},
-        {label: "Vagon nomeri"},
+        {label: "Vagon raqami"},
         {label: "Sana"},
         {label: "Ta'mir turi"},
         {label: "Avtobirikma"},
@@ -1950,7 +1950,7 @@ export const autoConnect = {
 export const carriageDefc = {
     nestedHeaders: [
         {label: "Tartib Raqami"},
-        {label: "Vagon nomeri"},
+        {label: "Vagon raqami"},
         {label: "Sana"},
         {label: "Qism nomi"},
         {label: "Qism raqami"},

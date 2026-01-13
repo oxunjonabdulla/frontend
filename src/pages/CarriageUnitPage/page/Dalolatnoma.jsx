@@ -113,7 +113,7 @@ export const CarriageDalolatnoma = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Кириш ва чиқиш далолатномаси
+          Kirish va chiqish dalolatnomasi
       </Heading>
       <Button
         borderRadius={"50%"}
@@ -129,7 +129,7 @@ export const CarriageDalolatnoma = () => {
       </Button>
       <Box my={3}>
         <FormControl w={"250px"}>
-          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <FormLabel>Vagon raqam bo&apos;yicha qidirish</FormLabel>
           <Input
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Vagon Raqami Yozing"

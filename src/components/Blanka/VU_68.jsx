@@ -101,8 +101,8 @@ export const VU_68 = () => {
       position={"relative"}
     >
       <Heading as={"h3"} size={"md"} mb={5} textAlign={"center"} mx={"auto"}>
-        VU-68 - Таъмирдан чиқаётган вагонларнинг тормоз синовини қайд этиш
-        журнали
+          VU-68 - Ta’mirdan chiqayotgan vagonlarning tormoz
+          sinovini qayd etish jurnali
       </Heading>
       <Tooltip
         label="VU-68 Jurnalini qo'shish"
@@ -125,7 +125,7 @@ export const VU_68 = () => {
       </Tooltip>
       <Box my={3}>
         <FormControl w={"250px"}>
-          <FormLabel>Vagon nomer bo&apos;yicha qidirish</FormLabel>
+          <FormLabel>Vagon raqam bo&apos;yicha qidirish</FormLabel>
           <Input
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Vagon Raqami Yozing"

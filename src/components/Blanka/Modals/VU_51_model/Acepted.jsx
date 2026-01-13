@@ -221,7 +221,7 @@ export const Acepted = ({ onClose, isOpen, accaptedData }) => {
                 </FormControl>
                 <FormControl isInvalid={errors?.wheel_pair_formation_date_factory_number}>
                   <FormLabel whiteSpace={["wrap", "nowrap"]}>
-                    G'ildirak juftligi (formirovaniya) (oy/yil)/ Zavod nomeri
+                    G'ildirak juftligi (formirovaniya) (oy/yil)/ Zavod raqami
                   </FormLabel>
                   <Input
                     borderColor={"gray.600"}

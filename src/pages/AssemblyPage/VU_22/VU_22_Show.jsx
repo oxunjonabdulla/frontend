@@ -125,7 +125,7 @@ export const VU_22_Show = ({ isOpen, onClose, data }) => {
                     </Table>
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={onClose} colorScheme="red">Close</Button>
+                    <Button onClick={onClose} colorScheme="red">Yopish</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>

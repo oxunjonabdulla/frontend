@@ -45,14 +45,14 @@ export const AutomobileUnit = () => {
             variant={activeComponent === "Component4" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component4")}
           >
-            ВУ-22
+            VU-22
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "Component2" ? "solid" : "outline"}
             onClick={() => setActiveComponent("Component2")}
           >
-            Кириш ва чиқиш назорати
+            Kirish va chiqish nazorati
           </Button>
         </Flex>
 

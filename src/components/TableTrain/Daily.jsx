@@ -16,16 +16,16 @@ import { useCallback, useState } from "react";
 import ReactSimpleImageViewer from "react-simple-image-viewer";
 import { repairTypesName, reverseDateFormat } from "../../utils";
 const columnsMock = [
-  { header: "Вагон раками", accessorKey: "train_id", rowSpan: 2 },
-  { header: "Курилган йили", accessorKey: "seen_year", rowSpan: 2 },
+  { header: "Vagon raqami", accessorKey: "train_id", rowSpan: 2 },
+  { header: "Ko'rilgan yili", accessorKey: "seen_year", rowSpan: 2 },
   {
-    header: "Кейинги таъмир санаси",
+    header: "Keyingi ta’mir sanasi",
     accessorKey: "next_set_number",
     rowSpan: 2,
   },
-  { header: "Таъмир тури", accessorKey: "fix_type", rowSpan: 2 },
+  { header: "Ta’mir turi", accessorKey: "fix_type", rowSpan: 2 },
 
-  { header: "Техник ечим муддати", accessorKey: "time_texnik", rowSpan: 2 },
+  { header: "Texnik yechim muddati", accessorKey: "time_texnik", rowSpan: 2 },
   {
     header: "Ta’mirga qo‘yilgan sanasi",
     accessorKey: "texnik_date",

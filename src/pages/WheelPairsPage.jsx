@@ -85,77 +85,77 @@ export const WheelPairsPage = () => {
             variant={activeComponent === "vu22" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu22")}
           >
-            ВУ-22
+            VU-22
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "fraza_wheel" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("fraza_wheel")}
           >
-            ФРАЗА
+            Fraza
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu50" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu50")}
           >
-            ВУ-50
+            VU-50
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu51" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu51")}
           >
-            ВУ-51
+            VU-51
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu53" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu53")}
           >
-            ВУ-53
+            VU-53
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu54" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu54")}
           >
-            ВУ-54
+            VU-54
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu90" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu90")}
           >
-            ВУ-90
+            VU-90
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu91" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu91")}
           >
-            ВУ-91
+            VU-91
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu92" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu92")}
           >
-            ВУ-92
+            VU-92
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "vu93" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("vu93")}
           >
-            ВУ-93
+            VU-93
           </Button>
           <Button
             colorScheme="teal"
             variant={activeComponent === "chech_passport" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("chech_passport")}
           >
-            Кириш ва чиқиш далолатномаси
+            Kirish va chiqish dalolatnomasi
           </Button>
         </Flex>
 
