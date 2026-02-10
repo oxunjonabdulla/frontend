@@ -2,6 +2,7 @@ import { Box, Button, Container, Flex, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import { DailyTable, Dalolatnoma, VU_22, VU_68 } from "../../components";
 import { VU_22 as Vu22Add } from "./YiguvVu22/VU_22";
+import DalolatnomaPage from "@/pages/AssemblyPage/DalolatnomaPage.jsx";
 
 export const AssemblyPage = () => {
   const [activeComponent, setActiveComponent] = useState(
@@ -28,6 +29,9 @@ export const AssemblyPage = () => {
         return <VU_68 />;
       case "Component3":
         return <Dalolatnoma />;
+
+      case "Dalolatnoma": // ✅ NEW
+        return <DalolatnomaPage />;
       default:
         return <DailyTable />;
     }
@@ -83,8 +87,17 @@ export const AssemblyPage = () => {
             variant={activeComponent === "Component3" ? "solid" : "outline"}
             onClick={() => getLocalActiveComp("Component3")}
           >
-            Kirish va chiqish nazorati dalolatnomasi
+            Yig‘uv kirish-chiqish
           </Button>
+
+          <Button
+  colorScheme="teal"
+  variant={activeComponent === "Dalolatnoma" ? "solid" : "outline"}
+  onClick={() => getLocalActiveComp("Dalolatnoma")}
+>
+  Kirish va chiqish nazorati dalolatnomasi
+</Button>
+
         </Flex>
 
         <Box

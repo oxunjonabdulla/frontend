@@ -23,25 +23,28 @@ export const Oldi = () => {
 
   const [getTestResult, setTestResult] = useState([]);
   const toast = useToast();
-
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm();
 
   useEffect(() => {
-    const handleCarriageData = async () => {
-      setDataLoading(true);
-      const { response } = await new UserApi().getCarriageOne(serachingResult);
-      setDataLoading(false);
-      setTrainFixType(response?.data);
-    };
+      if (!serachingResult) return;
 
-    if (serachingResult === getTestResult[0]?.carriage_number) {
+      const handleCarriageData = async () => {
+        try {
+          setDataLoading(true);
+          const { response } = await new UserApi().getCarriageOne(serachingResult);
+          setTrainFixType(response?.data);
+        } finally {
+          setDataLoading(false);
+        }
+      };
+
       handleCarriageData();
-    }
-  }, [getTestResult, serachingResult]);
+    }, [serachingResult]);
 
   const onSubmit = async (data) => {
     const allObj = {
@@ -68,8 +71,9 @@ export const Oldi = () => {
         position: "top-right",
         fontSize: "3xl",
       });
-
-      // window.location.reload();
+        setTimeout(() => {
+    window.location.reload();
+  }, 800); // small delay so toast shows
     }
     if (error) {
       toast({

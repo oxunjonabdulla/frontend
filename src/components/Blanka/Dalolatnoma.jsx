@@ -41,6 +41,7 @@ import { Dalolatnoma_show } from "../../pages/AssemblyPage/Dalolatnoma_show";
 import { IsImzo } from "../IsImzo";
 
 export const Dalolatnoma = () => {
+
   const { isOpen, onClose, onOpen } = useDisclosure();
   const {
     isOpen: isOPenBack,
@@ -85,8 +86,8 @@ export const Dalolatnoma = () => {
     setShowAllData(data);
   };
   const handleBack = (data) => {
-    onOpenBack();
-    setBackId(data);
+      onOpenBack();
+      setBackId(data);
   };
   const handleShowBack = (data) => {
     onOpenShowBack();
@@ -185,9 +186,9 @@ export const Dalolatnoma = () => {
               </Thead>
               <Tbody>
                 {gettingData?.results?.map((item, idx) => (
-                  <Tr key={item.carriage}>
+                  <Tr key={item?.carriage}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-                    <Td fontWeight={700}>{item.carriage}</Td>
+                    <Td fontWeight={700}>{item?.carriage}</Td>
                     <Td>{item?.front_detail?.created_act_date}</Td>
                     <Td>{item?.front_detail?.train_number_act}</Td>
                     <Td>{item?.front_detail?.station_act}</Td>
@@ -197,7 +198,7 @@ export const Dalolatnoma = () => {
                         item?.front_detail?.telegramma_repair_act
                       )}
                     </Td>
-                    <Td>{item?.front_detail?.carriage_number_act}</Td>
+                    <Td>{item?.carriage}</Td>
                     <Td>{item?.front_detail?.made_date}</Td>
                     <Td>
                       Kod: {item?.front_detail?.kod_act} <Divider my={2} />
@@ -289,10 +290,11 @@ export const Dalolatnoma = () => {
               textAlign={"center"}
               fontSize={"2xl"}
             >
-              Кириш ва чиқиш назорати далолатномаси топилмади
+
+              Kirish va chiqish nazorati dalolatnomasi topilmadi
             </Text>
             <Button colorScheme="teal" onClick={onOpen}>
-              Қўшиш
+              Qo‘shish
             </Button>
           </Flex>
         )

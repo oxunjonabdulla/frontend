@@ -12,6 +12,7 @@ import {
   StatisticUser,
   WheelUser,
 } from "../layouts/PrivateUsers";
+
 import { PtoLayout } from "../layouts/PtoLayout";
 import RouteLayout from "../layouts/RouteLayout";
 import {
@@ -67,6 +68,7 @@ import {
 } from "../pages";
 import { ProtectedRoute } from "../utils/PrivateComponent";
 import { RouteNames } from "./consts";
+import DalolatnomaPage from "@/pages/AssemblyPage/DalolatnomaPage.jsx";
 export const routes = [
   {
     element: <RouteLayout />,
@@ -338,6 +340,11 @@ export const routes = [
             element: <VU_22_Arava />,
             path: RouteNames.VU_22_Arava,
           },
+          {
+          element: <DalolatnomaPage />,
+          path: RouteNames.ACTS,
+          },
+
         ],
       },
       {

@@ -205,10 +205,10 @@ export const WheelDalolatnoma = () => {
               textAlign={"center"}
               fontSize={"2xl"}
             >
-              Кириш ва чиқиш назорати далолатномаси топилмади
+            Kirish va chiqish nazorati dalolatnomasi topilmadi
             </Text>
             <Button colorScheme="teal" onClick={onOpen}>
-              Қўшиш
+              Qo‘shish
             </Button>
           </Flex>
         )

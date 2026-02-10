@@ -36,6 +36,7 @@ const authEndpoints = {
 
   // phrase
   collectActGetAll: `/collectact/list/`,
+  actList: `/act/list/`,
   collectActPostFront: (carriageID) => `/${carriageID}/collect/act/front/`,
   collectActPostBack: (carriageID) => `/${carriageID}/collect/act/back/`,
   // wheel

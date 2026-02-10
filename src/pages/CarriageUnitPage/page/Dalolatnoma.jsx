@@ -51,7 +51,7 @@ export const CarriageDalolatnoma = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const [gettingData, setGettingData] = useState([]);
-  const [backId, setBackId] = useState(0);
+  const [backId, setBackId] = useState(null);
   const [deleteID, setDeleteID] = useState(null);
   const [deleteModel, setDeleteModal] = useState(false);
   const [showBack, setShowBackData] = useState(0);
@@ -168,7 +168,7 @@ export const CarriageDalolatnoma = () => {
                 {gettingData?.results?.map((item, idx) => (
                   <Tr key={item.carriage}>
                     <Td>{currentPage * 10 + idx + 1}</Td>
-                    <Td fontWeight={700}>{item.carriage}</Td>
+                    <Td fontWeight={700}>{item?.carriage}</Td>
                     <Td>{repairTypesName(item?.front_detail.repair_type)}</Td>
                     <Td>{item?.front_detail.yon_raqam_1}</Td>
                     <Td>{item?.front_detail.yon_raqam_2}</Td>
@@ -211,7 +211,7 @@ export const CarriageDalolatnoma = () => {
                           <Text>Qo'shish</Text>
 
                             <IconButton
-                             onClick={() => handleBack(item?.carriage)}
+                              onClick={() => handleBack(item?.carriage)}
                               bg="blue.500"
                               color="white"
                               icon={<FontAwesomeIcon icon={faPlus} />}
@@ -256,10 +256,10 @@ export const CarriageDalolatnoma = () => {
               textAlign={"center"}
               fontSize={"2xl"}
             >
-              Кириш ва чиқиш назорати далолатномаси топилмади
+             Kirish va chiqish nazorati dalolatnomasi topilmadi
             </Text>
             <Button colorScheme="teal" onClick={onOpen}>
-              Қўшиш
+              Qo‘shish
             </Button>
           </Flex>
         )

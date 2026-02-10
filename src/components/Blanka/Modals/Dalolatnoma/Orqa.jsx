@@ -31,7 +31,7 @@ export const Orqa = ({ onClose, isOpen, carriageID }) => {
   const onSubmit = async (data) => {
     setLoading(true);
 
-    const { response, error } = await new UserApi().postCollectActBack(
+  const { response, error } = await new UserApi().postCollectActBack(
       carriageID,
       data
     );
@@ -74,7 +74,7 @@ export const Orqa = ({ onClose, isOpen, carriageID }) => {
         <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
         <ModalContent>
           <ModalHeader textAlign={"center"}>
-            Kirish va chiqish dalolatnomasi Aravalar bo‘linmasi Orqa tomonini
+            Kirish va chiqish dalolatnomasi Yiguv bo‘linmasi Orqa tomonini
             qo&apos;shish!{" "}
           </ModalHeader>
 
@@ -97,19 +97,18 @@ export const Orqa = ({ onClose, isOpen, carriageID }) => {
                   <FormLabel>Dalolatnoma tuzilgan sana</FormLabel>
                   <Input
                     borderColor={"gray.600"}
-                    {...register("created_act_date	", { required: true })}
+                    {...register("created_act_date", { required: true })}
                     type="text"
                   />
                 </FormControl>
                 <FormControl isInvalid={errors?.station_act}>
                   <FormLabel>Ta’mirdan o’tgan </FormLabel>
                   <Input
-                    borderColor={"gray.600"}
-                    type="text"
-                    isReadOnly
-                    value={"Qarshi Vagon Depo"}
-                    {...register("station_act", { required: true })}
-                  />
+                      borderColor="gray.600"
+                      isReadOnly
+                      defaultValue="Qarshi Vagon Depo"
+                      {...register("station_act", { required: true })}
+                    />
                 </FormControl>
               </Flex>
               <Flex

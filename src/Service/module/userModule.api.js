@@ -46,6 +46,19 @@ class UserApi extends React.Component {
   }
 
   // Vu22
+   async getActs(params) {
+  try {
+    const response = await privateInstance.get(
+      authEndpoints.actList,
+      { params }
+    );
+
+    return { response };
+  } catch (error) {
+    return { error };
+  }
+}
+
 
   async postVu22(id, obj) {
     for (const key in obj) if (!obj[key]) obj[key] = null;

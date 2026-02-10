@@ -37,6 +37,7 @@ export const RouteNames = {
   WHEEL_PAIRS: "/wheel-pairs",
   CARRIAGE: "/defectoscopes/carriage",
   WHEEL: "/defectoscopes/wheel",
+  ACTS: "acts",
 
   NOT_FOUND: "*",
 };
