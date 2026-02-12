@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Divider,
   Flex,
   FormControl,
   FormLabel,
@@ -18,19 +17,35 @@ import {
   Tr,
   useDisclosure,
   Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook, faPlus, faTrashAlt, faEye } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBook,
+  faTrashAlt,
+  faEye,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
 import UserApi from "@/Service/module/userModule.api";
 import { useDebounce } from "../../../hooks/useDebounce";
 
 import { Pagination, IsImzo, Deleteted } from "../../../components";
 import { Dalolatnoma_Show } from "./Dalolatnoma_show";
+
+import { Oldi } from "./modal/AutoDalolatnoma/Oldi";
 import { Orqa } from "./modal/AutoDalolatnoma/Orqa";
-import { ShowBack } from "./modal/AutoDalolatnoma/ShowBack";
+
+
+// ================= STATUS =================
+
 const STATUS_MAP = {
   draft: { text: "Boshlanmagan", color: "gray" },
   collect_done: { text: "Yig‘uv tugadi", color: "blue" },
@@ -39,11 +54,7 @@ const STATUS_MAP = {
   archived: { text: "Arxiv", color: "purple" },
 };
 
-export const CarriageDalolatnoma = () => {
-  // ===== MODALS =====
-  const actPreview = useDisclosure();
-  const aravaCreate = useDisclosure();
-  const aravaShow = useDisclosure();
+
 const StatusBadge = ({ status }) => {
   const conf = STATUS_MAP[status] || STATUS_MAP.draft;
 
@@ -64,20 +75,40 @@ const StatusBadge = ({ status }) => {
       color="white"
       fontSize="0.7rem"
       fontWeight="600"
-      boxShadow="sm"
-      textTransform="uppercase"
     >
       {conf.text}
     </Badge>
   );
 };
+
+
+// ================= HELPERS =================
+
+const hasFront = (act) =>
+  !!act?.arava_act?.[0]?.front_detail;
+
+const hasBack = (act) =>
+  !!act?.arava_act?.[0]?.back_detail;
+
+
+// ================= MAIN =================
+
+export const CarriageDalolatnoma = () => {
+
+  // ===== MODALS =====
+
+  const actModal = useDisclosure();
+  const oldiModal = useDisclosure();
+  const orqaModal = useDisclosure();
+
+
   // ===== STATE =====
+
   const [loading, setLoading] = useState(true);
   const [acts, setActs] = useState({ count: 0, results: [] });
-  const [currentPage, setCurrentPage] = useState(0);
 
+  const [currentPage, setCurrentPage] = useState(0);
   const [selectedAct, setSelectedAct] = useState(null);
-  const [selectedArava, setSelectedArava] = useState(null);
 
   const [deleteID, setDeleteID] = useState(null);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -86,188 +117,288 @@ const StatusBadge = ({ status }) => {
   const debouncedSearch = useDebounce(search, 500);
 
 
-  // ===== LOAD ACTS =====
-  useEffect(() => {
-    const loadActs = async () => {
-      setLoading(true);
+  // ===== LOAD =====
 
-      const params = {
-        page: currentPage + 1,
-        department: "arava",
-        ...(debouncedSearch && { search: debouncedSearch }),
-      };
+  const loadActs = async () => {
 
-      const { response } = await new UserApi().getActs(params);
-      if (response) setActs(response.data);
+    setLoading(true);
 
-      setLoading(false);
+    const params = {
+      page: currentPage + 1,
+      department: "arava",
+      ...(debouncedSearch && { search: debouncedSearch }),
     };
 
+    const { response } = await new UserApi().getActs(params);
+    if (response) setActs(response.data);
+
+
+    setLoading(false);
+  };
+
+
+  useEffect(() => {
     loadActs();
   }, [currentPage, debouncedSearch]);
 
-  // ===== HANDLERS =====
+
+  // ===== OPENERS =====
+
   const openAct = (act) => {
     setSelectedAct(act);
-    actPreview.onOpen();
+    actModal.onOpen();
   };
 
-  const addArava = (act) => {
+  const openOldi = (act) => {
     setSelectedAct(act);
-    aravaCreate.onOpen();
+    oldiModal.onOpen();
   };
 
-  const showArava = (arava) => {
-    setSelectedArava(arava);
-    aravaShow.onOpen();
+  const openOrqa = (act) => {
+    setSelectedAct(act);
+    orqaModal.onOpen();
   };
 
-  // ===== UI =====
+
+  // ===== STATUS TEXT =====
+
+  const aravaStatus = useMemo(() => {
+    return (act) => {
+
+      const f = hasFront(act);
+      const b = hasBack(act);
+
+      if (f && b) return { label: "To‘liq", scheme: "green" };
+      if (f || b) return { label: "Qisman", scheme: "orange" };
+
+      return { label: "Yo‘q", scheme: "red" };
+    };
+  }, []);
+
+
   return (
     <Box bg="white" p={6} rounded="lg" boxShadow="sm">
 
       <Heading textAlign="center" mb={6}>
-        Aravalar bo‘limi (Kirish-chiqish dalolatnomasi)
+        Kirish va chiqish dalolatnomasi
       </Heading>
 
+
       {/* SEARCH */}
+
       <FormControl maxW="300px" mb={4}>
-        <FormLabel>Vagon raqam bo‘yicha qidirish</FormLabel>
+        <FormLabel>Vagon bo‘yicha qidirish</FormLabel>
+
         <Input
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
             setCurrentPage(0);
           }}
-          placeholder="Vagon raqamini yozing"
+          placeholder="Vagon raqami"
         />
       </FormControl>
 
+
       {/* TABLE */}
+
       {loading ? (
-        <Flex justify="center" my={10}>Yuklanmoqda...</Flex>
+
+        <Flex justify="center" my={10}>
+          Yuklanmoqda...
+        </Flex>
+
       ) : acts.results.length ? (
 
         <TableContainer border="1px solid #eee" rounded="lg">
+
           <Table size="sm" variant="striped">
 
             <Thead bg="#0c6170">
+
               <Tr>
                 <Th color="white">T/r</Th>
-                <Th color="white">Vagon</Th>
-                <Th color="white">Dalolatnoma holati</Th>
-                <Th color="white">Arava holati</Th>
-                <Th color="white">Imzolar</Th>
+                <Th color="white">Vagon Raqami</Th>
+                <Th color="white">Holati</Th>
+                <Th color="white">Aravalar</Th>
+                <Th color="white">Imzo</Th>
                 <Th color="white">Amallar</Th>
               </Tr>
+
             </Thead>
 
+
             <Tbody>
-              {acts.results.map((act, idx) => (
-                <Tr key={act.id}>
 
-                  <Td>{currentPage * 10 + idx + 1}</Td>
-                  <Td fontWeight="600">{act.carriage_number}</Td>
+              {acts.results.map((act, idx) => {
+                  console.log("FULL ACT:", act);
+                const st = aravaStatus(act);
+
+                return (
+
+                  <Tr key={act.id}>
+
+                    <Td>{currentPage * 10 + idx + 1}</Td>
+
+                    <Td fontWeight="600">
+                      {act.carriage_number}
+                    </Td>
 
 
+                    <Td textAlign="center">
+                      <StatusBadge status={act.status} />
+                    </Td>
 
-                   <Td textAlign="center">
-                        <StatusBadge status={act.status} />
-                     </Td>
+
+                    <Td>
+                      <Badge colorScheme={st.scheme}>
+                        {st.label}
+                      </Badge>
+                    </Td>
 
 
-                  <Td>
-                    {act.arava_act ? (
-                      <Badge colorScheme="red">To‘ldirilgamagan</Badge>
-                    ) : (
-                      <Badge colorScheme="red">Yo‘q</Badge>
-                    )}
-                  </Td>
-
-                  <Td>
-                    <IsImzo isImzo={act.arava_act?.repair_master_signature} />
-                  </Td>
-
-                  <Td>
-                    <Flex gap={2} justify="center">
-
-                      {/* VIEW ACT */}
-                      <IconButton
-                        size="sm"
-                        colorScheme="teal"
-                            icon={<FontAwesomeIcon icon={faPlus} />}
-                        onClick={() => openAct(act)}
+                    <Td>
+                      <IsImzo
+                        isImzo={act.arava_act?.repair_master_signature}
                       />
+                    </Td>
 
-                      {/* ADD / VIEW ARAVA */}
-                      {!act.arava_act ? (
+
+                    <Td>
+
+                      <Flex gap={2} justify="center" flexWrap="wrap">
+
+
+
+             {/* FRONT (OLDI) */}
+{!hasFront(act) ? (
+  <Button
+    size="sm"
+    leftIcon={<FontAwesomeIcon icon={faPenToSquare} />}
+    colorScheme="orange"
+    onClick={() => openOldi(act)}
+  >
+    Old
+  </Button>
+) : (
+  <Button
+    size="sm"
+    leftIcon={<FontAwesomeIcon icon={faEye} />}
+    colorScheme="blue"
+    onClick={() => openAct(act)} // show ACT with front info
+  >
+    Ko‘rish
+  </Button>
+)}
+
+
+{/* BACK (ORQA) */}
+{!hasBack(act) ? (
+  <Button
+    size="sm"
+    leftIcon={<FontAwesomeIcon icon={faPenToSquare} />}
+    colorScheme="orange"
+    onClick={() => openOrqa(act)}
+  >
+    Orqa
+  </Button>
+) : (
+  <Button
+    size="sm"
+    leftIcon={<FontAwesomeIcon icon={faEye} />}
+    colorScheme="blue"
+    onClick={() => openAct(act)} // show ACT with back info
+  >
+    Ko‘rish
+  </Button>
+)}
+
+
+
+
+                        {/* DELETE */}
                         <IconButton
                           size="sm"
-                          colorScheme="blue"
-                          icon={<FontAwesomeIcon icon={faPlus} />}
-                          onClick={() => addArava(act)}
+                          colorScheme="red"
+                          icon={<FontAwesomeIcon icon={faTrashAlt} />}
+                          onClick={() => {
+                            setDeleteID(act.id);
+                            setDeleteOpen(true);
+                          }}
                         />
-                      ) : (
-                        <IconButton
-                          size="sm"
-                          colorScheme="blue"
-                          icon={<FontAwesomeIcon icon={faEye} />}
-                          onClick={() => showArava(act.arava_act)}
-                        />
-                      )}
 
-                      {/* DELETE */}
-                      <IconButton
-                        size="sm"
-                        colorScheme="red"
-                        icon={<FontAwesomeIcon icon={faTrashAlt} />}
-                        onClick={() => {
-                          setDeleteID(act.id);
-                          setDeleteOpen(true);
-                        }}
-                      />
-                    </Flex>
-                  </Td>
+                      </Flex>
 
-                </Tr>
-              ))}
+                    </Td>
+
+                  </Tr>
+                );
+              })}
+
             </Tbody>
 
           </Table>
+
         </TableContainer>
 
       ) : (
+
         <Flex direction="column" align="center" my={12}>
+
           <FontAwesomeIcon icon={faBook} size="3x" opacity={0.4} />
-          <Text fontSize="xl" mt={3}>ACT topilmadi</Text>
+
+          <Text fontSize="xl" mt={3}>
+            ACT topilmadi
+          </Text>
+
         </Flex>
+
       )}
 
+
       {/* PAGINATION */}
+
       <Pagination
         pageCount={acts.count}
         onPageChange={(d) => setCurrentPage(d.selected)}
       />
 
-      {/* MODALS */}
+
+      {/* ================= MODALS ================= */}
+
+      {/* ACT VIEW */}
       <Dalolatnoma_Show
-        isOpen={actPreview.isOpen}
-        onClose={actPreview.onClose}
+        isOpen={actModal.isOpen}
+        onClose={actModal.onClose}
         data={selectedAct}
       />
 
+
+      {/* FRONT = OLDI */}
+      <Modal isOpen={oldiModal.isOpen} onClose={oldiModal.onClose} size="6xl">
+
+        <ModalOverlay />
+        <ModalContent>
+
+          <ModalHeader>Old qismi</ModalHeader>
+          <ModalCloseButton />
+
+          <Oldi onClose={oldiModal.onClose} />
+
+        </ModalContent>
+
+      </Modal>
+
+
+      {/* BACK = ORQA */}
       <Orqa
-        isOpen={aravaCreate.isOpen}
-        onClose={aravaCreate.onClose}
-        act={selectedAct}
+        isOpen={orqaModal.isOpen}
+        onClose={orqaModal.onClose}
+        carriageID={selectedAct?.carriage_number}
       />
 
-      <ShowBack
-        isOpen={aravaShow.isOpen}
-        onClose={aravaShow.onClose}
-        dataBack={selectedArava}
-      />
 
+      {/* DELETE */}
       <Deleteted
         isOpen={deleteOpen}
         onClose={setDeleteOpen}
