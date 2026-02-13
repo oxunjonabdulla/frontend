@@ -13,229 +13,383 @@ import {
   Thead,
   Tr,
   useDisclosure,
+  Badge,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
 } from "@chakra-ui/react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
   faEye,
-  faPlus,
   faTrashAlt,
+  faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import { SliderMock } from "../../utils";
-import { wheel_dalolatnoma_head } from "../../utils/mock_heads";
-import UserApi from "../../Service/module/userModule.api";
-import { Orqa } from "./Modals/WheelDalolatnoma/Orqa";
-import { ShowBack } from "./Modals/WheelDalolatnoma/ShowBack";
-import { Deleteted } from "../Deletete";
+
+import { useEffect, useMemo, useState } from "react";
+
+import UserApi from "@/Service/module/userModule.api";
+
 import { Pagination } from "../pagination/Pagination";
+import { Deleteted } from "../Deletete";
+
+// MODALS
+import { ShowFront } from "./Modals/WheelDalolatnoma/ShowFront";
+import { ShowBack } from "./Modals/WheelDalolatnoma/ShowBack";
 import { WheelDalolatnomaModal } from "./Modals/WheelDalolatnoma/WheelDalolatnomaModal";
+import {Orqa} from "@/components/Blanka/Modals/WheelDalolatnoma/Orqa.jsx";
+import {Oldi} from "@/components/Blanka/Modals/WheelDalolatnoma/Oldi.jsx";
+
+
+// ================= HELPERS =================
+
+const hasFront = (item) => !!item?.front_detail;
+const hasBack = (item) => !!item?.back_detail;
+
+const wheelStatus = (item) => {
+  const f = hasFront(item);
+  const b = hasBack(item);
+
+  if (f && b) return { label: "To‘liq", scheme: "green" };
+  if (f || b) return { label: "Qisman", scheme: "orange" };
+
+  return { label: "Yo‘q", scheme: "red" };
+};
+
+
+// ================= MAIN =================
 
 export const WheelDalolatnoma = () => {
-  const [isLoadingData, setIsLoading] = useState(true);
 
+  // ===== MODALS =====
+
+  const createModal = useDisclosure();
+
+  const oldiModal = useDisclosure();
+  const orqaModal = useDisclosure();
+
+  const showFrontModal = useDisclosure();
+  const showBackModal = useDisclosure();
+
+
+  // ===== STATE =====
+
+  const [loading, setLoading] = useState(true);
+
+  const [data, setData] = useState({ count: 0, results: [] });
   const [currentPage, setCurrentPage] = useState(0);
-  const [gettingData, setGettingData] = useState([]);
-  const [backId, setBackId] = useState(0);
+
+  const [selectedCarriage, setSelectedCarriage] = useState(null);
+
+  const [selectedFront, setSelectedFront] = useState(null);
+  const [selectedBack, setSelectedBack] = useState(null);
+
   const [deleteID, setDeleteID] = useState(null);
-  const [deleteModel, setDeleteModal] = useState(false);
-  const [showBack, setShowBackData] = useState(0);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
-  const {
-    isOpen: isOpenShowBack,
-    onClose: onCloseShowBack,
-    onOpen: onOpenShowBack,
-  } = useDisclosure();
 
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  // ===== LOAD DATA =====
 
-  const {
-    isOpen: isOPenBack,
-    onClose: onCloseBack,
-    onOpen: onOpenBack,
-  } = useDisclosure();
+  const loadData = async () => {
+    setLoading(true);
 
-  const handlePageClick = (data) => {
-    const selectedPage = data.selected;
-    setCurrentPage(selectedPage);
-  };
-  const handleShowBack = (data) => {
-    onOpenShowBack();
-    setShowBackData(data);
-  };
-  const handleBack = (data) => {
-    onOpenBack();
-    setBackId(data);
-  };
+    const params = {
+      page: currentPage + 1,
+    };
 
-  const handleDelate = async (carriageID) => {
-    const { response } = await new UserApi().deleteWheelAct(carriageID);
+    const { response } = await new UserApi().getWheelAll(params);
+
     if (response) {
-      window.location.reload();
+      setData(response.data);
+    }
+
+    setLoading(false);
+  };
+
+
+  useEffect(() => {
+    loadData();
+  }, [currentPage]);
+
+
+  // ===== OPENERS =====
+
+  const openOldi = (item) => {
+    setSelectedCarriage(item?.carriage);
+    oldiModal.onOpen();
+  };
+
+  const openOrqa = (item) => {
+    setSelectedCarriage(item?.carriage);
+    orqaModal.onOpen();
+  };
+
+  const openShowFront = (item) => {
+    setSelectedFront(item?.front_detail);
+    showFrontModal.onOpen();
+  };
+
+  const openShowBack = (item) => {
+    setSelectedBack(item?.back_detail);
+    showBackModal.onOpen();
+  };
+
+
+  // ===== DELETE =====
+
+  const handleDelete = async (id) => {
+    const { response } = await new UserApi().deleteWheelAct(id);
+
+    if (response) {
+      loadData();
+      setDeleteOpen(false);
     }
   };
-  useEffect(() => {
-    const fetchData = async () => {
-      const paramsPage = {
-        page: currentPage + 1,
-      };
-      setIsLoading(true);
-      const { response } = await new UserApi().getWheelAll(paramsPage);
-      if (response) {
-        setIsLoading(false);
-        setGettingData(response?.data);
-      }
-    };
-    fetchData();
-  }, [currentPage]);
+
+
+  // ================= UI =================
+
   return (
-    <Box
-      as="div"
-      bg={"#ffff"}
-      my={8}
-      mx="auto"
-      rounded={"lg"}
-      position={"relative"}
-    >
-      <Heading as={"h3"} size={"lg"} mb={5} textAlign={"center"}>
-        Kirish va chiqish dalolatnomasi
+    <Box bg="white" p={6} rounded="lg" boxShadow="sm" my={8}>
+
+      <Heading textAlign="center" mb={6}>
+        G‘ildirak Dalolatnomasi
       </Heading>
+
+
+      {/* ADD BUTTON */}
+
       <Button
-        borderRadius={"50%"}
         colorScheme="teal"
-        width={"50px"}
-        height={"50px"}
-        position={"absolute"}
-        right={3}
-        top={-12}
-        onClick={onOpen}
+        rounded="full"
+        w="50px"
+        h="50px"
+        position="absolute"
+        right={6}
+        top={-10}
+        onClick={createModal.onOpen}
       >
         +
       </Button>
-      {!isLoadingData ? (
-        gettingData?.results?.length ? (
-          <TableContainer p={4} border={"1px solid #eeeee"}>
-            <Table
-              borderRadius={10}
-              size={"sm"}
-              whiteSpace={"pre-wrap"}
-              variant={"striped"}
-              overflow={"hidden"}
-              colorScheme="blackAlpha"
-            >
-              <Thead bg={"#0c6170"} rounded={10}>
-                <Tr>
-                  {wheel_dalolatnoma_head?.map((item) => (
-                    <Th
-                      textAlign={"center"}
-                      key={item.label}
-                      colSpan={item.colspan}
-                    >
-                      {item.label}
-                    </Th>
-                  ))}
-                  <Th>Imzo</Th>
-                  <Th>Ta’mirdan keyingi ma’lumotlar</Th>
-                  <Th>Amallar</Th>
-                </Tr>
-              </Thead>
 
-              <Tbody>
-                {gettingData?.results?.map((item, idx) => (
-                  <Tr key={item.carriage}>
+
+      {/* TABLE */}
+
+      {loading ? (
+
+        <Flex justify="center" my={10}>
+          Yuklanmoqda...
+        </Flex>
+
+      ) : data?.results?.length ? (
+
+        <TableContainer border="1px solid #eee" rounded="lg">
+
+          <Table size="sm" variant="striped">
+
+            <Thead bg="#0c6170">
+
+              <Tr>
+                <Th color="white">T/r</Th>
+                <Th color="white">Vagon</Th>
+                <Th color="white">Holati</Th>
+                <Th color="white">Amallar</Th>
+              </Tr>
+
+            </Thead>
+
+
+            <Tbody>
+
+              {data.results.map((item, idx) => {
+
+                const st = wheelStatus(item);
+
+                return (
+
+                  <Tr key={item.id || item.carriage}>
+
                     <Td>{currentPage * 10 + idx + 1}</Td>
-                    <Td fontWeight={700}>{item.carriage}</Td>
-                    <Td>{item?.front_detail.koleso_raqam_1}</Td>
-                    <Td>{item?.front_detail.koleso_raqam_2}</Td>
-                    <Td>{item?.front_detail.koleso_raqam_3}</Td>
-                    <Td>{item?.front_detail.koleso_raqam_4}</Td>
-                    <Td>{item?.front_detail.koleso_zavod_1}</Td>
-                    <Td>{item?.front_detail.koleso_zavod_2}</Td>
-                    <Td>{item?.front_detail.koleso_zavod_3}</Td>
-                    <Td>{item?.front_detail.koleso_zavod_4}</Td>
-                    <Td>{item?.front_detail.mavjud_kod_1}</Td>
-                    <Td>{item?.front_detail.mavjud_kod_2}</Td>
-                    <Td>{item?.front_detail.mavjud_kod_3}</Td>
-                    <Td>{item?.front_detail.mavjud_kod_4}</Td>
-                    <Td color={"teal"}>Imzo tasdiqlangan</Td>
-                    <Td color={"teal"}>
-                      {!item?.back_detail ? (
-                        <Flex justify={"center"} align={"center"} gap={2} m={0}>
-                          <Text>Qo'shish</Text>
-                          <IconButton
-                            onClick={() => handleBack(item?.carriage)}
-                            colorScheme="blue"
-                            icon={<FontAwesomeIcon icon={faPlus} />}
-                          />
-                        </Flex>
-                      ) : (
-                        <Flex justify={"center"} gap={2} m={0}>
-                          <IconButton
-                            bg="blue.500"
-                            color="white"
-                            onClick={() => handleShowBack(item?.back_detail)}
-                            icon={<FontAwesomeIcon icon={faEye} />}
-                          />
-                        </Flex>
-                      )}
+
+                    <Td fontWeight="600">
+                      {item.carriage}
                     </Td>
+
+
+                    {/* STATUS */}
                     <Td>
-                      <Flex gap={2} m={0}>
+                      <Badge colorScheme={st.scheme}>
+                        {st.label}
+                      </Badge>
+                    </Td>
+
+
+                    {/* ACTIONS */}
+                    <Td>
+
+                      <Flex gap={2} justify="center" flexWrap="wrap">
+
+
+                        {/* FRONT */}
+                        {!hasFront(item) ? (
+                          <Button
+                            size="sm"
+                            leftIcon={<FontAwesomeIcon icon={faPenToSquare} />}
+                            colorScheme="orange"
+                            onClick={() => openOldi(item)}
+                          >
+                            Old
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            leftIcon={<FontAwesomeIcon icon={faEye} />}
+                            colorScheme="blue"
+                            onClick={() => openShowFront(item)}
+                          >
+                            Old Ko‘rish
+                          </Button>
+                        )}
+
+
+                        {/* BACK */}
+                        {!hasBack(item) ? (
+                          <Button
+                            size="sm"
+                            leftIcon={<FontAwesomeIcon icon={faPenToSquare} />}
+                            colorScheme="orange"
+                            onClick={() => openOrqa(item)}
+                          >
+                            Orqa
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            leftIcon={<FontAwesomeIcon icon={faEye} />}
+                            colorScheme="green"
+                            onClick={() => openShowBack(item)}
+                          >
+                            Orqa Ko‘rish
+                          </Button>
+                        )}
+
+
+                        {/* DELETE */}
                         <IconButton
+                          size="sm"
                           colorScheme="red"
+                          icon={<FontAwesomeIcon icon={faTrashAlt} />}
                           onClick={() => {
                             setDeleteID(item?.carriage);
-                            setDeleteModal(true);
+                            setDeleteOpen(true);
                           }}
-                          icon={<FontAwesomeIcon icon={faTrashAlt} />}
                         />
+
                       </Flex>
+
                     </Td>
+
                   </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        ) : (
-          <Flex align={"center"} flexDir={"column"} my={12} gap={4}>
-            <FontAwesomeIcon icon={faBook} fontSize={"70px"} opacity={"0.4"} />
-            <Text
-              as={"h1"}
-              fontWeight={600}
-              textAlign={"center"}
-              fontSize={"2xl"}
-            >
-            Kirish va chiqish nazorati dalolatnomasi topilmadi
-            </Text>
-            <Button colorScheme="teal" onClick={onOpen}>
-              Qo‘shish
-            </Button>
-          </Flex>
-        )
+                );
+              })}
+
+            </Tbody>
+
+          </Table>
+
+        </TableContainer>
+
       ) : (
-        <SliderMock setIsLoading={setIsLoading} />
+
+        <Flex direction="column" align="center" my={12} gap={4}>
+
+          <FontAwesomeIcon icon={faBook} size="3x" opacity={0.4} />
+
+          <Text fontSize="xl">
+            Dalolatnoma topilmadi
+          </Text>
+
+          <Button colorScheme="teal" onClick={createModal.onOpen}>
+            Qo‘shish
+          </Button>
+
+        </Flex>
+
       )}
 
-      {gettingData?.results?.length ? (
-        <Pagination
-          onPageChange={handlePageClick}
-          pageCount={gettingData?.count}
-        />
-      ) : null}
-      <ShowBack
-        isOpen={isOpenShowBack}
-        onClose={onCloseShowBack}
-        dataBack={showBack}
-      />
-      <Orqa isOpen={isOPenBack} onClose={onCloseBack} carriageID={backId} />
-      <WheelDalolatnomaModal isOpen={isOpen} onClose={onClose} />
 
-      <Deleteted
-        isOpen={deleteModel}
-        onClose={setDeleteModal}
-        carriageNumber={deleteID}
-        deletedFunction={handleDelate}
+      {/* PAGINATION */}
+
+      <Pagination
+        pageCount={data?.count}
+        onPageChange={(d) => setCurrentPage(d.selected)}
       />
+
+
+      {/* ================= MODALS ================= */}
+
+
+      {/* CREATE */}
+      <WheelDalolatnomaModal
+        isOpen={createModal.isOpen}
+        onClose={createModal.onClose}
+      />
+
+
+      {/* FRONT CREATE */}
+      <Modal isOpen={oldiModal.isOpen} onClose={oldiModal.onClose} size="6xl">
+        <ModalOverlay />
+        <ModalContent>
+
+          <ModalHeader>Old qismi</ModalHeader>
+          <ModalCloseButton />
+
+          <Oldi
+            onClose={oldiModal.onClose}
+            carriageID={selectedCarriage}
+          />
+
+        </ModalContent>
+      </Modal>
+
+
+      {/* BACK CREATE */}
+      <Orqa
+        isOpen={orqaModal.isOpen}
+        onClose={orqaModal.onClose}
+        carriageID={selectedCarriage}
+      />
+
+
+      {/* SHOW FRONT */}
+      <ShowFront
+        isOpen={showFrontModal.isOpen}
+        onClose={showFrontModal.onClose}
+        dataFront={selectedFront}
+      />
+
+
+      {/* SHOW BACK */}
+      <ShowBack
+        isOpen={showBackModal.isOpen}
+        onClose={showBackModal.onClose}
+        dataBack={selectedBack}
+      />
+
+
+      {/* DELETE */}
+      <Deleteted
+        isOpen={deleteOpen}
+        onClose={setDeleteOpen}
+        carriageNumber={deleteID}
+        deletedFunction={handleDelete}
+      />
+
     </Box>
   );
 };
+
+export default WheelDalolatnoma;
