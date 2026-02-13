@@ -42,6 +42,7 @@ import { Dalolatnoma_Show } from "./Dalolatnoma_show";
 
 import { Oldi } from "./modal/AutoDalolatnoma/Oldi";
 import { Orqa } from "./modal/AutoDalolatnoma/Orqa";
+import {ShowBack} from "@/pages/CarriageUnitPage/page/modal/AutoDalolatnoma/ShowBack.jsx";
 
 
 // ================= STATUS =================
@@ -101,6 +102,14 @@ export const CarriageDalolatnoma = () => {
   const oldiModal = useDisclosure();
   const orqaModal = useDisclosure();
 
+  const showBackModal = useDisclosure();
+  const [selectedBack, setSelectedBack] = useState(null);
+
+  const openShowBack = (act) => {
+  const backData = act?.arava_act?.[0]?.back_detail;
+      setSelectedBack(backData);
+      showBackModal.onOpen();
+    };
 
   // ===== STATE =====
 
@@ -231,7 +240,6 @@ export const CarriageDalolatnoma = () => {
             <Tbody>
 
               {acts.results.map((act, idx) => {
-                  console.log("FULL ACT:", act);
                 const st = aravaStatus(act);
 
                 return (
@@ -307,11 +315,12 @@ export const CarriageDalolatnoma = () => {
     size="sm"
     leftIcon={<FontAwesomeIcon icon={faEye} />}
     colorScheme="blue"
-    onClick={() => openAct(act)} // show ACT with back info
+    onClick={() => openShowBack(act)}   // ✅ correct
   >
     Ko‘rish
   </Button>
 )}
+
 
 
 
@@ -404,6 +413,12 @@ export const CarriageDalolatnoma = () => {
         onClose={setDeleteOpen}
         carriageNumber={deleteID}
       />
+      <ShowBack
+  isOpen={showBackModal.isOpen}
+  onClose={showBackModal.onClose}
+  dataBack={selectedBack}
+/>
+
 
     </Box>
   );
