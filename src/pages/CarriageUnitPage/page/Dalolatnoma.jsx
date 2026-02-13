@@ -43,6 +43,7 @@ import { Dalolatnoma_Show } from "./Dalolatnoma_show";
 import { Oldi } from "./modal/AutoDalolatnoma/Oldi";
 import { Orqa } from "./modal/AutoDalolatnoma/Orqa";
 import {ShowBack} from "@/pages/CarriageUnitPage/page/modal/AutoDalolatnoma/ShowBack.jsx";
+import {ShowFront} from "@/pages/CarriageUnitPage/page/modal/AutoDalolatnoma/ShowFront.jsx";
 
 
 // ================= STATUS =================
@@ -105,11 +106,22 @@ export const CarriageDalolatnoma = () => {
   const showBackModal = useDisclosure();
   const [selectedBack, setSelectedBack] = useState(null);
 
+  const showFrontModal = useDisclosure();
+  const [selectedFront, setSelectedFront] = useState(null);
+
+
   const openShowBack = (act) => {
   const backData = act?.arava_act?.[0]?.back_detail;
       setSelectedBack(backData);
       showBackModal.onOpen();
     };
+
+  const openShowFront = (act) => {
+  const frontData = act?.arava_act?.[0]?.front_detail;
+      setSelectedFront(frontData);
+      showFrontModal.onOpen();
+    };
+
 
   // ===== STATE =====
 
@@ -241,7 +253,6 @@ export const CarriageDalolatnoma = () => {
 
               {acts.results.map((act, idx) => {
                 const st = aravaStatus(act);
-
                 return (
 
                   <Tr key={act.id}>
@@ -293,9 +304,9 @@ export const CarriageDalolatnoma = () => {
     size="sm"
     leftIcon={<FontAwesomeIcon icon={faEye} />}
     colorScheme="blue"
-    onClick={() => openAct(act)} // show ACT with front info
+    onClick={() => openShowFront(act)}
   >
-    Ko‘rish
+   Old Ko‘rish
   </Button>
 )}
 
@@ -306,7 +317,7 @@ export const CarriageDalolatnoma = () => {
     size="sm"
     leftIcon={<FontAwesomeIcon icon={faPenToSquare} />}
     colorScheme="orange"
-    onClick={() => openOrqa(act)}
+onClick={() => openOrqa(act)}
   >
     Orqa
   </Button>
@@ -314,10 +325,10 @@ export const CarriageDalolatnoma = () => {
   <Button
     size="sm"
     leftIcon={<FontAwesomeIcon icon={faEye} />}
-    colorScheme="blue"
+    colorScheme="green"
     onClick={() => openShowBack(act)}   // ✅ correct
   >
-    Ko‘rish
+   Orqa Ko‘rish
   </Button>
 )}
 
@@ -331,7 +342,7 @@ export const CarriageDalolatnoma = () => {
                           colorScheme="red"
                           icon={<FontAwesomeIcon icon={faTrashAlt} />}
                           onClick={() => {
-                            setDeleteID(act.id);
+                            setDeleteID(act.carriage_number);
                             setDeleteOpen(true);
                           }}
                         />
@@ -375,12 +386,7 @@ export const CarriageDalolatnoma = () => {
 
       {/* ================= MODALS ================= */}
 
-      {/* ACT VIEW */}
-      <Dalolatnoma_Show
-        isOpen={actModal.isOpen}
-        onClose={actModal.onClose}
-        data={selectedAct}
-      />
+
 
 
       {/* FRONT = OLDI */}
@@ -413,15 +419,23 @@ export const CarriageDalolatnoma = () => {
         onClose={setDeleteOpen}
         carriageNumber={deleteID}
       />
-      <ShowBack
-  isOpen={showBackModal.isOpen}
-  onClose={showBackModal.onClose}
-  dataBack={selectedBack}
-/>
 
+      <ShowBack
+          isOpen={showBackModal.isOpen}
+          onClose={showBackModal.onClose}
+          dataBack={selectedBack}
+        />
+
+        <ShowFront
+          isOpen={showFrontModal.isOpen}
+          onClose={showFrontModal.onClose}
+          dataFront={selectedFront}
+        />
 
     </Box>
   );
 };
 
 export default CarriageDalolatnoma;
+
+

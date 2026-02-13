@@ -50,7 +50,7 @@ export const Dalolatnoma_Show = ({ isOpen, onClose, data }) => {
 
       <ModalContent>
         <ModalHeader textAlign="center">
-          Dalolatnoma Jurnalini ko‘rish
+          Dalolatnoma Jurnalini
         </ModalHeader>
 
         <ModalCloseButton />
