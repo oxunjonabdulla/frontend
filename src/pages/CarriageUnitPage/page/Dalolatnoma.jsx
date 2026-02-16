@@ -37,7 +37,7 @@ import { useEffect, useMemo, useState } from "react";
 import UserApi from "@/Service/module/userModule.api";
 import { useDebounce } from "../../../hooks/useDebounce";
 
-import { Pagination, IsImzo, Deleteted } from "../../../components";
+import { Pagination,  Deleteted } from "../../../components";
 import { Dalolatnoma_Show } from "./Dalolatnoma_show";
 
 import { Oldi } from "./modal/AutoDalolatnoma/Oldi";
@@ -237,13 +237,12 @@ export const CarriageDalolatnoma = () => {
 
             <Thead bg="#0c6170">
 
-              <Tr>
+              <Tr >
                 <Th color="white">T/r</Th>
                 <Th color="white">Vagon Raqami</Th>
                 <Th color="white">Holati</Th>
                 <Th color="white">Aravalar</Th>
-                <Th color="white">Imzo</Th>
-                <Th color="white">Amallar</Th>
+                <Th color="white" >Amallar</Th>
               </Tr>
 
             </Thead>
@@ -276,11 +275,6 @@ export const CarriageDalolatnoma = () => {
                     </Td>
 
 
-                    <Td>
-                      <IsImzo
-                        isImzo={act.arava_act?.repair_master_signature}
-                      />
-                    </Td>
 
 
                     <Td>
@@ -306,7 +300,7 @@ export const CarriageDalolatnoma = () => {
     colorScheme="blue"
     onClick={() => openShowFront(act)}
   >
-   Old Ko‘rish
+   Old
   </Button>
 )}
 
@@ -325,10 +319,10 @@ onClick={() => openOrqa(act)}
   <Button
     size="sm"
     leftIcon={<FontAwesomeIcon icon={faEye} />}
-    colorScheme="green"
+    colorScheme="blue"
     onClick={() => openShowBack(act)}   // ✅ correct
   >
-   Orqa Ko‘rish
+   Orqa
   </Button>
 )}
 

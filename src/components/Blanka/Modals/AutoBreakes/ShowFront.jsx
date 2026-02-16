@@ -16,10 +16,10 @@ import {
 import PropTypes from "prop-types";
 
 
-export const ShowBack = ({ isOpen, onClose, dataBack }) => {
+export const ShowFront = ({ isOpen, onClose, dataFront }) => {
 
-  // ✅ if no data yet → don't render table
-  if (!dataBack) {
+  // ✅ If no data yet → safe render
+  if (!dataFront) {
     return (
       <Modal
         isOpen={isOpen}
@@ -28,7 +28,9 @@ export const ShowBack = ({ isOpen, onClose, dataBack }) => {
         size="lg"
       >
         <ModalOverlay />
+
         <ModalContent>
+
           <ModalHeader textAlign="center">
             Ma’lumot yuklanmoqda...
           </ModalHeader>
@@ -42,6 +44,7 @@ export const ShowBack = ({ isOpen, onClose, dataBack }) => {
           </ModalBody>
 
         </ModalContent>
+
       </Modal>
     );
   }
@@ -60,7 +63,7 @@ export const ShowBack = ({ isOpen, onClose, dataBack }) => {
       <ModalContent>
 
         <ModalHeader textAlign="center">
-          Kirish va chiqish dalolatnomasi avtobirikma bo‘linmasi orqa tomoni
+          Kirish va chiqish dalolatnomasi avtobirikma bo‘linmasi old tomoni
         </ModalHeader>
 
         <ModalCloseButton />
@@ -86,44 +89,44 @@ export const ShowBack = ({ isOpen, onClose, dataBack }) => {
                 {/* ROW 1 */}
                 <Tr>
                   <Td>1</Td>
-                  <Td>{dataBack?.auto_number_1 || "-"}</Td>
-                  <Td>{dataBack?.auto_zavod_1 || "-"}</Td>
-                  <Td>{dataBack?.mavjud_kod_1 || "-"}</Td>
+                  <Td>{dataFront?.auto_number_1 || "-"}</Td>
+                  <Td>{dataFront?.auto_zavod_1 || "-"}</Td>
+                  <Td>{dataFront?.mavjud_kod_1 || "-"}</Td>
                 </Tr>
 
 
                 {/* ROW 2 */}
                 <Tr>
                   <Td>2</Td>
-                  <Td>{dataBack?.auto_number_2 || "-"}</Td>
-                  <Td>{dataBack?.auto_zavod_2 || "-"}</Td>
-                  <Td>{dataBack?.mavjud_kod_2 || "-"}</Td>
+                  <Td>{dataFront?.auto_number_2 || "-"}</Td>
+                  <Td>{dataFront?.auto_zavod_2 || "-"}</Td>
+                  <Td>{dataFront?.mavjud_kod_2 || "-"}</Td>
                 </Tr>
 
 
                 {/* SECTION */}
                 <Tr>
                   <Td colSpan={4} textAlign="center" fontWeight="600">
-                    Yutish apparati
+                    Tortish apparati
                   </Td>
                 </Tr>
 
 
-                {/* YUTISH 1 */}
+                {/* TORTISH 1 */}
                 <Tr>
                   <Td>1</Td>
-                  <Td>{dataBack?.yutish_auto_number_1 || "-"}</Td>
-                  <Td>{dataBack?.yutish_auto_zavod_1 || "-"}</Td>
-                  <Td>{dataBack?.yutish_mavjud_kod_1 || "-"}</Td>
+                  <Td>{dataFront?.tortish_auto_number_1 || "-"}</Td>
+                  <Td>{dataFront?.tortish_auto_zavod_1 || "-"}</Td>
+                  <Td>{dataFront?.tortish_mavjud_kod_1 || "-"}</Td>
                 </Tr>
 
 
-                {/* YUTISH 2 */}
+                {/* TORTISH 2 */}
                 <Tr>
                   <Td>2</Td>
-                  <Td>{dataBack?.yutish_auto_number_2 || "-"}</Td>
-                  <Td>{dataBack?.yutish_auto_zavod_2 || "-"}</Td>
-                  <Td>{dataBack?.yutish_mavjud_kod_2 || "-"}</Td>
+                  <Td>{dataFront?.tortish_auto_number_2 || "-"}</Td>
+                  <Td>{dataFront?.tortish_auto_zavod_2 || "-"}</Td>
+                  <Td>{dataFront?.tortish_mavjud_kod_2 || "-"}</Td>
                 </Tr>
 
               </Tbody>
@@ -141,8 +144,8 @@ export const ShowBack = ({ isOpen, onClose, dataBack }) => {
 };
 
 
-ShowBack.propTypes = {
+ShowFront.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
-  dataBack: PropTypes.object,
+  dataFront: PropTypes.object,
 };

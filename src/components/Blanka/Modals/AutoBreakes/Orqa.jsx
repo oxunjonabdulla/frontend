@@ -75,7 +75,7 @@ export const Orqa = ({ isOpen, onClose, carriageID }) => {
         <ModalOverlay backdropFilter="blur(10px) hue-rotate(10deg)" />
         <ModalContent>
           <ModalHeader textAlign={"center"}>
-            Kirish va chiqish dalolatnomasi Aravalar bo‘linmasi Orqa tomonini
+            Kirish va chiqish dalolatnomasi Avtobirikma bo‘linmasi Orqa tomonini
             qo&apos;shish!{" "}
           </ModalHeader>
 
