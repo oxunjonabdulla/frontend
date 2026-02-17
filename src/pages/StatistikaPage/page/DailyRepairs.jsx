@@ -15,10 +15,12 @@ import { DailyRepairsTable } from "./components/DailyRepairsTable";
 import { DailyRepair_Modal } from "./modals/DailyRepair/DailyRepair_Modal";
 import { BrendCrumbs } from "@/components";
 import { DailyRapirsArchiveTable } from "./components/DailyRapirsArchiveTable";
+import { DownloadDailyModal } from "./DownloadDailyModal";
 
 export const DailyRepairs = memo(function DailyRepairs() {
   const [activeComponent, setActiveComponent] = useState("1");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {isOpen: isDownloadOpen, onOpen: onDownloadOpen, onClose: onDownloadClose,} = useDisclosure();
   const { data } = useSelector(({ dailyToday }) => dailyToday);
 
   const memoData = useMemo(() => data, [data]);
@@ -47,7 +49,8 @@ export const DailyRepairs = memo(function DailyRepairs() {
       </Heading>
 
       <ButtonGroup float={"right"} size="md" isAttached>
-        <Button
+
+             <Button
           variant={activeComponent === "1" ? "solid" : "outline"}
           onClick={() => setActiveComponent("1")}
           colorScheme="teal"
@@ -68,11 +71,23 @@ export const DailyRepairs = memo(function DailyRepairs() {
           aria-label="Add to friends"
           icon={<FontAwesomeIcon icon={faPlus} />}
         />
+          <Button
+          variant="outline"
+          colorScheme="teal"
+          onClick={onDownloadOpen}
+        >
+          Yuklash
+        </Button>
       </ButtonGroup>
       <BrendCrumbs />
+<DownloadDailyModal
+  isOpen={isDownloadOpen}
+  onClose={onDownloadClose}
+/>
 
       {renderComponent()}
       {isOpen && <DailyRepair_Modal isOpen={isOpen} onClose={onClose} />}
+
     </Box>
   );
 });

@@ -46,6 +46,25 @@ class UserApi extends React.Component {
   }
 
   // Vu22
+
+    async downloadDailyImages(month) {
+  try {
+    const response = await privateInstance.get(
+      authEndpoints.dailyImagesDownload,
+      {
+        params: { month },
+        responseType: "blob", // VERY IMPORTANT
+      }
+    );
+
+    return { response };
+
+  } catch (error) {
+    return { error };
+  }
+}
+
+
    async getActs(params) {
   try {
     const response = await privateInstance.get(

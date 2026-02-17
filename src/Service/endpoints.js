@@ -76,6 +76,7 @@ const authEndpoints = {
   phraseCartDelete: (carriageID) => `/${carriageID}/phrase_cart/`,
 
   // pto
+  dailyImagesDownload: "/daily-images/",
   dailyDelete: (id) => `/daily/delete/${id}`,
   ptoUpdate: (id) => `carriage/${id}/`,
   carriagePageGet: `carriage/`,
