@@ -980,7 +980,7 @@ const [groupedGoals, setGroupedGoals] = useState([]);
             </Grid>
 
 
-<Modal isOpen={isOpen} onClose={closeModal} size="6xl" isCentered>
+<Modal  size="6xl" isCentered>
   <ModalOverlay backdropFilter="blur(4px)" bg="blackAlpha.600" />
 
   <ModalContent borderRadius="2xl" maxH="90vh" overflow="auto">
