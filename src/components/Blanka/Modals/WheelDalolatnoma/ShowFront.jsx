@@ -38,9 +38,9 @@ export const ShowFront = ({ isOpen, onClose, dataFront }) => {
         <ModalBody>
 
           {/* CREATED INFO */}
-          <Text fontSize="sm" color="gray.500" mb={3}>
-            Yaratilgan sana: {dataFront?.created_at}
-          </Text>
+          {/*<Text fontSize="sm" color="gray.500" mb={3}>*/}
+          {/*  Yaratilgan sana: {dataFront?.created_at}*/}
+          {/*</Text>*/}
 
           <Divider mb={4} />
 

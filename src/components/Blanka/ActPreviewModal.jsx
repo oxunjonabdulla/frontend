@@ -202,31 +202,31 @@ const ActPreviewModal = ({ isOpen, onClose, data }) => {
           </Section>
 
 
-          {/* ================= SIGNATURE ================= */}
+          {/*/!* ================= SIGNATURE ================= *!/*/}
 
-          {data.created_by?.user_signature_url && (
+          {/*{data.created_by?.user_signature_url && (*/}
 
-            <Section title="Mas’ul shaxs imzosi">
+          {/*  <Section title="Mas’ul shaxs imzosi">*/}
 
-              <Box
-                border="1px solid"
-                borderColor="gray.300"
-                p={3}
-                rounded="md"
-                maxW="240px"
-              >
+          {/*    <Box*/}
+          {/*      border="1px solid"*/}
+          {/*      borderColor="gray.300"*/}
+          {/*      p={3}*/}
+          {/*      rounded="md"*/}
+          {/*      maxW="240px"*/}
+          {/*    >*/}
 
-                <img
-                  src={data.created_by.user_signature_url}
-                  alt="signature"
-                  width="100%"
-                />
+          {/*      <img*/}
+          {/*        src={data.created_by.user_signature_url}*/}
+          {/*        alt="signature"*/}
+          {/*        width="100%"*/}
+          {/*      />*/}
 
-              </Box>
+          {/*    </Box>*/}
 
-            </Section>
+          {/*  </Section>*/}
 
-          )}
+          {/*)}*/}
 
         </ModalBody>
 

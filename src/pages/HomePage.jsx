@@ -377,33 +377,33 @@ const groupedGoalsInventar = [
   {
     title: "I-chorak",
     months: [
-      { month: "Yanvar", target: 60, completed: 30, current: false },
-      { month: "Fevral", target: 50, completed: 50, current: false },
-      { month: "Mart", target: 72, completed: 43, current: false },
+      { month: "Yanvar", target: 60, completed: 45, current: false },
+      { month: "Fevral", target: 60, completed: 40, current: false },
+      { month: "Mart", target: 100, completed: 0, current: false },
     ]
   },
   {
     title: "II-chorak",
     months: [
-      { month: "Aprel", target: 55, completed: 65, current: false },
-      { month: "May", target: 60, completed: 45, current: false },
-      { month: "Iyun", target: 60, completed: 62, current: false },
+      { month: "Aprel", target: 100, completed: 0, current: false },
+      { month: "May", target: 100, completed: 0, current: false },
+      { month: "Iyun", target: 100, completed: 0, current: false },
     ]
   },
   {
     title: "III-chorak",
     months: [
-      { month: "Iyul", target: 60, completed: 35, current: false },
-      { month: "Avgust", target: 60, completed: 28, current: false },
-      { month: "Sentyabr", target: 50, completed: 13, current: false },
+      { month: "Iyul", target: 100, completed: 0, current: false },
+      { month: "Avgust", target: 100, completed: 0, current: false },
+      { month: "Sentyabr", target: 100, completed: 0, current: false },
     ]
   },
   {
     title: "IV-chorak",
     months: [
-      { month: "Oktyabr", target: 60, completed: 41, current: false },
-      { month: "Noyabr", target: 63, completed: 51, current: false },
-      { month: "Dekabr", target: 95, completed: 0, current: true },
+      { month: "Oktyabr", target: 100, completed: 0, current: false },
+      { month: "Noyabr", target: 100, completed: 0, current: false },
+      { month: "Dekabr", target: 100, completed: 0, current: true },
     ]
   }
 ];
@@ -412,33 +412,33 @@ const groupedGoalsXususiy = [
   {
     title: "I-chorak",
     months: [
-      { month: "Yanvar", target: 50, completed: 67, current: false },
-      { month: "Fevral", target: 50, completed: 35, current: false },
-      { month: "Mart", target: 50, completed: 53, current: false },
+      { month: "Yanvar", target: 100, completed: 74, current: false },
+      { month: "Fevral", target: 100, completed: 22, current: false },
+      { month: "Mart", target: 100, completed: 0, current: false },
     ]
   },
   {
     title: "II-chorak",
     months: [
-      { month: "Aprel", target: 50, completed: 38, current: false },
-      { month: "May", target: 50, completed: 56, current: false },
-      { month: "Iyun", target: 50, completed: 48, current: false },
+      { month: "Aprel", target: 100, completed: 0, current: false },
+      { month: "May", target: 100, completed: 0, current: false },
+      { month: "Iyun", target: 100, completed: 0, current: false },
     ]
   },
   {
     title: "III-chorak",
     months: [
-      { month: "Iyul", target: 50, completed: 47, current: false },
-      { month: "Avgust", target: 50, completed: 36, current: false },
-      { month: "Sentyabr", target: 50, completed: 55, current: false },
+      { month: "Iyul", target: 100, completed: 0, current: false },
+      { month: "Avgust", target: 100, completed: 0, current: false },
+      { month: "Sentyabr", target: 100, completed: 0, current: false },
     ]
   },
   {
     title: "IV-chorak",
     months: [
-      { month: "Oktyabr", target: 50, completed: 85, current: false },
-      { month: "Noyabr", target: 50, completed: 75, current: false },
-      { month: "Dekabr", target: 50, completed: 68, current: true },
+      { month: "Oktyabr", target: 100, completed: 0, current: false },
+      { month: "Noyabr", target: 100, completed: 0, current: false },
+      { month: "Dekabr", target: 100, completed: 0, current: true },
     ]
   }
 ];
@@ -462,31 +462,36 @@ const groupedGoalsXususiy = [
 const [chorakWagonData, setChorakWagonData] = useState([]);
 
 useEffect(() => {
-   privateInstance
-      .get("quarter_carriage_type_statistic/")
-      .then((data) => {
-        const grouped = {};
+  privateInstance
+    .get("quarter_carriage_type_statistic/")
+    .then((res) => {
+      const rawData = res.data;
 
-      data.data.forEach((item) => {
+      const quartersMap = {};
+
+      rawData.forEach((item) => {
         const quarterName = item.quarter.name;
-        if (!grouped[quarterName]) {
-          grouped[quarterName] = [];
+        const category = item.category; // 1 or 2
+
+        if (!quartersMap[quarterName]) {
+          quartersMap[quarterName] = {
+            category1: [],
+            category2: [],
+          };
         }
-        grouped[quarterName].push({
+
+        const wagonData = {
           type: item.name,
           count: item.count,
-        });
-      });
-
-      const structuredData = Object.entries(grouped).map(([quarter, values]) => {
-        const totalCount = values.reduce((sum, v) => sum + v.count, 0);
-        return {
-          title: `${quarter}: ${totalCount} ta vagonlar`,
-          data: values,
         };
+
+        if (category === 1) {
+          quartersMap[quarterName].category1.push(wagonData);
+        } else if (category === 2) {
+          quartersMap[quarterName].category2.push(wagonData);
+        }
       });
 
-      // Ensure all 4 quarters always appear
       const allQuarters = [
         "Birinchi chorak",
         "Ikkinchi chorak",
@@ -495,25 +500,48 @@ useEffect(() => {
       ];
 
       const finalData = allQuarters.map((q) => {
-        const found = structuredData.find((d) => d.title.startsWith(q));
-        return (
-          found || {
-            title: q,
-            data: [
-              { type: "Yopiq vagonlar", count: 0 },
-              { type: "Platforma vagonlar", count: 0 },
-              { type: "Yarim ochiq vagonlar", count: 0 },
-              { type: "Sisterna vagonlar", count: 0 },
-              { type: "Boshqa turdagi vagonlar", count: 0 },
-            ],
+        const quarterData = quartersMap[q] || {
+          category1: [],
+          category2: [],
+        };
+
+        // 🔥 Combine both categories for MAIN pie
+        const combinedMap = {};
+
+        [...quarterData.category1, ...quarterData.category2].forEach(
+          (item) => {
+            if (!combinedMap[item.type]) {
+              combinedMap[item.type] = 0;
+            }
+            combinedMap[item.type] += item.count;
           }
         );
+
+        const combinedData = Object.entries(combinedMap).map(
+          ([type, count]) => ({
+            type,
+            count,
+          })
+        );
+
+        const totalCount = combinedData.reduce(
+          (sum, item) => sum + item.count,
+          0
+        );
+
+        return {
+          title: `${q}: ${totalCount} ta vagonlar`,
+          combinedData,
+          category1: quarterData.category1,
+          category2: quarterData.category2,
+        };
       });
 
       setChorakWagonData(finalData);
     })
     .catch((err) => console.error("Failed to load data:", err));
 }, []);
+
 
 const [groupedGoals, setGroupedGoals] = useState([]);
  useEffect(() => {
@@ -905,7 +933,15 @@ const [groupedGoals, setGroupedGoals] = useState([]);
                             _hover={{transform: "translateY(-4px)", shadow: "xl"}}
                             height="100%"
                         >
-                            <CardBody p={6} onClick={() => setIsOpen(true)} cursor="pointer">
+<CardBody
+  p={6}
+  onClick={() => {
+    if (item.numberCnt > 0) {
+      setIsOpen(true);
+    }
+  }}
+  cursor={item.numberCnt > 0 ? "pointer" : "not-allowed"}
+>
                                 <Flex direction="column" height="100%">
                                     <Flex justify="space-between" align="center" mb={4}>
                                         <Box
@@ -1171,7 +1207,7 @@ const [groupedGoals, setGroupedGoals] = useState([]);
         </Box>
         <Box>
           <Text fontSize="xl" fontWeight="bold" color="blue.700">
-            Inventar yuk vagonlar
+            Temiryo'l Kargo AJ yuk vagonlar
           </Text>
           <Text fontSize="sm" color="gray.600">
             Yillik ta'mirlash rejasi
@@ -1399,9 +1435,9 @@ onClick={() => setHoverChart(true)}
 
 
             <Box mb={12}>
-  <Heading as="h2" size="lg" mb={6} color={headingColor}>
-    {sectionTitles.wagonTypes}
-  </Heading>
+          <Heading as="h2" size="lg" mb={6} color={headingColor}>
+            {sectionTitles.wagonTypes}
+          </Heading>
 
   <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6}>
     {chorakWagonData.map((chorak, idx) => (
@@ -1438,7 +1474,7 @@ onClick={() => setHoverChart(true)}
           </Text>
         </Flex>
 
-        <ChorakPieChart data={chorak.data} />
+        <ChorakPieChart data={chorak.combinedData} />
       </Card>
     ))}
   </Grid>
@@ -1459,7 +1495,6 @@ onClick={() => setHoverChart(true)}
   onClick={() => setHoveredIndex(null)}  // CHANGED HERE
   />
 
-  {/* Modal Preview (Always Rendered, Animated Visually) */}
   <Card
     position="fixed"
     top="50%"
@@ -1507,18 +1542,25 @@ onClick={() => setHoverChart(true)}
         </Flex>
 
         <Grid templateColumns="1fr 1fr" gap={6}>
-          <ChorakPieChart
-            data={chorakWagonData[hoveredIndex].data}
-          />
+  <Box>
+    <Text mb={4} fontWeight="bold">
+      Xususiy vagonlar
+    </Text>
+    <ChorakPieChart
+      data={chorakWagonData[hoveredIndex].category1}
+    />
+  </Box>
 
-          <ChorakPieChart
-            data={
-              chorakWagonData[
-                (hoveredIndex + 1) % chorakWagonData.length
-              ].data
-            }
-          />
-        </Grid>
+  <Box>
+    <Text mb={4} fontWeight="bold">
+      Temiryo'l Cargo AJ
+    </Text>
+    <ChorakPieChart
+      data={chorakWagonData[hoveredIndex].category2}
+    />
+  </Box>
+</Grid>
+
 
       </>
     )}
